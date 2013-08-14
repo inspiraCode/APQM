@@ -1,0 +1,1 @@
+dbscripts folder will contain all about scripts to use to construct the sql server database.
