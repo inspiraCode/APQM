@@ -1,26 +1,23 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterP.master.cs" Inherits="_Layouts_MasterP" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Advanced Purchasing Quote Management</title>
-    <asp:ContentPlaceHolder id="head" runat="server">
+    <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <asp:ScriptManager ID="ScriptManager1" runat="server" />        
-        
-         <table width="100%" cellspacing="0">
+    <table width="100%" cellspacing="0">
         <tr>
             <td width="5%" rowspan="8">
+                &nbsp;
             </td>
             <td colspan="2" align="center">
                 <asp:Image ID="logo" runat="server" Height="93px" ImageUrl="~/pics/logo portal.png" />
             </td>
-            <td width="5%"rowspan="8">
+            <td width="5%" rowspan="8">
             </td>
         </tr>
         <tr>
@@ -30,35 +27,34 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center" style="background-color:#424242; height:20px;" >
+            <td colspan="2" align="center" style="background-color: #424242; height: 20px;">
             </td>
         </tr>
         <tr>
-            <td width="25%" style="top:auto; vertical-align:text-top; background-color:#A4A4A4">
-                <div style="min-height:400px;">
+            <td width="25%" style="top: auto; vertical-align: text-top; background-color: #A4A4A4">
+                <div style="min-height: 400px;">
                     <asp:ContentPlaceHolder ID="PlaceHolderLeft" runat="server">
                     </asp:ContentPlaceHolder>
-                    </div>
-                </td>
+                </div>
+            </td>
             <td width="65%">
-                <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
-                </asp:ContentPlaceHolder>
+                <div style="min-width: 400px;">
+                    <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center" style="background-color:#424242; height:20px" >
+            <td colspan="2" align="center" style="background-color: #424242; height: 20px">
             </td>
         </tr>
         <tr>
-            <td colspan="2" align="center" >
+            <td colspan="2" align="center">
                 <asp:ContentPlaceHolder ID="PlaceHolderFoot" runat="server">
                 </asp:ContentPlaceHolder>
             </td>
         </tr>
     </table>
-        
-        
-    </div>
     </form>
 </body>
 </html>

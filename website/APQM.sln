@@ -5,20 +5,20 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{A02EB9F9-4
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
 		Debug.AspNetCompiler.VirtualPath = "/website"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\wsetup\repositories\APQM\website\"
+		Debug.AspNetCompiler.PhysicalPath = "..\website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/website"
-		Release.AspNetCompiler.PhysicalPath = "..\..\..\..\..\..\wsetup\repositories\APQM\website\"
+		Release.AspNetCompiler.PhysicalPath = "..\website\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "1871"
+		VWDPort = "3928"
 	EndProjectSection
 EndProject
 Global
