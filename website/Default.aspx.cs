@@ -14,18 +14,10 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        lblDate.Text = DateTime.Now.ToString("dddd, MMMM d, yyyy");
+        
         
     }
-    protected void logout_Click(object sender, EventArgs e)
-    {
-        Left_Col.ActiveViewIndex = 0;
-        logout.Visible = false;
-    }
-    protected void btnHome_Click(object sender, EventArgs e)
-    {
-
-    }
+    
     protected void btnSIF_Click(object sender, EventArgs e)
     {
         MultiViewMain.SetActiveView(viewSIF);
@@ -46,7 +38,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         Left_Col.ActiveViewIndex = 1;
-        logout.Visible = true;
+        //logout.Visible = true;
     }
    
 }

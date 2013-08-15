@@ -1,36 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
-<asp:Content ID="Foot" ContentPlaceHolderID="PlaceHolderFoot" runat="server">
-    <table width="100%">
-        <tr>
-            <td align="center">
-                Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                WebMasters: Aaron Corrales <a href="mailto:acorrales@capsonic.com">acorrales@capsonic.com</a>,
-                Alfredo Pacheco <a href="mailto:(apacheco@capsonic.com">apacheco@capsonic.com</a><br />
-                LMD: 08/13/2013
-            </td>
-        </tr>
-    </table>
-</asp:Content>
-<asp:Content ID="head" runat="server" ContentPlaceHolderID="PlaceHolderHeader">
-    <table style="width: 100%;">
-        <tr>
-            <td align="left" colspan="2">
-                <div style="min-height: 20px; text-align: right;">
-                    <asp:LinkButton ID="logout" runat="server" OnClick="logout_Click" Visible="False">Logout</asp:LinkButton></div>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" style="text-align: left">
-                <asp:LinkButton ID="btnHome" runat="server" Style="text-align: left">Home</asp:LinkButton>
-            </td>
-            <td align="right">
-                <asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label>
-            </td>
-        </tr>
-    </table>
-</asp:Content>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Login" runat="server">

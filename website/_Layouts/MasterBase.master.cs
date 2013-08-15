@@ -5,9 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Layouts_MasterP : System.Web.UI.MasterPage
+public partial class _Layouts_MasterBase : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
+    {
+        lblDate.Text = DateTime.Now.ToString("dddd, MMMM d, yyyy");
+    }
+    protected void logout_Click(object sender, EventArgs e)
     {
 
     }
