@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierMaster.ascx.cs" Inherits="supplierMaster" %>
 <div align="center">
     
-        <table cellspacing="0">
+        <table cellspacing="1" style="width: 590px">
             <tr>
                 <td>
                     &nbsp;</td>
@@ -11,28 +11,28 @@
             <tr>
                 <td  align="right">
                     Supplier Name</td>
-                <td >
+                <td align="left" >
                     <asp:TextBox ID="txtSupplierName" runat="server" Width="380px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td  align="right">
                     Manufacturing Location</td>
-                <td>
+                <td align="left">
                     <asp:TextBox ID="txtManufacturingLocation" runat="server" Width="380px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
                 <td align="right">
                     Ship Location</td>
-                <td>
+                <td align="left">
                     <asp:TextBox ID="txtShipLocation" runat="server" Width="380px"></asp:TextBox>
                 </td>
             </tr>
             <tr align="left">
                 <td align="right">
                     Quoted Currency</td>
-                <td >
+                <td align="left" >
                     <asp:TextBox ID="txtQuotedCurrency" runat="server" Width="200px"></asp:TextBox>
                 </td>
             </tr>
@@ -45,7 +45,7 @@
             <tr>
                 <td  align="right">
                     Contact Name</td>
-                <td >
+                <td align="left" >
                     <asp:TextBox ID="txtContactName" runat="server" Width="380px"></asp:TextBox>
                 </td>
             </tr>
@@ -62,6 +62,12 @@
                 <td  align="left">
                     <asp:TextBox ID="txtContactEmail" runat="server" Width="300px"></asp:TextBox>
                 </td>
+            </tr>
+            <tr>
+                <td  align="right">
+                    &nbsp;</td>
+                <td  align="left">
+                    &nbsp;</td>
             </tr>
             <tr>
                 <td  align="center" colspan="2">

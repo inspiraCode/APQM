@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
@@ -114,16 +114,19 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <asp:MultiView ID="MultiViewMain" runat="server">
         <asp:View ID="viewSIF" runat="server">
-            VistaSIF
+            <div>
+                SIF</div>
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
-            Vista BOM
+            <div>
+                BOM</div>
         </asp:View>
         <asp:View ID="viewRFQ" runat="server">
-            Vista RFQ
+            <div>
+                RFQ</div>
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
-            Vista Supplier                   
+            Suppliers
         </asp:View>
     </asp:MultiView>
 </asp:Content>

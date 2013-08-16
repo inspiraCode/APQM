@@ -32,8 +32,12 @@ public partial class _Default : System.Web.UI.Page
     protected void btnSuppliers_Click(object sender, EventArgs e)
     {
         MultiViewMain.SetActiveView(viewSupplier);
-        Control supplier = LoadControl("suppliermaster.ascx");        
-        viewSupplier.Controls.Add(supplier);
+        Control supplierList = LoadControl("supplierList.ascx");
+        viewSupplier.Controls.Add(supplierList);
+
+       
+
+
     }
     protected void btnLogin_Click(object sender, EventArgs e)
     {

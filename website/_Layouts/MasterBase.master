@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Advanced Purchasing Quote Management</title>
+    <title>Advanced Purchasing Quote Management</title>    
 </head>
 <body>
     <table width="100%">
@@ -30,7 +30,7 @@
                 <td align="right">
                     <asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label>
                 </td>
-            </tr>           
+            </tr>
         </table>
     </div>
     <div id="divBase">
@@ -39,7 +39,7 @@
     </div>
     </form>
     <div id="divFooter">
-        <table width="100%">            
+        <table width="100%">
             <tr>
                 <td align="center">
                     Capsonic Automotive &amp; Aerospace, Inc. 2012<br />

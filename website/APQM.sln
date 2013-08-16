@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{A02EB9F9-44AA-43C1-9937-604B5C49413F}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{995D87D3-76A8-4AA6-AFD1-4A8497978508}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
 		Debug.AspNetCompiler.VirtualPath = "/website"
@@ -18,7 +18,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{A02EB9F9-4
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "3928"
+		VWDPort = "29724"
 	EndProjectSection
 EndProject
 Global
@@ -26,8 +26,8 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A02EB9F9-44AA-43C1-9937-604B5C49413F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A02EB9F9-44AA-43C1-9937-604B5C49413F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

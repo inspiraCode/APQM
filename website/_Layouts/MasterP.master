@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/_Layouts/MasterBase.master" AutoEventWireup="true"
-    CodeFile="MasterP.master.cs" Inherits="_Layouts_MasterP" %>
+    CodeFile="MasterP.master.cs" Inherits="_Layouts_MasterP" %> 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
     <table width="100%" cellspacing="0">
@@ -8,14 +8,14 @@
             </td>
         </tr>
         <tr>
-            <td width="25%" style="top: auto; vertical-align: text-top; background-color: #A4A4A4">
+            <td width="20%" style="top: auto; vertical-align: text-top; background-color: #A4A4A4">
                 <div style="min-height: 350px;">
                     <asp:ContentPlaceHolder ID="PlaceHolderLeft" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
             </td>
-            <td width="65%">
-                <div style="min-width: 400px;">
+            <td width="80%">
+                <div style="min-width: 400px; min-height: 350px;">
                     <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
@@ -26,4 +26,5 @@
             </td>
         </tr>
     </table>
+           
 </asp:Content>
