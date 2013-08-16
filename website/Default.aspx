@@ -123,7 +123,7 @@
             Vista RFQ
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
-            Vista Supplier
+            Vista Supplier                   
         </asp:View>
     </asp:MultiView>
 </asp:Content>
