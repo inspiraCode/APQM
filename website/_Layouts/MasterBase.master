@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterBase.master.cs" Inherits="_Layouts_MasterBase" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Advanced Purchasing Quote Management</title>    
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td colspan="2" align="center">
+                <asp:Image ID="logo" runat="server" Height="93px" ImageUrl="~/pics/logo portal.png" />
+            </td>
+        </tr>
+    </table>
+    <form id="form1" runat="server">
+    <div id="divHeader">
+        <table width="100%">
+            <tr>
+                <td align="left" colspan="2">
+                    <div style="min-height: 20px; text-align: right;">
+                        <asp:LinkButton ID="logout" runat="server" OnClick="logout_Click" Visible="False">Logout</asp:LinkButton>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" style="text-align: left">
+                    <asp:LinkButton ID="btnHome" runat="server" Style="text-align: left">Home</asp:LinkButton>
+                </td>
+                <td align="right">
+                    <asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="divBase">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+    <div id="divFooter">
+        <table width="100%">
+            <tr>
+                <td align="center">
+                    Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
+                    WebMasters: Aaron Corrales <a href="mailto:acorrales@capsonic.com">acorrales@capsonic.com</a>,
+                    Alfredo Pacheco <a href="mailto:(apacheco@capsonic.com">apacheco@capsonic.com</a><br />
+                    LMD: 08/13/2013
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
