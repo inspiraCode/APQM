@@ -33,29 +33,29 @@ public class SupplierDAO : ICRUD<Supplier>
     {
         recordset.Clear();
 
-        //Supplier example1 = new Supplier();
-        //Supplier example2 = new Supplier();
+        Supplier example1 = new Supplier();
+        Supplier example2 = new Supplier();
 
-        //example1.Id = 1;
-        //example1.SupplierName = "Un supplier";
-        //example1.ManufacturingLocation = "manufacturing location 1";
-        //example1.ShipLocation = "Un ship location";
-        //example1.QuotedCurrency = "un quoted currency";
-        //example1.ContactName = "contact de supplier 1";
-        //example1.ContactPhone = "6563-123-4567";
-        //example1.ContactEmail = "unEmail@email.com";
+        example1.Id = 1;
+        example1.SupplierName = "Un supplier";
+        example1.ManufacturingLocation = "manufacturing location 1";
+        example1.ShipLocation = "Un ship location";
+        example1.QuotedCurrency = "un quoted currency";
+        example1.ContactName = "contact de supplier 1";
+        example1.ContactPhone = "6563-123-4567";
+        example1.ContactEmail = "unEmail@email.com";
 
-        //example2.Id = 2;
-        //example2.SupplierName = "An other supplier";
-        //example2.ManufacturingLocation = "address one two three";
-        //example2.ShipLocation = "address of shipment :)";
-        //example2.QuotedCurrency = "a quoted curr";
-        //example2.ContactName = "contact of second supplier";
-        //example2.ContactPhone = "6563-123-6548";
-        //example2.ContactEmail = "mail@hotmail.com";
+        example2.Id = 2;
+        example2.SupplierName = "An other supplier";
+        example2.ManufacturingLocation = "address one two three";
+        example2.ShipLocation = "address of shipment :)";
+        example2.QuotedCurrency = "a quoted curr";
+        example2.ContactName = "contact of second supplier";
+        example2.ContactPhone = "6563-123-6548";
+        example2.ContactEmail = "mail@hotmail.com";
 
-        //recordset.Add(example1);
-        //recordset.Add(example2);
+        recordset.Add(example1);
+        recordset.Add(example2);
 
         return recordset;
     }

@@ -32,7 +32,7 @@ public partial class supplierList : System.Web.UI.UserControl
             foreach (Supplier record in recordset)
             {
                 result += "<tr>" +
-                   "<td><asp:LinkButton ID='linkSupplier1' runat='server' onclick='linkSupplier1_Click'>" + record.SupplierName + "</asp:LinkButton></td>" +
+                   "<td><a href='#?algo=2' >" + record.SupplierName + "</a></td>" +
                    "<td>" + record.ManufacturingLocation + "</td>" +
                    "<td>" + record.ShipLocation + "</td>" +
                    "<td>" + record.QuotedCurrency + "</td>" +
@@ -43,24 +43,10 @@ public partial class supplierList : System.Web.UI.UserControl
             }
         }
         result += "</table>";
+        
+        result += "<br />" + recordset.Count + " records.";
 
         divSupplierList.InnerHtml = result;
     }
     
-    protected void linkSupplier1_Click(object sender, EventArgs e)
-    {
-        
-    }
-    protected void linkSupplier2_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void linkSupplier3_Click(object sender, EventArgs e)
-    {
-
-    }
-    protected void linkSupplier4_Click(object sender, EventArgs e)
-    {
-
-    }
 }
