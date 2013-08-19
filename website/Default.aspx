@@ -127,6 +127,9 @@
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
             Suppliers
+            <div style="height: 300px; overflow:scroll" >
+                <div runat="server" id="divSupplier"></div>
+            </div>
         </asp:View>
     </asp:MultiView>
 </asp:Content>
