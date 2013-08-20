@@ -31,8 +31,9 @@ public partial class supplierList : System.Web.UI.UserControl
             //Body:
             foreach (Supplier record in recordset)
             {
+                
                 result += "<tr>" +
-                   "<td><a href='#?algo=2' >" + record.SupplierName + "</a></td>" +
+                   "<td><a href=default.aspx?section=popupSupplier&entity=supplier&id=1 >" + record.SupplierName + "</a></td>" +
                    "<td>" + record.ManufacturingLocation + "</td>" +
                    "<td>" + record.ShipLocation + "</td>" +
                    "<td>" + record.QuotedCurrency + "</td>" +
@@ -47,6 +48,7 @@ public partial class supplierList : System.Web.UI.UserControl
         result += "<br />" + recordset.Count + " records.";
 
         divSupplierList.InnerHtml = result;
+        
     }
     
 }

@@ -72,8 +72,9 @@
             <tr>
                 <td  align="center" colspan="2">
                     <asp:Button ID="btnSave" runat="server" Text="Save" 
-                        Width="70px" />
-                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" />
+                        Width="70px" onclick="btnSave_Click" />
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
+                        onclick="btnCancel_Click" />
                 </td>
             </tr>
         </table>

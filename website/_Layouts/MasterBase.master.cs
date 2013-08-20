@@ -18,15 +18,5 @@ public partial class _Layouts_MasterBase : System.Web.UI.MasterPage
     {
 
     }
-
-    protected void Button2_Click(object sender, EventArgs e)
-    {
-        popup.Visible = true;
-
-    }
-
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        popup.Visible = false;
-    }
+    
 }

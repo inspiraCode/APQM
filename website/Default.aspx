@@ -1,6 +1,8 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
+<%@ Register src="supplierMaster.ascx" tagname="supplierMaster" tagprefix="uc1" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Login" runat="server">
@@ -110,9 +112,22 @@
             </table>
         </asp:View>
     </asp:MultiView>
+    
+    <asp:Panel ID="panelPopupSupplierMaster" runat="server" Visible="false">
+        <asp:Panel runat="server" CssClass="Overlay">
+        </asp:Panel>
+        <asp:Panel ID="popupSupplierMaster" runat="server" CssClass="PopUpPanel">            
+            <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_ok_supplier" OnCancel_Click="on_cancel_supplier"/>            
+        </asp:Panel>
+    </asp:Panel>
+    
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <asp:MultiView ID="MultiViewMain" runat="server">
+        <asp:View ID="viewHome" runat="server">
+            <div>
+                HOME</div>
+        </asp:View>
         <asp:View ID="viewSIF" runat="server">
             <div>
                 SIF</div>
@@ -132,5 +147,23 @@
                 </div>
             </div>
         </asp:View>
-    </asp:MultiView>       
+        <asp:View ID="viewPopup" runat="server">
+            <!-- Popup Definition -->
+            <%--<input id="Button2" type="submit" value="submit" onclick="javascript:document.getElementById('popup').style.visibility='visible';" />--%>
+            <%--<div id="popup" style='visibility: hidden;'>
+                <div id="panelOverlay" class="Overlay">
+                </div>
+                <div id="panelPopUpPanel" class="PopUpPanel">
+                    <div id="panelPopUpTitle" style="width: 100%; height: 20px; text-align: right;" />
+                    <input id="Button1" type="submit" value="Hola" onclick="javascript:document.getElementById('popup').style.visibility='hidden';" />
+                </div></div>--%>
+            <%-- <asp:Panel ID="panelPopupBackground" runat="server" CssClass="Overlay"></asp:Panel>
+                
+            <asp:Panel ID="popup" runat="server" CssClass="PopUpPanel">
+                <asp:Panel ID="popupContent" runat="server" />
+                <asp:Button ID="btnClosePopup" runat="server" Text="Close Popup" OnClick="btnClosePopup_Click" />
+            </asp:Panel>--%>
+            <!-- End Popup Definition -->
+        </asp:View>
+    </asp:MultiView>
 </asp:Content>
