@@ -20,14 +20,36 @@ public class SupplierCRUD : ICRUD<Supplier>
     
     #region ICRUD<Supplier> Members
 
-    public long create()
+    public long create(Supplier entity)
     {
-        throw new NotImplementedException();
+        object idGenerated = -1;
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        
+        try
+        {
+            SqlCommand command = new SqlCommand("SuppierMaster_NewSupplier", sqlConnection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@SupplierName",entity.SupplierName);
+            command.Parameters.AddWithValue("@ContactName", entity.ContactName);
+            command.Parameters.AddWithValue("@ContactPhoneNumber", entity.ContactPhone);
+            command.Parameters.AddWithValue("@ContactEmail", entity.ContactEmail);
+            command.Parameters.AddWithValue("@ManufacturingLocation", entity.ManufacturingLocation);
+            command.Parameters.AddWithValue("@ShipLocation", entity.ShipLocation);
+            command.Parameters.AddWithValue("@QuotedCurrency", entity.QuotedCurrency);
+            sqlConnection.Open();
+            idGenerated = command.ExecuteScalar();
+        }
+        catch(Exception e){
+            return -1;
+        }
+
+        return 1;        
     }
 
     public Supplier readById(long id)
     {
-        Supplier supplier = new Supplier();        
+        Supplier supplier = new Supplier();
         string query = "SELECT SupplierMasterKey, SupplierName, ManufacturingLocation, ShipLocation, QuotedCurrency, ContactName, ContactPhoneNumber, ContactEmail FROM SupplierMaster WHERE SupplierMasterKey=@key";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -78,12 +100,41 @@ public class SupplierCRUD : ICRUD<Supplier>
        
         return recordset;
     }
-    public bool update()
+    public bool update(Supplier entity)
     {
-        throw new NotImplementedException();
+        int rowsAffected = 0;
+        SqlConnection sqlConnection = connectionManager.getConnection();
+
+        try
+        {
+            SqlCommand command = new SqlCommand("SuppierMaster_EditSupplier", sqlConnection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@SupplierKey", entity.Id);
+            command.Parameters.AddWithValue("@SupplierName", entity.SupplierName);
+            command.Parameters.AddWithValue("@ContactName", entity.ContactName);
+            command.Parameters.AddWithValue("@ContactPhoneNumber", entity.ContactPhone);
+            command.Parameters.AddWithValue("@ContactEmail", entity.ContactEmail);
+            command.Parameters.AddWithValue("@ManufacturingLocation", entity.ManufacturingLocation);
+            command.Parameters.AddWithValue("@ShipLocation", entity.ShipLocation);
+            command.Parameters.AddWithValue("@QuotedCurrency", entity.QuotedCurrency);
+            sqlConnection.Open();
+            rowsAffected = command.ExecuteNonQuery();
+            
+            if (rowsAffected <= 0)
+            {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return true;      
     }
 
-    public bool delete()
+    public bool delete(long id)
     {
         throw new NotImplementedException();
     }

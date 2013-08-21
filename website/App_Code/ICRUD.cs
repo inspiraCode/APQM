@@ -8,9 +8,9 @@ using System.Web;
 /// </summary>
 public interface ICRUD<T>
 {
-    long create();
+    long create(T entity);
     T readById(long id);
-    IList<T> readAll();    
-    bool update();
-    bool delete();
+    IList<T> readAll();
+    bool update(T entity);
+    bool delete(long id);
 }

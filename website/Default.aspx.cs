@@ -34,7 +34,7 @@ public partial class _Default : System.Web.UI.Page
                     Control supplierList = LoadControl("supplierList.ascx");
                     divSupplier.Controls.Add(supplierList);
                     break;
-                case "popupSupplier":                         
+                case "popupSupplier":
                     if (Request.Params.Get("id") != null)
                     {                        
                         supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
@@ -89,9 +89,6 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopupSupplierMaster.Visible = false;
-
-        //TODO: Save Supplier to Database.
-
         btnSuppliers_Click(null,null);
     }
 

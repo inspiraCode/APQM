@@ -39,7 +39,28 @@ public partial class supplierMaster : System.Web.UI.UserControl
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
-    {        
+    {
+        Supplier supplier = new Supplier();
+        supplier.SupplierName = txtSupplierName.Text;
+        supplier.ContactName = txtContactName.Text;
+        supplier.ContactPhone = txtContactPhoneNumber.Text;
+        supplier.ContactEmail = txtContactEmail.Text;
+        supplier.ManufacturingLocation = txtManufacturingLocation.Text;
+        supplier.ShipLocation = txtShipLocation.Text;
+        supplier.QuotedCurrency = txtQuotedCurrency.Text;
+
+        if (lblMode.Text == "New") {
+            long id = supplierCRUD.create(supplier);
+            if (id == -1) {
+                Response.Redirect("~/Error.aspx");
+            }
+        }else if(lblMode.Text == "Update"){
+            supplier.Id = long.Parse(lblID.Text);
+            if (!supplierCRUD.update(supplier))
+            {
+                Response.Redirect("~/Error.aspx");
+            }            
+        }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
