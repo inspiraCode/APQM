@@ -34,7 +34,11 @@ public partial class _Default : System.Web.UI.Page
                     Control supplierList = LoadControl("supplierList.ascx");
                     divSupplier.Controls.Add(supplierList);
                     break;
-                case "popupSupplier":
+                case "popupSupplier":                         
+                    if (Request.Params.Get("id") != null)
+                    {                        
+                        supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
+                    }
                     openPopupSupplierMaster("supplierMaster.ascx");                    
                     break;                    
                 default:
@@ -65,7 +69,6 @@ public partial class _Default : System.Web.UI.Page
         goHome();
         //logout.Visible = true;
     }
-
     private void goHome()
     {
         Left_Col.ActiveViewIndex = 1;
@@ -97,5 +100,9 @@ public partial class _Default : System.Web.UI.Page
         panelPopupSupplierMaster.Visible = false;
         btnSuppliers_Click(null, null);
     }
-    
+
+    protected void btnAddSupplier_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/default.aspx?section=popupSupplier");
+    }
 }

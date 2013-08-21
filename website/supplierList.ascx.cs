@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class supplierList : System.Web.UI.UserControl
 {
-    private SupplierDAO supplierDAO = new SupplierDAO();
+    private SupplierCRUD supplierCRUD = new SupplierCRUD();
     protected void Page_Load(object sender, EventArgs e)
     {
         string result = "";
@@ -24,7 +24,7 @@ public partial class supplierList : System.Web.UI.UserControl
             "<th>Contact Email</th>" +
             "</tr>";
 
-        List<Supplier> recordset = (List<Supplier>) supplierDAO.readAll();
+        List<Supplier> recordset = (List<Supplier>) supplierCRUD.readAll();
 
         if (recordset.Count > 0)
         {
@@ -32,8 +32,8 @@ public partial class supplierList : System.Web.UI.UserControl
             foreach (Supplier record in recordset)
             {
                 
-                result += "<tr>" +
-                   "<td><a href=default.aspx?section=popupSupplier&entity=supplier&id=1 >" + record.SupplierName + "</a></td>" +
+                result += "<tr height=40px;>" +
+                   "<td><a href=default.aspx?section=popupSupplier&id=" + record.Id + ">" + record.SupplierName + "</a></td>" +
                    "<td>" + record.ManufacturingLocation + "</td>" +
                    "<td>" + record.ShipLocation + "</td>" +
                    "<td>" + record.QuotedCurrency + "</td>" +

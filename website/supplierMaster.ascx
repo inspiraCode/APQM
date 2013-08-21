@@ -3,10 +3,18 @@
     
         <table cellspacing="1" style="width: 590px">
             <tr>
-                <td>
-                    &nbsp;</td>
-                <td >
-                    &nbsp;</td>
+                <td align="right">
+                    Mode:</td>
+                <td align="left" >
+                    <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    ID:</td>
+                <td align="left" >
+                    <asp:Label ID="lblID" runat="server"></asp:Label>
+                </td>
             </tr>
             <tr>
                 <td  align="right">

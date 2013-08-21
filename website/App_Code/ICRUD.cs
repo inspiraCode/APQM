@@ -9,7 +9,7 @@ using System.Web;
 public interface ICRUD<T>
 {
     long create();
-    string read();
+    T readById(long id);
     IList<T> readAll();    
     bool update();
     bool delete();

@@ -142,28 +142,14 @@
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
             Suppliers
-            <div style="height: 300px; overflow: scroll">
+            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
                 <div runat="server" id="divSupplier">
                 </div>
-            </div>
+            </div>            
+            <asp:Button ID="btnAddSupplier" runat="server" Text="Add Supplier" 
+                onclick="btnAddSupplier_Click" />
         </asp:View>
         <asp:View ID="viewPopup" runat="server">
-            <!-- Popup Definition -->
-            <%--<input id="Button2" type="submit" value="submit" onclick="javascript:document.getElementById('popup').style.visibility='visible';" />--%>
-            <%--<div id="popup" style='visibility: hidden;'>
-                <div id="panelOverlay" class="Overlay">
-                </div>
-                <div id="panelPopUpPanel" class="PopUpPanel">
-                    <div id="panelPopUpTitle" style="width: 100%; height: 20px; text-align: right;" />
-                    <input id="Button1" type="submit" value="Hola" onclick="javascript:document.getElementById('popup').style.visibility='hidden';" />
-                </div></div>--%>
-            <%-- <asp:Panel ID="panelPopupBackground" runat="server" CssClass="Overlay"></asp:Panel>
-                
-            <asp:Panel ID="popup" runat="server" CssClass="PopUpPanel">
-                <asp:Panel ID="popupContent" runat="server" />
-                <asp:Button ID="btnClosePopup" runat="server" Text="Close Popup" OnClick="btnClosePopup_Click" />
-            </asp:Panel>--%>
-            <!-- End Popup Definition -->
         </asp:View>
     </asp:MultiView>
 </asp:Content>
