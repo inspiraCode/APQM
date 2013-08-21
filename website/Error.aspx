@@ -8,9 +8,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div align="center">
-    
-        Has been ocurred an error. Please report it.</div>
+    <div align="center">    
+        An error has occurred.</div>
     </form>
     <div id="divError">
     </div>
