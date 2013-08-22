@@ -19,7 +19,29 @@ public partial class supplierList : System.Web.UI.UserControl
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {                       
-            ((LinkButton)e.Item.FindControl("supplierID")).PostBackUrl += ((Supplier)e.Item.DataItem).Id;
+            //((LinkButton)e.Item.FindControl("supplierID")).PostBackUrl += ((Supplier)e.Item.DataItem).Id;
+            //((LinkButton)e.Item.FindControl("deleteByID")).PostBackUrl += ((Supplier)e.Item.DataItem).Id;
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((Supplier)e.Item.DataItem).Id.ToString();            
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((Supplier)e.Item.DataItem).Id.ToString();            
         }
     }
+    public void deleteByID(object sender, CommandEventArgs e)
+    {
+        long id = long.Parse((string)e.CommandArgument);
+        if (!supplierCRUD.delete(id))
+        {
+            Response.Redirect("~/Error.aspx");
+        }
+    }
+    public void updateByID(object sender, CommandEventArgs e)
+    {
+        long id = long.Parse((string)e.CommandArgument);
+        Supplier supplier = new Supplier();
+        supplier = supplierCRUD.readById(id);
+        if (supplier != null)
+        {
+            Session["supplier"] = supplier;
+        }
+        Response.Redirect("~/default.aspx?section=popupSupplier");
+    }   
 }

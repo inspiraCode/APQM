@@ -34,11 +34,10 @@ public partial class _Default : System.Web.UI.Page
                     Control supplierList = LoadControl("supplierList.ascx");
                     divSupplier.Controls.Add(supplierList);
                     break;
-                case "popupSupplier":
-                    if (Request.Params.Get("id") != null)
-                    {                        
-                        supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
-                    }
+                case "popupSupplier":                                          
+
+                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
+                    
                     openPopupSupplierMaster("supplierMaster.ascx");                    
                     break;                    
                 default:
