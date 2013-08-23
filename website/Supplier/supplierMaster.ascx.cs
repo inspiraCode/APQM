@@ -14,9 +14,15 @@ public partial class supplierMaster : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
         if (Session["Supplier"]!=null)
         {
-            fillWithSupplier((Supplier)Session["Supplier"]);
+            if (((SessionObject)Session["Supplier"]).Status == "forUpdate")
+            {
+
+                fillWithSupplier((Supplier)(((SessionObject)Session["Supplier"]).Content));
+            }
+            
         }
     }
 

@@ -61,7 +61,8 @@
             </tr>
             <tr>
                 <td align="right" style="text-align: left">
-                    <asp:LinkButton ID="btnHome" runat="server" Style="text-align: left">Home</asp:LinkButton>
+                    <asp:LinkButton ID="btnHome" runat="server" Style="text-align: left" 
+                        PostBackUrl="~/Default.aspx">Home</asp:LinkButton>
                 </td>
                 <td align="right">
                     <asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label>

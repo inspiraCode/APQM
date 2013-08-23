@@ -40,7 +40,11 @@ public partial class supplierList : System.Web.UI.UserControl
         supplier = supplierCRUD.readById(id);
         if (supplier != null)
         {
-            Session["supplier"] = supplier;
+            SessionObject so = new SessionObject();
+            so.Content = supplier;
+            so.Status = "forUpdate";
+
+            Session["supplier"] = so;
         }
         Response.Redirect("~/default.aspx?section=popupSupplier");
     }   

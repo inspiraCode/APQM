@@ -17,44 +17,39 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Request.Params.Get("section") != null)
         {
-            Left_Col.ActiveViewIndex = 1;
             switch (Request.Params.Get("section"))
             {
-                case "sif":
-                    MultiViewMain.SetActiveView(viewSIF);
-                    break;
-                case "bom":
-                    MultiViewMain.SetActiveView(viewBOM);
-                    break;    
-                case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);                    
-                    break;    
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
                     break;
+                case "survey":
+                    MultiViewMain.SetActiveView(viewSurvey);
+                    break;
                 case "popupSupplier":
-                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));    
-                    Session.Remove("Supplier");
-                    MultiViewMain.SetActiveView(viewSupplier);
+                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));                    
                     openPopupSupplierMaster("supplierMaster.ascx");
-                    break;                    
+                    break;
                 default:
-                    //btnSuppliers_Click(null, null);
+                    btnSuppliers_Click(null, null);
                     break;
             }
-        }
+        }        
     }
-
-   
-    protected void btnLogin_Click(object sender, EventArgs e)
+    protected void btnSIF_Click(object sender, EventArgs e)
     {
-        goHome();
-        //logout.Visible = true;
+        Response.Redirect("~/default.aspx?section=sif");
     }
-    private void goHome()
+    protected void btnBOM_Click(object sender, EventArgs e)
     {
-        Left_Col.ActiveViewIndex = 1;
-        MultiViewMain.SetActiveView(viewHome);
+        Response.Redirect("~/default.aspx?section=bom");
+    }
+    protected void btnRFQ_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/default.aspx?section=rfq");
+    }
+    protected void btnSuppliers_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/default.aspx?section=suppliers");
     }
     protected void btnClosePopup_Click(object sender, EventArgs e)
     {
@@ -62,20 +57,30 @@ public partial class _Default : System.Web.UI.Page
     }
     private void openPopupSupplierMaster(string content)
     {
-        panelPopupSupplierMaster.Visible = true;        
+        panelPopupSupplierMaster.Visible = true;
     }
+
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopupSupplierMaster.Visible = false;
-        //btnSuppliers_Click(null,null);
+        btnSuppliers_Click(null,null);
     }
     protected void on_cancel_supplier(object sender, EventArgs e) 
     {
         panelPopupSupplierMaster.Visible = false;
-        //btnSuppliers_Click(null, null);
+        btnSuppliers_Click(null, null);
     }
-    protected void btnAddSupplier_Click(object sender, EventArgs e)
+    
+
+
+
+
+    protected void tabSupplier_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/default.aspx?section=popupSupplier");
+        Response.Redirect("~/Supplier/supplier.aspx?section=supplier");
+    }
+    protected void tabSurvey_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/Supplier/supplier.aspx?section=survey");
     }
 }

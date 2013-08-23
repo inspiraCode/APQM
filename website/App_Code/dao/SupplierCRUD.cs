@@ -119,8 +119,9 @@ public class SupplierCRUD : ICRUD<Supplier>
             command.Parameters.AddWithValue("@ShipLocation", entity.ShipLocation);
             command.Parameters.AddWithValue("@QuotedCurrency", entity.QuotedCurrency);
             sqlConnection.Open();
-            rowsAffected = command.ExecuteNonQuery();
             
+            rowsAffected = command.ExecuteNonQuery();
+
             if (rowsAffected <= 0)
             {
                 return false;
