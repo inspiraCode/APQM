@@ -7,6 +7,8 @@
 
 <%@ Register src="Supplier/supplierList.ascx" tagname="supplierList" tagprefix="uc3" %>
 
+<%@ Register src="SIF/sifList.ascx" tagname="sifList" tagprefix="uc4" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Login" runat="server">
@@ -60,6 +62,7 @@
     
     <asp:Panel ID="panelPopupSupplierMaster" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">            
+            
         </asp:Panel>
         <asp:Panel ID="popupSupplierMaster" runat="server" CssClass="PopUpPanel">            
             <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_ok_supplier" OnCancel_Click="on_cancel_supplier"/>            
@@ -74,8 +77,14 @@
                 HOME</div>
         </asp:View>
         <asp:View ID="viewSIF" runat="server">
-            <div>
-                SIF</div>
+            SIFs
+            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
+                <div runat="server" id="divSIF">
+                    <uc4:sifList ID="sifList1" runat="server" />
+                </div>
+            </div>            
+            <asp:Button ID="Button1" runat="server" Text="Add Supplier" 
+                onclick="btnAddSupplier_Click" />
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
             <div>

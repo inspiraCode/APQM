@@ -12,7 +12,7 @@ public partial class Menu : System.Web.UI.UserControl
 
     }
     protected void btnSIF_Click(object sender, EventArgs e)
-    {
+    {        
         Response.Redirect("~/default.aspx?section=sif");
     }
     protected void btnBOM_Click(object sender, EventArgs e)
