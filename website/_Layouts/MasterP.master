@@ -9,7 +9,7 @@
         </tr>
         <tr>
             <td width="20%" style="top: auto; vertical-align: text-top; background-color: #A4A4A4">
-                <div style="min-height: 350px;">
+                <div style="min-width: 310px;min-height: 350px;">
                     <asp:ContentPlaceHolder ID="PlaceHolderLeft" runat="server">
                     </asp:ContentPlaceHolder>
                 </div>
@@ -25,6 +25,5 @@
             <td colspan="2" align="center" style="background-color: #424242; height: 20px;">
             </td>
         </tr>
-    </table>
-           
+    </table>           
 </asp:Content>
