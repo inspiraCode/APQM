@@ -945,7 +945,10 @@ namespace Data_Base_MNG
         private string _dbname = "";
         private string _sql_con_str = "";
         private SqlConnection _connection;
-        private SqlParameter[] _parameters;
+
+        private List<SqlParameter> _parameters = new List<SqlParameter>();
+
+        //private SqlParameter[] _parameters;
         private SqlCommand _command;
         private string _script = "";
         private string _error_mjs = "";
@@ -1307,6 +1310,40 @@ namespace Data_Base_MNG
                 ErrorFlag = true;
                 return false;
             }
+        }
+        public void Load_SP_Parameters(string ParameterName, string ParameterValue)
+        {
+            SqlParameter param = new SqlParameter(ParameterNamem, ParameterValue);
+            _parameters.Add(param);
+        }
+        public bool Execute_StoreProcedure(string Command, bool ParametersNeeded)
+        {
+            bool result = false;
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                _command.ExecuteNonQuery();
+                Stop_Connection();
+                ErrorFlag = false;
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                Stop_Connection();
+                ErrorFlag = true;
+                result = false;
+            }
+            return result;
         }
         public bool Update_Open_Connection( out DataTable Table2Update)
         {
