@@ -4,6 +4,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{995D87D3-76A8-4AA6-AFD1-4A8497978508}"
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFramework = "3.5"
+		ProjectReferences = "{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}|BD_MNG.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/website"
 		Debug.AspNetCompiler.PhysicalPath = "..\website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
@@ -22,13 +23,30 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{995D87D3-7
 		VWDVirtualPath = "/APQM"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD_MNG", "..\BD_MNG\BD_MNG.csproj", "{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{995D87D3-76A8-4AA6-AFD1-4A8497978508}.Release|x86.ActiveCfg = Debug|Any CPU
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Debug|x86.ActiveCfg = Debug|x86
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Debug|x86.Build.0 = Debug|x86
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Release|x86.ActiveCfg = Release|x86
+		{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

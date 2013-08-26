@@ -11,8 +11,8 @@ using System.Data.SqlClient;
 public class sifCRUD : ICRUD<SIF>
 {
    
-    ConnectionManager connectionManager = new ConnectionManager();
-    Data_Mng.SQL_DTMG DM;
+    ConnectionManager connectionManager = new ConnectionManager();    
+    Data_Base_MNG.SQL DM;
 
     public sifCRUD()
 	{
@@ -20,8 +20,10 @@ public class sifCRUD : ICRUD<SIF>
     
     #region ICRUD<SIF> Members
 
-    public long create(SIF entity)
+    public bool create(SIF entity)
     {
+        bool result = false;
+
         object idGenerated = -1;
         SqlConnection sqlConnection = connectionManager.getConnection();
         
@@ -56,10 +58,10 @@ public class sifCRUD : ICRUD<SIF>
             idGenerated = command.ExecuteScalar();
         }
         catch(Exception e){
-            return -1;
+            return false;
         }
 
-        return 1;        
+        return result;        
     }
 
     public SIF readById(long id)

@@ -14,12 +14,13 @@ public class ConnectionManager
     private static string pass = "capsonic";
     private static string database = "APQM_DB";
 
-    private Data_Mng.SQL_DTMG DMG;
+   // private Data_Mng.SQL_DTMG DMG;
+    private Data_Base_MNG.SQL DMG;
     
-    public Data_Mng.SQL_DTMG getDataManager(){
+    public Data_Base_MNG.SQL getDataManager(){
         try
         {
-            DMG = new Data_Mng.SQL_DTMG(server, database, user, pass);
+            DMG = new Data_Base_MNG.SQL(server, database, user, pass);            
             return DMG;
         }
         catch (Exception e)

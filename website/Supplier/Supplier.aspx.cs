@@ -59,22 +59,16 @@ public partial class _Default : System.Web.UI.Page
     {
         panelPopupSupplierMaster.Visible = true;
     }
-
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopupSupplierMaster.Visible = false;
-        btnSuppliers_Click(null,null);
+        Response.Redirect("~/default.aspx?section=supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e) 
     {
         panelPopupSupplierMaster.Visible = false;
         btnSuppliers_Click(null, null);
     }
-    
-
-
-
-
     protected void tabSupplier_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/Supplier/supplier.aspx?section=supplier");

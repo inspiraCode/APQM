@@ -1313,7 +1313,7 @@ namespace Data_Base_MNG
         }
         public void Load_SP_Parameters(string ParameterName, string ParameterValue)
         {
-            SqlParameter param = new SqlParameter(ParameterNamem, ParameterValue);
+            SqlParameter param = new SqlParameter(ParameterName, ParameterValue);
             _parameters.Add(param);
         }
         public bool Execute_StoreProcedure(string Command, bool ParametersNeeded)

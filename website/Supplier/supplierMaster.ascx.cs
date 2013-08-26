@@ -19,10 +19,9 @@ public partial class supplierMaster : System.Web.UI.UserControl
         {
             if (((SessionObject)Session["Supplier"]).Status == "forUpdate")
             {
-
                 fillWithSupplier((Supplier)(((SessionObject)Session["Supplier"]).Content));
-            }
-            
+                ((SessionObject)Session["Supplier"]).Status = "Retrieved";
+            }            
         }
     }
 
@@ -50,8 +49,8 @@ public partial class supplierMaster : System.Web.UI.UserControl
         supplier.QuotedCurrency = txtQuotedCurrency.Text;
 
         if (lblMode.Text == "New") {
-            long id = supplierCRUD.create(supplier);
-            if (id == -1) {
+            if (!supplierCRUD.create(supplier))
+            {
                 Response.Redirect("~/Error.aspx");
             }
         }else if(lblMode.Text == "Update"){
@@ -59,13 +58,13 @@ public partial class supplierMaster : System.Web.UI.UserControl
             if (!supplierCRUD.update(supplier))
             {
                 Response.Redirect("~/Error.aspx");
-            }            
+            }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("Supplier");       
+        Session.Remove("Supplier");
         Cancel_Click(this, e);
     }
 }

@@ -81,8 +81,8 @@ public partial class sifMaster : System.Web.UI.UserControl
         sif.Technical = txtTechnical.Text;
         
         if (lblMode.Text == "New") {
-            long id = sif_CRUD.create(sif);
-            if (id == -1) {
+            if (!sif_CRUD.create(sif))
+            {
                 Response.Redirect("~/Error.aspx");
             }
         }else if(lblMode.Text == "Update"){

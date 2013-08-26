@@ -11,7 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Reflection;
 
-public partial class _Default : System.Web.UI.Page 
+public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,17 +27,16 @@ public partial class _Default : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewBOM);
                     break;    
                 case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);                    
+                    MultiViewMain.SetActiveView(viewRFQ);
                     break;    
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
                     break;
                 case "popupSupplier":
-                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));    
                     Session.Remove("Supplier");
                     MultiViewMain.SetActiveView(viewSupplier);
                     openPopupSupplierMaster("supplierMaster.ascx");
-                    break;                    
+                    break;
                 default:
                     //btnSuppliers_Click(null, null);
                     break;
@@ -45,7 +44,6 @@ public partial class _Default : System.Web.UI.Page
         }
     }
 
-   
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         goHome();
@@ -62,17 +60,16 @@ public partial class _Default : System.Web.UI.Page
     }
     private void openPopupSupplierMaster(string content)
     {
-        panelPopupSupplierMaster.Visible = true;        
+        panelPopupSupplierMaster.Visible = true;
     }
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopupSupplierMaster.Visible = false;
-        //btnSuppliers_Click(null,null);
+        Response.Redirect("~/default.aspx?section=supplier");
     }
-    protected void on_cancel_supplier(object sender, EventArgs e) 
+    protected void on_cancel_supplier(object sender, EventArgs e)
     {
         panelPopupSupplierMaster.Visible = false;
-        //btnSuppliers_Click(null, null);
     }
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
