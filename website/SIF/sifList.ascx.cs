@@ -20,13 +20,17 @@ public partial class sifList : System.Web.UI.UserControl
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
-            //((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (!sif_CRUD.delete(id))
+        if (sif_CRUD.delete(id))
+        {
+            Response.Redirect("~/Default.aspx?section=sif");
+        }
+        else
         {
             Response.Redirect("~/Error.aspx");
         }
@@ -44,6 +48,6 @@ public partial class sifList : System.Web.UI.UserControl
 
             Session["SIF"] = so;
         }
-        Response.Redirect("~/Supplier/supplier.aspx?section=SIF");
+        Response.Redirect("~/SIF/SIF.aspx?tab=SIF");
     }   
 }

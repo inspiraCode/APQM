@@ -84,7 +84,7 @@
         </asp:View>
         <asp:View ID="viewSIF" runat="server">
             SIFs
-            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
+            <div>
                 <div runat="server" id="divSIF">
                     <uc4:sifList ID="sifList1" runat="server" />
                 </div>
@@ -102,11 +102,11 @@
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
             Suppliers
-            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
+            <div>
                 <div runat="server" id="divSupplier">
                     <uc3:supplierList ID="supplierList1" runat="server" />
                 </div>
-            </div>            
+            </div>
             <asp:Button ID="btnAddSupplier" runat="server" Text="Add Supplier" 
                 onclick="btnAddSupplier_Click" />
         </asp:View>

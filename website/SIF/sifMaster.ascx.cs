@@ -51,6 +51,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         txtPrimaryCompetitors.Text = sif.PrimaryCompetitors;
         txtSpecificResourceRequirements.Text = sif.SpecificResourceRequirements;
         txtTechnical.Text = sif.Technical;
+        lblMode.Text = "Update";
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -90,13 +91,13 @@ public partial class SifMaster : System.Web.UI.UserControl
             if (!sif_CRUD.update(sif))
             {
                 Response.Redirect("~/Error.aspx");
-            }            
+            }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("SIF");       
+        Session.Remove("SIF");
         Cancel_Click(this, e);
-    }    
+    }
 }

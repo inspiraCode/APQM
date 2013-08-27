@@ -15,69 +15,41 @@ public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params.Get("section") != null)
+        if (Request.Params.Get("tab") != null)
         {
-            switch (Request.Params.Get("section"))
+            switch (Request.Params.Get("tab"))
             {
-                case "sif":
-                    MultiViewMain.SetActiveView(viewSupplier);
+                case "SIF":
+                    MultiViewMain.SetActiveView(viewSIF);
                     break;
-                case "survey":
-                    MultiViewMain.SetActiveView(viewSurvey);
+                //case "survey":
+                //    MultiViewMain.SetActiveView(viewSurvey);
+                //    break;
+                case "popupSIF":                   
+                    openpopupContainer();
                     break;
-                case "popupSupplier":
-                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));                    
-                    openpopupContainer("supplierMaster.ascx");
-                    break;
-                default:
-                    btnSuppliers_Click(null, null);
+                default:                    
                     break;
             }
         }        
-    }
-    protected void btnSIF_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=sif");
-    }
-    protected void btnBOM_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=bom");
-    }
-    protected void btnRFQ_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=rfq");
-    }
-    protected void btnSuppliers_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=suppliers");
-    }
+    }    
    
-    private void openpopupContainer(string content)
+    private void openpopupContainer()
     {
         panelPopup.Visible = true;
     }
-
-    protected void on_ok_supplier(object sender, EventArgs e)
+    protected void on_update_SIF(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        btnSuppliers_Click(null,null);
+        Response.Redirect("~/default.aspx?section=sif");
     }
-    protected void on_cancel_supplier(object sender, EventArgs e) 
+    protected void on_cancel_SIF(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        btnSuppliers_Click(null, null);
+        Response.Redirect("~/default.aspx?section=sif");
     }
-    
-
-
-
-
-    protected void tabSupplier_Click(object sender, EventArgs e)
+    protected void tabSIF_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Supplier/supplier.aspx?section=supplier");
-    }
-    protected void tabSurvey_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/Supplier/supplier.aspx?section=survey");
-    }
+        Response.Redirect("~/SIF/SIF.aspx?tab=SIF");
+    }   
 }

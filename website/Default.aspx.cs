@@ -40,11 +40,7 @@ public partial class _Default : System.Web.UI.Page
                 case "popupSIF":
                     Session.Remove("SIF");
                     MultiViewMain.SetActiveView(viewSIF);
-                    multiViewPopup.SetActiveView(viewPopupSIF);
-                    popupContainer.Height = 490;
-                    popupContainer.Width = 1000;
-                    popupContainer.Style.Add("top", "250px");
-                    popupContainer.Style.Add("left", "560px");
+                    multiViewPopup.SetActiveView(viewPopupSIF);                    
                     openpopupContainer();
                     break;
                 default:

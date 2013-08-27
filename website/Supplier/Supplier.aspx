@@ -26,14 +26,14 @@
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">        
         <asp:View ID="viewSupplier" runat="server"> <%--Tab update supplier--%>            
-            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
+            <div>
                 <div runat="server" id="divSupplier">
                     <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_ok_supplier" OnCancel_Click="on_cancel_supplier"/>
                 </div>
             </div>
         </asp:View> 
         <asp:View ID="viewSurvey" runat="server"> <%--Tab update supplier--%>            
-            <div style="height: 300px; overflow-y: auto; margin-bottom:5px;">
+            <div>
                 <div runat="server" id="divSurvey">
                     <uc3:surveyList ID="surveyList1" runat="server" />
                 </div>

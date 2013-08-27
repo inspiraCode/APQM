@@ -34,7 +34,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
         txtContactName.Text = supplier.ContactName;
         txtContactPhoneNumber.Text = supplier.ContactPhone;
         txtContactEmail.Text = supplier.ContactEmail;
-        lblMode.Text = "Update";        
+        lblMode.Text = "Update";
     }
 
     protected void btnSave_Click(object sender, EventArgs e)

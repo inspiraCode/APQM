@@ -130,21 +130,29 @@ public class SupplierCRUD : ICRUD<Supplier>
         int rowsAffected=0;
         string query = "DELETE FROM SupplierMaster WHERE SupplierMasterKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
         if (sqlConnection != null)
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand = new SqlCommand(query, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
                 rowsAffected = sqlCommand.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
                     return true;
                 }
-            }catch(Exception e){
+            }
+            catch (Exception e)
+            {
                 //using return false below
             }
-           
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();               
+            }           
         }
         return false;
     }

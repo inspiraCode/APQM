@@ -24,10 +24,10 @@
         {
             position: absolute;
             background-color: #B9B9B9;
-            top: 50%;
-            left: 50%;
-            height: 62%;
-            width: 50%;
+            left:40%;
+            top:50%;        
+            height: 340px;
+            width: 980px;
             margin: -15% 0 0 -25%;
             z-index: 2001;
             padding: 10px;
@@ -36,6 +36,15 @@
             -moz-border-radiux: 5px;
             -webkit-border-radiux: 5px;
             border: 1px solid #CCCCCC;
+        }
+        .mainSection
+        {
+            height: 340px;
+            min-height:300px;
+            max-height:300px; 
+            overflow-y: auto; 
+            margin-bottom:5px;
+            align:center;
         }
     </style>
 </head>
@@ -79,7 +88,7 @@
                 <td align="center">
                     Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
                     WebMasters: Aaron Corrales <a href="mailto:acorrales@capsonic.com">acorrales@capsonic.com</a>,
-                    Alfredo Pacheco <a href="mailto:(apacheco@capsonic.com">apacheco@capsonic.com</a><br />
+                    Alfredo Pacheco <a href="mailto:apacheco@capsonic.com">apacheco@capsonic.com</a><br />
                     LMD: 08/13/2013
                 </td>
             </tr>

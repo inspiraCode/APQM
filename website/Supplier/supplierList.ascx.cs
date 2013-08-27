@@ -28,7 +28,11 @@ public partial class supplierList : System.Web.UI.UserControl
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (!supplierCRUD.delete(id))
+        if (supplierCRUD.delete(id))
+        {
+            Response.Redirect("~/Default.aspx?section=supplier");
+        }
+        else
         {
             Response.Redirect("~/Error.aspx");
         }
@@ -46,6 +50,6 @@ public partial class supplierList : System.Web.UI.UserControl
 
             Session["supplier"] = so;
         }
-        Response.Redirect("~/Supplier/supplier.aspx?section=supplier");
+        Response.Redirect("~/Supplier/supplier.aspx?tab=supplier");
     }   
 }

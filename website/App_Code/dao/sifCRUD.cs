@@ -62,10 +62,11 @@ public class sifCRUD : ICRUD<SIF>
     {
         SIF sif = new SIF();
 
-        string query =   "SELECT SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Depatment, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical" +
+        string query =   "SELECT SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
                         "FROM SIFHeader WHERE(SIFHeaderKey = @key)";         
         DataTable table = new DataTable();
+
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
         {
@@ -149,6 +150,7 @@ public class sifCRUD : ICRUD<SIF>
        
         return recordset;
     }
+
     public bool update(SIF entity)
     {
         bool result = false;
@@ -186,19 +188,21 @@ public class sifCRUD : ICRUD<SIF>
             return false;
         }
 
-        return true;
+        return result;
     }
     public bool delete(long id)
     {
         int rowsAffected=0;
         string query = "DELETE FROM SIFHeader WHERE SIFHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
         if (sqlConnection != null)
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand = new SqlCommand(query, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
                 rowsAffected = sqlCommand.ExecuteNonQuery();
                 if (rowsAffected > 0)
                 {
@@ -207,6 +211,11 @@ public class sifCRUD : ICRUD<SIF>
             }catch(Exception e){
                 //using return false below
             }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }  
            
         }
         return false;

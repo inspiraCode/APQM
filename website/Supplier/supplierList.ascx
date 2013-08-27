@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierList.ascx.cs"
     Inherits="supplierList" %>
-<%--<form id="listSuppliersForm" runat="server">--%>
+<div class="mainSection">
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
         <table border="1">
@@ -56,7 +56,7 @@
                 <%# DataBinder.Eval(Container.DataItem, "ContactEmail")%>
             </td>
             <td>
-                <asp:LinkButton ID="deleteByID" runat="server" PostBackUrl="default.aspx?section=suppliers&delete="
+                <asp:LinkButton ID="deleteByID" runat="server" 
                     CommandArgument="" CommandName="SupplierID" OnCommand="deleteByID" 
                     OnClientClick="return  confirm('Do you wish to delete this Supplier?')">
                     Delete
@@ -68,6 +68,6 @@
         </table>
     </FooterTemplate>
 </asp:Repeater>
-<%--</form>--%>
+</div>
 <div id="divSupplierList" runat="server" align="center">
 </div>

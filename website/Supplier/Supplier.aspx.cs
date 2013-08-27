@@ -15,9 +15,9 @@ public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params.Get("section") != null)
+        if (Request.Params.Get("tab") != null)
         {
-            switch (Request.Params.Get("section"))
+            switch (Request.Params.Get("tab"))
             {
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
@@ -29,29 +29,12 @@ public partial class _Default : System.Web.UI.Page
                     //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));                    
                     openpopupContainer("supplierMaster.ascx");
                     break;
-                default:
-                    btnSuppliers_Click(null, null);
+                default:                    
                     break;
             }
         }        
-    }
-    protected void btnSIF_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=sif");
-    }
-    protected void btnBOM_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=bom");
-    }
-    protected void btnRFQ_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=rfq");
-    }
-    protected void btnSuppliers_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/default.aspx?section=suppliers");
-    }
-    
+    }    
+        
     private void openpopupContainer(string content)
     {
         panelPopup.Visible = true;
@@ -68,10 +51,10 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void tabSupplier_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Supplier/supplier.aspx?section=supplier");
+        Response.Redirect("~/Supplier/supplier.aspx?tab=supplier");
     }
     protected void tabSurvey_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Supplier/supplier.aspx?section=survey");
+        Response.Redirect("~/Supplier/supplier.aspx?tab=survey");
     }
 }
