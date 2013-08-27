@@ -27,7 +27,7 @@ public partial class _Default : System.Web.UI.Page
                     break;
                 case "popupSupplier":
                     //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));                    
-                    openPopupSupplierMaster("supplierMaster.ascx");
+                    openpopupContainer("supplierMaster.ascx");
                     break;
                 default:
                     btnSuppliers_Click(null, null);
@@ -51,23 +51,20 @@ public partial class _Default : System.Web.UI.Page
     {
         Response.Redirect("~/default.aspx?section=suppliers");
     }
-    protected void btnClosePopup_Click(object sender, EventArgs e)
+    
+    private void openpopupContainer(string content)
     {
-        panelPopupSupplierMaster.Visible = false;
-    }
-    private void openPopupSupplierMaster(string content)
-    {
-        panelPopupSupplierMaster.Visible = true;
+        panelPopup.Visible = true;
     }
     protected void on_ok_supplier(object sender, EventArgs e)
     {
-        panelPopupSupplierMaster.Visible = false;
+        panelPopup.Visible = false;
         Response.Redirect("~/default.aspx?section=supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e) 
     {
-        panelPopupSupplierMaster.Visible = false;
-        btnSuppliers_Click(null, null);
+        panelPopup.Visible = false;
+        Response.Redirect("~/default.aspx?section=supplier");
     }
     protected void tabSupplier_Click(object sender, EventArgs e)
     {

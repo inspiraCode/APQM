@@ -13,10 +13,10 @@
         </asp:View>
     </asp:MultiView>
     
-    <asp:Panel ID="panelPopupSupplierMaster" runat="server" Visible="false">
+    <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">            
         </asp:Panel>
-        <asp:Panel ID="popupSupplierMaster" runat="server" CssClass="PopUpPanel">            
+        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">            
         </asp:Panel>
     </asp:Panel>    
 </asp:Content>

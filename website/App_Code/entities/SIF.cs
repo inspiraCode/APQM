@@ -12,7 +12,6 @@ public class SIF
     {
     }
 
-
     private long id;
     private long customerKey;
     private string inquiryNumber;

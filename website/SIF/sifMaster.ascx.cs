@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class sifMaster : System.Web.UI.UserControl
+public partial class SifMaster : System.Web.UI.UserControl
 {
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
@@ -60,24 +60,24 @@ public partial class sifMaster : System.Web.UI.UserControl
         sif.CustomerKey = long.Parse(txtCustomerKey.Text);
         sif.InquiryNumber = txtInquiryNumber.Text;
         sif.Priority = txtPriority.Text;
-        sif.Revision = txtRevision.Text;        
-        sif.SalesPerson = txtSalesPerson.Text;        
-        sif.CostModelLoc = txtCostModelLoc.Text;        
-        sif.Contact = txtContact.Text;       
-        sif.BussinesClass = txtBussinesClass.Text;        
-        sif.Product = txtProduct.Text;        
-        sif.DivLoc = txtDivLoc.Text;       
-        sif.Department = txtDepartment.Text;        
-        sif.Reason4Quote = txtReasonForQuote.Text;        
-        sif.Application = txtApplication.Text;       
-        sif.Specification = txtSpecification.Text;        
-        sif.DrawingLevel = txtDrawingLevel.Text;        
-        sif.TaskDescription = txtTaskDescription.Text;        
-        sif.PartPrint = txtPartPrint.Text;       
-        sif.Sample = txtSample.Text;       
-        sif.ToolingTarget = txtToolingTarget.Text;       
-        sif.PrimaryCompetitors = txtPrimaryCompetitors.Text;        
-        sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;        
+        sif.Revision = txtRevision.Text;
+        sif.SalesPerson = txtSalesPerson.Text;
+        sif.CostModelLoc = txtCostModelLoc.Text;
+        sif.Contact = txtContact.Text;
+        sif.BussinesClass = txtBussinesClass.Text;
+        sif.Product = txtProduct.Text;
+        sif.DivLoc = txtDivLoc.Text;
+        sif.Department = txtDepartment.Text;
+        sif.Reason4Quote = txtReasonForQuote.Text;
+        sif.Application = txtApplication.Text;
+        sif.Specification = txtSpecification.Text;
+        sif.DrawingLevel = txtDrawingLevel.Text;
+        sif.TaskDescription = txtTaskDescription.Text;
+        sif.PartPrint = txtPartPrint.Text;
+        sif.Sample = txtSample.Text;
+        sif.ToolingTarget = txtToolingTarget.Text;
+        sif.PrimaryCompetitors = txtPrimaryCompetitors.Text;
+        sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
         sif.Technical = txtTechnical.Text;
         
         if (lblMode.Text == "New") {
@@ -98,5 +98,5 @@ public partial class sifMaster : System.Web.UI.UserControl
     {
         Session.Remove("SIF");       
         Cancel_Click(this, e);
-    }
+    }    
 }

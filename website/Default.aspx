@@ -9,7 +9,9 @@
 
 <%@ Register src="SIF/sifList.ascx" tagname="sifList" tagprefix="uc4" %>
 
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
+<%@ Register src="SIF/SifMaster.ascx" tagname="SifMaster" tagprefix="uc5" %>
+
+<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">    
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Login" runat="server">
             <table width="100%">
@@ -53,19 +55,23 @@
                 </tr>
             </table>
         </asp:View>
-        <asp:View ID="Functions" runat="server">
-            
-            <uc2:Menu ID="Menu1" runat="server" />
-            
+        <asp:View ID="Functions" runat="server">            
+            <uc2:Menu ID="Menu1" runat="server" />            
         </asp:View>
     </asp:MultiView>
     
-    <asp:Panel ID="panelPopupSupplierMaster" runat="server" Visible="false">
+    <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">            
-            
         </asp:Panel>
-        <asp:Panel ID="popupSupplierMaster" runat="server" CssClass="PopUpPanel">            
-            <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_ok_supplier" OnCancel_Click="on_cancel_supplier"/>            
+        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel" HorizontalAlign="Center">
+        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
+            <asp:View ID="viewPopupSupplier" runat="server">
+                <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_ok_supplier" OnCancel_Click="on_cancel_supplier"/>
+            </asp:View>
+            <asp:View ID="viewPopupSIF" runat="server">
+                <uc5:SifMaster ID="SifMaster1" runat="server" OnOk_Click="on_ok_sif"  OnCancel_Click="on_cancel_sif" />
+            </asp:View>
+        </asp:MultiView>
         </asp:Panel>
     </asp:Panel>
     
@@ -83,8 +89,8 @@
                     <uc4:sifList ID="sifList1" runat="server" />
                 </div>
             </div>            
-            <asp:Button ID="Button1" runat="server" Text="Add Supplier" 
-                onclick="btnAddSupplier_Click" />
+            <asp:Button ID="btnAddSIF" runat="server" Text="Add SIF" 
+                onclick="btnAddSIF_Click" />
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
             <div>

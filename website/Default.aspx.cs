@@ -35,7 +35,17 @@ public partial class _Default : System.Web.UI.Page
                 case "popupSupplier":
                     Session.Remove("Supplier");
                     MultiViewMain.SetActiveView(viewSupplier);
-                    openPopupSupplierMaster("supplierMaster.ascx");
+                    openpopupContainer();
+                    break;
+                case "popupSIF":
+                    Session.Remove("SIF");
+                    MultiViewMain.SetActiveView(viewSIF);
+                    multiViewPopup.SetActiveView(viewPopupSIF);
+                    popupContainer.Height = 490;
+                    popupContainer.Width = 1000;
+                    popupContainer.Style.Add("top", "250px");
+                    popupContainer.Style.Add("left", "560px");
+                    openpopupContainer();
                     break;
                 default:
                     //btnSuppliers_Click(null, null);
@@ -54,25 +64,46 @@ public partial class _Default : System.Web.UI.Page
         Left_Col.ActiveViewIndex = 1;
         MultiViewMain.SetActiveView(viewHome);
     }
-    protected void btnClosePopup_Click(object sender, EventArgs e)
+    
+    private void openpopupContainer()
     {
-        panelPopupSupplierMaster.Visible = false;
+        panelPopup.Visible = true;
     }
-    private void openPopupSupplierMaster(string content)
-    {
-        panelPopupSupplierMaster.Visible = true;
-    }
+
+
+
+
+
     protected void on_ok_supplier(object sender, EventArgs e)
     {
-        panelPopupSupplierMaster.Visible = false;
+        panelPopup.Visible = false;
         Response.Redirect("~/default.aspx?section=supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e)
     {
-        panelPopupSupplierMaster.Visible = false;
+        panelPopup.Visible = false;
     }
+
+    protected void on_ok_sif(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+        Response.Redirect("~/default.aspx?section=sif");
+    }
+    protected void on_cancel_sif(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
+
+
+
+
+
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
         Response.Redirect("~/default.aspx?section=popupSupplier");
+    }
+    protected void btnAddSIF_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/default.aspx?section=popupSIF");
     }
 }

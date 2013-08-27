@@ -18,9 +18,9 @@ public partial class sifList : System.Web.UI.UserControl
 
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {            
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
+            //((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)

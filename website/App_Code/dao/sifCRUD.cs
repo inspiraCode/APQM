@@ -23,39 +23,33 @@ public class sifCRUD : ICRUD<SIF>
     public bool create(SIF entity)
     {
         bool result = false;
-
-        object idGenerated = -1;
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        
+        DM = connectionManager.getDataManager();
         try
-        {
-            SqlCommand command = new SqlCommand("SIFHeader_NewSIF", sqlConnection);
-            command.CommandType = CommandType.StoredProcedure;
+        {            
+            DM.Load_SP_Parameters("@CustomerKey",entity.CustomerKey.ToString());
+            DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
+            DM.Load_SP_Parameters("@Priority", entity.Priority);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+            DM.Load_SP_Parameters("@SalesPerson", entity.SalesPerson);
+            DM.Load_SP_Parameters("@CostModelLoc", entity.CostModelLoc);
+            DM.Load_SP_Parameters("@Contact", entity.Contact);
+            DM.Load_SP_Parameters("@BussinesClass", entity.BussinesClass);
+            DM.Load_SP_Parameters("@Product", entity.Product);
+            DM.Load_SP_Parameters("@DivLoc", entity.DivLoc);
+            DM.Load_SP_Parameters("@Department", entity.Department);
+            DM.Load_SP_Parameters("@Reason4Quote", entity.Reason4Quote);
+            DM.Load_SP_Parameters("@Application", entity.Application);
+            DM.Load_SP_Parameters("@Specification", entity.Specification);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@TaskDescription", entity.TaskDescription);
+            DM.Load_SP_Parameters("@PartPrint", entity.PartPrint);
+            DM.Load_SP_Parameters("@Sample", entity.Sample);
+            DM.Load_SP_Parameters("@ToolingTarget", entity.ToolingTarget);
+            DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
+            DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
+            DM.Load_SP_Parameters("@Technical", entity.Technical);
 
-            command.Parameters.AddWithValue("@CustomerKey",entity.CustomerKey);
-            command.Parameters.AddWithValue("@InquiryNumber", entity.InquiryNumber);
-            command.Parameters.AddWithValue("@Priority", entity.Priority);
-            command.Parameters.AddWithValue("@Revision", entity.Revision);
-            command.Parameters.AddWithValue("@SalesPerson", entity.SalesPerson);
-            command.Parameters.AddWithValue("@CostModelLoc", entity.CostModelLoc);
-            command.Parameters.AddWithValue("@Contact", entity.Contact);
-            command.Parameters.AddWithValue("@BussinesClass", entity.BussinesClass);
-            command.Parameters.AddWithValue("@Product", entity.Product);
-            command.Parameters.AddWithValue("@DivLoc", entity.DivLoc);
-            command.Parameters.AddWithValue("@Department", entity.Department);
-            command.Parameters.AddWithValue("@Reason4Quote", entity.Reason4Quote);
-            command.Parameters.AddWithValue("@Application", entity.Application);
-            command.Parameters.AddWithValue("@Specification", entity.Specification);
-            command.Parameters.AddWithValue("@DrawingLevel", entity.DrawingLevel);
-            command.Parameters.AddWithValue("@TaskDescription", entity.TaskDescription);
-            command.Parameters.AddWithValue("@PartPrint", entity.PartPrint);
-            command.Parameters.AddWithValue("@Sample", entity.Sample);
-            command.Parameters.AddWithValue("@ToolingTarget", entity.ToolingTarget);
-            command.Parameters.AddWithValue("@PrimaryCompetitors", entity.PrimaryCompetitors);
-            command.Parameters.AddWithValue("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
-            command.Parameters.AddWithValue("@Technical", entity.Technical);
-            sqlConnection.Open();
-            idGenerated = command.ExecuteScalar();
+            result = DM.Execute_StoreProcedure("SIFHeader_NewSIF", true);
         }
         catch(Exception e){
             return false;
@@ -68,9 +62,9 @@ public class sifCRUD : ICRUD<SIF>
     {
         SIF sif = new SIF();
 
-        string query =   "SELECT     SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Depatment, Reason4Quote, " +
+        string query =   "SELECT SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Depatment, Reason4Quote, " +
                         "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical" +
-                        "FROM SIFHeader WHERE     (SIFHeaderKey = @key)";         
+                        "FROM SIFHeader WHERE(SIFHeaderKey = @key)";         
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -80,7 +74,6 @@ public class sifCRUD : ICRUD<SIF>
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             sqlDataAdapter.Fill(table);
             if(table.Rows.Count > 0){
-
                 sif.Id = long.Parse(table.Rows[0][0].ToString());
                 sif.CustomerKey = long.Parse(table.Rows[0][1].ToString());
                 sif.InquiryNumber = table.Rows[0][2].ToString();
@@ -118,8 +111,8 @@ public class sifCRUD : ICRUD<SIF>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT     SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Depatment, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical" +
+        string query = "SELECT SIFHeaderKey, CustomerKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
                         "FROM SIFHeader ORDER BY SIFHeaderKey";    
 
         DataTable table = new DataTable();
@@ -158,54 +151,43 @@ public class sifCRUD : ICRUD<SIF>
     }
     public bool update(SIF entity)
     {
-        int rowsAffected = 0;
-        SqlConnection sqlConnection = connectionManager.getConnection();
-
+        bool result = false;
+        DM = connectionManager.getDataManager();
         try
-        {
-            SqlCommand command = new SqlCommand("SIFHeader_EditSIF", sqlConnection);
-            command.CommandType = CommandType.StoredProcedure;
+        {  
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
+            DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
+            DM.Load_SP_Parameters("@Priority", entity.Priority);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+            DM.Load_SP_Parameters("@SalesPerson", entity.SalesPerson);
+            DM.Load_SP_Parameters("@CostModelLoc", entity.CostModelLoc);
+            DM.Load_SP_Parameters("@Contact", entity.Contact);
+            DM.Load_SP_Parameters("@BussinesClass", entity.BussinesClass);
+            DM.Load_SP_Parameters("@Product", entity.Product);
+            DM.Load_SP_Parameters("@DivLoc", entity.DivLoc);
+            DM.Load_SP_Parameters("@Department", entity.Department);
+            DM.Load_SP_Parameters("@Reason4Quote", entity.Reason4Quote);
+            DM.Load_SP_Parameters("@Application", entity.Application);
+            DM.Load_SP_Parameters("@Specification", entity.Specification);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@TaskDescription", entity.TaskDescription);
+            DM.Load_SP_Parameters("@PartPrint", entity.PartPrint);
+            DM.Load_SP_Parameters("@Sample", entity.Sample);
+            DM.Load_SP_Parameters("@ToolingTarget", entity.ToolingTarget);
+            DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
+            DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
+            DM.Load_SP_Parameters("@Technical", entity.Technical);
 
-            command.Parameters.AddWithValue("@SIFHeaderKey", entity.Id);
-            command.Parameters.AddWithValue("@CustomerKey", entity.CustomerKey);
-            command.Parameters.AddWithValue("@InquiryNumber", entity.InquiryNumber);
-            command.Parameters.AddWithValue("@Priority", entity.Priority);
-            command.Parameters.AddWithValue("@Revision", entity.Revision);
-            command.Parameters.AddWithValue("@SalesPerson", entity.SalesPerson);
-            command.Parameters.AddWithValue("@CostModelLoc", entity.CostModelLoc);
-            command.Parameters.AddWithValue("@Contact", entity.Contact);
-            command.Parameters.AddWithValue("@BussinesClass", entity.BussinesClass);
-            command.Parameters.AddWithValue("@Product", entity.Product);
-            command.Parameters.AddWithValue("@DivLoc", entity.DivLoc);
-            command.Parameters.AddWithValue("@Department", entity.Department);
-            command.Parameters.AddWithValue("@Reason4Quote", entity.Reason4Quote);
-            command.Parameters.AddWithValue("@Application", entity.Application);
-            command.Parameters.AddWithValue("@Specification", entity.Specification);
-            command.Parameters.AddWithValue("@DrawingLevel", entity.DrawingLevel);
-            command.Parameters.AddWithValue("@TaskDescription", entity.TaskDescription);
-            command.Parameters.AddWithValue("@PartPrint", entity.PartPrint);
-            command.Parameters.AddWithValue("@Sample", entity.Sample);
-            command.Parameters.AddWithValue("@ToolingTarget", entity.ToolingTarget);
-            command.Parameters.AddWithValue("@PrimaryCompetitors", entity.PrimaryCompetitors);
-            command.Parameters.AddWithValue("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
-            command.Parameters.AddWithValue("@Technical", entity.Technical);
-            sqlConnection.Open();
-            
-            rowsAffected = command.ExecuteNonQuery();
-
-            if (rowsAffected <= 0)
-            {
-                return false;
-            }
+            result = DM.Execute_StoreProcedure("SIFHeader_EditSIF", true);            
         }
         catch (Exception e)
         {
             return false;
         }
 
-        return true;      
+        return true;
     }
-
     public bool delete(long id)
     {
         int rowsAffected=0;

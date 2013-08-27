@@ -1,29 +1,27 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sifList.ascx.cs"
-    Inherits="sifList" %>
-<%--<form id="listSuppliersForm" runat="server">--%>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sifList.ascx.cs" Inherits="sifList" %>
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
         <table border="1">
             <th>
-                Supplier Name
+                BOM
             </th>
             <th>
-                Manufacturing Location
+                Inquiry Number
             </th>
             <th>
-                Ship Location
+                Revision
             </th>
             <th>
-                Quoted Currency
+                Priority
             </th>
             <th>
-                Contact Name
+                Sales Person
             </th>
             <th>
-                Contact Phone
+                Cost Model Location
             </th>
             <th>
-                Contact Email
+                Customer
             </th>
             <th>
             </th>
@@ -32,33 +30,33 @@
     <ItemTemplate>
         <tr height='40px;'>
             <td>
-                <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID" 
+                Product name (BOM)
+                <%--<asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID" 
                 OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
-                </asp:LinkButton>                
+                </asp:LinkButton>--%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "ManufacturingLocation")%>
+                <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "ShipLocation")%>
+                <%# DataBinder.Eval(Container.DataItem, "Revision")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "QuotedCurrency")%>
+                <%# DataBinder.Eval(Container.DataItem, "Priority")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "ContactName")%>
+                <%# DataBinder.Eval(Container.DataItem, "SalesPerson")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "ContactPhone")%>
+                <%# DataBinder.Eval(Container.DataItem, "CostModelLoc")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "ContactEmail")%>
+                <%# DataBinder.Eval(Container.DataItem, "CustomerKey")%>
             </td>
             <td>
                 <asp:LinkButton ID="deleteByID" runat="server" PostBackUrl="default.aspx?section=sifs&delete="
-                    CommandArgument="" CommandName="sifID" OnCommand="deleteByID" 
-                    OnClientClick="return  confirm('Do you wish to delete this SIF?')">
+                    CommandArgument="" CommandName="sifID" OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')">
                     Delete
                 </asp:LinkButton>
             </td>
@@ -68,6 +66,5 @@
         </table>
     </FooterTemplate>
 </asp:Repeater>
-<%--</form>--%>
 <div id="divSifList" runat="server" align="center">
 </div>

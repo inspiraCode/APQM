@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sifMaster.ascx.cs" Inherits="sifMaster" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SifMaster.ascx.cs" Inherits="SifMaster" %>
 <style type="text/css">
     .style1
     {

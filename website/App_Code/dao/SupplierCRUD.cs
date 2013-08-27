@@ -11,8 +11,7 @@ using System.Data.SqlClient;
 public class SupplierCRUD : ICRUD<Supplier>
 {
    
-    ConnectionManager connectionManager = new ConnectionManager();
-    //Data_Mng.SQL_DTMG DM;
+    ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
     public SupplierCRUD()
@@ -126,7 +125,6 @@ public class SupplierCRUD : ICRUD<Supplier>
 
         return result;
     }
-
     public bool delete(long id)
     {
         int rowsAffected=0;
