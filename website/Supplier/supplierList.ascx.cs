@@ -30,11 +30,11 @@ public partial class supplierList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (supplierCRUD.delete(id))
         {
-            Response.Redirect("~/Default.aspx?section=supplier");
+            Server.Transfer("~/Default.aspx?section=supplier");
         }
         else
         {
-            Response.Redirect("~/Error.aspx");
+            Server.Transfer("~/Error.aspx");
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -50,6 +50,6 @@ public partial class supplierList : System.Web.UI.UserControl
 
             Session["supplier"] = so;
         }
-        Response.Redirect("~/Supplier/supplier.aspx?tab=supplier");
+        Server.Transfer("~/Supplier/supplier.aspx?tab=supplier");
     }   
 }

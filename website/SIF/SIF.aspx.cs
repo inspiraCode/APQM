@@ -41,15 +41,15 @@ public partial class _Default : System.Web.UI.Page
     protected void on_update_SIF(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=sif");
     }
     protected void on_cancel_SIF(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=sif");
     }
     protected void tabSIF_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/SIF/SIF.aspx?tab=SIF");
+        Server.Transfer("~/SIF/SIF.aspx?tab=SIF");
     }   
 }

@@ -28,11 +28,11 @@ public partial class sifList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (sif_CRUD.delete(id))
         {
-            Response.Redirect("~/Default.aspx?section=sif");
+            Server.Transfer("~/Default.aspx?section=sif");
         }
         else
         {
-            Response.Redirect("~/Error.aspx");
+            Server.Transfer("~/Error.aspx");
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -48,6 +48,6 @@ public partial class sifList : System.Web.UI.UserControl
 
             Session["SIF"] = so;
         }
-        Response.Redirect("~/SIF/SIF.aspx?tab=SIF");
+        Server.Transfer("~/SIF/SIF.aspx?tab=SIF");
     }   
 }

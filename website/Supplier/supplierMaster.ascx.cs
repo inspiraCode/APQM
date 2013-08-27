@@ -13,18 +13,16 @@ public partial class supplierMaster : System.Web.UI.UserControl
     SupplierCRUD supplierCRUD = new SupplierCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
-    {
-        
+    {        
         if (Session["Supplier"]!=null)
         {
             if (((SessionObject)Session["Supplier"]).Status == "forUpdate")
             {
                 fillWithSupplier((Supplier)(((SessionObject)Session["Supplier"]).Content));
                 ((SessionObject)Session["Supplier"]).Status = "Retrieved";
-            }            
-        }
+            }
+        }               
     }
-
     public void fillWithSupplier(Supplier supplier){        
         lblID.Text = supplier.Id.ToString();
         txtSupplierName.Text = supplier.SupplierName;
@@ -36,7 +34,6 @@ public partial class supplierMaster : System.Web.UI.UserControl
         txtContactEmail.Text = supplier.ContactEmail;
         lblMode.Text = "Update";
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         Supplier supplier = new Supplier();
@@ -51,13 +48,13 @@ public partial class supplierMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!supplierCRUD.create(supplier))
             {
-                Response.Redirect("~/Error.aspx");
+                Server.Transfer("~/Error.aspx");
             }
         }else if(lblMode.Text == "Update"){
             supplier.Id = long.Parse(lblID.Text);
             if (!supplierCRUD.update(supplier))
             {
-                Response.Redirect("~/Error.aspx");
+                Server.Transfer("~/Error.aspx");
             }
         }
         Ok_Click(this, e);

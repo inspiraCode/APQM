@@ -26,13 +26,13 @@ public partial class _Default : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewSurvey);
                     break;
                 case "popupSupplier":
-                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));                    
+                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
                     openpopupContainer("supplierMaster.ascx");
                     break;
-                default:                    
+                default:
                     break;
             }
-        }        
+        }
     }    
         
     private void openpopupContainer(string content)
@@ -42,19 +42,19 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=supplier");
+        Server.Transfer("~/default.aspx?section=supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=supplier");
+        Server.Transfer("~/default.aspx?section=supplier");
     }
     protected void tabSupplier_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Supplier/supplier.aspx?tab=supplier");
+        Server.Transfer("~/Supplier/supplier.aspx?tab=supplier");
     }
     protected void tabSurvey_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/Supplier/supplier.aspx?tab=survey");
+        Server.Transfer("~/Supplier/supplier.aspx?tab=survey");
     }
 }

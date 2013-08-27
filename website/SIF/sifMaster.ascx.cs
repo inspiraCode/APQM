@@ -14,15 +14,16 @@ public partial class SifMaster : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (IsPostBack)
+        {
+        }
         if (Session["SIF"]!=null)
         {
             if (((SessionObject)Session["SIF"]).Status == "forUpdate")
             {
-
                 fillWithEntity((SIF)(((SessionObject)Session["SIF"]).Content));
+                ((SessionObject)Session["SIF"]).Status = "Retrieved";
             }
-            
         }
     }
 
@@ -84,13 +85,13 @@ public partial class SifMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!sif_CRUD.create(sif))
             {
-                Response.Redirect("~/Error.aspx");
+                Server.Transfer("~/Error.aspx");
             }
         }else if(lblMode.Text == "Update"){
             sif.Id = long.Parse(lblID.Text);
             if (!sif_CRUD.update(sif))
             {
-                Response.Redirect("~/Error.aspx");
+                Server.Transfer("~/Error.aspx");
             }
         }
         Ok_Click(this, e);

@@ -13,19 +13,19 @@ public partial class Menu : System.Web.UI.UserControl
     }
     protected void btnSIF_Click(object sender, EventArgs e)
     {        
-        Response.Redirect("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=sif");
     }
     protected void btnBOM_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/default.aspx?section=bom");
+        Server.Transfer("~/default.aspx?section=bom");
     }
     protected void btnRFQ_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/default.aspx?section=rfq");
+        Server.Transfer("~/default.aspx?section=rfq");
     }
     protected void btnSuppliers_Click(object sender, EventArgs e)
     {
-        //Response.Redirect("~/default.aspx?section=suppliers");
-        Response.Redirect("~/default.aspx?section=supplier");
+        //Server.Transfer("~/default.aspx?section=suppliers");
+        Server.Transfer("~/default.aspx?section=supplier");
     }
 }

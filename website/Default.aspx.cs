@@ -73,7 +73,7 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=supplier");
+        Server.Transfer("~/default.aspx?section=supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e)
     {
@@ -83,7 +83,7 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_sif(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Response.Redirect("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=sif");
     }
     protected void on_cancel_sif(object sender, EventArgs e)
     {
@@ -96,10 +96,10 @@ public partial class _Default : System.Web.UI.Page
 
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/default.aspx?section=popupSupplier");
+        Server.Transfer("~/default.aspx?section=popupSupplier");
     }
     protected void btnAddSIF_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/default.aspx?section=popupSIF");
+        Server.Transfer("~/default.aspx?section=popupSIF");
     }
 }

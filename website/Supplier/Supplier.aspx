@@ -22,7 +22,7 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <div id="Tabs">
         <asp:Button ID="tabSupplier" runat="server" Text="Supplier" OnClick="tabSupplier_Click" />
-        <asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />
+        <asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />        
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">        
         <asp:View ID="viewSupplier" runat="server"> <%--Tab update supplier--%>            
