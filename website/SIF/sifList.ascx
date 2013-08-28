@@ -4,10 +4,10 @@
         <HeaderTemplate>
             <table border="1">
                 <th>
-                    BOM
+                    Inquiry Number
                 </th>
                 <th>
-                    Inquiry Number
+                    BOM
                 </th>
                 <th>
                     Revision
@@ -23,7 +23,7 @@
                 </th>
                 <th>
                     Customer
-                </th>
+                </th>                
                 <th>
                 </th>
             </tr>
@@ -32,14 +32,16 @@
             <tr height='40px;'>
                 <td>
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
-                        OnCommand="updateByID">
-                    <%--<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>--%>
-                    Product name (BOM)
+                        OnCommand="updateByID">                    
+                    <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%>
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%>
-                </td>
+                    <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
+                        OnCommand="updateByBomID">                    
+                        None
+                    </asp:LinkButton>
+                </td>                
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "Revision")%>
                 </td>

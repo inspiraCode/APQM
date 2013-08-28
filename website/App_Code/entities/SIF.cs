@@ -14,6 +14,7 @@ public class SIF
 
     private long id;
     private long customerKey;
+    private long bomId;
     private string inquiryNumber;
     private string priority;
     private string revision;
@@ -48,7 +49,12 @@ public class SIF
         get { return customerKey; }
         set { customerKey = value; }
     }
-    
+
+    public long BomId
+    {
+        get { return bomId; }
+        set { bomId = value; }
+    }
 
     public string InquiryNumber
     {

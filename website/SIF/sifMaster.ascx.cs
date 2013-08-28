@@ -31,6 +31,7 @@ public partial class SifMaster : System.Web.UI.UserControl
     {
         lblID.Text = sif.Id.ToString();
         txtCustomerKey.Text = sif.CustomerKey.ToString();
+        lblBOM.Text = sif.BomId.ToString();
         txtInquiryNumber.Text = sif.InquiryNumber;
         txtPriority.Text = sif.Priority;
         txtRevision.Text = sif.Revision;
@@ -52,6 +53,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         txtPrimaryCompetitors.Text = sif.PrimaryCompetitors;
         txtSpecificResourceRequirements.Text = sif.SpecificResourceRequirements;
         txtTechnical.Text = sif.Technical;
+
         lblMode.Text = "Update";
     }
 
@@ -60,6 +62,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         SIF sif= new SIF();
         
         sif.CustomerKey = long.Parse(txtCustomerKey.Text);
+        sif.BomId = long.Parse(lblBOM.Text);
         sif.InquiryNumber = txtInquiryNumber.Text;
         sif.Priority = txtPriority.Text;
         sif.Revision = txtRevision.Text;

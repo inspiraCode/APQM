@@ -31,9 +31,9 @@
             </td>
             <td align="left" >
                 &nbsp;
-            </td>
+                BOM:</td>
             <td align="left" >
-                &nbsp;
+                <asp:Label ID="lblBOM" runat="server"></asp:Label>
             </td>
             <td align="left" >
                 &nbsp;
