@@ -19,13 +19,13 @@ public partial class _Default : System.Web.UI.Page
         {
             switch (Request.Params.Get("tab"))
             {
-                case "SIF":
-                    MultiViewMain.SetActiveView(viewSIF);
+                case "RFC":
+                    MultiViewMain.SetActiveView(viewRFC);
                     break;
                 //case "survey":
                 //    MultiViewMain.SetActiveView(viewSurvey);
                 //    break;
-                case "popupSIF":                   
+                case "popupRFC":                   
                     openpopupContainer();
                     break;
                 default:                    
@@ -38,18 +38,18 @@ public partial class _Default : System.Web.UI.Page
     {
         panelPopup.Visible = true;
     }
-    protected void on_update_SIF(object sender, EventArgs e)
+    protected void on_update_RFC(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=rfc");
     }
-    protected void on_cancel_SIF(object sender, EventArgs e) 
+    protected void on_cancel_RFC(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=sif");
+        Server.Transfer("~/default.aspx?section=rfc");
     }
-    protected void tabSIF_Click(object sender, EventArgs e)
+    protected void tabRFC_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/SIF/SIF.aspx?tab=SIF");
+        Server.Transfer("~/RFC/RFC.aspx?tab=RFC");
     }   
 }

@@ -9,22 +9,45 @@ using System.Web;
 public class RFQ
 {
     private long id;
+    private DateTime dueDate;
+    private DateTime sentToVendor;
+    private DateTime filledUp;
+   
     private long bomDetailId;
     private long supplierId;
     private string rfqNumber;
     private string drawingLevel; 
     private string estimatedAnnualVolume; 
     private string productionLeadTime; 
-    private string productionToolingLeadTime; 
+    private string productionToolingLeadTime;
+    private string prototypeToolingLeadTime;   
     private string prototypePieceLeadTime;
     private string toolingDetail; 
-    private string productionTooling;
-    private string prototypeTooling;
+    private float productionTooling;
+    private float prototypeTooling;
     private float prototypePiece; 
     private float sgAProfit; 
     private long packingPerUnit; 
     private float assemblyCostPerUnit;
+    private string preparedBy;
 
+    
+
+    public DateTime DueDate
+    {
+        get { return dueDate; }
+        set { dueDate = value; }
+    }
+    public DateTime SentToVendor
+    {
+        get { return sentToVendor; }
+        set { sentToVendor = value; }
+    }
+    public DateTime FilledUp
+    {
+        get { return filledUp; }
+        set { filledUp = value; }
+    }
     public long BomDetailId
     {
         get { return bomDetailId; }
@@ -59,7 +82,12 @@ public class RFQ
     {
         get { return productionToolingLeadTime; }
         set { productionToolingLeadTime = value; }
-    }   
+    }
+    public string PrototypeToolingLeadTime
+    {
+        get { return prototypeToolingLeadTime; }
+        set { prototypeToolingLeadTime = value; }
+    } 
     public string PrototypePieceLeadTime
     {
         get { return prototypePieceLeadTime; }
@@ -70,12 +98,12 @@ public class RFQ
         get { return toolingDetail; }
         set { toolingDetail = value; }
     }
-    public string ProductionTooling
+    public float ProductionTooling
     {
         get { return productionTooling; }
         set { productionTooling = value; }
     }
-    public string PrototypeTooling
+    public float PrototypeTooling
     {
         get { return prototypeTooling; }
         set { prototypeTooling = value; }
@@ -110,5 +138,10 @@ public class RFQ
     {
         get { return id; }
         set { id = value; }
+    }
+    public string PreparedBy
+    {
+        get { return preparedBy; }
+        set { preparedBy = value; }
     }
 }

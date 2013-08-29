@@ -1,28 +1,25 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="sifList" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
 <div class="mainSection" align="center">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
             <table border="1">
                 <th>
-                    Inquiry Number
+                    RFQ Number
                 </th>
                 <th>
-                    BOM
+                    Part Number
                 </th>
                 <th>
-                    Revision
+                    Part Name
                 </th>
                 <th>
-                    Priority
+                    Vendor
                 </th>
                 <th>
-                    Sales Person
+                    Due Date
                 </th>
                 <th>
-                    Cost Model Location
-                </th>
-                <th>
-                    Customer
+                    Sent To Vendor
                 </th>                
                 <th>
                 </th>
@@ -31,35 +28,34 @@
         <ItemTemplate>
             <tr height='40px;'>
                 <td>
-                    <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
+                    <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="rfqID"
                         OnCommand="updateByID">                    
-                    <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%>
+                    <%# DataBinder.Eval(Container.DataItem, "rfqNumber")%>
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
-                        OnCommand="updateByBomID">                    
-                        None
-                    </asp:LinkButton>
+                   <%-- <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
+                        OnCommand="updateByBomID">  --%>                  
+                        Part Number
+                    <%--</asp:LinkButton>--%>
                 </td>                
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "Revision")%>
+                    <%--<%# DataBinder.Eval(Container.DataItem, "Revision")%>--%>
+                    Part Name
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "Priority")%>
+                   <%-- <%# DataBinder.Eval(Container.DataItem, "Priority")%>--%>
+                   Vendor Name
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "SalesPerson")%>
+                    <%# DataBinder.Eval(Container.DataItem, "dueDate")%>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "CostModelLoc")%>
-                </td>
+                    <%# DataBinder.Eval(Container.DataItem, "sentToVendor")%>
+                </td>                
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "CustomerKey")%>
-                </td>
-                <td>
-                    <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="sifID"
-                        OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')">
+                    <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="rfqID"
+                        OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this RFQ?')">
                     Delete
                     </asp:LinkButton>
                 </td>
@@ -70,5 +66,5 @@
         </FooterTemplate>
     </asp:Repeater>
 </div>
-<div id="divSifList" runat="server" align="center">
+<div id="divRfqList" runat="server" align="center">
 </div>

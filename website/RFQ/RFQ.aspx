@@ -1,10 +1,9 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="_Default"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
-<%@ Register src="sifMaster.ascx" tagname="sifMaster" tagprefix="uc1" %>
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
-<%@ Register src="sifList.ascx" tagname="sifList" tagprefix="uc3" %>
 
+<%@ Register src="../Supplier/supplierMaster.ascx" tagname="supplierMaster" tagprefix="uc1" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">        
@@ -23,14 +22,15 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <div id="Tabs">
-        <asp:Button ID="tabSIF" runat="server" Text="SIF" OnClick="tabSIF_Click" />
+        <asp:Button ID="tabRFC" runat="server" Text="RFC" OnClick="tabRFC_Click" />
         <%--<asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />--%>
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">        
-        <asp:View ID="viewSIF" runat="server"> <%--Tab update SIF--%>            
+        <asp:View ID="viewRFC" runat="server"> <%--Tab update SIF--%>            
             <div >
                 <div runat="server" id="divSIF">
-                    <uc1:sifMaster ID="sifMasterForm" runat="server" OnOk_Click="on_update_SIF" OnCancel_Click="on_cancel_SIF"/>
+                    <%--<uc1:sifMaster ID="sifMasterForm" runat="server" />--%>
+                    <uc1:supplierMaster ID="supplierMaster1" runat="server" OnOk_Click="on_update_RFC" OnCancel_Click="on_cancel_RFC" />
                 </div>
             </div>
         </asp:View> 

@@ -11,6 +11,10 @@
 
 <%@ Register src="SIF/SifMaster.ascx" tagname="SifMaster" tagprefix="uc5" %>
 
+<%@ Register src="RFQ/rfqList.ascx" tagname="rfqList" tagprefix="uc6" %>
+
+<%@ Register src="RFQ/rfqForm.ascx" tagname="rfqForm" tagprefix="uc7" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">    
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Login" runat="server">
@@ -71,6 +75,9 @@
             <asp:View ID="viewPopupSIF" runat="server">
                 <uc5:SifMaster ID="SifMaster1" runat="server" OnOk_Click="on_ok_sif"  OnCancel_Click="on_cancel_sif" />
             </asp:View>
+            <asp:View ID="viewPopupRFQ" runat="server">
+                <uc7:rfqForm ID="rfqForm1" runat="server" OnOk_Click="on_ok_rfq"  OnCancel_Click="on_cancel_rfq" /> 
+            </asp:View>
         </asp:MultiView>
         </asp:Panel>
     </asp:Panel>
@@ -99,6 +106,9 @@
         <asp:View ID="viewRFQ" runat="server">
             <div>
                 RFQ</div>
+                <uc6:rfqList ID="rfqList1" runat="server" />
+                <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" 
+                onclick="btnAddRFQ_Click" />
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
             Suppliers
@@ -112,5 +122,5 @@
         </asp:View>
         <asp:View ID="viewPopup" runat="server">
         </asp:View>
-    </asp:MultiView>
+    </asp:MultiView>    
 </asp:Content>

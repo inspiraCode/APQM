@@ -43,6 +43,12 @@ public partial class _Default : System.Web.UI.Page
                     multiViewPopup.SetActiveView(viewPopupSIF);                    
                     openpopupContainer();
                     break;
+                case "popupRFQ":
+                    Session.Remove("RFQ");
+                    MultiViewMain.SetActiveView(viewRFQ);
+                    multiViewPopup.SetActiveView(viewPopupRFQ);
+                    openpopupContainer();
+                    break;
                 default:
                     //btnSuppliers_Click(null, null);
                     break;
@@ -64,12 +70,7 @@ public partial class _Default : System.Web.UI.Page
     private void openpopupContainer()
     {
         panelPopup.Visible = true;
-    }
-
-
-
-
-
+    }    
     protected void on_ok_supplier(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
@@ -89,10 +90,15 @@ public partial class _Default : System.Web.UI.Page
     {
         panelPopup.Visible = false;
     }
-
-
-
-
+    protected void on_ok_rfq(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+        Server.Transfer("~/default.aspx?section=rfq");
+    }
+    protected void on_cancel_rfq(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
 
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
@@ -101,5 +107,9 @@ public partial class _Default : System.Web.UI.Page
     protected void btnAddSIF_Click(object sender, EventArgs e)
     {
         Server.Transfer("~/default.aspx?section=popupSIF");
+    }
+    protected void btnAddRFQ_Click(object sender, EventArgs e)
+    {
+        Server.Transfer("~/default.aspx?section=popupRFQ");
     }
 }

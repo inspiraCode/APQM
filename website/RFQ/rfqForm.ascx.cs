@@ -5,107 +5,150 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class SifMaster : System.Web.UI.UserControl
+public partial class rfqForm : System.Web.UI.UserControl
 {
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
 
-    sifCRUD sif_CRUD = new sifCRUD();
+    rfqCRUD rfq_CRUD = new rfqCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
+        
+        if (Session["RFQ"]!=null)
         {
-        }
-        if (Session["SIF"]!=null)
-        {
-            if (((SessionObject)Session["SIF"]).Status == "forUpdate")
+            if (((SessionObject)Session["RFQ"]).Status == "forUpdate")
             {
-                fillWithEntity((SIF)(((SessionObject)Session["SIF"]).Content));
-                ((SessionObject)Session["SIF"]).Status = "Retrieved";
+                fillWithEntity((RFQ)(((SessionObject)Session["RFQ"]).Content));
+                ((SessionObject)Session["RFQ"]).Status = "Retrieved";
             }
         }
     }
 
-    public void fillWithEntity(SIF sif)
+    public void fillWithEntity(RFQ rfq)
     {
-        lblID.Text = sif.Id.ToString();
-        txtCustomerKey.Text = sif.CustomerKey.ToString();
-        lblBOM.Text = sif.BomId.ToString();
-        txtInquiryNumber.Text = sif.InquiryNumber;
-        txtPriority.Text = sif.Priority;
-        txtRevision.Text = sif.Revision;
-        txtSalesPerson.Text = sif.SalesPerson;
-        txtCostModelLoc.Text = sif.CostModelLoc;
-        txtContact.Text = sif.Contact;
-        txtBussinesClass.Text = sif.BussinesClass;
-        txtProduct.Text = sif.Product;
-        txtDivLoc.Text = sif.DivLoc;
-        txtDepartment.Text = sif.Department;
-        txtReasonForQuote.Text = sif.Reason4Quote;
-        txtApplication.Text = sif.Application;
-        txtSpecification.Text = sif.Specification;
-        txtDrawingLevel.Text = sif.DrawingLevel;
-        txtTaskDescription.Text = sif.TaskDescription;
-        txtPartPrint.Text = sif.PartPrint;
-        txtSample.Text = sif.Sample;
-        txtToolingTarget.Text = sif.ToolingTarget;
-        txtPrimaryCompetitors.Text = sif.PrimaryCompetitors;
-        txtSpecificResourceRequirements.Text = sif.SpecificResourceRequirements;
-        txtTechnical.Text = sif.Technical;
+        lblID.Text = rfq.Id.ToString();
+        lblDueDate.Text = rfq.DueDate.ToString();
+        lblRFQNumber.Text = rfq.RfqNumber.ToString();
+        //lblPartNumber.Text = 
+        //lblPartName.Text =
+        lblDrawingLevel.Text = rfq.DrawingLevel;
+        lblEstimatedAnnualVolume.Text = rfq.DrawingLevel;
+        //lblSupplierName.Text = 
+        //lblManufacturingLocation.Text =
+        //lblShipFromLocation.Text =
+        txtPreparedBy.Text = rfq.PreparedBy;
+        txtSGAProfit.Text = rfq.SgAProfit.ToString();
+        txtPackingCostUnit.Text = rfq.PackingPerUnit.ToString();
+        txtAssemblyCostUnit.Text = rfq.AssemblyCostPerUnit.ToString();
+        txtProductionLeadTime.Text = rfq.ProductionLeadTime;
+        txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
+        txtPrototypeToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
+        txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
+        txtToolingDetail.Text = rfq.ToolingDetail;
+        txtProductionTooling.Text = rfq.ProductionTooling.ToString();
+        txtPrototypeTooling.Text = rfq.PrototypeTooling.ToString();
+        txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
 
         lblMode.Text = "Update";
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        SIF sif= new SIF();
+        RFQ rfq= new RFQ();
 
-        if (txtCustomerKey.Text != "")
+        //if (txtCustomerKey.Text != "")
+        //{
+        //    sif.CustomerKey = long.Parse(txtCustomerKey.Text);
+        //}
+        //else
+        //{
+        //    sif.CustomerKey = -1;
+        //}
+
+        if (lblDueDate.Text.Trim() != "")
         {
-            sif.CustomerKey = long.Parse(txtCustomerKey.Text);
+            rfq.DueDate = DateTime.Parse(lblDueDate.Text);
         }
         else
         {
-            sif.CustomerKey = -1;
+            rfq.DueDate = DateTime.Today;
         }
-        if (lblBOM.Text != "")
-        {
-            sif.BomId = long.Parse(lblBOM.Text);
-        }
-        else {
-            sif.BomId = -1;
-        }        
-        sif.InquiryNumber = txtInquiryNumber.Text;
-        sif.Priority = txtPriority.Text;
-        sif.Revision = txtRevision.Text;
-        sif.SalesPerson = txtSalesPerson.Text;
-        sif.CostModelLoc = txtCostModelLoc.Text;
-        sif.Contact = txtContact.Text;
-        sif.BussinesClass = txtBussinesClass.Text;
-        sif.Product = txtProduct.Text;
-        sif.DivLoc = txtDivLoc.Text;
-        sif.Department = txtDepartment.Text;
-        sif.Reason4Quote = txtReasonForQuote.Text;
-        sif.Application = txtApplication.Text;
-        sif.Specification = txtSpecification.Text;
-        sif.DrawingLevel = txtDrawingLevel.Text;
-        sif.TaskDescription = txtTaskDescription.Text;
-        sif.PartPrint = txtPartPrint.Text;
-        sif.Sample = txtSample.Text;
-        sif.ToolingTarget = txtToolingTarget.Text;
-        sif.PrimaryCompetitors = txtPrimaryCompetitors.Text;
-        sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
-        sif.Technical = txtTechnical.Text;
         
+        rfq.RfqNumber = lblRFQNumber.Text;
+        //lblPartNumber.Text
+        //lblPartName.text =
+        rfq.DrawingLevel = lblDrawingLevel.Text;
+        rfq.EstimatedAnnualVolume = lblEstimatedAnnualVolume.Text;
+        ////lblSupplierName.Text = 
+        ////lblManufacturingLocation.Text =
+        ////lblShipFromLocation.Text =
+
+        rfq.PreparedBy = txtPreparedBy.Text;
+
+        if (txtSGAProfit.Text.Trim() != "")
+        {
+            rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
+        }
+        else
+        {
+            rfq.SgAProfit = 0;
+        }
+        if (txtPackingCostUnit.Text.Trim() != "")
+        {
+            rfq.PackingPerUnit = long.Parse(txtPackingCostUnit.Text);
+        }
+        else
+        {
+            rfq.PackingPerUnit = 0;
+        }
+        if (txtAssemblyCostUnit.Text.Trim() != "")
+        {
+            rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
+        }
+        else
+        {
+            rfq.AssemblyCostPerUnit = 0;
+        }       
+
+        rfq.ProductionLeadTime =txtProductionLeadTime.Text;
+        rfq.ProductionToolingLeadTime=txtProductionToolingLeadTime.Text;
+        rfq.PrototypeToolingLeadTime=txtPrototypeToolingLeadTime.Text;
+        rfq.PrototypePieceLeadTime=txtPrototypePieceLeadTime.Text;
+        rfq.ToolingDetail=txtToolingDetail.Text;
+        
+        if (txtProductionTooling.Text.Trim() != "")
+        {
+            rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);
+        }
+        else
+        {
+            rfq.ProductionTooling = 0;
+        }
+        if (txtPrototypeTooling.Text.Trim() != "")
+        {
+            rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
+        }
+        else
+        {
+            rfq.PrototypeTooling = 0;
+        }
+        if (txtPrototypePiece.Text.Trim() != "")
+        {
+            rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
+        }
+        else
+        {
+            rfq.PrototypePiece = 0;
+        }
         if (lblMode.Text == "New") {
-            if (!sif_CRUD.create(sif))
+            if (!rfq_CRUD.create(rfq))
             {
                 Server.Transfer("~/Error.aspx");
             }
         }else if(lblMode.Text == "Update"){
-            sif.Id = long.Parse(lblID.Text);
-            if (!sif_CRUD.update(sif))
+            rfq.Id = long.Parse(lblID.Text);
+            if (!rfq_CRUD.update(rfq))
             {
                 Server.Transfer("~/Error.aspx");
             }
@@ -114,7 +157,7 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("SIF");
+        Session.Remove("RFQ");
         Cancel_Click(this, e);
     }
 }
