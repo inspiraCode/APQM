@@ -10,7 +10,7 @@ public partial class bomMaster : System.Web.UI.UserControl
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
 
-    bomCRUD bomCRUD = new bomCRUD();
+    bomCRUD bomCRUD = new bomCRUD();   
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,14 +20,14 @@ public partial class bomMaster : System.Web.UI.UserControl
             {
                 fillWithEntity((BOM)(((SessionObject)Session["BOM"]).Content));
                 lblMode.Text = "Update";
-                ((SessionObject)Session["BOM"]).Status = "Retrieved";
+                ((SessionObject)Session["BOM"]).Status = "Retrieved";                              
             }
             else if (((SessionObject)Session["BOM"]).Status == "forNew")
             {
                 fillWithEntity((BOM)(((SessionObject)Session["BOM"]).Content));
                 lblMode.Text = "New";
                 ((SessionObject)Session["BOM"]).Status = "Retrieved";
-            }
+            }            
         }
     }
     public void fillWithEntity(BOM bom){        

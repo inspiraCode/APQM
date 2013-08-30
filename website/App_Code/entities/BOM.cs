@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for supplier
+/// Summary description for BOM
 /// </summary>
 public class BOM
 {
@@ -13,14 +13,14 @@ public class BOM
     private string topPartNumber;
     private string partDescription;
     private string revision;
+    private BOMDetail bomDetail;
 
-    public BOM()
+    public BOMDetail BomDetail
     {
-        //
-        // TODO: Add constructor logic here
-        //
+        get { return bomDetail; }
+        set { bomDetail = value; }
     }
-
+    
     public long Id
     {
         get { return id; }
@@ -50,4 +50,57 @@ public class BOM
         set { revision = value; }
     }
 
+}
+public class BOMDetail
+{
+    private long id;
+    private string description;
+
+    public string Description
+    {
+        get { return description; }
+        set { description = value; }
+    }
+
+    private long bomHeaderKey;
+
+    public long BomHeaderKey
+    {
+        get { return bomHeaderKey; }
+        set { bomHeaderKey = value; }
+    }
+    private long itemMasterkey;
+    private float qty;
+    private float cost;
+    private string status;
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+   
+    public long ItemMasterkey
+    {
+        get { return itemMasterkey; }
+        set { itemMasterkey = value; }
+    }
+    
+    public float Qty
+    {
+        get { return qty; }
+        set { qty = value; }
+    }
+    
+    public float Cost
+    {
+        get { return cost; }
+        set { cost = value; }
+    }
+    
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
+    }
 }

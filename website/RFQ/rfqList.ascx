@@ -27,7 +27,7 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='40px;'>
-                <td>
+                <td >
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="rfqID"
                         OnCommand="updateByID">                    
                     <%# DataBinder.Eval(Container.DataItem, "rfqNumber")%>
@@ -38,7 +38,7 @@
                         OnCommand="updateByBomID">  --%>                  
                         Part Number
                     <%--</asp:LinkButton>--%>
-                </td>                
+                </td>
                 <td>
                     <%--<%# DataBinder.Eval(Container.DataItem, "Revision")%>--%>
                     Part Name

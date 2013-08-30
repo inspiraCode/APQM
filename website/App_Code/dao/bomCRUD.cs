@@ -22,14 +22,35 @@ public class bomCRUD : ICRUD<BOM>
     public bool create(BOM entity)
     {
         bool result = false;        
-        DM = connectionManager.getDataManager();
+        DM = connectionManager.getDataManager();       
         try
         {            
             DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifID.ToString());
-            DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
-            DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
-            DM.Load_SP_Parameters("@Revision", entity.Revision);
-
+            if (entity.TopPartNumber != null)
+            {
+                DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@TopPartNumber", "");
+            }
+            if (entity.PartDescription != null)
+            {
+                DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@PartDescription", "");
+            }
+            if (entity.Revision != null)
+            {
+                DM.Load_SP_Parameters("@Revision", entity.Revision);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@Revision", "");
+            }
+           
             result = DM.Execute_StoreProcedure("BOMHeader_NewBOM", true);
         }
         catch (Exception e)
@@ -150,6 +171,276 @@ public class bomCRUD : ICRUD<BOM>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
             }           
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class bomDetailCRUD : ICRUD<BOMDetail>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public bomDetailCRUD()
+    { }
+
+    #region ICRUD<BOMDetail> Members
+
+    public bool create(BOMDetail entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterkey.ToString());
+            DM.Load_SP_Parameters("@Qty", entity.Qty.ToString());
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status);
+            DM.Load_SP_Parameters("@Description", entity.Description);
+
+            result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public BOMDetail readById(long id)
+    {
+        BOMDetail bomDetail = new BOMDetail();
+
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
+                        "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDeatilKey";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                bomDetail.Id = long.Parse(table.Rows[0][0].ToString());
+                if (table.Rows[0][1].ToString() != "")
+                {
+                    bomDetail.BomHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                }
+                else
+                {
+                    bomDetail.BomHeaderKey = -1;
+                }
+                if (table.Rows[0][2].ToString() != "")
+                {
+                    bomDetail.ItemMasterkey = long.Parse(table.Rows[0][2].ToString());
+                }
+                else
+                {
+                    bomDetail.ItemMasterkey = -1;
+                }
+                if (table.Rows[0][3].ToString() != "")
+                {
+                    bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+                }
+                else
+                {
+                    bomDetail.Qty = -1;
+                }
+                if (table.Rows[0][4].ToString() != "")
+                {
+                    bomDetail.Cost = long.Parse(table.Rows[0][4].ToString());
+                }
+                else
+                {
+                    bomDetail.Cost = -1;
+                }
+                bomDetail.Status = table.Rows[0][5].ToString();
+                bomDetail.Description = table.Rows[0][6].ToString();
+
+                sqlConnection.Dispose();
+                return bomDetail;
+            }
+        }
+        return null;
+    }
+    public List<BOMDetail> readByParentID(long id)
+    {
+        List<BOMDetail> recordset = new List<BOMDetail>();
+        
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
+                        "FROM BOMDetail WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                BOMDetail bomDetail = new BOMDetail();
+                bomDetail.Id = long.Parse(table.Rows[0][0].ToString());
+                if (table.Rows[0][1].ToString() != "")
+                {
+                    bomDetail.BomHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                }
+                else
+                {
+                    bomDetail.BomHeaderKey = -1;
+                }
+                if (table.Rows[0][2].ToString() != "")
+                {
+                    bomDetail.ItemMasterkey = long.Parse(table.Rows[0][2].ToString());
+                }
+                else
+                {
+                    bomDetail.ItemMasterkey = -1;
+                }
+                if (table.Rows[0][3].ToString() != "")
+                {
+                    bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+                }
+                else
+                {
+                    bomDetail.Qty = -1;
+                }
+                if (table.Rows[0][4].ToString() != "")
+                {
+                    bomDetail.Cost = long.Parse(table.Rows[0][4].ToString());
+                }
+                else
+                {
+                    bomDetail.Cost = -1;
+                }
+                bomDetail.Status = table.Rows[0][5].ToString();
+                bomDetail.Description = table.Rows[0][6].ToString();
+
+                recordset.Add(bomDetail);
+            }
+        }
+        return recordset;
+    }
+
+    public IList<BOMDetail> readAll()
+    {
+        List<BOMDetail> recordset = new List<BOMDetail>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
+                        "FROM BOMDetail ORDER BY BOMDeatilKey";
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            BOMDetail bomDetail = new BOMDetail();
+            bomDetail.Id = long.Parse(table.Rows[0][0].ToString());
+            if (table.Rows[0][1].ToString() != "")
+            {
+                bomDetail.BomHeaderKey = long.Parse(table.Rows[0][1].ToString());
+            }
+            else
+            {
+                bomDetail.BomHeaderKey = -1;
+            }
+            if (table.Rows[0][2].ToString() != "")
+            {
+                bomDetail.ItemMasterkey = long.Parse(table.Rows[0][2].ToString());
+            }
+            else
+            {
+                bomDetail.ItemMasterkey = -1;
+            }
+            if (table.Rows[0][3].ToString() != "")
+            {
+                bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+            }
+            else
+            {
+                bomDetail.Qty = -1;
+            }
+            if (table.Rows[0][4].ToString() != "")
+            {
+                bomDetail.Cost = long.Parse(table.Rows[0][4].ToString());
+            }
+            else
+            {
+                bomDetail.Cost = -1;
+            }
+            bomDetail.Status = table.Rows[0][5].ToString();
+            bomDetail.Description = table.Rows[0][6].ToString();
+
+            recordset.Add(bomDetail);
+        }
+
+        return recordset;
+    }
+
+    public bool update(BOMDetail entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterkey.ToString());
+            DM.Load_SP_Parameters("@Qty", entity.Qty.ToString());
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status);
+            DM.Load_SP_Parameters("@Description", entity.Description);
+
+            result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM BOMDetail WHERE BOMDetailKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
         }
         return false;
     }

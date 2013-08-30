@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomMaster.ascx.cs"
     Inherits="bomMaster" %>
+<%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
 <div align="center">
     <table cellspacing="1" style="width: 590px">
         <tr>
@@ -47,14 +48,15 @@
             </td>
         </tr>
         <tr align="left">
-            <td align="right">
-                &nbsp;</td>
-            <td align="left">
-                &nbsp;</td>
+            <td align="right" height="25px" colspan="2">
+                <div style="border: solid;border-color: gray;border-width: 2px;"></div>
+            </td> 
         </tr>
         <tr>
             <td colspan="2">
-                &nbsp;</td>
+                <div id="divDetail" runat="server">
+                    <uc1:bomDetailList ID="bomDetailList" runat="server" />
+                </div></td>
         </tr>
         <tr>
             <td align="right">

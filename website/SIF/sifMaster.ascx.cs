@@ -103,6 +103,16 @@ public partial class SifMaster : System.Web.UI.UserControl
             {
                 Server.Transfer("~/Error.aspx");
             }
+            else
+            {
+                BOM bom = new BOM();
+                bom.SifID = 21;
+                bomCRUD bomCrud = new bomCRUD();
+                if (!bomCrud.create(bom))
+                {
+                    Server.Transfer("~/Error.aspx");
+                }
+            }
         }else if(lblMode.Text == "Update"){
             sif.Id = long.Parse(lblID.Text);
             if (!sif_CRUD.update(sif))
