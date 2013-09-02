@@ -9,6 +9,7 @@ public partial class sifList : System.Web.UI.UserControl
 {
     private sifCRUD sif_CRUD = new sifCRUD();
     private bomCRUD bom_CRUD = new bomCRUD();
+
     protected void Page_Load(object sender, EventArgs e)
     {
         List<SIF> recordset = (List<SIF>)sif_CRUD.readAll();
@@ -43,11 +44,11 @@ public partial class sifList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (sif_CRUD.delete(id))
         {
-            Server.Transfer("~/Default.aspx?section=sif");
+            Navigator.goToPage("~/Default.aspx","sif");
         }
         else
         {
-            Server.Transfer("~/Error.aspx");
+            Navigator.goToPage("~/Error.aspx","");
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -61,9 +62,9 @@ public partial class sifList : System.Web.UI.UserControl
             so.Content = sif;
             so.Status = "forUpdate";
 
-            Session["SIF"] = so;
+            Session["SIFObject"] = so;
         }
-        Server.Transfer("~/SIF/SIF.aspx?tab=SIF");
+        Navigator.goToPage("~/SIF/SIF.aspx","SIF");
     }
     public void updateByBomID(object sender, CommandEventArgs e)
     {
@@ -75,7 +76,7 @@ public partial class sifList : System.Web.UI.UserControl
             bom = bom_CRUD.readById(id);
             if (bom == null)
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
                 return;
             }
             else
@@ -83,17 +84,17 @@ public partial class sifList : System.Web.UI.UserControl
                 so = new SessionObject();
                 so.Content = bom;
                 so.Status = "forUpdate";
-                Session["BOM"] = so;
-                Server.Transfer("~/BOM/BOM.aspx?tab=bom");     
+                Session["BOMObject"] = so;
+                Navigator.goToPage("~/BOM/BOM.aspx","bom");     
             }
         }else{
             bom = new BOM();
-            bom.SifID = long.Parse(values[0]);
+            bom.SifId = long.Parse(values[0]);
             so = new SessionObject();
             so.Content = bom;
             so.Status = "forNew";
-            Session["BOM"] = so;
-            Server.Transfer("~/BOM/BOM.aspx?tab=bom");    
+            Session["BOMObject"] = so;
+            Navigator.goToPage("~/BOM/BOM.aspx","bom");    
         }        
     }
 }

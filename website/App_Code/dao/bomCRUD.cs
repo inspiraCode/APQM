@@ -25,7 +25,7 @@ public class bomCRUD : ICRUD<BOM>
         DM = connectionManager.getDataManager();       
         try
         {            
-            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifID.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
             if (entity.TopPartNumber != null)
             {
                 DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
@@ -79,11 +79,11 @@ public class bomCRUD : ICRUD<BOM>
                 bom.Id = long.Parse(table.Rows[0][0].ToString());                
                 if (table.Rows[0][1].ToString() != "")
                 {
-                    bom.SifID = long.Parse(table.Rows[0][1].ToString());
+                    bom.SifId = long.Parse(table.Rows[0][1].ToString());
                 }
                 else
                 {
-                    bom.SifID = -1;
+                    bom.SifId = -1;
                 }                
                 bom.TopPartNumber = table.Rows[0][2].ToString();
                 bom.PartDescription = table.Rows[0][3].ToString();
@@ -102,18 +102,18 @@ public class bomCRUD : ICRUD<BOM>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM BOMHeader ORDER BY PartDescription";
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM view_BOMHeader_ReadAll ORDER BY PartDescription";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
         for (int i = 0; i < table.Rows.Count; i++)
         {
             BOM bom = new BOM();
-            bom.Id = long.Parse(table.Rows[0][0].ToString());
-            bom.SifID = (long)table.Rows[0][1];
-            bom.TopPartNumber = table.Rows[0][2].ToString();
-            bom.PartDescription = table.Rows[0][3].ToString();
-            bom.Revision = table.Rows[0][4].ToString();
+            bom.Id = long.Parse(table.Rows[i][0].ToString());
+            bom.SifId = long.Parse(table.Rows[i][1].ToString());
+            bom.TopPartNumber = table.Rows[i][2].ToString();
+            bom.PartDescription = table.Rows[i][3].ToString();
+            bom.Revision = table.Rows[i][4].ToString();
 
             recordset.Add(bom);
         }
@@ -129,7 +129,7 @@ public class bomCRUD : ICRUD<BOM>
         try
         {
             DM.Load_SP_Parameters("@BOMHeaderKey", entity.Id.ToString());
-            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifID.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
             DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -217,7 +217,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         BOMDetail bomDetail = new BOMDetail();
 
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
-                        "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDeatilKey";
+                        "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -291,41 +291,41 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 BOMDetail bomDetail = new BOMDetail();
-                bomDetail.Id = long.Parse(table.Rows[0][0].ToString());
-                if (table.Rows[0][1].ToString() != "")
+                bomDetail.Id = long.Parse(table.Rows[i][0].ToString());
+                if (table.Rows[i][1].ToString() != "")
                 {
-                    bomDetail.BomHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                    bomDetail.BomHeaderKey = long.Parse(table.Rows[i][1].ToString());
                 }
                 else
                 {
                     bomDetail.BomHeaderKey = -1;
                 }
-                if (table.Rows[0][2].ToString() != "")
+                if (table.Rows[i][2].ToString() != "")
                 {
-                    bomDetail.ItemMasterkey = long.Parse(table.Rows[0][2].ToString());
+                    bomDetail.ItemMasterkey = long.Parse(table.Rows[i][2].ToString());
                 }
                 else
                 {
                     bomDetail.ItemMasterkey = -1;
                 }
-                if (table.Rows[0][3].ToString() != "")
+                if (table.Rows[i][3].ToString() != "")
                 {
-                    bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+                    bomDetail.Qty = long.Parse(table.Rows[i][3].ToString());
                 }
                 else
                 {
                     bomDetail.Qty = -1;
                 }
-                if (table.Rows[0][4].ToString() != "")
+                if (table.Rows[i][4].ToString() != "")
                 {
-                    bomDetail.Cost = long.Parse(table.Rows[0][4].ToString());
+                    bomDetail.Cost = long.Parse(table.Rows[i][4].ToString());
                 }
                 else
                 {
                     bomDetail.Cost = -1;
                 }
-                bomDetail.Status = table.Rows[0][5].ToString();
-                bomDetail.Description = table.Rows[0][6].ToString();
+                bomDetail.Status = table.Rows[i][5].ToString();
+                bomDetail.Description = table.Rows[i][6].ToString();
 
                 recordset.Add(bomDetail);
             }
@@ -340,7 +340,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
-                        "FROM BOMDetail ORDER BY BOMDeatilKey";
+                        "FROM BOMDetail ORDER BY BOMDetailKey";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
 

@@ -12,9 +12,9 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["BOM"] != null)
+        if (Session["BOMObject"] != null)
         {
-            long id = ((BOM)(((SessionObject)Session["BOM"]).Content)).Id;
+            long id = ((BOM)(((SessionObject)Session["BOMObject"]).Content)).Id;
             if (id > -1)
             {
                 bomHeaderKey = id;
@@ -41,12 +41,12 @@ public partial class bomDetailList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (bomDetailCRUD.delete(id))
         {
-            ((SessionObject)Session["BOM"]).Status = "forUpdate";
-            Server.Transfer("~/BOM/BOM.aspx?tab=bom");  
+            ((SessionObject)Session["BOMObject"]).Status = "forUpdate";
+            Navigator.goToPage("~/BOM/BOM.aspx","bom");
         }
         else
         {
-            Server.Transfer("~/Error.aspx");
+            Navigator.goToPage("~/Error.aspx","");
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -61,7 +61,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             so.Content = bomDetail;
             so.Status = "forUpdate";
 
-            Session["BOMDetail"] = so;
+            Session["BOMObject"] = so;
         }
         //Server.Transfer("~/BOM/bomDetail.aspx?tab=BOMDetail");
     }
@@ -75,12 +75,12 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetail.Status = "Created";
         if (bomDetailCRUD.create(bomDetail))
         {
-            ((SessionObject)Session["BOM"]).Status = "forUpdate";
-            Server.Transfer("~/BOM/BOM.aspx?tab=bom");     
+            ((SessionObject)Session["BOMObject"]).Status = "forUpdate";
+            Navigator.goToPage("~/BOM/BOM.aspx","bom");
         }
         else
         {
-            Server.Transfer("~/Error.aspx");
+            Navigator.goToPage("~/Error.aspx","");
         }
     }
 }

@@ -145,3 +145,76 @@ public class RFQ
         set { preparedBy = value; }
     }
 }
+
+
+public class RFQDetail
+{
+    private long id;
+    private long rfqHeaderKey; 
+    private long itemMasterKey; 
+    private long rpcQty; 
+    private float rpcCostPerUnit;
+    private long oSQty; 
+    private float oSCostPerUnit; 
+    private float scrapValue;
+    private float directHrlyLaborRate;
+    private int stdHrs;
+
+    public int StdHrs
+    {
+        get { return stdHrs; }
+        set { stdHrs = value; }
+    }
+    private float burden;
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    } 
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
+    }
+    public long ItemMasterKey
+    {
+        get { return itemMasterKey; }
+        set { itemMasterKey = value; }
+    }
+    public long RpcQty
+    {
+        get { return rpcQty; }
+        set { rpcQty = value; }
+    }
+    public float RpcCostPerUnit
+    {
+        get { return rpcCostPerUnit; }
+        set { rpcCostPerUnit = value; }
+    }
+    public long OSQty
+    {
+        get { return oSQty; }
+        set { oSQty = value; }
+    }
+    public float OSCostPerUnit
+    {
+        get { return oSCostPerUnit; }
+        set { oSCostPerUnit = value; }
+    }
+    public float ScrapValue
+    {
+        get { return scrapValue; }
+        set { scrapValue = value; }
+    }
+    public float DirectHrlyLaborRate
+    {
+        get { return directHrlyLaborRate; }
+        set { directHrlyLaborRate = value; }
+    }
+    public float Burden
+    {
+        get { return burden; }
+        set { burden = value; }
+    }
+}

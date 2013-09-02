@@ -30,11 +30,11 @@ public partial class supplierList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (supplierCRUD.delete(id))
         {
-            Server.Transfer("~/Default.aspx?section=supplier");
+            Navigator.goToPage("~/Default.aspx","supplier");
         }
         else
         {
-            Server.Transfer("~/Error.aspx");
+            Navigator.goToPage("~/Error.aspx", "");           
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -48,8 +48,8 @@ public partial class supplierList : System.Web.UI.UserControl
             so.Content = supplier;
             so.Status = "forUpdate";
 
-            Session["supplier"] = so;
+            Session["supplierObject"] = so;
         }
-        Server.Transfer("~/Supplier/supplier.aspx?tab=supplier");
+        Navigator.goToPage("~/Supplier/supplier.aspx","supplier");
     }   
 }

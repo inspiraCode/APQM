@@ -1,45 +1,29 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="_Default"
-    MasterPageFile="~/_Layouts/MasterP.master" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBase.master" AutoEventWireup="true"
+    CodeFile="RFQ.aspx.cs" Inherits="RFQ_RFQ" %>
 
-<%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
-
-<%@ Register src="../Supplier/supplierMaster.ascx" tagname="supplierMaster" tagprefix="uc1" %>
-
-<asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
-    <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">        
-        <asp:View ID="Functions" runat="server">
-            <uc2:Menu ID="Menu1" runat="server" />
+<%@ Register Src="rfqForm.ascx" TagName="rfqForm" TagPrefix="uc1" %>
+<%@ Register Src="../Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc2" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
+    <asp:MultiView ID="multiView" runat="server" ActiveViewIndex="0">
+        <asp:View ID="viewSupplier" runat="server">
+        <br /><br />
+            If your information is correct click next, otherwise please update it.<br />
+            <asp:Button ID="btnToRFQForm" runat="server" Text="Next" Width="85px" 
+                onclick="btnToRFQForm_Click" />
+                <br /><br />
+            <uc2:supplierMaster ID="supplierForm" runat="server" />
+            <br /><br />
         </asp:View>
-    </asp:MultiView>
-    
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:Panel runat="server" CssClass="Overlay">            
-        </asp:Panel>
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">            
-        </asp:Panel>
-    </asp:Panel>    
-</asp:Content>
-
-<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <div id="Tabs">
-        <asp:Button ID="tabRFC" runat="server" Text="RFC" OnClick="tabRFC_Click" />
-        <%--<asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />--%>
-    </div>
-    <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">        
-        <asp:View ID="viewRFC" runat="server"> <%--Tab update SIF--%>            
-            <div >
-                <div runat="server" id="divSIF">
-                    <%--<uc1:sifMaster ID="sifMasterForm" runat="server" />--%>
-                    <uc1:supplierMaster ID="supplierMaster1" runat="server" OnOk_Click="on_update_RFC" OnCancel_Click="on_cancel_RFC" />
-                </div>
-            </div>
-        </asp:View> 
-        <%--<asp:View ID="viewSurvey" runat="server">            
-            <div>
-                <div runat="server" id="divSurvey">                   
-                    <uc3:sifList ID="sifList1" runat="server" />                   
-                </div>
-            </div>
-        </asp:View>--%>        
+        <asp:View ID="viewRFQ" runat="server">
+        <br /><br />
+            Click finalize when your RFQ is ready to be sent.<br />
+            <asp:Button ID="btnToSupplierForm" runat="server" Text="Back" Width="85px" 
+                onclick="btnToSupplierForm_Click" />
+            <asp:Button ID="btnFinalize" runat="server" Text="Finalize and send" 
+                Width="132px" />
+                <br /><br />
+            <uc1:rfqForm ID="rfqForm" runat="server" />
+            <br /><br />
+        </asp:View>
     </asp:MultiView>
 </asp:Content>

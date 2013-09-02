@@ -13,13 +13,13 @@ public partial class supplierMaster : System.Web.UI.UserControl
     SupplierCRUD supplierCRUD = new SupplierCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
-    {        
-        if (Session["Supplier"]!=null)
+    {
+        if (Session["supplierObject"] != null)
         {
-            if (((SessionObject)Session["Supplier"]).Status == "forUpdate")
+            if (((SessionObject)Session["supplierObject"]).Status == "forUpdate")
             {
-                fillWithSupplier((Supplier)(((SessionObject)Session["Supplier"]).Content));
-                ((SessionObject)Session["Supplier"]).Status = "Retrieved";
+                fillWithSupplier((Supplier)(((SessionObject)Session["supplierObject"]).Content));
+                ((SessionObject)Session["supplierObject"]).Status = "Retrieved";
             }
         }               
     }
@@ -48,20 +48,20 @@ public partial class supplierMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!supplierCRUD.create(supplier))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }else if(lblMode.Text == "Update"){
             supplier.Id = long.Parse(lblID.Text);
             if (!supplierCRUD.update(supplier))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("Supplier");
+        Session.Remove("supplierObject");
         Cancel_Click(this, e);
     }
 }

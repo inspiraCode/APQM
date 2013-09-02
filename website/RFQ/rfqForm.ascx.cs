@@ -15,12 +15,12 @@ public partial class rfqForm : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         
-        if (Session["RFQ"]!=null)
+        if (Session["RFQObject"]!=null)
         {
-            if (((SessionObject)Session["RFQ"]).Status == "forUpdate")
+            if (((SessionObject)Session["RFQObject"]).Status == "forUpdate")
             {
-                fillWithEntity((RFQ)(((SessionObject)Session["RFQ"]).Content));
-                ((SessionObject)Session["RFQ"]).Status = "Retrieved";
+                fillWithEntity((RFQ)(((SessionObject)Session["RFQObject"]).Content));
+                ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
             }
         }
     }
@@ -144,20 +144,20 @@ public partial class rfqForm : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!rfq_CRUD.create(rfq))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }else if(lblMode.Text == "Update"){
             rfq.Id = long.Parse(lblID.Text);
             if (!rfq_CRUD.update(rfq))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("RFQ");
+        Session.Remove("RFQObject");
         Cancel_Click(this, e);
     }
 }

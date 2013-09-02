@@ -9,7 +9,7 @@ using System.Web;
 public class BOM
 {
     private long id;
-    private long sifID;
+    private long sifId;
     private string topPartNumber;
     private string partDescription;
     private string revision;
@@ -26,10 +26,10 @@ public class BOM
         get { return id; }
         set { id = value; }
     }
-    public long SifID
+    public long SifId
     {
-        get { return sifID; }
-        set { sifID = value; }
+        get { return sifId; }
+        set { sifId = value; }
     }
 
     public string TopPartNumber
@@ -55,7 +55,7 @@ public class BOMDetail
 {
     private long id;
     private string description;
-
+    
     public string Description
     {
         get { return description; }

@@ -15,23 +15,27 @@ public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params.Get("section") != null)
+
+        if (Session["SECTION"] != null)
         {
             Left_Col.ActiveViewIndex = 1;
-            switch (Request.Params.Get("section"))
+            switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "sif":
                     MultiViewMain.SetActiveView(viewSIF);
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
-                    break;    
+                    break;
                 case "rfq":
                     MultiViewMain.SetActiveView(viewRFQ);
-                    break;    
+                    break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
                     break;
+
+
+
                 case "popupSupplier":
                     Session.Remove("Supplier");
                     MultiViewMain.SetActiveView(viewSupplier);
@@ -40,7 +44,7 @@ public partial class _Default : System.Web.UI.Page
                 case "popupSIF":
                     Session.Remove("SIF");
                     MultiViewMain.SetActiveView(viewSIF);
-                    multiViewPopup.SetActiveView(viewPopupSIF);                    
+                    multiViewPopup.SetActiveView(viewPopupSIF);
                     openpopupContainer();
                     break;
                 case "popupRFQ":
@@ -53,7 +57,7 @@ public partial class _Default : System.Web.UI.Page
                     //btnSuppliers_Click(null, null);
                     break;
             }
-        }
+        }     
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
@@ -70,46 +74,45 @@ public partial class _Default : System.Web.UI.Page
     private void openpopupContainer()
     {
         panelPopup.Visible = true;
-    }    
-    protected void on_ok_supplier(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=supplier");
-    }
-    protected void on_cancel_supplier(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
     }
 
-    protected void on_ok_sif(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=sif");
+    protected void on_add_supplier(object sender, EventArgs e)
+    {        
+        Navigator.goToPage("~/default.aspx","supplier");
     }
-    protected void on_cancel_sif(object sender, EventArgs e)
+    protected void on_cancelAdd_supplier(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
+        Navigator.goToPage("~/default.aspx","supplier");
     }
-    protected void on_ok_rfq(object sender, EventArgs e)
+    protected void on_add_sif(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=rfq");
+        Navigator.goToPage("~/default.aspx","sif");
     }
-    protected void on_cancel_rfq(object sender, EventArgs e)
+    protected void on_cancelAdd_sif(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
+        Navigator.goToPage("~/default.aspx","sif");
     }
+    protected void on_add_rfq(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/default.aspx","rfq");
+    }
+    protected void on_cancelAdd_rfq(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/default.aspx","rfq");
+    }
+
+
 
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/default.aspx?section=popupSupplier");
+        Navigator.goToPage("~/default.aspx","popupSupplier");        
     }
     protected void btnAddSIF_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/default.aspx?section=popupSIF");
+        Navigator.goToPage("~/default.aspx","popupSIF");
     }
     protected void btnAddRFQ_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/default.aspx?section=popupRFQ");
+        Navigator.goToPage("~/default.aspx","popupRFQ");
     }
 }

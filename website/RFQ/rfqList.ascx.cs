@@ -10,10 +10,12 @@ public partial class rfqList : System.Web.UI.UserControl
     private rfqCRUD rfq_CRUD = new rfqCRUD();    
     protected void Page_Load(object sender, EventArgs e)
     {
-        List<RFQ> recordset = (List<RFQ>)rfq_CRUD.readAll();
-        Repeater1.DataSource = recordset;
-        Repeater1.DataBind();
-        divRfqList.InnerHtml = recordset.Count.ToString() + " records.";
+        if (Session["SECTION"] != null){        
+            List<RFQ> recordset = (List<RFQ>)rfq_CRUD.readAll();
+            Repeater1.DataSource = recordset;
+            Repeater1.DataBind();
+            divRfqList.InnerHtml = recordset.Count.ToString() + " records.";
+        }        
     }
 
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
@@ -42,11 +44,11 @@ public partial class rfqList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (rfq_CRUD.delete(id))
         {
-            Server.Transfer("~/Default.aspx?section=rfq");
+            Navigator.goToPage("~/Default.aspx","rfq");
         }
         else
         {
-            Server.Transfer("~/Error.aspx");
+            Navigator.goToPage("~/Error.aspx","");
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -62,37 +64,10 @@ public partial class rfqList : System.Web.UI.UserControl
 
             Session["RFQ"] = so;
         }
-        Server.Transfer("~/RFQ/RFQ.aspx?tab=rfq");
+        Navigator.goToPage("~/RFQ/RFQ.aspx","rfq");
     }
     public void updateByBomID(object sender, CommandEventArgs e)
     {
-        //SessionObject so;
-        //BOM bom = null;        
-        //string [] values = e.CommandArgument.ToString().Split(';');
-        //if(values[1]!=""){
-        //    long id = long.Parse(values[1]);
-        //    bom = bom_CRUD.readById(id);
-        //    if (bom == null)
-        //    {
-        //        Server.Transfer("~/Error.aspx");
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        so = new SessionObject();
-        //        so.Content = bom;
-        //        so.Status = "forUpdate";
-        //        Session["BOM"] = so;
-        //        Server.Transfer("~/BOM/BOM.aspx?tab=bom");     
-        //    }
-        //}else{
-        //    bom = new BOM();
-        //    bom.RfqID = long.Parse(values[0]);
-        //    so = new SessionObject();
-        //    so.Content = bom;
-        //    so.Status = "forNew";
-        //    Session["BOM"] = so;
-        //    Server.Transfer("~/BOM/BOM.aspx?tab=bom");    
-        //}        
+         
     }
 }

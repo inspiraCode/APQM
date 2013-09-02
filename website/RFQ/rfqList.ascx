@@ -5,10 +5,7 @@
             <table border="1">
                 <th>
                     RFQ Number
-                </th>
-                <th>
-                    Part Number
-                </th>
+                </th>                
                 <th>
                     Part Name
                 </th>
@@ -30,28 +27,24 @@
                 <td >
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="rfqID"
                         OnCommand="updateByID">                    
-                    <%# DataBinder.Eval(Container.DataItem, "rfqNumber")%>
+                    <%# DataBinder.Eval(Container.DataItem, "RfqNumber")%>
                     </asp:LinkButton>
                 </td>
                 <td>
-                   <%-- <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
-                        OnCommand="updateByBomID">  --%>                  
-                        Part Number
-                    <%--</asp:LinkButton>--%>
+                    <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
+                        OnCommand="updateByBomID">                    
+                        None
+                    </asp:LinkButton>
+                </td>                
+                <td>
+                   <%--<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>   --%> 
+                   Vendor name               
                 </td>
                 <td>
-                    <%--<%# DataBinder.Eval(Container.DataItem, "Revision")%>--%>
-                    Part Name
+                    <%# DataBinder.Eval(Container.DataItem, "DueDate")%>
                 </td>
                 <td>
-                   <%-- <%# DataBinder.Eval(Container.DataItem, "Priority")%>--%>
-                   Vendor Name
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "dueDate")%>
-                </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "sentToVendor")%>
+                    <%# DataBinder.Eval(Container.DataItem, "SentToVendor")%>
                 </td>                
                 <td>
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="rfqID"

@@ -17,12 +17,12 @@ public partial class SifMaster : System.Web.UI.UserControl
         if (IsPostBack)
         {
         }
-        if (Session["SIF"]!=null)
+        if (Session["SIFObject"]!=null)
         {
-            if (((SessionObject)Session["SIF"]).Status == "forUpdate")
+            if (((SessionObject)Session["SIFObject"]).Status == "forUpdate")
             {
-                fillWithEntity((SIF)(((SessionObject)Session["SIF"]).Content));
-                ((SessionObject)Session["SIF"]).Status = "Retrieved";
+                fillWithEntity((SIF)(((SessionObject)Session["SIFObject"]).Content));
+                ((SessionObject)Session["SIFObject"]).Status = "Retrieved";
             }
         }
     }
@@ -101,30 +101,30 @@ public partial class SifMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!sif_CRUD.create(sif))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
             else
             {
                 BOM bom = new BOM();
-                bom.SifID = 21;
+                bom.SifId = 21;
                 bomCRUD bomCrud = new bomCRUD();
                 if (!bomCrud.create(bom))
                 {
-                    Server.Transfer("~/Error.aspx");
+                    Navigator.goToPage("~/Error.aspx","");
                 }
             }
         }else if(lblMode.Text == "Update"){
             sif.Id = long.Parse(lblID.Text);
             if (!sif_CRUD.update(sif))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("SIF");
+        Session.Remove("SIFObject");
         Cancel_Click(this, e);
     }
 }

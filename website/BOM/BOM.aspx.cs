@@ -15,9 +15,9 @@ public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params.Get("tab") != null)
+        if (Session["SECTION"] != null)
         {
-            switch (Request.Params.Get("tab"))
+            switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
@@ -42,12 +42,12 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_bom(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=sif");
+        Navigator.goToPage("~/default.aspx","sif");
     }
     protected void on_cancel_bom(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=sif");
+        Navigator.goToPage("~/default.aspx","sif");
     }
     //protected void tabSupplier_Click(object sender, EventArgs e)
     //{

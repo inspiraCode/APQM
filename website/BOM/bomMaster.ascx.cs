@@ -14,25 +14,25 @@ public partial class bomMaster : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["BOM"]!=null)
+        if (Session["BOMObject"]!=null)
         {
-            if (((SessionObject)Session["BOM"]).Status == "forUpdate")
+            if (((SessionObject)Session["BOMObject"]).Status == "forUpdate")
             {
-                fillWithEntity((BOM)(((SessionObject)Session["BOM"]).Content));
+                fillWithEntity((BOM)(((SessionObject)Session["BOMObject"]).Content));
                 lblMode.Text = "Update";
-                ((SessionObject)Session["BOM"]).Status = "Retrieved";                              
+                ((SessionObject)Session["BOMObject"]).Status = "Retrieved";                              
             }
-            else if (((SessionObject)Session["BOM"]).Status == "forNew")
+            else if (((SessionObject)Session["BOMObject"]).Status == "forNew")
             {
-                fillWithEntity((BOM)(((SessionObject)Session["BOM"]).Content));
+                fillWithEntity((BOM)(((SessionObject)Session["BOMObject"]).Content));
                 lblMode.Text = "New";
-                ((SessionObject)Session["BOM"]).Status = "Retrieved";
+                ((SessionObject)Session["BOMObject"]).Status = "Retrieved";
             }            
         }
     }
     public void fillWithEntity(BOM bom){        
         lblID.Text = bom.Id.ToString();
-        lblSifID.Text = bom.SifID.ToString();
+        lblSifID.Text = bom.SifId.ToString();
         txtPartNumber.Text = bom.TopPartNumber;
         txtDescription.Text = bom.PartDescription;
         txtRevision.Text = bom.Revision;        
@@ -40,7 +40,7 @@ public partial class bomMaster : System.Web.UI.UserControl
     protected void btnSave_Click(object sender, EventArgs e)
     {
         BOM bom = new BOM();
-        bom.SifID = long.Parse(lblSifID.Text);
+        bom.SifId = long.Parse(lblSifID.Text);
         bom.TopPartNumber = txtPartNumber.Text;        
         bom.PartDescription = txtDescription.Text;
         bom.Revision = txtRevision.Text;        
@@ -48,20 +48,20 @@ public partial class bomMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!bomCRUD.create(bom))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }else if(lblMode.Text == "Update"){
             bom.Id = long.Parse(lblID.Text);
             if (!bomCRUD.update(bom))
             {
-                Server.Transfer("~/Error.aspx");
+                Navigator.goToPage("~/Error.aspx","");
             }
         }
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("bom");
+        Session.Remove("BOMObject");
         Cancel_Click(this, e);
     }
 }

@@ -15,9 +15,9 @@ public partial class _Default : System.Web.UI.Page
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Request.Params.Get("tab") != null)
+        if (Session["SECTION"] != null)
         {
-            switch (Request.Params.Get("tab"))
+            switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
@@ -41,20 +41,24 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void on_ok_supplier(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=supplier");
+        //panelPopup.Visible = false;
+        Navigator.goToPage("~/default.aspx","supplier");
     }
-    protected void on_cancel_supplier(object sender, EventArgs e) 
+    protected void on_cancel_supplier(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
-        Server.Transfer("~/default.aspx?section=supplier");
+        //panelPopup.Visible = false;
+        Navigator.goToPage("~/default.aspx", "supplier");
     }
     protected void tabSupplier_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/Supplier/supplier.aspx?tab=supplier");
+        if (Session["SupplierObject"] != null)
+        {
+            ((SessionObject)Session["SupplierObject"]).Status = "forUpdate";
+        }
+        Navigator.goToPage("~/Supplier/supplier.aspx","supplier");
     }
     protected void tabSurvey_Click(object sender, EventArgs e)
     {
-        Server.Transfer("~/Supplier/supplier.aspx?tab=survey");
+        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
     }
 }

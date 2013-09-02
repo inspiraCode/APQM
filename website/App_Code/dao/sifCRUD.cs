@@ -62,9 +62,9 @@ public class sifCRUD : ICRUD<SIF>
     {
         SIF sif = new SIF();
 
-        string query =   "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
+        string query =  "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
                         "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
-                        "FROM SIFHeader WHERE(SIFHeaderKey = @key)";         
+                        "FROM SIFHeader_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -77,7 +77,16 @@ public class sifCRUD : ICRUD<SIF>
             if(table.Rows.Count > 0){
                 sif.Id = long.Parse(table.Rows[0][0].ToString());
                 sif.CustomerKey = long.Parse(table.Rows[0][1].ToString());
-                sif.BomId = long.Parse(table.Rows[0][2].ToString());
+                
+                if (table.Rows[0][2].ToString() != "")
+                {
+                    sif.BomId = long.Parse(table.Rows[0][2].ToString());
+                }
+                else
+                {
+                    sif.BomId = -1;
+                }
+                
                 sif.InquiryNumber = table.Rows[0][3].ToString();
                 sif.Priority = table.Rows[0][4].ToString();
                 sif.Revision = table.Rows[0][5].ToString();
