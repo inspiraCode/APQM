@@ -1345,6 +1345,67 @@ namespace Data_Base_MNG
             }
             return result;
         }
+        public string Execute_StoreProcedure_Scalar(string Command, bool ParametersNeeded)
+        {
+            string result = "";
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                result = _command.ExecuteScalar().ToString();
+                Stop_Connection();
+                ErrorFlag = false;
+                //result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                Stop_Connection();
+                ErrorFlag = true;
+                result = "";
+            }
+            return result;
+        }
+        public DataTable Execute_StoreProcedure_Table(string Command, bool ParametersNeeded)
+        {
+            DataTable result = new DataTable();
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            
+            try
+            {
+                Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                _adapter = new SqlDataAdapter(_command);
+
+                _adapter.Fill(result);
+                Stop_Connection();
+                ErrorFlag = false;
+                //result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                Stop_Connection();
+                ErrorFlag = true;
+                result = null;
+            }
+            return result;
+        }
         public bool Update_Open_Connection( out DataTable Table2Update)
         {
             Table2Update = new DataTable();       
