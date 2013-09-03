@@ -1,0 +1,801 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data;
+using System.Data.SqlClient;
+
+public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
+{
+   
+    ConnectionManager connectionManager = new ConnectionManager();    
+    Data_Base_MNG.SQL DM;
+
+    public SupplierSurveyCRUD()
+	{}
+    
+    #region ICRUD<SupplierSurvey> Members
+
+    public bool create(SupplierSurvey entity)
+    {
+        bool result = false;        
+        DM = connectionManager.getDataManager();
+        try
+        {            
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContactExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure("SupplierSurvey_NewSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }       
+
+        return result;
+    }
+
+    public SupplierSurvey readById(long id)
+    {
+        SupplierSurvey supplierSurvey = new SupplierSurvey();
+        
+        string query =  "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "FROM SupplierSuvey WHERE (SupplierSuveyKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key",id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if(table.Rows.Count > 0){              
+                supplierSurvey.Id = long.Parse(table.Rows[0][0].ToString());
+                supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[0][1].ToString());
+                supplierSurvey.StreetAddress = table.Rows[0][2].ToString();
+                supplierSurvey.City = table.Rows[0][3].ToString();
+                supplierSurvey.State= table.Rows[0][4].ToString();
+                supplierSurvey.ZipCode= table.Rows[0][5].ToString();
+                supplierSurvey.Website= table.Rows[0][6].ToString();
+                supplierSurvey.LastSurvey= DateTime.Parse(table.Rows[0][7].ToString());
+                supplierSurvey.NDARec = DateTime.Parse( table.Rows[0][8].ToString());
+                supplierSurvey.PrimaryBusiness= table.Rows[0][9].ToString();
+                supplierSurvey.SecundaryBusiness= table.Rows[0][10].ToString();
+                supplierSurvey.UnionYN= int.Parse(table.Rows[0][11].ToString());
+                supplierSurvey.Local= table.Rows[0][12].ToString();
+                supplierSurvey.ContractExpiration= table.Rows[0][13].ToString();
+                supplierSurvey.CurrentCapacity = table.Rows[0][14].ToString();
+                supplierSurvey.ManufacturingMetod = table.Rows[0][15].ToString();
+                supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[0][16].ToString());
+                supplierSurvey.ToolingNewOutsourcedYN= int.Parse (table.Rows[0][17].ToString());
+                supplierSurvey.ToolingInHouseYN= int.Parse(table.Rows[0][18].ToString());
+                supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[0][19].ToString());
+                supplierSurvey.Notes = table.Rows[0][20].ToString();
+
+                sqlConnection.Dispose();
+                return supplierSurvey;
+            }
+        }
+        return null;
+    }
+
+    public SupplierSurvey readByParentId(long id)
+    {
+        SupplierSurvey supplierSurvey = new SupplierSurvey();
+
+        string query = "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "FROM SupplierSuvey WHERE (SupplierMasterKey = @key) ORDER BY LastSurvey DESC";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                supplierSurvey.Id = long.Parse(table.Rows[0][0].ToString());
+                supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[0][1].ToString());
+                supplierSurvey.StreetAddress = table.Rows[0][2].ToString();
+                supplierSurvey.City = table.Rows[0][3].ToString();
+                supplierSurvey.State = table.Rows[0][4].ToString();
+                supplierSurvey.ZipCode = table.Rows[0][5].ToString();
+                supplierSurvey.Website = table.Rows[0][6].ToString();
+                supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[0][7].ToString());
+                supplierSurvey.NDARec = DateTime.Parse(table.Rows[0][8].ToString());
+                supplierSurvey.PrimaryBusiness = table.Rows[0][9].ToString();
+                supplierSurvey.SecundaryBusiness = table.Rows[0][10].ToString();
+                supplierSurvey.UnionYN = int.Parse(table.Rows[0][11].ToString());
+                supplierSurvey.Local = table.Rows[0][12].ToString();
+                supplierSurvey.ContractExpiration = table.Rows[0][13].ToString();
+                supplierSurvey.CurrentCapacity = table.Rows[0][14].ToString();
+                supplierSurvey.ManufacturingMetod = table.Rows[0][15].ToString();
+                supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[0][16].ToString());
+                supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[0][17].ToString());
+                supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[0][18].ToString());
+                supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[0][19].ToString());
+                supplierSurvey.Notes = table.Rows[0][20].ToString();
+
+                sqlConnection.Dispose();
+                return supplierSurvey;
+            }
+        }
+        return null;
+    }
+    public IList<SupplierSurvey> readAll()
+    {
+        List<SupplierSurvey> recordset = new List<SupplierSurvey>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+        
+        string query =  "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "FROM SupplierSuvey ORDER BY LastSurvey DESC";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+       
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            SupplierSurvey supplierSurvey = new SupplierSurvey();
+            supplierSurvey.Id = long.Parse(table.Rows[i][0].ToString());
+            supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[i][1].ToString());
+            supplierSurvey.StreetAddress = table.Rows[i][2].ToString();
+            supplierSurvey.City = table.Rows[i][3].ToString();
+            supplierSurvey.State = table.Rows[i][4].ToString();
+            supplierSurvey.ZipCode = table.Rows[i][5].ToString();
+            supplierSurvey.Website = table.Rows[i][6].ToString();
+            supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[i][7].ToString());
+            supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
+            supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
+            supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();
+            supplierSurvey.UnionYN = int.Parse(table.Rows[i][11].ToString());
+            supplierSurvey.Local = table.Rows[i][12].ToString();
+            supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
+            supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
+            supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();
+            supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[i][16].ToString());
+            supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[i][17].ToString());
+            supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[i][18].ToString());
+            supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[i][19].ToString());
+            supplierSurvey.Notes = table.Rows[i][20].ToString();
+            recordset.Add(supplierSurvey);
+        }
+       
+        return recordset;
+    }
+
+    public bool update(SupplierSurvey entity)
+    {
+
+        bool result = false;        
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContactExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure("SupplierSurvey_EditSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected=0;
+        string query = "DELETE FROM SupplierSurvey WHERE SupplierSurveyKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();               
+            }           
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSupplied>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public SupplierSurveyIndustriesCRUD()
+    { }
+
+    #region ICRUD<SupplierSurveyIndustriesSupplied> Members
+
+    public bool create(SupplierSurveyIndustriesSupplied entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@IndustriesSuplied", entity.IndustriesSupplied.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyIndustriesSupplied_NewIndustry", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public SupplierSurveyIndustriesSupplied readById(long id)
+    {
+        SupplierSurveyIndustriesSupplied industrieSupplied = new SupplierSurveyIndustriesSupplied();
+
+        string query = "SELECT  SupplierIndustriesSuppliedKey, SupplierSurveyKey, IndustriesSuplied " +
+                        "FROM  SupplierSurveyIndustriesSupplied WHERE (SupplierIndustriesSuppliedKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                industrieSupplied.Id = long.Parse(table.Rows[0][0].ToString());
+                industrieSupplied.SupplierSurveyKey = long.Parse(table.Rows[0][1].ToString());
+                industrieSupplied.IndustriesSupplied = table.Rows[0][2].ToString();
+
+                sqlConnection.Dispose();
+                return industrieSupplied;
+            }
+        }
+        return null;
+    }
+
+    public IList<SupplierSurveyIndustriesSupplied> readAll()
+    {
+        List<SupplierSurveyIndustriesSupplied> recordset = new List<SupplierSurveyIndustriesSupplied>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT SupplierIndustriesSuppliedKey, SupplierSurveyKey, IndustriesSuplied " +
+                        "FROM  SupplierSurveyIndustriesSupplied ORDER BY IndustriesSuplied";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            SupplierSurveyIndustriesSupplied industrieSupplied = new SupplierSurveyIndustriesSupplied();
+            industrieSupplied.Id = long.Parse(table.Rows[i][0].ToString());
+            industrieSupplied.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+            industrieSupplied.IndustriesSupplied = table.Rows[i][2].ToString();
+
+            recordset.Add(industrieSupplied);
+        }
+
+        return recordset;
+    }
+
+    public bool update(SupplierSurveyIndustriesSupplied entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierIndustriesSuppliedKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@IndustriesSuplied", entity.IndustriesSupplied.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyIndustriesSupplied_EditIndustry", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierIndustriesSuppliedKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public SupplierSurveyForecastSalesCRUD()
+    { }
+
+    #region ICRUD<SupplierSurveyForecastSales> Members
+
+    public bool create(SupplierSurveyForecastSales entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@ForecastSalesYear", entity.ForecastSalesYear.ToString());
+            DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_NewForecast", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public SupplierSurveyForecastSales readById(long id)
+    {
+        SupplierSurveyForecastSales forecastSales = new SupplierSurveyForecastSales();
+
+        string query = "SELECT SurveyForecastedSalesKey, SupplierSurveyKey, ForecastSalesYear, ForecastSales " +
+                        "FROM  SupplierSurveyForecastSales WHERE (SurveyForecastedSalesKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                forecastSales.Id = long.Parse(table.Rows[0][0].ToString());
+                forecastSales.SupplierSurveyKey = long.Parse(table.Rows[0][1].ToString());
+                forecastSales.ForecastSalesYear = table.Rows[0][2].ToString(); 
+                forecastSales.ForecastSales = table.Rows[0][3].ToString();
+
+                sqlConnection.Dispose();
+                return forecastSales;
+            }
+        }
+        return null;
+    }
+
+    public IList<SupplierSurveyForecastSales> readAll()
+    {
+        List<SupplierSurveyForecastSales> recordset = new List<SupplierSurveyForecastSales>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT SurveyForecastedSalesKey, SupplierSurveyKey, ForecastSalesYear, ForecastSales " +
+                        "FROM  SupplierSurveyForecastSales ORDER BY ForecastSalesYear";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            SupplierSurveyForecastSales forecastSales = new SupplierSurveyForecastSales();
+            forecastSales.Id = long.Parse(table.Rows[i][0].ToString());
+            forecastSales.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+            forecastSales.ForecastSalesYear = table.Rows[i][2].ToString();
+            forecastSales.ForecastSales = table.Rows[i][3].ToString();
+
+            recordset.Add(forecastSales);
+        }
+
+        return recordset;
+    }
+
+    public bool update(SupplierSurveyForecastSales entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierForecastedSalesKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@ForecastSalesYear", entity.ForecastSalesYear.ToString());
+            DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());           
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_EditForecast", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyForecastSales WHERE SurveyForecastedSalesKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public SupplierSurveyContactsCRUD()
+    { }
+
+    #region ICRUD<SupplierSurveyContacts> Members
+
+    public bool create(SupplierSurveyContacts entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Position", entity.Position.ToString());
+            DM.Load_SP_Parameters("@Name", entity.Name.ToString());
+            DM.Load_SP_Parameters("@Title", entity.Title.ToString());
+            DM.Load_SP_Parameters("@Address", entity.Address.ToString());
+            DM.Load_SP_Parameters("@Phone", entity.Phone.ToString());
+            DM.Load_SP_Parameters("@Cell", entity.Cell.ToString());
+            DM.Load_SP_Parameters("@Email", entity.Email.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyContacts_NewContact", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public SupplierSurveyContacts readById(long id)
+    {
+        SupplierSurveyContacts contacts = new SupplierSurveyContacts();
+
+        string query = "SELECT SupplierSuveryContactsKey, SupplierSurveyKey, Position, Name, Title, Address, Phone, Cell, Email " +
+                       "FROM   SupplierSurveyContacts WHERE (SupplierSuveryContactsKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                contacts.Id = long.Parse(table.Rows[0][0].ToString());
+                contacts.SupplierSurveyKey = long.Parse(table.Rows[0][1].ToString());
+                contacts.Position = table.Rows[0][2].ToString();
+                contacts.Name = table.Rows[0][3].ToString();
+                contacts.Title = table.Rows[0][4].ToString();
+                contacts.Address = table.Rows[0][5].ToString();
+                contacts.Phone = table.Rows[0][6].ToString();
+                contacts.Cell = table.Rows[0][7].ToString();
+                contacts.Email = table.Rows[0][8].ToString();                
+
+                sqlConnection.Dispose();
+                return contacts;
+            }
+        }
+        return null;
+    }
+    public IList<SupplierSurveyContacts> readAll()
+    {
+        //not required at this moment
+
+        return null;
+    }
+
+    public bool update(SupplierSurveyContacts entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSuveryContactsKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Position", entity.Position.ToString());
+            DM.Load_SP_Parameters("@Name", entity.Name.ToString());
+            DM.Load_SP_Parameters("@Title", entity.Title.ToString());
+            DM.Load_SP_Parameters("@Address", entity.Address.ToString());
+            DM.Load_SP_Parameters("@Phone", entity.Phone.ToString());
+            DM.Load_SP_Parameters("@Cell", entity.Cell.ToString());
+            DM.Load_SP_Parameters("@Email", entity.Email.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierSurveyContacts_EditContact", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyContacts WHERE SupplierSuveryContactsKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public SupplierSurveyCertificationCRUD()
+    { }
+
+    #region ICRUD<SupplierSurveyCertification> Members
+
+    public bool create(SupplierSurveyCertification entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());            
+
+            result = DM.Execute_StoreProcedure("SuppierSurveyCertification_NewCertification", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public SupplierSurveyCertification readById(long id)
+    {
+        SupplierSurveyCertification certification = new SupplierSurveyCertification();
+
+        string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
+                        "FROM  SuppierSurveyCertification WHERE (SupplierCertificationKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                certification.Id = long.Parse(table.Rows[0][0].ToString());
+                certification.SupplierSurveyKey = long.Parse(table.Rows[0][1].ToString());
+                certification.Certification = table.Rows[0][2].ToString();
+                
+                sqlConnection.Dispose();
+                return certification;
+            }
+        }
+        return null;
+    }
+    public IList<SupplierSurveyCertification> readAll()
+    {
+        //not required at this moment
+
+        return null;
+    }
+
+    public bool update(SupplierSurveyCertification entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierCertificationKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
+
+            result = DM.Execute_StoreProcedure("SuppierSurveyCertification_EditCertification", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierCertificationKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
