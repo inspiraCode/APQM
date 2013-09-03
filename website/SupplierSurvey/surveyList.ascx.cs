@@ -7,13 +7,19 @@ using System.Web.UI.WebControls;
 
 public partial class surveyList : System.Web.UI.UserControl
 {
-    private SurveyCRUD surveyCRUD = new SurveyCRUD();
+    private SupplierSurveyCRUD surveyCRUD = new SupplierSurveyCRUD();
+    Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
-    {   
-        List<SupplierSurvey> recordset = (List<SupplierSurvey>)surveyCRUD.readAll();
-        Repeater1.DataSource = recordset;
-        Repeater1.DataBind();
-        divSurveyList.InnerHtml = recordset.Count.ToString() + " records.";
+    {
+        if (Session["supplierObject"] != null)
+        {
+            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
+            lblSupplier.Text = supplier.SupplierName;
+            List < SupplierSurvey > recordset =surveyCRUD.readByParentId(supplier.Id);
+            Repeater1.DataSource = recordset;
+            Repeater1.DataBind();
+            divSurveyList.InnerHtml = recordset.Count.ToString() + " records.";
+        }        
     }
 
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
@@ -38,12 +44,13 @@ public partial class surveyList : System.Web.UI.UserControl
         survey = surveyCRUD.readById(id);
         if (survey != null)
         {
-            SessionObject so = new SessionObject();
-            so.Content = survey;
-            so.Status = "forUpdate";
-
-            Session["SurveyObject"] = so;
+            ((Supplier)((SessionObject)(Session["Supplier"])).Content).SupplierSurvey = survey;
+            Navigator.goToPage("~/Default.aspx", "popupSurvey");
         }
-        Navigator.goToPage("~/Default.aspx","popupSurvey");
-    }   
+        else
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+        }
+       
+    }
 }

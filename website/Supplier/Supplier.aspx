@@ -3,7 +3,7 @@
 
 <%@ Register src="supplierMaster.ascx" tagname="supplierMaster" tagprefix="uc1" %>
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
-<%@ Register src="surveyList.ascx" tagname="surveyList" tagprefix="uc3" %>
+<%@ Register src="~/SupplierSurvey/surveyList.ascx" tagname="surveyList" tagprefix="uc3" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">        

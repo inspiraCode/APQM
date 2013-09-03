@@ -1,5 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="surveyList.ascx.cs"
     Inherits="surveyList" %>
+<p>
+    <asp:Label ID="lblSupplier" runat="server" Text="Label"></asp:Label>
+</p>
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
         <table border="1">
@@ -61,6 +64,5 @@
         </table>
     </FooterTemplate>
 </asp:Repeater>
-<%--</form>--%>
 <div id="divSurveyList" runat="server" align="center">
 </div>

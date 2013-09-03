@@ -99,51 +99,46 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         return null;
     }
 
-    public SupplierSurvey readByParentId(long id)
+    public List<SupplierSurvey> readByParentId(long id)
     {
-        SupplierSurvey supplierSurvey = new SupplierSurvey();
-
+        List<SupplierSurvey> recordset = new List<SupplierSurvey>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
         string query = "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
                         "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
                         "FROM SupplierSuvey WHERE (SupplierMasterKey = @key) ORDER BY LastSurvey DESC";
+
         DataTable table = new DataTable();
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        if (sqlConnection != null)
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
         {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(table);
-
-            if (table.Rows.Count > 0)
-            {
-                supplierSurvey.Id = long.Parse(table.Rows[0][0].ToString());
-                supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[0][1].ToString());
-                supplierSurvey.StreetAddress = table.Rows[0][2].ToString();
-                supplierSurvey.City = table.Rows[0][3].ToString();
-                supplierSurvey.State = table.Rows[0][4].ToString();
-                supplierSurvey.ZipCode = table.Rows[0][5].ToString();
-                supplierSurvey.Website = table.Rows[0][6].ToString();
-                supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[0][7].ToString());
-                supplierSurvey.NDARec = DateTime.Parse(table.Rows[0][8].ToString());
-                supplierSurvey.PrimaryBusiness = table.Rows[0][9].ToString();
-                supplierSurvey.SecundaryBusiness = table.Rows[0][10].ToString();
-                supplierSurvey.UnionYN = int.Parse(table.Rows[0][11].ToString());
-                supplierSurvey.Local = table.Rows[0][12].ToString();
-                supplierSurvey.ContractExpiration = table.Rows[0][13].ToString();
-                supplierSurvey.CurrentCapacity = table.Rows[0][14].ToString();
-                supplierSurvey.ManufacturingMetod = table.Rows[0][15].ToString();
-                supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[0][16].ToString());
-                supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[0][17].ToString());
-                supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[0][18].ToString());
-                supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[0][19].ToString());
-                supplierSurvey.Notes = table.Rows[0][20].ToString();
-
-                sqlConnection.Dispose();
-                return supplierSurvey;
-            }
+            SupplierSurvey supplierSurvey = new SupplierSurvey();
+            supplierSurvey.Id = long.Parse(table.Rows[i][0].ToString());
+            supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[i][1].ToString());
+            supplierSurvey.StreetAddress = table.Rows[i][2].ToString();
+            supplierSurvey.City = table.Rows[i][3].ToString();
+            supplierSurvey.State = table.Rows[i][4].ToString();
+            supplierSurvey.ZipCode = table.Rows[i][5].ToString();
+            supplierSurvey.Website = table.Rows[i][6].ToString();
+            supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[i][7].ToString());
+            supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
+            supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
+            supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();
+            supplierSurvey.UnionYN = int.Parse(table.Rows[i][11].ToString());
+            supplierSurvey.Local = table.Rows[i][12].ToString();
+            supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
+            supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
+            supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();
+            supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[i][16].ToString());
+            supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[i][17].ToString());
+            supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[i][18].ToString());
+            supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[i][19].ToString());
+            supplierSurvey.Notes = table.Rows[i][20].ToString();
+            recordset.Add(supplierSurvey);
         }
-        return null;
+
+        return recordset;
     }
     public IList<SupplierSurvey> readAll()
     {
@@ -183,14 +178,11 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[i][19].ToString());
             supplierSurvey.Notes = table.Rows[i][20].ToString();
             recordset.Add(supplierSurvey);
-        }
-       
+        }       
         return recordset;
     }
-
     public bool update(SupplierSurvey entity)
     {
-
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -223,7 +215,6 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         {
             return false;
         }
-
         return result;
     }
     public bool delete(long id)
