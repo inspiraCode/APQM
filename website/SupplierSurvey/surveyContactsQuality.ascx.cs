@@ -19,14 +19,17 @@ public partial class SurveyContactsQuality : System.Web.UI.UserControl
         }               
     }
     public void fillWithSupplier(Supplier supplier){
-        if (supplier.SupplierSurvey.ContactQuality != null)
+        if (supplier.SupplierSurvey != null)
         {
-            txtName.Text = supplier.SupplierSurvey.ContactQuality.Name;
-            txtTitle.Text = supplier.SupplierSurvey.ContactQuality.Title;
-            txtAddress.Text = supplier.SupplierSurvey.ContactQuality.Address;
-            txtPhone.Text = supplier.SupplierSurvey.ContactQuality.Phone;
-            txtCell.Text = supplier.SupplierSurvey.ContactQuality.Cell;
-            txtEmail.Text = supplier.SupplierSurvey.ContactQuality.Email;
+            if (supplier.SupplierSurvey.ContactQuality != null)
+            {
+                txtName.Text = supplier.SupplierSurvey.ContactQuality.Name;
+                txtTitle.Text = supplier.SupplierSurvey.ContactQuality.Title;
+                txtAddress.Text = supplier.SupplierSurvey.ContactQuality.Address;
+                txtPhone.Text = supplier.SupplierSurvey.ContactQuality.Phone;
+                txtCell.Text = supplier.SupplierSurvey.ContactQuality.Cell;
+                txtEmail.Text = supplier.SupplierSurvey.ContactQuality.Email;
+            }
         }
     }   
 }

@@ -10,7 +10,6 @@ public partial class _Layouts_MasterBase : System.Web.UI.MasterPage
     protected void Page_Load(object sender, EventArgs e)
     {
         lblDate.Text = DateTime.Now.ToString("dddd, MMMM d, yyyy");
-
     }
    
 

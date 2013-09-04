@@ -11,7 +11,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
 
     SupplierCRUD supplierCRUD = new SupplierCRUD();
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["supplierObject"] != null)
@@ -21,7 +21,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
                 fillWithSupplier((Supplier)(((SessionObject)Session["supplierObject"]).Content));
                 ((SessionObject)Session["supplierObject"]).Status = "Retrieved";
             }
-        }               
+        }
     }
     public void fillWithSupplier(Supplier supplier){        
         lblID.Text = supplier.Id.ToString();
@@ -62,6 +62,6 @@ public partial class supplierMaster : System.Web.UI.UserControl
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Session.Remove("supplierObject");
-        Cancel_Click(this, e);
+        Cancel_Click(this, e);        
     }
 }

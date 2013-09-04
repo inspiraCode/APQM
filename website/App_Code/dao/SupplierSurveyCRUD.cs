@@ -28,13 +28,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@State", entity.State);
             DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
             DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
             DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
             DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
             DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
             DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
             DM.Load_SP_Parameters("@Local", entity.Local);
-            DM.Load_SP_Parameters("@ContactExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
             DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
             DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
             DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
@@ -58,7 +59,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         SupplierSurvey supplierSurvey = new SupplierSurvey();
         
         string query =  "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
-                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes, SentToVendor " +
                         "FROM SupplierSuvey WHERE (SupplierSuveyKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -81,16 +82,17 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
                 supplierSurvey.NDARec = DateTime.Parse( table.Rows[0][8].ToString());
                 supplierSurvey.PrimaryBusiness= table.Rows[0][9].ToString();
                 supplierSurvey.SecundaryBusiness= table.Rows[0][10].ToString();
-                supplierSurvey.UnionYN= int.Parse(table.Rows[0][11].ToString());
+                supplierSurvey.UnionYN= bool.Parse(table.Rows[0][11].ToString());
                 supplierSurvey.Local= table.Rows[0][12].ToString();
                 supplierSurvey.ContractExpiration= table.Rows[0][13].ToString();
                 supplierSurvey.CurrentCapacity = table.Rows[0][14].ToString();
                 supplierSurvey.ManufacturingMetod = table.Rows[0][15].ToString();
-                supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[0][16].ToString());
-                supplierSurvey.ToolingNewOutsourcedYN= int.Parse (table.Rows[0][17].ToString());
-                supplierSurvey.ToolingInHouseYN= int.Parse(table.Rows[0][18].ToString());
-                supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[0][19].ToString());
+                supplierSurvey.ToolingNewInHouseYN = bool.Parse(table.Rows[0][16].ToString());
+                supplierSurvey.ToolingNewOutsourcedYN = bool.Parse(table.Rows[0][17].ToString());
+                supplierSurvey.ToolingInHouseYN = bool.Parse(table.Rows[0][18].ToString());
+                supplierSurvey.ToolingOutsourcedYN = bool.Parse(table.Rows[0][19].ToString());
                 supplierSurvey.Notes = table.Rows[0][20].ToString();
+                supplierSurvey.SentToVendor = DateTime.Parse(table.Rows[0][21].ToString());
 
                 sqlConnection.Dispose();
                 return supplierSurvey;
@@ -105,41 +107,50 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         recordset.Clear();
         DM = connectionManager.getDataManager();
         string query = "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
-                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes, SentToVendor " +
                         "FROM SupplierSuvey WHERE (SupplierMasterKey = @key) ORDER BY LastSurvey DESC";
 
         DataTable table = new DataTable();
-        table = DM.Execute_Query(query);
-
-        for (int i = 0; i < table.Rows.Count; i++)
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
         {
-            SupplierSurvey supplierSurvey = new SupplierSurvey();
-            supplierSurvey.Id = long.Parse(table.Rows[i][0].ToString());
-            supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[i][1].ToString());
-            supplierSurvey.StreetAddress = table.Rows[i][2].ToString();
-            supplierSurvey.City = table.Rows[i][3].ToString();
-            supplierSurvey.State = table.Rows[i][4].ToString();
-            supplierSurvey.ZipCode = table.Rows[i][5].ToString();
-            supplierSurvey.Website = table.Rows[i][6].ToString();
-            supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[i][7].ToString());
-            supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
-            supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
-            supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();
-            supplierSurvey.UnionYN = int.Parse(table.Rows[i][11].ToString());
-            supplierSurvey.Local = table.Rows[i][12].ToString();
-            supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
-            supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
-            supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();
-            supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[i][16].ToString());
-            supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[i][17].ToString());
-            supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[i][18].ToString());
-            supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[i][19].ToString());
-            supplierSurvey.Notes = table.Rows[i][20].ToString();
-            recordset.Add(supplierSurvey);
-        }
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SupplierSurvey supplierSurvey = new SupplierSurvey();
+                supplierSurvey.Id = long.Parse(table.Rows[i][0].ToString());
+                supplierSurvey.SupplierMasterKey = long.Parse(table.Rows[i][1].ToString());
+                supplierSurvey.StreetAddress = table.Rows[i][2].ToString();
+                supplierSurvey.City = table.Rows[i][3].ToString();
+                supplierSurvey.State = table.Rows[i][4].ToString();
+                supplierSurvey.ZipCode = table.Rows[i][5].ToString();
+                supplierSurvey.Website = table.Rows[i][6].ToString();
+                supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[i][7].ToString());
+                supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
+                supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
+                supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();                
+                supplierSurvey.UnionYN = bool.Parse(table.Rows[i][11].ToString());
+                supplierSurvey.Local = table.Rows[i][12].ToString();
+                supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
+                supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
+                supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();               
+                supplierSurvey.ToolingNewInHouseYN = bool.Parse(table.Rows[i][16].ToString());
+                supplierSurvey.ToolingNewOutsourcedYN = bool.Parse(table.Rows[i][17].ToString());
+                supplierSurvey.ToolingInHouseYN = bool.Parse(table.Rows[i][18].ToString());
+                supplierSurvey.ToolingOutsourcedYN = bool.Parse(table.Rows[i][19].ToString());
+                supplierSurvey.Notes = table.Rows[i][20].ToString();
+                supplierSurvey.SentToVendor = DateTime.Parse(table.Rows[i][21].ToString());
+                recordset.Add(supplierSurvey);
+            }
+        }       
 
         return recordset;
     }
+
     public IList<SupplierSurvey> readAll()
     {
         List<SupplierSurvey> recordset = new List<SupplierSurvey>();
@@ -147,7 +158,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         DM = connectionManager.getDataManager();
         
         string query =  "SELECT SupplierSuveyKey, SupplierMasterKey, StreetAddress, City, State, ZipCode, Website, LastSurvey, NDARec, PrimaryBusiness, SecundaryBusiness, UnionYN, Local, " +
-                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes " +
+                        "ContractExpiration, CurrentCapacity, ManufacturingMetod, ToolingNewInHouseYN, ToolingNewOutsourcedYN, ToolingInHouseYN, ToolingOutsourcedYN, Notes, SentToVendor " +
                         "FROM SupplierSuvey ORDER BY LastSurvey DESC";
 
         DataTable table = new DataTable();
@@ -167,16 +178,17 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
             supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
             supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();
-            supplierSurvey.UnionYN = int.Parse(table.Rows[i][11].ToString());
+            supplierSurvey.UnionYN = bool.Parse(table.Rows[i][11].ToString());
             supplierSurvey.Local = table.Rows[i][12].ToString();
             supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
             supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
             supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();
-            supplierSurvey.ToolingNewInHouseYN = int.Parse(table.Rows[i][16].ToString());
-            supplierSurvey.ToolingNewOutsourcedYN = int.Parse(table.Rows[i][17].ToString());
-            supplierSurvey.ToolingInHouseYN = int.Parse(table.Rows[i][18].ToString());
-            supplierSurvey.ToolingOutsourcedYN = int.Parse(table.Rows[i][19].ToString());
+            supplierSurvey.ToolingNewInHouseYN = bool.Parse(table.Rows[i][16].ToString());
+            supplierSurvey.ToolingNewOutsourcedYN = bool.Parse(table.Rows[i][17].ToString());
+            supplierSurvey.ToolingInHouseYN = bool.Parse(table.Rows[i][18].ToString());
+            supplierSurvey.ToolingOutsourcedYN = bool.Parse(table.Rows[i][19].ToString());
             supplierSurvey.Notes = table.Rows[i][20].ToString();
+            supplierSurvey.SentToVendor = DateTime.Parse(table.Rows[i][21].ToString());
             recordset.Add(supplierSurvey);
         }       
         return recordset;
@@ -194,6 +206,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@State", entity.State);
             DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
             DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
             DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
             DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
@@ -220,7 +233,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
     public bool delete(long id)
     {
         int rowsAffected=0;
-        string query = "DELETE FROM SupplierSurvey WHERE SupplierSurveyKey=@key";
+        string query = "DELETE FROM SupplierSuvey WHERE SupplierSuveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
         if (sqlConnection != null)

@@ -18,15 +18,19 @@ public partial class SurveyContactsCustomerSupport : System.Web.UI.UserControl
             }
         }               
     }
-    public void fillWithSupplier(Supplier supplier){
-        if (supplier.SupplierSurvey.ContactCustomerSupport != null)
+    public void fillWithSupplier(Supplier supplier)
+    {
+        if (supplier.SupplierSurvey != null)
         {
-            txtName.Text = supplier.SupplierSurvey.ContactCustomerSupport.Name;
-            txtTitle.Text = supplier.SupplierSurvey.ContactCustomerSupport.Title;
-            txtAddress.Text = supplier.SupplierSurvey.ContactCustomerSupport.Address;
-            txtPhone.Text = supplier.SupplierSurvey.ContactCustomerSupport.Phone;
-            txtCell.Text = supplier.SupplierSurvey.ContactCustomerSupport.Cell;
-            txtEmail.Text = supplier.SupplierSurvey.ContactCustomerSupport.Email;
+            if (supplier.SupplierSurvey.ContactCustomerSupport != null)
+            {
+                txtName.Text = supplier.SupplierSurvey.ContactCustomerSupport.Name;
+                txtTitle.Text = supplier.SupplierSurvey.ContactCustomerSupport.Title;
+                txtAddress.Text = supplier.SupplierSurvey.ContactCustomerSupport.Address;
+                txtPhone.Text = supplier.SupplierSurvey.ContactCustomerSupport.Phone;
+                txtCell.Text = supplier.SupplierSurvey.ContactCustomerSupport.Cell;
+                txtEmail.Text = supplier.SupplierSurvey.ContactCustomerSupport.Email;
+            }
         }
-    }   
+    }
 }

@@ -20,15 +20,11 @@ public partial class SurveyForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
-        {
-        }
         if (Session["SupplierObject"]!=null)
         {
             if (((SessionObject)Session["SupplierObject"]).Status == "forUpdate")
             {
-                fillWithEntity((Supplier)(((SessionObject)Session["SupplierObject"]).Content));
-                ((SessionObject)Session["SupplierObject"]).Status = "Retrieved";
+                fillWithEntity((Supplier)(((SessionObject)Session["SupplierObject"]).Content));                
             }
         }
     }
@@ -36,37 +32,39 @@ public partial class SurveyForm : System.Web.UI.UserControl
     public void fillWithEntity(Supplier supplier)
     {
         this.supplier = supplier;
+        if (supplier.SupplierSurvey != null)
+        {
+            lblID.Text = supplier.SupplierSurvey.Id.ToString();
+            txtLastSurvey.Text = supplier.SupplierSurvey.LastSurvey.ToString();
+            txtNDARec.Text = supplier.SupplierSurvey.NDARec.ToString();
+            //txtRFQScore.Text = CALCULATED
+            lblSupplier.Text = supplier.SupplierName;
+            lblContactPerson.Text = supplier.ContactName;
+            lblContactPhone.Text = supplier.ContactPhone;
+            txtUnion.Text = supplier.SupplierSurvey.UnionYN.ToString();
+            txtLocal.Text = supplier.SupplierSurvey.Local;
+            txtContractExpiration.Text = supplier.SupplierSurvey.ContractExpiration;
+            txtAddress.Text = supplier.SupplierSurvey.StreetAddress;
+            txtCity.Text = supplier.SupplierSurvey.City;
+            txtState.Text = supplier.SupplierSurvey.State;
+            txtZip.Text = supplier.SupplierSurvey.ZipCode;
+            txtWebsite.Text = supplier.SupplierSurvey.Website;
+            txtPrimaryBusiness.Text = supplier.SupplierSurvey.PrimaryBusiness;
+            txtSecundaryBusiness.Text = supplier.SupplierSurvey.SecundaryBusiness;
+            txtManufacturingMethod.Text = supplier.SupplierSurvey.ManufacturingMetod;
+            txtCurrentCapacity.Text = supplier.SupplierSurvey.CurrentCapacity;
+            //txtCurrentAnnualSales.Text = ;
+            //lstForecastSales.Text = ;
+            txtNewInHouseManufacture.Text = supplier.SupplierSurvey.ToolingNewInHouseYN.ToString();
+            txtNewOutsourced.Text = supplier.SupplierSurvey.ToolingNewOutsourcedYN.ToString();
+            txtRepairInHouse.Text = supplier.SupplierSurvey.ToolingInHouseYN.ToString();
+            txtRepaiOutsource.Text = supplier.SupplierSurvey.ToolingOutsourcedYN.ToString();
+            //lstIndustries.Text = 
+            //lstCertifications.Text = 
+            txtNotes.Text = supplier.SupplierSurvey.Notes;
 
-        lblID.Text = supplier.SupplierSurvey.Id.ToString();
-        txtLastSurvey.Text = supplier.SupplierSurvey.LastSurvey.ToString();
-        txtNDARec.Text = supplier.SupplierSurvey.NDARec.ToString();
-        //txtRFQScore.Text = CALCULATED
-        lblSupplier.Text = supplier.SupplierName;
-        lblContactPerson.Text = supplier.ContactName;
-        lblContactPhone.Text = supplier.ContactPhone;
-        txtUnion.Text = supplier.SupplierSurvey.UnionYN.ToString();
-        txtLocal.Text = supplier.SupplierSurvey.Local;
-        txtContractExpiration.Text = supplier.SupplierSurvey.ContractExpiration;
-        txtAddress.Text = supplier.SupplierSurvey.StreetAddress;
-        txtCity.Text = supplier.SupplierSurvey.City;
-        txtState.Text = supplier.SupplierSurvey.State;
-        txtZip.Text = supplier.SupplierSurvey.ZipCode;
-        txtWebsite.Text = supplier.SupplierSurvey.Website;
-        txtPrimaryBusiness.Text = supplier.SupplierSurvey.PrimaryBusiness;
-        txtSecundaryBusiness.Text = supplier.SupplierSurvey.SecundaryBusiness;
-        txtManufacturingMethod.Text = supplier.SupplierSurvey.ManufacturingMetod;
-        txtCurrentCapacity.Text = supplier.SupplierSurvey.CurrentCapacity;
-        //txtCurrentAnnualSales.Text = ;
-        //lstForecastSales.Text = ;
-        txtNewInHouseManufacture.Text = supplier.SupplierSurvey.ToolingNewInHouseYN.ToString();
-        txtNewOutsourced.Text = supplier.SupplierSurvey.ToolingNewOutsourcedYN.ToString();
-        txtRepairInHouse.Text = supplier.SupplierSurvey.ToolingInHouseYN.ToString();
-        txtRepaiOutsource.Text = supplier.SupplierSurvey.ToolingOutsourcedYN.ToString();
-        //lstIndustries.Text = 
-        //lstCertifications.Text = 
-        txtNotes.Text = supplier.SupplierSurvey.Notes;
-        
-        lblMode.Text = "Update";
+            lblMode.Text = "Update";
+        }        
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
@@ -83,15 +81,15 @@ public partial class SurveyForm : System.Web.UI.UserControl
         survey.NDARec = DateTime.Parse(txtNDARec.Text);
         survey.PrimaryBusiness = txtPrimaryBusiness.Text;
         survey.SecundaryBusiness = txtSecundaryBusiness.Text;
-        survey.UnionYN = int.Parse(txtUnion.Text);
+        survey.UnionYN = bool.Parse(txtUnion.Text);
         survey.Local = txtLocal.Text;
         survey.ContractExpiration = txtContractExpiration.Text;
         survey.CurrentCapacity = txtCurrentCapacity.Text;
         survey.ManufacturingMetod = txtManufacturingMethod.Text;
-        survey.ToolingNewInHouseYN = int.Parse(txtNewInHouseManufacture.Text);
-        survey.ToolingNewOutsourcedYN = int.Parse(txtNewOutsourced.Text);
-        survey.ToolingInHouseYN = int.Parse(txtRepairInHouse.Text);
-        survey.ToolingOutsourcedYN = int.Parse(txtRepaiOutsource.Text);
+        survey.ToolingNewInHouseYN = bool.Parse(txtNewInHouseManufacture.Text);
+        survey.ToolingNewOutsourcedYN = bool.Parse(txtNewOutsourced.Text);
+        survey.ToolingInHouseYN = bool.Parse(txtRepairInHouse.Text);
+        survey.ToolingOutsourcedYN = bool.Parse(txtRepaiOutsource.Text);
         survey.Notes = txtNotes.Text;
                         
         if (lblMode.Text == "New") {

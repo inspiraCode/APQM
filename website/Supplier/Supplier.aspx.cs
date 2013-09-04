@@ -12,41 +12,57 @@ using System.Xml.Linq;
 using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page 
-{   
+{
+    Supplier supplier;
+    private static string actualView = "";
     protected void Page_Load(object sender, EventArgs e)
     {
+
         if (Session["SECTION"] != null)
         {
-            switch (((SessionObject)Session["SECTION"]).Content.ToString())
+            if (Session["supplierObject"] != null)
             {
-                case "supplier":
-                    MultiViewMain.SetActiveView(viewSupplier);
-                    break;
-                case "survey":
-                    MultiViewMain.SetActiveView(viewSurvey);
-                    break;
-                case "popupSupplier":
-                    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
-                    openpopupContainer("supplierMaster.ascx");
-                    break;
-                default:
-                    break;
+                supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
+                lblName.Text = supplier.SupplierName;
+                switch (((SessionObject)Session["SECTION"]).Content.ToString())
+                {
+                    case "supplier":
+                        actualView = "supplier";
+                        MultiViewMain.SetActiveView(viewSupplier);
+                        break;
+                    case "survey":
+                        actualView = "survey";
+                        MultiViewMain.SetActiveView(viewSurvey);
+                        break;
+                    case "popupSendSurvey":
+                        MultiViewMain.SetActiveView(viewSurvey);
+                        openpopupContainer();
+                        popupContainer.Style.Add("height", "100px");
+                        popupContainer.Style.Add("width", "500px");
+                        break;
+                    case "popupSurvey":
+                        MultiViewMain.SetActiveView(viewSurvey);
+                        multiViewPopup.SetActiveView(viewPopupSurvey);
+                        openpopupContainer();
+                        popupContainer.Style.Add("height", "95%");
+                        popupContainer.Style.Add("width", "95%");                        
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-    }    
-        
-    private void openpopupContainer(string content)
+    }
+    private void openpopupContainer()
     {
         panelPopup.Visible = true;
     }
     protected void on_ok_supplier(object sender, EventArgs e)
-    {
-        //panelPopup.Visible = false;
+    {        
         Navigator.goToPage("~/default.aspx","supplier");
     }
     protected void on_cancel_supplier(object sender, EventArgs e)
-    {
-        //panelPopup.Visible = false;
+    {       
         Navigator.goToPage("~/default.aspx", "supplier");
     }
     protected void tabSupplier_Click(object sender, EventArgs e)
@@ -60,5 +76,25 @@ public partial class _Default : System.Web.UI.Page
     protected void tabSurvey_Click(object sender, EventArgs e)
     {
         Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
+    }
+    protected void btnSendSurvey_Click(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/Supplier/supplier.aspx", "popupSendSurvey");
+    }
+    protected void on_send_survey(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
+    }
+    protected void on_cancel_send_survey(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
+    }
+    protected void on_save_survey(object sender, EventArgs e)
+    {
+        
+    }
+    protected void on_cancel_survey(object sender, EventArgs e)
+    {
+        
     }
 }

@@ -19,14 +19,16 @@ public partial class SurveyContactsExecutive : System.Web.UI.UserControl
         }               
     }
     public void fillWithSupplier(Supplier supplier){
-        if (supplier.SupplierSurvey.ContactExecutive != null)
-        {
-            txtName.Text = supplier.SupplierSurvey.ContactExecutive.Name;
-            txtTitle.Text = supplier.SupplierSurvey.ContactExecutive.Title;
-            txtAddress.Text = supplier.SupplierSurvey.ContactExecutive.Address;
-            txtPhone.Text = supplier.SupplierSurvey.ContactExecutive.Phone;
-            txtCell.Text = supplier.SupplierSurvey.ContactExecutive.Cell;
-            txtEmail.Text = supplier.SupplierSurvey.ContactExecutive.Email;
+        if(supplier.SupplierSurvey != null){
+            if (supplier.SupplierSurvey.ContactExecutive != null)
+            {
+                txtName.Text = supplier.SupplierSurvey.ContactExecutive.Name;
+                txtTitle.Text = supplier.SupplierSurvey.ContactExecutive.Title;
+                txtAddress.Text = supplier.SupplierSurvey.ContactExecutive.Address;
+                txtPhone.Text = supplier.SupplierSurvey.ContactExecutive.Phone;
+                txtCell.Text = supplier.SupplierSurvey.ContactExecutive.Cell;
+                txtEmail.Text = supplier.SupplierSurvey.ContactExecutive.Email;
+            }
         }
     }   
 }

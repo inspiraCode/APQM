@@ -37,18 +37,18 @@ public partial class _Default : System.Web.UI.Page
 
 
                 case "popupSupplier":
-                    Session.Remove("Supplier");
+                    Session.Remove("supplierObject");
                     MultiViewMain.SetActiveView(viewSupplier);
                     openpopupContainer();
                     break;
                 case "popupSIF":
-                    Session.Remove("SIF");
+                    Session.Remove("sifObject");
                     MultiViewMain.SetActiveView(viewSIF);
                     multiViewPopup.SetActiveView(viewPopupSIF);
                     openpopupContainer();
                     break;
                 case "popupRFQ":
-                    Session.Remove("RFQ");
+                    Session.Remove("rfqObject");
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();

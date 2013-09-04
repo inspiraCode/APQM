@@ -1,8 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="surveyList.ascx.cs"
     Inherits="surveyList" %>
-<p>
-    <asp:Label ID="lblSupplier" runat="server" Text="Label"></asp:Label>
-</p>
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
         <table border="1">
@@ -13,16 +10,13 @@
                 Primary Business
             </th>          
             <th>
-                Contact Name
+                Secundary Business
             </th>
             <th>
-                Contact Phone
+                Contract Expiration
             </th>
             <th>
-                Contact Cell
-            </th>
-            <th>
-                Contact Email
+                Sent To Vendor
             </th>            
             <th>
             </th>
@@ -40,17 +34,14 @@
                 <%# DataBinder.Eval(Container.DataItem, "PrimaryBusiness")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "Name")%>
+                <%# DataBinder.Eval(Container.DataItem, "SecundaryBusiness")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "Phone")%>
+                <%# DataBinder.Eval(Container.DataItem, "ContractExpiration")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "Cell")%>
-            </td>
-            <td>
-                <%# DataBinder.Eval(Container.DataItem, "Email")%>
-            </td>            
+                <%# DataBinder.Eval(Container.DataItem, "SentToVendor")%>
+            </td>                  
             <td>
                 <asp:LinkButton ID="deleteByID" runat="server" 
                     CommandArgument="" CommandName="SurveyID" OnCommand="deleteByID" 

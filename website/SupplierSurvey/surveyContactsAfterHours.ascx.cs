@@ -18,15 +18,19 @@ public partial class SurveyContactsAfterHours : System.Web.UI.UserControl
             }
         }               
     }
-    public void fillWithSupplier(Supplier supplier){
-        if (supplier.SupplierSurvey.ContactAfterHoursContact != null)
+    public void fillWithSupplier(Supplier supplier)
+    {
+        if (supplier.SupplierSurvey != null)
         {
-            txtName.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Name;
-            txtTitle.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Title;
-            txtAddress.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Address;
-            txtPhone.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Phone;
-            txtCell.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Cell;
-            txtEmail.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Email;
+            if (supplier.SupplierSurvey.ContactAfterHoursContact != null)
+            {
+                txtName.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Name;
+                txtTitle.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Title;
+                txtAddress.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Address;
+                txtPhone.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Phone;
+                txtCell.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Cell;
+                txtEmail.Text = supplier.SupplierSurvey.ContactAfterHoursContact.Email;
+            }
         }
-    }   
+    }
 }

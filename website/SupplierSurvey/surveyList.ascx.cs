@@ -13,8 +13,7 @@ public partial class surveyList : System.Web.UI.UserControl
     {
         if (Session["supplierObject"] != null)
         {
-            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
-            lblSupplier.Text = supplier.SupplierName;
+            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);            
             List < SupplierSurvey > recordset =surveyCRUD.readByParentId(supplier.Id);
             Repeater1.DataSource = recordset;
             Repeater1.DataBind();
@@ -25,14 +24,23 @@ public partial class surveyList : System.Web.UI.UserControl
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {                       
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((SupplierSurvey)e.Item.DataItem).Id.ToString();            
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SupplierSurvey)e.Item.DataItem).Id.ToString();            
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((SupplierSurvey)e.Item.DataItem).Id.ToString(); 
+            if(((SupplierSurvey)e.Item.DataItem).LastSurvey.Year == 1985 && 
+                ((SupplierSurvey)e.Item.DataItem).LastSurvey.Month == 2 && 
+                ((SupplierSurvey)e.Item.DataItem).LastSurvey.Day == 10){
+                ((LinkButton)e.Item.FindControl("updateByID")).Text = "Not filled yet";
+            }
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SupplierSurvey)e.Item.DataItem).Id.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (!surveyCRUD.delete(id))
+        if (surveyCRUD.delete(id))
+        {
+            Navigator.goToPage("~/Supplier/Supplier.aspx", "survey");
+        }
+        else
         {
             Navigator.goToPage("~/Error.aspx","");
         }
@@ -44,13 +52,12 @@ public partial class surveyList : System.Web.UI.UserControl
         survey = surveyCRUD.readById(id);
         if (survey != null)
         {
-            ((Supplier)((SessionObject)(Session["Supplier"])).Content).SupplierSurvey = survey;
-            Navigator.goToPage("~/Default.aspx", "popupSurvey");
+            ((Supplier)((SessionObject)(Session["supplierObject"])).Content).SupplierSurvey = survey;
+            Navigator.goToPage("~/Supplier/Supplier.aspx", "popupSurvey");
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "");
-        }
-       
+        }       
     }
 }

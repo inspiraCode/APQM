@@ -9,9 +9,9 @@ using System.Web;
 public class RFQ
 {
     private long id;
-    private DateTime dueDate;
-    private DateTime sentToVendor;
-    private DateTime filledUp;
+    private DateTime dueDate = new DateTime(1985,2,10);
+    private DateTime sentToVendor = new DateTime(1985, 2, 10);
+    private DateTime filledUp = new DateTime(1985, 2, 10);
    
     private long bomDetailId;
     private long supplierId;

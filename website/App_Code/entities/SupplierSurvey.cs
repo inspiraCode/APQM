@@ -7,27 +7,28 @@ using System.Web;
 
 public class SupplierSurvey
 {
-    private long id;
-    private long supplierMasterKey;
-    private string streetAddress; 
-    private string city; 
-    private string state;
-    private string zipCode;
-    private string website; 
-    private DateTime lastSurvey; 
-    private DateTime nDARec; 
-    private string primaryBusiness; 
-    private string secundaryBusiness;
-    private int unionYN; 
-    private string local;
-    private string contractExpiration;
-    private string currentCapacity;
-    private string manufacturingMetod; 
-    private int toolingNewInHouseYN; 
-    private int toolingNewOutsourcedYN; 
-    private int toolingInHouseYN; 
-    private int toolingOutsourcedYN; 
-    private string notes;
+    private long id = -1;
+    private long supplierMasterKey = -1;
+    private string streetAddress = "";
+    private string city = "";
+    private string state = "";
+    private string zipCode = "";
+    private string website = "";
+    private DateTime sentToVendor = new DateTime(1985,2,10);
+    private DateTime lastSurvey = new DateTime(1985, 2, 10);
+    private DateTime nDARec = new DateTime(1985, 2, 10);
+    private string primaryBusiness = "";
+    private string secundaryBusiness = "";
+    private bool unionYN;
+    private string local = "";
+    private string contractExpiration = "";
+    private string currentCapacity = "";
+    private string manufacturingMetod = "";
+    private bool toolingNewInHouseYN; 
+    private bool toolingNewOutsourcedYN; 
+    private bool toolingInHouseYN; 
+    private bool toolingOutsourcedYN;
+    private string notes = "";
 
     private List<SupplierSurveyCertification> certifications;
     private List<SupplierSurveyForecastSales> forecastSales; 
@@ -48,15 +49,13 @@ public class SupplierSurvey
     {
         get { return supplierMasterKey; }
         set { supplierMasterKey = value; }
-    }
-    
+    }    
 
     public string StreetAddress
     {
         get { return streetAddress; }
         set { streetAddress = value; }
-    }
-    
+    }    
 
     public string City
     {
@@ -76,15 +75,18 @@ public class SupplierSurvey
     {
         get { return zipCode; }
         set { zipCode = value; }
-    }
-    
+    }    
 
     public string Website
     {
         get { return website; }
         set { website = value; }
     }
-    
+    public DateTime SentToVendor
+    {
+        get { return sentToVendor; }
+        set { sentToVendor = value; }
+    }
 
     public DateTime LastSurvey
     {
@@ -97,85 +99,73 @@ public class SupplierSurvey
     {
         get { return nDARec; }
         set { nDARec = value; }
-    }
-    
+    }    
 
     public string PrimaryBusiness
     {
         get { return primaryBusiness; }
         set { primaryBusiness = value; }
-    }
-    
+    }    
 
     public string SecundaryBusiness
     {
         get { return secundaryBusiness; }
         set { secundaryBusiness = value; }
-    }
-    
+    }    
 
-    public int UnionYN
+    public bool UnionYN
     {
         get { return unionYN; }
         set { unionYN = value; }
-    }
-    
+    }    
 
     public string Local
     {
         get { return local; }
         set { local = value; }
-    }
-    
+    }    
 
     public string ContractExpiration
     {
         get { return contractExpiration; }
         set { contractExpiration = value; }
-    }
-    
+    }    
 
     public string CurrentCapacity
     {
         get { return currentCapacity; }
         set { currentCapacity = value; }
-    }
-    
+    }    
 
     public string ManufacturingMetod
     {
         get { return manufacturingMetod; }
         set { manufacturingMetod = value; }
-    }
-    
+    }    
 
-    public int ToolingNewInHouseYN
+    public bool ToolingNewInHouseYN
     {
         get { return toolingNewInHouseYN; }
         set { toolingNewInHouseYN = value; }
     }
-    
 
-    public int ToolingNewOutsourcedYN
+    public bool ToolingNewOutsourcedYN
     {
         get { return toolingNewOutsourcedYN; }
         set { toolingNewOutsourcedYN = value; }
     }
-    
 
-    public int ToolingInHouseYN
+    public bool ToolingInHouseYN
     {
         get { return toolingInHouseYN; }
         set { toolingInHouseYN = value; }
     }
-    
 
-    public int ToolingOutsourcedYN
+    public bool ToolingOutsourcedYN
     {
         get { return toolingOutsourcedYN; }
         set { toolingOutsourcedYN = value; }
-    }
-    
+    }    
 
     public string Notes
     {
@@ -183,13 +173,11 @@ public class SupplierSurvey
         set { notes = value; }
     }
 
-
     public List<SupplierSurveyCertification> Certifications
     {
         get { return certifications; }
         set { certifications = value; }
     }
-
 
     public List<SupplierSurveyForecastSales> ForecastSales
     {
@@ -197,42 +185,35 @@ public class SupplierSurvey
         set { forecastSales = value; }
     }
 
-
     public List<SupplierSurveyIndustriesSupplied> IndustriesSupplied
     {
         get { return industriesSupplied; }
         set { industriesSupplied = value; }
     }
 
-
-
     public SupplierSurveyContacts ContactExecutive
     {
         get { return contactExecutive; }
         set { contactExecutive = value; }
     }
-
-
+    
     public SupplierSurveyContacts ContactSales
     {
         get { return contactSales; }
         set { contactSales = value; }
     }
-
-
+    
     public SupplierSurveyContacts ContactQuality
     {
         get { return contactQuality; }
         set { contactQuality = value; }
     }
 
-
     public SupplierSurveyContacts ContactCustomerSupport
     {
         get { return contactCustomerSupport; }
         set { contactCustomerSupport = value; }
     }
-
 
     public SupplierSurveyContacts ContactAfterHoursContact
     {
@@ -243,9 +224,9 @@ public class SupplierSurvey
 
 public class SupplierSurveyIndustriesSupplied
 {
-    private long id;
-    private long supplierSurveyKey;
-    private string industriesSupplied;
+    private long id = -1;
+    private long supplierSurveyKey = -1;
+    private string industriesSupplied="";
 
     public long Id
     {
@@ -268,10 +249,10 @@ public class SupplierSurveyIndustriesSupplied
 
 public class SupplierSurveyForecastSales
 {
-    private long id;
-    private long supplierSurveyKey;
-    private string forecastSalesYear;
-    private string forecastSales;
+    private long id = -1;
+    private long supplierSurveyKey = -1;
+    private string forecastSalesYear ="";
+    private string forecastSales="";
 
     public long Id
     {
@@ -300,14 +281,14 @@ public class SupplierSurveyForecastSales
 
 public class SupplierSurveyContacts
 {
-    private long id;
-    private long supplierSurveyKey;
-    private string position; 
-    private string name;
-    private string title; 
-    private string phone; 
-    private string cell; 
-    private string email;
+    private long id = -1;
+    private long supplierSurveyKey = -1;
+    private string position="";
+    private string name = "";
+    private string title = "";
+    private string phone = "";
+    private string cell = "";
+    private string email = "";
 
     public long Id
     {
@@ -364,11 +345,12 @@ public class SupplierSurveyContacts
         set { email = value; }
     }
 }
+
 public class SupplierSurveyCertification
 {
-    private long id;
-    private long supplierSurveyKey;
-    private string certification;
+    private long id = -1;
+    private long supplierSurveyKey = -1;
+    private string certification = "";
 
     public long Id
     {
