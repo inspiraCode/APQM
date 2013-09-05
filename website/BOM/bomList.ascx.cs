@@ -11,12 +11,15 @@ public partial class bomList : System.Web.UI.UserControl
     private bomCRUD bom_CRUD = new bomCRUD();
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+    }
+    public void load()
+    {
         List<BOM> recordset = (List<BOM>)bom_CRUD.readAll();
         Repeater1.DataSource = recordset;
         Repeater1.DataBind();
         divBomList.InnerHtml = recordset.Count.ToString() + " records.";
     }
-
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
@@ -61,7 +64,7 @@ public partial class bomList : System.Web.UI.UserControl
             so.Content = bom;
             so.Status = "forUpdate";
 
-            Session["BOMObject"] = so;
+            Session["bomObject"] = so;
         }
         Navigator.goToPage("~/BOM/BOM.aspx","BOM");
     }

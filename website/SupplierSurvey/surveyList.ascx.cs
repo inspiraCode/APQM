@@ -11,6 +11,10 @@ public partial class surveyList : System.Web.UI.UserControl
     Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
     {
+               
+    }
+    public void load()
+    {
         if (Session["supplierObject"] != null)
         {
             supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);            
@@ -18,7 +22,7 @@ public partial class surveyList : System.Web.UI.UserControl
             Repeater1.DataSource = recordset;
             Repeater1.DataBind();
             divSurveyList.InnerHtml = recordset.Count.ToString() + " records.";
-        }        
+        } 
     }
 
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
@@ -52,12 +56,16 @@ public partial class surveyList : System.Web.UI.UserControl
         survey = surveyCRUD.readById(id);
         if (survey != null)
         {
-            ((Supplier)((SessionObject)(Session["supplierObject"])).Content).SupplierSurvey = survey;
+            supplier.SupplierSurvey = survey;
+            SessionObject so = new SessionObject();
+            so.Content = supplier;
+            so.Status = "forUpdate";
+            Session["supplierObject"] = so;
             Navigator.goToPage("~/Supplier/Supplier.aspx", "popupSurvey");
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "");
-        }       
+        }
     }
 }

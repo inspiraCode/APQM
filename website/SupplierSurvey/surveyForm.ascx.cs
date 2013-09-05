@@ -18,25 +18,78 @@ public partial class SurveyForm : System.Web.UI.UserControl
     SupplierSurveyForecastSalesCRUD forecast_CRUD = new SupplierSurveyForecastSalesCRUD();
     SupplierSurveyIndustriesCRUD industries_CRUD = new SupplierSurveyIndustriesCRUD();
 
+    List<SupplierSurveyCertification> allCertifications;
+    List<SupplierSurveyIndustriesSupplied> allIndustriesSupplied; 
+
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["SupplierObject"]!=null)
-        {
-            if (((SessionObject)Session["SupplierObject"]).Status == "forUpdate")
-            {
-                fillWithEntity((Supplier)(((SessionObject)Session["SupplierObject"]).Content));                
-            }
-        }
+        var algo = Request;
+    
     }
 
-    public void fillWithEntity(Supplier supplier)
+    public void load()
     {
-        this.supplier = supplier;
+        if (Session["supplierObject"]!=null)
+        {
+            supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
+            supplier.SupplierSurvey.Certifications = certification_CRUD.readByParentId(supplier.SupplierSurvey.Id);
+            supplier.SupplierSurvey.IndustriesSupplied = industries_CRUD.readByParentId(supplier.SupplierSurvey.Id);
+            supplier.SupplierSurvey.ForecastSales = forecast_CRUD.readByParentId(supplier.SupplierSurvey.Id);
+            
+            if (((SessionObject)Session["supplierObject"]).Status == "forUpdate")
+            {
+                fillWithEntity(supplier);
+                ((SessionObject)Session["supplierObject"]).Status = "retrieved";
+            }
+            uscContactAfterHours.load();
+            uscContactCustomerSupport.load();
+            uscContactExecutive.load();
+            uscContactQuality.load();
+            uscContactSales.load();
+            loadDropDowns();
+
+        }
+    }
+    private void loadDropDowns()
+    {   
+        allCertifications = (List<SupplierSurveyCertification>)certification_CRUD.readAll();
+        cboCertification.DataSource = allCertifications;
+        cboCertification.DataTextField = "Certification";
+        cboCertification.DataValueField = "Id";
+        cboCertification.DataBind();
+
+        allIndustriesSupplied = (List<SupplierSurveyIndustriesSupplied>)industries_CRUD.readAll();
+        cboIndustries.DataSource = allIndustriesSupplied;
+        cboIndustries.DataTextField = "IndustriesSupplied";
+        cboIndustries.DataValueField = "Id";
+        cboIndustries.DataBind();
+    }
+    public void fillWithEntity(Supplier supplier)
+    {        
         if (supplier.SupplierSurvey != null)
         {
             lblID.Text = supplier.SupplierSurvey.Id.ToString();
-            txtLastSurvey.Text = supplier.SupplierSurvey.LastSurvey.ToString();
-            txtNDARec.Text = supplier.SupplierSurvey.NDARec.ToString();
+
+            if (supplier.SupplierSurvey.LastSurvey.Year == 1985 &&
+                supplier.SupplierSurvey.LastSurvey.Month == 2 &&
+                supplier.SupplierSurvey.LastSurvey.Day == 10)
+            {
+                lblLastSurvey.Text = "";
+            }
+            else
+            {
+                lblLastSurvey.Text = supplier.SupplierSurvey.LastSurvey.ToShortDateString();
+            }
+            if (supplier.SupplierSurvey.NDARec.Year == 1985 &&
+                supplier.SupplierSurvey.NDARec.Month == 2 &&
+                supplier.SupplierSurvey.NDARec.Day == 10)
+            {
+                lblNDARec.Text = "";
+            }
+            else
+            {
+                lblNDARec.Text = supplier.SupplierSurvey.NDARec.ToString();
+            }            
             //txtRFQScore.Text = CALCULATED
             lblSupplier.Text = supplier.SupplierName;
             lblContactPerson.Text = supplier.ContactName;
@@ -63,10 +116,30 @@ public partial class SurveyForm : System.Web.UI.UserControl
             //lstCertifications.Text = 
             txtNotes.Text = supplier.SupplierSurvey.Notes;
 
+            bindCertifcations();
+            bindIndustries();
+            bindForecastSales();            
+
             lblMode.Text = "Update";
         }        
     }
-
+    private void bindCertifcations(){
+        lstCertifications.DataSource = supplier.SupplierSurvey.Certifications;
+        lstCertifications.DataTextField = "Certification";
+        lstCertifications.DataBind();
+    }
+    private void bindIndustries()
+    {
+        lstIndustries.DataSource = supplier.SupplierSurvey.IndustriesSupplied;
+        lstIndustries.DataTextField = "IndustriesSupplied";
+        lstIndustries.DataBind();
+    }
+    private void bindForecastSales()
+    {
+        lstForecastSales.DataSource = supplier.SupplierSurvey.ForecastSales;
+        lstForecastSales.DataTextField = "forecastYearSale";
+        lstForecastSales.DataBind();
+    }
     protected void btnSave_Click(object sender, EventArgs e)
     {
         SupplierSurvey survey = new SupplierSurvey();
@@ -77,8 +150,8 @@ public partial class SurveyForm : System.Web.UI.UserControl
         survey.State = txtState.Text;
         survey.ZipCode = txtZip.Text;
         survey.Website = txtWebsite.Text;
-        survey.LastSurvey = DateTime.Parse(txtLastSurvey.Text);
-        survey.NDARec = DateTime.Parse(txtNDARec.Text);
+        survey.LastSurvey = DateTime.Now;
+        if (lblNDARec.Text.Trim() != "") survey.NDARec = DateTime.Parse(lblNDARec.Text);
         survey.PrimaryBusiness = txtPrimaryBusiness.Text;
         survey.SecundaryBusiness = txtSecundaryBusiness.Text;
         survey.UnionYN = bool.Parse(txtUnion.Text);
@@ -91,7 +164,15 @@ public partial class SurveyForm : System.Web.UI.UserControl
         survey.ToolingInHouseYN = bool.Parse(txtRepairInHouse.Text);
         survey.ToolingOutsourcedYN = bool.Parse(txtRepaiOutsource.Text);
         survey.Notes = txtNotes.Text;
-                        
+
+        foreach(SupplierSurveyCertification certification in supplier.SupplierSurvey.Certifications){
+            if (certification.forSaving)
+            {
+                
+            }
+        }
+
+
         if (lblMode.Text == "New") {
             if (!survey_CRUD.create(survey))
             {
@@ -119,5 +200,24 @@ public partial class SurveyForm : System.Web.UI.UserControl
     protected void btnCancel_Click(object sender, EventArgs e)
     {       
         Cancel_Click(this, e);
+    }
+    protected void btnAddCertification_Click(object sender, EventArgs e)
+    {
+        SupplierSurveyCertification certification = getCertificationSelectedFromDropDown();
+        if (certification != null)
+        {
+            supplier.SupplierSurvey.Certifications.Add(certification);
+            bindCertifcations();
+        }
+    }
+    public SupplierSurveyCertification getCertificationSelectedFromDropDown(){
+        long id = long.Parse(cboCertification.SelectedValue);
+        foreach (SupplierSurveyCertification certification in allCertifications)
+        {
+            if(certification.Id == id){
+                return certification;
+            }
+        }
+        return null;
     }
 }

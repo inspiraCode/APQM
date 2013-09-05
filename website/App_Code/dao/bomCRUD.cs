@@ -276,8 +276,8 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     {
         List<BOMDetail> recordset = new List<BOMDetail>();
         
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description " +
-                        "FROM BOMDetail WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, PartNumber, UM, Material " +
+                        "FROM viewBOMDetail_ReadAll WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -326,6 +326,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 }
                 bomDetail.Status = table.Rows[i][5].ToString();
                 bomDetail.Description = table.Rows[i][6].ToString();
+                bomDetail.PartNumber = table.Rows[i][7].ToString();
+                bomDetail.Um = table.Rows[i][8].ToString();
+                bomDetail.Material = table.Rows[i][9].ToString();
 
                 recordset.Add(bomDetail);
             }

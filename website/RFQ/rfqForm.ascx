@@ -215,7 +215,7 @@
             </td>
         </tr>
     </table>
-    <uc1:rfqDetailList ID="rfqDetailList1" runat="server" />
+    <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
     <table cellspacing="1" style="min-width: 995px; max-width: 995px;">    
         <tr>
             <td align="center" height="25px" colspan="4">

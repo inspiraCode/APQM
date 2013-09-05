@@ -11,19 +11,23 @@ public partial class supplierMaster : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
 
     SupplierCRUD supplierCRUD = new SupplierCRUD();
+    Supplier supplier;
     
     protected void Page_Load(object sender, EventArgs e)
     {
+       
+    }    
+    public void load(){
         if (Session["supplierObject"] != null)
         {
             if (((SessionObject)Session["supplierObject"]).Status == "forUpdate")
             {
-                fillWithSupplier((Supplier)(((SessionObject)Session["supplierObject"]).Content));
+                fillUpForm((Supplier)(((SessionObject)Session["supplierObject"]).Content));
                 ((SessionObject)Session["supplierObject"]).Status = "Retrieved";
             }
-        }
+        }        
     }
-    public void fillWithSupplier(Supplier supplier){        
+    public void fillUpForm(Supplier supplier){        
         lblID.Text = supplier.Id.ToString();
         txtSupplierName.Text = supplier.SupplierName;
         txtManufacturingLocation.Text = supplier.ManufacturingLocation;

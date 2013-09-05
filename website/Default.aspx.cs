@@ -23,35 +23,48 @@ public partial class _Default : System.Web.UI.Page
             {
                 case "sif":
                     MultiViewMain.SetActiveView(viewSIF);
+                    uscSIFList.load();
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
+                    uscBOMList.load();
                     break;
                 case "rfq":
                     MultiViewMain.SetActiveView(viewRFQ);
+                    uscRFQList.load();
                     break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
+                    uscSupplierList.load();
                     break;
-
-
-
                 case "popupSupplier":
                     Session.Remove("supplierObject");
                     MultiViewMain.SetActiveView(viewSupplier);
+                    uscSupplierList.load();
                     openpopupContainer();
+                    popupContainer.Style.Add("height", "300px");
+                    popupContainer.Style.Add("width", "570px");
+                    popupContainer.Style.Add("left", "54%");
+                    popupContainer.Style.Add("top", "57%");
+                    uscSupplierForm.load();
                     break;
                 case "popupSIF":
                     Session.Remove("sifObject");
                     MultiViewMain.SetActiveView(viewSIF);
                     multiViewPopup.SetActiveView(viewPopupSIF);
                     openpopupContainer();
+                    popupContainer.Style.Add("height", "550px");
+                    popupContainer.Style.Add("width", "910px");
+                    popupContainer.Style.Add("left", "40%");
+                    popupContainer.Style.Add("top", "40%");
+                    uscSIFForm.load();
                     break;
                 case "popupRFQ":
                     Session.Remove("rfqObject");
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();
+                    uscRFQForm.load();
                     break;
                 default:
                     //btnSuppliers_Click(null, null);

@@ -13,12 +13,17 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+    }
+    public void load()
+    {
         if (Session["supplierObject"] != null)
         {
             supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
             fillFields(supplier);
         }
     }
+
     private void fillFields(Supplier supplier){
         txtSupplier.Text = supplier.SupplierName;
         txtEmail.Text = supplier.ContactEmail;

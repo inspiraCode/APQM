@@ -29,30 +29,37 @@ public partial class _Default : System.Web.UI.Page
                     case "supplier":
                         actualView = "supplier";
                         MultiViewMain.SetActiveView(viewSupplier);
+                        uscSupplierMasterForm.load();
                         break;
                     case "survey":
                         actualView = "survey";
                         MultiViewMain.SetActiveView(viewSurvey);
+                        uscSurveyList.load();
                         break;
                     case "popupSendSurvey":
                         MultiViewMain.SetActiveView(viewSurvey);
+                        uscSurveyList.load();
                         openpopupContainer();
                         popupContainer.Style.Add("height", "100px");
                         popupContainer.Style.Add("width", "500px");
+                        uscSendNewSurvey.load();
                         break;
                     case "popupSurvey":
                         MultiViewMain.SetActiveView(viewSurvey);
                         multiViewPopup.SetActiveView(viewPopupSurvey);
                         openpopupContainer();
-                        popupContainer.Style.Add("height", "95%");
-                        popupContainer.Style.Add("width", "95%");                        
+                        popupContainer.Style.Add("height", "550px");
+                        popupContainer.Style.Add("width", "1060px");
+                        popupContainer.Style.Add("left", "35%");
+                        popupContainer.Style.Add("top", "35%");
+                        uscSurveyForm.load();
                         break;
                     default:
                         break;
                 }
             }
         }
-    }
+    }    
     private void openpopupContainer()
     {
         panelPopup.Visible = true;
@@ -91,10 +98,10 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void on_save_survey(object sender, EventArgs e)
     {
-        
+        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
     }
     protected void on_cancel_survey(object sender, EventArgs e)
     {
-        
+        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);        
     }
 }

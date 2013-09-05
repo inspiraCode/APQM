@@ -15,6 +15,10 @@ public partial class rfqForm : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         
+
+    }
+    public void load()
+    {
         if (Session["RFQObject"]!=null)
         {
             if (((SessionObject)Session["RFQObject"]).Status == "forUpdate")
@@ -24,7 +28,6 @@ public partial class rfqForm : System.Web.UI.UserControl
             }
         }
     }
-
     public void fillWithEntity(RFQ rfq)
     {
         lblID.Text = rfq.Id.ToString();

@@ -21,12 +21,11 @@ public partial class _Default : System.Web.UI.Page
             {
                 case "SIF":
                     MultiViewMain.SetActiveView(viewSIF);
-                    break;
-                //case "survey":
-                //    MultiViewMain.SetActiveView(viewSurvey);
-                //    break;
+                    uscSIFMasterForm.load();
+                    break;                
                 case "popupSIF":                   
                     openpopupContainer();
+                    //load()
                     break;
                 default:                    
                     break;

@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default"
-    MasterPageFile="~/_Layouts/MasterP.master" %>
+    MasterPageFile="~/_Layouts/MasterP.master" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register src="~/Supplier/supplierMaster.ascx" tagname="supplierMaster" tagprefix="uc1" %>
 
@@ -62,7 +62,7 @@
             </table>
         </asp:View>
         <asp:View ID="Functions" runat="server">            
-            <uc2:Menu ID="Menu1" runat="server" />            
+            <uc2:Menu ID="uscMenu" runat="server" />            
         </asp:View>
     </asp:MultiView>
     
@@ -72,13 +72,13 @@
         <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel" HorizontalAlign="Center">
         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
             <asp:View ID="viewPopupSupplier" runat="server">
-                <uc1:supplierMaster ID="supplierMasterForm" runat="server" OnOk_Click="on_add_supplier" OnCancel_Click="on_cancelAdd_supplier"/>
+                <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnOk_Click="on_add_supplier" OnCancel_Click="on_cancelAdd_supplier"/>
             </asp:View>
             <asp:View ID="viewPopupSIF" runat="server">
-                <uc5:SifMaster ID="SifMaster1" runat="server" OnOk_Click="on_add_sif"  OnCancel_Click="on_cancelAdd_sif" />
+                <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif"  OnCancel_Click="on_cancelAdd_sif" />
             </asp:View>
             <asp:View ID="viewPopupRFQ" runat="server">
-                <uc7:rfqForm ID="rfqForm1" runat="server" OnOk_Click="on_add_rfq"  OnCancel_Click="on_cancelAdd_rfq" /> 
+                <uc7:rfqForm ID="uscRFQForm" runat="server" OnOk_Click="on_add_rfq"  OnCancel_Click="on_cancelAdd_rfq" /> 
             </asp:View>
         </asp:MultiView>
         </asp:Panel>
@@ -96,7 +96,7 @@
             SIFs
             <div>
                 <div runat="server" id="divSIF">
-                    <uc4:sifList ID="sifList1" runat="server" />
+                    <uc4:sifList ID="uscSIFList" runat="server" />
                 </div>
             </div>            
             <asp:Button ID="btnAddSIF" runat="server" Text="Add SIF" 
@@ -107,14 +107,14 @@
         BOM
             <div>
                 <div runat="server" id="divBOM">
-                    <uc8:bomList ID="bomList1" runat="server" />
+                    <uc8:bomList ID="uscBOMList" runat="server" />
                 </div>
             </div>
         </asp:View>
         <asp:View ID="viewRFQ" runat="server">
             <div>
                 RFQ</div>
-                <uc6:rfqList ID="rfqList1" runat="server" />
+                <uc6:rfqList ID="uscRFQList" runat="server" />
                 <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" 
                 onclick="btnAddRFQ_Click" />
         </asp:View>
@@ -122,7 +122,7 @@
             Suppliers
             <div>
                 <div runat="server" id="divSupplier">
-                    <uc3:supplierList ID="supplierList1" runat="server" />
+                    <uc3:supplierList ID="uscSupplierList" runat="server" />
                 </div>
             </div>
             <asp:Button ID="btnAddSupplier" runat="server" Text="Add Supplier" 

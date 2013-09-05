@@ -12,29 +12,37 @@ using System.Xml.Linq;
 using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page 
-{   
+{
+    BOM bom;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["SECTION"] != null)
         {
-            switch (((SessionObject)Session["SECTION"]).Content.ToString())
-            {
-                case "bom":
-                    MultiViewMain.SetActiveView(viewBOM);
-                    break;
-                //case "survey":
-                //    MultiViewMain.SetActiveView(viewSurvey);
-                //    break;
-                //case "popupSupplier":
-                //    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
-                //    openpopupContainer();
-                //    break;
-                default:
-                    break;
-            }
+
+            if (Session["bomObject"] != null) {
+
+                bom = (BOM)((SessionObject)Session["bomObject"]).Content;
+                lblName.Text = bom.TopPartNumber;
+                switch (((SessionObject)Session["SECTION"]).Content.ToString())
+                {
+                    case "bom":
+                        MultiViewMain.SetActiveView(viewBOM);
+                        uscBOMMasterForm.load();
+                        break;
+                    //case "survey":
+                    //    MultiViewMain.SetActiveView(viewSurvey);
+                    //    break;
+                    //case "popupSupplier":
+                    //    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
+                    //    openpopupContainer();
+                    //    break;
+                    default:
+                        break;
+                }
+            }            
         }
-    }    
-        
+    }
+   
     //private void openpopupContainer(string content)
     //{
     //    panelPopup.Visible = true;

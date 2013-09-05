@@ -12,13 +12,16 @@ public partial class rfqDetailList : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+    }
+    public void load()
+    {
         if (Session["RFQObject"] != null)
         {
             long id = ((RFQ)(((SessionObject)Session["RFQObject"]).Content)).Id;
             if (id > -1)
             {
                 rfqHeaderKey = id;
-                List<RFQDetail> recordset = (List<RFQDetail>)rfqDetailCRUD.readByParentID(id);
+                List<RFQDetail> recordset = rfqDetailCRUD.readByParentID(id);
                 Repeater1.DataSource = recordset;
                 Repeater1.DataBind();                
             }

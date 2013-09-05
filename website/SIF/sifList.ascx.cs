@@ -12,12 +12,15 @@ public partial class sifList : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+    }
+    public void load()
+    {
         List<SIF> recordset = (List<SIF>)sif_CRUD.readAll();
         Repeater1.DataSource = recordset;
         Repeater1.DataBind();
         divSifList.InnerHtml = recordset.Count.ToString() + " records.";
     }
-
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
@@ -27,16 +30,13 @@ public partial class sifList : System.Web.UI.UserControl
             {
                 ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString() + ";" +
                                                                                    ((SIF)e.Item.DataItem).BomId.ToString();                
-                ((LinkButton)e.Item.FindControl("updateBOM")).Text = ((SIF)e.Item.DataItem).BomId.ToString();
-
+                ((LinkButton)e.Item.FindControl("updateBOM")).Text = ((SIF)e.Item.DataItem).TopPartNumber.ToString();
             }
             else
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString() + ";";
-                                                                                       
+                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString() + ";";                                                                                       
                 ((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
-            }
-            
+            }            
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -84,7 +84,7 @@ public partial class sifList : System.Web.UI.UserControl
                 so = new SessionObject();
                 so.Content = bom;
                 so.Status = "forUpdate";
-                Session["BOMObject"] = so;
+                Session["bomObject"] = so;
                 Navigator.goToPage("~/BOM/BOM.aspx","bom");     
             }
         }else{
@@ -93,7 +93,7 @@ public partial class sifList : System.Web.UI.UserControl
             so = new SessionObject();
             so.Content = bom;
             so.Status = "forNew";
-            Session["BOMObject"] = so;
+            Session["bomObject"] = so;
             Navigator.goToPage("~/BOM/BOM.aspx","bom");    
         }        
     }

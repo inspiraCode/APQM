@@ -55,7 +55,7 @@
                     <%# DataBinder.Eval(Container.DataItem, "CostModelLoc")%>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "CustomerKey")%>
+                    <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td>
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="sifID"

@@ -14,6 +14,13 @@ public class SIF
 
     private long id;
     private long customerKey;
+    private string customerName;
+
+    public string CustomerName
+    {
+        get { return customerName; }
+        set { customerName = value; }
+    }
     private long bomId;
     private string inquiryNumber;
     private string priority;
@@ -36,6 +43,13 @@ public class SIF
     private string primaryCompetitors;
     private string specificResourceRequirements; 
     private string technical;
+    private string topPartNumber; 
+
+    public string TopPartNumber
+    {
+        get { return topPartNumber; }
+        set { topPartNumber = value; }
+    }
 
     public long Id
     {

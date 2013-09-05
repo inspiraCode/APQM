@@ -21,12 +21,11 @@ public partial class _Default : System.Web.UI.Page
             {
                 case "RFC":
                     MultiViewMain.SetActiveView(viewRFC);
-                    break;
-                //case "survey":
-                //    MultiViewMain.SetActiveView(viewSurvey);
-                //    break;
+                    //load()
+                    break;                
                 case "popupRFC":                   
                     openpopupContainer();
+                    //load()
                     break;
                 default:                    
                     break;

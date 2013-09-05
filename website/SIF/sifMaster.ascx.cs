@@ -13,11 +13,12 @@ public partial class SifMaster : System.Web.UI.UserControl
     sifCRUD sif_CRUD = new sifCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
+    {        
+        
+    }
+    public void load()
     {
-        if (IsPostBack)
-        {
-        }
-        if (Session["SIFObject"]!=null)
+        if (Session["SIFObject"] != null)
         {
             if (((SessionObject)Session["SIFObject"]).Status == "forUpdate")
             {
@@ -26,7 +27,6 @@ public partial class SifMaster : System.Web.UI.UserControl
             }
         }
     }
-
     public void fillWithEntity(SIF sif)
     {
         lblID.Text = sif.Id.ToString();
@@ -59,8 +59,8 @@ public partial class SifMaster : System.Web.UI.UserControl
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        SIF sif= new SIF();
-
+        SIF sif= new SIF();        
+        
         if (txtCustomerKey.Text != "")
         {
             sif.CustomerKey = long.Parse(txtCustomerKey.Text);

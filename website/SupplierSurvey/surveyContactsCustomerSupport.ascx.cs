@@ -9,6 +9,9 @@ public partial class SurveyContactsCustomerSupport : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+    }
+    public void load()
+    {
         if (Session["supplierObject"] != null)
         {
             if (((SessionObject)Session["supplierObject"]).Status == "forUpdate")
@@ -16,7 +19,7 @@ public partial class SurveyContactsCustomerSupport : System.Web.UI.UserControl
                 fillWithSupplier((Supplier)(((SessionObject)Session["supplierObject"]).Content));
                 ((SessionObject)Session["supplierObject"]).Status = "Retrieved";
             }
-        }               
+        }
     }
     public void fillWithSupplier(Supplier supplier)
     {

@@ -8,7 +8,7 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">        
         <asp:View ID="Functions" runat="server">
-            <uc2:Menu ID="Menu1" runat="server" />
+            <uc2:Menu ID="uscMenu" runat="server" />
         </asp:View>
     </asp:MultiView>
     
@@ -29,15 +29,15 @@
         <asp:View ID="viewRFC" runat="server"> <%--Tab update SIF--%>            
             <div >
                 <div runat="server" id="divRFC">
-                    <%--<uc1:sifMaster ID="sifMasterForm" runat="server" />--%>
-                    <uc1:supplierMaster ID="supplierMaster1" runat="server" OnOk_Click="on_update_RFC" OnCancel_Click="on_cancel_RFC" />
+                    <%--<uc1:sifMaster ID="uscSIFMasterForm" runat="server" />--%>
+                    <uc1:supplierMaster ID="uscSupplierMaster" runat="server" OnOk_Click="on_update_RFC" OnCancel_Click="on_cancel_RFC" />
                 </div>
             </div>
         </asp:View> 
         <%--<asp:View ID="viewSurvey" runat="server">            
             <div>
                 <div runat="server" id="divSurvey">                   
-                    <uc3:sifList ID="sifList1" runat="server" />                   
+                    <uc3:sifList ID="uscSIFList" runat="server" />                   
                 </div>
             </div>
         </asp:View>--%>        

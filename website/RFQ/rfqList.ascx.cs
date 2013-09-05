@@ -10,14 +10,17 @@ public partial class rfqList : System.Web.UI.UserControl
     private rfqCRUD rfq_CRUD = new rfqCRUD();    
     protected void Page_Load(object sender, EventArgs e)
     {
+       
+    }
+    public void load()
+    {
         if (Session["SECTION"] != null){        
             List<RFQ> recordset = (List<RFQ>)rfq_CRUD.readAll();
             Repeater1.DataSource = recordset;
             Repeater1.DataBind();
             divRfqList.InnerHtml = recordset.Count.ToString() + " records.";
-        }        
+        } 
     }
-
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
         //if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {

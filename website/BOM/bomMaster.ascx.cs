@@ -10,25 +10,31 @@ public partial class bomMaster : System.Web.UI.UserControl
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
 
-    bomCRUD bomCRUD = new bomCRUD();   
-
+    bomCRUD bomCRUD = new bomCRUD();
+    BOM bom;
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["BOMObject"]!=null)
+
+    }
+    public void load()
+    {
+        if (Session["bomObject"]!=null)
         {
-            if (((SessionObject)Session["BOMObject"]).Status == "forUpdate")
+            bom = (BOM)((SessionObject)Session["bomObject"]).Content;
+            if (((SessionObject)Session["bomObject"]).Status == "forUpdate")
             {
-                fillWithEntity((BOM)(((SessionObject)Session["BOMObject"]).Content));
+                fillWithEntity(bom);
                 lblMode.Text = "Update";
-                ((SessionObject)Session["BOMObject"]).Status = "Retrieved";                              
+                ((SessionObject)Session["bomObject"]).Status = "Retrieved";
             }
-            else if (((SessionObject)Session["BOMObject"]).Status == "forNew")
+            else if (((SessionObject)Session["bomObject"]).Status == "forNew")
             {
-                fillWithEntity((BOM)(((SessionObject)Session["BOMObject"]).Content));
+                fillWithEntity(bom);
                 lblMode.Text = "New";
-                ((SessionObject)Session["BOMObject"]).Status = "Retrieved";
+                ((SessionObject)Session["bomObject"]).Status = "Retrieved";
             }            
         }
+        uscBOMDetailList.load();
     }
     public void fillWithEntity(BOM bom){        
         lblID.Text = bom.Id.ToString();
@@ -61,7 +67,7 @@ public partial class bomMaster : System.Web.UI.UserControl
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("BOMObject");
+        Session.Remove("bomObject");
         Cancel_Click(this, e);
     }
 }

@@ -54,25 +54,57 @@ public class BOM
 public class BOMDetail
 {
     private long id;
-    private string description;
+    private string description = "";
+    private long itemMasterkey = -1;
+    private float qty;
+    private float cost;
+    private string status = "";
+    private long bomHeaderKey = -1;
     
+    
+    //Item fields wrong way:
+    private string partNumber = "";
+    private string um = "";
+    private string material = "";
+
+    public string PartNumber
+    {
+        get { return partNumber; }
+        set { partNumber = value; }
+    }    
+
+    public string Um
+    {
+        get { return um; }
+        set { um = value; }
+    }   
+
+    public string Material
+    {
+        get { return material; }
+        set { material = value; }
+    }
+    
+    //TODO implement this correct way:
+    //private Item item;
+
+    //public Item Item
+    //{
+    //    get { return item; }
+    //    set { item = value; }
+    //}
+
     public string Description
     {
         get { return description; }
         set { description = value; }
-    }
-
-    private long bomHeaderKey;
+    }     
 
     public long BomHeaderKey
     {
         get { return bomHeaderKey; }
         set { bomHeaderKey = value; }
-    }
-    private long itemMasterkey;
-    private float qty;
-    private float cost;
-    private string status;
+    }    
 
     public long Id
     {

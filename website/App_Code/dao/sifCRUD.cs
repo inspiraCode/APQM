@@ -64,7 +64,7 @@ public class sifCRUD : ICRUD<SIF>
 
         string query =  "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
                         "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
-                        "FROM SIFHeader_ReadAll WHERE(SIFHeaderKey = @key)";
+                        "FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -123,8 +123,8 @@ public class sifCRUD : ICRUD<SIF>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
-                        "FROM SIFHeader_ReadAll ORDER BY SIFHeaderKey ASC";    
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, TopPartNumber, CustomerName " +
+                        "FROM viewSIF_ReadAll ORDER BY SIFHeaderKey ASC";    
 
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -163,7 +163,8 @@ public class sifCRUD : ICRUD<SIF>
             sif.PrimaryCompetitors = table.Rows[i][21].ToString();
             sif.SpecificResourceRequirements = table.Rows[i][22].ToString();
             sif.Technical = table.Rows[i][23].ToString();
-
+            sif.TopPartNumber = table.Rows[i][24].ToString();
+            sif.CustomerName = table.Rows[i][25].ToString();
             recordset.Add(sif);
         }
        

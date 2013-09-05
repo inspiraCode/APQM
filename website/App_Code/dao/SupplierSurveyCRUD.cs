@@ -199,21 +199,20 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         DM = connectionManager.getDataManager();
         try
         {
-            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierSuveyKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
             DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
             DM.Load_SP_Parameters("@City", entity.City);
             DM.Load_SP_Parameters("@State", entity.State);
             DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
-            DM.Load_SP_Parameters("@WebSite", entity.Website);
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@WebSite", entity.Website);            
             DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
             DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
             DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
             DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
             DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
             DM.Load_SP_Parameters("@Local", entity.Local);
-            DM.Load_SP_Parameters("@ContactExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
             DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
             DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
             DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
@@ -323,6 +322,37 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
         return null;
     }
 
+    public List<SupplierSurveyIndustriesSupplied> readByParentId(long id)
+    {
+        List<SupplierSurveyIndustriesSupplied> recordset = new List<SupplierSurveyIndustriesSupplied>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+        string query = "SELECT  SupplierIndustriesSuppliedKey, SupplierSurveyKey, IndustriesSuplied " +
+                        "FROM  SupplierSurveyIndustriesSupplied WHERE (SupplierSurveyKey = @key) ORDER BY IndustriesSuplied ASC";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SupplierSurveyIndustriesSupplied industrieSupplied = new SupplierSurveyIndustriesSupplied();
+                industrieSupplied.Id = long.Parse(table.Rows[i][0].ToString());
+                industrieSupplied.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+                industrieSupplied.IndustriesSupplied = table.Rows[i][2].ToString();
+
+                recordset.Add(industrieSupplied);
+            }
+        }
+
+        return recordset;
+    }
+
     public IList<SupplierSurveyIndustriesSupplied> readAll()
     {
         List<SupplierSurveyIndustriesSupplied> recordset = new List<SupplierSurveyIndustriesSupplied>();
@@ -368,6 +398,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
 
         return result;
     }
+
     public bool delete(long id)
     {
         int rowsAffected = 0;
@@ -462,6 +493,38 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             }
         }
         return null;
+    }
+
+    public List<SupplierSurveyForecastSales> readByParentId(long id)
+    {
+        List<SupplierSurveyForecastSales> recordset = new List<SupplierSurveyForecastSales>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+        string query = "SELECT SurveyForecastedSalesKey, SupplierSurveyKey, ForecastSalesYear, ForecastSales " +
+                        "FROM  SupplierSurveyForecastSales WHERE (SupplierSurveyKey = @key) ORDER BY ForecastSalesYear DESC";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SupplierSurveyForecastSales forecastSales = new SupplierSurveyForecastSales();
+                forecastSales.Id = long.Parse(table.Rows[i][0].ToString());
+                forecastSales.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+                forecastSales.ForecastSalesYear = table.Rows[i][2].ToString();
+                forecastSales.ForecastSales = table.Rows[i][3].ToString();
+
+                recordset.Add(forecastSales);
+            }
+        }
+
+        return recordset;
     }
 
     public IList<SupplierSurveyForecastSales> readAll()
@@ -616,6 +679,41 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
         }
         return null;
     }
+    public List<SupplierSurveyContacts> readByParentId(long id)
+    {
+        List<SupplierSurveyContacts> recordset = new List<SupplierSurveyContacts>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+        string query = "SELECT SupplierSuveryContactsKey, SupplierSurveyKey, Position, Name, Title, Address, Phone, Cell, Email " +
+                       "FROM   SupplierSurveyContacts WHERE (SupplierSuveryContactsKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SupplierSurveyContacts contacts = new SupplierSurveyContacts();
+                contacts.Id = long.Parse(table.Rows[i][0].ToString());
+                contacts.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+                contacts.Position = table.Rows[i][2].ToString();
+                contacts.Name= table.Rows[i][3].ToString();
+                contacts.Title = table.Rows[i][4].ToString();
+                contacts.Address = table.Rows[i][5].ToString();
+                contacts.Phone = table.Rows[i][6].ToString();
+                contacts.Cell = table.Rows[i][7].ToString();
+                contacts.Email = table.Rows[i][8].ToString();                
+
+                recordset.Add(contacts);
+            }
+        }
+        return recordset;
+    }
     public IList<SupplierSurveyContacts> readAll()
     {
         //not required at this moment
@@ -742,11 +840,60 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
         }
         return null;
     }
+    public List<SupplierSurveyCertification> readByParentId(long id)
+    {
+        List<SupplierSurveyCertification> recordset = new List<SupplierSurveyCertification>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+        string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
+                        "FROM  SuppierSurveyCertification WHERE (SupplierSurveyKey = @key) ORDER BY Certifications ASC";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SupplierSurveyCertification certification = new SupplierSurveyCertification();
+                certification.Id = long.Parse(table.Rows[i][0].ToString());
+                certification.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+                certification.Certification = table.Rows[i][2].ToString();
+
+                recordset.Add(certification);
+            }
+        }
+
+        return recordset;
+    }
+
     public IList<SupplierSurveyCertification> readAll()
     {
-        //not required at this moment
+        List<SupplierSurveyCertification> recordset = new List<SupplierSurveyCertification>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
 
-        return null;
+        string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
+                        "FROM  SuppierSurveyCertification ORDER BY Certifications";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            SupplierSurveyCertification certification = new SupplierSurveyCertification();
+            certification.Id = long.Parse(table.Rows[i][0].ToString());
+            certification.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
+            certification.Certification = table.Rows[i][2].ToString();            
+
+            recordset.Add(certification);
+        }
+
+        return recordset;
     }
 
     public bool update(SupplierSurveyCertification entity)

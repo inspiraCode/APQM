@@ -227,6 +227,7 @@ public class SupplierSurveyIndustriesSupplied
     private long id = -1;
     private long supplierSurveyKey = -1;
     private string industriesSupplied="";
+    public bool forSaving = false;
 
     public long Id
     {
@@ -253,6 +254,11 @@ public class SupplierSurveyForecastSales
     private long supplierSurveyKey = -1;
     private string forecastSalesYear ="";
     private string forecastSales="";
+    public bool forSaving = false;
+
+    public string forcastYearSale{
+        get {return forecastSalesYear + " - " + forecastSales;}        
+    }
 
     public long Id
     {
@@ -289,6 +295,7 @@ public class SupplierSurveyContacts
     private string phone = "";
     private string cell = "";
     private string email = "";
+    public bool forSaving = false;
 
     public long Id
     {
@@ -351,6 +358,7 @@ public class SupplierSurveyCertification
     private long id = -1;
     private long supplierSurveyKey = -1;
     private string certification = "";
+    public bool forSaving = false;
 
     public long Id
     {

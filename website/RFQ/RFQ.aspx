@@ -11,7 +11,7 @@
             <asp:Button ID="btnToRFQForm" runat="server" Text="Next" Width="85px" 
                 onclick="btnToRFQForm_Click" />
                 <br /><br />
-            <uc2:supplierMaster ID="supplierForm" runat="server" />
+            <uc2:supplierMaster ID="uscSupplierForm" runat="server" />
             <br /><br />
         </asp:View>
         <asp:View ID="viewRFQ" runat="server">
@@ -22,7 +22,7 @@
             <asp:Button ID="btnFinalize" runat="server" Text="Finalize and send" 
                 Width="132px" />
                 <br /><br />
-            <uc1:rfqForm ID="rfqForm" runat="server" />
+            <uc1:rfqForm ID="uscRFQForm" runat="server" />
             <br /><br />
         </asp:View>
     </asp:MultiView>
