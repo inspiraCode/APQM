@@ -59,7 +59,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
             Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
             Message.Subject = "test from APQM WEB";
-            Message.Body = "Aqui va el link con el token";
+            Message.Body = "Aqui va el link con el token=" + MD5HashGenerator.GenerateKey(DateTime.Now); ;
 
 
             string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
