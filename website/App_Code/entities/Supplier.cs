@@ -6,6 +6,8 @@ using System.Web;
 /// <summary>
 /// Summary description for supplier
 /// </summary>
+/// 
+[Serializable]
 public class Supplier
 {
     private long id;

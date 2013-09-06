@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 
 
-
+[Serializable]
 public class SupplierSurvey
 {
     private long id = -1;
@@ -222,6 +222,7 @@ public class SupplierSurvey
     }
 }
 
+[Serializable]
 public class SupplierSurveyIndustriesSupplied
 {
     private long id = -1;
@@ -248,6 +249,7 @@ public class SupplierSurveyIndustriesSupplied
     }
 }
 
+[Serializable]
 public class SupplierSurveyForecastSales
 {
     private long id = -1;
@@ -256,7 +258,7 @@ public class SupplierSurveyForecastSales
     private string forecastSales="";
     public bool forSaving = false;
 
-    public string forcastYearSale{
+    public string ForecastYearSale{
         get {return forecastSalesYear + " - " + forecastSales;}        
     }
 
@@ -285,6 +287,7 @@ public class SupplierSurveyForecastSales
     }
 }
 
+[Serializable]
 public class SupplierSurveyContacts
 {
     private long id = -1;
@@ -353,6 +356,7 @@ public class SupplierSurveyContacts
     }
 }
 
+[Serializable]
 public class SupplierSurveyCertification
 {
     private long id = -1;

@@ -431,6 +431,37 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
         return false;
     }
 
+    public bool deleteByParentId(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierSurveyKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
     #endregion
 }
 
@@ -606,6 +637,38 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
         return false;
     }
 
+    public bool deleteByParentId(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyForecastSales WHERE SupplierSurveyKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
     #endregion
 }
 
@@ -685,7 +748,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
         recordset.Clear();
         DM = connectionManager.getDataManager();
         string query = "SELECT SupplierSuveryContactsKey, SupplierSurveyKey, Position, Name, Title, Address, Phone, Cell, Email " +
-                       "FROM   SupplierSurveyContacts WHERE (SupplierSuveryContactsKey = @key)";
+                       "FROM   SupplierSurveyContacts WHERE (SupplierSurveyKey = @key)";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -802,7 +865,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());            
 
-            result = DM.Execute_StoreProcedure("SuppierSurveyCertification_NewCertification", true);
+            result = DM.Execute_StoreProcedure("SupplierSurveyCertification_NewCertification", true);
         }
         catch (Exception e)
         {
@@ -817,7 +880,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
         SupplierSurveyCertification certification = new SupplierSurveyCertification();
 
         string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
-                        "FROM  SuppierSurveyCertification WHERE (SupplierCertificationKey = @key)";
+                        "FROM  SupplierSurveyCertification WHERE (SupplierCertificationKey = @key)";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -846,7 +909,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
         recordset.Clear();
         DM = connectionManager.getDataManager();
         string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
-                        "FROM  SuppierSurveyCertification WHERE (SupplierSurveyKey = @key) ORDER BY Certifications ASC";
+                        "FROM  SupplierSurveyCertification WHERE (SupplierSurveyKey = @key) ORDER BY Certifications ASC";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -878,7 +941,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
         DM = connectionManager.getDataManager();
 
         string query = "SELECT SupplierCertificationKey, SupplierSurveyKey, Certifications " +
-                        "FROM  SuppierSurveyCertification ORDER BY Certifications";
+                        "FROM  SupplierSurveyCertification ORDER BY Certifications";
 
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -907,7 +970,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
-            result = DM.Execute_StoreProcedure("SuppierSurveyCertification_EditCertification", true);
+            result = DM.Execute_StoreProcedure("SupplierSurveyCertification_EditCertification", true);
         }
         catch (Exception e)
         {
@@ -920,6 +983,37 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
     {
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierCertificationKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    public bool deleteByParentId(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierSurveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
         if (sqlConnection != null)

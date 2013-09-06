@@ -7,15 +7,7 @@
     TagPrefix="uc4" %>
 <%@ Register Src="surveyContactsAfterHours.ascx" TagName="surveyContactsAfterHours"
     TagPrefix="uc5" %>
-    <script type="text/javascript">
- 
-    var prm = Sys.WebForms.PageRequestManager.getInstance();
- 
-    prm.add_beginRequest(function() {
-        prm._scrollPosition = null;
-    });
- 
-</script>
+
 <style type="text/css">
     .style2
     {
@@ -41,7 +33,6 @@
     }
     .style11
     {
-        width: 183px;
         height: 24px;
     }
     .style12
@@ -58,7 +49,6 @@
     }
     .style15
     {
-        width: 183px;
     }
     .style16
     {
@@ -161,6 +151,10 @@
         height: 13px;
         width: 152px;
     }
+    #Select1
+    {
+        width: 204px;
+    }
 </style>
 <div align="center" style="height:525px; overflow-y: auto;">
     <table cellspacing="1" 
@@ -205,7 +199,8 @@
                 &nbsp;</td>
             <td align="center" colspan="2" rowspan="4" bgcolor="Gray" style="font-size: 12px;padding: 3px;" >
                 Union (Y or N)<br />
-                <asp:TextBox ID="txtUnion" runat="server" Width="60px"></asp:TextBox>
+                <asp:RadioButton ID="radUnion" runat="server" GroupName="Union" Text="Yes" />
+                <asp:RadioButton ID="radUnionNo" runat="server" GroupName="Union" Text="No" />
                 <br />
                 Local<br />
                 <asp:TextBox ID="txtLocal" runat="server" Width="117px"></asp:TextBox>
@@ -416,6 +411,20 @@
         </tr>
         <tr>
             <td align="right" class="style36">
+                &nbsp;</td>
+            <td align="left" colspan="2">
+                &nbsp;</td>
+            <td align="center" class="style7" colspan="2">
+                &nbsp;</td>
+            <td align="left" class="style23">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right" class="style36">
                 Current Annual Sales
             </td>
             <td align="left" colspan="2">
@@ -435,17 +444,18 @@
             <td align="right" class="style36">
                 &nbsp;</td>
             <td align="left" colspan="2">
-            <div style="width: 245px">
-                Year<asp:TextBox ID="txtYearForecastSales" runat="server" Width="54px"></asp:TextBox>
-            &nbsp;Value<asp:TextBox ID="txtValueForecastYear" runat="server" Width="50px"></asp:TextBox>
-            &nbsp;<asp:Button ID="btnAddForecastSale" runat="server" Text="+" Width="35px" />
+            <div style="width: 262px" align="right">
+                Year<asp:TextBox ID="txtYearForecastSales" runat="server" Width="46px"></asp:TextBox>
+            &nbsp;Value<asp:TextBox ID="txtValueForecastYear" runat="server" Width="43px"></asp:TextBox>
+            &nbsp;<asp:Button ID="btnAddForecastSale" runat="server" Text="+" Width="35px" 
+                    onclick="btnAddForecastSale_Click" />
+                <asp:Button ID="btnRemoveForecastSale" runat="server" Text="-" Width="35px" 
+                    onclick="btnRemoveForecastSale_Click" />
             </div>                
             </td>
-            <td align="right" class="style15">
+            <td align="right" class="style15" colspan="2">
                 New-In-House Manufacture
-            </td>
-            <td align="left" class="style16">
-                <asp:TextBox ID="txtNewInHouseManufacture" runat="server" Width="260px"></asp:TextBox>
+                <asp:CheckBox ID="chkNewInHouseManufacture" runat="server" Text=" " />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -463,11 +473,9 @@
             <td align="left" colspan="2" class="style10" rowspan="4">
                 <asp:ListBox ID="lstForecastSales" runat="server" Height="93px" Width="260px"></asp:ListBox>
             </td>
-            <td align="right" class="style11">
+            <td align="right" class="style11" colspan="2">
                 New Outsourced
-            </td>
-            <td align="left" class="style12">
-                <asp:TextBox ID="txtNewOutsourced" runat="server" Width="260px"></asp:TextBox>
+                <asp:CheckBox ID="chkNewOutsourced" runat="server" Text=" " />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -480,11 +488,9 @@
             <td align="right" class="style36">
                 &nbsp;
             </td>
-            <td align="right" class="style15">
+            <td align="right" class="style15" colspan="2">
                 Repair In-House
-            </td>
-            <td align="left" class="style16">
-                <asp:TextBox ID="txtRepairInHouse" runat="server" Width="260px"></asp:TextBox>
+                <asp:CheckBox ID="chkRepairInHouse" runat="server" Text=" " />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -499,11 +505,9 @@
             <td align="right" class="style36">
                 &nbsp;
             </td>
-            <td align="right" class="style15">
+            <td align="right" class="style15" colspan="2">
                 Repair Outsource
-            </td>
-            <td align="left" class="style16">
-                <asp:TextBox ID="txtRepaiOutsource" runat="server" Width="260px"></asp:TextBox>
+                <asp:CheckBox ID="chkRepairOutsource" runat="server" Text=" " />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -532,29 +536,68 @@
             <td align="left">
                 &nbsp;
             </td>
+        </tr>
+        <tr>
+            <td align="right" class="style36">
+                &nbsp;</td>
+            <td align="left" colspan="2">
+                &nbsp;</td>
+            <td align="left" class="style15">
+                &nbsp;</td>
+            <td align="left" class="style16">
+                &nbsp;</td>
+            <td align="left" class="style23">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right" class="style36">
+                &nbsp;</td>
+            <td align="left" colspan="2">
+                &nbsp;</td>
+            <td align="left" class="style15">
+                &nbsp;</td>
+            <td align="left" class="style16">
+                &nbsp;</td>
+            <td align="left" class="style23">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
+            <td align="left">
+                &nbsp;</td>
         </tr>
         <tr>
             <td align="right" class="style36">
                 &nbsp;
             </td>
             <td align="left" colspan="2">
-                <div style="width: 260px">
+                <div style="width: 260px" align="right">
             <asp:DropDownList ID="cboIndustries" runat="server" style="margin-left: 0px" 
-                    Width="200px">
+                    Width="140px">
                 </asp:DropDownList>
-                <asp:Button ID="btnAddIndustrie" runat="server" Text="+" Width="35px" />
+                <asp:Button ID="btnAddIndustrie" runat="server" Text="+" Width="26px" 
+                        onclick="btnAddIndustrie_Click" />
+                <asp:Button ID="btnRemoveIndustrie" runat="server" Text="-" Width="26px" 
+                        onclick="btnRemoveIndustrie_Click" />
+                <asp:Button ID="btnNewIndustrie" runat="server" Text="New" Width="45px" />
             </div>                
             </td>
             <td align="left" class="style15">
                 &nbsp;
             </td>
             <td align="left" class="style16">
-            <div style="width: 260px">
+            <div style="width: 260px" align="right">
             <asp:DropDownList ID="cboCertification" runat="server" style="margin-left: 0px" 
-                    Width="200px" >
+                    Width="140px" >
                 </asp:DropDownList>
-                <asp:Button ID="btnAddCertification" runat="server" Text="+" Width="35px" 
+                <asp:Button ID="btnAddCertification" runat="server" Text="+" Width="26px" 
                     onclick="btnAddCertification_Click" />
+                <asp:Button ID="btnRemoveCertification" runat="server" Text="-" Width="26px" 
+                    onclick="btnRemoveCertification_Click" />
+                <asp:Button ID="btnNewCertification" runat="server" Text="New" Width="45px" />
             </div>                
             </td>
             <td align="left" class="style23">
@@ -571,7 +614,7 @@
                 Industries Supplied
             </td>
             <td align="left" class="style2" colspan="2" rowspan="4">
-                &nbsp;<asp:ListBox ID="lstIndustries" runat="server" Height="93px" Width="260px">
+                <asp:ListBox ID="lstIndustries" runat="server" Height="93px" Width="260px">
                 </asp:ListBox>
             </td>
             <td align="right" class="style15">
@@ -652,7 +695,7 @@
             </td>
             <td align="left" class="style16">
                 &nbsp;
-            </td>
+                </td>
             <td align="left" class="style23">
                 &nbsp;</td>
             <td align="left">
@@ -697,7 +740,8 @@
                         </td>
                         <td align="center">
                             Notes/Comments<br />
-                            <asp:TextBox ID="txtNotes" runat="server" Height="167px" Width="401px"></asp:TextBox>
+                            <asp:TextBox ID="txtNotes" runat="server" Height="167px" Width="401px" 
+                                TextMode="MultiLine"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -705,7 +749,9 @@
         </tr>
         <tr>
             <td align="right" colspan="3">
-                &nbsp;<td align="left" colspan="5">
+                <asp:HiddenField ID="txtPrompt" runat="server" 
+                    onvaluechanged="txtPrompt_ValueChanged" />                
+            <td align="left" colspan="5">
                     &nbsp;
                 </td>
         </tr>        
