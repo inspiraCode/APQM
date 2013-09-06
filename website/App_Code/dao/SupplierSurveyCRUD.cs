@@ -16,6 +16,44 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
     
     #region ICRUD<SupplierSurvey> Members
 
+    public string createAndReturnIdGenerated(SupplierSurvey entity)
+    {
+        string result = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure_Scalar("SupplierSurvey_NewSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return result;
+    }
+
     public bool create(SupplierSurvey entity)
     {
         bool result = false;        

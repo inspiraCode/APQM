@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 
 public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 {
@@ -47,7 +48,29 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
         survey.SupplierMasterKey = supplier.Id;
         survey.SentToVendor = DateTime.Now;
         supplier.SupplierSurvey = survey;
-        if (!surveyCRUD.create(survey))
+
+        string idGenerated = surveyCRUD.createAndReturnIdGenerated(survey);
+
+        if (idGenerated != "")
+        {
+            Email NewMail = new Email();
+            MailMessage Message = new MailMessage();
+
+            Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
+            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+            Message.Subject = "test from APQM WEB";
+            Message.Body = "Aqui va el link con el token";
+
+
+            string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+
+            Attachment x = new Attachment(path);
+
+            Message.Attachments.Add(x);
+
+            NewMail.SendMail(Message);
+        }
+        else
         {
             Navigator.goToPage("~/Error.aspx", "");
             return;
