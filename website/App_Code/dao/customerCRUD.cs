@@ -9,8 +9,7 @@ using System.Data.SqlClient;
 /// Class for working with database for Customer Master
 /// </summary>
 public class customerCRUD : ICRUD<Customer>
-{
-   
+{   
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 

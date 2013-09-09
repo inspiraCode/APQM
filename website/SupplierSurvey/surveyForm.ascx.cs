@@ -404,33 +404,36 @@ public partial class SurveyForm : System.Web.UI.UserControl
         if (txtPrompt.Value.Trim() != "")
         {
             string[] prompt = txtPrompt.Value.Split('-');
-            switch (prompt[0])
+            if (prompt[1] != "null" && prompt[1].Trim() != "")
             {
-                case "i":
-                    SupplierSurveyIndustriesSupplied industrie = new SupplierSurveyIndustriesSupplied();
-                    industrie.IndustriesSupplied = prompt[1];
-                    industrie.SupplierSurveyKey = supplier.SupplierSurvey.Id;
-                    if (industries_CRUD.create(industrie))
-                    {
-                        supplier.SupplierSurvey.IndustriesSupplied.Add(industrie);
-                        loadDropDowns();
-                        bindIndustries();
-                    }
-                    break;
-                case "c":
-                    SupplierSurveyCertification certification = new SupplierSurveyCertification();
-                    certification.Certification = prompt[1];
-                    certification.SupplierSurveyKey = supplier.SupplierSurvey.Id;
-                    if (certification_CRUD.create(certification))
-                    {
-                        supplier.SupplierSurvey.Certifications.Add(certification);
-                        loadDropDowns();
-                        bindCertifcations();
-                    }
-                    break;
+                switch (prompt[0])
+                {
+                    case "i":
+                        SupplierSurveyIndustriesSupplied industrie = new SupplierSurveyIndustriesSupplied();
+                        industrie.IndustriesSupplied = prompt[1];
+                        industrie.SupplierSurveyKey = supplier.SupplierSurvey.Id;
+                        if (industries_CRUD.create(industrie))
+                        {
+                            supplier.SupplierSurvey.IndustriesSupplied.Add(industrie);
+                            loadDropDowns();
+                            bindIndustries();
+                        }
+                        break;
+                    case "c":
+                        SupplierSurveyCertification certification = new SupplierSurveyCertification();
+                        certification.Certification = prompt[1];
+                        certification.SupplierSurveyKey = supplier.SupplierSurvey.Id;
+                        if (certification_CRUD.create(certification))
+                        {
+                            supplier.SupplierSurvey.Certifications.Add(certification);
+                            loadDropDowns();
+                            bindCertifcations();
+                        }
+                        break;
+                }
             }
             
             txtPrompt.Value = "";
         }
-    }
+    }   
 }

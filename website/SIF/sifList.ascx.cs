@@ -23,18 +23,27 @@ public partial class sifList : System.Web.UI.UserControl
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
+        
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString();
-            if (((SIF)e.Item.DataItem).BomId > -1)
+            SIF sif = (SIF)e.Item.DataItem;
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = sif.Id.ToString();
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = sif.Id.ToString();
+            if (sif.BomId > -1)
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString() + ";" +
-                                                                                   ((SIF)e.Item.DataItem).BomId.ToString();                
-                ((LinkButton)e.Item.FindControl("updateBOM")).Text = ((SIF)e.Item.DataItem).TopPartNumber.ToString();
+                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";" +
+                                                                                   sif.BomId.ToString();
+                if (sif.TopPartNumber.ToString().Trim() != "")
+                {
+                    ((LinkButton)e.Item.FindControl("updateBOM")).Text = sif.TopPartNumber.ToString();
+                }
+                else
+                {
+                    ((LinkButton)e.Item.FindControl("updateBOM")).Text = "Edit BOM";
+                }                
             }
             else
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = ((SIF)e.Item.DataItem).Id.ToString() + ";";                                                                                       
+                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";                                                                                       
                 ((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
             }            
         }

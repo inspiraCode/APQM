@@ -22,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "sif":
-                    MultiViewMain.SetActiveView(viewSIF);
+                    MultiViewMain.SetActiveView(viewSIF);                    
                     uscSIFList.load();
                     break;
                 case "bom":
@@ -47,6 +47,7 @@ public partial class _Default : System.Web.UI.Page
                     popupContainer.Style.Add("left", "54%");
                     popupContainer.Style.Add("top", "57%");
                     uscSupplierForm.load();
+                    disablePageForModalPopup();
                     break;
                 case "popupSIF":
                     Session.Remove("sifObject");
@@ -58,6 +59,7 @@ public partial class _Default : System.Web.UI.Page
                     popupContainer.Style.Add("left", "40%");
                     popupContainer.Style.Add("top", "40%");
                     uscSIFForm.load();
+                    disablePageForModalPopup();
                     break;
                 case "popupRFQ":
                     Session.Remove("rfqObject");
@@ -65,6 +67,7 @@ public partial class _Default : System.Web.UI.Page
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();
                     uscRFQForm.load();
+                    disablePageForModalPopup();
                     break;
                 default:
                     //btnSuppliers_Click(null, null);
@@ -83,7 +86,13 @@ public partial class _Default : System.Web.UI.Page
         Left_Col.ActiveViewIndex = 1;
         MultiViewMain.SetActiveView(viewHome);
     }
-    
+    private void disablePageForModalPopup()
+    {
+        uscMenu.disableButtons();
+        btnAddRFQ.Enabled = false;
+        btnAddSIF.Enabled = false;
+        btnAddSupplier.Enabled = false;        
+    }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;

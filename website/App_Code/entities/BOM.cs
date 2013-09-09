@@ -13,9 +13,9 @@ public class BOM
     private string topPartNumber;
     private string partDescription;
     private string revision;
-    private BOMDetail bomDetail;
+    private List<BOMDetail> bomDetail;
 
-    public BOMDetail BomDetail
+    public List<BOMDetail> BomDetail
     {
         get { return bomDetail; }
         set { bomDetail = value; }
@@ -51,16 +51,19 @@ public class BOM
     }
 
 }
+
 public class BOMDetail
 {
-    private long id;
+    private long id =-1;
     private string description = "";
     private long itemMasterkey = -1;
     private float qty;
     private float cost;
     private string status = "";
     private long bomHeaderKey = -1;
-    
+    private int sequence = -1;    
+
+    private Item item;  
     
     //Item fields wrong way:
     private string partNumber = "";
@@ -84,7 +87,12 @@ public class BOMDetail
         get { return material; }
         set { material = value; }
     }
-    
+
+    public int Sequence
+    {
+        get { return sequence; }
+        set { sequence = value; }
+    }
     //TODO implement this correct way:
     //private Item item;
 
@@ -134,5 +142,11 @@ public class BOMDetail
     {
         get { return status; }
         set { status = value; }
+    }
+
+    public Item Item
+    {
+        get { return item; }
+        set { item = value; }
     }
 }

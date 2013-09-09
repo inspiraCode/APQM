@@ -23,7 +23,8 @@ public partial class _Default : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewSIF);
                     uscSIFMasterForm.load();
                     break;                
-                case "popupSIF":                   
+                case "popupSIF":
+                    disablePageForModalPopup();
                     openpopupContainer();
                     //load()
                     break;
@@ -31,8 +32,12 @@ public partial class _Default : System.Web.UI.Page
                     break;
             }
         }        
-    }    
-   
+    }
+    private void disablePageForModalPopup()
+    {
+        uscMenu.disableButtons();
+        tabSIF.Enabled = false;    
+    }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;

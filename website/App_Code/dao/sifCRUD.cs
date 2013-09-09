@@ -57,6 +57,45 @@ public class sifCRUD : ICRUD<SIF>
 
         return result;        
     }
+    public string createAndReturnIdGenerated(SIF entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
+            DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
+            DM.Load_SP_Parameters("@Priority", entity.Priority);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+            DM.Load_SP_Parameters("@SalesPerson", entity.SalesPerson);
+            DM.Load_SP_Parameters("@CostModelLoc", entity.CostModelLoc);
+            DM.Load_SP_Parameters("@Contact", entity.Contact);
+            DM.Load_SP_Parameters("@BussinesClass", entity.BussinesClass);
+            DM.Load_SP_Parameters("@Product", entity.Product);
+            DM.Load_SP_Parameters("@DivLoc", entity.DivLoc);
+            DM.Load_SP_Parameters("@Department", entity.Department);
+            DM.Load_SP_Parameters("@Reason4Quote", entity.Reason4Quote);
+            DM.Load_SP_Parameters("@Application", entity.Application);
+            DM.Load_SP_Parameters("@Specification", entity.Specification);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@TaskDescription", entity.TaskDescription);
+            DM.Load_SP_Parameters("@PartPrint", entity.PartPrint);
+            DM.Load_SP_Parameters("@Sample", entity.Sample);
+            DM.Load_SP_Parameters("@ToolingTarget", entity.ToolingTarget);
+            DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
+            DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
+            DM.Load_SP_Parameters("@Technical", entity.Technical);
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("SIFHeader_NewSIF", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
 
     public SIF readById(long id)
     {

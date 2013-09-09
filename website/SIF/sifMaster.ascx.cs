@@ -11,26 +11,41 @@ public partial class SifMaster : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
 
     sifCRUD sif_CRUD = new sifCRUD();
+    customerCRUD customer_CRUD = new customerCRUD();
 
+    static List<Customer> allCustomers = null;
+    
     protected void Page_Load(object sender, EventArgs e)
     {        
-        
     }
     public void load()
     {
+        btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c-' + prompt('New Customer')";
+        loadDropDowns();
         if (Session["SIFObject"] != null)
         {
             if (((SessionObject)Session["SIFObject"]).Status == "forUpdate")
-            {
+            {                
                 fillWithEntity((SIF)(((SessionObject)Session["SIFObject"]).Content));
                 ((SessionObject)Session["SIFObject"]).Status = "Retrieved";
             }
         }
     }
+    private void loadDropDowns()
+    {
+        if (allCustomers == null)
+        {
+            allCustomers = (List<Customer>)customer_CRUD.readAll();
+            cboCustomer.DataSource = allCustomers;
+            cboCustomer.DataTextField = "CustomerName";
+            cboCustomer.DataValueField = "Id";
+            cboCustomer.DataBind();
+        }
+    }
     public void fillWithEntity(SIF sif)
     {
         lblID.Text = sif.Id.ToString();
-        txtCustomerKey.Text = sif.CustomerKey.ToString();
+        cboCustomer.SelectedValue = sif.CustomerKey.ToString();
         lblBOM.Text = sif.BomId.ToString();
         txtInquiryNumber.Text = sif.InquiryNumber;
         txtPriority.Text = sif.Priority;
@@ -56,19 +71,13 @@ public partial class SifMaster : System.Web.UI.UserControl
 
         lblMode.Text = "Update";
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         SIF sif= new SIF();        
         
-        if (txtCustomerKey.Text != "")
-        {
-            sif.CustomerKey = long.Parse(txtCustomerKey.Text);
-        }
-        else
-        {
-            sif.CustomerKey = -1;
-        }
+        
+        sif.CustomerKey = long.Parse(cboCustomer.SelectedValue);        
+        
         if (lblBOM.Text != "")
         {
             sif.BomId = long.Parse(lblBOM.Text);
@@ -99,14 +108,15 @@ public partial class SifMaster : System.Web.UI.UserControl
         sif.Technical = txtTechnical.Text;
         
         if (lblMode.Text == "New") {
-            if (!sif_CRUD.create(sif))
+            string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif);
+            if (idGenerated == "")
             {
                 Navigator.goToPage("~/Error.aspx","");
             }
             else
             {
                 BOM bom = new BOM();
-                bom.SifId = 21;
+                bom.SifId = long.Parse(idGenerated);
                 bomCRUD bomCrud = new bomCRUD();
                 if (!bomCrud.create(bom))
                 {
@@ -120,11 +130,39 @@ public partial class SifMaster : System.Web.UI.UserControl
                 Navigator.goToPage("~/Error.aspx","");
             }
         }
+        allCustomers = null;
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        allCustomers = null;
         Session.Remove("SIFObject");
         Cancel_Click(this, e);
+    }
+    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
+    {
+        if (txtPrompt.Value.Trim() != "")
+        {
+            string[] prompt = txtPrompt.Value.Split('-');
+            if (prompt[1] != "null" && prompt[1].Trim() != "")
+            {
+                switch (prompt[0])
+                {
+                    case "c":
+                        Customer customer = new Customer();
+                        customer.CustomerName = prompt[1];
+                        string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
+                        if (idGenerated != "")
+                        {
+                            allCustomers = null;
+                            loadDropDowns();
+                            cboCustomer.SelectedValue = idGenerated;
+                            cboCustomer.Focus();
+                        }
+                        break;
+                }
+            }
+            txtPrompt.Value = "";
+        }
     }
 }

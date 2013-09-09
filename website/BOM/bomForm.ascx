@@ -1,5 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomMaster.ascx.cs"
-    Inherits="bomMaster" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs"
+    Inherits="bomForm" %>
 <%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
 <div align="center">
     <table cellspacing="1" style="width: 590px">

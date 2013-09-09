@@ -61,6 +61,48 @@ public class bomCRUD : ICRUD<BOM>
         return result;
     }
 
+    public string createAndReturnIdGenerated(BOM entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
+            if (entity.TopPartNumber != null)
+            {
+                DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@TopPartNumber", "");
+            }
+            if (entity.PartDescription != null)
+            {
+                DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@PartDescription", "");
+            }
+            if (entity.Revision != null)
+            {
+                DM.Load_SP_Parameters("@Revision", entity.Revision);
+            }
+            else
+            {
+                DM.Load_SP_Parameters("@Revision", "");
+            }
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("BOMHeader_NewBOM", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+
     public BOM readById(long id)
     {
         BOM bom = new BOM();
@@ -249,7 +291,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 }
                 if (table.Rows[0][3].ToString() != "")
                 {
-                    bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+                    bomDetail.Qty = float.Parse(table.Rows[0][3].ToString());
                 }
                 else
                 {
@@ -310,7 +352,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 }
                 if (table.Rows[i][3].ToString() != "")
                 {
-                    bomDetail.Qty = long.Parse(table.Rows[i][3].ToString());
+                    bomDetail.Qty = float.Parse(table.Rows[i][3].ToString());
                 }
                 else
                 {
@@ -369,7 +411,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             }
             if (table.Rows[0][3].ToString() != "")
             {
-                bomDetail.Qty = long.Parse(table.Rows[0][3].ToString());
+                bomDetail.Qty = float.Parse(table.Rows[0][3].ToString());
             }
             else
             {
@@ -434,6 +476,34 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 {
                     return true;
                 }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM BOMDetail WHERE BOMHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();                
+                return true;                
             }
             catch (Exception e)
             {
