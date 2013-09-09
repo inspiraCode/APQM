@@ -11,22 +11,25 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
-    Supplier supplier;
+    private static Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
     {
         
     }
     public void load()
     {
-        if (Session["supplierObject"] != null)
+        if (supplier == null)
         {
-            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
-            fillFields(supplier);
-        }
+            if (Session["supplierObject"] != null)
+            {
+                supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
+                fillFields(supplier);
+            }
+        }        
     }
 
     private void fillFields(Supplier supplier){
-        txtSupplier.Text = supplier.SupplierName;
+        lblSupplier.Text = supplier.SupplierName;
         txtEmail.Text = supplier.ContactEmail;
     }
     protected void btnSendSurvey_Click(object sender, EventArgs e)
@@ -39,7 +42,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
-            }            
+            }
         }
         //TODO send survey to supplier
         //if(sendEmail == succesfull){
@@ -76,10 +79,12 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             return;
         }
         //}
+        supplier = null;
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        supplier = null;
         Cancel_Click(this, e);
     }
 }

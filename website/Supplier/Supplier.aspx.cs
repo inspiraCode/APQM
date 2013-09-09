@@ -42,7 +42,7 @@ public partial class _Default : System.Web.UI.Page
                         uscSurveyList.load();
                         openpopupContainer();
                         popupContainer.Style.Add("height", "100px");
-                        popupContainer.Style.Add("width", "500px");
+                        popupContainer.Style.Add("width", "410px");
                         uscSendNewSurvey.load();
                         break;
                     case "popupSurvey":
