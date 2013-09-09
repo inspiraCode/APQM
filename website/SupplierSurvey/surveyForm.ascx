@@ -199,14 +199,17 @@
                 &nbsp;</td>
             <td align="center" colspan="2" rowspan="4" bgcolor="Gray" style="font-size: 12px;padding: 3px;" >
                 Union (Y or N)<br />
-                <asp:RadioButton ID="radUnion" runat="server" GroupName="Union" Text="Yes" />
-                <asp:RadioButton ID="radUnionNo" runat="server" GroupName="Union" Text="No" />
+                <asp:RadioButton ID="radUnion" runat="server" GroupName="Union" Text="Yes" 
+                    TabIndex="9" />
+                <asp:RadioButton ID="radUnionNo" runat="server" GroupName="Union" Text="No" 
+                    TabIndex="10" />
                 <br />
                 Local<br />
-                <asp:TextBox ID="txtLocal" runat="server" Width="117px"></asp:TextBox>
+                <asp:TextBox ID="txtLocal" runat="server" Width="117px" TabIndex="11"></asp:TextBox>
                 <br />
                 Contract Expiration<br />
-                <asp:TextBox ID="txtContractExpiration" runat="server" Width="97px"></asp:TextBox>                
+                <asp:TextBox ID="txtContractExpiration" runat="server" Width="97px" 
+                    TabIndex="12"></asp:TextBox>                
             </td>
         </tr>
         <tr>
@@ -287,13 +290,13 @@
                 Address
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtAddress" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtAddress" runat="server" Width="260px" TabIndex="1"></asp:TextBox>
             </td>
             <td align="right" class="style15">
                 Primary Business
             </td>
             <td align="left">
-                <asp:TextBox ID="txtPrimaryBusiness" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtPrimaryBusiness" runat="server" Width="260px" TabIndex="5"></asp:TextBox>
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -309,13 +312,14 @@
                 City
             </td>
             <td align="left" colspan="2" class="style24">
-                <asp:TextBox ID="txtCity" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtCity" runat="server" Width="260px" TabIndex="1"></asp:TextBox>
             </td>
             <td align="right" class="style25">
                 Secondary Business
             </td>
             <td align="left" class="style24">
-                <asp:TextBox ID="txtSecundaryBusiness" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtSecundaryBusiness" runat="server" Width="260px" 
+                    TabIndex="6"></asp:TextBox>
             </td>
             <td align="left" class="style26">
                 </td>
@@ -331,13 +335,14 @@
                 State
             </td>
             <td align="left" colspan="2" class="style24">
-                <asp:TextBox ID="txtState" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtState" runat="server" Width="260px" TabIndex="2"></asp:TextBox>
             </td>
             <td align="right" class="style25">
                 Manufacturing Method
             </td>
             <td align="left" class="style24">
-                <asp:TextBox ID="txtManufacturingMethod" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtManufacturingMethod" runat="server" Width="260px" 
+                    TabIndex="7"></asp:TextBox>
             </td>
             <td align="left" class="style26">
                 </td>
@@ -353,13 +358,13 @@
                 Zip
             </td>
             <td align="left" colspan="2" class="style27">
-                <asp:TextBox ID="txtZip" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtZip" runat="server" Width="260px" TabIndex="3"></asp:TextBox>
             </td>
             <td align="right" class="style28">
                 Current Capacity
             </td>
             <td align="left" class="style27">
-                <asp:TextBox ID="txtCurrentCapacity" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtCurrentCapacity" runat="server" Width="260px" TabIndex="8"></asp:TextBox>
             </td>
             <td align="left" class="style29">
                 </td>
@@ -375,7 +380,7 @@
                 Website
             </td>
             <td align="left" colspan="2" class="style33">
-                <asp:TextBox ID="txtWebsite" runat="server" Width="260px"></asp:TextBox>
+                <asp:TextBox ID="txtWebsite" runat="server" Width="260px" TabIndex="4"></asp:TextBox>
             </td>
             <td align="left" class="style34">
                 &nbsp;
@@ -428,7 +433,8 @@
                 Current Annual Sales
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtCurrentAnnualSales" runat="server" Width="259px"></asp:TextBox>
+                <asp:TextBox ID="txtCurrentAnnualSales" runat="server" Width="259px" 
+                    TabIndex="13"></asp:TextBox>
             </td>
             <td align="center" class="style7" colspan="2">
                 Tooling
@@ -445,17 +451,20 @@
                 &nbsp;</td>
             <td align="left" colspan="2">
             <div style="width: 262px" align="right">
-                Year<asp:TextBox ID="txtYearForecastSales" runat="server" Width="46px"></asp:TextBox>
-            &nbsp;Value<asp:TextBox ID="txtValueForecastYear" runat="server" Width="43px"></asp:TextBox>
+                Year<asp:TextBox ID="txtYearForecastSales" runat="server" Width="46px" 
+                    TabIndex="14"></asp:TextBox>
+            &nbsp;Value<asp:TextBox ID="txtValueForecastYear" runat="server" Width="43px" 
+                    TabIndex="15"></asp:TextBox>
             &nbsp;<asp:Button ID="btnAddForecastSale" runat="server" Text="+" Width="35px" 
-                    onclick="btnAddForecastSale_Click" />
+                    onclick="btnAddForecastSale_Click" TabIndex="16" />
                 <asp:Button ID="btnRemoveForecastSale" runat="server" Text="-" Width="35px" 
-                    onclick="btnRemoveForecastSale_Click" />
+                    onclick="btnRemoveForecastSale_Click" TabIndex="17" />
             </div>                
             </td>
             <td align="right" class="style15" colspan="2">
                 New-In-House Manufacture
-                <asp:CheckBox ID="chkNewInHouseManufacture" runat="server" Text=" " />
+                <asp:CheckBox ID="chkNewInHouseManufacture" runat="server" Text=" " 
+                    TabIndex="19" />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -471,11 +480,12 @@
                 Forecast Sales
             </td>
             <td align="left" colspan="2" class="style10" rowspan="4">
-                <asp:ListBox ID="lstForecastSales" runat="server" Height="93px" Width="260px"></asp:ListBox>
+                <asp:ListBox ID="lstForecastSales" runat="server" Height="93px" Width="260px" 
+                    TabIndex="18"></asp:ListBox>
             </td>
             <td align="right" class="style11" colspan="2">
                 New Outsourced
-                <asp:CheckBox ID="chkNewOutsourced" runat="server" Text=" " />
+                <asp:CheckBox ID="chkNewOutsourced" runat="server" Text=" " TabIndex="20" />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -490,7 +500,7 @@
             </td>
             <td align="right" class="style15" colspan="2">
                 Repair In-House
-                <asp:CheckBox ID="chkRepairInHouse" runat="server" Text=" " />
+                <asp:CheckBox ID="chkRepairInHouse" runat="server" Text=" " TabIndex="21" />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -507,7 +517,7 @@
             </td>
             <td align="right" class="style15" colspan="2">
                 Repair Outsource
-                <asp:CheckBox ID="chkRepairOutsource" runat="server" Text=" " />
+                <asp:CheckBox ID="chkRepairOutsource" runat="server" Text=" " TabIndex="22" />
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -576,13 +586,14 @@
             <td align="left" colspan="2">
                 <div style="width: 260px" align="right">
             <asp:DropDownList ID="cboIndustries" runat="server" style="margin-left: 0px" 
-                    Width="140px">
+                    Width="140px" TabIndex="23">
                 </asp:DropDownList>
                 <asp:Button ID="btnAddIndustrie" runat="server" Text="+" Width="26px" 
-                        onclick="btnAddIndustrie_Click" />
+                        onclick="btnAddIndustrie_Click" TabIndex="24" />
                 <asp:Button ID="btnRemoveIndustrie" runat="server" Text="-" Width="26px" 
-                        onclick="btnRemoveIndustrie_Click" />
-                <asp:Button ID="btnNewIndustrie" runat="server" Text="New" Width="45px" />
+                        onclick="btnRemoveIndustrie_Click" TabIndex="25" />
+                <asp:Button ID="btnNewIndustrie" runat="server" Text="New" Width="45px" 
+                        TabIndex="26" />
             </div>                
             </td>
             <td align="left" class="style15">
@@ -591,13 +602,14 @@
             <td align="left" class="style16">
             <div style="width: 260px" align="right">
             <asp:DropDownList ID="cboCertification" runat="server" style="margin-left: 0px" 
-                    Width="140px" >
+                    Width="140px" TabIndex="28" >
                 </asp:DropDownList>
                 <asp:Button ID="btnAddCertification" runat="server" Text="+" Width="26px" 
-                    onclick="btnAddCertification_Click" />
+                    onclick="btnAddCertification_Click" TabIndex="29" />
                 <asp:Button ID="btnRemoveCertification" runat="server" Text="-" Width="26px" 
-                    onclick="btnRemoveCertification_Click" />
-                <asp:Button ID="btnNewCertification" runat="server" Text="New" Width="45px" />
+                    onclick="btnRemoveCertification_Click" TabIndex="30" />
+                <asp:Button ID="btnNewCertification" runat="server" Text="New" Width="45px" 
+                    TabIndex="31" />
             </div>                
             </td>
             <td align="left" class="style23">
@@ -614,14 +626,16 @@
                 Industries Supplied
             </td>
             <td align="left" class="style2" colspan="2" rowspan="4">
-                <asp:ListBox ID="lstIndustries" runat="server" Height="93px" Width="260px">
+                <asp:ListBox ID="lstIndustries" runat="server" Height="93px" Width="260px" 
+                    TabIndex="27">
                 </asp:ListBox>
             </td>
             <td align="right" class="style15">
                 Certifications
             </td>
             <td align="left" class="style16" rowspan="4">
-                <asp:ListBox ID="lstCertifications" runat="server" Height="93px" Width="260px"></asp:ListBox>
+                <asp:ListBox ID="lstCertifications" runat="server" Height="93px" Width="260px" 
+                    TabIndex="32"></asp:ListBox>
             </td>
             <td align="left" class="style23">
                 &nbsp;</td>
@@ -741,7 +755,7 @@
                         <td align="center">
                             Notes/Comments<br />
                             <asp:TextBox ID="txtNotes" runat="server" Height="167px" Width="401px" 
-                                TextMode="MultiLine"></asp:TextBox>
+                                TextMode="MultiLine" TabIndex="63"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -758,6 +772,8 @@
     </table>
 </div>
 <div align="center" style="border-top: solid #666666;padding-top: 5px;">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
+        OnClick="btnSave_Click" TabIndex="64" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
+        OnClick="btnCancel_Click" TabIndex="65" />
 </div>

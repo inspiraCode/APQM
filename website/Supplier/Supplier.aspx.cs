@@ -37,6 +37,7 @@ public partial class _Default : System.Web.UI.Page
                         uscSurveyList.load();
                         break;
                     case "popupSendSurvey":
+                        disablePageForModalPopup();
                         MultiViewMain.SetActiveView(viewSurvey);
                         uscSurveyList.load();
                         openpopupContainer();
@@ -45,6 +46,7 @@ public partial class _Default : System.Web.UI.Page
                         uscSendNewSurvey.load();
                         break;
                     case "popupSurvey":
+                        disablePageForModalPopup();
                         MultiViewMain.SetActiveView(viewSurvey);
                         multiViewPopup.SetActiveView(viewPopupSurvey);
                         openpopupContainer();
@@ -53,13 +55,28 @@ public partial class _Default : System.Web.UI.Page
                         popupContainer.Style.Add("left", "35%");
                         popupContainer.Style.Add("top", "35%");
                         uscSurveyForm.load();
+                        
                         break;
                     default:
                         break;
                 }
             }
         }
-    }    
+    }
+    private void disablePageForModalPopup()
+    {
+        uscMenu.disableButtons();
+        tabSupplier.Enabled = false;
+        tabSurvey.Enabled = false;
+        btnSendSurvey.Enabled = false;        
+    }
+    private void enablePageForModalPopup()
+    {
+        uscMenu.enableButtons();
+        tabSupplier.Enabled = true;
+        tabSurvey.Enabled = true;
+        btnSendSurvey.Enabled = true;    
+    }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;

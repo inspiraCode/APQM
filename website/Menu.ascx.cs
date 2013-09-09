@@ -30,7 +30,18 @@ public partial class Menu : System.Web.UI.UserControl
         //Server.Transfer("~/default.aspx?section=supplier");
         Navigator.goToPage("~/default.aspx","supplier");
     }
-    
-   
-
+    public void disableButtons()
+    {
+        btnSIF.Enabled = false;
+        btnBOM.Enabled = false;
+        btnRFQ.Enabled = false;
+        btnSuppliers.Enabled = false;
+    }
+    public void enableButtons()
+    {
+        btnSIF.Enabled = true;
+        btnBOM.Enabled = true;
+        btnRFQ.Enabled = true;
+        btnSuppliers.Enabled = true;
+    }
 }

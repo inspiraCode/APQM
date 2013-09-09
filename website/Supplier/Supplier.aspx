@@ -5,14 +5,8 @@
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
 <%@ Register src="~/SupplierSurvey/surveyList.ascx" tagname="surveyList" tagprefix="uc3" %>
 
-
-
 <%@ Register src="~/SupplierSurvey/sendNewSurvey.ascx" tagname="sendNewSurvey" tagprefix="uc4" %>
-
-
-
 <%@ Register src="../SupplierSurvey/surveyForm.ascx" tagname="surveyForm" tagprefix="uc5" %>
-
 
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
