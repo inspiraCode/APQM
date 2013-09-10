@@ -25,7 +25,7 @@
                 <uc4:sendNewSurvey ID="uscSendNewSurvey" runat="server" OnOk_Click="on_send_survey" OnCancel_Click="on_cancel_send_survey" />
             </asp:View>
             <asp:View ID="viewPopupSurvey" runat="server">
-                <div>
+                <div align="center" style="height:525px; overflow-y: auto;">
                     <uc5:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey"/>
                 </div>                
             </asp:View>            

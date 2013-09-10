@@ -44,8 +44,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 return;
             }
         }
-        //TODO send survey to supplier
-        //if(sendEmail == succesfull){
+        
         SupplierSurveyCRUD surveyCRUD = new SupplierSurveyCRUD();
         SupplierSurvey survey = new SupplierSurvey();
         survey.SupplierMasterKey = supplier.Id;
@@ -56,29 +55,42 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
         if (idGenerated != "")
         {
-            Email NewMail = new Email();
-            MailMessage Message = new MailMessage();
+            tokenCRUD token_CRUD = new tokenCRUD();
+            Token token = new Token();
+            token.Subject = "SURVEY";
+            token.SubjectKey = long.Parse(idGenerated);
+            token.TokenNumber =  MD5HashGenerator.GenerateKey(DateTime.Now);
+            if (token_CRUD.create(token))
+            {
+                Email NewMail = new Email();
+                MailMessage Message = new MailMessage();
 
-            Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
-            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-            Message.Subject = "test from APQM WEB";
-            Message.Body = "Aqui va el link con el token=" + MD5HashGenerator.GenerateKey(DateTime.Now); ;
+                Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
+                Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+                Message.Subject = "test from APQM WEB";
+                Message.IsBodyHtml = true;
+                Message.BodyEncoding = System.Text.Encoding.UTF8;
+                //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://localhost:29724/APQM/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\">Link</a>";
+                //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= " + " http://localhost:29724/APQM/Vendor/Survey.aspx?token=" + token.TokenNumber + "\"");
+                Message.AlternateViews.Add(htmlView);
+                
+                string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
 
-            string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+                Attachment x = new Attachment(path);
 
-            Attachment x = new Attachment(path);
+                Message.Attachments.Add(x);
 
-            Message.Attachments.Add(x);
-
-            NewMail.SendMail(Message);
+                NewMail.SendMail(Message);
+                
+            }
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "");
             return;
         }
-        //}
         supplier = null;
         Ok_Click(this, e);
     }

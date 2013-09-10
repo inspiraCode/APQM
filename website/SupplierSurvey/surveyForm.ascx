@@ -156,7 +156,7 @@
         width: 204px;
     }
 </style>
-<div align="center" style="height:525px; overflow-y: auto;">
+<div align="center" >
     <table cellspacing="1" 
         style="width: 1030px; margin-right: 0px; height: 1282px;">
         <tr>
