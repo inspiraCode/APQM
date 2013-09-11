@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class rfqList : System.Web.UI.UserControl
 {
-    private rfqCRUD rfq_CRUD = new rfqCRUD();    
+    private RfqCRUD rfq_CRUD = new RfqCRUD();    
     protected void Page_Load(object sender, EventArgs e)
     {
        

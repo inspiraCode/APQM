@@ -1,12 +1,18 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
+<style type="text/css">
+    .style1
+    {
+        width: 113px;
+    }
+</style>
 <div align="center">
     <table cellspacing="1" style="min-width: 995px; max-width: 995px;">
         <tr>
             <td align="right">
                 Due Date
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblDueDate" runat="server"></asp:Label>
             </td>
             <td align="left">
@@ -24,7 +30,7 @@
             <td align="right">
                 RFQ #
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblRFQNumber" runat="server"></asp:Label>
             </td>
             <td align="right">
@@ -44,7 +50,7 @@
             <td align="right">
                 Part #
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblPartNumber" runat="server"></asp:Label>
             </td>
             <td align="right">
@@ -64,7 +70,7 @@
             <td align="right">
                 Part Name
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblPartName" runat="server"></asp:Label>
             </td>
             <td align="right">
@@ -84,7 +90,7 @@
             <td align="right">
                 Drawing Level
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblDrawingLevel" runat="server"></asp:Label>
             </td>
             <td align="right">
@@ -104,7 +110,7 @@
             <td align="right">
                 Estimated Annual Volume
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblEstimatedAnnualVolume" runat="server">0</asp:Label>
             </td>
             <td align="right">
@@ -128,7 +134,7 @@
         <tr>
             <td align="right">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
             </td>
             <td align="right">
@@ -145,7 +151,7 @@
         <tr>
             <td align="right">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblBOMID" runat="server" Visible="False"></asp:Label>
             </td>
             <td align="right">
@@ -162,7 +168,7 @@
         <tr>
             <td align="right">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
             </td>
             <td align="right">
@@ -179,7 +185,7 @@
         <tr>
             <td align="right">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
             </td>
             <td align="left">
             </td>
@@ -195,7 +201,7 @@
         <tr>
             <td align="right">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
             </td>
             <td align="right">
             </td>

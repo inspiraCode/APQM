@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class VendorSurvey : System.Web.UI.Page
 {
     private Token token;
-    private tokenCRUD tokenCRUD = new tokenCRUD();
+    private TokenCRUD tokenCRUD = new TokenCRUD();
 
     private Supplier supplier;
     private SupplierCRUD supplierCRUD = new SupplierCRUD();

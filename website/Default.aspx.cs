@@ -66,6 +66,10 @@ public partial class _Default : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();
+                    popupContainer.Style.Add("height", "860px");
+                    popupContainer.Style.Add("width", "1250px");
+                    popupContainer.Style.Add("left", "350px");
+                    popupContainer.Style.Add("top", "220px");
                     uscRFQForm.load();
                     disablePageForModalPopup();
                     break;

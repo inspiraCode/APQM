@@ -13,8 +13,10 @@ public class RFQ
     private DateTime sentToVendor = new DateTime(1985, 2, 10);
     private DateTime filledUp = new DateTime(1985, 2, 10);
    
-    private long bomDetailId;
-    private long supplierId;
+
+
+    private long bomDetailId = -1;
+    private long supplierId = -1;
     private string rfqNumber;
     private string drawingLevel; 
     private string estimatedAnnualVolume; 
@@ -23,15 +25,21 @@ public class RFQ
     private string prototypeToolingLeadTime;   
     private string prototypePieceLeadTime;
     private string toolingDetail; 
-    private float productionTooling;
-    private float prototypeTooling;
-    private float prototypePiece; 
-    private float sgAProfit; 
-    private long packingPerUnit; 
-    private float assemblyCostPerUnit;
+    private float productionTooling = 0;
+    private float prototypeTooling = 0;
+    private float prototypePiece = 0; 
+    private float sgAProfit = 0; 
+    private long packingPerUnit = 0; 
+    private float assemblyCostPerUnit = 0;
     private string preparedBy;
 
-    
+    private List<RFQDetail> rfqDetail;
+
+    public List<RFQDetail> RfqDetail
+    {
+        get { return rfqDetail; }
+        set { rfqDetail = value; }
+    }    
 
     public DateTime DueDate
     {
@@ -159,14 +167,31 @@ public class RFQDetail
     private float scrapValue;
     private float directHrlyLaborRate;
     private int stdHrs;
+    private float burden;
+    private int sequence = -1;
+    private string uom = "";
+    private Item item;
 
+    public string Uom
+    {
+        get { return uom; }
+        set { uom = value; }
+    }
+    public Item Item
+    {
+        get { return item; }
+        set { item = value; }
+    }
+    public int Sequence
+    {
+        get { return sequence; }
+        set { sequence = value; }
+    }
     public int StdHrs
     {
         get { return stdHrs; }
         set { stdHrs = value; }
-    }
-    private float burden;
-
+    }   
     public long Id
     {
         get { return id; }

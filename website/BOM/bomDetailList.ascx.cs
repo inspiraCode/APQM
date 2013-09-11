@@ -11,37 +11,18 @@ public partial class bomDetailList : System.Web.UI.UserControl
     private itemCRUD item_CRUD = new itemCRUD();    
     private static List<Item> allItems = null;
 
-    public void reset()
-    {
-        allItems = null;
-        bomDetail = null;
-    }
-
     protected void Page_Load(object sender, EventArgs e)
     {
         btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
         loadDropDowns();
     }
-    //public void load()
-    //{
-    //    if (Session["bomObject"] != null)
-    //    {
-    //        bom = (BOM)((SessionObject)Session["bomObject"]).Content;
-                        
-    //        if (bom.Id > -1)
-    //        {                
-    //            List<BOMDetail> recordset = bomDetailCRUD.readByParentID(bom.Id);
-    //            repeaterBOMDetail.DataSource = recordset;
-    //            repeaterBOMDetail.DataBind();
-    //            divBOMDetailList.InnerHtml = recordset.Count.ToString() + " records.";
-    //        }
-    //        else
-    //        {
-    //            //TODO
-    //        }
-    //    }
-    //}
 
+    public void reset()
+    {
+        allItems = null;
+        bomDetail = null;
+    }
+    
     private void loadDetail(){
         repeaterBOMDetail.DataSource = bomDetail;
         repeaterBOMDetail.DataBind();

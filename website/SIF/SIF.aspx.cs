@@ -22,7 +22,12 @@ public partial class _Default : System.Web.UI.Page
                 case "SIF":
                     MultiViewMain.SetActiveView(viewSIF);
                     uscSIFMasterForm.load();
-                    break;                
+                    break;
+                case "bom":
+                    bomForm.bom = null;
+                    MultiViewMain.SetActiveView(viewBOM);
+                    uscBomForm.load();
+                    break;
                 case "popupSIF":
                     disablePageForModalPopup();
                     openpopupContainer();
@@ -43,13 +48,11 @@ public partial class _Default : System.Web.UI.Page
         panelPopup.Visible = true;
     }
     protected void on_update_SIF(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
+    {       
         Navigator.goToPage("~/default.aspx","sif");
     }
     protected void on_cancel_SIF(object sender, EventArgs e) 
-    {
-        panelPopup.Visible = false;
+    {        
         Navigator.goToPage("~/default.aspx","sif");
     }
     protected void tabSIF_Click(object sender, EventArgs e)
@@ -59,5 +62,13 @@ public partial class _Default : System.Web.UI.Page
             ((SessionObject)Session["SIFObject"]).Status = "forUpdate";
         }
         Navigator.goToPage("~/SIF/SIF.aspx", "SIF");               
-    }   
+    }
+    protected void on_save_bom(object sender, EventArgs e)
+    {       
+        Navigator.goToPage("~/default.aspx", "sif");
+    }
+    protected void on_cancel_bom(object sender, EventArgs e)
+    {        
+        Navigator.goToPage("~/default.aspx", "sif");
+    }
 }

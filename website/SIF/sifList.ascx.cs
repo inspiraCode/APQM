@@ -94,7 +94,7 @@ public partial class sifList : System.Web.UI.UserControl
                 so.Content = bom;
                 so.Status = "forUpdate";
                 Session["bomObject"] = so;
-                Navigator.goToPage("~/BOM/BOM.aspx","bom");     
+                Navigator.goToPage("~/SIF/SIF.aspx","bom");     
             }
         }else{
             bom = new BOM();
@@ -103,7 +103,7 @@ public partial class sifList : System.Web.UI.UserControl
             so.Content = bom;
             so.Status = "forNew";
             Session["bomObject"] = so;
-            Navigator.goToPage("~/BOM/BOM.aspx","bom");    
+            Navigator.goToPage("~/SIF/SIF.aspx", "bom");    
         }        
     }
 }

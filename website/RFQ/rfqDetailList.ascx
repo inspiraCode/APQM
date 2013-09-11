@@ -82,7 +82,11 @@
     </tr>
     <tr>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtItemDescription" runat="server" width="160px"></asp:TextBox>
+           <div style="width:160px;">
+                <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server">
+                </asp:DropDownList>
+                <asp:Button ID="btnNewPartNumber" runat="server" Text="New" />
+            </div> 
         </th>
         <th class="camposSinBordes" >
             <asp:TextBox ID="txtUOM" runat="server" width="45px"></asp:TextBox>
@@ -133,7 +137,7 @@
 </table>
 
 <div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">
-    <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
+    <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
             <table border="1" cellspacing="1" width="100%">
         </HeaderTemplate>
@@ -145,7 +149,7 @@
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "UOM")%>
+                    <%# DataBinder.Eval(Container.DataItem, "Uom")%>
                 </td>
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "Quantity")%>
@@ -202,5 +206,9 @@
     
     </div>
 
-<div id="divBOMDetailList" runat="server" align="center">
+<div id="divRFQDetailList" runat="server" align="center">
 </div>
+                <asp:HiddenField ID="txtPrompt" runat="server" 
+                    onvaluechanged="txtPrompt_ValueChanged" />                
+            
+

@@ -10,23 +10,43 @@ public partial class rfqForm : System.Web.UI.UserControl
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
 
-    rfqCRUD rfq_CRUD = new rfqCRUD();
+    RfqCRUD rfqCRUD = new RfqCRUD();
+    public RFQ rfq = null;
+
+    private RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
+   
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        
-
     }
     public void load()
     {
-        if (Session["RFQObject"]!=null)
+        if (rfq == null)
         {
-            if (((SessionObject)Session["RFQObject"]).Status == "forUpdate")
+            if (Session["RFQObject"] != null)
             {
-                fillWithEntity((RFQ)(((SessionObject)Session["RFQObject"]).Content));
-                ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
+                rfq = (RFQ)((SessionObject)Session["RFQObject"]).Content;
+                rfq.RfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
+                if (((SessionObject)Session["RFQObject"]).Status == "forUpdate")
+                {
+                    fillWithEntity(rfq);
+                    lblMode.Text = "Update";
+                    ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
+                }
+                else if (((SessionObject)Session["RFQObject"]).Status == "forNew")
+                {
+                    fillWithEntity(rfq);
+                    lblMode.Text = "New";
+                    ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
+                }
+            }
+            else
+            {
+                lblMode.Text = "New";
+                uscRFQDetailList.setEntity(null);                
             }
         }
+        
     }
     public void fillWithEntity(RFQ rfq)
     {
@@ -52,108 +72,69 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtProductionTooling.Text = rfq.ProductionTooling.ToString();
         txtPrototypeTooling.Text = rfq.PrototypeTooling.ToString();
         txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
-
-        lblMode.Text = "Update";
+        uscRFQDetailList.reset();
+        uscRFQDetailList.setEntity(rfq.RfqDetail);
     }
-
     protected void btnSave_Click(object sender, EventArgs e)
     {
         RFQ rfq= new RFQ();
 
-        //if (txtCustomerKey.Text != "")
-        //{
-        //    sif.CustomerKey = long.Parse(txtCustomerKey.Text);
-        //}
-        //else
-        //{
-        //    sif.CustomerKey = -1;
-        //}
-
-        if (lblDueDate.Text.Trim() != "")
-        {
-            rfq.DueDate = DateTime.Parse(lblDueDate.Text);
-        }
-        else
-        {
-            rfq.DueDate = DateTime.Today;
-        }
-        
+        if (lblDueDate.Text.Trim() != "") rfq.DueDate = DateTime.Parse(lblDueDate.Text);
         rfq.RfqNumber = lblRFQNumber.Text;
         //lblPartNumber.Text
         //lblPartName.text =
         rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.EstimatedAnnualVolume = lblEstimatedAnnualVolume.Text;
-        ////lblSupplierName.Text = 
+        ////lblSupplierName.Text =
         ////lblManufacturingLocation.Text =
         ////lblShipFromLocation.Text =
-
         rfq.PreparedBy = txtPreparedBy.Text;
-
-        if (txtSGAProfit.Text.Trim() != "")
-        {
-            rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
-        }
-        else
-        {
-            rfq.SgAProfit = 0;
-        }
-        if (txtPackingCostUnit.Text.Trim() != "")
-        {
-            rfq.PackingPerUnit = long.Parse(txtPackingCostUnit.Text);
-        }
-        else
-        {
-            rfq.PackingPerUnit = 0;
-        }
-        if (txtAssemblyCostUnit.Text.Trim() != "")
-        {
-            rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
-        }
-        else
-        {
-            rfq.AssemblyCostPerUnit = 0;
-        }       
-
+        if (txtSGAProfit.Text.Trim() != "")rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
+        if (txtPackingCostUnit.Text.Trim() != "")  rfq.PackingPerUnit = long.Parse(txtPackingCostUnit.Text);
+        if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
         rfq.ProductionLeadTime =txtProductionLeadTime.Text;
         rfq.ProductionToolingLeadTime=txtProductionToolingLeadTime.Text;
         rfq.PrototypeToolingLeadTime=txtPrototypeToolingLeadTime.Text;
         rfq.PrototypePieceLeadTime=txtPrototypePieceLeadTime.Text;
         rfq.ToolingDetail=txtToolingDetail.Text;
-        
-        if (txtProductionTooling.Text.Trim() != "")
-        {
-            rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);
-        }
-        else
-        {
-            rfq.ProductionTooling = 0;
-        }
-        if (txtPrototypeTooling.Text.Trim() != "")
-        {
-            rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
-        }
-        else
-        {
-            rfq.PrototypeTooling = 0;
-        }
-        if (txtPrototypePiece.Text.Trim() != "")
-        {
-            rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
-        }
-        else
-        {
-            rfq.PrototypePiece = 0;
-        }
+        if (txtProductionTooling.Text.Trim() != "") rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);
+        if (txtPrototypeTooling.Text.Trim() != "")  rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
+        if (txtPrototypePiece.Text.Trim() != "") rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
+
+        List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();
+
         if (lblMode.Text == "New") {
-            if (!rfq_CRUD.create(rfq))
+            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
+            if (idGenerated != "")
             {
-                Navigator.goToPage("~/Error.aspx","");
+                this.rfq.Id = long.Parse(idGenerated);
+            }
+            else
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return;
             }
         }else if(lblMode.Text == "Update"){
-            rfq.Id = long.Parse(lblID.Text);
-            if (!rfq_CRUD.update(rfq))
+            rfq.Id = this.rfq.Id;
+            if (!rfqCRUD.update(rfq))
             {
                 Navigator.goToPage("~/Error.aspx","");
+                return;
+            }
+            if (!rfqDetailCRUD.deleteByParentID(rfq.Id))
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return;
+            }
+        }
+        foreach (RFQDetail detail in rfqDetailList)
+        {
+            
+            detail.RfqHeaderKey = this.rfq.Id;
+            if (!rfqDetailCRUD.create(detail))
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return;
             }
         }
         Ok_Click(this, e);

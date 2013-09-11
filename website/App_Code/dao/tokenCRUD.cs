@@ -8,13 +8,13 @@ using System.Data.SqlClient;
 /// <summary>
 /// Class for working with database for Token Master
 /// </summary>
-public class tokenCRUD : ICRUD<Token>
+public class TokenCRUD : ICRUD<Token>
 {
    
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
-    public tokenCRUD()
+    public TokenCRUD()
 	{}
     
     #region ICRUD<Token> Members

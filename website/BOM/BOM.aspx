@@ -4,6 +4,8 @@
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
 <%@ Register src="bomForm.ascx" tagname="bomForm" tagprefix="uc1" %>
 
+<%@ Register src="../SIF/SifMaster.ascx" tagname="SifMaster" tagprefix="uc3" %>
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Functions" runat="server">
@@ -13,9 +15,9 @@
     
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">
-        </asp:Panel>
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">
             
+        </asp:Panel>
+        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">            
         </asp:Panel>
     </asp:Panel>    
 </asp:Content>
@@ -30,17 +32,16 @@
         <asp:View ID="viewBOM" runat="server"> <%--Tab update supplier--%>
             <div>
                 <div runat="server" id="divBOM">
-                    <uc1:bomForm ID="uscBOMMasterForm" runat="server" OnOk_Click="on_ok_bom" OnCancel_Click="on_cancel_bom" />
-                    <%--< />--%>
+                    <uc1:bomForm ID="uscBOMMasterForm" runat="server" OnOk_Click="on_ok_bom" OnCancel_Click="on_cancel_bom" />                   
                 </div>
             </div>
         </asp:View> 
-        <%--<asp:View ID="viewSurvey" runat="server"> 
+        <asp:View ID="viewSIF" runat="server"> 
             <div>
-                <div runat="server" id="divSurvey">
-                    <uc3:surveyList ID="uscSurveyList" runat="server" />
+                <div runat="server" id="divSIF">
+                    <uc3:SifMaster ID="uscSifForm" runat="server" OnOk_Click="on_ok_sif" OnCancel_Click="on_cancel_sif" />
                 </div>
             </div>
-        </asp:View>--%>
+        </asp:View>
     </asp:MultiView>
 </asp:Content>

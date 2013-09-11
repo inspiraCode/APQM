@@ -13,8 +13,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
     private static Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
-    {
-        
+    {  
     }
     public void load()
     {
@@ -55,7 +54,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
         if (idGenerated != "")
         {
-            tokenCRUD token_CRUD = new tokenCRUD();
+            TokenCRUD token_CRUD = new TokenCRUD();
             Token token = new Token();
             token.Subject = "SURVEY";
             token.SubjectKey = long.Parse(idGenerated);
@@ -73,7 +72,8 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://localhost:29724/APQM/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\">Link</a>";
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= " + " http://localhost:29724/APQM/Vendor/Survey.aspx?token=" + token.TokenNumber + "\"");
+
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber + "\"");
                 Message.AlternateViews.Add(htmlView);
                 
                 string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
