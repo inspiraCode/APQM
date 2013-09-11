@@ -13,11 +13,14 @@
                     Vendor
                 </th>
                 <th>
-                    Due Date
+                    Dead Date
                 </th>
                 <th>
                     Sent To Vendor
-                </th>                
+                </th>
+                <th>
+                    Status
+                </th>
                 <th>
                 </th>
             </tr>
@@ -31,21 +34,20 @@
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
-                        OnCommand="updateByBomID">                    
-                        None
-                    </asp:LinkButton>
+                    <%# DataBinder.Eval(Container.DataItem, "PartName")%>
                 </td>                
                 <td>
-                   <%--<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>   --%> 
-                   Vendor name               
+                   <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>                              
                 </td>
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "DueDate")%>
                 </td>
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "SentToVendor")%>
-                </td>                
+                </td>
+                <td>
+                    <%# DataBinder.Eval(Container.DataItem, "Status")%>
+                </td>
                 <td>
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="rfqID"
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this RFQ?')">

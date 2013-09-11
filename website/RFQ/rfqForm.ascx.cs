@@ -13,40 +13,44 @@ public partial class rfqForm : System.Web.UI.UserControl
     RfqCRUD rfqCRUD = new RfqCRUD();
     public RFQ rfq = null;
 
+
     private RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
    
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["rfqObject"] != null)
+        {
+            rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
+        }
     }
     public void load()
     {
-        if (rfq == null)
+        if (Session["rfqObject"] != null)
         {
-            if (Session["RFQObject"] != null)
-            {
-                rfq = (RFQ)((SessionObject)Session["RFQObject"]).Content;
-                rfq.RfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
-                if (((SessionObject)Session["RFQObject"]).Status == "forUpdate")
-                {
-                    fillWithEntity(rfq);
-                    lblMode.Text = "Update";
-                    ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
-                }
-                else if (((SessionObject)Session["RFQObject"]).Status == "forNew")
-                {
-                    fillWithEntity(rfq);
-                    lblMode.Text = "New";
-                    ((SessionObject)Session["RFQObject"]).Status = "Retrieved";
-                }
+            rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
+            //rfq.RfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
+            if (((SessionObject)Session["rfqObject"]).Status == "forUpdate")
+            {                
+                lblMode.Text = "Update"; 
+                fillWithEntity(rfq);               
             }
-            else
+            else if (((SessionObject)Session["rfqObject"]).Status == "forNew")
             {
-                lblMode.Text = "New";
-                uscRFQDetailList.setEntity(null);                
-            }
+                lblMode.Text = "New";                
+            }            
+            ((SessionObject)Session["rfqObject"]).Status = "Retrieved";
         }
-        
+        else
+        {
+            SessionObject so = new SessionObject();
+            so.Content = new RFQ();
+            so.Status = "forNew";
+            Session["rfqObject"] = so;
+            lblMode.Text = "New";
+            uscRFQDetailList.setEntity(null);
+            uscRFQDetailList.load();
+        }
     }
     public void fillWithEntity(RFQ rfq)
     {
@@ -74,6 +78,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
         uscRFQDetailList.reset();
         uscRFQDetailList.setEntity(rfq.RfqDetail);
+        uscRFQDetailList.load();
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

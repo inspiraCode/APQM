@@ -144,7 +144,7 @@ public class bomCRUD : ICRUD<BOM>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM view_BOMHeader_ReadAll ORDER BY PartDescription";
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM BOMHeader ORDER BY PartDescription";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        

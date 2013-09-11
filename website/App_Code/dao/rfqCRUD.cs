@@ -132,9 +132,9 @@ public class RfqCRUD : ICRUD<RFQ>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, " +
-            "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
-            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit FROM RFQHeader ";
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
+                      "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
+                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName FROM viewRFQHeader_ReadAll";
 
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -159,10 +159,16 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.SgAProfit = long.Parse(table.Rows[i][14].ToString());
             rfq.PackingPerUnit = long.Parse(table.Rows[i][15].ToString());
             rfq.AssemblyCostPerUnit = long.Parse(table.Rows[i][16].ToString());
-
+            rfq.Status = table.Rows[i][17].ToString();
+            rfq.DueDate = DateTime.Parse(table.Rows[i][18].ToString());
+            rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
+            rfq.FilledUp = DateTime.Parse(table.Rows[i][20].ToString());
+            rfq.PartNumber = table.Rows[i][21].ToString();
+            rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+            rfq.Acknowledgement = table.Rows[i][23].ToString();
+            rfq.SupplierName = table.Rows[i][24].ToString();
             recordset.Add(rfq);
-        }
-       
+        }       
         return recordset;
     }
 
@@ -382,6 +388,44 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         return null;
     }
 
+    public List<RFQDetail> readByParentID(long id)
+    {
+        List<RFQDetail> recordset = new List<RFQDetail>();
+
+        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemMasterKey, RPCQty, RPCCostPerUnit, OSQty, " +
+                        "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden, PartNumber, UM FROM viewRFQDetail_ReadAll " +
+                        "WHERE (RFQHeaderKey = @key) ORDER BY RFQDetailKey";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                RFQDetail rfq = new RFQDetail();
+                rfq.Id = long.Parse(table.Rows[i][0].ToString());
+                rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
+                rfq.ItemMasterKey = long.Parse(table.Rows[i][2].ToString());
+                rfq.RpcQty = long.Parse(table.Rows[i][3].ToString());
+                rfq.RpcCostPerUnit = float.Parse(table.Rows[i][4].ToString());
+                rfq.OSQty = long.Parse(table.Rows[i][5].ToString());
+                rfq.OSCostPerUnit = float.Parse((table.Rows[i][6].ToString()));
+                rfq.ScrapValue = float.Parse(table.Rows[i][7].ToString());
+                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
+                rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
+                rfq.Burden = float.Parse(table.Rows[i][10].ToString());
+
+                recordset.Add(rfq);
+            }
+        }
+        return recordset;
+    }
+
     public IList<RFQDetail> readAll()
     {
         List<RFQDetail> recordset = new List<RFQDetail>();
@@ -413,43 +457,6 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             recordset.Add(rfq);
         }
 
-        return recordset;
-    }
-    public List<RFQDetail> readByParentID(long id)
-    {
-        List<RFQDetail> recordset = new List<RFQDetail>();
-
-        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemMasterKey, RPCQty, RPCCostPerUnit, OSQty, " +
-                        "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden FROM RFQDetail " +
-                        "WHERE (RFQHeaderKey = @key) ORDER BY RFQDetailKey";
-
-        DataTable table = new DataTable();
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        if (sqlConnection != null)
-        {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(table);
-
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                RFQDetail rfq = new RFQDetail();
-                rfq.Id = long.Parse(table.Rows[i][0].ToString());
-                rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
-                rfq.ItemMasterKey = long.Parse(table.Rows[i][2].ToString());
-                rfq.RpcQty = long.Parse(table.Rows[i][3].ToString());
-                rfq.RpcCostPerUnit = float.Parse(table.Rows[i][4].ToString());
-                rfq.OSQty = long.Parse(table.Rows[i][5].ToString());
-                rfq.OSCostPerUnit = float.Parse((table.Rows[i][6].ToString()));
-                rfq.ScrapValue = float.Parse(table.Rows[i][7].ToString());
-                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
-                rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
-                rfq.Burden = float.Parse(table.Rows[i][10].ToString());
-
-                recordset.Add(rfq);
-            }
-        }
         return recordset;
     }
     public bool update(RFQDetail entity)

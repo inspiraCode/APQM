@@ -13,7 +13,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
     private static Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
-    {  
+    {
     }
     public void load()
     {
@@ -26,7 +26,6 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             }
         }        
     }
-
     private void fillFields(Supplier supplier){
         lblSupplier.Text = supplier.SupplierName;
         txtEmail.Text = supplier.ContactEmail;

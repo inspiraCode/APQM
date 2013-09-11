@@ -61,8 +61,7 @@ public partial class _Default : System.Web.UI.Page
                     uscSIFForm.load();
                     disablePageForModalPopup();
                     break;
-                case "popupRFQ":
-                    Session.Remove("rfqObject");
+                case "popupRFQ":                    
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();

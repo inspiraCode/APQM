@@ -9,38 +9,60 @@ using System.Web;
 public class RFQ
 {
     private long id;
-    private DateTime dueDate = new DateTime(1985,2,10);
-    private DateTime sentToVendor = new DateTime(1985, 2, 10);
-    private DateTime filledUp = new DateTime(1985, 2, 10);
-   
-
-
     private long bomDetailId = -1;
     private long supplierId = -1;
-    private string rfqNumber;
-    private string drawingLevel; 
-    private string estimatedAnnualVolume; 
-    private string productionLeadTime; 
-    private string productionToolingLeadTime;
-    private string prototypeToolingLeadTime;   
-    private string prototypePieceLeadTime;
-    private string toolingDetail; 
+    private string rfqNumber = "";
+    private string drawingLevel = "";
+    private string estimatedAnnualVolume = "";
+    private string productionLeadTime = "";
+    private string productionToolingLeadTime = "";
+    private string prototypeToolingLeadTime = "";
+    private string prototypePieceLeadTime = "";
+    private string toolingDetail = "";
     private float productionTooling = 0;
     private float prototypeTooling = 0;
     private float prototypePiece = 0; 
     private float sgAProfit = 0; 
     private long packingPerUnit = 0; 
     private float assemblyCostPerUnit = 0;
-    private string preparedBy;
+    private string status = "";
+    private DateTime dueDate = new DateTime(1985, 2, 10);
+    private DateTime sentToVendor = new DateTime(1985, 2, 10);
+    private DateTime filledUp = new DateTime(1985, 2, 10);
 
+    private string partNumber = ""; //From Item Master
+    private DateTime deadDate = new DateTime(1985, 2, 10); //From TokenMaster
+    private string acknowledgement;//From TokenMaster
+    private string preparedBy = "";
+    private string supplierName = "";
+    
     private List<RFQDetail> rfqDetail;
 
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
+    }
+    public string PartNumber
+    {
+        get { return partNumber; }
+        set { partNumber = value; }
+    }
+    public DateTime DeadDate
+    {
+        get { return deadDate; }
+        set { deadDate = value; }
+    }    
+    public string Acknowledgement
+    {
+        get { return acknowledgement; }
+        set { acknowledgement = value; }
+    }
     public List<RFQDetail> RfqDetail
     {
         get { return rfqDetail; }
         set { rfqDetail = value; }
-    }    
-
+    }
     public DateTime DueDate
     {
         get { return dueDate; }
@@ -135,13 +157,7 @@ public class RFQ
     {
         get { return assemblyCostPerUnit; }
         set { assemblyCostPerUnit = value; }
-    }
-    public RFQ()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+    }    
     public long Id
     {
         get { return id; }
@@ -152,18 +168,23 @@ public class RFQ
         get { return preparedBy; }
         set { preparedBy = value; }
     }
+    public string SupplierName
+    {
+        get { return supplierName; }
+        set { supplierName = value; }
+    }
 }
 
 
 public class RFQDetail
 {
     private long id;
-    private long rfqHeaderKey; 
-    private long itemMasterKey; 
-    private long rpcQty; 
+    private long rfqHeaderKey;
+    private long itemMasterKey;
+    private long rpcQty;
     private float rpcCostPerUnit;
-    private long oSQty; 
-    private float oSCostPerUnit; 
+    private long oSQty;
+    private float oSCostPerUnit;
     private float scrapValue;
     private float directHrlyLaborRate;
     private int stdHrs;
@@ -176,6 +197,27 @@ public class RFQDetail
     {
         get { return uom; }
         set { uom = value; }
+    }
+    public float MaterialTotal
+    {
+        get { return rpcQty * rpcCostPerUnit; }
+        
+    }
+    public float ServiceTotal
+    {
+        get { return oSQty * oSCostPerUnit; }
+    }
+    public float ScrapCost
+    {
+        get { return (MaterialTotal + ServiceTotal) * scrapValue; }
+    }
+    public float LaborCost
+    {
+        get { return directHrlyLaborRate * stdHrs; }
+    }
+    public float BurdenTotal
+    {
+        get { return burden; }
     }
     public Item Item
     {

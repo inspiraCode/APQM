@@ -13,17 +13,23 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     private static List<Item> allItems = null;
     
     protected void Page_Load(object sender, EventArgs e)
-    {   
+    {
+        rfqDetail = (List<RFQDetail>) Session["rfqDetailObject"];
+    }
+    public void load()
+    {
+        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
+        loadDropDowns();
+        loadDetail();
     }
     public void reset()
     {
         allItems = null;
         rfqDetail = null;
+        Session.Remove("rfqDetailObject");
     }
     private void loadDetail()
-    {
-        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
-        loadDropDowns();
+    {        
         repeaterRFQDetail.DataSource = rfqDetail;
         repeaterRFQDetail.DataBind();
         if(rfqDetail !=null) divRFQDetailList.InnerHtml = rfqDetail.Count.ToString() + " records.";
@@ -34,11 +40,15 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         {
             rfqDetail = detail;            
         }
-        loadDetail();
+        else
+        {
+            rfqDetail = new List<RFQDetail>();            
+        }
+        Session["rfqDetailObject"] = rfqDetail;    
     }
     public List<RFQDetail> getEntity()
     {
-        return rfqDetail;
+        return (List<RFQDetail>) Session["rfqDetailObject"];
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
@@ -81,6 +91,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         RFQDetail rfqDetailLine = new RFQDetail();
 
         rfqDetailLine.ItemMasterKey = long.Parse(cboPartNumber.SelectedValue);
+        rfqDetailLine.Uom = txtUOM.Text;
         rfqDetailLine.RpcQty = long.Parse(txtQuantity.Text);
         rfqDetailLine.RpcCostPerUnit = float.Parse(txtCostUnit.Text);
         rfqDetailLine.OSQty = long.Parse(txtOutsideServicesQuantity.Text);
@@ -88,6 +99,8 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         rfqDetailLine.ScrapValue = float.Parse(txtScrapValue.Text);
         rfqDetailLine.DirectHrlyLaborRate = float.Parse(txtDirectHrlyLaborRate.Text);
         rfqDetailLine.StdHrs = int.Parse(txtStdHrs.Text);
+        rfqDetailLine.Burden = float.Parse(txtBurden.Text);
+        
         if (rfqDetail == null) rfqDetail = new List<RFQDetail>();
         rfqDetailLine.Sequence = rfqDetail.Count + 1;
 
@@ -100,6 +113,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         rfqDetailLine.Item = item;
 
         rfqDetail.Add(rfqDetailLine);
+        Session["rfqDetailObject"] = rfqDetail;
 
         loadDetail();
         cboPartNumber.Focus();
@@ -107,6 +121,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     }
     private void clearAddFields()
     {
+        txtUOM.Text = "";
         txtQuantity.Text = "";
         txtCostUnit.Text = "";
         txtOutsideServicesQuantity.Text = "";
@@ -114,6 +129,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         txtScrapValue.Text = "";
         txtDirectHrlyLaborRate.Text = "";
         txtStdHrs.Text = "";
+        txtBurden.Text = "";
     }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
@@ -148,8 +164,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     {
         if (allItems == null)
         {
-            allItems = (List<Item>)item_CRUD.readAll();
-            
+            allItems = (List<Item>)item_CRUD.readAll();            
         }
         if (cboPartNumber.DataSource == null)
         {

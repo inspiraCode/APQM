@@ -7,7 +7,7 @@
     }
 </style>
 <div align="center">
-    <table cellspacing="1" style="min-width: 995px; max-width: 995px;">
+    <table cellspacing="0" style="min-width: 995px; max-width: 995px;">
         <tr>
             <td align="right">
                 Due Date
@@ -222,7 +222,8 @@
         </tr>
     </table>
     <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
-    <table cellspacing="1" style="min-width: 995px; max-width: 995px;">    
+    <div align ="center">
+    <table cellspacing="0" width="650px">    
         <tr>
             <td align="center" height="25px" colspan="4">
                 <div style="border: solid; border-color: gray; border-width: 2px;">
@@ -241,7 +242,7 @@
         </tr>
         <tr>
             <td align="left" colspan="2" rowspan="2">
-                <asp:TextBox ID="txtToolingDetail" runat="server" Width="291px" Height="40px"></asp:TextBox>
+                <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px"></asp:TextBox>
             </td>
             <td align="right">
                 Year 1
@@ -315,6 +316,8 @@
             </td>
         </tr>
     </table>
+    </div>
+    
 </div>
 <div align="center">
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" />

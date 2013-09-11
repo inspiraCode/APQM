@@ -9,9 +9,9 @@
             border-left:0px;
         }        
     </style>
-    <div style="min-width:1200px;max-width:1200px;" align="center">
+    <div style="min-width:1220px;max-width:1200px;" align="center">
     
-    <table border="1" cellspacing="0" width="100%" align="center" class="camposSinBordes" >
+    <table border="1" cellspacing="0" width="1200px" align="center" class="camposSinBordes" >
     <tr>
         <th colspan="5">
             Raw Material and Purchased Components
@@ -32,10 +32,10 @@
         </th>
     </tr>
     <tr>
-        <th width="180px">
+        <th width="162px">
             Item Description
         </th>
-        <th width="50px">
+        <th width="51px">
             UOM
         </th>
         <th width="70px">
@@ -128,10 +128,10 @@
             <asp:TextBox ID="txtBurden" runat="server" width="70px"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
-            <asp:Label ID="Label5" runat="server" width="70px"></asp:Label>
+            <asp:Label ID="Label5" runat="server" width="50px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" width="40px" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" width="50px" />
         </th>
     </tr>
 </table>
@@ -139,60 +139,60 @@
 <div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">
     <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
-            <table border="1" cellspacing="1" width="100%">
+            <table border="1" cellspacing="0" width="100%">
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='40px;'>
-                <td>
+                <td width= "162px">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "ItemMasterKey")%>
                     </asp:LinkButton>
                 </td>
-                <td>
+                <td width= "51px">
                     <%# DataBinder.Eval(Container.DataItem, "Uom")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "Quantity")%>
+                <td width= "74px">
+                    <%# DataBinder.Eval(Container.DataItem, "RpcQty")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "CostUnit")%>
+                <td width= "76px">
+                    <%# DataBinder.Eval(Container.DataItem, "RpcCostPerUnit")%>
                 </td>
-                <td>
+                <td width= "72px">
                     <%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "OutsideServicesQuantity")%>
+                <td width= "76px">
+                    <%# DataBinder.Eval(Container.DataItem, "OSQty")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "OutsideServicesCostUnit")%>
+                <td width= "76px">
+                    <%# DataBinder.Eval(Container.DataItem, "OSCostPerUnit")%>
                 </td>
-                <td>
+                <td width= "72px">
                     <%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>
                 </td>
-                <td>
+                <td width= "76px">
                     <%# DataBinder.Eval(Container.DataItem, "ScrapValue")%>
                 </td>
-                <td>
+                <td width= "72px">
                     <%# DataBinder.Eval(Container.DataItem, "ScrapCost")%>
                 </td>
-                <td>
+                <td width= "76px">
                     <%# DataBinder.Eval(Container.DataItem, "DirectHrlyLaborRate")%>
                 </td>
-                <td>
+                <td width= "76px">
                     <%# DataBinder.Eval(Container.DataItem, "StdHrs")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "LabroCost")%>
+                <td width= "72px">
+                    <%# DataBinder.Eval(Container.DataItem, "LaborCost")%>
                 </td>
-                <td>
+                <td width= "76px">
                     <%# DataBinder.Eval(Container.DataItem, "Burden")%>
                 </td>
-                <td>
-                    <%# DataBinder.Eval(Container.DataItem, "TotalBurden")%>
+                <td width= "53px">
+                    <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
                 </td>
-                <td>
+                <td width= "52px">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
-                        OnClientClick="return  confirm('Do you wish to delete this BOM Line?')">
+                        OnClientClick="return  confirm('Do you wish to delete this RFQ Line?')">
                     Delete
                     </asp:LinkButton>
                 </td>
