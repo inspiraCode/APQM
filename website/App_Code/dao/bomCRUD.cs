@@ -371,7 +371,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.PartNumber = table.Rows[i][7].ToString();
                 bomDetail.Um = table.Rows[i][8].ToString();
                 bomDetail.Material = table.Rows[i][9].ToString();
-
+                bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
         }
@@ -427,7 +427,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             }
             bomDetail.Status = table.Rows[0][5].ToString();
             bomDetail.Description = table.Rows[0][6].ToString();
-
+            bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
 

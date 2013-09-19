@@ -7,7 +7,7 @@
                     RFQ Number
                 </th>                
                 <th>
-                    Part Name
+                    Part Number
                 </th>
                 <th>
                     Vendor
@@ -34,7 +34,7 @@
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "PartName")%>
+                    <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                 </td>                
                 <td>
                    <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>                              

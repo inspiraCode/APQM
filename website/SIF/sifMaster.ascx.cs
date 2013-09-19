@@ -73,10 +73,14 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        SIF sif= new SIF();        
+        SIF sif= new SIF();
+
+
+        if (cboCustomer.SelectedIndex > -1)
+        {
+            sif.CustomerKey = long.Parse(cboCustomer.SelectedValue);        
+        }
         
-        
-        sif.CustomerKey = long.Parse(cboCustomer.SelectedValue);        
         
         if (lblBOM.Text != "")
         {

@@ -91,7 +91,7 @@
             <td width= "45px">
                 <asp:LinkButton ID="deleteByID" runat="server" 
                     CommandArgument="" OnCommand="deleteByID" 
-                    OnClientClick="return  confirm('Do you wish to delete this BOM Line?')">
+                    OnClientClick="return  confirm('Do you wish to delete this BOM Line?\nRFQs already sent related with this BOM Line will be lost.')">
                     Delete
                 </asp:LinkButton>
             </td>

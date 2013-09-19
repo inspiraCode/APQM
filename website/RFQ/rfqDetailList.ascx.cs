@@ -7,7 +7,6 @@ using System.Web.UI.WebControls;
 
 public partial class rfqDetailList : System.Web.UI.UserControl
 {
-
     private List<RFQDetail> rfqDetail = null;
     private itemCRUD item_CRUD = new itemCRUD();
     private static List<Item> allItems = null;
@@ -38,13 +37,13 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     {
         if (detail != null)
         {
-            rfqDetail = detail;            
+            rfqDetail = detail;
         }
         else
         {
-            rfqDetail = new List<RFQDetail>();            
+            rfqDetail = new List<RFQDetail>();
         }
-        Session["rfqDetailObject"] = rfqDetail;    
+        Session["rfqDetailObject"] = rfqDetail;
     }
     public List<RFQDetail> getEntity()
     {
@@ -52,9 +51,9 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {            
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Id.ToString();            
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Id.ToString();            
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Id.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -100,15 +99,22 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         rfqDetailLine.DirectHrlyLaborRate = float.Parse(txtDirectHrlyLaborRate.Text);
         rfqDetailLine.StdHrs = int.Parse(txtStdHrs.Text);
         rfqDetailLine.Burden = float.Parse(txtBurden.Text);
+        rfqDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
         
         if (rfqDetail == null) rfqDetail = new List<RFQDetail>();
-        rfqDetailLine.Sequence = rfqDetail.Count + 1;
-
+        if (rfqDetail.Count > 0)
+        {
+            rfqDetailLine.Sequence = rfqDetail[rfqDetail.Count-1].Sequence +1;
+        }
+        else
+        {
+            rfqDetailLine.Sequence = 0;
+        }
         Item item = new Item();
 
-        item.Id = long.Parse(cboPartNumber.SelectedValue);        
+        item.Id = long.Parse(cboPartNumber.SelectedValue);
         item.PartNumber = cboPartNumber.SelectedItem.Text;
-        item.Um = "UM";
+        item.Um = txtUOM.Text;
 
         rfqDetailLine.Item = item;
 
@@ -116,8 +122,8 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         Session["rfqDetailObject"] = rfqDetail;
 
         loadDetail();
-        cboPartNumber.Focus();
         clearAddFields();
+        cboPartNumber.Focus();        
     }
     private void clearAddFields()
     {
@@ -164,7 +170,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     {
         if (allItems == null)
         {
-            allItems = (List<Item>)item_CRUD.readAll();            
+            allItems = (List<Item>)item_CRUD.readAll();
         }
         if (cboPartNumber.DataSource == null)
         {
@@ -172,6 +178,6 @@ public partial class rfqDetailList : System.Web.UI.UserControl
             cboPartNumber.DataTextField = "PartNumber";
             cboPartNumber.DataValueField = "Id";
             cboPartNumber.DataBind();
-        }        
+        }
     }
 }

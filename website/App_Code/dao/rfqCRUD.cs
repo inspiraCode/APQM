@@ -41,6 +41,12 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ToolingDetail", entity.ToolingDetail);
             DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
             DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.FilledUp.ToString());
+            
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
         }
@@ -73,6 +79,11 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ToolingDetail", entity.ToolingDetail);
             DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
             DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.FilledUp.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
         }
@@ -89,7 +100,7 @@ public class RfqCRUD : ICRUD<RFQ>
         
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, " +
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " + 
-            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit FROM RFQHeader " +
+            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, PreparedBy FROM RFQHeader " +
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -118,6 +129,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.SgAProfit = long.Parse(table.Rows[0][14].ToString());
                 rfq.PackingPerUnit = long.Parse(table.Rows[0][15].ToString());
                 rfq.AssemblyCostPerUnit = long.Parse(table.Rows[0][16].ToString());
+                rfq.PreparedBy = table.Rows[0][17].ToString();
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -134,7 +146,7 @@ public class RfqCRUD : ICRUD<RFQ>
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
                       "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
-                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName FROM viewRFQHeader_ReadAll";
+                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll";
 
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -167,6 +179,10 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
             rfq.Acknowledgement = table.Rows[i][23].ToString();
             rfq.SupplierName = table.Rows[i][24].ToString();
+            rfq.ManufacturingLocation = table.Rows[i][25].ToString();
+            rfq.ShipLocation = table.Rows[i][26].ToString();
+            rfq.PreparedBy = table.Rows[i][27].ToString(); 
+
             recordset.Add(rfq);
         }       
         return recordset;
@@ -195,6 +211,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
         }
@@ -419,6 +439,9 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
                 rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
                 rfq.Burden = float.Parse(table.Rows[i][10].ToString());
+                rfq.PartNumber = table.Rows[i][11].ToString();
+                rfq.Uom =table.Rows[i][12].ToString();
+                rfq.Sequence = i;
 
                 recordset.Add(rfq);
             }
@@ -453,6 +476,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
             rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
             rfq.Burden = float.Parse(table.Rows[i][10].ToString());
+            rfq.Sequence = i;
 
             recordset.Add(rfq);
         }
@@ -589,9 +613,178 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         return false;
     }
     public bool deleteByParentID(long id)
+    {        
+        string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    #endregion
+}
+
+public class RfqAcrCRUD : ICRUD<RFQACR>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public RfqAcrCRUD()
+    { }
+
+    #region ICRUD<RFQACR> Members
+
+    public bool create(RFQACR entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year.ToString());
+            DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
+
+            result = DM.Execute_StoreProcedure("RFQACR_NewACR", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public RFQACR readById(long id)
+    {
+        RFQACR rfqAcr = new RFQACR();
+
+        string query = "SELECT RFQACRKey, RFQHeaderKey, Year, Porcentage " +
+                        "FROM RFQACR WHERE (RFQACRKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                rfqAcr.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqAcr.RfqHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                rfqAcr.Year = int.Parse(table.Rows[0][2].ToString());
+                rfqAcr.Porcentage = float.Parse(table.Rows[0][3].ToString());
+
+                sqlConnection.Dispose();
+                return rfqAcr;
+            }
+        }
+        return null;
+    }
+
+    public List<RFQACR> readByParentID(long id)
+    {
+        List<RFQACR> recordset = new List<RFQACR>();
+
+        string query = "SELECT RFQACRKey, RFQHeaderKey, Year, Porcentage " +
+                       "FROM RFQACR WHERE (RFQHeaderKey = @key) ORDER BY Year";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                RFQACR rfqAcr = new RFQACR();
+                rfqAcr.Id = long.Parse(table.Rows[i][0].ToString());
+                rfqAcr.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
+                rfqAcr.Year = int.Parse(table.Rows[i][2].ToString());
+                rfqAcr.Porcentage = float.Parse(table.Rows[i][3].ToString());
+               
+                //rfqAcr.Sequence = i;
+
+                recordset.Add(rfqAcr);
+            }
+        }
+        return recordset;
+    }
+
+    public IList<RFQACR> readAll()
+    {
+        List<RFQACR> recordset = new List<RFQACR>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT RFQACRKey, RFQHeaderKey, Year, Porcentage " +
+                       "FROM RFQACR ORDER BY Year";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            RFQACR rfqAcr = new RFQACR();
+            rfqAcr.Id = long.Parse(table.Rows[i][0].ToString());
+            rfqAcr.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
+            rfqAcr.Year = int.Parse(table.Rows[i][2].ToString());
+            rfqAcr.Porcentage = float.Parse(table.Rows[i][3].ToString());
+            //rfqAcr.Sequence = i;
+
+            recordset.Add(rfqAcr);
+        }
+
+        return recordset;
+    }
+    public bool update(RFQACR entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@RFQACRKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year.ToString());
+            DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
+
+            result = DM.Execute_StoreProcedure("RFQACR_EditACR", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
     {
         int rowsAffected = 0;
-        string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey=@key";
+        string query = "DELETE FROM RFQACR WHERE RFQACRKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
         if (sqlConnection != null)
@@ -606,6 +799,33 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 {
                     return true;
                 }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id)
+    {
+        string query = "DELETE FROM RFQACR WHERE RFQHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                return true;
             }
             catch (Exception e)
             {

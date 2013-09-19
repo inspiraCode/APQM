@@ -50,6 +50,7 @@ public partial class bomForm : System.Web.UI.UserControl
         txtRevision.Text = bom.Revision;
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
+        uscBOMDetailList.load();
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
@@ -58,8 +59,6 @@ public partial class bomForm : System.Web.UI.UserControl
         bom.TopPartNumber = txtPartNumber.Text;
         bom.PartDescription = txtDescription.Text;
         bom.Revision = txtRevision.Text;
-
-        List<BOMDetail> bomDetailList = uscBOMDetailList.getEntity();
         
         if (lblMode.Text == "New")
         {
@@ -80,14 +79,19 @@ public partial class bomForm : System.Web.UI.UserControl
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
             }
-            if (!bomDetailCRUD.deleteByParentID(bom.Id))
+        }
+        List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
+        foreach (BOMDetail detail in bomDetailListToDelete)
+        {            
+            if (!bomDetailCRUD.delete(detail.Id))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
             }
         }
-
-        foreach(BOMDetail detail in bomDetailList){
+        List<BOMDetail> bomDetailList = uscBOMDetailList.getEntity();
+        foreach (BOMDetail detail in bomDetailList)
+        {
             Item item = detail.Item;
             if (item != null)
             {
@@ -97,14 +101,16 @@ public partial class bomForm : System.Web.UI.UserControl
                     return;
                 }
             }
-            detail.BomHeaderKey = bomForm.bom.Id;
-            if (!bomDetailCRUD.create(detail))
-            {
-                Navigator.goToPage("~/Error.aspx", "");
-                return;
+            if (detail.internalAction == "CREATE")
+            {                
+                detail.BomHeaderKey = bomForm.bom.Id;
+                if (!bomDetailCRUD.create(detail))
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
+                }
             }
         }
-
         bom = null;
         Ok_Click(this, e);
     }

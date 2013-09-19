@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for Customer
-/// </summary>
 public class Customer
 {
     private long id;
@@ -15,8 +12,7 @@ public class Customer
     {
         get { return id; }
         set { id = value; }
-    }    
-
+    }
     public string CustomerName
     {
         get { return customerName; }

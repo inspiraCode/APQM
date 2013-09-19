@@ -7,40 +7,56 @@ using System.Web.UI.WebControls;
 
 public partial class bomDetailList : System.Web.UI.UserControl
 {
-    private static List<BOMDetail> bomDetail = null;
+    private List<BOMDetail> bomDetail = null;
+    private List<BOMDetail> bomDetailToDelete = null;
     private itemCRUD item_CRUD = new itemCRUD();    
     private static List<Item> allItems = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        bomDetail = (List<BOMDetail>)Session["bomDetailObject"];
+        bomDetailToDelete = (List<BOMDetail>)Session["bomDetailObjectToDelete"];        
+    }
+    public void load()
+    {
         btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
         loadDropDowns();
+        loadDetail();
     }
-
     public void reset()
     {
         allItems = null;
         bomDetail = null;
-    }
-    
+        Session.Remove("bomDetailObject");
+        Session.Remove("bomDetailObjectToDelete");
+    }    
     private void loadDetail(){
         repeaterBOMDetail.DataSource = bomDetail;
         repeaterBOMDetail.DataBind();
-        divBOMDetailList.InnerHtml = bomDetail.Count.ToString() + " records.";
+        if (bomDetail != null) divBOMDetailList.InnerHtml = bomDetail.Count.ToString() + " records.";
     }
     public void setEntity(List<BOMDetail> detail)
     {
         if (detail != null)
         {
-            bomDetailList.bomDetail = detail;
-            loadDetail();
-        }            
+            bomDetail = detail;
+        }
+        else
+        {
+            bomDetail = new List<BOMDetail>();
+        }
+        bomDetailToDelete = new List<BOMDetail>();
+        Session["bomDetailObject"] = bomDetail;
+        Session["bomDetailObjectToDelete"] = bomDetailToDelete;
     }
     public List<BOMDetail> getEntity()
     {
-        return bomDetail;
+        return (List<BOMDetail>)Session["bomDetailObject"];
     }
-
+    public List<BOMDetail> getBomDetailToDelete()
+    {
+        return (List<BOMDetail>)Session["bomDetailObjectToDelete"];
+    }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
@@ -55,26 +71,14 @@ public partial class bomDetailList : System.Web.UI.UserControl
         {
             if (detail.Sequence == sequence)
             {
+                detail.internalAction = "DELETE";
+                bomDetailToDelete.Add(detail);
                 bomDetail.Remove(detail);
                 loadDetail();
                 break;
             }
         }
     }
-    //public void deleteByID(object sender, CommandEventArgs e)
-    //{
-    //    long id = long.Parse((string)e.CommandArgument);
-    //    if (bomDetailCRUD.delete(id))
-    //    {
-    //        ((SessionObject)Session["bomObject"]).Status = "forUpdate";
-    //        Navigator.goToPage("~/BOM/BOM.aspx","bom");
-    //    }
-    //    else
-    //    {
-    //        Navigator.goToPage("~/Error.aspx","");
-    //    }
-    //}
-
     public void updateByID(object sender, CommandEventArgs e)
     {
         //long id = long.Parse((string)e.CommandArgument);
@@ -101,7 +105,15 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
         bomDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
         bomDetailLine.Material = txtMaterial.Text;
-        bomDetailLine.Sequence = bomDetail.Count + 1;
+        if (bomDetail == null) bomDetail = new List<BOMDetail>();
+        if (bomDetail.Count > 0)
+        {
+            bomDetailLine.Sequence = bomDetail[bomDetail.Count - 1].Sequence + 1;
+        }
+        else
+        {
+            bomDetailLine.Sequence = 0;
+        }        
 
         Item item = new Item();
 
@@ -112,12 +124,13 @@ public partial class bomDetailList : System.Web.UI.UserControl
         item.Um = "UM";
 
         bomDetailLine.Item = item;
-
+        bomDetailLine.internalAction = "CREATE";
         bomDetail.Add(bomDetailLine);
+        Session["bomDetailObject"] = bomDetail;
 
         loadDetail();
-        cboPartNumber.Focus();
         clearAddFields();
+        cboPartNumber.Focus();        
     }
     private void clearAddFields()
     {
@@ -125,40 +138,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         txtMaterial.Text = "";
         txtStatus.Text = "";
         txtQuantity.Text = "";
-    }
-    //public void add_Click(object sender, EventArgs e)
-    //{
-    //    BOMDetail bomDetail = new BOMDetail();
-    //    Item item = new Item();
-
-    //    item.Description = txtDescription.Text;
-    //    item.Material = txtMaterial.Text;
-    //    item.PartNumber = txtPartNumber.Text;
-    //    item.Um = "UM";
-    //    string idGenerated = itemCRUD.createAndReturnIdGenerated(item);
-    //    if (idGenerated != "")
-    //    {
-    //        bomDetail.BomHeaderKey = bom.Id;
-    //        bomDetail.ItemMasterkey = long.Parse(idGenerated);
-    //        bomDetail.Qty = long.Parse(txtQuantity.Text);
-    //        bomDetail.Description = txtDescription.Text;
-    //        bomDetail.Status = txtStatus.Text;
-
-    //        if (bomDetailCRUD.create(bomDetail))
-    //        {
-    //            ((SessionObject)Session["bomObject"]).Status = "forUpdate";
-    //            Navigator.goToPage("~/BOM/BOM.aspx", "bom");
-    //        }
-    //        else
-    //        {
-    //            Navigator.goToPage("~/Error.aspx", "");
-    //        }
-    //    }
-    //    else
-    //    {
-    //        Navigator.goToPage("~/Error.aspx", "");
-    //    }
-    //}
+    }    
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
         if (txtPrompt.Value.Trim() != "")

@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for RFQ
-/// </summary>
 public class RFQ
 {
     private long id;
@@ -34,9 +31,12 @@ public class RFQ
     private DateTime deadDate = new DateTime(1985, 2, 10); //From TokenMaster
     private string acknowledgement;//From TokenMaster
     private string preparedBy = "";
-    private string supplierName = "";
+    private string supplierName = ""; //From SupplierMaster
+    private string manufacturingLocation = ""; //From SupplierMaster
+    private string shipLocation = "";//From SupplierMaster
     
     private List<RFQDetail> rfqDetail;
+    private List<RFQACR> rfqAcr;
 
     public string Status
     {
@@ -173,6 +173,21 @@ public class RFQ
         get { return supplierName; }
         set { supplierName = value; }
     }
+    public string ManufacturingLocation
+    {
+        get { return manufacturingLocation; }
+        set { manufacturingLocation = value; }
+    }
+    public string ShipLocation
+    {
+        get { return shipLocation; }
+        set { shipLocation = value; }
+    }
+    public List<RFQACR> RfqAcr
+    {
+        get { return rfqAcr; }
+        set { rfqAcr = value; }
+    }
 }
 
 
@@ -191,6 +206,8 @@ public class RFQDetail
     private float burden;
     private int sequence = -1;
     private string uom = "";
+    private string partNumber = "";
+    
     private Item item;
 
     public string Uom
@@ -200,8 +217,7 @@ public class RFQDetail
     }
     public float MaterialTotal
     {
-        get { return rpcQty * rpcCostPerUnit; }
-        
+        get { return rpcQty * rpcCostPerUnit; }        
     }
     public float ServiceTotal
     {
@@ -283,5 +299,43 @@ public class RFQDetail
     {
         get { return burden; }
         set { burden = value; }
+    }
+    public string PartNumber
+    {
+        get { return partNumber; }
+        set { partNumber = value; }
+    }
+}
+
+public class RFQACR
+{
+    private long id;
+    private long rfqHeaderKey = -1;
+    private int year; 
+    private float porcentage;
+
+    public string ACR_Year_Porcentage
+    {
+        get { return year + " - " + porcentage; }
+    }
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
+    }
+    public int Year
+    {
+        get { return year; }
+        set { year = value; }
+    }
+    public float Porcentage
+    {
+        get { return porcentage; }
+        set { porcentage = value; }
     }
 }

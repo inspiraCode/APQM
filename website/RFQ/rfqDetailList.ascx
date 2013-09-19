@@ -83,60 +83,65 @@
     <tr>
         <th class="camposSinBordes" >
            <div style="width:160px;">
-                <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server">
+                <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server" TabIndex="9">
                 </asp:DropDownList>
-                <asp:Button ID="btnNewPartNumber" runat="server" Text="New" />
+                <asp:Button ID="btnNewPartNumber" runat="server" Text="New" TabIndex="10" />
             </div> 
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtUOM" runat="server" width="45px"></asp:TextBox>
+            <asp:TextBox ID="txtUOM" runat="server" width="45px" TabIndex="11"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtQuantity" runat="server" width="68px"></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" runat="server" width="68px" TabIndex="12"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtCostUnit" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtCostUnit" runat="server" width="70px" TabIndex="13"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
             <asp:Label ID="Label1" runat="server" width="70px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtOutsideServicesQuantity" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtOutsideServicesQuantity" runat="server" width="70px" 
+                TabIndex="14"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtOutsideServicesCostUnit" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtOutsideServicesCostUnit" runat="server" width="70px" 
+                TabIndex="15"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
             <asp:Label ID="Label2" runat="server" width="70px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtScrapValue" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtScrapValue" runat="server" width="70px" TabIndex="16"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
             <asp:Label ID="Label3" runat="server" width="70px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtDirectHrlyLaborRate" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtDirectHrlyLaborRate" runat="server" width="70px" 
+                TabIndex="17"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtStdHrs" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtStdHrs" runat="server" width="70px" TabIndex="18"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
             <asp:Label ID="Label4" runat="server" width="70px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:TextBox ID="txtBurden" runat="server" width="70px"></asp:TextBox>
+            <asp:TextBox ID="txtBurden" runat="server" width="70px" TabIndex="19"></asp:TextBox>
         </th>
         <th class="camposSinBordes" >
             <asp:Label ID="Label5" runat="server" width="50px"></asp:Label>
         </th>
         <th class="camposSinBordes" >
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" width="50px" />
+            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" 
+                width="50px" TabIndex="20" />
         </th>
     </tr>
 </table>
 
-<div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">
+<div align="center">
+<%--<div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">--%>
     <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
             <table border="1" cellspacing="0" width="100%">
@@ -145,7 +150,7 @@
             <tr height='40px;'>
                 <td width= "162px">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
-                    <%# DataBinder.Eval(Container.DataItem, "ItemMasterKey")%>
+                    <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>
                 </td>
                 <td width= "51px">
@@ -205,7 +210,7 @@
 </div>
     
     </div>
-
+<br />
 <div id="divRFQDetailList" runat="server" align="center">
 </div>
                 <asp:HiddenField ID="txtPrompt" runat="server" 
