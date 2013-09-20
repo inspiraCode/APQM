@@ -290,86 +290,17 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         DM = connectionManager.getDataManager();
         try
         {
-            if (entity.RfqHeaderKey.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RFQHeaderKey", "0");
-            }
-            if (entity.ItemMasterKey.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterKey.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@ItemMasterKey", "0");
-            }
-            if (entity.RpcQty.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RPCQty", entity.RpcQty.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RPCQty", "0");
-            }
-            if (entity.RpcCostPerUnit.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RPCCostPerUnit", entity.RpcCostPerUnit.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RPCCostPerUnit", "0");
-            }
-            if (entity.OSQty.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@OSQty", entity.OSQty.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@OSQty", "0");
-            }
-            if (entity.OSCostPerUnit.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@OSCostPerUnit", entity.OSCostPerUnit.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@OSCostPerUnit", "0");
-            }
-            if (entity.ScrapValue.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@ScrapValue", entity.ScrapValue.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@ScrapValue", "0");
-            }
-            if (entity.DirectHrlyLaborRate.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@DirectHrlyLaborRate", entity.DirectHrlyLaborRate.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@DirectHrlyLaborRate", "0");
-            }
-            if (entity.StdHrs.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@StdHrs", entity.StdHrs.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@StdHrs", "0");
-            }
-            if (entity.Burden.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@Burden", "0");
-            }
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemDescription", entity.ItemDescription.ToString());
+            DM.Load_SP_Parameters("@UM", entity.Um.ToString());
+            DM.Load_SP_Parameters("@RPCQty", entity.RpcQty.ToString());
+            DM.Load_SP_Parameters("@RPCCostPerUnit", entity.RpcCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@OSQty", entity.OSQty.ToString());
+            DM.Load_SP_Parameters("@OSCostPerUnit", entity.OSCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@ScrapValue", entity.ScrapValue.ToString());
+            DM.Load_SP_Parameters("@DirectHrlyLaborRate", entity.DirectHrlyLaborRate.ToString());
+            DM.Load_SP_Parameters("@StdHrs", entity.StdHrs.ToString());
+            DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure("RFQDetail_NewDetail", true);
         }
@@ -385,7 +316,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
     {
         RFQDetail rfq = new RFQDetail();
 
-        string query =  "SELECT RFQDetailKey, RFQHeaderKey, ItemMasterKey, RPCQty, RPCCostPerUnit, OSQty, " +
+        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemDescription, UM, RPCQty, RPCCostPerUnit, OSQty, " +
                         "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden FROM RFQDetail " + 
                         "WHERE (RFQDetailKey = @key)";
 
@@ -402,15 +333,16 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             {
                 rfq.Id = long.Parse(table.Rows[0][0].ToString());
                 rfq.RfqHeaderKey = long.Parse(table.Rows[0][1].ToString());
-                rfq.ItemMasterKey = long.Parse(table.Rows[0][2].ToString());
-                rfq.RpcQty = long.Parse(table.Rows[0][3].ToString());
-                rfq.RpcCostPerUnit = float.Parse(table.Rows[0][4].ToString());
-                rfq.OSQty = long.Parse(table.Rows[0][5].ToString());
-                rfq.OSCostPerUnit = float.Parse((table.Rows[0][6].ToString()));
-                rfq.ScrapValue = float.Parse(table.Rows[0][7].ToString());
-                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[0][8].ToString());
-                rfq.StdHrs = int.Parse(table.Rows[0][9].ToString());
-                rfq.Burden = float.Parse(table.Rows[0][10].ToString());
+                rfq.ItemDescription = table.Rows[0][2].ToString();
+                rfq.Um = table.Rows[0][3].ToString();
+                rfq.RpcQty = long.Parse(table.Rows[0][4].ToString());
+                rfq.RpcCostPerUnit = float.Parse(table.Rows[0][5].ToString());
+                rfq.OSQty = long.Parse(table.Rows[0][6].ToString());
+                rfq.OSCostPerUnit = float.Parse((table.Rows[0][7].ToString()));
+                rfq.ScrapValue = float.Parse(table.Rows[0][8].ToString());
+                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[0][9].ToString());
+                rfq.StdHrs = int.Parse(table.Rows[0][10].ToString());
+                rfq.Burden = float.Parse(table.Rows[0][11].ToString());
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -423,8 +355,8 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
     {
         List<RFQDetail> recordset = new List<RFQDetail>();
 
-        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemMasterKey, RPCQty, RPCCostPerUnit, OSQty, " +
-                        "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden, PartNumber, UM FROM viewRFQDetail_ReadAll " +
+        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemDescription, UM, RPCQty, RPCCostPerUnit, OSQty, " +
+                        "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden FROM viewRFQDetail_ReadAll " +
                         "WHERE (RFQHeaderKey = @key) ORDER BY RFQDetailKey";
 
         DataTable table = new DataTable();
@@ -441,17 +373,16 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 RFQDetail rfq = new RFQDetail();
                 rfq.Id = long.Parse(table.Rows[i][0].ToString());
                 rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
-                rfq.ItemMasterKey = long.Parse(table.Rows[i][2].ToString());
-                rfq.RpcQty = long.Parse(table.Rows[i][3].ToString());
-                rfq.RpcCostPerUnit = float.Parse(table.Rows[i][4].ToString());
-                rfq.OSQty = long.Parse(table.Rows[i][5].ToString());
-                rfq.OSCostPerUnit = float.Parse((table.Rows[i][6].ToString()));
-                rfq.ScrapValue = float.Parse(table.Rows[i][7].ToString());
-                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
-                rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
-                rfq.Burden = float.Parse(table.Rows[i][10].ToString());
-                rfq.PartNumber = table.Rows[i][11].ToString();
-                rfq.Uom =table.Rows[i][12].ToString();
+                rfq.ItemDescription = table.Rows[i][2].ToString();
+                rfq.Um = table.Rows[i][3].ToString();
+                rfq.RpcQty = long.Parse(table.Rows[i][4].ToString());
+                rfq.RpcCostPerUnit = float.Parse(table.Rows[i][5].ToString());
+                rfq.OSQty = long.Parse(table.Rows[i][6].ToString());
+                rfq.OSCostPerUnit = float.Parse((table.Rows[i][7].ToString()));
+                rfq.ScrapValue = float.Parse(table.Rows[i][8].ToString());
+                rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][9].ToString());
+                rfq.StdHrs = int.Parse(table.Rows[i][10].ToString());
+                rfq.Burden = float.Parse(table.Rows[i][11].ToString());               
                 rfq.Sequence = i;
 
                 recordset.Add(rfq);
@@ -466,7 +397,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemMasterKey, RPCQty, RPCCostPerUnit, OSQty, " +
+        string query = "SELECT RFQDetailKey, RFQHeaderKey, ItemDescription, UM, RPCQty, RPCCostPerUnit, OSQty, " +
                         "OSCostPerUnit, ScrapValue, DirectHrlyLaborRate, StdHrs, Burden FROM RFQDetail " +
                         "ORDER BY RFQDetailKey";
 
@@ -478,15 +409,16 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             RFQDetail rfq = new RFQDetail();
             rfq.Id = long.Parse(table.Rows[i][0].ToString());
             rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
-            rfq.ItemMasterKey = long.Parse(table.Rows[i][2].ToString());
-            rfq.RpcQty = long.Parse(table.Rows[i][3].ToString());
-            rfq.RpcCostPerUnit = float.Parse(table.Rows[i][4].ToString());
-            rfq.OSQty = long.Parse(table.Rows[i][5].ToString());
-            rfq.OSCostPerUnit = float.Parse((table.Rows[i][6].ToString()));
-            rfq.ScrapValue = float.Parse(table.Rows[i][7].ToString());
-            rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][8].ToString());
-            rfq.StdHrs = int.Parse(table.Rows[i][9].ToString());
-            rfq.Burden = float.Parse(table.Rows[i][10].ToString());
+            rfq.ItemDescription =table.Rows[i][2].ToString();
+            rfq.Um = table.Rows[i][3].ToString();
+            rfq.RpcQty = long.Parse(table.Rows[i][4].ToString());
+            rfq.RpcCostPerUnit = float.Parse(table.Rows[i][5].ToString());
+            rfq.OSQty = long.Parse(table.Rows[i][6].ToString());
+            rfq.OSCostPerUnit = float.Parse((table.Rows[i][7].ToString()));
+            rfq.ScrapValue = float.Parse(table.Rows[i][8].ToString());
+            rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][9].ToString());
+            rfq.StdHrs = int.Parse(table.Rows[i][10].ToString());
+            rfq.Burden = float.Parse(table.Rows[i][11].ToString());
             rfq.Sequence = i;
 
             recordset.Add(rfq);
@@ -502,86 +434,17 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         {
             DM.Load_SP_Parameters("@RFQDetailKey", entity.Id.ToString());
 
-            if (entity.RfqHeaderKey.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RFQHeaderKey", "0");
-            }
-            if (entity.ItemMasterKey.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterKey.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@ItemMasterKey", "0");
-            }
-            if (entity.RpcQty.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RPCQty", entity.RpcQty.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RPCQty", "0");
-            }
-            if (entity.RpcCostPerUnit.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@RPCCostPerUnit", entity.RpcCostPerUnit.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@RPCCostPerUnit", "0");
-            }
-            if (entity.OSQty.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@OSQty", entity.OSQty.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@OSQty", "0");
-            }
-            if (entity.OSCostPerUnit.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@OSCostPerUnit", entity.OSCostPerUnit.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@OSCostPerUnit", "0");
-            }
-            if (entity.ScrapValue.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@ScrapValue", entity.ScrapValue.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@ScrapValue", "0");
-            }
-            if (entity.DirectHrlyLaborRate.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@DirectHrlyLaborRate", entity.DirectHrlyLaborRate.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@DirectHrlyLaborRate", "0");
-            }
-            if (entity.StdHrs.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@StdHrs", entity.StdHrs.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@StdHrs", "0");
-            }
-            if (entity.Burden.ToString().Trim() != "")
-            {
-                DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@Burden", "0");
-            }
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemDescription", entity.ItemDescription.ToString());
+            DM.Load_SP_Parameters("@UM", entity.Um.ToString());
+            DM.Load_SP_Parameters("@RPCQty", entity.RpcQty.ToString());
+            DM.Load_SP_Parameters("@RPCCostPerUnit", entity.RpcCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@OSQty", entity.OSQty.ToString());
+            DM.Load_SP_Parameters("@OSCostPerUnit", entity.OSCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@ScrapValue", entity.ScrapValue.ToString());
+            DM.Load_SP_Parameters("@DirectHrlyLaborRate", entity.DirectHrlyLaborRate.ToString());
+            DM.Load_SP_Parameters("@StdHrs", entity.StdHrs.ToString());
+            DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
         }

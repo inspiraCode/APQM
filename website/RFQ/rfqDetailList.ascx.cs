@@ -6,10 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class rfqDetailList : System.Web.UI.UserControl
-{
+{    
     private List<RFQDetail> rfqDetail = null;
     private itemCRUD item_CRUD = new itemCRUD();
-    private static List<Item> allItems = null;
+    //private static List<Item> allItems = null;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -17,20 +17,46 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     }
     public void load()
     {
-        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
-        loadDropDowns();
+        //loadDropDowns();
         loadDetail();
     }
     public void reset()
     {
-        allItems = null;
+        //allItems = null;
         rfqDetail = null;
         Session.Remove("rfqDetailObject");
     }
     private void loadDetail()
     {        
         repeaterRFQDetail.DataSource = rfqDetail;
-        repeaterRFQDetail.DataBind();        
+        repeaterRFQDetail.DataBind();
+        summarizeTotals();
+       
+    }
+    public void summarizeTotals()
+    {
+        float totalMaterial = 0;
+        float totalService = 0;
+        float totalScrap =0;
+        float totalLabor = 0;
+        float totalBurden = 0;
+
+        foreach(RFQDetail rfqDetailLine in rfqDetail){
+            totalMaterial += rfqDetailLine.MaterialTotal;
+            totalService += rfqDetailLine.ServiceTotal;
+            totalScrap += rfqDetailLine.ScrapCost;
+            totalLabor += rfqDetailLine.LaborCost;
+            totalBurden += rfqDetailLine.BurdenTotal;
+        }
+        lblTotalMaterial.Text = totalMaterial.ToString();
+        lblTotalService.Text = totalService.ToString();
+        lblTotalScrap.Text = totalScrap.ToString();
+        lblTotalLabor.Text = totalLabor.ToString();
+        lblTotalBurden.Text = totalBurden.ToString();
+
+        float total = totalMaterial + totalService + totalScrap + totalLabor + totalBurden;
+        Label lblTotal = (Label) Parent.FindControl("lblTotalManufacturingCost");
+        lblTotal.Text = total.ToString();
     }
     public void setEntity(List<RFQDetail> detail)
     {
@@ -51,8 +77,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Id.ToString();
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();            
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -67,29 +92,13 @@ public partial class rfqDetailList : System.Web.UI.UserControl
                 break;
             }
         }
-    }
-    public void updateByID(object sender, CommandEventArgs e)
-    {
-        //long id = long.Parse((string)e.CommandArgument);
-        //RFQDetail rfqDetail = new RFQDetail();
-        //rfqDetail = rfqDetailCRUD.readById(id);
-        
-        //if (rfqDetail != null)
-        //{
-        //    SessionObject so = new SessionObject();
-        //    so.Content = rfqDetail;
-        //    so.Status = "forUpdate";
-
-        //    Session["RFQObject"] = so;
-        //}
-        ////Server.Transfer("~/RFQ/rfqDetail.aspx?tab=RFQDetail");
-    }
+    }    
     public void add_Click(object sender, EventArgs e)
     {
         RFQDetail rfqDetailLine = new RFQDetail();
 
-        rfqDetailLine.ItemMasterKey = long.Parse(cboPartNumber.SelectedValue);
-        rfqDetailLine.Uom = txtUOM.Text;
+        rfqDetailLine.ItemDescription = txtPartNumber.Text;
+        rfqDetailLine.Um = txtUOM.Text;
         rfqDetailLine.RpcQty = long.Parse(txtQuantity.Text);
         rfqDetailLine.RpcCostPerUnit = float.Parse(txtCostUnit.Text);
         rfqDetailLine.OSQty = long.Parse(txtOutsideServicesQuantity.Text);
@@ -97,8 +106,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         rfqDetailLine.ScrapValue = float.Parse(txtScrapValue.Text);
         rfqDetailLine.DirectHrlyLaborRate = float.Parse(txtDirectHrlyLaborRate.Text);
         rfqDetailLine.StdHrs = int.Parse(txtStdHrs.Text);
-        rfqDetailLine.Burden = float.Parse(txtBurden.Text);
-        rfqDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
+        rfqDetailLine.Burden = float.Parse(txtBurden.Text);        
         
         if (rfqDetail == null) rfqDetail = new List<RFQDetail>();
         if (rfqDetail.Count > 0)
@@ -109,20 +117,13 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         {
             rfqDetailLine.Sequence = 0;
         }
-        Item item = new Item();
-
-        item.Id = long.Parse(cboPartNumber.SelectedValue);
-        item.PartNumber = cboPartNumber.SelectedItem.Text;
-        item.Um = txtUOM.Text;
-
-        rfqDetailLine.Item = item;
 
         rfqDetail.Add(rfqDetailLine);
         Session["rfqDetailObject"] = rfqDetail;
 
         loadDetail();
         clearAddFields();
-        cboPartNumber.Focus();        
+        txtPartNumber.Focus();        
     }
     private void clearAddFields()
     {
@@ -135,48 +136,21 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         txtDirectHrlyLaborRate.Text = "";
         txtStdHrs.Text = "";
         txtBurden.Text = "";
-    }
-    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
-    {
-        if (txtPrompt.Value.Trim() != "")
-        {
-            string[] prompt = txtPrompt.Value.Split('-');
-            if (prompt[1] != "null" && prompt[1].Trim() != "")
-            {
-                switch (prompt[0])
-                {
-                    case "p":
-                        Item item = new Item();
-                        item.PartNumber = prompt[1];
-                        item.Um = "UM";
+        txtPartNumber.Text = "";
+    }   
 
-                        string idGenerated = item_CRUD.createAndReturnIdGenerated(item);
-                        if (idGenerated != "")
-                        {
-                            allItems = null;
-                            loadDropDowns();
-                            cboPartNumber.SelectedValue = idGenerated;
-                        }
-                        break;
-                }
-            }
-            txtPrompt.Value = "";
-        }
-        cboPartNumber.Focus();
-    }
-
-    private void loadDropDowns()
-    {
-        if (allItems == null)
-        {
-            allItems = (List<Item>)item_CRUD.readAll();
-        }
-        if (cboPartNumber.DataSource == null)
-        {
-            cboPartNumber.DataSource = allItems;
-            cboPartNumber.DataTextField = "PartNumber";
-            cboPartNumber.DataValueField = "Id";
-            cboPartNumber.DataBind();
-        }
-    }
+    //private void loadDropDowns()
+    //{
+    //    if (allItems == null)
+    //    {
+    //        allItems = (List<Item>)item_CRUD.readAll();
+    //    }
+    //    if (cboPartNumber.DataSource == null)
+    //    {
+    //        cboPartNumber.DataSource = allItems;
+    //        cboPartNumber.DataTextField = "PartNumber";
+    //        cboPartNumber.DataValueField = "Id";
+    //        cboPartNumber.DataBind();
+    //    }
+    //}
 }

@@ -84,7 +84,7 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         uscRfqACR.reset();
         uscRfqACR.setEntity(rfq.RfqAcr);
-        uscRfqACR.load();       
+        uscRfqACR.load();
 
     }
     protected void btnSave_Click(object sender, EventArgs e)

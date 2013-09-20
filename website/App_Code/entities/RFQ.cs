@@ -195,7 +195,8 @@ public class RFQDetail
 {
     private long id;
     private long rfqHeaderKey;
-    private long itemMasterKey;
+    private string itemDescription = "";
+    private string um = "";
     private long rpcQty;
     private float rpcCostPerUnit;
     private long oSQty;
@@ -205,15 +206,11 @@ public class RFQDetail
     private int stdHrs;
     private float burden;
     private int sequence = -1;
-    private string uom = "";
-    private string partNumber = "";
-    
-    private Item item;
 
-    public string Uom
+    public string Um
     {
-        get { return uom; }
-        set { uom = value; }
+        get { return um; }
+        set { um = value; }
     }
     public float MaterialTotal
     {
@@ -234,12 +231,7 @@ public class RFQDetail
     public float BurdenTotal
     {
         get { return burden; }
-    }
-    public Item Item
-    {
-        get { return item; }
-        set { item = value; }
-    }
+    }    
     public int Sequence
     {
         get { return sequence; }
@@ -260,10 +252,10 @@ public class RFQDetail
         get { return rfqHeaderKey; }
         set { rfqHeaderKey = value; }
     }
-    public long ItemMasterKey
+    public string ItemDescription
     {
-        get { return itemMasterKey; }
-        set { itemMasterKey = value; }
+        get { return itemDescription; }
+        set { itemDescription = value; }
     }
     public long RpcQty
     {
@@ -299,12 +291,7 @@ public class RFQDetail
     {
         get { return burden; }
         set { burden = value; }
-    }
-    public string PartNumber
-    {
-        get { return partNumber; }
-        set { partNumber = value; }
-    }
+    }   
 }
 
 public class RFQACR

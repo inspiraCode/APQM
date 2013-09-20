@@ -82,49 +82,47 @@
         <tr>
             <th class="camposSinBordes">
                 <div style="width: 160px;">
-                    <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server" TabIndex="9">
-                    </asp:DropDownList>
-                    <asp:Button ID="btnNewPartNumber" runat="server" Text="New" TabIndex="10" />
+                    <asp:TextBox ID="txtPartNumber" runat="server" Width="152px" TabIndex="9"></asp:TextBox>
                 </div>
             </th>
             <th class="camposSinBordes">
                 <asp:TextBox ID="txtUOM" runat="server" Width="45px" TabIndex="11"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtQuantity" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
+                <asp:TextBox ID="txtQuantity" style="text-align:right;" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtCostUnit" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
+                <asp:TextBox ID="txtCostUnit" style="text-align:right;" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label1" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtOutsideServicesQuantity" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
+                <asp:TextBox ID="txtOutsideServicesQuantity" style="text-align:right;" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtOutsideServicesCostUnit" runat="server" Width="70px" TabIndex="15"></asp:TextBox>
+                <asp:TextBox ID="txtOutsideServicesCostUnit" style="text-align:right;"  runat="server" Width="70px" TabIndex="15"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label2" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtScrapValue" runat="server" Width="70px" TabIndex="16"></asp:TextBox>
+                <asp:TextBox ID="txtScrapValue" style="text-align:right;"  runat="server" Width="70px" TabIndex="16"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label3" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtDirectHrlyLaborRate" runat="server" Width="70px" TabIndex="17"></asp:TextBox>
+                <asp:TextBox ID="txtDirectHrlyLaborRate" style="text-align:right;"  runat="server" Width="70px" TabIndex="17"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtStdHrs" runat="server" Width="70px" TabIndex="18"></asp:TextBox>
+                <asp:TextBox ID="txtStdHrs" style="text-align:right;"  runat="server" Width="70px" TabIndex="18"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label4" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtBurden" runat="server" Width="70px" TabIndex="19"></asp:TextBox>
+                <asp:TextBox ID="txtBurden" runat="server"  style="text-align:right;" Width="70px" TabIndex="19"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label5" runat="server" Width="50px"></asp:Label>
@@ -144,56 +142,54 @@
             <ItemTemplate>
                 <tr height='40px;'>
                     <td width="162px">
-                        <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
-                    <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
-                        </asp:LinkButton>
+                        <%# DataBinder.Eval(Container.DataItem, "ItemDescription")%>
                     </td>
                     <td width="51px">
-                        <%# DataBinder.Eval(Container.DataItem, "Uom")%>
+                        <%# DataBinder.Eval(Container.DataItem, "Um")%>
                     </td>
-                    <td width="74px">
+                    <td width="74px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "RpcQty")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "RpcCostPerUnit")%>
                     </td>
-                    <td width="72px">
+                    <td width="72px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "OSQty")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "OSCostPerUnit")%>
                     </td>
-                    <td width="72px">
+                    <td width="72px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "ScrapValue")%>
                     </td>
-                    <td width="72px">
+                    <td width="72px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "ScrapCost")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "DirectHrlyLaborRate")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "StdHrs")%>
                     </td>
-                    <td width="72px">
+                    <td width="72px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "LaborCost")%>
                     </td>
-                    <td width="76px">
+                    <td width="76px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "Burden")%>
                     </td>
-                    <td width="53px">
+                    <td width="53px" style="text-align:right;" >
                         <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
                     </td>
                     <td width="52px">
                         <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
                             OnClientClick="return  confirm('Do you wish to delete this RFQ Line?')">
-                    Delete
+                            Delete
                         </asp:LinkButton>
                     </td>
                 </tr>
@@ -202,42 +198,39 @@
                 </table>
             </FooterTemplate>
         </asp:Repeater>
-        <div style="border: solid; border-color: gray; border-width: 2px;margin-bottom:-2px;">
-                </div>
+        <div style="border: solid; border-color: silver; border-width: 2px; margin-bottom: -2px;">
+        </div>
         <table border="1" cellspacing="0" width="1220px" height="20px" align="center" class="camposSinBordes">
             <tr>
                 <td class="camposSinBordes" width="365px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalMaterial" runat="server" Width="74px" BackColor="Gray">0</asp:Label>
+                    <asp:Label ID="lblTotalMaterial"  style="text-align:right" runat="server" Width="74px" BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="150px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalService" runat="server" Width="72px" BackColor="Gray">0</asp:Label>
+                    <asp:Label ID="lblTotalService"  style="text-align:right" runat="server" Width="72px" BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="70px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalScrap" runat="server" Width="77px" BackColor="Gray">0</asp:Label>
+                    <asp:Label ID="lblTotalScrap"  style="text-align:right" runat="server" Width="77px" BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="147px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalLabor" runat="server" Width="76px" BackColor="Gray">0</asp:Label>
+                    <asp:Label ID="lblTotalLabor"  style="text-align:right" runat="server" Width="76px" BackColor="Silver">0</asp:Label>
                 </td>
-                <td class="camposSinBordes" width="71x">                    
+                <td class="camposSinBordes" width="71x">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalBurden" runat="server" Width="57px" BackColor="Gray">0</asp:Label>
+                    <asp:Label ID="lblTotalBurden"  style="text-align:right" runat="server" Width="57px" BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="52px">
                 </td>
             </tr>
         </table>
-                        
-            
     </div>
 </div>
 <br />
-<asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />

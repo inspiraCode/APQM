@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
-<%@ Register src="rfqACR.ascx" tagname="rfqACR" tagprefix="uc2" %>
+<%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
 <style type="text/css">
     .style2
     {
@@ -77,16 +77,15 @@
         width: 116px;
     }
 </style>
-
 <div align="center">
-    <table cellspacing="0" 
-        style="min-width: 995px; max-width: 995px; width: 1180px;">
+    <table cellspacing="0" style="min-width: 995px; max-width: 995px; width: 1180px;">
         <tr>
             <td align="right" class="style26">
                 Due Date
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblDueDate" runat="server" BackColor="Gray" Width="120px"></asp:Label>
+                <asp:Label ID="lblDueDate" runat="server" BackColor="Silver" 
+                    style="text-align:center" Width="120px"></asp:Label>
             </td>
             <td align="left" class="style28">
             </td>
@@ -104,20 +103,19 @@
                 RFQ #
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblRFQNumber" runat="server" Width="120px" BackColor="Gray"></asp:Label>
+                <asp:Label ID="lblRFQNumber" runat="server"  style="text-align:center" Width="120px" BackColor="Silver"></asp:Label>
             </td>
             <td align="right" class="style28">
                 Supplier Name
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblSupplierName" runat="server" BackColor="Gray" Width="220px"></asp:Label>
+                <asp:Label ID="lblSupplierName" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30">
+            <td align="right" class="style30" style="border-top: solid gray;border-left: solid gray;" >
                 Total Manufacturing Cost
             </td>
-            <td align="left" class="style31">
-                <asp:Label ID="lblTotalManufacturingCost" runat="server" BackColor="Gray" 
-                    Width="104px">0</asp:Label>
+            <td align="left" class="style31"  style="border-top: solid gray;border-right: solid gray;" >
+                <asp:Label ID="lblTotalManufacturingCost"  style="text-align:right;"  runat="server" BackColor="Silver" Width="104px">0</asp:Label>
             </td>
         </tr>
         <tr>
@@ -125,20 +123,20 @@
                 Part #
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblPartNumber" runat="server" BackColor="Gray" Width="120px"></asp:Label>
+                <asp:Label ID="lblPartNumber" style="text-align:center"  runat="server" BackColor="Silver" Width="120px"></asp:Label>
             </td>
             <td align="right" class="style28">
                 Manufacturing Location
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Gray" 
-                    Width="220px"></asp:Label>
+                <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30">
+            <td align="right" class="style30"  style="border-left: solid gray;" >
                 SG&amp;A Profit
             </td>
-            <td align="left" class="style31">
-                <asp:TextBox ID="txtSGAProfit" runat="server" onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
+            <td align="left" class="style31"  style="border-right: solid gray;" >
+                <asp:TextBox ID="txtSGAProfit" style="text-align:right"  runat="server" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                    Width="100px" TabIndex="2"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -146,20 +144,20 @@
                 Part Name
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblPartName" runat="server" BackColor="Gray" Width="120px"></asp:Label>
+                <asp:Label ID="lblPartName" style="text-align:center"  runat="server" BackColor="Silver" Width="120px"></asp:Label>
             </td>
             <td align="right" class="style28">
                 Ship From Location
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Gray" 
-                    Width="220px"></asp:Label>
+                <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30">
+            <td align="right" class="style30" style="border-left: solid gray;" >
                 Packing Cost/Unit
             </td>
-            <td align="left" class="style31">
-                <asp:TextBox ID="txtPackingCostUnit" onkeyup="summarizeTotalPieceCost()" runat="server" Width="100px" TabIndex="3"></asp:TextBox>
+            <td align="left" class="style31"  style="border-right: solid gray;" >
+                <asp:TextBox ID="txtPackingCostUnit"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
+                    Width="100px" TabIndex="3"></asp:TextBox>
             </td>
         </tr>
         <tr align="left">
@@ -167,19 +165,20 @@
                 Drawing Level
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblDrawingLevel" runat="server" BackColor="Gray" Width="120px"></asp:Label>
+                <asp:Label ID="lblDrawingLevel" runat="server"  style="text-align:center" BackColor="Silver" Width="120px"></asp:Label>
             </td>
             <td align="right" class="style28">
                 Prepared By
             </td>
             <td align="left" class="style29">
-                <asp:TextBox ID="txtPreparedBy" runat="server" style="width:216px" TabIndex="1"></asp:TextBox>
+                <asp:TextBox ID="txtPreparedBy" runat="server" Style="width: 216px" TabIndex="1"></asp:TextBox>
             </td>
-            <td align="right" class="style30">
+            <td align="right" class="style30" style="border-left: solid gray;" >
                 Assembly Cost/Unit
             </td>
-            <td align="left" class="style31">
-                <asp:TextBox ID="txtAssemblyCostUnit" onkeyup="summarizeTotalPieceCost()" runat="server" Width="100px" TabIndex="4"></asp:TextBox>
+            <td align="left" class="style31"  style="border-right: solid gray;" >
+                <asp:TextBox ID="txtAssemblyCostUnit"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
+                    Width="100px" TabIndex="4"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -187,23 +186,22 @@
                 Estimated Annual Volume
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblEstimatedAnnualVolume" runat="server" BackColor="Gray" 
-                    Width="120px">0</asp:Label>
+                <asp:Label ID="lblEstimatedAnnualVolume" style="text-align:center"  runat="server" BackColor="Silver" Width="120px">0</asp:Label>
             </td>
             <td align="right" class="style28">
-                </td>
+            </td>
             <td align="right" class="style29">
             </td>
-            <td align="right" class="style30">
+            <td align="right" class="style30" style="border-left: solid gray;border-bottom: solid gray;" >
                 Total Piece Cost
             </td>
-            <td align="left" class="style31">
-                <asp:Label ID="lblTotalPieceCost" runat="server" BackColor="Gray" Width="104px">123456</asp:Label>
+            <td align="left" class="style31"  style="border-right: solid gray;border-bottom: solid gray;" >
+                <asp:Label ID="lblTotalPieceCost" runat="server"  style="text-align:right" BackColor="Silver" Width="104px">123456</asp:Label>
             </td>
         </tr>
         <tr>
             <td align="right" height="25px" colspan="6">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
+                <div style="border: solid; border-color: silver; border-width: 2px;">
                 </div>
             </td>
         </tr>
@@ -219,8 +217,7 @@
                 Production Lead Time
             </td>
             <td align="left" class="style31">
-                <asp:TextBox ID="txtProductionLeadTime" runat="server" Width="100px" 
-                    TabIndex="5"></asp:TextBox>
+                <asp:TextBox ID="txtProductionLeadTime" runat="server"  style="text-align:right" Width="100px" TabIndex="5"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -236,8 +233,7 @@
                 Production Tooling Lead Time
             </td>
             <td align="left" class="style35">
-                <asp:TextBox ID="txtProductionToolingLeadTime" runat="server" Width="100px" 
-                    TabIndex="6"></asp:TextBox>
+                <asp:TextBox ID="txtProductionToolingLeadTime" runat="server"  style="text-align:right" Width="100px" TabIndex="6"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -248,11 +244,10 @@
             <td align="left" class="style28">
             </td>
             <td align="right" class="style31" colspan="2">
-                Prototype Tooling Lead Time             
+                Prototype Tooling Lead Time
             </td>
             <td align="left" class="style31">
-                <asp:TextBox ID="txtPrototypeToolingLeadTime" runat="server" Width="100px" 
-                    TabIndex="7"></asp:TextBox>
+                <asp:TextBox ID="txtPrototypeToolingLeadTime" runat="server" style="text-align:right"  Width="100px" TabIndex="7"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -266,8 +261,7 @@
                 Prototype Piece Lead Time
             </td>
             <td align="left" class="style31">
-                <asp:TextBox ID="txtPrototypePieceLeadTime" runat="server" Width="100px" 
-                    TabIndex="8"></asp:TextBox>
+                <asp:TextBox ID="txtPrototypePieceLeadTime" runat="server"  style="text-align:right" Width="100px" TabIndex="8"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -278,73 +272,78 @@
         </tr>
     </table>
     <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
-    
 </div>
 <div align="center">
-<table cellspacing="0" class="style55">
-    <tr align="center">
-        <td class="style58" colspan="2">
-                Tooling Detail</td>
-        <td class="style63">
-            &nbsp;</td>
-        <td>
-                Annual Cost Reduction Commitment</td>
-    </tr>
-    <tr>
-        <td class="style56" colspan="2" align="right">
-                <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" 
-                    TabIndex="21" TextMode="MultiLine"></asp:TextBox>
+    <table cellspacing="0" class="style55">
+        <tr align="center">
+            <td class="style58" colspan="2">
+                Tooling Detail
             </td>
-        <td class="style63">
-            &nbsp;</td>
-        <td align="center" rowspan="4">
+            <td class="style63">
+                &nbsp;
+            </td>
+            <td>
+                Annual Cost Reduction Commitment
+            </td>
+        </tr>
+        <tr>
+            <td class="style56" colspan="2" align="right">
+                <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" TabIndex="21"
+                    TextMode="MultiLine"></asp:TextBox>
+            </td>
+            <td class="style63">
+                &nbsp;
+            </td>
+            <td align="center" rowspan="4">
                 <uc2:rfqACR ID="uscRfqACR" runat="server" />
             </td>
-    </tr>
-    <tr>
-        <td align="right" class="style61">
+        </tr>
+        <tr>
+            <td align="right" class="style61">
                 Production Tooling
             </td>
-        <td class="style62" align="right">
-                <asp:TextBox ID="txtProductionTooling" runat="server"  
-                    TabIndex="22"></asp:TextBox>
+            <td class="style62" align="right">
+                <asp:TextBox ID="txtProductionTooling" style="text-align:right"  runat="server" TabIndex="22"></asp:TextBox>
             </td>
-        <td class="style63">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right" class="style61">
+            <td class="style63">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="style61">
                 Prototype Tooling
             </td>
-        <td class="style62" align="right">
-                <asp:TextBox ID="txtPrototypeTooling" runat="server" 
-                    TabIndex="23"></asp:TextBox>
+            <td class="style62" align="right">
+                <asp:TextBox ID="txtPrototypeTooling" style="text-align:right"  runat="server" TabIndex="23"></asp:TextBox>
             </td>
-        <td class="style63">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right" class="style61">
+            <td class="style63">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="style61">
                 Prototype Piece
-        </td>
-        <td class="style62">
-                <asp:TextBox ID="txtPrototypePiece" runat="server" TabIndex="24"></asp:TextBox>
             </td>
-        <td class="style63">
-            &nbsp;</td>
-    </tr>
-</table>
+            <td class="style62" align="right">
+                <asp:TextBox ID="txtPrototypePiece" style="text-align:right"  runat="server" TabIndex="24"></asp:TextBox>
+            </td>
+            <td class="style63">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
 </div>
-
-<br /><br />
+<br />
+<br />
 <div align="center">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
-        OnClick="btnSave_Click" TabIndex="30" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
-        OnClick="btnCancel_Click" TabIndex="31" />
-                <asp:HiddenField ID="hiddenSupplierID" runat="server" />
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
+        TabIndex="30" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
+        TabIndex="31" />
+    <asp:HiddenField ID="hiddenSupplierID" runat="server" />
 </div>
-<br /><br />
+<br />
+<br />
 
 <script type="text/javascript">
     window.onload = summarizeTotalPieceCost();
@@ -387,3 +386,4 @@
         lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
 </script>
+

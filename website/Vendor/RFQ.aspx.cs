@@ -50,10 +50,12 @@ public partial class VendorRFQ : System.Web.UI.Page
                     switch (((SessionObject)Session["SECTION"]).Content.ToString())
                     {
                         case "supplier":
+                            ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
                             multiView.SetActiveView(viewSupplier);
                             uscSupplierForm.load();
                             return;                       
                         case "rfq":
+                            ((SessionObject)Session["rfqObject"]).Status = "forUpdate";
                             multiView.SetActiveView(viewRFQ);
                             uscRfqForm.load();
                             return;

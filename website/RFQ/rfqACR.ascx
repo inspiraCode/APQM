@@ -10,9 +10,10 @@
         <td align="left">
             <div style="width: 290px" align="right">
             Year
-            <asp:TextBox ID="txtYear" runat="server" Width="53px" TabIndex="25"></asp:TextBox>
+            <asp:TextBox ID="txtYear" runat="server" style="text-align:right"  Width="53px" TabIndex="25"></asp:TextBox>
             Cost
-            <asp:TextBox ID="txtCost" runat="server" Width="53px" TabIndex="26"></asp:TextBox>
+                %
+            <asp:TextBox ID="txtCost" runat="server"  style="text-align:right" Width="53px" TabIndex="26"></asp:TextBox>
                 <asp:Button ID="btnAdd" runat="server" Text="+" Width="35px" TabIndex="27" 
                     OnClick="btnAdd_Click" />
                 <asp:Button ID="btnRemove" runat="server" Text="-" Width="35px" TabIndex="28" 

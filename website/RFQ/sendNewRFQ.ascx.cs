@@ -19,6 +19,10 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         {
             this.supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
         }
+        if (txtDueDate.Text.Trim() == "")
+        {
+            txtDueDate.Text = DateTime.Now.ToShortDateString();
+        }
     }
     protected void btnSendRFQ_Click(object sender, EventArgs e)
     {
