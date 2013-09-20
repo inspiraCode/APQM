@@ -23,7 +23,7 @@ public partial class Menu : System.Web.UI.UserControl
     protected void btnRFQ_Click(object sender, EventArgs e)
     {
         //Server.Transfer("~/default.aspx?section=rfq");
-        Navigator.goToPage("~/RFQ/RFQ.aspx","rfq");
+        Navigator.goToPage("~/RFQ/RFQ.aspx","RFQ");
     }
     protected void btnSuppliers_Click(object sender, EventArgs e)
     {

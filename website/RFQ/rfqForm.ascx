@@ -2,152 +2,203 @@
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <%@ Register src="rfqACR.ascx" tagname="rfqACR" tagprefix="uc2" %>
 <style type="text/css">
-    .style1
-    {
-        width: 138px;
-    }
     .style2
     {
         width: 191px;
     }
-    .style4
+    .style26
+    {
+        width: 257px;
+        height: 24px;
+    }
+    .style27
+    {
+        width: 142px;
+        height: 24px;
+    }
+    .style28
+    {
+        width: 201px;
+        height: 24px;
+    }
+    .style29
+    {
+        width: 247px;
+        height: 24px;
+    }
+    .style30
+    {
+        width: 219px;
+        height: 24px;
+    }
+    .style31
+    {
+        height: 24px;
+    }
+    .style32
+    {
+        width: 257px;
+        height: 23px;
+    }
+    .style33
+    {
+        width: 142px;
+        height: 23px;
+    }
+    .style34
+    {
+        width: 201px;
+        height: 23px;
+    }
+    .style35
+    {
+        height: 23px;
+    }
+    .style55
+    {
+        width: 67%;
+    }
+    .style56
     {
     }
-    .style7
+    .style58
     {
-        width: 213px;
     }
-    .style9
+    .style61
     {
-        width: 224px;
+        width: 151px;
     }
-    .style10
+    .style62
     {
-        width: 245px;
+        width: 147px;
     }
-    .style11
+    .style63
     {
-        width: 226px;
+        width: 116px;
     }
 </style>
+
 <div align="center">
     <table cellspacing="0" 
-        style="min-width: 995px; max-width: 995px; width: 1150px;">
+        style="min-width: 995px; max-width: 995px; width: 1180px;">
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 Due Date
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblDueDate" runat="server"></asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblDueDate" runat="server" BackColor="Gray" Width="120px"></asp:Label>
             </td>
-            <td align="left" class="style7">
+            <td align="left" class="style28">
             </td>
-            <td align="left" class="style9">
+            <td align="left" class="style29">
             </td>
-            <td align="left" class="style10">
+            <td align="left" class="style30">
                 &nbsp;
             </td>
-            <td align="left">
+            <td align="left" class="style31">
                 &nbsp;
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 RFQ #
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblRFQNumber" runat="server"></asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblRFQNumber" runat="server" Width="120px" BackColor="Gray"></asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
                 Supplier Name
             </td>
-            <td align="left" class="style9">
-                <asp:Label ID="lblSupplierName" runat="server"></asp:Label>
+            <td align="left" class="style29">
+                <asp:Label ID="lblSupplierName" runat="server" BackColor="Gray" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style10">
+            <td align="right" class="style30">
                 Total Manufacturing Cost
             </td>
-            <td align="left">
-                <asp:Label ID="lblTotalManufacturingCost" runat="server">123456</asp:Label>
+            <td align="left" class="style31">
+                <asp:Label ID="lblTotalManufacturingCost" runat="server" BackColor="Gray" 
+                    Width="104px">0</asp:Label>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 Part #
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblPartNumber" runat="server"></asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblPartNumber" runat="server" BackColor="Gray" Width="120px"></asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
                 Manufacturing Location
             </td>
-            <td align="left" class="style9">
-                <asp:Label ID="lblManufacturingLocation" runat="server"></asp:Label>
+            <td align="left" class="style29">
+                <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Gray" 
+                    Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style10">
+            <td align="right" class="style30">
                 SG&amp;A Profit
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtSGAProfit" runat="server" Width="100px" TabIndex="2"></asp:TextBox>
+            <td align="left" class="style31">
+                <asp:TextBox ID="txtSGAProfit" runat="server" onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 Part Name
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblPartName" runat="server"></asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblPartName" runat="server" BackColor="Gray" Width="120px"></asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
                 Ship From Location
             </td>
-            <td align="left" class="style9">
-                <asp:Label ID="lblShipFromLocation" runat="server"></asp:Label>
+            <td align="left" class="style29">
+                <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Gray" 
+                    Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style10">
+            <td align="right" class="style30">
                 Packing Cost/Unit
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtPackingCostUnit" runat="server" Width="100px" TabIndex="3"></asp:TextBox>
+            <td align="left" class="style31">
+                <asp:TextBox ID="txtPackingCostUnit" onkeyup="summarizeTotalPieceCost()" runat="server" Width="100px" TabIndex="3"></asp:TextBox>
             </td>
         </tr>
         <tr align="left">
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 Drawing Level
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblDrawingLevel" runat="server"></asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblDrawingLevel" runat="server" BackColor="Gray" Width="120px"></asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
                 Prepared By
             </td>
-            <td align="left" class="style9">
-                <asp:TextBox ID="txtPreparedBy" runat="server" Width="215px" TabIndex="1"></asp:TextBox>
+            <td align="left" class="style29">
+                <asp:TextBox ID="txtPreparedBy" runat="server" style="width:216px" TabIndex="1"></asp:TextBox>
             </td>
-            <td align="right" class="style10">
+            <td align="right" class="style30">
                 Assembly Cost/Unit
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtAssemblyCostUnit" runat="server" Width="100px" TabIndex="4"></asp:TextBox>
+            <td align="left" class="style31">
+                <asp:TextBox ID="txtAssemblyCostUnit" onkeyup="summarizeTotalPieceCost()" runat="server" Width="100px" TabIndex="4"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
                 Estimated Annual Volume
             </td>
-            <td align="left" class="style1">
-                <asp:Label ID="lblEstimatedAnnualVolume" runat="server">0</asp:Label>
+            <td align="left" class="style27">
+                <asp:Label ID="lblEstimatedAnnualVolume" runat="server" BackColor="Gray" 
+                    Width="120px">0</asp:Label>
             </td>
-            <td align="right" class="style7">
-                &nbsp;</td>
-            <td align="right" class="style9">
-                <asp:HiddenField ID="hiddenSupplierID" runat="server" />
+            <td align="right" class="style28">
+                </td>
+            <td align="right" class="style29">
             </td>
-            <td align="right" class="style10">
+            <td align="right" class="style30">
                 Total Piece Cost
             </td>
-            <td align="left">
-                <asp:Label ID="lblTotalPieceCost" runat="server">123456</asp:Label>
+            <td align="left" class="style31">
+                <asp:Label ID="lblTotalPieceCost" runat="server" BackColor="Gray" Width="104px">123456</asp:Label>
             </td>
         </tr>
         <tr>
@@ -157,71 +208,64 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style27">
                 <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
             </td>
-            <td align="left" class="style9">
-            </td>
-            <td align="right" class="style10">
+            <td align="right" class="style31" colspan="2">
                 Production Lead Time
             </td>
-            <td align="left">
+            <td align="left" class="style31">
                 <asp:TextBox ID="txtProductionLeadTime" runat="server" Width="100px" 
                     TabIndex="5"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style32">
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style33">
                 <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style34">
                 <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
             </td>
-            <td align="left" class="style9">
-            </td>
-            <td align="right" class="style10">
+            <td align="right" class="style35" colspan="2">
                 Production Tooling Lead Time
             </td>
-            <td align="left">
+            <td align="left" class="style35">
                 <asp:TextBox ID="txtProductionToolingLeadTime" runat="server" Width="100px" 
                     TabIndex="6"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style27">
             </td>
-            <td align="left" class="style7">
+            <td align="left" class="style28">
             </td>
-            <td align="left" class="style9">
+            <td align="right" class="style31" colspan="2">
+                Prototype Tooling Lead Time             
             </td>
-            <td align="right" class="style10">
-                Prototype Tooling Lead Time             </td>
-            <td align="left">
+            <td align="left" class="style31">
                 <asp:TextBox ID="txtPrototypeToolingLeadTime" runat="server" Width="100px" 
                     TabIndex="7"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style11">
+            <td align="right" class="style26">
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style27">
             </td>
-            <td align="right" class="style7">
+            <td align="right" class="style28">
             </td>
-            <td align="left" class="style9">
-            </td>
-            <td align="right" class="style10">
+            <td align="right" class="style31" colspan="2">
                 Prototype Piece Lead Time
             </td>
-            <td align="left">
+            <td align="left" class="style31">
                 <asp:TextBox ID="txtPrototypePieceLeadTime" runat="server" Width="100px" 
                     TabIndex="8"></asp:TextBox>
             </td>
@@ -234,70 +278,112 @@
         </tr>
     </table>
     <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
-    <div align ="center">
-    <table cellspacing="0" style="width: 754px">    
-        <tr>
-            <td align="center" height="25px" colspan="3">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td align="center" class="style4" colspan="2">
+    
+</div>
+<div align="center">
+<table cellspacing="0" class="style55">
+    <tr align="center">
+        <td class="style58" colspan="2">
                 Tooling Detail</td>
-            <td align="center">
+        <td class="style63">
+            &nbsp;</td>
+        <td>
                 Annual Cost Reduction Commitment</td>
-        </tr>
-        <tr>
-            <td align="left" colspan="2">
+    </tr>
+    <tr>
+        <td class="style56" colspan="2" align="right">
                 <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" 
                     TabIndex="21" TextMode="MultiLine"></asp:TextBox>
             </td>
-            <td align="center" rowspan="5">
+        <td class="style63">
+            &nbsp;</td>
+        <td align="center" rowspan="4">
                 <uc2:rfqACR ID="uscRfqACR" runat="server" />
             </td>
-        </tr>
-        <tr>
-            <td align="right" class="style4">
+    </tr>
+    <tr>
+        <td align="right" class="style61">
                 Production Tooling
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtProductionTooling" runat="server" Width="145px" 
+        <td class="style62" align="right">
+                <asp:TextBox ID="txtProductionTooling" runat="server"  
                     TabIndex="22"></asp:TextBox>
             </td>
-        </tr>
-        <tr>
-            <td align="right" class="style4">
+        <td class="style63">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td align="right" class="style61">
                 Prototype Tooling
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtPrototypeTooling" runat="server" Width="145px" 
+        <td class="style62" align="right">
+                <asp:TextBox ID="txtPrototypeTooling" runat="server" 
                     TabIndex="23"></asp:TextBox>
             </td>
-        </tr>
-        <tr>
-            <td align="right" class="style4">
-                PPrototype Piece
+        <td class="style63">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td align="right" class="style61">
+                Prototype Piece
+        </td>
+        <td class="style62">
+                <asp:TextBox ID="txtPrototypePiece" runat="server" TabIndex="24"></asp:TextBox>
             </td>
-            <td align="left">
-                <asp:TextBox ID="txtPrototypePiece" runat="server" Width="145px" TabIndex="24"></asp:TextBox>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" class="style4">
-            </td>
-            <td align="right">
-            </td>
-        </tr>
-    </table>
-    </div>
-    
+        <td class="style63">
+            &nbsp;</td>
+    </tr>
+</table>
 </div>
+
 <br /><br />
 <div align="center">
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
         OnClick="btnSave_Click" TabIndex="30" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
         OnClick="btnCancel_Click" TabIndex="31" />
+                <asp:HiddenField ID="hiddenSupplierID" runat="server" />
 </div>
 <br /><br />
+
+<script type="text/javascript">
+    window.onload = summarizeTotalPieceCost();
+    function summarizeTotalPieceCost() {
+
+        var txtSGAProfit = document.getElementById("<%= txtSGAProfit.ClientID %>");
+        if (txtSGAProfit && txtSGAProfit.value.trim() != "") {
+            txtSGAProfit = Number(txtSGAProfit.value);
+        }
+        else {
+            txtSGAProfit = 0;
+        }
+
+        var lblTotalManufacturingCost = document.getElementById("<%= lblTotalManufacturingCost.ClientID %>");
+        if (lblTotalManufacturingCost && lblTotalManufacturingCost.textContent.trim() != "") {
+            lblTotalManufacturingCost = Number(lblTotalManufacturingCost.textContent);
+        }
+        else {
+            lblTotalManufacturingCost.textContent = 0;
+        }
+
+        var txtPackingCostUnit = document.getElementById("<%= txtPackingCostUnit.ClientID %>");
+        if (txtPackingCostUnit && txtPackingCostUnit.value.trim() != "") {
+            txtPackingCostUnit = Number(txtPackingCostUnit.value);
+        }
+        else {
+            txtPackingCostUnit = 0;
+        }
+
+        var txtAssemblyCostUnit = document.getElementById("<%= txtAssemblyCostUnit.ClientID %>");
+        if (txtAssemblyCostUnit && txtAssemblyCostUnit.value.trim() != "") {
+            txtAssemblyCostUnit = Number(txtAssemblyCostUnit.value);
+        }
+        else {
+            txtAssemblyCostUnit = 0;
+        }
+
+        var lblTotalPieceCost = document.getElementById("<%= lblTotalPieceCost.ClientID %>");
+
+        lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
+    }
+</script>

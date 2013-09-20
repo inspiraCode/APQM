@@ -20,13 +20,11 @@ public partial class _Default : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "RFQ":
-                    MultiViewMain.SetActiveView(viewRFQList);
-                    uscRfqList.load();
+                    MultiViewMain.SetActiveView(viewRFQList);                    
                     ViewState["actualSection"] = "RFQ";
                     break;
                 case "RFQPerBOMDetail":
                     MultiViewMain.SetActiveView(viewRFQCountPerBOMDetail);
-                    //load()
                     ViewState["actualSection"] = "RFQPerBOMDetail";
                     break;
                 case "RFQPerSharedItems":

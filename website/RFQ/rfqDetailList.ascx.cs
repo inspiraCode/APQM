@@ -30,8 +30,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     private void loadDetail()
     {        
         repeaterRFQDetail.DataSource = rfqDetail;
-        repeaterRFQDetail.DataBind();
-        if(rfqDetail !=null) divRFQDetailList.InnerHtml = rfqDetail.Count.ToString() + " records.";
+        repeaterRFQDetail.DataBind();        
     }
     public void setEntity(List<RFQDetail> detail)
     {

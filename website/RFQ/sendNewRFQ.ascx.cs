@@ -61,7 +61,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                 Message.IsBodyHtml = true;
                 Message.BodyEncoding = System.Text.Encoding.UTF8;
                 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\"");
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQ.aspx?token=" + token.TokenNumber);
                 Message.AlternateViews.Add(htmlView);
                 
                 string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";

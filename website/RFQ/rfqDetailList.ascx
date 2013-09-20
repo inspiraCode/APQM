@@ -1,219 +1,243 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqDetailList.ascx.cs"
     Inherits="rfqDetailList" %>
-    <style type="text/css">
-        .camposSinBordes
-        {
-            border-top:0px;
-            border-bottom:0px;
-            border-right:0px;
-            border-left:0px;
-        }        
-    </style>
-    <div style="min-width:1220px;max-width:1200px;" align="center">
-    
-    <table border="1" cellspacing="0" width="1200px" align="center" class="camposSinBordes" >
-    <tr>
-        <th colspan="5">
-            Raw Material and Purchased Components
-        </th>
-        <th colspan="3">
-            Outside Services
-        </th>
-        <th colspan="2">
-            Scrap
-        </th>
-        <th colspan="3">
-            Labor
-        </th>
-        <th colspan="2">
-            Burden per Unit
-        </th>
-        <th>
-        </th>
-    </tr>
-    <tr>
-        <th width="162px">
-            Item Description
-        </th>
-        <th width="51px">
-            UOM
-        </th>
-        <th width="70px">
-            Quantity
-        </th>
-        <th width="70px">
-            Cost/Unit
-        </th>
-        <th width="70px">
-            Material Total
-        </th>
-        <th width="70px">
-            Quantity
-        </th>
-        <th width="70px">
-            Cost/Unit
-        </th>
-        <th width="70px">
-            Service Total
-        </th>
-        <th width="70px">
-            Scrap Value
-        </th>
-        <th width="70px">
-            Scrap Cost
-        </th>
-        <th width="70px">
-            Directly Hrly Labor rate
-        </th>
-        <th width="70px">
-            Std Hrs.
-        </th>
-        <th width="70px">
-            Labor Cost
-        </th>
-        <th width="70px">
-            Burden
-        </th>
-        <th width="70px">
-            Total Burden
-        </th>
-        <th width="70px">
-        </th>
-    </tr>
-    <tr>
-        <th class="camposSinBordes" >
-           <div style="width:160px;">
-                <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server" TabIndex="9">
-                </asp:DropDownList>
-                <asp:Button ID="btnNewPartNumber" runat="server" Text="New" TabIndex="10" />
-            </div> 
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtUOM" runat="server" width="45px" TabIndex="11"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtQuantity" runat="server" width="68px" TabIndex="12"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtCostUnit" runat="server" width="70px" TabIndex="13"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Label ID="Label1" runat="server" width="70px"></asp:Label>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtOutsideServicesQuantity" runat="server" width="70px" 
-                TabIndex="14"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtOutsideServicesCostUnit" runat="server" width="70px" 
-                TabIndex="15"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Label ID="Label2" runat="server" width="70px"></asp:Label>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtScrapValue" runat="server" width="70px" TabIndex="16"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Label ID="Label3" runat="server" width="70px"></asp:Label>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtDirectHrlyLaborRate" runat="server" width="70px" 
-                TabIndex="17"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtStdHrs" runat="server" width="70px" TabIndex="18"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Label ID="Label4" runat="server" width="70px"></asp:Label>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:TextBox ID="txtBurden" runat="server" width="70px" TabIndex="19"></asp:TextBox>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Label ID="Label5" runat="server" width="50px"></asp:Label>
-        </th>
-        <th class="camposSinBordes" >
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" 
-                width="50px" TabIndex="20" />
-        </th>
-    </tr>
-</table>
-
-<div align="center">
-<%--<div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">--%>
-    <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
-        <HeaderTemplate>
-            <table border="1" cellspacing="0" width="100%">
-        </HeaderTemplate>
-        <ItemTemplate>
-            <tr height='40px;'>
-                <td width= "162px">
-                    <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
+<style type="text/css">
+    .camposSinBordes
+    {
+        border-top: 0px;
+        border-bottom: 0px;
+        border-right: 0px;
+        border-left: 0px;
+    }
+</style>
+<div style="min-width: 1220px; max-width: 1200px;" align="center">
+    <table border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
+        <tr>
+            <th colspan="5">
+                Raw Material and Purchased Components
+            </th>
+            <th colspan="3">
+                Outside Services
+            </th>
+            <th colspan="2">
+                Scrap
+            </th>
+            <th colspan="3">
+                Labor
+            </th>
+            <th colspan="2">
+                Burden per Unit
+            </th>
+            <th>
+            </th>
+        </tr>
+        <tr>
+            <th width="162px">
+                Item Description
+            </th>
+            <th width="51px">
+                UOM
+            </th>
+            <th width="70px">
+                Quantity
+            </th>
+            <th width="70px">
+                Cost/Unit
+            </th>
+            <th width="70px">
+                Material Total
+            </th>
+            <th width="70px">
+                Quantity
+            </th>
+            <th width="70px">
+                Cost/Unit
+            </th>
+            <th width="70px">
+                Service Total
+            </th>
+            <th width="70px">
+                Scrap Value
+            </th>
+            <th width="70px">
+                Scrap Cost
+            </th>
+            <th width="70px">
+                Directly Hrly Labor rate
+            </th>
+            <th width="70px">
+                Std Hrs.
+            </th>
+            <th width="70px">
+                Labor Cost
+            </th>
+            <th width="70px">
+                Burden
+            </th>
+            <th width="70px">
+                Total Burden
+            </th>
+            <th width="70px">
+            </th>
+        </tr>
+        <tr>
+            <th class="camposSinBordes">
+                <div style="width: 160px;">
+                    <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server" TabIndex="9">
+                    </asp:DropDownList>
+                    <asp:Button ID="btnNewPartNumber" runat="server" Text="New" TabIndex="10" />
+                </div>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtUOM" runat="server" Width="45px" TabIndex="11"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtQuantity" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtCostUnit" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Label ID="Label1" runat="server" Width="70px"></asp:Label>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtOutsideServicesQuantity" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtOutsideServicesCostUnit" runat="server" Width="70px" TabIndex="15"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Label ID="Label2" runat="server" Width="70px"></asp:Label>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtScrapValue" runat="server" Width="70px" TabIndex="16"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Label ID="Label3" runat="server" Width="70px"></asp:Label>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtDirectHrlyLaborRate" runat="server" Width="70px" TabIndex="17"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtStdHrs" runat="server" Width="70px" TabIndex="18"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Label ID="Label4" runat="server" Width="70px"></asp:Label>
+            </th>
+            <th class="camposSinBordes">
+                <asp:TextBox ID="txtBurden" runat="server" Width="70px" TabIndex="19"></asp:TextBox>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Label ID="Label5" runat="server" Width="50px"></asp:Label>
+            </th>
+            <th class="camposSinBordes">
+                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" Width="50px"
+                    TabIndex="20" />
+            </th>
+        </tr>
+    </table>
+    <div align="center">
+        <%--<div align="center" style="height: 150px;min-height:150px;max-height:150px; overflow-y: auto;">--%>
+        <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
+            <HeaderTemplate>
+                <table border="1" cellspacing="0" width="100%">
+            </HeaderTemplate>
+            <ItemTemplate>
+                <tr height='40px;'>
+                    <td width="162px">
+                        <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
-                    </asp:LinkButton>
-                </td>
-                <td width= "51px">
-                    <%# DataBinder.Eval(Container.DataItem, "Uom")%>
-                </td>
-                <td width= "74px">
-                    <%# DataBinder.Eval(Container.DataItem, "RpcQty")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "RpcCostPerUnit")%>
-                </td>
-                <td width= "72px">
-                    <%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "OSQty")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "OSCostPerUnit")%>
-                </td>
-                <td width= "72px">
-                    <%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "ScrapValue")%>
-                </td>
-                <td width= "72px">
-                    <%# DataBinder.Eval(Container.DataItem, "ScrapCost")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "DirectHrlyLaborRate")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "StdHrs")%>
-                </td>
-                <td width= "72px">
-                    <%# DataBinder.Eval(Container.DataItem, "LaborCost")%>
-                </td>
-                <td width= "76px">
-                    <%# DataBinder.Eval(Container.DataItem, "Burden")%>
-                </td>
-                <td width= "53px">
-                    <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
-                </td>
-                <td width= "52px">
-                    <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
-                        OnClientClick="return  confirm('Do you wish to delete this RFQ Line?')">
+                        </asp:LinkButton>
+                    </td>
+                    <td width="51px">
+                        <%# DataBinder.Eval(Container.DataItem, "Uom")%>
+                    </td>
+                    <td width="74px">
+                        <%# DataBinder.Eval(Container.DataItem, "RpcQty")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "RpcCostPerUnit")%>
+                    </td>
+                    <td width="72px">
+                        <%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "OSQty")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "OSCostPerUnit")%>
+                    </td>
+                    <td width="72px">
+                        <%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "ScrapValue")%>
+                    </td>
+                    <td width="72px">
+                        <%# DataBinder.Eval(Container.DataItem, "ScrapCost")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "DirectHrlyLaborRate")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "StdHrs")%>
+                    </td>
+                    <td width="72px">
+                        <%# DataBinder.Eval(Container.DataItem, "LaborCost")%>
+                    </td>
+                    <td width="76px">
+                        <%# DataBinder.Eval(Container.DataItem, "Burden")%>
+                    </td>
+                    <td width="53px">
+                        <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
+                    </td>
+                    <td width="52px">
+                        <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
+                            OnClientClick="return  confirm('Do you wish to delete this RFQ Line?')">
                     Delete
-                    </asp:LinkButton>
+                        </asp:LinkButton>
+                    </td>
+                </tr>
+            </ItemTemplate>
+            <FooterTemplate>
+                </table>
+            </FooterTemplate>
+        </asp:Repeater>
+        <div style="border: solid; border-color: gray; border-width: 2px;margin-bottom:-2px;">
+                </div>
+        <table border="1" cellspacing="0" width="1220px" height="20px" align="center" class="camposSinBordes">
+            <tr>
+                <td class="camposSinBordes" width="365px">
+                </td>
+                <td class="camposSinBordes">
+                    <asp:Label ID="lblTotalMaterial" runat="server" Width="74px" BackColor="Gray">0</asp:Label>
+                </td>
+                <td class="camposSinBordes" width="150px">
+                </td>
+                <td class="camposSinBordes">
+                    <asp:Label ID="lblTotalService" runat="server" Width="72px" BackColor="Gray">0</asp:Label>
+                </td>
+                <td class="camposSinBordes" width="70px">
+                </td>
+                <td class="camposSinBordes">
+                    <asp:Label ID="lblTotalScrap" runat="server" Width="77px" BackColor="Gray">0</asp:Label>
+                </td>
+                <td class="camposSinBordes" width="147px">
+                </td>
+                <td class="camposSinBordes">
+                    <asp:Label ID="lblTotalLabor" runat="server" Width="76px" BackColor="Gray">0</asp:Label>
+                </td>
+                <td class="camposSinBordes" width="71x">                    
+                </td>
+                <td class="camposSinBordes">
+                    <asp:Label ID="lblTotalBurden" runat="server" Width="57px" BackColor="Gray">0</asp:Label>
+                </td>
+                <td class="camposSinBordes" width="52px">
                 </td>
             </tr>
-        </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
-    </asp:Repeater>
-</div>
-    
-    </div>
-<br />
-<div id="divRFQDetailList" runat="server" align="center">
-</div>
-                <asp:HiddenField ID="txtPrompt" runat="server" 
-                    onvaluechanged="txtPrompt_ValueChanged" />                
+        </table>
+                        
             
-
+    </div>
+</div>
+<br />
+<asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />

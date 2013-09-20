@@ -45,7 +45,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
-            DM.Load_SP_Parameters("@PreparedBy", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
@@ -83,7 +83,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
-            DM.Load_SP_Parameters("@PreparedBy", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
         }
@@ -99,8 +99,9 @@ public class RfqCRUD : ICRUD<RFQ>
         RFQ rfq = new RFQ();
         
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, " +
-            "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " + 
-            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, PreparedBy FROM RFQHeader " +
+            "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
+            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
+            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -129,7 +130,17 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.SgAProfit = long.Parse(table.Rows[0][14].ToString());
                 rfq.PackingPerUnit = long.Parse(table.Rows[0][15].ToString());
                 rfq.AssemblyCostPerUnit = long.Parse(table.Rows[0][16].ToString());
-                rfq.PreparedBy = table.Rows[0][17].ToString();
+                rfq.Status = table.Rows[0][17].ToString();
+                rfq.DueDate = DateTime.Parse(table.Rows[0][18].ToString());
+                rfq.SentToVendor = DateTime.Parse(table.Rows[0][19].ToString());
+                rfq.FilledUp = DateTime.Parse(table.Rows[0][20].ToString());
+                rfq.PartNumber = table.Rows[0][21].ToString();
+                rfq.DeadDate = DateTime.Parse(table.Rows[0][22].ToString());
+                rfq.Acknowledgement = table.Rows[0][23].ToString();
+                rfq.SupplierName = table.Rows[0][24].ToString();
+                rfq.ManufacturingLocation = table.Rows[0][25].ToString();
+                rfq.ShipLocation = table.Rows[0][26].ToString();
+                rfq.PreparedBy = table.Rows[0][27].ToString(); 
 
                 sqlConnection.Dispose();
                 return rfq;

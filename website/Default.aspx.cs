@@ -30,8 +30,7 @@ public partial class _Default : System.Web.UI.Page
                     uscBOMList.load();
                     break;
                 case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);
-                    uscRFQList.load();
+                    MultiViewMain.SetActiveView(viewRFQ);                    
                     break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);

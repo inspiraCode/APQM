@@ -3,6 +3,7 @@
 <asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>"
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
+<div align="center">
 <asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="True"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 
@@ -22,3 +23,4 @@
         <asp:ButtonField CommandName="sendNewRFQ" Text="Send New RFQ" />
     </Columns>
 </asp:GridView>
+</div>
