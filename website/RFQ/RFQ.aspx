@@ -27,19 +27,19 @@
                 <asp:View ID="viewSendNewRFQ" runat="server">                    
                     <uc5:sendNewRFQ ID="uscSendNewRFQ" runat="server" OnCancel_Click="on_cancel_sendRFQ" OnOk_Click="on_ok_sendRFQ" />
                 </asp:View>
-            </asp:MultiView>
-            
+            </asp:MultiView>            
         </asp:Panel>
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <div id="Tabs">
-        <asp:Button ID="tabRFQ" runat="server" Text="RFQ" OnClick="tabRFQ_Click" />
-        <asp:Button ID="tabRFQCountPerBOMDetail" runat="server"  OnClick="tabRFQPerBOMDetail_Click" Text="RFQs per BOM Lines" />
-        <asp:Button ID="tabRFQCountPerSharedItems" runat="server" OnClick="tabRFQPerSharedItems_Click" Text="RFQs per Shared Items" />
+    <link href="../Tab.css" rel="stylesheet" type="text/css" />
+    <div id="Tabs" class="tabDiv">
+        <asp:Button ID="tabRFQ" runat="server" Text="RFQ" OnClick="tabRFQ_Click" class="tabSelected" />
+        <asp:Button ID="tabRFQCountPerBOMDetail" runat="server" class="tabUnselected" OnClick="tabRFQPerBOMDetail_Click" Text="RFQs per BOM Lines" />
+        <asp:Button ID="tabRFQCountPerSharedItems" runat="server" class="tabUnselected" OnClick="tabRFQPerSharedItems_Click" Text="RFQs per Shared Items" />
     </div>
     <br />
-    <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="1">
+    <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
         <asp:View ID="viewRFQList" runat="server">
             <%--Tab update SIF--%>
             <div>

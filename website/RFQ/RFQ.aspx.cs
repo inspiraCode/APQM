@@ -162,4 +162,26 @@ public partial class _Default : System.Web.UI.Page
         panelPopup.Visible = false;
         enablePageForModalPopup();
     }
+    protected void on_activeView_changed(object sender, EventArgs e)
+    {
+        var objSent = sender;
+        switch (((MultiView)sender).ActiveViewIndex)
+        {
+            case 0: //RFQ All
+                tabRFQ.CssClass = "tabSelected";
+                tabRFQCountPerBOMDetail.CssClass = "tabUnselected";
+                tabRFQCountPerSharedItems.CssClass = "tabUnselected";
+                break;
+            case 1: //RFQs per BOM Lines
+                tabRFQ.CssClass = "tabUnselected";
+                tabRFQCountPerBOMDetail.CssClass = "tabSelected";
+                tabRFQCountPerSharedItems.CssClass = "tabUnselected";
+                break;
+            case 2: //RFQs per Shared Items
+                tabRFQ.CssClass = "tabUnselected";
+                tabRFQCountPerBOMDetail.CssClass = "tabUnselected";
+                tabRFQCountPerSharedItems.CssClass = "tabSelected";
+                break;
+        }
+    }
 }
