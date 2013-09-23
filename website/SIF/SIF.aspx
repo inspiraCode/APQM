@@ -6,6 +6,9 @@
 <%@ Register src="sifList.ascx" tagname="sifList" tagprefix="uc3" %>
 
 
+<%@ Register src="../BOM/bomForm.ascx" tagname="bomForm" tagprefix="uc4" %>
+
+
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">        
         <asp:View ID="Functions" runat="server">
@@ -16,7 +19,8 @@
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">            
         </asp:Panel>
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">            
+        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">
+            
         </asp:Panel>
     </asp:Panel>    
 </asp:Content>
@@ -34,12 +38,12 @@
                 </div>
             </div>
         </asp:View> 
-        <%--<asp:View ID="viewSurvey" runat="server">            
+        <asp:View ID="viewBOM" runat="server">            
             <div>
-                <div runat="server" id="divSurvey">                   
-                    <uc3:sifList ID="uscSIFList" runat="server" />                   
+                <div runat="server" id="divBOM">
+                    <uc4:bomForm ID="uscBomForm" OnOk_Click="on_save_bom" OnCancel_Click="on_cancel_bom" runat="server" />
                 </div>
             </div>
-        </asp:View>--%>        
+        </asp:View>       
     </asp:MultiView>
 </asp:Content>

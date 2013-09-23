@@ -11,7 +11,6 @@ public partial class bomList : System.Web.UI.UserControl
     private bomCRUD bom_CRUD = new bomCRUD();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
     }
     public void load()
     {
@@ -28,14 +27,13 @@ public partial class bomList : System.Web.UI.UserControl
             if (((BOM)e.Item.DataItem).SifId > -1)
             {
                 ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString() + ";" +
-                                                                                   ((BOM)e.Item.DataItem).SifId.ToString();                
+                                                                                   ((BOM)e.Item.DataItem).SifId.ToString();
                 ((LinkButton)e.Item.FindControl("updateSIF")).Text = ((BOM)e.Item.DataItem).SifId.ToString();
 
             }
             else
             {
                 ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString() + ";";
-                                                                                       
                 ((LinkButton)e.Item.FindControl("updateSIF")).Text = "None";
             }
             
@@ -66,12 +64,12 @@ public partial class bomList : System.Web.UI.UserControl
 
             Session["bomObject"] = so;
         }
-        Navigator.goToPage("~/BOM/BOM.aspx","BOM");
+        Navigator.goToPage("~/BOM/BOM.aspx","bom");
     }
     public void updateBySIFID(object sender, CommandEventArgs e)
     {
         SessionObject so;
-        SIF sif = null;        
+        SIF sif = null;
         string [] values = e.CommandArgument.ToString().Split(';');
         if(values[1]!=""){
             long id = long.Parse(values[1]);
@@ -87,7 +85,7 @@ public partial class bomList : System.Web.UI.UserControl
                 so.Content = sif;
                 so.Status = "forUpdate";
                 Session["SIFObject"] = so;
-                Navigator.goToPage("~/SIF/SIF.aspx","sif");
+                Navigator.goToPage("~/BOM/BOM.aspx","sif");
             }
         }else{
             sif = new SIF();
@@ -96,7 +94,7 @@ public partial class bomList : System.Web.UI.UserControl
             so.Content = sif;
             so.Status = "forNew";
             Session["SIFObject"] = so;
-            Navigator.goToPage("~/SIF/SIF.aspx","sif");
+            Navigator.goToPage("~/BOM/BOM.aspx", "sif");
         }
     }
 }

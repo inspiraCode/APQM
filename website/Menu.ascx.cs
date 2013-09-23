@@ -12,7 +12,7 @@ public partial class Menu : System.Web.UI.UserControl
     }
     protected void btnSIF_Click(object sender, EventArgs e)
     {
-        //Server.Transfer("~/default.aspx?section=sif");
+        //Server.Transfer("~/default.aspx?section=sif");        
         Navigator.goToPage("~/default.aspx","sif");
     }
     protected void btnBOM_Click(object sender, EventArgs e)
@@ -23,14 +23,25 @@ public partial class Menu : System.Web.UI.UserControl
     protected void btnRFQ_Click(object sender, EventArgs e)
     {
         //Server.Transfer("~/default.aspx?section=rfq");
-        Navigator.goToPage("~/default.aspx","rfq");
+        Navigator.goToPage("~/RFQ/RFQ.aspx","RFQ");
     }
     protected void btnSuppliers_Click(object sender, EventArgs e)
     {
         //Server.Transfer("~/default.aspx?section=supplier");
         Navigator.goToPage("~/default.aspx","supplier");
     }
-    
-   
-
+    public void disableButtons()
+    {
+        btnSIF.Enabled = false;
+        btnBOM.Enabled = false;
+        btnRFQ.Enabled = false;
+        btnSuppliers.Enabled = false;
+    }
+    public void enableButtons()
+    {
+        btnSIF.Enabled = true;
+        btnBOM.Enabled = true;
+        btnRFQ.Enabled = true;
+        btnSuppliers.Enabled = true;
+    }
 }

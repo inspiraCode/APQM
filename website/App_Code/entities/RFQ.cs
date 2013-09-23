@@ -3,36 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for RFQ
-/// </summary>
 public class RFQ
 {
     private long id;
-    private DateTime dueDate = new DateTime(1985,2,10);
+    private long bomDetailId = -1;
+    private long supplierId = -1;
+    private string rfqNumber = "";
+    private string drawingLevel = "";
+    private string estimatedAnnualVolume = "";
+    private string productionLeadTime = "";
+    private string productionToolingLeadTime = "";
+    private string prototypeToolingLeadTime = "";
+    private string prototypePieceLeadTime = "";
+    private string toolingDetail = "";
+    private float productionTooling = 0;
+    private float prototypeTooling = 0;
+    private float prototypePiece = 0; 
+    private float sgAProfit = 0; 
+    private long packingPerUnit = 0; 
+    private float assemblyCostPerUnit = 0;
+    private string status = "";
+    private DateTime dueDate = new DateTime(1985, 2, 10);
     private DateTime sentToVendor = new DateTime(1985, 2, 10);
     private DateTime filledUp = new DateTime(1985, 2, 10);
-   
-    private long bomDetailId;
-    private long supplierId;
-    private string rfqNumber;
-    private string drawingLevel; 
-    private string estimatedAnnualVolume; 
-    private string productionLeadTime; 
-    private string productionToolingLeadTime;
-    private string prototypeToolingLeadTime;   
-    private string prototypePieceLeadTime;
-    private string toolingDetail; 
-    private float productionTooling;
-    private float prototypeTooling;
-    private float prototypePiece; 
-    private float sgAProfit; 
-    private long packingPerUnit; 
-    private float assemblyCostPerUnit;
-    private string preparedBy;
 
+    private string partNumber = ""; //From Item Master
+    private DateTime deadDate = new DateTime(1985, 2, 10); //From TokenMaster
+    private string acknowledgement;//From TokenMaster
+    private string preparedBy = "";
+    private string supplierName = ""; //From SupplierMaster
+    private string manufacturingLocation = ""; //From SupplierMaster
+    private string shipLocation = "";//From SupplierMaster
     
+    private List<RFQDetail> rfqDetail;
+    private List<RFQACR> rfqAcr;
 
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
+    }
+    public string PartNumber
+    {
+        get { return partNumber; }
+        set { partNumber = value; }
+    }
+    public DateTime DeadDate
+    {
+        get { return deadDate; }
+        set { deadDate = value; }
+    }    
+    public string Acknowledgement
+    {
+        get { return acknowledgement; }
+        set { acknowledgement = value; }
+    }
+    public List<RFQDetail> RfqDetail
+    {
+        get { return rfqDetail; }
+        set { rfqDetail = value; }
+    }
     public DateTime DueDate
     {
         get { return dueDate; }
@@ -127,13 +157,7 @@ public class RFQ
     {
         get { return assemblyCostPerUnit; }
         set { assemblyCostPerUnit = value; }
-    }
-    public RFQ()
-    {
-        //
-        // TODO: Add constructor logic here
-        //
-    }
+    }    
     public long Id
     {
         get { return id; }
@@ -144,29 +168,80 @@ public class RFQ
         get { return preparedBy; }
         set { preparedBy = value; }
     }
+    public string SupplierName
+    {
+        get { return supplierName; }
+        set { supplierName = value; }
+    }
+    public string ManufacturingLocation
+    {
+        get { return manufacturingLocation; }
+        set { manufacturingLocation = value; }
+    }
+    public string ShipLocation
+    {
+        get { return shipLocation; }
+        set { shipLocation = value; }
+    }
+    public List<RFQACR> RfqAcr
+    {
+        get { return rfqAcr; }
+        set { rfqAcr = value; }
+    }
 }
 
 
 public class RFQDetail
 {
     private long id;
-    private long rfqHeaderKey; 
-    private long itemMasterKey; 
-    private long rpcQty; 
+    private long rfqHeaderKey;
+    private string itemDescription = "";
+    private string um = "";
+    private long rpcQty;
     private float rpcCostPerUnit;
-    private long oSQty; 
-    private float oSCostPerUnit; 
+    private long oSQty;
+    private float oSCostPerUnit;
     private float scrapValue;
     private float directHrlyLaborRate;
     private int stdHrs;
+    private float burden;
+    private int sequence = -1;
 
+    public string Um
+    {
+        get { return um; }
+        set { um = value; }
+    }
+    public float MaterialTotal
+    {
+        get { return rpcQty * rpcCostPerUnit; }        
+    }
+    public float ServiceTotal
+    {
+        get { return oSQty * oSCostPerUnit; }
+    }
+    public float ScrapCost
+    {
+        get { return (MaterialTotal + ServiceTotal) * scrapValue; }
+    }
+    public float LaborCost
+    {
+        get { return directHrlyLaborRate * stdHrs; }
+    }
+    public float BurdenTotal
+    {
+        get { return burden; }
+    }    
+    public int Sequence
+    {
+        get { return sequence; }
+        set { sequence = value; }
+    }
     public int StdHrs
     {
         get { return stdHrs; }
         set { stdHrs = value; }
-    }
-    private float burden;
-
+    }   
     public long Id
     {
         get { return id; }
@@ -177,10 +252,10 @@ public class RFQDetail
         get { return rfqHeaderKey; }
         set { rfqHeaderKey = value; }
     }
-    public long ItemMasterKey
+    public string ItemDescription
     {
-        get { return itemMasterKey; }
-        set { itemMasterKey = value; }
+        get { return itemDescription; }
+        set { itemDescription = value; }
     }
     public long RpcQty
     {
@@ -216,5 +291,38 @@ public class RFQDetail
     {
         get { return burden; }
         set { burden = value; }
+    }   
+}
+
+public class RFQACR
+{
+    private long id;
+    private long rfqHeaderKey = -1;
+    private int year; 
+    private float porcentage;
+
+    public string ACR_Year_Porcentage
+    {
+        get { return year + " - " + porcentage; }
+    }
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
+    }
+    public int Year
+    {
+        get { return year; }
+        set { year = value; }
+    }
+    public float Porcentage
+    {
+        get { return porcentage; }
+        set { porcentage = value; }
     }
 }

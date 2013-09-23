@@ -18,28 +18,24 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Session["SECTION"] != null)
         {
-
-            if (Session["bomObject"] != null) {
-
-                bom = (BOM)((SessionObject)Session["bomObject"]).Content;
-                lblName.Text = bom.TopPartNumber;
-                switch (((SessionObject)Session["SECTION"]).Content.ToString())
-                {
-                    case "bom":
-                        MultiViewMain.SetActiveView(viewBOM);
-                        uscBOMMasterForm.load();
-                        break;
-                    //case "survey":
-                    //    MultiViewMain.SetActiveView(viewSurvey);
-                    //    break;
-                    //case "popupSupplier":
-                    //    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
-                    //    openpopupContainer();
-                    //    break;
-                    default:
-                        break;
-                }
-            }            
+            switch (((SessionObject)Session["SECTION"]).Content.ToString())
+            {
+                case "bom":
+                    bomForm.bom = null;                        
+                    MultiViewMain.SetActiveView(viewBOM);
+                    uscBOMMasterForm.load();
+                    break;
+                case "sif":
+                    MultiViewMain.SetActiveView(viewSIF);
+                    uscSifForm.load();
+                    break;
+                //case "popupSupplier":
+                //    //supplierMasterForm.fillWithId(long.Parse(Request.Params.Get("id")));
+                //    openpopupContainer();
+                //    break;
+                default:
+                    break;
+            }                       
         }
     }
    
@@ -49,13 +45,19 @@ public partial class _Default : System.Web.UI.Page
     //}
     protected void on_ok_bom(object sender, EventArgs e)
     {
-        panelPopup.Visible = false;
-        Navigator.goToPage("~/default.aspx","sif");
+        Navigator.goToPage("~/default.aspx","bom");
     }
     protected void on_cancel_bom(object sender, EventArgs e) 
     {
-        panelPopup.Visible = false;
-        Navigator.goToPage("~/default.aspx","sif");
+        Navigator.goToPage("~/default.aspx","bom");
+    }
+    protected void on_ok_sif(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/default.aspx", "bom");
+    }
+    protected void on_cancel_sif(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/default.aspx", "bom");
     }
     //protected void tabSupplier_Click(object sender, EventArgs e)
     //{

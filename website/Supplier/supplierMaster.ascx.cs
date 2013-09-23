@@ -15,8 +15,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
-       
-    }    
+    }
     public void load(){
         if (Session["supplierObject"] != null)
         {
@@ -25,9 +24,9 @@ public partial class supplierMaster : System.Web.UI.UserControl
                 fillUpForm((Supplier)(((SessionObject)Session["supplierObject"]).Content));
                 ((SessionObject)Session["supplierObject"]).Status = "Retrieved";
             }
-        }        
+        }
     }
-    public void fillUpForm(Supplier supplier){        
+    public void fillUpForm(Supplier supplier){
         lblID.Text = supplier.Id.ToString();
         txtSupplierName.Text = supplier.SupplierName;
         txtManufacturingLocation.Text = supplier.ManufacturingLocation;
@@ -53,12 +52,14 @@ public partial class supplierMaster : System.Web.UI.UserControl
             if (!supplierCRUD.create(supplier))
             {
                 Navigator.goToPage("~/Error.aspx","");
+                return;
             }
         }else if(lblMode.Text == "Update"){
             supplier.Id = long.Parse(lblID.Text);
             if (!supplierCRUD.update(supplier))
             {
                 Navigator.goToPage("~/Error.aspx","");
+                return;
             }
         }
         Ok_Click(this, e);
@@ -66,6 +67,6 @@ public partial class supplierMaster : System.Web.UI.UserControl
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         Session.Remove("supplierObject");
-        Cancel_Click(this, e);        
+        Cancel_Click(this, e);
     }
 }

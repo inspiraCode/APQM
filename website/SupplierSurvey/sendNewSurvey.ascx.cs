@@ -11,22 +11,23 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
-    Supplier supplier;
+    private static Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
     }
     public void load()
     {
-        if (Session["supplierObject"] != null)
+        if (supplier == null)
         {
-            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
-            fillFields(supplier);
+            if (Session["supplierObject"] != null)
+            {
+                supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
+                fillFields(supplier);
+            }
         }
     }
-
     private void fillFields(Supplier supplier){
-        txtSupplier.Text = supplier.SupplierName;
+        lblSupplier.Text = supplier.SupplierName;
         txtEmail.Text = supplier.ContactEmail;
     }
     protected void btnSendSurvey_Click(object sender, EventArgs e)
@@ -39,10 +40,9 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
-            }            
+            }
         }
-        //TODO send survey to supplier
-        //if(sendEmail == succesfull){
+        
         SupplierSurveyCRUD surveyCRUD = new SupplierSurveyCRUD();
         SupplierSurvey survey = new SupplierSurvey();
         survey.SupplierMasterKey = supplier.Id;
@@ -53,33 +53,49 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
         if (idGenerated != "")
         {
-            Email NewMail = new Email();
-            MailMessage Message = new MailMessage();
+            TokenCRUD token_CRUD = new TokenCRUD();
+            Token token = new Token();
+            token.Subject = "SURVEY";
+            token.SubjectKey = long.Parse(idGenerated);
+            token.TokenNumber =  MD5HashGenerator.GenerateKey(DateTime.Now);
+            if (token_CRUD.create(token))
+            {
+                Email NewMail = new Email();
+                MailMessage Message = new MailMessage();
 
-            Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
-            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-            Message.Subject = "test from APQM WEB";
-            Message.Body = "Aqui va el link con el token=" + MD5HashGenerator.GenerateKey(DateTime.Now); ;
+                Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
+                Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+                Message.Subject = "test from APQM WEB";
+                Message.IsBodyHtml = true;
+                Message.BodyEncoding = System.Text.Encoding.UTF8;
+                //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://localhost:29724/APQM/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\">Link</a>";
+                //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
 
-            string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber);
+                Message.AlternateViews.Add(htmlView);
+                
+                string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
 
-            Attachment x = new Attachment(path);
+                Attachment x = new Attachment(path);
 
-            Message.Attachments.Add(x);
+                Message.Attachments.Add(x);
 
-            NewMail.SendMail(Message);
+                NewMail.SendMail(Message);
+                
+            }
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "");
             return;
         }
-        //}
+        supplier = null;
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        supplier = null;
         Cancel_Click(this, e);
     }
 }

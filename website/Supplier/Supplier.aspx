@@ -5,14 +5,8 @@
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
 <%@ Register src="~/SupplierSurvey/surveyList.ascx" tagname="surveyList" tagprefix="uc3" %>
 
-
-
 <%@ Register src="~/SupplierSurvey/sendNewSurvey.ascx" tagname="sendNewSurvey" tagprefix="uc4" %>
-
-
-
 <%@ Register src="../SupplierSurvey/surveyForm.ascx" tagname="surveyForm" tagprefix="uc5" %>
-
 
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
@@ -31,7 +25,7 @@
                 <uc4:sendNewSurvey ID="uscSendNewSurvey" runat="server" OnOk_Click="on_send_survey" OnCancel_Click="on_cancel_send_survey" />
             </asp:View>
             <asp:View ID="viewPopupSurvey" runat="server">
-                <div>
+                <div align="center" style="height:525px; overflow-y: auto;">
                     <uc5:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey"/>
                 </div>                
             </asp:View>            

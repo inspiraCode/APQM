@@ -22,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "sif":
-                    MultiViewMain.SetActiveView(viewSIF);
+                    MultiViewMain.SetActiveView(viewSIF);                    
                     uscSIFList.load();
                     break;
                 case "bom":
@@ -30,8 +30,7 @@ public partial class _Default : System.Web.UI.Page
                     uscBOMList.load();
                     break;
                 case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);
-                    uscRFQList.load();
+                    MultiViewMain.SetActiveView(viewRFQ);                    
                     break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
@@ -47,6 +46,7 @@ public partial class _Default : System.Web.UI.Page
                     popupContainer.Style.Add("left", "54%");
                     popupContainer.Style.Add("top", "57%");
                     uscSupplierForm.load();
+                    disablePageForModalPopup();
                     break;
                 case "popupSIF":
                     Session.Remove("sifObject");
@@ -58,13 +58,18 @@ public partial class _Default : System.Web.UI.Page
                     popupContainer.Style.Add("left", "40%");
                     popupContainer.Style.Add("top", "40%");
                     uscSIFForm.load();
+                    disablePageForModalPopup();
                     break;
-                case "popupRFQ":
-                    Session.Remove("rfqObject");
+                case "popupRFQ":                    
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();
+                    popupContainer.Style.Add("height", "860px");
+                    popupContainer.Style.Add("width", "1250px");
+                    popupContainer.Style.Add("left", "350px");
+                    popupContainer.Style.Add("top", "220px");
                     uscRFQForm.load();
+                    disablePageForModalPopup();
                     break;
                 default:
                     //btnSuppliers_Click(null, null);
@@ -83,7 +88,13 @@ public partial class _Default : System.Web.UI.Page
         Left_Col.ActiveViewIndex = 1;
         MultiViewMain.SetActiveView(viewHome);
     }
-    
+    private void disablePageForModalPopup()
+    {
+        uscMenu.disableButtons();
+        btnAddRFQ.Enabled = false;
+        btnAddSIF.Enabled = false;
+        btnAddSupplier.Enabled = false;        
+    }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;

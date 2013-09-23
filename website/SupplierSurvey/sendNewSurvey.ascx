@@ -18,7 +18,7 @@
         <td align="right" class="style2">
             Supplier</td>
         <td class="style3">
-            <asp:TextBox ID="txtSupplier" runat="server" Width="350px"></asp:TextBox>
+            <asp:Label ID="lblSupplier" runat="server" Text="Label" Width="350px"></asp:Label>
         </td>
         <td>
             &nbsp;</td>

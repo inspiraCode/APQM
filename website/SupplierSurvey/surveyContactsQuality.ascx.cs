@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class SurveyContactsQuality : System.Web.UI.UserControl
 {
+    static SupplierSurveyContacts contact = new SupplierSurveyContacts();
     protected void Page_Load(object sender, EventArgs e)
     {
                        
@@ -35,5 +36,33 @@ public partial class SurveyContactsQuality : System.Web.UI.UserControl
                 txtEmail.Text = supplier.SupplierSurvey.ContactQuality.Email;
             }
         }
-    }   
+    }
+    public SupplierSurveyContacts getEntity()
+    {        
+        contact.Address = txtAddress.Text;
+        contact.Cell = txtCell.Text;
+        contact.Email = txtEmail.Text;
+        contact.Name = txtName.Text;
+        contact.Phone = txtPhone.Text;
+        contact.Position = "QUALITY";
+        contact.Title = txtTitle.Text;
+        return contact;
+    }
+    public void setEntity(SupplierSurveyContacts entity)
+    {
+        contact = entity;
+        if (entity != null)
+        {
+            txtName.Text = entity.Name;
+            txtTitle.Text = entity.Title;
+            txtAddress.Text = entity.Address;
+            txtPhone.Text = entity.Phone;
+            txtCell.Text = entity.Cell;
+            txtEmail.Text = entity.Email;
+        }
+        else
+        {
+            contact = new SupplierSurveyContacts();
+        }
+    }
 }
