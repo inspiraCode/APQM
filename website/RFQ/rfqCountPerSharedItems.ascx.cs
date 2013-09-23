@@ -11,4 +11,9 @@ public partial class RFQ_rfqCountPerSharedItems : System.Web.UI.UserControl
     {
 
     }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
+    }
 }

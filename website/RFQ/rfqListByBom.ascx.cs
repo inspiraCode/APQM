@@ -23,4 +23,12 @@ public partial class RFQ_rfqListByBom : System.Web.UI.UserControl
         }
     }
 
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
+
+    }
+
 }

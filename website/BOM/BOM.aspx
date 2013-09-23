@@ -18,6 +18,7 @@
             
         </asp:Panel>
         <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">            
+           
         </asp:Panel>
     </asp:Panel>    
 </asp:Content>
@@ -31,7 +32,7 @@
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">
         <asp:View ID="viewBOM" runat="server"> <%--Tab update supplier--%>
             <div>
-                <div runat="server" id="divBOM">
+                <div runat="server" id="divBOM">                 
                     <uc1:bomForm ID="uscBOMMasterForm" runat="server" OnOk_Click="on_ok_bom" OnCancel_Click="on_cancel_bom" />                   
                 </div>
             </div>

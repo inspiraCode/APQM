@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Reflection;
+using System.Collections.Generic;
 
 public partial class _Default : System.Web.UI.Page 
 {   
@@ -93,7 +94,7 @@ public partial class _Default : System.Web.UI.Page
     {
         Navigator.goToPage("~/RFQ/RFQ.aspx","RFQPerBOMDetail");
     }
-    protected void on_row_command(Object sender, GridViewCommandEventArgs e)
+    protected void on_rfqCountPerBomLines_rowCommand(Object sender, GridViewCommandEventArgs e)
     {
 
         // If multiple ButtonField column fields are used, use the
@@ -154,6 +155,45 @@ public partial class _Default : System.Web.UI.Page
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                 }
+                break;
+        }
+    }
+    protected void on_rfqList_rowCommand(Object sender, GridViewCommandEventArgs e)
+    {
+        int index;
+        long rfqHeaderKey;
+        switch (e.CommandName)
+        {
+            case "seeRFQ":
+                try
+                {
+                    index = Convert.ToInt32(e.CommandArgument);
+                    rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());                    
+                  
+                        
+                        //RfqCRUD rfqCRUD = new RfqCRUD();
+                        //RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
+                        //RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
+
+                        //RFQ rfq = rfqCRUD.readById(rfqHeaderKey);
+
+                        //List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfqHeaderKey);
+                        //rfq.RfqDetail = rfqDetail;
+
+                        //List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfqHeaderKey);
+                        //rfq.RfqAcr = rfqACR;
+
+                        //SessionObject soRFQ = new SessionObject();
+                        //soRFQ.Content = rfq;
+                        //soRFQ.Status = "forUpdate";
+                        //Session["rfqObject"] = soRFQ;
+
+                        ClientScript.RegisterClientScriptBlock(this.GetType(), "Message", "window.open('http://" + Request.Url.Authority + Request.ApplicationPath + "/RFQ/rfqFormMain.aspx?rfq=" + rfqHeaderKey + "','_blank');", true);                                                
+                }
+                catch {
+                    Navigator.goToPage("~/Error.aspx", "");
+                }
+                
                 break;
         }
     }

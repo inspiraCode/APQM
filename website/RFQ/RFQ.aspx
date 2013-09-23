@@ -47,14 +47,14 @@
                     <%--<uc1:sifMaster ID="uscSIFMasterForm" runat="server" />--%>
                     <%--<uc1:supplierMaster ID="uscSupplierMaster" runat="server" 
                         />--%>
-                    <uc7:rfqList ID="uscRfqList" OnOk_Click="on_update_RFQ"  OnCancel_Click="on_cancel_RFQ" runat="server" />
+                    <uc7:rfqList ID="uscRfqList" OnRow_Command="on_rfqList_rowCommand" runat="server" />
                 </div>
             </div>
         </asp:View>
         <asp:View ID="viewRFQCountPerBOMDetail" runat="server">
             <div>
                 <div runat="server" id="divRFQCountPerBOMDetail">
-                    <uc4:rfqCountPerBomLines ID="uscRfqCountPerBomLines" OnRow_Command="on_row_command"
+                    <uc4:rfqCountPerBomLines ID="uscRfqCountPerBomLines" OnRow_Command="on_rfqCountPerBomLines_rowCommand"
                         runat="server" />
                 </div>
             </div>

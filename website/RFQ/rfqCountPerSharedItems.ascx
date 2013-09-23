@@ -21,7 +21,7 @@
 </div>
 <div id="divRfqList" runat="server" align="center">
 </div>
-<asp:SqlDataSource ID="SqlDataSource" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>"
+<asp:SqlDataSource ID="SqlDataSource" runat="server"   OnInit="on_sqldatasource_Init"
+    
     SelectCommand="SELECT [ItemMasterKey], [PartNumber], [Description], [Material], [Cost], [QtyRequired], [RFQSent] FROM [viewRFQCountBySharedItems]">
 </asp:SqlDataSource>

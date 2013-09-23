@@ -89,7 +89,9 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        if(save()) Ok_Click(this, e);
+        
+        if (save()) Ok_Click(this, e);
+           
     }
     public bool save()
     {
@@ -178,7 +180,7 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("RFQObject");
-        Cancel_Click(this, e);
+        Session.Remove("rfqObject");       
+        Cancel_Click(this, e);        
     }
 }

@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerBomLines.ascx.cs"
     Inherits="RFQ_rfqCountPerBomLines" %>
-<asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>"
+<asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" OnInit="on_sqldatasource_Init" runat="server" 
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
 <div align="center">

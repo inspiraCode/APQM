@@ -163,7 +163,8 @@
             </td>
         </tr>
     </table>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>"
+    <asp:SqlDataSource OnInit="on_sqldatasource_Init"
+     ID="SqlDataSource1" runat="server" 
         SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
     </asp:SqlDataSource>
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -174,7 +175,9 @@
             </asp:Calendar>
         </asp:Panel>
     </asp:Panel>
-    <asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>"
+    <asp:SqlDataSource 
+    OnInit="on_sqldatasource_Init"
+    ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" 
         SelectCommand="SELECT [InquiryNumber], [TopPartNumber], [PartDescription], [PartNumber], [Description], [Qty], [Cost] FROM [viewRFQCountPerBOMDetail] WHERE ([BOMDetailKey] = @BOMDetailKey)">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"

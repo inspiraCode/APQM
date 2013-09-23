@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 {
    
-    ConnectionManager connectionManager = new ConnectionManager();    
+    ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
     public SupplierSurveyCRUD()
@@ -170,12 +170,12 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
                 supplierSurvey.LastSurvey = DateTime.Parse(table.Rows[i][7].ToString());
                 supplierSurvey.NDARec = DateTime.Parse(table.Rows[i][8].ToString());
                 supplierSurvey.PrimaryBusiness = table.Rows[i][9].ToString();
-                supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();                
+                supplierSurvey.SecundaryBusiness = table.Rows[i][10].ToString();
                 supplierSurvey.UnionYN = bool.Parse(table.Rows[i][11].ToString());
                 supplierSurvey.Local = table.Rows[i][12].ToString();
                 supplierSurvey.ContractExpiration = table.Rows[i][13].ToString();
                 supplierSurvey.CurrentCapacity = table.Rows[i][14].ToString();
-                supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();               
+                supplierSurvey.ManufacturingMetod = table.Rows[i][15].ToString();
                 supplierSurvey.ToolingNewInHouseYN = bool.Parse(table.Rows[i][16].ToString());
                 supplierSurvey.ToolingNewOutsourcedYN = bool.Parse(table.Rows[i][17].ToString());
                 supplierSurvey.ToolingInHouseYN = bool.Parse(table.Rows[i][18].ToString());
@@ -184,7 +184,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
                 supplierSurvey.SentToVendor = DateTime.Parse(table.Rows[i][21].ToString());
                 recordset.Add(supplierSurvey);
             }
-        }       
+        }
 
         return recordset;
     }
@@ -632,7 +632,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             DM.Load_SP_Parameters("@SupplierForecastedSalesKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
             DM.Load_SP_Parameters("@ForecastSalesYear", entity.ForecastSalesYear.ToString());
-            DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());           
+            DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_EditForecast", true);
         }
@@ -808,7 +808,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
                 contacts.Address = table.Rows[i][5].ToString();
                 contacts.Phone = table.Rows[i][6].ToString();
                 contacts.Cell = table.Rows[i][7].ToString();
-                contacts.Email = table.Rows[i][8].ToString();                
+                contacts.Email = table.Rows[i][8].ToString();
 
                 recordset.Add(contacts);
             }
@@ -901,7 +901,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
         try
         {
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
-            DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());            
+            DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyCertification_NewCertification", true);
         }
@@ -989,7 +989,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             SupplierSurveyCertification certification = new SupplierSurveyCertification();
             certification.Id = long.Parse(table.Rows[i][0].ToString());
             certification.SupplierSurveyKey = long.Parse(table.Rows[i][1].ToString());
-            certification.Certification = table.Rows[i][2].ToString();            
+            certification.Certification = table.Rows[i][2].ToString();
 
             recordset.Add(certification);
         }

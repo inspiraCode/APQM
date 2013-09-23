@@ -20,4 +20,9 @@ public partial class RFQ_rfqCountPerBomLines : System.Web.UI.UserControl
     {
         GridViewRFQCountPerBOMDetail.DataBind();
     }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+       SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
+    }
 }

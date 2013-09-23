@@ -24,7 +24,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
                 fillFields(supplier);
             }
-        }        
+        }
     }
     private void fillFields(Supplier supplier){
         lblSupplier.Text = supplier.SupplierName;
@@ -72,7 +72,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber + "\"");
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Aqui va el link con el token= http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber);
                 Message.AlternateViews.Add(htmlView);
                 
                 string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";

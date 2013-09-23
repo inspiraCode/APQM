@@ -146,5 +146,10 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     {
         txtDueDate.Text = calendar.SelectedDate.ToShortDateString();
         panelPopup.Visible = false;
-    }   
+    }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
+    }
 }

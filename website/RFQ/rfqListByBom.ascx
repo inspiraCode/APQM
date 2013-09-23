@@ -9,8 +9,7 @@
         width: 141px;
     }
 </style>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>" 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"    
     SelectCommand="SELECT [RFQHeaderKey], [RFQNumber], [PartNumber], [SupplierName], [DueDate], [SentToVendor], [Status] FROM [viewRFQHeader_ReadAll] WHERE ([BOMDetailKey] = @BOMDetailKey)">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" 
@@ -142,9 +141,7 @@
 </div>
 
 </div>
-<asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>" 
-    
+<asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT [InquiryNumber], [TopPartNumber], [PartDescription], [PartNumber], [Description], [Qty], [Cost] FROM [viewRFQCountPerBOMDetail] WHERE ([BOMDetailKey] = @BOMDetailKey)">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" 
