@@ -945,6 +945,7 @@ namespace Data_Base_MNG
         private string _dbname = "";
         private string _sql_con_str = "";
         private SqlConnection _connection;
+        private SqlTransaction _transaction;
 
         private List<SqlParameter> _parameters = new List<SqlParameter>();
 
@@ -1058,6 +1059,36 @@ namespace Data_Base_MNG
                 _connection.Open();
             }
         }
+        private void Start_Connection_BeginTransaction(string TransactionName)
+        {
+            if (_connection.State != ConnectionState.Open)
+            {
+                _connection.Open();
+                _transaction = _connection.BeginTransaction(TransactionName);
+            }
+        }
+        private void Commit()
+        {
+            try
+            {
+                ErrorFlag = false;
+                _error_mjs = "";
+                _transaction.Commit();
+            }
+            catch (Exception ex)
+            {
+                ErrorFlag = true;
+                _error_mjs = ex.Message;
+                try
+                {
+                    _transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    _error_mjs = ex.Message + " RollBack Error: " + ex2.Message;
+                }
+            } 
+        }
         private void Stop_Connection()
         {
             if (_connection.State == ConnectionState.Open)
@@ -1107,6 +1138,14 @@ namespace Data_Base_MNG
         public void Open_Connection()
         {
             Start_Connection();
+        }
+        public void Open_Connection(string TransactionName)
+        {
+            Start_Connection_BeginTransaction(TransactionName);
+        }
+        public void CommitTransaction()
+        {
+            Commit();
         }
         public bool Execute_Command()
         {
@@ -1406,6 +1445,97 @@ namespace Data_Base_MNG
             }
             return result;
         }
+        public bool Execute_StoreProcedure_Open_Conn(string Command, bool ParametersNeeded)
+        {
+            bool result = false;
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                //Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                _command.ExecuteNonQuery();
+                //Stop_Connection();
+                ErrorFlag = false;
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                //Stop_Connection();
+                ErrorFlag = true;
+                result = false;
+            }
+            return result;
+        }
+        public string Execute_StoreProcedure_Scalar_Open_Conn(string Command, bool ParametersNeeded)
+        {
+            string result = "";
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                //Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                result = _command.ExecuteScalar().ToString();
+                //Stop_Connection();
+                ErrorFlag = false;
+                //result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                //Stop_Connection();
+                ErrorFlag = true;
+                result = "";
+            }
+            return result;
+        }
+        public DataTable Execute_StoreProcedure_Table_Open_Conn(string Command, bool ParametersNeeded)
+        {
+            DataTable result = new DataTable();
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                //Start_Connection();
+                ///
+
+                if (ParametersNeeded)
+                {
+
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                }
+                _adapter = new SqlDataAdapter(_command);
+
+                _adapter.Fill(result);
+                //Stop_Connection();
+                ErrorFlag = false;
+                //result = true;
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+                //Stop_Connection();
+                ErrorFlag = true;
+                result = null;
+            }
+            return result;
+        }
+
         public bool Update_Open_Connection( out DataTable Table2Update)
         {
             Table2Update = new DataTable();       
