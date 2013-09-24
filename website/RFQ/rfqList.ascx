@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
 <div align="center">
-<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="gridView_RowCommand"
+<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
     DataSourceID="SqlDataSource" AllowPaging="True" AllowSorting="True" DataKeyNames="RFQHeaderKey">
     <Columns>
         <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" 
@@ -12,10 +12,8 @@
         <asp:BoundField DataField="SupplierName" HeaderText="Vendor" 
             SortExpression="SupplierName" />
         <asp:BoundField DataField="DueDate" HeaderText="Due Date"
-            SortExpression="DueDate" />
-        <asp:ButtonField CommandName="seeRFQ" DataTextField="Status" 
-            HeaderText="Status" Text="Button" />
-        <asp:TemplateField HeaderText="Status">
+            SortExpression="DueDate" DataFormatString="{0:d}" />       
+        <asp:TemplateField HeaderText="Status" SortExpression="Status">
             <ItemTemplate>
                 <a target="_blank" href='<%# "rfqFormMain.aspx?rfq=" + Eval("RFQHeaderKey")%>' ><%# Eval("Status")%></a>
             </ItemTemplate>

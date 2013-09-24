@@ -13,16 +13,20 @@ public class SupplierCRUD : ICRUD<Supplier>
    
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
+    public string error = "";
+
 
     public SupplierCRUD()
 	{}
     
     #region ICRUD<Supplier> Members
 
-    public bool create(Supplier entity)
+    public bool create(Supplier entity, Data_Base_MNG.SQL DM)
     {
-        bool result = false;        
-        DM = connectionManager.getDataManager();
+        bool result = false;
+
+        if (DM == null) DM = connectionManager.getDataManager();
+        
         try
         {            
             DM.Load_SP_Parameters("@SupplierName", entity.SupplierName);
@@ -34,6 +38,11 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
 
             result = DM.Execute_StoreProcedure("SupplierMaster_NewSupplier", true);
+
+            if (DM.ErrorOccur) { 
+                this.error = DM.Error_Mjs;
+                return false;
+            }
         }
         catch (Exception e)
         {

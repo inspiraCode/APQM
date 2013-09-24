@@ -47,7 +47,7 @@
                     <%--<uc1:sifMaster ID="uscSIFMasterForm" runat="server" />--%>
                     <%--<uc1:supplierMaster ID="uscSupplierMaster" runat="server" 
                         />--%>
-                    <uc7:rfqList ID="uscRfqList" OnRow_Command="on_rfqList_rowCommand" runat="server" />
+                    <uc7:rfqList ID="uscRfqList" runat="server" />
                 </div>
             </div>
         </asp:View>

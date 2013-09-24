@@ -4,7 +4,7 @@
         AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource">
         <Columns>
             <asp:BoundField DataField="ItemMasterKey" HeaderText="ItemMasterKey" 
-                SortExpression="ItemMasterKey" />
+                SortExpression="ItemMasterKey" Visible="false"/>
             <asp:BoundField DataField="PartNumber" HeaderText="Part Number" 
                 SortExpression="PartNumber" />
             <asp:BoundField DataField="Description" HeaderText="Description" 

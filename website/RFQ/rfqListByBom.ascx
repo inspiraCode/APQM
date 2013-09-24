@@ -134,8 +134,11 @@
             HeaderText="DueDate" SortExpression="DueDate" />
         <asp:BoundField DataField="SentToVendor" DataFormatString="{0:d}" 
             HeaderText="SentToVendor" SortExpression="SentToVendor" />
-        <asp:BoundField DataField="Status" HeaderText="Status" 
-            SortExpression="Status" />
+         <asp:TemplateField HeaderText="Status" SortExpression="Status">
+            <ItemTemplate>
+                <a target="_blank" href='<%# "rfqFormMain.aspx?rfq=" + Eval("RFQHeaderKey")%>' ><%# Eval("Status")%></a>
+            </ItemTemplate>
+        </asp:TemplateField>
     </Columns>
 </asp:GridView>
 </div>

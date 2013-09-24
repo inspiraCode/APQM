@@ -235,6 +235,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     {
         bool result = false;
         DM = connectionManager.getDataManager();
+        
         try
         {
             DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomHeaderKey.ToString());
@@ -377,7 +378,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         }
         return recordset;
     }
-
     public IList<BOMDetail> readAll()
     {
         List<BOMDetail> recordset = new List<BOMDetail>();
@@ -436,7 +436,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 
     public bool update(BOMDetail entity)
     {
-
         bool result = false;
         DM = connectionManager.getDataManager();
         try

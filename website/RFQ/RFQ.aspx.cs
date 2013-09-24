@@ -125,7 +125,7 @@ public partial class _Default : System.Web.UI.Page
                         disablePageForModalPopup();
                         openpopupContainer();
                         popupContainer.Style.Add("height", "350px");
-                        popupContainer.Style.Add("width", "600px");
+                        popupContainer.Style.Add("width", "700px");
                         popupContainer.Style.Add("left", "35%");
                         popupContainer.Style.Add("top", "35%");
                         multiViewPopup.SetActiveView(viewRFQListByBom);
@@ -158,45 +158,45 @@ public partial class _Default : System.Web.UI.Page
                 break;
         }
     }
-    protected void on_rfqList_rowCommand(Object sender, GridViewCommandEventArgs e)
-    {
-        int index;
-        long rfqHeaderKey;
-        switch (e.CommandName)
-        {
-            case "seeRFQ":
-                try
-                {
-                    index = Convert.ToInt32(e.CommandArgument);
-                    rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());                    
+    //protected void on_rfqList_rowCommand(Object sender, GridViewCommandEventArgs e)
+    //{
+    //    int index;
+    //    long rfqHeaderKey;
+    //    switch (e.CommandName)
+    //    {
+    //        case "seeRFQ":
+    //            try
+    //            {
+    //                index = Convert.ToInt32(e.CommandArgument);
+    //                rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());                    
                   
                         
-                        //RfqCRUD rfqCRUD = new RfqCRUD();
-                        //RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
-                        //RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
+    //                    //RfqCRUD rfqCRUD = new RfqCRUD();
+    //                    //RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
+    //                    //RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
 
-                        //RFQ rfq = rfqCRUD.readById(rfqHeaderKey);
+    //                    //RFQ rfq = rfqCRUD.readById(rfqHeaderKey);
 
-                        //List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfqHeaderKey);
-                        //rfq.RfqDetail = rfqDetail;
+    //                    //List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfqHeaderKey);
+    //                    //rfq.RfqDetail = rfqDetail;
 
-                        //List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfqHeaderKey);
-                        //rfq.RfqAcr = rfqACR;
+    //                    //List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfqHeaderKey);
+    //                    //rfq.RfqAcr = rfqACR;
 
-                        //SessionObject soRFQ = new SessionObject();
-                        //soRFQ.Content = rfq;
-                        //soRFQ.Status = "forUpdate";
-                        //Session["rfqObject"] = soRFQ;
+    //                    //SessionObject soRFQ = new SessionObject();
+    //                    //soRFQ.Content = rfq;
+    //                    //soRFQ.Status = "forUpdate";
+    //                    //Session["rfqObject"] = soRFQ;
 
-                        ClientScript.RegisterClientScriptBlock(this.GetType(), "Message", "window.open('http://" + Request.Url.Authority + Request.ApplicationPath + "/RFQ/rfqFormMain.aspx?rfq=" + rfqHeaderKey + "','_blank');", true);                                                
-                }
-                catch {
-                    Navigator.goToPage("~/Error.aspx", "");
-                }
+    //                    ClientScript.RegisterClientScriptBlock(this.GetType(), "Message", "window.open('http://" + Request.Url.Authority + Request.ApplicationPath + "/RFQ/rfqFormMain.aspx?rfq=" + rfqHeaderKey + "','_blank');", true);                                                
+    //            }
+    //            catch {
+    //                Navigator.goToPage("~/Error.aspx", "");
+    //            }
                 
-                break;
-        }
-    }
+    //            break;
+    //    }
+    //}
     protected void btnClosePopup_Click(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
