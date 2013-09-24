@@ -134,8 +134,7 @@ public partial class _Default : System.Web.UI.Page
                 }
                 catch {
                     Navigator.goToPage("~/Error.aspx", "");
-                }
-                
+                }                
                 break;
             case "sendNewRFQ":
                 try

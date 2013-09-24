@@ -231,7 +231,12 @@ public class RFQDetail
     public float BurdenTotal
     {
         get { return burden; }
-    }    
+    }
+    public float ManufacturingCost
+    {
+        get { return MaterialTotal + ServiceTotal + ScrapCost +
+                    LaborCost + BurdenTotal; }
+    } 
     public int Sequence
     {
         get { return sequence; }
@@ -324,5 +329,102 @@ public class RFQACR
     {
         get { return porcentage; }
         set { porcentage = value; }
+    }
+}
+
+public class RFQSummary
+{
+    private long id;
+    private long bomDetailKey = -1; 
+    private string rfqNumber = ""; 
+    private long supplierKey = -1;
+    private string supplierName = "";
+    private float materialTotal; 
+    private float serviceTotal; 
+    private float scrapTotal; 
+    private float laborTotal; 
+    private float burdenTotal; 
+    private float sgaProfit; 
+    private long packingPerUnit; 
+    private float assemblyCostPerUnit; 
+    private float estimatedAnnualVolume;
+
+    public float ManufacturingCost
+    {
+        get { return materialTotal + serviceTotal + scrapTotal + laborTotal + burdenTotal; }       
+    }
+    public float TotalACost
+    {
+        get { return sgaProfit + packingPerUnit + assemblyCostPerUnit;}
+    }
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long BomDetailKey
+    {
+        get { return bomDetailKey; }
+        set { bomDetailKey = value; }
+    }
+    public string RfqNumber
+    {
+        get { return rfqNumber; }
+        set { rfqNumber = value; }
+    } 
+    public long SupplierKey
+    {
+        get { return supplierKey; }
+        set { supplierKey = value; }
+    }
+    public string SupplierName
+    {
+        get { return supplierName; }
+        set { supplierName = value; }
+    }
+    public float MaterialTotal
+    {
+        get { return materialTotal; }
+        set { materialTotal = value; }
+    }
+    public float ServiceTotal
+    {
+        get { return serviceTotal; }
+        set { serviceTotal = value; }
+    }
+    public float ScrapTotal
+    {
+        get { return scrapTotal; }
+        set { scrapTotal = value; }
+    }
+    public float LaborTotal
+    {
+        get { return laborTotal; }
+        set { laborTotal = value; }
+    }
+    public float BurdenTotal
+    {
+        get { return burdenTotal; }
+        set { burdenTotal = value; }
+    }
+    public float SgaProfit
+    {
+        get { return sgaProfit; }
+        set { sgaProfit = value; }
+    }
+    public long PackingPerUnit
+    {
+        get { return packingPerUnit; }
+        set { packingPerUnit = value; }
+    }
+    public float AssemblyCostPerUnit
+    {
+        get { return assemblyCostPerUnit; }
+        set { assemblyCostPerUnit = value; }
+    }
+    public float EstimatedAnnualVolume
+    {
+        get { return estimatedAnnualVolume; }
+        set { estimatedAnnualVolume = value; }
     }
 }

@@ -715,3 +715,51 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
     }
     #endregion
 }
+
+
+public class RfqSummaryCRUD
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public List<RFQSummary> readByBOMDetailID(long id)
+    {
+        List<RFQSummary> recordset = new List<RFQSummary>();
+
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQNumber, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                RFQSummary rfq = new RFQSummary();
+                rfq.Id = long.Parse(table.Rows[i][0].ToString());
+                rfq.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
+                rfq.RfqNumber= table.Rows[i][2].ToString();
+                rfq.SupplierKey= long.Parse (table.Rows[i][3].ToString());
+                rfq.MaterialTotal = float.Parse(table.Rows[i][4].ToString());
+                rfq.ServiceTotal= float.Parse(table.Rows[i][5].ToString());
+                rfq.ScrapTotal= float.Parse(table.Rows[i][6].ToString());
+                rfq.LaborTotal= float.Parse((table.Rows[i][7].ToString()));
+                rfq.BurdenTotal = float.Parse(table.Rows[i][8].ToString());
+                rfq.SgaProfit = float.Parse(table.Rows[i][9].ToString());
+                rfq.PackingPerUnit= long.Parse(table.Rows[i][10].ToString());
+                rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][11].ToString());
+                rfq.EstimatedAnnualVolume = float.Parse(table.Rows[i][12].ToString());
+                rfq.SupplierName = table.Rows[i][13].ToString();
+
+                recordset.Add(rfq);
+            }
+        }
+        return recordset;
+    }   
+}

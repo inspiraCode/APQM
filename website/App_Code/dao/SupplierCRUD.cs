@@ -21,11 +21,12 @@ public class SupplierCRUD : ICRUD<Supplier>
     
     #region ICRUD<Supplier> Members
 
-    public bool create(Supplier entity, Data_Base_MNG.SQL DM)
+    public bool create(Supplier entity)
     {
         bool result = false;
 
-        if (DM == null) DM = connectionManager.getDataManager();
+        //if (DM == null) 
+        DM = connectionManager.getDataManager();
         
         try
         {            
@@ -39,10 +40,10 @@ public class SupplierCRUD : ICRUD<Supplier>
 
             result = DM.Execute_StoreProcedure("SupplierMaster_NewSupplier", true);
 
-            if (DM.ErrorOccur) { 
-                this.error = DM.Error_Mjs;
-                return false;
-            }
+            //if (DM.ErrorOccur) { 
+            //    this.error = DM.Error_Mjs;
+            //    return false;
+            //}
         }
         catch (Exception e)
         {
