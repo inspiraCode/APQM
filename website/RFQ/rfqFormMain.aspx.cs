@@ -21,9 +21,8 @@ public partial class RFQ_rfqFormMain : System.Web.UI.Page
         btnHome.Visible = false;
         if (ViewState["rfqHeaderKey"] == null)
         {
-            load();    
-        }
-        
+            load();
+        }        
     }
     public void load()
     {

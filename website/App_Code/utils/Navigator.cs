@@ -21,6 +21,13 @@ public static class Navigator
         SessionObject so = new SessionObject();
         so.Content = section;
         HttpContext.Current.Session["SECTION"] = so;
-        HttpContext.Current.Response.Redirect(page);
+        try
+        {
+            HttpContext.Current.Response.Redirect(page,false);
+        }catch(Exception ex){
+            string message = ex.Message;
+
+        }
+       
     }
 }

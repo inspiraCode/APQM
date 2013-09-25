@@ -66,11 +66,12 @@ public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
         else
         {
             rfqSummary = new List<RFQSummary>();
-        }
+        }        
         Session["rfqSummaryList"] = rfqSummary;
     }
     public List<RFQSummary> getEntity()
     {
         return (List<RFQSummary>)Session["rfqSummaryList"];
-    }
+    }  
 }
+

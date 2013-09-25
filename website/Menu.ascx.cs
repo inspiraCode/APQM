@@ -30,12 +30,17 @@ public partial class Menu : System.Web.UI.UserControl
         //Server.Transfer("~/default.aspx?section=supplier");
         Navigator.goToPage("~/default.aspx","supplier");
     }
+    protected void btnRFQSummary_Click(object sender, EventArgs e)
+    {       
+        Navigator.goToPage("~/RFQ/RFQSummary.aspx", "RFQSummary");
+    }
     public void disableButtons()
     {
         btnSIF.Enabled = false;
         btnBOM.Enabled = false;
         btnRFQ.Enabled = false;
         btnSuppliers.Enabled = false;
+        btnRFQSummary.Enabled = false;
     }
     public void enableButtons()
     {
@@ -43,5 +48,6 @@ public partial class Menu : System.Web.UI.UserControl
         btnBOM.Enabled = true;
         btnRFQ.Enabled = true;
         btnSuppliers.Enabled = true;
+        btnRFQSummary.Enabled = true;
     }
 }

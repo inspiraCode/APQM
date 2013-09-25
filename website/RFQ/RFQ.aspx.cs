@@ -155,6 +155,21 @@ public partial class _Default : System.Web.UI.Page
                     Navigator.goToPage("~/Error.aspx", "");
                 }
                 break;
+            case "rfqSummary":
+                try
+                {
+                    index = Convert.ToInt32(e.CommandArgument);
+                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
+                    Session["rfqSummary"] = bomDetailId;
+                    Navigator.goToPage("~/RFQ/RFQSummary.aspx", "RFQSummary");
+                }
+                catch (Exception ex)
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    string message = ex.Message;
+                }
+                break;
+                
         }
     }
     //protected void on_rfqList_rowCommand(Object sender, GridViewCommandEventArgs e)

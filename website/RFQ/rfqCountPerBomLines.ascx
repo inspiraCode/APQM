@@ -21,6 +21,7 @@
         <asp:ButtonField CommandName="seeRFQ" DataTextField="RFQCount" SortExpression="RFQCount"
             Text="See RFQs" HeaderText="RFQ Sent" />
         <asp:ButtonField CommandName="sendNewRFQ" Text="Send New RFQ" />
+        <asp:ButtonField CommandName="rfqSummary" Text="RFQ Summary" />        
     </Columns>
 </asp:GridView>
 </div>

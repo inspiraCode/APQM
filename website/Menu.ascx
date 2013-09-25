@@ -56,6 +56,12 @@
                                             Text="Suppliers" Width="200px" />
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        <asp:Button ID="btnRFQSummary" runat="server" OnClick="btnRFQSummary_Click" Style="height: 26px;"
+                                            Text="RFQ Summary" Width="200px" />
+                                    </td>
+                                </tr>
                             </table>
                         </fieldset>
                     </td>
