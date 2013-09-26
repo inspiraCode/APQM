@@ -62,10 +62,12 @@ public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
         if (entity != null)
         {
             rfqSummary = entity;
+            divHeader.Visible = true;
         }
         else
         {
             rfqSummary = new List<RFQSummary>();
+            divHeader.Visible = false;
         }        
         Session["rfqSummaryList"] = rfqSummary;
     }

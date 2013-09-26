@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqSummaryDetail.ascx.cs"
     Inherits="RFQ_rfqSummaryDetail" %>
 <div align="center">
-<div style="float:left">
+<div style="float:left" runat="server" id="divHeader" visible="false">
  <table border="0" style="text-align:right">
         <tr>
             <td>
