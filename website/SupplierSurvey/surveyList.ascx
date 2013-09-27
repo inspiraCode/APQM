@@ -2,7 +2,8 @@
     Inherits="surveyList" %>
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
-        <table border="1">
+        <table border="1" id="tableSurvey" class="display">
+            <thead>
             <th>
                 Last Survey
             </th>
@@ -21,6 +22,7 @@
             <th>
             </th>
         </tr>
+        </thead><tbody>
     </HeaderTemplate>
     <ItemTemplate>
         <tr height='40px;'>
@@ -52,8 +54,11 @@
         </tr>
     </ItemTemplate>
     <FooterTemplate>
-        </table>
+        </tbody></table>
     </FooterTemplate>
 </asp:Repeater>
-<div id="divSurveyList" runat="server" align="center">
-</div>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#tableSurvey').dataTable();
+    });
+</script>

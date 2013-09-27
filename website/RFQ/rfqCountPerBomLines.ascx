@@ -4,10 +4,10 @@
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
 <div align="center">
-<asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="True"
+<asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 
-    PagerSettings-PageButtonCount="10" AllowSorting="True">
+    PagerSettings-PageButtonCount="10" AllowSorting="False">
     <Columns>
         <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" SortExpression="BOMDetailKey"
             Visible="False" />
@@ -20,8 +20,13 @@
         <asp:BoundField DataField="Cost" HeaderText="Line Cost" SortExpression="Cost" />
         <asp:ButtonField CommandName="seeRFQ" DataTextField="RFQCount" SortExpression="RFQCount"
             Text="See RFQs" HeaderText="RFQ Sent" />
-        <asp:ButtonField CommandName="sendNewRFQ" Text="Send New RFQ" />
-        <asp:ButtonField CommandName="rfqSummary" Text="RFQ Summary" />        
+        <asp:ButtonField CommandName="sendNewRFQ" Text="New" />
+        <asp:ButtonField CommandName="rfqSummary" Text="Summary" />        
     </Columns>
 </asp:GridView>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+    jQuery('#<%= this.GridViewRFQCountPerBOMDetail.ClientID %>').dataTable();
+    });
+</script>

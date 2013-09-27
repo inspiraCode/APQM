@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerSharedItems.ascx.cs" Inherits="RFQ_rfqCountPerSharedItems" %>
 <div align="center">
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
-        AllowSorting="True" AutoGenerateColumns="False" DataSourceID="SqlDataSource">
+    <asp:GridView ID="gridRFQCountPerSharedItems" runat="server" AllowPaging="False" class="display" OnPreRender="preRenderGridView"
+        AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource">
         <Columns>
             <asp:BoundField DataField="ItemMasterKey" HeaderText="ItemMasterKey" 
                 SortExpression="ItemMasterKey" Visible="false"/>
@@ -25,3 +25,8 @@
     
     SelectCommand="SELECT [ItemMasterKey], [PartNumber], [Description], [Material], [Cost], [QtyRequired], [RFQSent] FROM [viewRFQCountBySharedItems]">
 </asp:SqlDataSource>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+    jQuery('#<%= this.gridRFQCountPerSharedItems.ClientID %>').dataTable();
+    });
+</script>

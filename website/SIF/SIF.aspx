@@ -27,7 +27,7 @@
 
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <div id="Tabs">
-        <asp:Button ID="tabSIF" runat="server" Text="SIF" OnClick="tabSIF_Click" />
+        <asp:Button ID="tabSIF" runat="server" Text="SIF" OnClick="tabSIF_Click" Visible="false"/>
         <%--<asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />--%>
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">        

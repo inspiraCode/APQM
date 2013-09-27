@@ -121,4 +121,19 @@ public partial class _Default : System.Web.UI.Page
     {
         Navigator.goToPage("~/Supplier/supplier.aspx", actualView);        
     }
+    protected void on_activeView_changed(object sender, EventArgs e)
+    {
+        var objSent = sender;
+        switch (((MultiView)sender).ActiveViewIndex)
+        {
+            case 0: //Supplier
+                tabSupplier.CssClass = "tabSelected";
+                tabSurvey.CssClass = "tabUnselected";                
+                break;
+            case 1: //Surveys
+                tabSupplier.CssClass = "tabUnselected";
+                tabSurvey.CssClass = "tabSelected"; 
+                break;            
+        }
+    }
 }

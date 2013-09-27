@@ -18,8 +18,7 @@ public partial class sifList : System.Web.UI.UserControl
     {
         List<SIF> recordset = (List<SIF>)sif_CRUD.readAll();
         Repeater1.DataSource = recordset;
-        Repeater1.DataBind();
-        divSifList.InnerHtml = recordset.Count.ToString() + " records.";
+        Repeater1.DataBind();        
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {

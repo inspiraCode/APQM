@@ -55,8 +55,8 @@ public partial class _Default : System.Web.UI.Page
                     openpopupContainer();
                     popupContainer.Style.Add("height", "550px");
                     popupContainer.Style.Add("width", "910px");
-                    popupContainer.Style.Add("left", "40%");
-                    popupContainer.Style.Add("top", "40%");
+                    popupContainer.Style.Add("left", "90px");
+                    popupContainer.Style.Add("top", "-40px");
                     uscSIFForm.load();
                     disablePageForModalPopup();
                     break;

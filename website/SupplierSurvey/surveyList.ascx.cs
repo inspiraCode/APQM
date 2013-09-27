@@ -20,8 +20,7 @@ public partial class surveyList : System.Web.UI.UserControl
             supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);            
             List < SupplierSurvey > recordset =surveyCRUD.readByParentId(supplier.Id);
             Repeater1.DataSource = recordset;
-            Repeater1.DataBind();
-            divSurveyList.InnerHtml = recordset.Count.ToString() + " records.";
+            Repeater1.DataBind();            
         } 
     }
 

@@ -34,13 +34,16 @@
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <asp:Label ID="lblName" runat="server" Text=""></asp:Label>
-    <div id="Tabs">
-        <asp:Button ID="tabSupplier" runat="server" Text="Supplier" OnClick="tabSupplier_Click" />
-        <asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />
+    <div style="background-color: #A4A4A4;height: 30px;">
+    <asp:Label ID="lblName" runat="server" Text="" style="top: 10px;position: relative;"></asp:Label>
+    </div>
+    <link href="../Tab.css" rel="stylesheet" type="text/css" />
+    <div id="Tabs" class="tabDiv">
+        <asp:Button ID="tabSupplier" runat="server" Text="Supplier" OnClick="tabSupplier_Click"  class="tabSelected" />
+        <asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" class="tabUnselected" />
     </div>
     <br />
-    <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">
+    <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
         <asp:View ID="viewSupplier" runat="server"> <%--Tab update supplier--%>
             <div>
                 <div runat="server" id="divSupplier">
@@ -49,11 +52,11 @@
             </div>
         </asp:View>
         <asp:View ID="viewSurvey" runat="server"> <%--Tab update supplier--%>
-            <div>
+            <div><br />
+            <asp:Button ID="btnSendSurvey" style="margin-bottom:10px;" runat="server" Text="Send new survey" OnClick="btnSendSurvey_Click" />            
                 <div runat="server" id="divSurvey" class="mainSection">                    
                     <uc3:surveyList ID="uscSurveyList" runat="server" />
-                </div>
-                <asp:Button ID="btnSendSurvey" runat="server" Text="Send new survey" OnClick="btnSendSurvey_Click" />
+                </div>                
             </div>
         </asp:View>
     </asp:MultiView>

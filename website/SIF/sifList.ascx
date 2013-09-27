@@ -1,35 +1,39 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sifList.ascx.cs" Inherits="sifList" %>
-<div class="mainSection" align="center">
+<div align="center">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
-            <table border="1">
-                <th>
-                    Inquiry Number
-                </th>
-                <th>
-                    BOM
-                </th>
-                <th>
-                    Revision
-                </th>
-                <th>
-                    Priority
-                </th>
-                <th>
-                    Sales Person
-                </th>
-                <th>
-                    Cost Model Location
-                </th>
-                <th>
-                    Customer
-                </th>                
-                <th>
-                </th>
-            </tr>
+            <table border="1" id="tableSIF" class="display">
+                <thead>
+                    <tr>
+                        <th>
+                            Inquiry Number
+                        </th>
+                        <th>
+                            BOM
+                        </th>
+                        <th>
+                            Revision
+                        </th>
+                        <th>
+                            Priority
+                        </th>
+                        <th>
+                            Sales Person
+                        </th>
+                        <th>
+                            Cost Model Location
+                        </th>
+                        <th>
+                            Customer
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
         </HeaderTemplate>
         <ItemTemplate>
-            <tr height='40px;'>
+            <tr height='35px;'>
                 <td>
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
                         OnCommand="updateByID">                    
@@ -41,7 +45,7 @@
                         OnCommand="updateByBomID">                    
                         None
                     </asp:LinkButton>
-                </td>                
+                </td>
                 <td>
                     <%# DataBinder.Eval(Container.DataItem, "Revision")%>
                 </td>
@@ -66,9 +70,14 @@
             </tr>
         </ItemTemplate>
         <FooterTemplate>
-            </table>
+            </tbody> </table>
         </FooterTemplate>
     </asp:Repeater>
 </div>
-<div id="divSifList" runat="server" align="center">
-</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#tableSIF').dataTable();
+    });
+</script>
+

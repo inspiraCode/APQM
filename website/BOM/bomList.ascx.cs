@@ -16,8 +16,7 @@ public partial class bomList : System.Web.UI.UserControl
     {
         List<BOM> recordset = (List<BOM>)bom_CRUD.readAll();
         Repeater1.DataSource = recordset;
-        Repeater1.DataBind();
-        divBomList.InnerHtml = recordset.Count.ToString() + " records.";
+        Repeater1.DataBind();        
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {

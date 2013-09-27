@@ -16,8 +16,7 @@ public partial class supplierList : System.Web.UI.UserControl
     {
         List<Supplier> recordset = (List<Supplier>)supplierCRUD.readAll();
         Repeater1.DataSource = recordset;
-        Repeater1.DataBind();
-        divSupplierList.InnerHtml = recordset.Count.ToString() + " records.";
+        Repeater1.DataBind();        
     }    
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {

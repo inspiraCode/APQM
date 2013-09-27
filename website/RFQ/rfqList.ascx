@@ -1,7 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
 <div align="center">
-<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
-    DataSourceID="SqlDataSource" AllowPaging="True" AllowSorting="True" DataKeyNames="RFQHeaderKey">
+<asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" 
+class="display"
+    DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView" >
     <Columns>
         <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" 
             SortExpression="RFQHeaderKey" />
@@ -23,3 +24,8 @@
 <asp:SqlDataSource ID="SqlDataSource" runat="server" OnInit="on_sqldatasource_Init"   
     SelectCommand="SELECT * FROM [viewRFQHeader_ReadAll]"></asp:SqlDataSource>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+    jQuery('#<%= this.gridRFQList.ClientID %>').dataTable();
+    });
+</script>

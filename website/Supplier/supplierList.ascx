@@ -1,9 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierList.ascx.cs"
     Inherits="supplierList" %>
 <div class="mainSection" align="center">
-<asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
+<asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound" >
     <HeaderTemplate>
-        <table border="1">
+        <table border="1" id="tableSupplier" class="display">
+        <thead>
             <th>
                 Supplier Name
             </th>
@@ -28,6 +29,8 @@
             <th>
             </th>
         </tr>
+        </thead>
+                <tbody>
     </HeaderTemplate>
     <ItemTemplate>
         <tr height='40px;'>
@@ -65,9 +68,12 @@
         </tr>
     </ItemTemplate>
     <FooterTemplate>
-        </table>
+         </tbody> </table>
     </FooterTemplate>
 </asp:Repeater>
 </div>
-<div id="divSupplierList" runat="server" align="center">
-</div>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery('#tableSupplier').dataTable();
+    });
+</script>

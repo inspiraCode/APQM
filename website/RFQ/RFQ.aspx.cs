@@ -37,8 +37,8 @@ public partial class _Default : System.Web.UI.Page
                     openpopupContainer();
                     popupContainer.Style.Add("height", "550px");
                     popupContainer.Style.Add("width", "1060px");
-                    popupContainer.Style.Add("left", "35%");
-                    popupContainer.Style.Add("top", "35%");
+                    popupContainer.Style.Add("left", "240px");
+                    popupContainer.Style.Add("top", "80px");
                     break;
                 default:
                     break;
@@ -126,8 +126,8 @@ public partial class _Default : System.Web.UI.Page
                         openpopupContainer();
                         popupContainer.Style.Add("height", "350px");
                         popupContainer.Style.Add("width", "700px");
-                        popupContainer.Style.Add("left", "35%");
-                        popupContainer.Style.Add("top", "35%");
+                        popupContainer.Style.Add("left", "200px");
+                        popupContainer.Style.Add("top", "50px");
                         multiViewPopup.SetActiveView(viewRFQListByBom);
                         uscRfqListByBom.setBomID(bomDetailId);
                     }                    
@@ -145,8 +145,8 @@ public partial class _Default : System.Web.UI.Page
                     openpopupContainer();
                     popupContainer.Style.Add("height", "350px");
                     popupContainer.Style.Add("width", "500px");
-                    popupContainer.Style.Add("left", "35%");
-                    popupContainer.Style.Add("top", "35%");
+                    popupContainer.Style.Add("left", "450px");
+                    popupContainer.Style.Add("top", "50px");
                     multiViewPopup.SetActiveView(viewSendNewRFQ);
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);
                 }
