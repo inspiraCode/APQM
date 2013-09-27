@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierList.ascx.cs"
     Inherits="supplierList" %>
-<div class="mainSection" align="center">
+<div align="center">
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound" >
     <HeaderTemplate>
         <table border="1" id="tableSupplier" class="display">

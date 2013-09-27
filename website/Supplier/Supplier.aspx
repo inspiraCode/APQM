@@ -54,7 +54,7 @@
         <asp:View ID="viewSurvey" runat="server"> <%--Tab update supplier--%>
             <div><br />
             <asp:Button ID="btnSendSurvey" style="margin-bottom:10px;" runat="server" Text="Send new survey" OnClick="btnSendSurvey_Click" />            
-                <div runat="server" id="divSurvey" class="mainSection">                    
+                <div runat="server" id="divSurvey">                    
                     <uc3:surveyList ID="uscSurveyList" runat="server" />
                 </div>                
             </div>

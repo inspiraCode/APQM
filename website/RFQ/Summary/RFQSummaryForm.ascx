@@ -247,8 +247,7 @@
 
 </div>
 
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-    ConnectionString="<%$ ConnectionStrings:APQM_DBConnectionString %>" 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMHeader.TopPartNumber, BOMHeader.PartDescription, BOMDetail.BOMDetailKey, BOMDetail.Qty, ItemMaster.PartNumber, ItemMaster.Description, ItemMaster.UM, ItemMaster.Material FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)">
     <SelectParameters>
         <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" 
