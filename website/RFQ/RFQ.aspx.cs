@@ -33,29 +33,12 @@ public partial class _Default : System.Web.UI.Page
                     ViewState["actualSection"] = "RFQPerSharedItems";
                     break;
                 case "popupRFQbyBOM":
-                    disablePageForModalPopup();
                     openpopupContainer();
-                    popupContainer.Style.Add("height", "550px");
-                    popupContainer.Style.Add("width", "1060px");
-                    popupContainer.Style.Add("left", "240px");
-                    popupContainer.Style.Add("top", "80px");
                     break;
                 default:
                     break;
             }
         }
-    }
-    private void disablePageForModalPopup()
-    {
-        uscMenu.disableButtons();
-        tabRFQ.Enabled = false;
-        tabRFQCountPerBOMDetail.Enabled = false;
-    }
-    private void enablePageForModalPopup()
-    {
-        uscMenu.enableButtons();
-        tabRFQ.Enabled = true;
-        tabRFQCountPerBOMDetail.Enabled = true;
     }
     private void openpopupContainer()
     {
@@ -74,13 +57,11 @@ public partial class _Default : System.Web.UI.Page
     protected void on_ok_sendRFQ(object sender, EventArgs e) 
     {   
         panelPopup.Visible = false;
-        enablePageForModalPopup();
         uscRfqCountPerBomLines.refreshGrid();
     }
     protected void on_cancel_sendRFQ(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        enablePageForModalPopup();
     }
     protected void tabRFQ_Click(object sender, EventArgs e)
     {
@@ -122,12 +103,7 @@ public partial class _Default : System.Web.UI.Page
                     int iRfqCount = int.Parse(lnkRfqCount.Text);
                     if (iRfqCount > 0)
                     {
-                        disablePageForModalPopup();
                         openpopupContainer();
-                        popupContainer.Style.Add("height", "350px");
-                        popupContainer.Style.Add("width", "700px");
-                        popupContainer.Style.Add("left", "200px");
-                        popupContainer.Style.Add("top", "50px");
                         multiViewPopup.SetActiveView(viewRFQListByBom);
                         uscRfqListByBom.setBomID(bomDetailId);
                     }                    
@@ -141,12 +117,7 @@ public partial class _Default : System.Web.UI.Page
                 {
                     index = Convert.ToInt32(e.CommandArgument);
                     bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
-                    disablePageForModalPopup();
                     openpopupContainer();
-                    popupContainer.Style.Add("height", "350px");
-                    popupContainer.Style.Add("width", "500px");
-                    popupContainer.Style.Add("left", "450px");
-                    popupContainer.Style.Add("top", "50px");
                     multiViewPopup.SetActiveView(viewSendNewRFQ);
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);
                 }
@@ -214,7 +185,6 @@ public partial class _Default : System.Web.UI.Page
     protected void btnClosePopup_Click(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        enablePageForModalPopup();
     }
     protected void on_activeView_changed(object sender, EventArgs e)
     {

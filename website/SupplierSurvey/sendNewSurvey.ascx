@@ -43,9 +43,9 @@
     <tr>
         <td align="center" colspan="3">
             <asp:Button ID="btnSendSurvey" runat="server" OnClick="btnSendSurvey_Click" 
-                Text="Send new survey" Width="136px" />
+                Text="Send" Width="80px" />
 &nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" 
-                Width="70px" />
+                Width="80px" />
         </td>
     </tr>
 </table>

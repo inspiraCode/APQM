@@ -41,8 +41,6 @@ public partial class _Default : System.Web.UI.Page
                         MultiViewMain.SetActiveView(viewSurvey);
                         uscSurveyList.load();
                         openpopupContainer();
-                        popupContainer.Style.Add("height", "100px");
-                        popupContainer.Style.Add("width", "410px");
                         uscSendNewSurvey.load();
                         break;
                     case "popupSurvey":
@@ -50,10 +48,6 @@ public partial class _Default : System.Web.UI.Page
                         MultiViewMain.SetActiveView(viewSurvey);
                         multiViewPopup.SetActiveView(viewPopupSurvey);
                         openpopupContainer();
-                        popupContainer.Style.Add("height", "550px");
-                        popupContainer.Style.Add("width", "1060px");
-                        popupContainer.Style.Add("left", "35%");
-                        popupContainer.Style.Add("top", "35%");
                         uscSurveyForm.load();
                         
                         break;

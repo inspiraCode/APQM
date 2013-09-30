@@ -17,20 +17,30 @@
     </asp:MultiView>
     
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:Panel runat="server" CssClass="Overlay">
-        </asp:Panel>
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">  
-        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
+         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
             <asp:View ID="viewPopupSupplier" runat="server">
                 <uc4:sendNewSurvey ID="uscSendNewSurvey" runat="server" OnOk_Click="on_send_survey" OnCancel_Click="on_cancel_send_survey" />
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 440, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
             </asp:View>
             <asp:View ID="viewPopupSurvey" runat="server">
                 <div align="center" style="height:525px; overflow-y: auto;">
                     <uc5:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey"/>
+                    <script type="text/javascript">
+                        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                            appendTo: jQuery('form:first'),
+                            width: 1090, modal: true,
+                            dialogClass: "no-close"
+                        });
+                </script>
                 </div>                
             </asp:View>            
-        </asp:MultiView>            
-        </asp:Panel>
+        </asp:MultiView>                    
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">

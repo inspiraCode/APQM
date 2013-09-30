@@ -57,7 +57,7 @@
             <uc2:Menu ID="uscMenu" runat="server" />
         </asp:View>
     </asp:MultiView>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <%--<asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:Panel runat="server" CssClass="Overlay">
         </asp:Panel>
         <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel" HorizontalAlign="Center">
@@ -74,6 +74,47 @@
                 </asp:View>
             </asp:MultiView>
         </asp:Panel>
+    </asp:Panel>--%>
+    <asp:Panel ID="panelPopup" runat="server" Visible="false">
+        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
+            <asp:View ID="viewPopupSupplier" runat="server">
+                <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnOk_Click="on_add_supplier"
+                    OnCancel_Click="on_cancelAdd_supplier" />
+
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 630, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
+
+            </asp:View>
+            <asp:View ID="viewPopupSIF" runat="server">
+                <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif" OnCancel_Click="on_cancelAdd_sif" />
+
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 950, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
+
+            </asp:View>
+            <asp:View ID="viewPopupRFQ" runat="server">
+                <uc7:rfqForm ID="uscRFQForm" runat="server" OnOk_Click="on_add_rfq" OnCancel_Click="on_cancelAdd_rfq" />
+
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 950, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
+
+            </asp:View>
+        </asp:MultiView>
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
@@ -83,9 +124,9 @@
                 HOME
             </div>
         </asp:View>
-        <asp:View ID="viewSIF" runat="server">            
+        <asp:View ID="viewSIF" runat="server">
             <div runat="server" id="divSIF" class="Content">
-            SIFs
+                SIFs
                 <br />
                 <br />
                 <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="Add SIF"
@@ -94,9 +135,9 @@
                 <uc4:sifList ID="uscSIFList" runat="server" />
             </div>
         </asp:View>
-        <asp:View ID="viewBOM" runat="server">           
+        <asp:View ID="viewBOM" runat="server">
             <div runat="server" id="divBOM" class="Content">
-             BOM
+                BOM
                 <br />
                 <br />
                 <uc8:bomList ID="uscBOMList" runat="server" />
@@ -106,12 +147,12 @@
             <div class="Content">
                 RFQ
                 <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" OnClick="btnAddRFQ_Click" />
-            <uc6:rfqList ID="uscRFQList" runat="server" />
-            </div>            
+                <uc6:rfqList ID="uscRFQList" runat="server" />
+            </div>
         </asp:View>
-        <asp:View ID="viewSupplier" runat="server">            
+        <asp:View ID="viewSupplier" runat="server">
             <div runat="server" id="divSupplier" class="Content">
-            Suppliers
+                Suppliers
                 <br />
                 <br />
                 <asp:Button ID="btnAddSupplier" Style="margin-bottom: 10px;" runat="server" Text="Add Supplier"

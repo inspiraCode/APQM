@@ -15,21 +15,35 @@
         </asp:View>
     </asp:MultiView>
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:Panel runat="server" CssClass="Overlay">
-        </asp:Panel>
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpPanel">
-            <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-                <asp:View ID="viewRFQListByBom" runat="server">
-                    <uc3:rfqListByBom ID="uscRfqListByBom" runat="server" />
-                    <div align="right">
-                        <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
-                </asp:View>
-                <asp:View ID="viewSendNewRFQ" runat="server">
-                    <uc5:sendNewRFQ ID="uscSendNewRFQ" runat="server" OnCancel_Click="on_cancel_sendRFQ"
-                        OnOk_Click="on_ok_sendRFQ" />
-                </asp:View>
-            </asp:MultiView>
-        </asp:Panel>
+        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
+            <asp:View ID="viewRFQListByBom" runat="server">
+                <uc3:rfqListByBom ID="uscRfqListByBom" runat="server" />
+                <div align="right">
+                    <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
+
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 800, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
+
+            </asp:View>
+            <asp:View ID="viewSendNewRFQ" runat="server">
+                <uc5:sendNewRFQ ID="uscSendNewRFQ" runat="server" OnCancel_Click="on_cancel_sendRFQ"
+                    OnOk_Click="on_ok_sendRFQ" />
+
+                <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 530, modal: true,
+                        dialogClass: "no-close"
+                    });
+                </script>
+
+            </asp:View>
+        </asp:MultiView>
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
@@ -49,7 +63,7 @@
             </div>
         </asp:View>
         <asp:View ID="viewRFQCountPerBOMDetail" runat="server">
-            <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;>
+            <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
                 <div runat="server" id="divRFQCountPerBOMDetail">
                     <uc4:rfqCountPerBomLines ID="uscRfqCountPerBomLines" OnRow_Command="on_rfqCountPerBomLines_rowCommand"
                         runat="server" />
@@ -57,7 +71,7 @@
             </div>
         </asp:View>
         <asp:View ID="viewRFQCountPerSharedItems" runat="server">
-            <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;>
+            <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
                 <div runat="server" id="divRFQCountPerSharedItems">
                     <uc6:rfqCountPerSharedItems ID="uscRfqCountPerSharedItems" runat="server" />
                 </div>
