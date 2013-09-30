@@ -721,7 +721,7 @@ public class RfqSummaryCRUD
 {
 
     ConnectionManager connectionManager = new ConnectionManager();
-    Data_Base_MNG.SQL DM;
+    //Data_Base_MNG.SQL DM;
 
     public List<RFQSummary> readByBOMDetailID(long id)
     {

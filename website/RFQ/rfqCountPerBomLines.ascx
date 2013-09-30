@@ -3,7 +3,7 @@
 <asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" OnInit="on_sqldatasource_Init" runat="server" 
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
-<div align="center">
+<div align="center" style="padding-right:30px">
 <asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 

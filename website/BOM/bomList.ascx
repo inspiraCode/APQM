@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomList.ascx.cs" Inherits="bomList" %>
-<div align="center">
+<div align="center" >
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
             <table border="1" id="tableBOM" class="display">

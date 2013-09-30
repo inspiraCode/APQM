@@ -36,8 +36,7 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <div style="background-color: #A4A4A4;height: 30px;">
     <asp:Label ID="lblName" runat="server" Text="" style="top: 10px;position: relative;"></asp:Label>
-    </div>
-    <link href="../Tab.css" rel="stylesheet" type="text/css" />
+    </div>    
     <div id="Tabs" class="tabDiv">
         <asp:Button ID="tabSupplier" runat="server" Text="Supplier" OnClick="tabSupplier_Click"  class="tabSelected" />
         <asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" class="tabUnselected" />

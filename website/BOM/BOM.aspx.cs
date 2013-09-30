@@ -12,8 +12,7 @@ using System.Xml.Linq;
 using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page 
-{
-    BOM bom;
+{    
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["SECTION"] != null)

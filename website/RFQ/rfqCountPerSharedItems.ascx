@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerSharedItems.ascx.cs" Inherits="RFQ_rfqCountPerSharedItems" %>
-<div align="center">
+<div align="center" style="padding-right:30px">
     <asp:GridView ID="gridRFQCountPerSharedItems" runat="server" AllowPaging="False" class="display" OnPreRender="preRenderGridView"
         AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource">
         <Columns>

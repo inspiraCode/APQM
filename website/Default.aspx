@@ -79,40 +79,45 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <asp:MultiView ID="MultiViewMain" runat="server">
         <asp:View ID="viewHome" runat="server">
-            <div>
-                HOME</div>
-        </asp:View>
-        <asp:View ID="viewSIF" runat="server">
-            SIFs <br /><br />
-             <asp:Button ID="btnAddSIF" style="margin-bottom:10px;" runat="server" Text="Add SIF" OnClick="btnAddSIF_Click" />
-             <br />
-            <div>
-                <div runat="server" id="divSIF">
-                    <uc4:sifList ID="uscSIFList" runat="server" />
-                </div>
+            <div class="Content">
+                HOME
             </div>
         </asp:View>
-        <asp:View ID="viewBOM" runat="server">
-            BOM <br /><br />
-            <div>
-                <div runat="server" id="divBOM">
-                    <uc8:bomList ID="uscBOMList" runat="server" />
-                </div>
+        <asp:View ID="viewSIF" runat="server">            
+            <div runat="server" id="divSIF" class="Content">
+            SIFs
+                <br />
+                <br />
+                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="Add SIF"
+                    OnClick="btnAddSIF_Click" />
+                <br />
+                <uc4:sifList ID="uscSIFList" runat="server" />
+            </div>
+        </asp:View>
+        <asp:View ID="viewBOM" runat="server">           
+            <div runat="server" id="divBOM" class="Content">
+             BOM
+                <br />
+                <br />
+                <uc8:bomList ID="uscBOMList" runat="server" />
             </div>
         </asp:View>
         <asp:View ID="viewRFQ" runat="server">
-            <%--<div>
-                RFQ</div>--%>
-                 <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" OnClick="btnAddRFQ_Click" />
+            <div class="Content">
+                RFQ
+                <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" OnClick="btnAddRFQ_Click" />
             <uc6:rfqList ID="uscRFQList" runat="server" />
+            </div>            
         </asp:View>
-        <asp:View ID="viewSupplier" runat="server">
-            Suppliers<br /><br />
-            <asp:Button ID="btnAddSupplier" style="margin-bottom:10px;" runat="server" Text="Add Supplier" OnClick="btnAddSupplier_Click" />
-            <div>
-                <div runat="server" id="divSupplier">
-                    <uc3:supplierList ID="uscSupplierList" runat="server" />
-                </div>
+        <asp:View ID="viewSupplier" runat="server">            
+            <div runat="server" id="divSupplier" class="Content">
+            Suppliers
+                <br />
+                <br />
+                <asp:Button ID="btnAddSupplier" Style="margin-bottom: 10px;" runat="server" Text="Add Supplier"
+                    OnClick="btnAddSupplier_Click" />
+                <br />
+                <uc3:supplierList ID="uscSupplierList" runat="server" />
             </div>
         </asp:View>
         <asp:View ID="viewPopup" runat="server">
