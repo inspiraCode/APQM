@@ -85,7 +85,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 630, modal: true,
-                        dialogClass: "no-close"
+                        dialogClass: "no-close", closeOnEscape:false     
                     });
                 </script>
 
@@ -97,7 +97,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 950, modal: true,
-                        dialogClass: "no-close"
+                        dialogClass: "no-close", closeOnEscape:false     
                     });
                 </script>
 
@@ -109,7 +109,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 950, modal: true,
-                        dialogClass: "no-close"
+                        dialogClass: "no-close", closeOnEscape:false     
                     });
                 </script>
 

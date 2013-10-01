@@ -6,111 +6,6 @@
         width: 100%;
     }
 </style>
-<div style="float:left">
-<table cellspacing="0" class="style1">
-    <tr>
-        <td align="right">
-            SIF #</td>
-        <td>
-            <asp:TextBox ID="txtSIF" runat="server"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right">
-            Program:</td>
-        <td>
-            <asp:TextBox ID="txtProgram" runat="server"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right">
-            Part Number:</td>
-        <td>
-            <asp:TextBox ID="txtPartNumber" runat="server"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right">
-            Part Description:</td>
-        <td>
-            <asp:TextBox ID="txtPartDescription" runat="server"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td align="right">
-            Estimated Volume:</td>
-        <td>
-            <asp:TextBox ID="txtEstimatedVolume" runat="server"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-    <tr align="center">
-        <td colspan="2">
-            <asp:Button ID="btnGo" runat="server" Text="Go" Width="70px" />
-            <asp:TextBox ID="txtBomDetailID" runat="server" Visible="false"></asp:TextBox>
-        </td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
-    </tr>
-</table>
-</div>
 <asp:FormView ID="frmRFQSummaryHeader" runat="server" 
     DataSourceID="SqlDataSource1">
     <EditItemTemplate>
@@ -242,7 +137,7 @@
     </ItemTemplate>
 </asp:FormView>
 <div align="center">
-
+    <br />
     <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" />
 
 </div>
@@ -254,3 +149,4 @@
             PropertyName="Text" />
     </SelectParameters>
 </asp:SqlDataSource>
+<asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>

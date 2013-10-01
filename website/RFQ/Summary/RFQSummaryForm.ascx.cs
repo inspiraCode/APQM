@@ -70,6 +70,6 @@ public partial class RFQ_Summary_RFQSummaryForm : System.Web.UI.UserControl
         ConnectionManager connection = new ConnectionManager();        
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
 
-    }
+    }   
 
 }

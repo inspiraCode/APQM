@@ -24,7 +24,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 440, modal: true,
-                        dialogClass: "no-close"
+                        dialogClass: "no-close", closeOnEscape:false     
                     });
                 </script>
             </asp:View>
@@ -35,7 +35,7 @@
                         jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                             appendTo: jQuery('form:first'),
                             width: 1090, modal: true,
-                            dialogClass: "no-close"
+                            dialogClass: "no-close", closeOnEscape:false     
                         });
                 </script>
                 </div>                

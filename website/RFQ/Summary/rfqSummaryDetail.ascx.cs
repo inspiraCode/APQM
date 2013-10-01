@@ -26,10 +26,20 @@ public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
     }
     private void loadDetail()
     {
+        
         repeaterRFQSummary.DataSource = rfqSummary;
         repeaterRFQSummary.DataBind();
         summarizeTotals();
-
+        if (rfqSummary.Count > 0)
+        {
+            repeaterRFQSummary.Visible = true;
+            divHeader.Visible = true;            
+        }
+        else
+        {
+            repeaterRFQSummary.Visible = false;
+            divHeader.Visible = false;            
+        }
     }
     public void summarizeTotals()
     {
@@ -61,13 +71,11 @@ public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
     {
         if (entity != null)
         {
-            rfqSummary = entity;
-            divHeader.Visible = true;
+            rfqSummary = entity;            
         }
         else
         {
-            rfqSummary = new List<RFQSummary>();
-            divHeader.Visible = false;
+            rfqSummary = new List<RFQSummary>();            
         }        
         Session["rfqSummaryList"] = rfqSummary;
     }
