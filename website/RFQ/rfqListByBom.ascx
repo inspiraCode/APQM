@@ -120,7 +120,7 @@
 <div style="height:160px;">
 <asp:GridView ID="gridRFQbyBOMLine" runat="server" AllowPaging="True" 
     AllowSorting="True" AutoGenerateColumns="False" 
-    DataSourceID="SqlDataSource1" PageSize="5">
+    DataSourceID="SqlDataSource1" PageSize="5" RowStyle-Height="27px">
     <Columns>
         <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" 
             SortExpression="RFQHeaderKey" Visible="False" />

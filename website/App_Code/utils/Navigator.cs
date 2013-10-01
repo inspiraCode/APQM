@@ -14,6 +14,7 @@ public static class Navigator
         HttpContext.Current.Session.Remove("BOM");
         HttpContext.Current.Session.Remove("RFQ");
         HttpContext.Current.Session.Remove("Supplier");
+        HttpContext.Current.Session.Remove("rfqSummary");
     }
     public static void goToPage(string page, string section)
     {

@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerSharedItems.ascx.cs" Inherits="RFQ_rfqCountPerSharedItems" %>
 <div align="center" style="padding-right:30px">
     <asp:GridView ID="gridRFQCountPerSharedItems" runat="server" AllowPaging="False" class="display" OnPreRender="preRenderGridView"
-        AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource">
+        AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource" RowStyle-Height="27px">
         <Columns>
             <asp:BoundField DataField="ItemMasterKey" HeaderText="ItemMasterKey" 
                 SortExpression="ItemMasterKey" Visible="false"/>

@@ -87,4 +87,9 @@ public partial class RFQSummary : System.Web.UI.Page
     {
         panelPopup.Visible = false;
     }
+    protected void btnBackToSIF_Click(object sender, EventArgs e)
+    {
+        multiViewPopup.SetActiveView(viewSIF);
+        uscSelectBOM.setBOMHeaderKey(-1);
+    }
 }

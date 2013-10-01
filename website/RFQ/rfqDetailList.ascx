@@ -140,7 +140,7 @@
                 <table border="1" cellspacing="0" width="100%">
             </HeaderTemplate>
             <ItemTemplate>
-                <tr height='40px;'>
+                <tr height='27px;'>
                     <td width="162px">
                         <%# DataBinder.Eval(Container.DataItem, "ItemDescription")%>
                     </td>

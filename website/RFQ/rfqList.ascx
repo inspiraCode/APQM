@@ -2,7 +2,7 @@
 <div align="center" style="padding-right:30px">
 <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" 
 class="display"
-    DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView" >
+    DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView" RowStyle-Height="27px">
     <Columns>
         <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" 
             SortExpression="RFQHeaderKey" />

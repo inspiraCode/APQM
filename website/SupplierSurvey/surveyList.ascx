@@ -26,7 +26,7 @@
                 <tbody>
         </HeaderTemplate>
         <ItemTemplate>
-            <tr height='40px;'>
+            <tr height='27px;'>
                 <td>
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="SurveyID"
                         OnCommand="updateByID">

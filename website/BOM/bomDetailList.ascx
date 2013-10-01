@@ -66,7 +66,7 @@
         <table border="1" cellspacing="0" width="100%">
     </HeaderTemplate>
     <ItemTemplate>
-        <tr height='40px;'>
+        <tr height='27px;'>
             <td width= "155px">
                 <asp:LinkButton ID="updateByID" runat="server" CommandArgument=""
                 OnCommand="updateByID">

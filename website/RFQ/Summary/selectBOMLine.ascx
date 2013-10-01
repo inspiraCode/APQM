@@ -91,7 +91,7 @@
 <asp:GridView ID="gridViewBOM" runat="server" AutoGenerateColumns="False" 
     DataSourceID="SqlDataSource1" OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey"
     OnPreRender="preRenderGridView" class="display"
-    >
+    RowStyle-Height="27px">
     <Columns>
         <asp:ButtonField DataTextField="PartNumber" HeaderText="Part Number" 
             SortExpression="PartNumber" CommandName="selectBOM" />

@@ -8,7 +8,7 @@
             OnPreRender="preRenderGridView" class="display"
     DataSourceID="SqlDataSource1"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMHeaderKey"
-    >
+    RowStyle-Height="27px">
     <Columns>
         <asp:ButtonField CommandName="selectSIF" DataTextField="InquiryNumber" 
             HeaderText="Inquiry Number" ShowHeader="True" 
