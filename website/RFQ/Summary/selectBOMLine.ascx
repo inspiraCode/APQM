@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="selectBOMLine.ascx.cs" Inherits="RFQ_Summary_selectBOMLine" %>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
-    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
-    ProviderName="System.Data.SqlClient" 
+    ProviderName="System.Data.SqlClient" OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT [BOMDetailKey], [BOMHeaderKey], [ItemMasterKey], [Qty], [Cost], [Status], [Description], [PartNumber], [UM], [Material] FROM [viewBOMDetail_ReadAll] WHERE ([BOMHeaderKey] = @BOMHeaderKey)">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBOMHeaderKey" Name="BOMHeaderKey" 
@@ -10,7 +9,6 @@
 </asp:SqlDataSource>
 <asp:Label ID="lblBOMHeaderKey" runat="server" Text="Label" Visible="False"></asp:Label>
 <div>
-    
     <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSourceForm">
         <EditItemTemplate>
             InquiryNumber:
@@ -106,9 +104,8 @@
             SortExpression="Status" />
     </Columns>
 </asp:GridView>
-<asp:SqlDataSource ID="SqlDataSourceForm" runat="server" 
-    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
-    ProviderName="System.Data.SqlClient" 
+<asp:SqlDataSource ID="SqlDataSourceForm" runat="server"     
+    ProviderName="System.Data.SqlClient"  OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT SIFHeader.InquiryNumber, SIFHeader.Priority, SIFHeader.SalesPerson, BOMHeader.TopPartNumber, BOMHeader.PartDescription FROM BOMHeader INNER JOIN SIFHeader ON BOMHeader.SIFHeaderKey = SIFHeader.SIFHeaderKey WHERE (BOMHeader.BOMHeaderKey = @key )">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBOMHeaderKey" Name="key" 

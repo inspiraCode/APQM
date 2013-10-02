@@ -19,7 +19,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     public void load()
     {
-        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p-' + prompt('New Part Number')";
+        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p~' + prompt('New Part Number')";
         loadDropDowns();
         loadDetail();
     }
@@ -143,7 +143,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         if (txtPrompt.Value.Trim() != "")
         {
-            string[] prompt = txtPrompt.Value.Split('-');
+            string[] prompt = txtPrompt.Value.Split('~');
             if (prompt[1] != "null" && prompt[1].Trim() != "")
             {
                 switch (prompt[0])
@@ -158,14 +158,15 @@ public partial class bomDetailList : System.Web.UI.UserControl
                         {
                             allItems = null;
                             loadDropDowns();
-                            cboPartNumber.SelectedValue = idGenerated;                            
+                            cboPartNumber.SelectedValue = idGenerated;
+                            cboPartNumber.Focus();
                         }
                         break;
                 }
             }
             txtPrompt.Value = "";
         }
-        cboPartNumber.Focus();
+        
     }
     private void loadDropDowns()
     {

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_rfqFormMain : System.Web.UI.Page
+public partial class rfqFormMain : System.Web.UI.Page
 {
     private long rfqHeaderKey=-1;
     private RFQ rfq;

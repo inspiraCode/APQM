@@ -190,7 +190,6 @@ public class RFQ
     }
 }
 
-
 public class RFQDetail
 {
     private long id;
@@ -348,6 +347,7 @@ public class RFQSummary
     private long packingPerUnit; 
     private float assemblyCostPerUnit; 
     private float estimatedAnnualVolume;
+    private float newCost;
 
     public float ManufacturingCost
     {
@@ -426,5 +426,10 @@ public class RFQSummary
     {
         get { return estimatedAnnualVolume; }
         set { estimatedAnnualVolume = value; }
+    }
+    public float NewCost
+    {
+        get { return newCost; }
+        set { newCost = value; }
     }
 }

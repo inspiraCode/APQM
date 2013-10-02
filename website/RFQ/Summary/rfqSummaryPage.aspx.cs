@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_Summary_rfqSummaryPage : System.Web.UI.Page
+public partial class rfqSummaryPage : System.Web.UI.Page
 {
     private long bomDetailKey = -1;
     protected void Page_Load(object sender, EventArgs e)

@@ -1,4 +1,4 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBase.master" AutoEventWireup="true"
+<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master" AutoEventWireup="true"
     CodeFile="Survey.aspx.cs" Inherits="VendorSurvey" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc2" %>

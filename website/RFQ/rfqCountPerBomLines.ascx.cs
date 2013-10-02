@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_rfqCountPerBomLines : System.Web.UI.UserControl
+public partial class rfqCountPerBomLines : System.Web.UI.UserControl
 {
     public event GridViewCommandEventHandler Row_Command;
 

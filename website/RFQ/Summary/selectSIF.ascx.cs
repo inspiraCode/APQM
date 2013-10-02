@@ -13,12 +13,10 @@ public partial class RFQ_Summary_selectSIF : System.Web.UI.UserControl
     {
 
     }
-
     public void gridView_RowCommand(Object sender, GridViewCommandEventArgs e)
     {
         Row_Command(sender, e);
     }
-
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
@@ -32,7 +30,6 @@ public partial class RFQ_Summary_selectSIF : System.Web.UI.UserControl
         if (grid.ShowFooter)
             grid.FooterRow.TableSection = TableRowSection.TableFooter;
     }
-
     protected void preRenderGridView(Object sender, EventArgs e)
     {
         base.OnPreRender(e);

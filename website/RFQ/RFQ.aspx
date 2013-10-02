@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="_Default"
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="RFQDefault"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
@@ -22,6 +22,7 @@
                     <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 800, modal: true,
@@ -35,6 +36,7 @@
                     OnOk_Click="on_ok_sendRFQ" />
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 530, modal: true,

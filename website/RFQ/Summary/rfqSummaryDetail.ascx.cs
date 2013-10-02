@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
+public partial class rfqSummaryDetail : System.Web.UI.UserControl
 {
     private List<RFQSummary> rfqSummary = null;
+    private RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
+    public event EventHandler select_RFQ;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -82,6 +84,34 @@ public partial class RFQ_rfqSummaryDetail : System.Web.UI.UserControl
     public List<RFQSummary> getEntity()
     {
         return (List<RFQSummary>)Session["rfqSummaryList"];
-    }  
-}
+    }
+    public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            RFQSummary rfqSummary = (RFQSummary)e.Item.DataItem;
+            ((LinkButton)e.Item.FindControl("lnkSupplier")).CommandArgument = rfqSummary.Id.ToString();            
+        }
+    }
+    public void selectRFQ(object sender, CommandEventArgs e)
+    {
+        long id = long.Parse((string)e.CommandArgument);
+        RFQSummary rfqSummary = new RFQSummary();
+        rfqSummary = rfqSummaryCRUD.readById(id);
+        if (rfqSummary != null)
+        {
+            SessionObject so = new SessionObject();
+            rfqSummary.NewCost = 100;
+            so.Content = rfqSummary;
+            so.Status = "forUpdate";
 
+            Session["rfqSummarySelected"] = so;
+            select_RFQ(sender, e);
+        }
+        else
+        {
+            Session.Remove("rfqSummarySelected");
+            Navigator.goToPage("~/Error.aspx", "");
+        }
+    }
+}

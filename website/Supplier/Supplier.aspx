@@ -21,6 +21,7 @@
             <asp:View ID="viewPopupSupplier" runat="server">
                 <uc4:sendNewSurvey ID="uscSendNewSurvey" runat="server" OnOk_Click="on_send_survey" OnCancel_Click="on_cancel_send_survey" />
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New Supplier Survey");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 440, modal: true,
@@ -32,6 +33,7 @@
                 <div align="center" style="height:525px; overflow-y: auto;">
                     <uc5:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey"/>
                     <script type="text/javascript">
+                        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Supplier Survey");
                         jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                             appendTo: jQuery('form:first'),
                             width: 1090, modal: true,

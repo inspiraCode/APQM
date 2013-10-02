@@ -1,5 +1,6 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs" Inherits="RFQ_Summary_RFQSummaryForm" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs" Inherits="RFQSummaryForm" %>
 <%@ Register src="rfqSummaryDetail.ascx" tagname="rfqSummaryDetail" tagprefix="uc1" %>
+<%@ Register src="selectRFQ.ascx" tagname="selectRFQ" tagprefix="uc2" %>
 <style type="text/css">
     .style1
     {
@@ -134,19 +135,38 @@
         Material:
         <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
         <br />
+        Cost:
+        <asp:Label ID="CostLabel" runat="server" Text='<%# Bind("Cost") %>' />
+        <br />
     </ItemTemplate>
 </asp:FormView>
 <div align="center">
     <br />
-    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" />
+    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" onSelect_RFQ="on_select_rfq" />
 
 </div>
 
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
-    SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMHeader.TopPartNumber, BOMHeader.PartDescription, BOMDetail.BOMDetailKey, BOMDetail.Qty, ItemMaster.PartNumber, ItemMaster.Description, ItemMaster.UM, ItemMaster.Material FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)">
+    SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMHeader.TopPartNumber, BOMHeader.PartDescription, BOMDetail.BOMDetailKey, BOMDetail.Qty, ItemMaster.PartNumber, ItemMaster.Description, ItemMaster.UM, ItemMaster.Material, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)" 
+    ProviderName="System.Data.SqlClient">
     <SelectParameters>
         <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" 
             PropertyName="Text" />
     </SelectParameters>
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
+
+<asp:Panel ID="panelPopup" runat="server" Visible="false" title="RFQ Selection">
+    <uc2:selectRFQ ID="uscSelectRFQ" runat="server" OnOk_click="on_confirm_rfq" OnCancel_click="on_cancel_rfq" />
+    <script type="text/javascript">
+                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 430, 
+                        modal: true,
+                        height: 320,
+                        dialogClass: "no-close",
+                        closeOnEscape: false,
+                        draggable: true
+                    });
+                </script>
+</asp:Panel>

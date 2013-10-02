@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_rfqListByBom : System.Web.UI.UserControl
+public partial class rfqListByBom : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {

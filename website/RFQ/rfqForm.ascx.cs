@@ -32,7 +32,7 @@ public partial class rfqForm : System.Web.UI.UserControl
             if (((SessionObject)Session["rfqObject"]).Status == "forUpdate")
             {                
                 lblMode.Text = "Update"; 
-                fillWithEntity(rfq);               
+                fillWithEntity(rfq);
             }
             else if (((SessionObject)Session["rfqObject"]).Status == "forNew")
             {
@@ -93,6 +93,21 @@ public partial class rfqForm : System.Web.UI.UserControl
         if (save()) Ok_Click(this, e);
            
     }
+    public bool save(bool finalize) {
+        if (finalize)
+        {
+            if (save()) {
+                RFQ rfq = rfqCRUD.readById(this.rfq.Id);
+                rfq.Status = "COMPLETED";                
+                if (!rfqCRUD.update(rfq))
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public bool save()
     {
         RFQ rfq = new RFQ();
@@ -140,7 +155,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         }
         else if (lblMode.Text == "Update")
         {
-            rfq.Status = "AWARDED";
+            rfq.Status = "IN PROGRESS";
             rfq.Id = this.rfq.Id;
             if (!rfqCRUD.update(rfq))
             {

@@ -12,7 +12,7 @@ using System.Xml.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 
-public partial class _Default : System.Web.UI.Page 
+public partial class RFQDefault : System.Web.UI.Page 
 {   
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -132,7 +132,7 @@ public partial class _Default : System.Web.UI.Page
                     index = Convert.ToInt32(e.CommandArgument);
                     bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
                     Session["rfqSummary"] = bomDetailId;
-                    Navigator.goToPage("~/RFQ/RFQSummary.aspx", "RFQSummary");
+                    Response.Redirect("~/RFQ/RFQSummary.aspx", false);
                 }
                 catch (Exception ex)
                 {

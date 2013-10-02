@@ -13,6 +13,8 @@ public class BOM
     private string topPartNumber = "";
     private string partDescription = "";
     private string revision = "";
+    private string inquiryNumber = "";
+    
     private List<BOMDetail> bomDetail;
 
     public List<BOMDetail> BomDetail
@@ -44,6 +46,11 @@ public class BOM
     {
         get { return revision; }
         set { revision = value; }
+    }
+    public string InquiryNumber
+    {
+        get { return inquiryNumber; }
+        set { inquiryNumber = value; }
     }
 }
 

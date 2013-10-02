@@ -36,6 +36,7 @@ public partial class VendorRFQ : System.Web.UI.Page
                     if (retrieveEntity())
                     {
                         Navigator.goToPage("~/Vendor/RFQ.aspx", "supplier");
+                        return;
                     }
                 }
             }
@@ -53,7 +54,7 @@ public partial class VendorRFQ : System.Web.UI.Page
                             ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
                             multiView.SetActiveView(viewSupplier);
                             uscSupplierForm.load();
-                            return;                       
+                            return;
                         case "rfq":
                             ((SessionObject)Session["rfqObject"]).Status = "forUpdate";
                             multiView.SetActiveView(viewRFQ);
@@ -126,7 +127,7 @@ public partial class VendorRFQ : System.Web.UI.Page
     }
     protected void btnFinalize_Click(object sender, EventArgs e)
     {
-        if(uscRfqForm.save()) Navigator.goToPage("~/Vendor/RFQ.aspx", "finalize");
+        if(uscRfqForm.save(true)) Navigator.goToPage("~/Vendor/RFQ.aspx", "finalize");
     }
     protected void on_save_supplier(object sender, EventArgs e)
     {

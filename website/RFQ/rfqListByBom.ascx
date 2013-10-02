@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqListByBom.ascx.cs" Inherits="RFQ_rfqListByBom" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqListByBom.ascx.cs" Inherits="rfqListByBom" %>
 <style type="text/css">
     .style1
     {

@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqSummaryDetail.ascx.cs"
-    Inherits="RFQ_rfqSummaryDetail" %>
+    Inherits="rfqSummaryDetail" %>
 <div align="center">
     <div style="float: left" runat="server" id="divHeader" visible="false">
         <table border="0" style="text-align: right">
@@ -127,7 +127,7 @@
         </table>
     </div>
     <div align="left">
-        <asp:Repeater ID="repeaterRFQSummary" runat="server">
+        <asp:Repeater ID="repeaterRFQSummary" runat="server" OnItemDataBound="R1_ItemDataBound">
             <HeaderTemplate>
                 <table border="1">
                     <tr>
@@ -137,8 +137,10 @@
                     <table>
                         <tr height='27px;'>
                             <td>
-                                <asp:Label ID="Label13" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>'>                            
-                                </asp:Label>
+                                <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
+                                    OnCommand="selectRFQ">
+                                    <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
+                                </asp:LinkButton>
                             </td>
                         </tr>
                         <tr height='27px;'>

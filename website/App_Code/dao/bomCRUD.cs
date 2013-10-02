@@ -107,7 +107,7 @@ public class bomCRUD : ICRUD<BOM>
     {
         BOM bom = new BOM();
 
-        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM BOMHeader WHERE (BOMHeaderKey = @key)";
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, InquiryNumber FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -130,6 +130,7 @@ public class bomCRUD : ICRUD<BOM>
                 bom.TopPartNumber = table.Rows[0][2].ToString();
                 bom.PartDescription = table.Rows[0][3].ToString();
                 bom.Revision = table.Rows[0][4].ToString();
+                bom.InquiryNumber = table.Rows[0][5].ToString();
                 
                 sqlConnection.Dispose();
                 return bom;
@@ -144,7 +145,7 @@ public class bomCRUD : ICRUD<BOM>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision FROM BOMHeader ORDER BY PartDescription";
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, InquiryNumber  FROM viewBOMHeader_ReadAll ORDER BY PartDescription";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -156,6 +157,7 @@ public class bomCRUD : ICRUD<BOM>
             bom.TopPartNumber = table.Rows[i][2].ToString();
             bom.PartDescription = table.Rows[i][3].ToString();
             bom.Revision = table.Rows[i][4].ToString();
+            bom.InquiryNumber = table.Rows[i][5].ToString();
 
             recordset.Add(bom);
         }

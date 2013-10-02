@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerBomLines.ascx.cs"
-    Inherits="RFQ_rfqCountPerBomLines" %>
+    Inherits="rfqCountPerBomLines" %>
 <asp:SqlDataSource ID="SqlDataSourceRFQCountPerBOMDetail" OnInit="on_sqldatasource_Init" runat="server" 
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
-<div align="center" style="padding-right:30px">
+<div align="center" >
 <asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 

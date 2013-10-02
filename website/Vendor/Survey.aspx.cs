@@ -33,6 +33,7 @@ public partial class VendorSurvey : System.Web.UI.Page
                     if (retrieveEntity())
                     {
                         Navigator.goToPage("~/Vendor/Survey.aspx", "supplier");
+                        return;
                     }
                 }
             }

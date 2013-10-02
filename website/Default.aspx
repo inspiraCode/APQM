@@ -82,10 +82,11 @@
                     OnCancel_Click="on_cancelAdd_supplier" />
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 630, modal: true,
-                        dialogClass: "no-close", closeOnEscape:false     
+                        dialogClass: "no-close", closeOnEscape:false
                     });
                 </script>
 
@@ -94,11 +95,12 @@
                 <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif" OnCancel_Click="on_cancelAdd_sif" />
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 950, modal: true,
-                        dialogClass: "no-close", closeOnEscape:false     
-                    });
+                        dialogClass: "no-close", closeOnEscape:false
+                    });                    
                 </script>
 
             </asp:View>
@@ -109,8 +111,8 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 950, modal: true,
-                        dialogClass: "no-close", closeOnEscape:false     
-                    });
+                        dialogClass: "no-close", closeOnEscape:false
+                    });                    
                 </script>
 
             </asp:View>
@@ -129,7 +131,7 @@
                 SIFs
                 <br />
                 <br />
-                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="Add SIF"
+                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
                     OnClick="btnAddSIF_Click" />
                 <br />
                 <uc4:sifList ID="uscSIFList" runat="server" />
@@ -146,7 +148,7 @@
         <asp:View ID="viewRFQ" runat="server">
             <div class="Content">
                 RFQ
-                <asp:Button ID="btnAddRFQ" runat="server" Text="Add RFQ" OnClick="btnAddRFQ_Click" />
+                <asp:Button ID="btnAddRFQ" runat="server" Text="New RFQ" OnClick="btnAddRFQ_Click" />
                 <uc6:rfqList ID="uscRFQList" runat="server" />
             </div>
         </asp:View>
@@ -155,7 +157,7 @@
                 Suppliers
                 <br />
                 <br />
-                <asp:Button ID="btnAddSupplier" Style="margin-bottom: 10px;" runat="server" Text="Add Supplier"
+                <asp:Button ID="btnAddSupplier" Style="margin-bottom: 10px;" runat="server" Text="New Supplier"
                     OnClick="btnAddSupplier_Click" />
                 <br />
                 <uc3:supplierList ID="uscSupplierList" runat="server" />

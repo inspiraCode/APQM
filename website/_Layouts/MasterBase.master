@@ -178,8 +178,8 @@
 </body>
 </html>
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 210).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 200).toString());
     jQuery( window ).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 210).toString());
+        jQuery('#divContent').css('height', (jQuery(window).height() - 200).toString());
     });
 </script>

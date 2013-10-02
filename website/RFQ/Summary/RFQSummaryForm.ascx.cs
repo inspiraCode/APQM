@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_Summary_RFQSummaryForm : System.Web.UI.UserControl
+public partial class RFQSummaryForm : System.Web.UI.UserControl
 {
     RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
     public RFQSummary rfqSummary = null;
@@ -57,19 +57,28 @@ public partial class RFQ_Summary_RFQSummaryForm : System.Web.UI.UserControl
             uscRfqSummaryList.load();
 
             frmRFQSummaryHeader.DataBind();
-            
         }
         catch (Exception e)
         {
             throw e;
         }
     }
-
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();        
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
-
-    }   
-
+    }
+    protected void on_select_rfq(Object sender, EventArgs e)
+    {
+        panelPopup.Visible = true;
+        uscSelectRFQ.load();
+    }
+    protected void on_confirm_rfq(Object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
+    protected void on_cancel_rfq(Object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
 }

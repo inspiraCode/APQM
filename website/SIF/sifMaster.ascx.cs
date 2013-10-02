@@ -20,7 +20,7 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     public void load()
     {
-        btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c-' + prompt('New Customer')";
+        btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c~' + prompt('New Customer')";
         loadDropDowns();
         if (Session["SIFObject"] != null)
         {
@@ -147,7 +147,7 @@ public partial class SifMaster : System.Web.UI.UserControl
     {
         if (txtPrompt.Value.Trim() != "")
         {
-            string[] prompt = txtPrompt.Value.Split('-');
+            string[] prompt = txtPrompt.Value.Split('~');
             if (prompt[1] != "null" && prompt[1].Trim() != "")
             {
                 switch (prompt[0])

@@ -21,21 +21,26 @@ public partial class bomList : System.Web.UI.UserControl
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString();
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString();
-            if (((BOM)e.Item.DataItem).SifId > -1)
-            {
-                ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString() + ";" +
-                                                                                   ((BOM)e.Item.DataItem).SifId.ToString();
-                ((LinkButton)e.Item.FindControl("updateSIF")).Text = ((BOM)e.Item.DataItem).SifId.ToString();
 
+            BOM bom =(BOM)e.Item.DataItem;
+            if (bom.TopPartNumber.Trim() == "")
+            {
+                ((LinkButton)e.Item.FindControl("updateByID")).Text = "(Without Number)";
+            }
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = bom.Id.ToString();
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = bom.Id.ToString();
+
+            if (bom.SifId > -1)
+            {
+                ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = bom.Id.ToString() + ";" +
+                                                                                   bom.SifId.ToString();
+                ((LinkButton)e.Item.FindControl("updateSIF")).Text = bom.InquiryNumber;
             }
             else
             {
-                ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = ((BOM)e.Item.DataItem).Id.ToString() + ";";
+                ((LinkButton)e.Item.FindControl("updateSIF")).CommandArgument = bom.Id.ToString() + ";";
                 ((LinkButton)e.Item.FindControl("updateSIF")).Text = "None";
             }
-            
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)

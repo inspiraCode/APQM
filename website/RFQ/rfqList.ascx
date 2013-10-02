@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
-<div align="center" style="padding-right:30px">
+<div align="center" >
 <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" 
 class="display"
     DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView" RowStyle-Height="27px">

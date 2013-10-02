@@ -4,6 +4,7 @@
         <HeaderTemplate>
             <table border="1" id="tableBOM" class="display">
              <thead>
+             <tr>
                 <th>
                     Top Part Number
                 </th>

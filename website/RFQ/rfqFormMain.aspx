@@ -1,4 +1,4 @@
-﻿<%@ Page  Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBase.master" AutoEventWireup="true" CodeFile="rfqFormMain.aspx.cs" Inherits="RFQ_rfqFormMain" MaintainScrollPositionOnPostback="True" %>
+﻿<%@ Page  Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master" AutoEventWireup="true" CodeFile="rfqFormMain.aspx.cs" Inherits="rfqFormMain" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register src="rfqForm.ascx" tagname="rfqForm" tagprefix="uc1" %>
 

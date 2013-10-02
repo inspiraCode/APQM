@@ -36,7 +36,7 @@
             <tr height='27px;'>
                 <td>
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
-                        OnCommand="updateByID">                    
+                        OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%>
                     </asp:LinkButton>
                 </td>

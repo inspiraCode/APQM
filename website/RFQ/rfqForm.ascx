@@ -56,7 +56,7 @@
     }
     .style55
     {
-        width: 67%;
+        width: 147px;
     }
     .style56
     {

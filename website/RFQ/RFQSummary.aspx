@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterP.master" AutoEventWireup="true"
-    CodeFile="RFQSummary.aspx.cs" Inherits="RFQSummary" %>
+    CodeFile="RFQSummary.aspx.cs" Inherits="RFQSummaryDefault" %>
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc1" %>
 <%@ Register Src="Summary/RFQSummaryForm.ascx" TagName="RFQSummaryForm" TagPrefix="uc2" %>
@@ -23,6 +23,7 @@
                     <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Step 1: Please select SIF/BOM");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 900, modal: true,
@@ -45,6 +46,7 @@
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
 
                 <script type="text/javascript">
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Step 2: Please select BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 900, modal: true,
@@ -69,5 +71,5 @@
             Target="_blank" Visible="False">Open in a separate page</asp:HyperLink>
     </div>
     <br />
-    <uc2:RFQSummaryForm ID="uscRFQSummaryForm" runat="server" />
+    <uc2:RFQSummaryForm ID="uscRFQSummaryForm" runat="server"  />
 </asp:Content>
