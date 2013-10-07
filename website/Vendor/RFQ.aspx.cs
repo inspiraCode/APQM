@@ -56,7 +56,7 @@ public partial class VendorRFQ : System.Web.UI.Page
                             uscSupplierForm.load();
                             return;
                         case "rfq":
-                            ((SessionObject)Session["rfqObject"]).Status = "forUpdate";
+                            //((SessionObject)Session["rfqObject"]).Status = "forUpdate";
                             multiView.SetActiveView(viewRFQ);
                             uscRfqForm.load();
                             return;
