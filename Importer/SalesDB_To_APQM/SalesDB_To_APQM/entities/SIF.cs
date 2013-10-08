@@ -162,4 +162,7 @@ public class SIF
         get { return technical; }
         set { technical = value; }
     }
+    public override string ToString(){
+        return "Inquiry Number: " + this.InquiryNumber + " Revision: " + this.Revision + " Product: " + this.Product + " Sales Person: " +this.SalesPerson;
+    }
 }

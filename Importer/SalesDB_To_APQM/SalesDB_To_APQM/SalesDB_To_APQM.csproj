@@ -49,9 +49,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\customerCRUD.cs" />
     <Compile Include="DAO\ICRUD.cs" />
     <Compile Include="DAO\sifAccessCRUD.cs" />
     <Compile Include="DAO\sifCRUD.cs" />
+    <Compile Include="entities\Customer.cs" />
     <Compile Include="entities\SIF.cs" />
     <Compile Include="utils\ConnectionManager.cs" />
     <Compile Include="utils\AccessConfigurationManager.cs" />

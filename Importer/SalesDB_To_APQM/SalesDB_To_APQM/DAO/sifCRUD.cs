@@ -155,60 +155,14 @@ public class sifCRUD : ICRUD<SIF>
         }
         return null;
     }
-    public SIF readByInquiryNumber(string inquiryNumber)
+    public SIF readBySIF_IN_List(SIF sifParameter, List<SIF> list)
     {
-        SIF sif = new SIF();
-
-        string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
-                        "FROM viewSIF_ReadAll WHERE(InquiryNumber = @key)";
-        DataTable table = new DataTable();
-
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        if (sqlConnection != null)
+        foreach (SIF sifLocal in list)
         {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key", inquiryNumber.Trim());
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(table);
-            if (table.Rows.Count > 0)
+            if (sifLocal.InquiryNumber.Trim() == sifParameter.InquiryNumber.Trim() &&
+                sifLocal.Revision.Trim() == sifParameter.Revision.Trim())
             {
-                sif.Id = long.Parse(table.Rows[0][0].ToString());
-                sif.CustomerKey = long.Parse(table.Rows[0][1].ToString());
-
-                if (table.Rows[0][2].ToString() != "")
-                {
-                    sif.BomId = long.Parse(table.Rows[0][2].ToString());
-                }
-                else
-                {
-                    sif.BomId = -1;
-                }
-
-                sif.InquiryNumber = table.Rows[0][3].ToString();
-                sif.Priority = table.Rows[0][4].ToString();
-                sif.Revision = table.Rows[0][5].ToString();
-                sif.SalesPerson = table.Rows[0][6].ToString();
-                sif.CostModelLoc = table.Rows[0][7].ToString();
-                sif.Contact = table.Rows[0][8].ToString();
-                sif.BussinesClass = table.Rows[0][9].ToString();
-                sif.Product = table.Rows[0][10].ToString();
-                sif.DivLoc = table.Rows[0][11].ToString();
-                sif.Department = table.Rows[0][12].ToString();
-                sif.Reason4Quote = table.Rows[0][13].ToString();
-                sif.Application = table.Rows[0][14].ToString();
-                sif.Specification = table.Rows[0][15].ToString();
-                sif.DrawingLevel = table.Rows[0][16].ToString();
-                sif.TaskDescription = table.Rows[0][17].ToString();
-                sif.PartPrint = table.Rows[0][18].ToString();
-                sif.Sample = table.Rows[0][19].ToString();
-                sif.ToolingTarget = table.Rows[0][20].ToString();
-                sif.PrimaryCompetitors = table.Rows[0][21].ToString();
-                sif.SpecificResourceRequirements = table.Rows[0][22].ToString();
-                sif.Technical = table.Rows[0][23].ToString();
-
-                sqlConnection.Dispose();
-                return sif;
+                return sifLocal;
             }
         }
         return null;
@@ -226,6 +180,10 @@ public class sifCRUD : ICRUD<SIF>
 
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
+        if (DM.ErrorOccur)
+        {
+            throw new Exception(DM.Error_Mjs);
+        }
         for (int i = 0; i < table.Rows.Count; i++)
         {
             SIF sif = new SIF();
