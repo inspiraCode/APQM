@@ -7,10 +7,10 @@ using System.Web.UI.WebControls;
 
 public partial class SurveyContactsExecutive : System.Web.UI.UserControl
 {
-    static SupplierSurveyContacts contact = new SupplierSurveyContacts();
+    private SupplierSurveyContacts contact = new SupplierSurveyContacts();
     protected void Page_Load(object sender, EventArgs e)
     {
-             
+        contact = (SupplierSurveyContacts) Session["contact"];
     }
     public void load()
     {
@@ -64,5 +64,6 @@ public partial class SurveyContactsExecutive : System.Web.UI.UserControl
         {
             contact = new SupplierSurveyContacts();
         }
+        Session["contact"] = contact;
     }
 }

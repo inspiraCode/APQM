@@ -11,7 +11,6 @@ public partial class SurveyForm : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;   
 
     Supplier supplier;
-   
 
     SupplierSurveyCRUD survey_CRUD = new SupplierSurveyCRUD();
     SupplierSurveyCertificationCRUD certification_CRUD = new SupplierSurveyCertificationCRUD();
@@ -19,11 +18,14 @@ public partial class SurveyForm : System.Web.UI.UserControl
     SupplierSurveyForecastSalesCRUD forecast_CRUD = new SupplierSurveyForecastSalesCRUD();
     SupplierSurveyIndustriesCRUD industries_CRUD = new SupplierSurveyIndustriesCRUD();
 
-    static List<SupplierSurveyCertification> allCertifications;
-    static List<SupplierSurveyIndustriesSupplied> allIndustriesSupplied;
+    private List<SupplierSurveyCertification> allCertifications;
+    private List<SupplierSurveyIndustriesSupplied> allIndustriesSupplied;
    
     protected void Page_Load(object sender, EventArgs e)
-    {}
+    {
+        allCertifications = (List<SupplierSurveyCertification>)Session["allCertifications"];
+        allIndustriesSupplied = (List<SupplierSurveyIndustriesSupplied>)Session["allIndustriesSupplied"];
+    }
 
     public void load()
     {
@@ -72,14 +74,16 @@ public partial class SurveyForm : System.Web.UI.UserControl
         }
     }
     private void loadDropDowns()
-    {   
-        allCertifications = (List<SupplierSurveyCertification>)certification_CRUD.readAll();
+    {
+        Session["allCertifications"]=(List<SupplierSurveyCertification>)certification_CRUD.readAll();
+        allCertifications = (List<SupplierSurveyCertification>)Session["allCertifications"];
         cboCertification.DataSource = allCertifications;
         cboCertification.DataTextField = "Certification";
         cboCertification.DataValueField = "Id";
         cboCertification.DataBind();
-
-        allIndustriesSupplied = (List<SupplierSurveyIndustriesSupplied>)industries_CRUD.readAll();
+                
+        Session["allIndustriesSupplied"] = (List<SupplierSurveyIndustriesSupplied>)industries_CRUD.readAll();
+        allIndustriesSupplied = (List<SupplierSurveyIndustriesSupplied>)Session["allIndustriesSupplied"];
         cboIndustries.DataSource = allIndustriesSupplied;
         cboIndustries.DataTextField = "IndustriesSupplied";
         cboIndustries.DataValueField = "Id";

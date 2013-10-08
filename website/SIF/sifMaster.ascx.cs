@@ -13,10 +13,11 @@ public partial class SifMaster : System.Web.UI.UserControl
     sifCRUD sif_CRUD = new sifCRUD();
     customerCRUD customer_CRUD = new customerCRUD();
 
-    static List<Customer> allCustomers = null;
+    private List<Customer> allCustomers = null;
     
     protected void Page_Load(object sender, EventArgs e)
     {        
+        allCustomers = (List<Customer>)Session["allCustomers"];
     }
     public void load()
     {
@@ -36,6 +37,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         if (allCustomers == null)
         {
             allCustomers = (List<Customer>)customer_CRUD.readAll();
+            Session["allCustomers"] = allCustomers;
             cboCustomer.DataSource = allCustomers;
             cboCustomer.DataTextField = "CustomerName";
             cboCustomer.DataValueField = "Id";

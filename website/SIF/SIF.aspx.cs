@@ -24,7 +24,6 @@ public partial class _Default : System.Web.UI.Page
                     uscSIFMasterForm.load();
                     break;
                 case "bom":
-                    bomForm.bom = null;
                     MultiViewMain.SetActiveView(viewBOM);
                     uscBomForm.load();
                     break;

@@ -10,12 +10,13 @@ public partial class bomDetailList : System.Web.UI.UserControl
     private List<BOMDetail> bomDetail = null;
     private List<BOMDetail> bomDetailToDelete = null;
     private itemCRUD item_CRUD = new itemCRUD();    
-    private static List<Item> allItems = null;
+    private List<Item> allItems = null;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         bomDetail = (List<BOMDetail>)Session["bomDetailObject"];
-        bomDetailToDelete = (List<BOMDetail>)Session["bomDetailObjectToDelete"];        
+        bomDetailToDelete = (List<BOMDetail>)Session["bomDetailObjectToDelete"];
+        allItems = (List<Item>)Session["bomDetailListAllItems"];
     }
     public void load()
     {
@@ -25,8 +26,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     public void reset()
     {
-        allItems = null;
-        bomDetail = null;
+        Session.Remove("bomDetailListAllItems");
         Session.Remove("bomDetailObject");
         Session.Remove("bomDetailObjectToDelete");
     }    
@@ -171,8 +171,9 @@ public partial class bomDetailList : System.Web.UI.UserControl
     private void loadDropDowns()
     {
         if (allItems == null)
-        {
+        {   
             allItems = (List<Item>)item_CRUD.readAll();
+            Session["bomDetailListAllItems"] = allItems;
             cboPartNumber.DataSource = allItems;
             cboPartNumber.DataTextField = "PartNumber";
             cboPartNumber.DataValueField = "Id";

@@ -11,9 +11,13 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
-    private static Supplier supplier;
+    private Supplier supplier;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (((SessionObject)Session["supplierObject"])!= null)
+        {
+            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
+        }
     }
     public void load()
     {

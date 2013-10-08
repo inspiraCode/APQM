@@ -20,7 +20,6 @@ public partial class _Default : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "bom":
-                    bomForm.bom = null;                        
                     MultiViewMain.SetActiveView(viewBOM);
                     uscBOMMasterForm.load();
                     break;

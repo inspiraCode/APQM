@@ -13,8 +13,7 @@ using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page 
 {
-    Supplier supplier;
-    private static string actualView = "";
+    Supplier supplier;    
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -27,12 +26,12 @@ public partial class _Default : System.Web.UI.Page
                 switch (((SessionObject)Session["SECTION"]).Content.ToString())
                 {
                     case "supplier":
-                        actualView = "supplier";
+                        ViewState["actualView"] = "supplier";
                         MultiViewMain.SetActiveView(viewSupplier);
                         uscSupplierMasterForm.load();
                         break;
                     case "survey":
-                        actualView = "survey";
+                        ViewState["actualView"] = "survey";
                         MultiViewMain.SetActiveView(viewSurvey);
                         uscSurveyList.load();
                         break;
@@ -101,19 +100,19 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void on_send_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
+        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
     }
     protected void on_cancel_send_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
+        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
     }
     protected void on_save_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);
+        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
     }
     protected void on_cancel_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", actualView);        
+        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());        
     }
     protected void on_activeView_changed(object sender, EventArgs e)
     {

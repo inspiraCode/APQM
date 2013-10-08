@@ -9,7 +9,6 @@ public partial class rfqDetailList : System.Web.UI.UserControl
 {    
     private List<RFQDetail> rfqDetail = null;
     private itemCRUD item_CRUD = new itemCRUD();
-    //private static List<Item> allItems = null;
     
     protected void Page_Load(object sender, EventArgs e)
     {

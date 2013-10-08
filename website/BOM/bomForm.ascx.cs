@@ -11,13 +11,14 @@ public partial class bomForm : System.Web.UI.UserControl
     public event EventHandler Cancel_Click;
 
     bomCRUD bomCRUD = new bomCRUD();
-    public static BOM bom = null;
+    public BOM bom;
 
     private bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
     private itemCRUD item_CRUD = new itemCRUD(); 
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        bom = (BOM)Session["bom"];
     }
     public void load()
     {
@@ -27,6 +28,7 @@ public partial class bomForm : System.Web.UI.UserControl
             {
                 bom = (BOM)((SessionObject)Session["bomObject"]).Content;
                 bom.BomDetail = bomDetailCRUD.readByParentID(bom.Id);
+                Session["bom"] = bom;
                 if (((SessionObject)Session["bomObject"]).Status == "forUpdate")
                 {
                     fillWithEntity(bom);
@@ -65,7 +67,7 @@ public partial class bomForm : System.Web.UI.UserControl
             string idGenerated = bomCRUD.createAndReturnIdGenerated(bom);
             if (idGenerated != "")
             {
-                bomForm.bom.Id = long.Parse(idGenerated);
+                this.bom.Id = long.Parse(idGenerated);
             }else{
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
@@ -73,7 +75,7 @@ public partial class bomForm : System.Web.UI.UserControl
         }
         else if (lblMode.Text == "Update")
         {
-            bom.Id = bomForm.bom.Id;
+            bom.Id = this.bom.Id;
             if (!bomCRUD.update(bom))
             {
                 Navigator.goToPage("~/Error.aspx", "");
@@ -103,7 +105,7 @@ public partial class bomForm : System.Web.UI.UserControl
             }
             if (detail.internalAction == "CREATE")
             {                
-                detail.BomHeaderKey = bomForm.bom.Id;
+                detail.BomHeaderKey = this.bom.Id;
                 if (!bomDetailCRUD.create(detail))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
@@ -111,12 +113,12 @@ public partial class bomForm : System.Web.UI.UserControl
                 }
             }
         }
-        bom = null;
+        Session.Remove("bom");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        bom = null;
+        Session.Remove("bom");
         Session.Remove("bomObject");
         Cancel_Click(this, e);
     }
