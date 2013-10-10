@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SalesDB_To_APQM.entities;
 
 namespace SalesDB_To_APQM
 {
@@ -37,6 +38,10 @@ namespace SalesDB_To_APQM
             sifAccessCRUD sif_CRUD_Access = new sifAccessCRUD();
             sifCRUD sif_CRUD_APQM = new sifCRUD();
             customerCRUD customer_CRUD = new customerCRUD();
+            bomAccessCRUD bomAccessCRUD = new bomAccessCRUD();
+            bomCRUD bomCRUD = new bomCRUD();
+            bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+            itemCRUD item_CRUD = new itemCRUD();
 
             List<SIF> sifsInAccess;
             List<SIF> sifsInAPQM;
@@ -63,10 +68,11 @@ namespace SalesDB_To_APQM
                 foreach (SIF sif in sifsInAccess)
                 {
                     txtLog.AppendText("Reading an active SIF: " + sif + "\n");
+                    //Is this SIF imported before?:
                     if (sif_CRUD_APQM.readBySIF_IN_List(sif, sifsInAPQM) == null)
                     {
                         Customer customer = customer_CRUD.readByNameInList(sif.CustomerName, customersList);
-                        if (customer == null)
+                        if (customer == null) //Customer does not exist
                         {
                             customer = new Customer();
                             customer.CustomerName = sif.CustomerName;
@@ -90,8 +96,9 @@ namespace SalesDB_To_APQM
                             }
                         }
                         sif.CustomerKey = customer.Id;
-                        txtLog.AppendText("Attempting to export: " + sif + "\n");
-                        if (!sif_CRUD_APQM.create(sif))
+                        txtLog.AppendText("INFO: Attempting to export: " + sif + "\n");
+                        string sifIDGenerated = sif_CRUD_APQM.createAndReturnIdGenerated(sif);
+                        if (sifIDGenerated == "")
                         {
                             txtLog.AppendText("ERROR: Could not export SIF: " + sif + "\n");
                             summary.totalErrors++;
@@ -99,6 +106,68 @@ namespace SalesDB_To_APQM
                         }
                         else
                         {
+                            txtLog.AppendText("INFO: SIF exported, reading its BOMHeader.\n");
+                            
+                            List<BOMAccess> bomsByActualSIF = bomAccessCRUD.readBySIF(sif);
+                            
+                            BOM bomAPQM = new BOM();
+                            bomAPQM.SifId = long.Parse(sifIDGenerated);
+                            bomAPQM.TopPartNumber = "";
+                            bomAPQM.PartDescription = bom.PartNumber;
+                            bomAPQM.Revision = "";
+                            txtLog.AppendText("INFO: Attempting to export its BOMHeader: " + bomAPQM + "\n");
+                            string bomIDGenerated = bomCRUD.createAndReturnIdGenerated(bomAPQM);
+                            if (bomIDGenerated == "")
+                            {
+                                txtLog.AppendText("ERROR: Could not export BOMHeader: " + bomAPQM + "\n");
+                                summary.totalErrors++;
+                                continue;
+                            }
+                            else
+                            {
+                            }
+
+
+                            if(bomsByActualSIF.Count > 0){
+                                
+                                foreach(BOMAccess bom in bomsByActualSIF){
+                                        Item item = new Item();
+                                        item.PartNumber = bom.PartNumber;
+                                        item.Description = bom.AssemblyDescription;
+                                        item.Um = "";
+                                        item.Material = bom.Material;
+                                        txtLog.AppendText("INFO: BOMHeader exported, attempting to export its Item: " + item + "\n");
+                                        string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item);
+                                        if(itemIDGenerated==""){
+                                            txtLog.AppendText("ERROR: Could not export Item: " + item + "\n");
+                                            summary.totalErrors++;
+                                            continue;
+                                        }else{
+                                            BOMDetail bomDetail = new BOMDetail();
+                                            bomDetail.Description = bom.Material;
+                                            bomDetail.Qty = bom.NoRequired;
+                                            bomDetail.Cost = bom.PartCost;
+                                            bomDetail.SalesStatus = bom.Status;
+                                            bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
+                                            bomDetail.LinePosition = bom.MaterialPosition;
+                                            bomDetail.ItemMasterkey = long.Parse(itemIDGenerated);
+                                            txtLog.AppendText("INFO: Item exported, attempting to export its BOMLine: " + bomDetail + "\n");
+                                            if (!bomDetailCRUD.create(bomDetail))
+                                            {
+                                                txtLog.AppendText("ERROR: Could not export BOM Line: " + bomDetail + "\n");
+                                                summary.totalErrors++;
+                                                continue;
+                                            }
+                                            else
+                                            {
+                                                txtLog.AppendText("INFO: BOM Line exported\n");
+                                                summary.totalSuccess++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             txtLog.AppendText("SUCCESS: SIF exported: " + sif + "\n");
                             summary.totalSuccess++;
                         }
@@ -107,13 +176,13 @@ namespace SalesDB_To_APQM
                     {
                         txtLog.AppendText("OMITTED: SIF already exported: " + sif + "\n");
                         summary.totalOmitted++;
-                    }                                     
+                    }
                     progressBar1.Value += 1;
                 }
             }
             else
             {
-                txtLog.AppendText("No more SIF to export.\n\n");
+                txtLog.AppendText("INFO: No more SIF to export.\n\n");
             }
             refreshSummary();
         }

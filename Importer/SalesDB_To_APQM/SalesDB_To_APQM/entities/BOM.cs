@@ -15,6 +15,7 @@ public class BOM
     private string revision = "";
     private string inquiryNumber = "";
     
+
     private List<BOMDetail> bomDetail;
 
     public List<BOMDetail> BomDetail
@@ -52,6 +53,7 @@ public class BOM
         get { return inquiryNumber; }
         set { inquiryNumber = value; }
     }
+   
 }
 
 public class BOMDetail
@@ -66,7 +68,7 @@ public class BOMDetail
     private int sequence = -1;
     private string linePosition = "";
     private string salesStatus = "";
- 
+    
     public string internalAction = "";
 
     private Item item;  

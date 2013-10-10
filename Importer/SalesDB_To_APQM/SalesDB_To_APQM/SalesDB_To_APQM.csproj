@@ -49,8 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO\bomCRUD.cs" />
+    <Compile Include="DAO\bomAccessCRUD.cs" />
+    <Compile Include="DAO\itemCRUD.cs" />
+    <Compile Include="entities\BOM.cs" />
     <Compile Include="DAO\customerCRUD.cs" />
     <Compile Include="DAO\ICRUD.cs" />
+    <Compile Include="entities\BOMAccess.cs" />
+    <Compile Include="entities\Item.cs" />
     <Compile Include="DAO\sifAccessCRUD.cs" />
     <Compile Include="DAO\sifCRUD.cs" />
     <Compile Include="entities\Customer.cs" />

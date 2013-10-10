@@ -6,36 +6,11 @@ using System.Data;
 using System.Data.SqlClient;
 using SalesDB_To_APQM;
 
-/// <summary>
-/// Class for working with database for SIF.
-/// </summary>
-public class sifAccessCRUD : ICRUD<SIF>
+public class sifAccessCRUD
 {
     AccessConfigurationManager connectionManager = new AccessConfigurationManager();
     Data_Base_MNG.Access DM;
-
-     
-    #region ICRUD<SIF> Members
-
-    public bool create(SIF entity)
-    {
-        bool result = false;
-        
-        return result;        
-    }
-    public string createAndReturnIdGenerated(SIF entity)
-    {
-        string idGenerated = "";
-        
-
-        return idGenerated;
-    }
-
-    public SIF readById(long id)
-    {
-        return null;
-    }
-
+   
     public IList<SIF> readAll()
     {
         List<SIF>  recordset = new List<SIF>();
@@ -136,20 +111,6 @@ public class sifAccessCRUD : ICRUD<SIF>
             sif.DrawingLevel = table.Rows[i][23].ToString();
             recordset.Add(sif);
         }
-
         return recordset;
     }
-
-    public bool update(SIF entity)
-    {
-        bool result = false;
-
-        return result;
-    }
-    public bool delete(long id)
-    {
-       return false;
-    }
-
-    #endregion
 }
