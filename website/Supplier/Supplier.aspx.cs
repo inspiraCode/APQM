@@ -25,13 +25,11 @@ public partial class _Default : System.Web.UI.Page
                 lblName.Text = supplier.SupplierName;
                 switch (((SessionObject)Session["SECTION"]).Content.ToString())
                 {
-                    case "supplier":
-                        ViewState["actualView"] = "supplier";
+                    case "supplier":                        
                         MultiViewMain.SetActiveView(viewSupplier);
                         uscSupplierMasterForm.load();
                         break;
-                    case "survey":
-                        ViewState["actualView"] = "survey";
+                    case "survey":                        
                         MultiViewMain.SetActiveView(viewSurvey);
                         uscSurveyList.load();
                         break;
@@ -100,19 +98,19 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void on_send_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
+        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
     }
     protected void on_cancel_send_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
+        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
     }
     protected void on_save_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());
+        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
     }
     protected void on_cancel_survey(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", ViewState["actualView"].ToString());        
+        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");        
     }
     protected void on_activeView_changed(object sender, EventArgs e)
     {

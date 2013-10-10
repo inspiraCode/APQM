@@ -13,20 +13,17 @@ public partial class SifMaster : System.Web.UI.UserControl
     sifCRUD sif_CRUD = new sifCRUD();
     customerCRUD customer_CRUD = new customerCRUD();
 
-    private List<Customer> allCustomers = null;
-    
     protected void Page_Load(object sender, EventArgs e)
-    {        
-        allCustomers = (List<Customer>)Session["allCustomers"];
+    {
     }
     public void load()
     {
         btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c~' + prompt('New Customer')";
-        loadDropDowns();
         if (Session["SIFObject"] != null)
         {
             if (((SessionObject)Session["SIFObject"]).Status == "forUpdate")
-            {                
+            {
+                loadDropDowns();
                 fillWithEntity((SIF)(((SessionObject)Session["SIFObject"]).Content));
                 ((SessionObject)Session["SIFObject"]).Status = "Retrieved";
             }
@@ -34,11 +31,10 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     private void loadDropDowns()
     {
-        if (allCustomers == null)
+        if (cboCustomer.DataSource == null)
         {
-            allCustomers = (List<Customer>)customer_CRUD.readAll();
-            Session["allCustomers"] = allCustomers;
-            cboCustomer.DataSource = allCustomers;
+            Session["allCustomers"] = customer_CRUD.readAll();            
+            cboCustomer.DataSource = (List<Customer>)Session["allCustomers"];
             cboCustomer.DataTextField = "CustomerName";
             cboCustomer.DataValueField = "Id";
             cboCustomer.DataBind();
@@ -136,12 +132,12 @@ public partial class SifMaster : System.Web.UI.UserControl
                 Navigator.goToPage("~/Error.aspx","");
             }
         }
-        allCustomers = null;
+        Session.Remove("allCustomers");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        allCustomers = null;
+        Session.Remove("allCustomers");
         Session.Remove("SIFObject");
         Cancel_Click(this, e);
     }
@@ -160,7 +156,7 @@ public partial class SifMaster : System.Web.UI.UserControl
                         string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
                         if (idGenerated != "")
                         {
-                            allCustomers = null;
+                            Session.Remove("allCustomers");
                             loadDropDowns();
                             cboCustomer.SelectedValue = idGenerated;
                             cboCustomer.Focus();

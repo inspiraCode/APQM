@@ -105,7 +105,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         rfqDetailLine.ScrapValue = float.Parse(txtScrapValue.Text);
         rfqDetailLine.DirectHrlyLaborRate = float.Parse(txtDirectHrlyLaborRate.Text);
         rfqDetailLine.StdHrs = int.Parse(txtStdHrs.Text);
-        rfqDetailLine.Burden = float.Parse(txtBurden.Text);        
+        rfqDetailLine.Burden = float.Parse(txtBurden.Text);
         
         if (rfqDetail == null) rfqDetail = new List<RFQDetail>();
         if (rfqDetail.Count > 0)
