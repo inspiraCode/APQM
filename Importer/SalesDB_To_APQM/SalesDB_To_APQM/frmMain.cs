@@ -33,9 +33,11 @@ namespace SalesDB_To_APQM
         private void btnExport_Click(object sender, EventArgs e)
         {
             summary.reset();
+
             sifAccessCRUD sif_CRUD_Access = new sifAccessCRUD();
             sifCRUD sif_CRUD_APQM = new sifCRUD();
             customerCRUD customer_CRUD = new customerCRUD();
+
             List<SIF> sifsInAccess;
             List<SIF> sifsInAPQM;
             List<Customer> customersList;
@@ -46,7 +48,7 @@ namespace SalesDB_To_APQM
                 sifsInAPQM = (List<SIF>)sif_CRUD_APQM.readAll();
                 customersList = (List<Customer>)customer_CRUD.readAll();
             }catch(Exception ex){
-                txtLog.AppendText("ERROR: " + ex.Message);
+                txtLog.AppendText("ERROR: " + ex.Message + "\n");
                 summary.totalErrors++;
                 refreshSummary();
                 return;

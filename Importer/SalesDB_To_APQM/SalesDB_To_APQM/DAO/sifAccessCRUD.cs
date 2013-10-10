@@ -45,7 +45,7 @@ public class sifAccessCRUD : ICRUD<SIF>
         string query = "SELECT [Inquiry Number], Priority, Revision, [Sales Person], [Cost Model Location], Contact, " +
                         "[Business Class], Product, [Division/Location], Department, [Reason For Quote], [Application/Program], " + 
                         "Specification, [Task Description], [Part Print (Rev)], Samples, [Tooling Target (Incl Prototypes)], " +
-                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Status " +
+                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Status, [Quote Due], SOP " +
                         "FROM [Sales Inquiry Form Table] WHERE ((([Inquiry Number])>\"050101001\") AND ((Status)=\"Active\")) " +
                         "ORDER BY [Inquiry Number], Revision;";    
 
@@ -75,6 +75,8 @@ public class sifAccessCRUD : ICRUD<SIF>
             sif.PrimaryCompetitors = table.Rows[i][17].ToString();
             sif.SpecificResourceRequirements = table.Rows[i][18].ToString();
             sif.Technical = table.Rows[i][19].ToString();
+            sif.QuoteDue = DateTime.Parse(table.Rows[i][20].ToString());
+            sif.Sop = DateTime.Parse(table.Rows[i][21].ToString());
             recordset.Add(sif);
         }
        
@@ -89,7 +91,7 @@ public class sifAccessCRUD : ICRUD<SIF>
         string query = "SELECT [Inquiry Number], Priority, Revision, [Sales Person], [Cost Model Location], Contact, " +
                         "[Business Class], Product, [Division/Location], Department, [Reason For Quote], [Application/Program], " +
                         "Specification, [Task Description], [Part Print (Rev)], Samples, [Tooling Target (Incl Prototypes)], " +
-                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Customer " +
+                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Customer, [Quote Due], SOP, [DWG Level]" +
                         "FROM [Sales Inquiry Form Table] WHERE ((([Inquiry Number])>\"050101001\") AND ((Status)=\"Active\")) " +
                         "ORDER BY [Inquiry Number], Revision;";
 
@@ -114,8 +116,7 @@ public class sifAccessCRUD : ICRUD<SIF>
             sif.Department = table.Rows[i][9].ToString();
             sif.Reason4Quote = table.Rows[i][10].ToString();
             sif.Application = table.Rows[i][11].ToString();
-            sif.Specification = table.Rows[i][12].ToString();
-            //sif.DrawingLevel = table.Rows[i][13].ToString();
+            sif.Specification = table.Rows[i][12].ToString();            
             sif.TaskDescription = table.Rows[i][13].ToString();
             sif.PartPrint = table.Rows[i][14].ToString();
             sif.Sample = table.Rows[i][15].ToString();
@@ -124,6 +125,15 @@ public class sifAccessCRUD : ICRUD<SIF>
             sif.SpecificResourceRequirements = table.Rows[i][18].ToString();
             sif.Technical = table.Rows[i][19].ToString();
             sif.CustomerName = table.Rows[i][20].ToString();
+            try
+            {
+                sif.QuoteDue = DateTime.Parse(table.Rows[i][21].ToString());
+            }catch { }
+            try
+            {
+                sif.Sop = DateTime.Parse(table.Rows[i][22].ToString());
+            }catch { }
+            sif.DrawingLevel = table.Rows[i][23].ToString();
             recordset.Add(sif);
         }
 

@@ -48,6 +48,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_NewSIF", true);
         }
@@ -86,6 +88,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SIFHeader_NewSIF", true);
         }
@@ -102,7 +106,7 @@ public class sifCRUD : ICRUD<SIF>
         SIF sif = new SIF();
 
         string query =  "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, QuoteDue, SOP " +
                         "FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
@@ -147,6 +151,8 @@ public class sifCRUD : ICRUD<SIF>
                 sif.PrimaryCompetitors = table.Rows[0][21].ToString();
                 sif.SpecificResourceRequirements = table.Rows[0][22].ToString();
                 sif.Technical = table.Rows[0][23].ToString();
+                sif.QuoteDue = DateTime.Parse( table.Rows[0][24].ToString());
+                sif.Sop = DateTime.Parse(table.Rows[0][25].ToString());
                 
                 sqlConnection.Dispose();
                 return sif;
@@ -162,7 +168,7 @@ public class sifCRUD : ICRUD<SIF>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, TopPartNumber, CustomerName " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, TopPartNumber, CustomerName, QuoteDue, SOP " +
                         "FROM viewSIF_ReadAll ORDER BY SIFHeaderKey ASC";    
 
         DataTable table = new DataTable();
@@ -204,6 +210,9 @@ public class sifCRUD : ICRUD<SIF>
             sif.Technical = table.Rows[i][23].ToString();
             sif.TopPartNumber = table.Rows[i][24].ToString();
             sif.CustomerName = table.Rows[i][25].ToString();
+            sif.QuoteDue = DateTime.Parse(table.Rows[i][26].ToString());
+            sif.Sop = DateTime.Parse(table.Rows[i][27].ToString());
+
             recordset.Add(sif);
         }
        
@@ -240,6 +249,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_EditSIF", true);            
         }

@@ -66,6 +66,8 @@ public partial class SifMaster : System.Web.UI.UserControl
         txtPrimaryCompetitors.Text = sif.PrimaryCompetitors;
         txtSpecificResourceRequirements.Text = sif.SpecificResourceRequirements;
         txtTechnical.Text = sif.Technical;
+        txtQuoteDue.Text = sif.QuoteDue.ToShortDateString();
+        txtSOP.Text = sif.Sop.ToShortDateString();
 
         lblMode.Text = "Update";
     }
@@ -78,8 +80,6 @@ public partial class SifMaster : System.Web.UI.UserControl
         {
             sif.CustomerKey = long.Parse(cboCustomer.SelectedValue);        
         }
-        
-        
         if (lblBOM.Text != "")
         {
             sif.BomId = long.Parse(lblBOM.Text);

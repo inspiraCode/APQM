@@ -121,7 +121,7 @@
                 <asp:TextBox ID="txtDivLoc" runat="server" Width="260px" TabIndex="11"></asp:TextBox>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Contact
             </td>
@@ -136,7 +136,7 @@
                 <asp:TextBox ID="txtDepartment" runat="server" Width="260px" TabIndex="12"></asp:TextBox>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Bussines Class
             </td>
@@ -164,13 +164,13 @@
                 <asp:TextBox ID="txtApplication" runat="server" Width="260px" TabIndex="14"></asp:TextBox>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right" height="25px" colspan="6">
                 <div style="border: solid; border-color: gray; border-width: 2px;">
                 </div>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Specification
             </td>
@@ -187,7 +187,7 @@
                 <asp:TextBox ID="txtPartPrint" runat="server" Width="260px" TabIndex="18"></asp:TextBox>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Drawing Level
             </td>
@@ -204,7 +204,7 @@
                 <asp:TextBox ID="txtSample" runat="server" Width="80px" TabIndex="19"></asp:TextBox>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Task Description
             </td>
@@ -253,7 +253,7 @@
                 &nbsp;
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right" colspan="3">
                 Specific Resource Requirements
             </td>
@@ -265,7 +265,7 @@
                 &nbsp;
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right" colspan="3">
                 Technical
             </td>
@@ -276,9 +276,33 @@
                 &nbsp;
             </td>
         </tr>
+        <tr>
+            <td align="right" height="25px" colspan="6">
+                <div style="border: solid; border-color: gray; border-width: 2px;">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" colspan="3">
+                Quote Due</td>
+            <td align="left" colspan="2">
+                <asp:TextBox ID="txtQuoteDue" runat="server" Width="180px" TabIndex="20"></asp:TextBox>
+            </td>
+            <td align="left">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td align="right" colspan="3">
+                SOP</td>
+            <td align="left" colspan="2">
+                <asp:TextBox ID="txtSOP" runat="server" Width="180px" TabIndex="20"></asp:TextBox>
+            </td>
+            <td align="left">
+                &nbsp;</td>
+        </tr>
     </table>
 </div>
-<div align="center">
+<div align="center" style="display:none;">
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
         OnClick="btnSave_Click" TabIndex="24" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
