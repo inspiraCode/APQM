@@ -368,7 +368,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 }
                 if (table.Rows[i][4].ToString() != "")
                 {
-                    bomDetail.Cost = long.Parse(table.Rows[i][4].ToString());
+                    bomDetail.Cost = float.Parse(table.Rows[i][4].ToString());
                 }
                 else
                 {

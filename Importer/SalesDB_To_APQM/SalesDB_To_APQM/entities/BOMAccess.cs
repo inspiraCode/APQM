@@ -5,11 +5,11 @@ using System.Text;
 
 namespace SalesDB_To_APQM.entities
 {
-    class BOMHeader
+    public class BOMHeaderAccess
     {
         private string topPartNumber = "";
         private string partDescription = ""; 
-        private string revision = "";
+        private string revision = "";       
 
         public string TopPartNumber
         {
@@ -27,15 +27,16 @@ namespace SalesDB_To_APQM.entities
             set { revision = value; }
         }
     }
-    class BOMAccess
+    public class BOMAccess
     {
         private string materialPosition = "";
         private string partNumber = ""; 
         private string material = ""; 
-        private float partCost; 
-        private float noRequired; 
+        private float partCost;
+        private float noRequired;
         private string assemblyDescription = ""; 
         private string status = "";
+        private string importComment = "";
 
         public string MaterialPosition
         {
@@ -71,6 +72,11 @@ namespace SalesDB_To_APQM.entities
         {
             get { return status; }
             set { status = value; }
+        }
+        public string ImportComment
+        {
+            get { return importComment; }
+            set { importComment = value; }
         }
     }
 }
