@@ -15,7 +15,7 @@ namespace SalesDB_To_APQM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new frmSelectData());
         }
     }
 }

@@ -8,3 +8,4 @@ C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\S
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.csproj.GenerateResource.Cache
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.exe
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.pdb
+C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmSelectData.resources

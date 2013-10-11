@@ -169,7 +169,6 @@ namespace SalesDB_To_APQM
                                                 }
                                                 else
                                                 {
-
                                                     BOMDetail bomDetail = new BOMDetail();
                                                     bomDetail.Description = bom.Material;
                                                     bomDetail.Qty = bom.NoRequired;
