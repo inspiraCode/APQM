@@ -86,6 +86,7 @@ namespace SalesDB_To_APQM
 
             if (sifsInAccessToExport.Count > 0)
             {
+
                 log = "INFO: Attempting to export " + sifsInAccessToExport.Count + " SIFs.\n\n\n";
                 backgroundWorker1.ReportProgress(progress);
                 System.Threading.Thread.Sleep(10);

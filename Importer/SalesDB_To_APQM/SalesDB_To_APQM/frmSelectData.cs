@@ -12,7 +12,7 @@ namespace SalesDB_To_APQM
     public partial class frmSelectData : Form
     {
         AccessConfigurationManager accessConnection = new AccessConfigurationManager();
-        sifAccessCRUD sifAccess_CRUD = new sifAccessCRUD();        
+        sifAccessCRUD sifAccess_CRUD = new sifAccessCRUD();
         string filter = "";
 
         public frmSelectData()

@@ -25,7 +25,8 @@ public class sifCRUD : ICRUD<SIF>
         bool result = false;
         DM = connectionManager.getDataManager();
         try
-        {            
+        {       
+            
             DM.Load_SP_Parameters("@CustomerKey",entity.CustomerKey.ToString());
             DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
