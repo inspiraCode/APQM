@@ -75,7 +75,7 @@ public class bomAccessCRUD
                 bom.PartCost = float.Parse(table.Rows[i][3].ToString());
                 bom.NoRequired = float.Parse(table.Rows[i][4].ToString());
             }catch(Exception ex){
-                bom.ImportComment = "BOM Line imported with error, please review it. Error: " + ex.Message;
+                bom.ImportComment = "BOM Line imported with error, please review it and export it agian if necessary. Error: " + ex.Message;
             }           
             recordset.Add(bom);
         }

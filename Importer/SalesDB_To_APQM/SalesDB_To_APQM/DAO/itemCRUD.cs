@@ -172,4 +172,16 @@ public class itemCRUD : ICRUD<Item>
     }
 
     #endregion
+
+    public Item readByPartNumberInList(string name, List<Item> list)
+    {
+        foreach (Item item in list)
+        {
+            if (item.PartNumber.Trim() == name.Trim())
+            {
+                return item;
+            }
+        }
+        return null;
+    }
 }

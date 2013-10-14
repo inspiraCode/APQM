@@ -3,9 +3,9 @@ C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\S
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\BD_MNG.dll
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\BD_MNG.pdb
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\ResolveAssemblyReference.cache
-C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmMain.resources
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.Properties.Resources.resources
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.csproj.GenerateResource.Cache
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.exe
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.pdb
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmSelectData.resources
+C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmExport.resources

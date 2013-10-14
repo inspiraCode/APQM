@@ -78,5 +78,9 @@ namespace SalesDB_To_APQM.entities
             get { return importComment; }
             set { importComment = value; }
         }
+        public override string ToString()
+        {
+            return "{Part Number: " + this.partNumber + " Material: " + this.material + " Part Cost: " + this.partCost + " No Required: " + this.noRequired + " Assembly Description: " + assemblyDescription + "}";
+        }
     }
 }

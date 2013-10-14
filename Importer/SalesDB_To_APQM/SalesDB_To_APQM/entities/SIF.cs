@@ -33,6 +33,9 @@ public class SIF
     private string topPartNumber = "";
     private DateTime quoteDue = new DateTime(1985, 2, 10);
     private DateTime sop = new DateTime(1985, 2, 10);
+    private string salesStatus = "";
+
+    
 
     public string CustomerName
     {
@@ -164,9 +167,7 @@ public class SIF
         get { return technical; }
         set { technical = value; }
     }
-    public override string ToString(){
-        return "Inquiry Number: " + this.InquiryNumber + " Revision: " + this.Revision + " Product: " + this.Product + " Sales Person: " +this.SalesPerson;
-    }
+    
     public DateTime QuoteDue
     {
         get { return quoteDue; }
@@ -176,5 +177,14 @@ public class SIF
     {
         get { return sop; }
         set { sop = value; }
+    }
+    public string SalesStatus
+    {
+        get { return salesStatus; }
+        set { salesStatus = value; }
+    }
+
+    public override string ToString(){
+        return "{Inquiry Number: " + this.InquiryNumber + " Revision: " + this.Revision + " Product: " + this.Product + " Sales Person: " +this.SalesPerson + "}";
     }
 }

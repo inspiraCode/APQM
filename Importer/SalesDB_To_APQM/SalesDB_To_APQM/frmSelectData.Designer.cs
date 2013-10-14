@@ -39,6 +39,8 @@
             this.chkListSalesPerson = new System.Windows.Forms.CheckedListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblTotalRecords = new System.Windows.Forms.Label();
+            this.lblTotalSelected = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridSIF)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,6 +57,7 @@
             this.gridSIF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridSIF.Size = new System.Drawing.Size(840, 243);
             this.gridSIF.TabIndex = 0;
+            this.gridSIF.SelectionChanged += new System.EventHandler(this.gridSIF_SelectionChanged);
             // 
             // label1
             // 
@@ -77,7 +80,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(112, 87);
+            this.label4.Location = new System.Drawing.Point(138, 14);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 13);
             this.label4.TabIndex = 7;
@@ -85,7 +88,7 @@
             // 
             // txtInquiryNumber
             // 
-            this.txtInquiryNumber.Location = new System.Drawing.Point(196, 84);
+            this.txtInquiryNumber.Location = new System.Drawing.Point(222, 11);
             this.txtInquiryNumber.Name = "txtInquiryNumber";
             this.txtInquiryNumber.Size = new System.Drawing.Size(101, 20);
             this.txtInquiryNumber.TabIndex = 8;
@@ -100,6 +103,7 @@
             this.btnExportSelected.TabIndex = 9;
             this.btnExportSelected.Text = "Export Selected";
             this.btnExportSelected.UseVisualStyleBackColor = true;
+            this.btnExportSelected.Click += new System.EventHandler(this.btnExportSelected_Click);
             // 
             // btnClearFilter
             // 
@@ -150,11 +154,32 @@
             this.lblTotalRecords.Size = new System.Drawing.Size(0, 13);
             this.lblTotalRecords.TabIndex = 14;
             // 
+            // lblTotalSelected
+            // 
+            this.lblTotalSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblTotalSelected.AutoSize = true;
+            this.lblTotalSelected.Location = new System.Drawing.Point(208, 429);
+            this.lblTotalSelected.Name = "lblTotalSelected";
+            this.lblTotalSelected.Size = new System.Drawing.Size(0, 13);
+            this.lblTotalSelected.TabIndex = 16;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(130, 429);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Total selected:";
+            // 
             // frmSelectData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(864, 461);
+            this.Controls.Add(this.lblTotalSelected);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalRecords);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chkListSalesPerson);
@@ -188,5 +213,7 @@
         private System.Windows.Forms.CheckedListBox chkListSalesPerson;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblTotalRecords;
+        private System.Windows.Forms.Label lblTotalSelected;
+        private System.Windows.Forms.Label label6;
     }
 }

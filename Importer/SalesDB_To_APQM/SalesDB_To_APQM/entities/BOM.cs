@@ -53,6 +53,11 @@ public class BOM
         get { return inquiryNumber; }
         set { inquiryNumber = value; }
     }
+
+    public override string ToString()
+    {
+        return "{Inquiry Number: " + this.inquiryNumber + " Top Part Number: " + this.topPartNumber + " Part Description: " + this.partDescription +  "}";
+    }
    
 }
 
@@ -156,5 +161,20 @@ public class BOMDetail
     {
         get { return salesStatus; }
         set { salesStatus = value; }
+    }
+
+    //private long id = -1;
+    //private string description = "";
+    //private long itemMasterkey = -1;
+    //private float qty;
+    //private float cost;
+    //private string status = "";
+    //private long bomHeaderKey = -1;
+    //private int sequence = -1;
+    //private string linePosition = "";
+    //private string salesStatus = "";
+    public override string ToString()
+    {
+        return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";
     }
 }

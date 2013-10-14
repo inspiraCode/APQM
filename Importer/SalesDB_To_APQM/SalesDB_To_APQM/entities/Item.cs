@@ -36,4 +36,9 @@ public class Item
         get { return material; }
         set { material = value; }
     }
+
+    public override string ToString()
+    {
+        return "{Part Number: " + this.partNumber + " Description: " + this.description + " Material: " + this.material + "}";
+    }
 }
