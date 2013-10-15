@@ -61,6 +61,25 @@ public class itemCRUD : ICRUD<Item>
 
         return idGenerated;
     }
+    public string createAndReturnIdGenerated(Item entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@PartNumber", entity.PartNumber);
+            DM.Load_SP_Parameters("@PartDescription", entity.Description);
+            DM.Load_SP_Parameters("@UM", entity.Um);
+            DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("ItemMaster_NewItem", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
 
     public Item readById(long id)
     {

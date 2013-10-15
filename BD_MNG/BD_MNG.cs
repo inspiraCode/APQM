@@ -1089,6 +1089,19 @@ namespace Data_Base_MNG
                 }
             } 
         }
+        public void RollBack()
+        {
+            ErrorFlag = true;
+            _error_mjs = "";
+            try
+            {
+                _transaction.Rollback();
+            }
+            catch (Exception ex)
+            {
+                _error_mjs = ex.Message;
+            }
+        }
         private void Stop_Connection()
         {
             if (_connection.State == ConnectionState.Open)
@@ -1457,10 +1470,14 @@ namespace Data_Base_MNG
 
                 if (ParametersNeeded)
                 {
-
                     _command.Parameters.AddRange(_parameters.ToArray());
                 }
-                _command.ExecuteNonQuery();
+
+                _command.Transaction = _transaction;
+                _command.ExecuteNonQuery();                
+                _command.Parameters.Clear();
+                _parameters.Clear();
+               
                 //Stop_Connection();
                 ErrorFlag = false;
                 result = true;
@@ -1471,6 +1488,14 @@ namespace Data_Base_MNG
                 //Stop_Connection();
                 ErrorFlag = true;
                 result = false;
+                try
+                {
+                    _transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    _error_mjs = ex.Message + " RollBack Error: " + ex2.Message;
+                }
             }
             return result;
         }
@@ -1485,21 +1510,33 @@ namespace Data_Base_MNG
                 ///
 
                 if (ParametersNeeded)
-                {
-
+                {                   
                     _command.Parameters.AddRange(_parameters.ToArray());
                 }
+                _command.Transaction = _transaction;
                 result = _command.ExecuteScalar().ToString();
+                _command.Parameters.Clear();
+                _parameters.Clear();
                 //Stop_Connection();
                 ErrorFlag = false;
                 //result = true;
             }
             catch (Exception ex)
             {
+
                 _error_mjs = ex.Message;
                 //Stop_Connection();
                 ErrorFlag = true;
                 result = "";
+
+                try
+                {
+                    _transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    _error_mjs = ex.Message + " RollBack Error: " + ex2.Message;
+                }
             }
             return result;
         }

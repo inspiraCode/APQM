@@ -104,6 +104,26 @@ public class bomCRUD : ICRUD<BOM>
         return idGenerated;
     }
 
+    public string createAndReturnIdGenerated(BOM entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
+            DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
+            DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMHeader_NewBOM", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+
     public BOM readById(long id)
     {
         BOM bom = new BOM();
@@ -252,6 +272,31 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 
 
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(BOMDetail entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        
+        try
+        {
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterkey.ToString());
+            DM.Load_SP_Parameters("@Qty", entity.Qty.ToString());
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status);
+            DM.Load_SP_Parameters("@Description", entity.Description);
+            DM.Load_SP_Parameters("@LinePosition", entity.LinePosition);
+            DM.Load_SP_Parameters("@SalesStatus", entity.SalesStatus);
+
+            result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
         }
         catch (Exception e)
         {

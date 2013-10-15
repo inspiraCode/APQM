@@ -118,6 +118,7 @@
             this.txtLog.Size = new System.Drawing.Size(430, 159);
             this.txtLog.TabIndex = 16;
             this.txtLog.Text = "";
+            this.txtLog.Resize += new System.EventHandler(this.txtLog_Resize);
             // 
             // backgroundWorker1
             // 

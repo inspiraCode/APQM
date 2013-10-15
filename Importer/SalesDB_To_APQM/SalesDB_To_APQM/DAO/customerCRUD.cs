@@ -55,6 +55,21 @@ public class customerCRUD : ICRUD<Customer>
 
         return idGenerated;
     }
+    public string createAndReturnIdGenerated(Customer entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("CustomerMaster_NewCustomer", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
 
     public Customer readByNameInList(string name, List<Customer> list)
     {

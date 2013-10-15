@@ -12,8 +12,9 @@ namespace SalesDB_To_APQM
 {
     public partial class frmExport : Form
     {
-        private List<SIF> sifsInAccessToExport;
         private string log = "";
+
+        private List<SIF> sifsInAccessToExport;        
         public List<SIF> SifsInAccessToExport
         {
             get { return sifsInAccessToExport; }
@@ -27,7 +28,6 @@ namespace SalesDB_To_APQM
         }
 
         structSummary summary = new structSummary();
-        
         struct structSummary
         {
             public long totalSuccess;
@@ -59,7 +59,6 @@ namespace SalesDB_To_APQM
             bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
             itemCRUD item_CRUD = new itemCRUD();
 
-
             List<SIF> sifsInAPQM;
             List<Customer> customersList;
             List<Item> itemList;
@@ -75,7 +74,7 @@ namespace SalesDB_To_APQM
             }
             catch (Exception ex)
             {
-                log = "ERROR: " + ex.Message + "\n";
+                log = "ERROR: " + ex.Message + "\n\n";
                 backgroundWorker1.ReportProgress(progress);
                 System.Threading.Thread.Sleep(10);
                 //txtLog.AppendText("ERROR: " + ex.Message + "\n");
@@ -83,20 +82,18 @@ namespace SalesDB_To_APQM
                 refreshSummary();
                 return;
             }
-
+            
             if (sifsInAccessToExport.Count > 0)
             {
-
+                ConnectionManager CM = new ConnectionManager();
+                Data_Base_MNG.SQL DM = CM.getDataManager();
+               
                 log = "INFO: Attempting to export " + sifsInAccessToExport.Count + " SIFs.\n\n\n";
                 backgroundWorker1.ReportProgress(progress);
                 System.Threading.Thread.Sleep(10);
                 //txtLog.AppendText("INFO: Found " + sifsInAccessToExport.Count + " SIFs to import.\n");
                 foreach (SIF sif in sifsInAccessToExport)
-                {
-                    //if (sif.InquiryNumber == "120803701")
-                    //{
-                    //    MessageBox.Show("Here");
-                    //}
+                {                    
                     log = "INFO: Reading an active SIF: " + sif + "\n";
                     backgroundWorker1.ReportProgress(progress);
                     System.Threading.Thread.Sleep(10);
@@ -104,19 +101,23 @@ namespace SalesDB_To_APQM
                     //Was this SIF imported before?:
                     if (sif_CRUD_APQM.readBySIF_IN_List(sif, sifsInAPQM) == null)
                     {
+                        /*Begin Transaction*/
+                        DM.Open_Connection("ImportingSIF");
+
                         Customer customer = customer_CRUD.readByNameInList(sif.CustomerName, customersList);
                         if (customer == null) //Customer does not exist
                         {
                             customer = new Customer();
                             customer.CustomerName = sif.CustomerName;
-                            string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
+                            string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer, ref DM);
                             if (idGenerated == "")
                             {
-                                log = "ERROR: Could not create Customer: " + customer.CustomerName + " for SIF with Inquiry Number: " + sif.InquiryNumber + "\n";
-                                backgroundWorker1.ReportProgress(progress);
-                                System.Threading.Thread.Sleep(10);
-                                //txtLog.AppendText("ERROR: Could not create Customer: " + customer.CustomerName + " for SIF with Inquiry Number: " + sif.InquiryNumber + "\n");
                                 summary.totalErrors++;
+                                log = "ERROR: Could not create Customer: " + customer.CustomerName + " for SIF with Inquiry Number: " + sif.InquiryNumber + "\n" +
+                                      "Error Description: " + DM.Error_Mjs + "\n\n";
+                                backgroundWorker1.ReportProgress(++progress);
+                                System.Threading.Thread.Sleep(10);
+                                continue;
                             }
                             else
                             {
@@ -125,18 +126,7 @@ namespace SalesDB_To_APQM
                                 backgroundWorker1.ReportProgress(progress);
                                 System.Threading.Thread.Sleep(10);
                                 //txtLog.AppendText("INFO: Customer created in APQM database: " + customer.CustomerName + "\n");
-                                try
-                                {
-                                    customersList = (List<Customer>)customer_CRUD.readAll();
-                                }
-                                catch (Exception ex)
-                                {
-                                    log = "ERROR: " + ex.Message;
-                                    //txtLog.AppendText("ERROR: " + ex.Message);
-                                    backgroundWorker1.ReportProgress(progress);
-                                    System.Threading.Thread.Sleep(10);
-                                    summary.totalErrors++;
-                                }
+                                customersList.Add(customer);
                             }
                         }
                         sif.CustomerKey = customer.Id;
@@ -144,14 +134,14 @@ namespace SalesDB_To_APQM
                         backgroundWorker1.ReportProgress(progress);
                         System.Threading.Thread.Sleep(10);
                         //txtLog.AppendText("INFO: Attempting to export SIF: " + sif + "\n");
-                        string sifIDGenerated = sif_CRUD_APQM.createAndReturnIdGenerated(sif);
+                        string sifIDGenerated = sif_CRUD_APQM.createAndReturnIdGenerated(sif, ref DM);
                         if (sifIDGenerated == "")
                         {
-                            log = "ERROR: Could not export SIF: " + sif + "\n";
-                            //txtLog.AppendText("ERROR: Could not export SIF: " + sif + "\n");
-                            backgroundWorker1.ReportProgress(progress);
-                            System.Threading.Thread.Sleep(10);
                             summary.totalErrors++;
+                            log = "ERROR: Could not export SIF: " + sif + "\n" +
+                                    "Error Description: " + DM.Error_Mjs + "\n\n";
+                            backgroundWorker1.ReportProgress(++progress);
+                            System.Threading.Thread.Sleep(10);                            
                             continue;
                         }
                         else
@@ -174,15 +164,15 @@ namespace SalesDB_To_APQM
                                 backgroundWorker1.ReportProgress(progress);
                                 System.Threading.Thread.Sleep(10);
                                 //txtLog.AppendText("INFO: Attempting to export its BOMHeader: " + bomAPQM + "\n");
-                                string bomIDGenerated = bomCRUD.createAndReturnIdGenerated(bomAPQM);
+                                string bomIDGenerated = bomCRUD.createAndReturnIdGenerated(bomAPQM, ref DM);
 
                                 if (bomIDGenerated == "")
                                 {
-                                    log = "ERROR: Could not export BOMHeader: " + bomAPQM + "\n";
-                                    backgroundWorker1.ReportProgress(progress);
-                                    System.Threading.Thread.Sleep(10);
-                                    //txtLog.AppendText("ERROR: Could not export BOMHeader: " + bomAPQM + "\n");
                                     summary.totalErrors++;
+                                    log = "ERROR: Could not export BOMHeader: " + bomAPQM + "\n" + 
+                                            "Error Description: " + DM.Error_Mjs + "\n\n";
+                                    backgroundWorker1.ReportProgress(++progress);
+                                    System.Threading.Thread.Sleep(10);
                                     continue;
                                 }
                                 else
@@ -198,16 +188,30 @@ namespace SalesDB_To_APQM
                                         backgroundWorker1.ReportProgress(progress);
                                         System.Threading.Thread.Sleep(10);
                                         //txtLog.AppendText("INFO: Found: " + bomsByActualSIF.Count + " BOM lines, attempting to export its Item.\n");
+                                        bool errorInBOM = false;
                                         foreach (BOMAccess bom in bomsByActualSIF)
                                         {
                                             if (bom.ImportComment != "")
                                             {
-                                                log = "ERROR: " + bom.ImportComment + " BOM: " + bom + "\n";
-                                                backgroundWorker1.ReportProgress(progress);
-                                                System.Threading.Thread.Sleep(10);
-                                                //txtLog.AppendText("ERROR: " + bom.ImportComment + "\n");
                                                 summary.totalErrors++;
-                                                continue;
+                                                log = "ERROR: " + " BOM: " + bom + "\n" +
+                                                        "Error Description: " + bom.ImportComment + "\n\n";
+                                                log = "INFO: Attempting to RollBack..\n";
+                                                DM.RollBack();
+                                                if (DM.ErrorOccur)
+                                                {
+                                                    log = "...Fail to RollBack.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                }
+                                                else
+                                                {
+                                                    log = "...RollBack done.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                }
+
+                                                backgroundWorker1.ReportProgress(++progress);
+                                                System.Threading.Thread.Sleep(10);
+                                                errorInBOM = true;
+
+                                                break;
                                             }
                                             else
                                             {
@@ -220,15 +224,16 @@ namespace SalesDB_To_APQM
                                                     item.Um = "";
                                                     item.Material = bom.Material;
 
-                                                    string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item);
+                                                    string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item, ref DM);
                                                     if (itemIDGenerated == "")
                                                     {
-                                                        log = "ERROR: Could not export Item: " + item + "\n";
-                                                        backgroundWorker1.ReportProgress(progress);
-                                                        System.Threading.Thread.Sleep(10);
-                                                        //txtLog.AppendText("ERROR: Could not export Item: " + item + "\n");
                                                         summary.totalErrors++;
-                                                        continue;
+                                                        log = "ERROR: Could not export Item: " + item + "\n" + 
+                                                                "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                        backgroundWorker1.ReportProgress(++progress);
+                                                        System.Threading.Thread.Sleep(10);
+                                                        errorInBOM = true;
+                                                        break;
                                                     }
                                                     else
                                                     {
@@ -236,19 +241,7 @@ namespace SalesDB_To_APQM
                                                         log = "INFO: Item exported: " + item + "\n" + "Attempting to export its BOMLine\n";
                                                         backgroundWorker1.ReportProgress(progress);
                                                         System.Threading.Thread.Sleep(10);
-
-                                                        try
-                                                        {
-                                                            itemList = (List<Item>)item_CRUD.readAll();
-                                                        }
-                                                        catch (Exception ex)
-                                                        {
-                                                            log = "ERROR: " + ex.Message;
-                                                            //txtLog.AppendText("ERROR: " + ex.Message);
-                                                            backgroundWorker1.ReportProgress(progress);
-                                                            System.Threading.Thread.Sleep(10);
-                                                            summary.totalErrors++;
-                                                        }
+                                                        itemList.Add(item);
                                                     }
                                                 }
 
@@ -264,14 +257,14 @@ namespace SalesDB_To_APQM
                                                 bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
                                                 bomDetail.LinePosition = bom.MaterialPosition;
                                                 bomDetail.ItemMasterkey = item.Id;
-                                                if (!bomDetailCRUD.create(bomDetail))
+                                                if (!bomDetailCRUD.create(bomDetail, ref DM))
                                                 {
-                                                    log = "ERROR: Could not export BOM Line: " + bomDetail + "\n";
-                                                    backgroundWorker1.ReportProgress(progress);
-                                                    System.Threading.Thread.Sleep(10);
-                                                    //txtLog.AppendText("ERROR: Could not export BOM Line: " + bomDetail + "\n");
                                                     summary.totalErrors++;
-                                                    continue;
+                                                    log = "ERROR: Could not export BOM Line: " + bomDetail + " Error: " + DM.Error_Mjs + "\n\n";
+                                                    backgroundWorker1.ReportProgress(++progress);
+                                                    System.Threading.Thread.Sleep(10);
+                                                    errorInBOM = true;
+                                                    break;
                                                 }
                                                 else
                                                 {
@@ -282,6 +275,8 @@ namespace SalesDB_To_APQM
                                                 }
                                             }
                                         }
+                                        if (errorInBOM)
+                                            continue;
                                     }
                                     else
                                     {
@@ -290,18 +285,20 @@ namespace SalesDB_To_APQM
                                         System.Threading.Thread.Sleep(10);
                                         //txtLog.AppendText("INFO: No BOM Line found for SIF: " + sif + "\n");
                                     }
-                                }
+                                }                              
                             }
                             else
                             {
-                                log = "ERROR: Could not export BOM of SIF: " + sif + "\n";
+                                log = "INFO: No BOM Header found for SIF: " + sif + "\n";
                                 backgroundWorker1.ReportProgress(progress);
                                 System.Threading.Thread.Sleep(10);
                                 //txtLog.AppendText("ERROR: Could not export BOM of SIF: " + sif + "\n");
-                                summary.totalErrors++;
-                                continue;
+                                //summary.totalErrors++;
                             }
                         }
+
+                        /* End Transaction */
+                        DM.CommitTransaction();
                         log = "SUCCESS: SIF exported: " + sif + "\n";
                         backgroundWorker1.ReportProgress(progress);
                         System.Threading.Thread.Sleep(10);
@@ -316,9 +313,8 @@ namespace SalesDB_To_APQM
                         //txtLog.AppendText("OMITTED: SIF already exported: " + sif + "\n");
                         summary.totalOmitted++;
                     }
-                    progress += 1;
                     log = "\n";
-                    backgroundWorker1.ReportProgress(progress);
+                    backgroundWorker1.ReportProgress(++progress);
                     System.Threading.Thread.Sleep(10);
                 }
             }
@@ -344,16 +340,22 @@ namespace SalesDB_To_APQM
         {
             progressBar1.Value = e.ProgressPercentage;
             txtLog.AppendText(log);
-            
+            refreshSummary();
         }
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             refreshSummary();
+            txtLog.AppendText("\nProcess Completed.");            
         }
         private void frmExport_Load(object sender, EventArgs e)
         {
             txtLog.Text = "";
             backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void txtLog_Resize(object sender, EventArgs e)
+        {
+            txtLog.ScrollToCaret();
         }       
     }
 }
