@@ -22,9 +22,7 @@ namespace SalesDB_To_APQM
 
         private void frmSelectData_Load(object sender, EventArgs e)
         {
-            loadSalesPersonList();
-            loadStatus();
-            filterData();
+            
         }
         private void loadSalesPersonList()
         {
@@ -225,6 +223,7 @@ namespace SalesDB_To_APQM
                     sif.Technical = row.Cells["Technical/subsource Constraints"].Value.ToString();
                     sif.CustomerName = row.Cells["Customer"].Value.ToString();
                     sif.SalesStatus = row.Cells["Status"].Value.ToString();
+                    sif.SalesDBID = long.Parse(row.Cells["ID"].Value.ToString());
                     try
                     {
                         sif.QuoteDue = DateTime.Parse(row.Cells["Quote Due"].Value.ToString());
@@ -251,6 +250,18 @@ namespace SalesDB_To_APQM
         private void gridSIF_SelectionChanged(object sender, EventArgs e)
         {
             lblTotalSelected.Text = gridSIF.SelectedRows.Count.ToString();
+        }
+
+        private void frmSelectData_Shown(object sender, EventArgs e)
+        {
+            this.Refresh();
+            loadSalesPersonList();
+            loadStatus();            
+            filterData();
+            toolStripStatusLabel1.Text = "Reading Mat Assm Tool Descrip Table. Please wait...";
+            System.Threading.Thread.Sleep(10);
+            bomAccessCRUD.readAll();
+            toolStripStatusLabel1.Text = "Ready.";
         }
     }
 }

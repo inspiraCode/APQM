@@ -50,6 +50,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Technical", entity.Technical);
             DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_NewSIF", true);
         }
@@ -90,6 +91,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Technical", entity.Technical);
             DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SIFHeader_NewSIF", true);
         }
@@ -131,6 +133,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Technical", entity.Technical);
             DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SIFHeader_NewSIF", true);
         }
@@ -171,6 +174,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Technical", entity.Technical);
             DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("SIFHeader_NewSIF", true);
         }
@@ -187,7 +191,7 @@ public class sifCRUD : ICRUD<SIF>
         SIF sif = new SIF();
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, QuoteDue, SOP " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, QuoteDue, SOP, SalesDBID " +
                         "FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
@@ -235,6 +239,7 @@ public class sifCRUD : ICRUD<SIF>
                 sif.Technical = table.Rows[0][23].ToString();
                 sif.QuoteDue = DateTime.Parse(table.Rows[0][24].ToString());
                 sif.Sop = DateTime.Parse(table.Rows[0][25].ToString());
+                sif.SalesDBID = long.Parse(table.Rows[0][26].ToString());
 
                 sqlConnection.Dispose();
                 return sif;
@@ -246,15 +251,13 @@ public class sifCRUD : ICRUD<SIF>
     {
         foreach (SIF sifLocal in list)
         {
-            if (sifLocal.InquiryNumber.Trim() == sifParameter.InquiryNumber.Trim() &&
-                sifLocal.Revision.Trim() == sifParameter.Revision.Trim())
+            if (sifLocal.SalesDBID == sifParameter.SalesDBID)
             {
                 return sifLocal;
             }
         }
         return null;
     }
-
     public IList<SIF> readAll()
     {
         List<SIF> recordset = new List<SIF>();
@@ -262,7 +265,7 @@ public class sifCRUD : ICRUD<SIF>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
-                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, TopPartNumber, CustomerName, QuoteDue, SOP " +
+                        "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID " +
                         "FROM viewSIF_ReadAll ORDER BY SIFHeaderKey ASC";
 
         DataTable table = new DataTable();
@@ -310,6 +313,7 @@ public class sifCRUD : ICRUD<SIF>
             sif.CustomerName = table.Rows[i][25].ToString();
             sif.QuoteDue = DateTime.Parse(table.Rows[i][26].ToString());
             sif.Sop = DateTime.Parse(table.Rows[i][27].ToString());
+            sif.SalesDBID = long.Parse(table.Rows[i][28].ToString());
 
             recordset.Add(sif);
         }
@@ -349,6 +353,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Technical", entity.Technical);
             DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_EditSIF", true);
         }

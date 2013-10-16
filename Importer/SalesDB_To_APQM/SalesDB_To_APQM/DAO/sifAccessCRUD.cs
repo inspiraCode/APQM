@@ -24,7 +24,7 @@ public class sifAccessCRUD
         string query = "SELECT [Inquiry Number], Status, Priority, Revision, [Sales Person], [Cost Model Location], Contact, " +
                         "[Business Class], Product, [Division/Location], Department, [Reason For Quote], [Application/Program], " + 
                         "Specification, [Task Description], [Part Print (Rev)], Samples, [Tooling Target (Incl Prototypes)], " +
-                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Customer, [Quote Due], SOP, [DWG Level] " +
+                        "[Primary Competitors], [Specific Response Requirements], [Technical/subsource Constraints], Customer, [Quote Due], SOP, [DWG Level], ID " +
                         "FROM [Sales Inquiry Form Table] " +
                         "ORDER BY [Inquiry Number], Revision;";    
 

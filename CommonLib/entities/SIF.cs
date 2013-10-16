@@ -34,8 +34,7 @@ public class SIF
     private DateTime quoteDue = new DateTime(1985, 2, 10);
     private DateTime sop = new DateTime(1985, 2, 10);
     private string salesStatus = "";
-
-
+    private long salesDBID = -1;    
 
     public string CustomerName
     {
@@ -183,7 +182,11 @@ public class SIF
         get { return salesStatus; }
         set { salesStatus = value; }
     }
-
+    public long SalesDBID
+    {
+        get { return salesDBID; }
+        set { salesDBID = value; }
+    }
     public override string ToString()
     {
         return "{Inquiry Number: " + this.InquiryNumber + " Revision: " + this.Revision + " Product: " + this.Product + " Sales Person: " + this.SalesPerson + "}";

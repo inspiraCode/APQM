@@ -1,0 +1,1 @@
+ILMerge.exe /out:SalesDB2APQM.exe SalesDB_To_APQM.exe BD_MNG.dll CommonLib.dll

@@ -41,7 +41,10 @@
             this.lblTotalRecords = new System.Windows.Forms.Label();
             this.lblTotalSelected = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.gridSIF)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridSIF
@@ -55,7 +58,7 @@
             this.gridSIF.Location = new System.Drawing.Point(12, 180);
             this.gridSIF.Name = "gridSIF";
             this.gridSIF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridSIF.Size = new System.Drawing.Size(840, 243);
+            this.gridSIF.Size = new System.Drawing.Size(840, 227);
             this.gridSIF.TabIndex = 0;
             this.gridSIF.SelectionChanged += new System.EventHandler(this.gridSIF_SelectionChanged);
             // 
@@ -97,7 +100,7 @@
             // btnExportSelected
             // 
             this.btnExportSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportSelected.Location = new System.Drawing.Point(752, 429);
+            this.btnExportSelected.Location = new System.Drawing.Point(752, 413);
             this.btnExportSelected.Name = "btnExportSelected";
             this.btnExportSelected.Size = new System.Drawing.Size(100, 23);
             this.btnExportSelected.TabIndex = 9;
@@ -141,7 +144,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 429);
+            this.label3.Location = new System.Drawing.Point(13, 413);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 13);
             this.label3.TabIndex = 13;
@@ -151,7 +154,7 @@
             // 
             this.lblTotalRecords.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalRecords.AutoSize = true;
-            this.lblTotalRecords.Location = new System.Drawing.Point(91, 429);
+            this.lblTotalRecords.Location = new System.Drawing.Point(91, 413);
             this.lblTotalRecords.Name = "lblTotalRecords";
             this.lblTotalRecords.Size = new System.Drawing.Size(0, 13);
             this.lblTotalRecords.TabIndex = 14;
@@ -160,7 +163,7 @@
             // 
             this.lblTotalSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalSelected.AutoSize = true;
-            this.lblTotalSelected.Location = new System.Drawing.Point(208, 429);
+            this.lblTotalSelected.Location = new System.Drawing.Point(208, 413);
             this.lblTotalSelected.Name = "lblTotalSelected";
             this.lblTotalSelected.Size = new System.Drawing.Size(0, 13);
             this.lblTotalSelected.TabIndex = 16;
@@ -169,17 +172,34 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(130, 429);
+            this.label6.Location = new System.Drawing.Point(130, 413);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 13);
             this.label6.TabIndex = 15;
             this.label6.Text = "Total selected:";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 447);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(864, 22);
+            this.statusStrip1.TabIndex = 17;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(255, 17);
+            this.toolStripStatusLabel1.Text = "Reading Sales Inquiry Form Table. Please wait...";
+            // 
             // frmSelectData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(864, 461);
+            this.ClientSize = new System.Drawing.Size(864, 469);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lblTotalSelected);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.lblTotalRecords);
@@ -196,7 +216,10 @@
             this.Name = "frmSelectData";
             this.Text = "Select Data";
             this.Load += new System.EventHandler(this.frmSelectData_Load);
+            this.Shown += new System.EventHandler(this.frmSelectData_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.gridSIF)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,5 +240,7 @@
         private System.Windows.Forms.Label lblTotalRecords;
         private System.Windows.Forms.Label lblTotalSelected;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
