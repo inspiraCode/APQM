@@ -328,9 +328,14 @@ namespace SalesDB_To_APQM
         }
         private void refreshSummary()
         {
-            lblTotalErrors.Text = summary.totalErrors.ToString();
-            lblTotalOmitted.Text = summary.totalOmitted.ToString();
-            lblTotalSuccess.Text = summary.totalSuccess.ToString();
+            try
+            {
+                lblTotalErrors.Text = summary.totalErrors.ToString();
+                lblTotalOmitted.Text = summary.totalOmitted.ToString();
+                lblTotalSuccess.Text = summary.totalSuccess.ToString();
+            }
+            catch { }
+            
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -344,12 +349,13 @@ namespace SalesDB_To_APQM
         }
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            txtLog.AppendText("\nProcess Completed.");
             refreshSummary();
-            txtLog.AppendText("\nProcess Completed.");            
         }
         private void frmExport_Load(object sender, EventArgs e)
         {
             txtLog.Text = "";
+            txtLog.AppendText("Connecting with APQM...\n");
             backgroundWorker1.RunWorkerAsync();
         }
 

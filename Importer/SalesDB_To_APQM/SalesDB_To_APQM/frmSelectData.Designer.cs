@@ -122,6 +122,7 @@
             this.chkListStatus.Location = new System.Drawing.Point(652, 13);
             this.chkListStatus.Name = "chkListStatus";
             this.chkListStatus.Size = new System.Drawing.Size(200, 154);
+            this.chkListStatus.Sorted = true;
             this.chkListStatus.TabIndex = 11;
             this.chkListStatus.SelectedIndexChanged += new System.EventHandler(this.chkListStatus_SelectedIndexChanged);
             // 
@@ -132,6 +133,7 @@
             this.chkListSalesPerson.Location = new System.Drawing.Point(404, 13);
             this.chkListSalesPerson.Name = "chkListSalesPerson";
             this.chkListSalesPerson.Size = new System.Drawing.Size(200, 154);
+            this.chkListSalesPerson.Sorted = true;
             this.chkListSalesPerson.TabIndex = 12;
             this.chkListSalesPerson.SelectedIndexChanged += new System.EventHandler(this.chkListSalesPerson_SelectedIndexChanged);
             // 

@@ -1216,11 +1216,18 @@ namespace Data_Base_MNG
             }
             catch (Exception ex)
             {
-                _error_mjs = ex.Message;
-                Stop_Connection();
+                _error_mjs = ex.Message;                
                 ErrorFlag = true;
-                return false;
+                try
+                {
+                    _transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    _error_mjs = ex.Message + " RollBack Error: " + ex2.Message;
+                }
             }
+            return false;
         }
         public DataTable Execute_Query()
         {

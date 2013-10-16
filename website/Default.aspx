@@ -129,10 +129,9 @@
         <asp:View ID="viewSIF" runat="server">
             <div runat="server" id="divSIF" class="Content">
                 SIFs
-                <br />
-                <br />
-                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
-                    OnClick="btnAddSIF_Click" />
+                <br />                
+                <%--<asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
+                    OnClick="btnAddSIF_Click" />--%>
                 <br />
                 <uc4:sifList ID="uscSIFList" runat="server" />
             </div>

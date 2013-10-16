@@ -65,25 +65,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DAO\bomCRUD.cs" />
     <Compile Include="DAO\bomAccessCRUD.cs" />
-    <Compile Include="DAO\itemCRUD.cs" />
-    <Compile Include="entities\BOM.cs" />
-    <Compile Include="DAO\customerCRUD.cs" />
-    <Compile Include="DAO\ICRUD.cs" />
     <Compile Include="entities\BOMAccess.cs" />
-    <Compile Include="entities\Item.cs" />
     <Compile Include="DAO\sifAccessCRUD.cs" />
-    <Compile Include="DAO\sifCRUD.cs" />
-    <Compile Include="entities\Customer.cs" />
-    <Compile Include="entities\SIF.cs" />
+    <Compile Include="entities\SIFAccess.cs" />
     <Compile Include="frmSelectData.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSelectData.Designer.cs">
       <DependentUpon>frmSelectData.cs</DependentUpon>
     </Compile>
-    <Compile Include="utils\ConnectionManager.cs" />
     <Compile Include="utils\AccessConfigurationManager.cs" />
     <Compile Include="frmExport.cs">
       <SubType>Form</SubType>
@@ -122,6 +113,10 @@
     <ProjectReference Include="..\..\..\BD_MNG\BD_MNG.csproj">
       <Project>{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}</Project>
       <Name>BD_MNG</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\CommonLib\CommonLib.csproj">
+      <Project>{B9A5E946-CC4E-4CF2-A961-E2B5BF269C3A}</Project>
+      <Name>CommonLib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

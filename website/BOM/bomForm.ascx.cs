@@ -61,14 +61,23 @@ public partial class bomForm : System.Web.UI.UserControl
         bom.TopPartNumber = txtPartNumber.Text;
         bom.PartDescription = txtDescription.Text;
         bom.Revision = txtRevision.Text;
-        
+
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("BOM Save");
+
         if (lblMode.Text == "New")
         {
-            string idGenerated = bomCRUD.createAndReturnIdGenerated(bom);
+            string idGenerated = bomCRUD.createAndReturnIdGenerated(bom, ref DM);
             if (idGenerated != "")
             {
                 this.bom.Id = long.Parse(idGenerated);
-            }else{
+            }
+            else
+            {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
             }
@@ -76,7 +85,7 @@ public partial class bomForm : System.Web.UI.UserControl
         else if (lblMode.Text == "Update")
         {
             bom.Id = this.bom.Id;
-            if (!bomCRUD.update(bom))
+            if (!bomCRUD.update(bom, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
@@ -85,7 +94,7 @@ public partial class bomForm : System.Web.UI.UserControl
         List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
         foreach (BOMDetail detail in bomDetailListToDelete)
         {            
-            if (!bomDetailCRUD.delete(detail.Id))
+            if (!bomDetailCRUD.delete(detail.Id, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
@@ -97,7 +106,7 @@ public partial class bomForm : System.Web.UI.UserControl
             Item item = detail.Item;
             if (item != null)
             {
-                if (!item_CRUD.update(item))
+                if (!item_CRUD.update(item, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
@@ -106,13 +115,18 @@ public partial class bomForm : System.Web.UI.UserControl
             if (detail.internalAction == "CREATE")
             {                
                 detail.BomHeaderKey = this.bom.Id;
-                if (!bomDetailCRUD.create(detail))
+                if (!bomDetailCRUD.create(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
                 }
             }
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+
         Session.Remove("bom");
         Ok_Click(this, e);
     }

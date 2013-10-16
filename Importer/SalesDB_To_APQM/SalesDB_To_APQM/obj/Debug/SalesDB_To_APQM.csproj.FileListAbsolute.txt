@@ -9,3 +9,5 @@ C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\S
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.pdb
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmSelectData.resources
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmExport.resources
+C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\CommonLib.dll
+C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\CommonLib.pdb

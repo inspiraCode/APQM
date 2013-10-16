@@ -19,6 +19,7 @@ namespace SalesDB_To_APQM
             try
             {
                 DMG = new Data_Base_MNG.Access(datasource);
+                //DMG = new Data_Base_MNG.Access(@"\\cap-ah\Exchange\" + datasource);
                 return DMG;
             }
             catch (Exception e)

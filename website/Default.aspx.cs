@@ -92,7 +92,7 @@ public partial class _Default : System.Web.UI.Page
     {
         uscMenu.disableButtons();
         btnAddRFQ.Enabled = false;
-        btnAddSIF.Enabled = false;
+        //btnAddSIF.Enabled = false;
         btnAddSupplier.Enabled = false;        
     }
     private void openpopupContainer()

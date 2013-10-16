@@ -16,25 +16,17 @@ public class bomHeaderAccessCRUD
     public BOMHeaderAccess readBySIF(SIF sif)
     {
         BOMHeaderAccess bom = new BOMHeaderAccess();
-       
-        DM = connectionManager.getDataManager();
-
-        string query = "SELECT Product " +
-                        "FROM [Sales Inquiry Form Table] " +
-                        "WHERE [Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'";
-
-        DataTable table = new DataTable();
-        table = DM.Execute_Query(query);
-        if (DM.Error)
+        try
         {
-            throw new Exception(DM.Exeption);
-        }
-        if(table.Rows.Count > 0)
-        {
-            bom.PartDescription = table.Rows[0] [0].ToString();
-            //bom.Revision = table.Rows[0][0].ToString();
-            //bom.TopPartNumber = table.Rows[0][0].ToString();
-            return bom;
+            DataRow[] table = sifAccessCRUD.readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
+            if (table.Count() > 0)
+            {
+                bom.PartDescription = table[0]["Inquiry Number"].ToString();
+                //bom.Revision = table.Rows[0][0].ToString();
+                //bom.TopPartNumber = table.Rows[0][0].ToString();
+                return bom;
+            }
+        }catch{           
         }
         return null;
     }
@@ -45,11 +37,15 @@ public class bomAccessCRUD
     AccessConfigurationManager connectionManager = new AccessConfigurationManager();
     Data_Base_MNG.Access DM;
 
+    static bool alreadyRetrieved = false;
+    static List<BOMAccess> BOMAccessData;
+
     public List<BOMAccess> readBySIF(SIF sif)
     {
+        //List<BOMAccess> recordset = readAll();
         List<BOMAccess> recordset = new List<BOMAccess>();
-        recordset.Clear();
-        DM = connectionManager.getDataManager();
+        
+       // List<BOMAccess> recordsetBySIF = recordset.Where(bom => bom.
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
                         "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], Status " +
@@ -84,6 +80,9 @@ public class bomAccessCRUD
     }
     public List<BOMAccess> readAll()
     {
+        if (alreadyRetrieved) return BOMAccessData;
+        
+
         List<BOMAccess> recordset = new List<BOMAccess>();
         recordset.Clear();
         DM = connectionManager.getDataManager();
@@ -111,6 +110,8 @@ public class bomAccessCRUD
 
             recordset.Add(bom);
         }
+
+        alreadyRetrieved = true;
         return recordset;
     }
 }

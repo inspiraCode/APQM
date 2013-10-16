@@ -22,9 +22,9 @@ namespace SalesDB_To_APQM
 
         private void frmSelectData_Load(object sender, EventArgs e)
         {
-            clearFilter();
             loadSalesPersonList();
             loadStatus();
+            filterData();
         }
         private void loadSalesPersonList()
         {
@@ -34,6 +34,7 @@ namespace SalesDB_To_APQM
             {
                 chkListSalesPerson.Items.Add(salesPersonList.Rows[i][0].ToString());
             }
+
         }
         private void loadStatus()
         {
@@ -42,7 +43,7 @@ namespace SalesDB_To_APQM
             for (var i = 0; i < statusList.Rows.Count; i++)
             {
                 chkListStatus.Items.Add(statusList.Rows[i][0].ToString());
-            }
+            }            
         }
         private void chkListSalesPerson_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -52,45 +53,116 @@ namespace SalesDB_To_APQM
         {
             filterData();
         }
+        //private void filterData()
+        //{
+        //    filter = "";
+        //    CheckedListBox.CheckedItemCollection listSalesPersonSelected = chkListSalesPerson.CheckedItems;
+        //    CheckedListBox.CheckedItemCollection listStatusSelected = chkListStatus.CheckedItems;
+
+        //    if (txtInquiryNumber.Text.Trim() != "" || listSalesPersonSelected.Count > 0 || listStatusSelected.Count > 0)
+        //    {
+        //        filter = "WHERE ";
+
+        //        if (txtInquiryNumber.Text.Trim() != "")
+        //        {
+        //            filter += "[Inquiry Number] = '" + txtInquiryNumber.Text.Trim() + "' AND ";
+        //        }
+
+        //        if (listSalesPersonSelected.Count > 0)
+        //        {
+        //            for (var i = 0; i < listSalesPersonSelected.Count; i++)
+        //            {
+        //                filter += "([Sales Person] = '" + listSalesPersonSelected[i].ToString() + "' OR ";
+        //            }
+        //            filter = filter.Substring(0, filter.Length - 4);
+        //            filter += ") AND ";
+        //        }
+
+        //        if (listStatusSelected.Count > 0)
+        //        {
+        //            filter += "( ";
+        //            for (var i = 0; i < listStatusSelected.Count; i++)
+        //            {
+        //                filter += "[Status] = '" + listStatusSelected[i].ToString() + "' OR ";
+        //            }
+        //            filter = filter.Substring(0, filter.Length - 4);
+        //            filter += ") AND ";
+        //        }
+        //        filter = filter.Substring(0, filter.Length - 4);
+        //    }
+
+        //    gridSIF.DataSource = sifAccess_CRUD.readFilterd(filter);
+        //    lblTotalRecords.Text = gridSIF.RowCount.ToString();
+        //    gridSIF.ClearSelection();
+        //}
+
         private void filterData()
         {
+            DataTable dtFilter;
             filter = "";
             CheckedListBox.CheckedItemCollection listSalesPersonSelected = chkListSalesPerson.CheckedItems;
             CheckedListBox.CheckedItemCollection listStatusSelected = chkListStatus.CheckedItems;
 
-            if (txtInquiryNumber.Text.Trim() != "" || listSalesPersonSelected.Count > 0 || listStatusSelected.Count > 0)
+            if (txtInquiryNumber.Text.Trim() != "")
             {
-                filter = "WHERE ";
-
-                if (txtInquiryNumber.Text.Trim() != "")
-                {
-                    filter += "[Inquiry Number] = '" + txtInquiryNumber.Text.Trim() + "' AND ";
-                }
-
-                if (listSalesPersonSelected.Count > 0)
-                {
-                    for (var i = 0; i < listSalesPersonSelected.Count; i++)
-                    {
-                        filter += "([Sales Person] = '" + listSalesPersonSelected[i].ToString() + "' OR ";
-                    }
-                    filter = filter.Substring(0, filter.Length - 4);
-                    filter += ") AND ";
-                }
-
-                if (listStatusSelected.Count > 0)
-                {
-                    filter += "( ";
-                    for (var i = 0; i < listStatusSelected.Count; i++)
-                    {
-                        filter += "[Status] = '" + listStatusSelected[i].ToString() + "' OR ";
-                    }
-                    filter = filter.Substring(0, filter.Length - 4);
-                    filter += ") AND ";
-                }
-                filter = filter.Substring(0, filter.Length - 4);
+                filter += "[Inquiry Number] = '" + txtInquiryNumber.Text.Trim() + "' AND ";
             }
 
-            gridSIF.DataSource = sifAccess_CRUD.readFilterd(filter);
+            if (listSalesPersonSelected.Count > 0)
+            {
+                filter += "(";
+                for (var i = 0; i < listSalesPersonSelected.Count; i++)
+                {
+                    if (listSalesPersonSelected[i].ToString() == "")
+                    {
+                        filter += "[Sales Person] = '' OR ";
+                        filter += "[Sales Person] is null OR ";
+                    }else
+                        filter += "[Sales Person] = '" + listSalesPersonSelected[i].ToString() + "' OR ";
+                }
+                
+                filter = filter.Substring(0, filter.Length - 4);
+                filter += ") AND ";
+            }
+
+            if (listStatusSelected.Count > 0)
+            {
+                filter += "(";
+                for (var i = 0; i < listStatusSelected.Count; i++)
+                {
+                    if (listStatusSelected[i].ToString() == "")
+                    {
+                        filter += "[Status] = '' OR ";
+                        filter += "[Status] is null OR ";
+                    }
+                    else
+                        filter += "[Status] = '" + listStatusSelected[i].ToString() + "' OR ";
+                }
+                filter = filter.Substring(0, filter.Length - 4);
+                filter += ") AND ";
+            }
+            if (filter != "")
+            {
+                filter = filter.Substring(0, filter.Length - 4);
+                dtFilter = sifAccessCRUD.readAll();
+                try
+                {
+                    gridSIF.DataSource = dtFilter.Select(filter).CopyToDataTable();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    gridSIF.DataSource = null;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                gridSIF.DataSource = sifAccessCRUD.readAll();
+            }
+            
             lblTotalRecords.Text = gridSIF.RowCount.ToString();
             gridSIF.ClearSelection();
         }

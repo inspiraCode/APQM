@@ -189,5 +189,11 @@ public partial class bomDetailList : System.Web.UI.UserControl
             txtMaterial.Text = item.Material;
             cboPartNumber.Focus();
         }
+        else
+        {
+            txtDescription.Text = "";
+            txtMaterial.Text = "";
+            cboPartNumber.Focus();
+        }
     }
 }

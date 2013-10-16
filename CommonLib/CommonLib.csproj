@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}</ProjectGuid>
+    <ProjectGuid>{B9A5E946-CC4E-4CF2-A961-E2B5BF269C3A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BD_MNG</RootNamespace>
-    <AssemblyName>BD_MNG</AssemblyName>
+    <RootNamespace>CommonLib</RootNamespace>
+    <AssemblyName>CommonLib</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -21,32 +21,15 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -63,11 +46,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BD_MNG.cs" />
+    <Compile Include="dao\bomCRUD.cs" />
+    <Compile Include="dao\customerCRUD.cs" />
+    <Compile Include="dao\itemCRUD.cs" />
+    <Compile Include="dao\RfqCRUD.cs" />
+    <Compile Include="dao\sifCRUD.cs" />
+    <Compile Include="dao\SupplierCRUD.cs" />
+    <Compile Include="dao\SupplierSurveyCRUD.cs" />
+    <Compile Include="dao\TokenCRUD.cs" />
+    <Compile Include="entities\BOM.cs" />
+    <Compile Include="entities\Customer.cs" />
+    <Compile Include="entities\Item.cs" />
+    <Compile Include="entities\RFQ.cs" />
+    <Compile Include="entities\SIF.cs" />
+    <Compile Include="entities\Supplier.cs" />
+    <Compile Include="entities\SupplierSurvey.cs" />
+    <Compile Include="entities\Token.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utils\ConnectionManager.cs" />
+    <Compile Include="utils\Email.cs" />
+    <Compile Include="utils\ICRUD.cs" />
+    <Compile Include="utils\MD5HashGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ProjectReference Include="..\BD_MNG\BD_MNG.csproj">
+      <Project>{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}</Project>
+      <Name>BD_MNG</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
