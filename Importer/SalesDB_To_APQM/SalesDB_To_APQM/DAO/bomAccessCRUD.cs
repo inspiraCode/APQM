@@ -21,7 +21,7 @@ public class bomHeaderAccessCRUD
             DataRow[] table = sifAccessCRUD.readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
             if (table.Count() > 0)
             {
-                bom.PartDescription = table[0]["Inquiry Number"].ToString();
+                bom.PartDescription = table[0]["Product"].ToString();
                 //bom.Revision = table.Rows[0][0].ToString();
                 //bom.TopPartNumber = table.Rows[0][0].ToString();
                 return bom;
@@ -34,84 +34,55 @@ public class bomHeaderAccessCRUD
 
 public class bomAccessCRUD
 {
-    AccessConfigurationManager connectionManager = new AccessConfigurationManager();
-    Data_Base_MNG.Access DM;
+    static AccessConfigurationManager connectionManager = new AccessConfigurationManager();
+    static Data_Base_MNG.Access DM;
 
     static bool alreadyRetrieved = false;
-    static List<BOMAccess> BOMAccessData;
+    static DataTable BOMLineAccessData;
 
-    public List<BOMAccess> readBySIF(SIF sif)
+    static public List<BOMAccess> readBySIF(SIF sif)
     {
-        //List<BOMAccess> recordset = readAll();
+
+
         List<BOMAccess> recordset = new List<BOMAccess>();
-        
-       // List<BOMAccess> recordsetBySIF = recordset.Where(bom => bom.
-
-        string query = "SELECT [Material Position], [Part Number/Code ID], " +
-                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], Status " +
-                        "FROM [Mat Assm Tool Descrip Table] " +
-                        "WHERE [Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'";
-
-        DataTable table = new DataTable();
-        table = DM.Execute_Query(query);
-        if (DM.Error)
+        try
         {
-            throw new Exception(DM.Exeption);
-        }
-        for (int i = 0; i < table.Rows.Count; i++)
-        {
-            BOMAccess bom = new BOMAccess();
-            bom.MaterialPosition = table.Rows[i][0].ToString();
-            bom.PartNumber = table.Rows[i][1].ToString();
-            bom.Material = table.Rows[i][2].ToString();
-            bom.AssemblyDescription = table.Rows[i][5].ToString();
-            bom.Status = table.Rows[i][6].ToString();
-            try
+            DataRow[] table = readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
+            for (int i = 0; i < table.Count(); i++)
             {
-                bom.PartCost = float.Parse(table.Rows[i][3].ToString());
-                bom.NoRequired = float.Parse(table.Rows[i][4].ToString());
-            }catch(Exception ex){
-                bom.ImportComment = "BOM Line imported with error, please review it and export it agian if necessary. Error: " + ex.Message;
-            }           
-            recordset.Add(bom);
+                BOMAccess bom = new BOMAccess();
+                bom.MaterialPosition = table[i]["Material Position"].ToString();
+                bom.PartNumber = table[i]["Part Number/Code ID"].ToString();
+                bom.Material = table[i]["Material/Assembly Description"].ToString();
+                bom.AssemblyDescription = table[i]["Assembly Description"].ToString();
+                bom.Status = table[i]["Status"].ToString();
+                try
+                {
+                    bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
+                    bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
+                }
+                catch (Exception ex)
+                {
+                    bom.ImportComment = "BOM Line imported with error, please review it and export it agian if necessary. Error: " + ex.Message;
+                }
+                recordset.Add(bom);
+            }            
         }
-
+        catch {}
         return recordset;
     }
-    public List<BOMAccess> readAll()
+    static public DataTable readAll()
     {
-        if (alreadyRetrieved) return BOMAccessData;
+        if (alreadyRetrieved) return BOMLineAccessData;
         
-
-        List<BOMAccess> recordset = new List<BOMAccess>();
-        recordset.Clear();
         DM = connectionManager.getDataManager();
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
-                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], Status " +
+                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], Status, [Inquiry Number], Revision " +
                         "FROM [Mat Assm Tool Descrip Table]";
 
-        DataTable table = new DataTable();
-        table = DM.Execute_Query(query);
-        if (DM.Error)
-        {
-            throw new Exception(DM.Exeption);
-        }
-        for (int i = 0; i < table.Rows.Count; i++)
-        {
-            BOMAccess bom = new BOMAccess();
-            bom.MaterialPosition = table.Rows[i][0].ToString();
-            bom.PartNumber = table.Rows[i][1].ToString();
-            bom.Material = table.Rows[i][2].ToString();
-            bom.PartCost = float.Parse(table.Rows[i][3].ToString());
-            bom.NoRequired = float.Parse(table.Rows[i][4].ToString());
-            bom.AssemblyDescription = table.Rows[i][5].ToString();
-            bom.Status = table.Rows[i][6].ToString();
-
-            recordset.Add(bom);
-        }
-
+        BOMLineAccessData = DM.Execute_Query(query);
         alreadyRetrieved = true;
-        return recordset;
+        return BOMLineAccessData;
     }
 }
