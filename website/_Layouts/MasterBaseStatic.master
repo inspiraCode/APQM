@@ -71,7 +71,7 @@
             </tr>
         </table>
     </div>
-    <div style="background-color: #424242; height: 20px;">
+    <div style="background-color: #424242; height: 12px;">
     </div>
     <div id="divBase">
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">

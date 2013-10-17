@@ -2,13 +2,13 @@
     CodeFile="MasterP.master.cs" Inherits="_Layouts_MasterP" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
-    <div style="width: 310px; background-color: #A4A4A4; position: fixed; height: 100%;
+    <div style="width: 160px; background-color: #A4A4A4; position: fixed; height: 100%;
         float: left;">
         <asp:ContentPlaceHolder ID="PlaceHolderLeft" runat="server">
         </asp:ContentPlaceHolder>
     </div>
-    <div id="divContent" style="position: relative; margin-left: 310px;padding: 0 10px;height: 500px;
-overflow-y: auto;border-left: solid 8px #424242;">
+    <div id="divContent" style="position: relative; margin-left: 160px;padding: 0 10px;height: 500px;
+overflow-y: auto;border-left: solid 12px #424242;">
         <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
         </asp:ContentPlaceHolder>
     </div>

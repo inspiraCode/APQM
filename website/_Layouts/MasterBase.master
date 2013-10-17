@@ -71,8 +71,8 @@
         }
         .mainSection
         {
-            height: 340px;            
-            overflow-y: auto;           
+            height: 340px;
+            overflow-y: auto;
             align: center;
         }
         .Content
@@ -84,7 +84,8 @@
             font-family: initial;
             font-size: initial;
         }
-        .no-close .ui-dialog-titlebar-close {
+        .no-close .ui-dialog-titlebar-close
+        {
             display: none;
         }
     </style>
@@ -100,42 +101,45 @@
         type="text/javascript"></script>
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/js/jquery.dataTables.js") %>'
-        type="text/javascript"></script>    
-        
-        
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.core.js") %>'
         type="text/javascript"></script>
-        
-        
-        
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.widget.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.core.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.mouse.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.widget.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.draggable.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.mouse.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.position.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.draggable.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.resizable.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.position.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.button.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.resizable.js") %>'
         type="text/javascript"></script>
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.dialog.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.button.js") %>'
         type="text/javascript"></script>
-        
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.dialog.js") %>'
+        type="text/javascript"></script>
+
 </head>
-<body style="padding:0 20px;">
-   <%-- <table width="100%" style="margin-bottom: -20px;">
+<body style="padding: 0 20px;">
+    <%-- <table width="100%" style="margin-bottom: -20px;">
         
     </table>--%>
     <form id="form1" runat="server">
-    <div id="divHeader" style="position:fixed;top:0;left:0;width:100%;">
-        <table width="100%" style="background-color:white;">
-        <tr>
-            <td colspan="2" align="center">
-                <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/logo portal.png" />
-            </td>
-        </tr>
+    <div id="divHeader" style="position: fixed; top: 0; left: 0; width: 100%;">
+        <table width="100%" style="background-color: white;">
+            <tr>
+                <td colspan="2" align="center">
+                    <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/logo portal.png" />
+                </td>
+            </tr>
             <tr>
                 <td align="left" colspan="2">
                     <div style="min-height: 20px; text-align: right;">
@@ -151,20 +155,23 @@
                 <td align="right">
                     <asp:Label ID="lblDate" runat="server" Text="Label"></asp:Label>
                 </td>
-            </tr>                       
-        </table>   
-        <div style="background-color: #424242; height: 20px;"></div>
-    <div id="divBase">
-        <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
+            </tr>
+        </table>
+        <div style="background-color: #424242; max-height: 12px; min-height: 12px;">
+        </div>
+        <div id="divBase">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
     </form>
-    <div id="divFooter" style="font-size: 12px;">        
-       <table width="100%" cellspacing="0" style="position:fixed;bottom:0;left:0;background-color: white;">
-        <tr>
-            <td colspan="2" align="center" style="background-color: #424242; height: 20px;">
-            </td>
-        </tr>
+    <div id="divFooter" style="font-size: 12px;">
+        <table width="101%" cellspacing="0" style="position: fixed; bottom: 0; left: -1px; background-color: white;">
+            <tr>
+                <td colspan="0">
+                    <div style="background-color: #424242; max-height: 12px; min-height: 12px;margin-top: -1px;">
+                    </div>
+                </td>
+            </tr>
             <tr>
                 <td align="center">
                     Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
@@ -177,9 +184,11 @@
     </div>
 </body>
 </html>
+
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 200).toString());
-    jQuery( window ).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 200).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 193).toString());
+    jQuery(window).resize(function() {
+        jQuery('#divContent').css('height', (jQuery(window).height() - 193).toString());
     });
 </script>
+

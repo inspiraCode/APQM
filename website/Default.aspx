@@ -10,7 +10,7 @@
 <%@ Register Src="RFQ/rfqForm.ascx" TagName="rfqForm" TagPrefix="uc7" %>
 <%@ Register Src="BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
-    <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
+    <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="1">
         <asp:View ID="Login" runat="server">
             <table width="100%">
                 <tr>
