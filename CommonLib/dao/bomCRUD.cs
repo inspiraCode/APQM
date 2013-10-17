@@ -22,35 +22,14 @@ public class bomCRUD : ICRUD<BOM>
     public bool create(BOM entity)
     {
         bool result = false;        
-        DM = connectionManager.getDataManager();       
+        DM = connectionManager.getDataManager();
         try
-        {            
+        {
             DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
-            if (entity.TopPartNumber != null)
-            {
-                DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@TopPartNumber", "");
-            }
-            if (entity.PartDescription != null)
-            {
-                DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@PartDescription", "");
-            }
-            if (entity.Revision != null)
-            {
-                DM.Load_SP_Parameters("@Revision", entity.Revision);
-            }
-            else
-            {
-                DM.Load_SP_Parameters("@Revision", "");
-            }
-           
+            DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
+            DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+
             result = DM.Execute_StoreProcedure("BOMHeader_NewBOM", true);
         }
         catch (Exception e)
@@ -290,6 +269,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@Description", entity.Description);
             DM.Load_SP_Parameters("@LinePosition", entity.LinePosition);
             DM.Load_SP_Parameters("@SalesStatus", entity.SalesStatus);
+            DM.Load_SP_Parameters("@UserKey", entity.UserKey.ToString());
+            DM.Load_SP_Parameters("@PurchasingStatus", entity.PurchasingStatus);
+            DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
 
 
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
@@ -315,6 +297,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@Description", entity.Description);
             DM.Load_SP_Parameters("@LinePosition", entity.LinePosition);
             DM.Load_SP_Parameters("@SalesStatus", entity.SalesStatus);
+            DM.Load_SP_Parameters("@UserKey", entity.UserKey.ToString());
+            DM.Load_SP_Parameters("@PurchasingStatus", entity.PurchasingStatus);
+            DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
 
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
@@ -331,7 +316,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     {
         BOMDetail bomDetail = new BOMDetail();
 
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus " +
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy " +
                         "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -382,6 +367,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.Description = table.Rows[0][6].ToString();
                 bomDetail.LinePosition = table.Rows[0][7].ToString();
                 bomDetail.SalesStatus = table.Rows[0][8].ToString();
+                bomDetail.UserKey = long.Parse(table.Rows[0][9].ToString());
+                bomDetail.PurchasingStatus = table.Rows[0][10].ToString();
+                bomDetail.DirectedBuy = bool.Parse(table.Rows[0][11].ToString());
 
                 sqlConnection.Dispose();
                 return bomDetail;
@@ -392,8 +380,8 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     public List<BOMDetail> readByParentID(long id)
     {
         List<BOMDetail> recordset = new List<BOMDetail>();
-        
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, PartNumber, UM, Material, LinePosition, SalesStatus " +
+
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, PartNumber, UM, Material, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy " +
                         "FROM viewBOMDetail_ReadAll WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -448,6 +436,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.Material = table.Rows[i][9].ToString();
                 bomDetail.LinePosition = table.Rows[i][10].ToString();
                 bomDetail.SalesStatus = table.Rows[i][11].ToString();
+                bomDetail.UserKey = long.Parse(table.Rows[0][12].ToString());
+                bomDetail.PurchasingStatus = table.Rows[0][13].ToString();
+                bomDetail.DirectedBuy = bool.Parse(table.Rows[0][14].ToString());
                 bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
@@ -460,7 +451,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus " +
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy " +
                         "FROM BOMDetail ORDER BY BOMDetailKey";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -505,6 +496,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.Description = table.Rows[0][6].ToString();
             bomDetail.LinePosition = table.Rows[0][7].ToString();
             bomDetail.SalesStatus = table.Rows[0][8].ToString();
+            bomDetail.UserKey = long.Parse(table.Rows[0][9].ToString());
+            bomDetail.PurchasingStatus = table.Rows[0][10].ToString();
+            bomDetail.DirectedBuy = bool.Parse(table.Rows[0][11].ToString());
             bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
@@ -527,6 +521,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@Description", entity.Description);
             DM.Load_SP_Parameters("@LinePosition", entity.LinePosition);
             DM.Load_SP_Parameters("@SalesStatus", entity.SalesStatus);
+            DM.Load_SP_Parameters("@UserKey", entity.UserKey.ToString());
+            DM.Load_SP_Parameters("@PurchasingStatus", entity.PurchasingStatus);
+            DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
         }

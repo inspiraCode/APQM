@@ -73,6 +73,11 @@ public class BOMDetail
     private int sequence = -1;
     private string linePosition = "";
     private string salesStatus = "";
+    private string purchasingStatus = "";
+    private long userKey = -1; 
+    private bool directedBuy;
+
+    
 
     public string internalAction = "";
 
@@ -162,7 +167,21 @@ public class BOMDetail
         get { return salesStatus; }
         set { salesStatus = value; }
     }
-
+    public string PurchasingStatus
+    {
+        get { return purchasingStatus; }
+        set { purchasingStatus = value; }
+    }
+    public long UserKey
+    {
+        get { return userKey; }
+        set { userKey = value; }
+    }
+    public bool DirectedBuy
+    {
+        get { return directedBuy; }
+        set { directedBuy = value; }
+    }
     //private long id = -1;
     //private string description = "";
     //private long itemMasterkey = -1;

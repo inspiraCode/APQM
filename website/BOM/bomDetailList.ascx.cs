@@ -64,6 +64,10 @@ public partial class bomDetailList : System.Web.UI.UserControl
             ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((BOMDetail)e.Item.DataItem).Id.ToString();
         }
     }
+    public void takeBOMLine(object sender, CommandEventArgs e)
+    {
+       
+    }
     public void deleteByID(object sender, CommandEventArgs e)
     {
         int sequence = int.Parse((string)e.CommandArgument);
@@ -101,7 +105,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         bomDetailLine.Qty = float.Parse(txtQuantity.Text);
         bomDetailLine.Description = txtDescription.Text;
-        bomDetailLine.Status = txtStatus.Text;
+        bomDetailLine.Status = lblSalesStatus.Text;
         bomDetailLine.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
         bomDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
         bomDetailLine.Material = txtMaterial.Text;
@@ -136,7 +140,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         txtDescription.Text = "";
         txtMaterial.Text = "";
-        txtStatus.Text = "";
+        lblSalesStatus.Text = "";
         txtQuantity.Text = "";
     }    
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)

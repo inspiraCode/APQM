@@ -196,15 +196,15 @@ namespace SalesDB_To_APQM
                                                 summary.totalErrors++;
                                                 log = "ERROR: " + " BOM: " + bom + "\n" +
                                                         "Error Description: " + bom.ImportComment + "\n\n";
-                                                log = "INFO: Attempting to RollBack..\n";
+                                                log += "INFO: Attempting to RollBack..\n";
                                                 DM.RollBack();
                                                 if (DM.ErrorOccur)
                                                 {
-                                                    log = "...Fail to RollBack.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                    log += "...Fail to RollBack.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
                                                 }
                                                 else
                                                 {
-                                                    log = "...RollBack done.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                    log += "...RollBack done.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
                                                 }
 
                                                 backgroundWorker1.ReportProgress(++progress);
