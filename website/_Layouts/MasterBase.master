@@ -186,9 +186,9 @@
 </html>
 
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 193).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 187).toString());
     jQuery(window).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 193).toString());
+        jQuery('#divContent').css('height', (jQuery(window).height() - 187).toString());
     });
 </script>
 
