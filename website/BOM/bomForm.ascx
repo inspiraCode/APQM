@@ -2,16 +2,17 @@
     Inherits="bomForm" %>
 <%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
 <div align="center">
-    <table cellspacing="1" style="width: 590px">
-        <tr>
-            <td align="right">
+<br />
+    <table cellspacing="1" style="width: 590px; " align="center">
+        <tr style="display: none;">
+            <td align="right" >
                 Mode:
             </td>
             <td align="left">
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none;">
             <td align="right">
                 ID:
             </td>
@@ -19,7 +20,7 @@
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none;">
             <td align="right">
                 SIF ID:</td>
             <td align="left">
@@ -72,3 +73,4 @@
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
+<br />

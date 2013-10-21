@@ -19,6 +19,7 @@ public partial class bomForm : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         bom = (BOM)Session["bom"];
+        
     }
     public void load()
     {
@@ -61,7 +62,6 @@ public partial class bomForm : System.Web.UI.UserControl
         bom.TopPartNumber = txtPartNumber.Text;
         bom.PartDescription = txtDescription.Text;
         bom.Revision = txtRevision.Text;
-
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
@@ -113,9 +113,18 @@ public partial class bomForm : System.Web.UI.UserControl
                 }
             }
             if (detail.internalAction == "CREATE")
-            {                
+            {
                 detail.BomHeaderKey = this.bom.Id;
                 if (!bomDetailCRUD.create(detail, ref DM))
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
+                }
+            }
+            if (detail.internalAction == "UPDATE")
+            {
+                detail.BomHeaderKey = this.bom.Id;
+                if (!bomDetailCRUD.update(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
@@ -125,8 +134,7 @@ public partial class bomForm : System.Web.UI.UserControl
 
         DM.CommitTransaction();
         DM.Close_Open_Connection();
-
-
+        
         Session.Remove("bom");
         Ok_Click(this, e);
     }

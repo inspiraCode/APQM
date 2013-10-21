@@ -78,7 +78,8 @@ public class bomAccessCRUD
         DM = connectionManager.getDataManager();
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
-                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], Status, [Inquiry Number], Revision " +
+                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], " + 
+                        "Status, [Inquiry Number], Revision " +
                         "FROM [Mat Assm Tool Descrip Table]";
 
         BOMLineAccessData = DM.Execute_Query(query);

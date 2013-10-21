@@ -15,7 +15,6 @@ public class BOM
     private string revision = "";
     private string inquiryNumber = "";
 
-
     private List<BOMDetail> bomDetail;
 
     public List<BOMDetail> BomDetail
@@ -58,35 +57,40 @@ public class BOM
     {
         return "{Inquiry Number: " + this.inquiryNumber + " Top Part Number: " + this.topPartNumber + " Part Description: " + this.partDescription + "}";
     }
-
 }
 
 public class BOMDetail
 {
     private long id = -1;
-    private string description = "";
+    private long bomHeaderKey = -1;
     private long itemMasterkey = -1;
     private float qty;
     private float cost;
     private string status = "";
-    private long bomHeaderKey = -1;
-    private int sequence = -1;
-    private string linePosition = "";
-    private string salesStatus = "";
-    private string purchasingStatus = "";
-    private long userKey = -1; 
-    private bool directedBuy;
-
-    
-
-    public string internalAction = "";
-
-    private Item item;
-
-    //Item fields wrong way:
+    private string description = "";
     private string partNumber = "";
     private string um = "";
+    private string itemMaterial = "";
+    private string linePosition = "";
+    private string salesStatus = "";
+    private long userKey = -1; 
+    private string purchasingStatus = "";
+    private bool directedBuy;
     private string material = "";
+    private string itemDescription = "";
+    private string itemUm = "";
+
+    public string ItemUm
+    {
+        get { return itemUm; }
+        set { itemUm = value; }
+    }
+    
+    //Fields not in database:
+    private int sequence = -1;
+    public string internalAction = "";
+    
+    private Item item;
 
     public string PartNumber
     {
@@ -108,15 +112,6 @@ public class BOMDetail
         get { return sequence; }
         set { sequence = value; }
     }
-    //TODO implement this correct way:
-    //private Item item;
-
-    //public Item Item
-    //{
-    //    get { return item; }
-    //    set { item = value; }
-    //}
-
     public string Description
     {
         get { return description; }
@@ -182,16 +177,17 @@ public class BOMDetail
         get { return directedBuy; }
         set { directedBuy = value; }
     }
-    //private long id = -1;
-    //private string description = "";
-    //private long itemMasterkey = -1;
-    //private float qty;
-    //private float cost;
-    //private string status = "";
-    //private long bomHeaderKey = -1;
-    //private int sequence = -1;
-    //private string linePosition = "";
-    //private string salesStatus = "";
+    public string ItemMaterial
+    {
+        get { return itemMaterial; }
+        set { itemMaterial = value; }
+    }
+    public string ItemDescription
+    {
+        get { return itemDescription; }
+        set { itemDescription = value; }
+    }
+    
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";

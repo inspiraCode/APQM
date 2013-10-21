@@ -215,7 +215,7 @@ namespace SalesDB_To_APQM
                                             }
                                             else
                                             {
-                                                Item item = item_CRUD.readByPartNumberInList(bom.PartNumber, itemList);
+                                                Item item = readByPartNumberInList(bom, itemList);
                                                 if (item == null)
                                                 {
                                                     item = new Item();
@@ -250,12 +250,16 @@ namespace SalesDB_To_APQM
                                                 System.Threading.Thread.Sleep(10);
 
                                                 BOMDetail bomDetail = new BOMDetail();
-                                                bomDetail.Description = bom.Material;
-                                                bomDetail.Qty = bom.NoRequired;
-                                                bomDetail.Cost = bom.PartCost;
-                                                bomDetail.SalesStatus = bom.Status;
-                                                bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
                                                 bomDetail.LinePosition = bom.MaterialPosition;
+                                                bomDetail.Material = bom.Material;
+                                                bomDetail.Description = bom.AssemblyDescription;
+                                                bomDetail.SalesStatus = bom.Status;
+                                                bomDetail.Cost = bom.PartCost;
+                                                bomDetail.Qty = bom.NoRequired;
+                                                bomDetail.PartNumber = bom.PartNumber;
+                                               
+                                                bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
+                                                
                                                 bomDetail.ItemMasterkey = item.Id;
                                                 if (!bomDetailCRUD.create(bomDetail, ref DM))
                                                 {
@@ -362,6 +366,17 @@ namespace SalesDB_To_APQM
         private void txtLog_Resize(object sender, EventArgs e)
         {
             txtLog.ScrollToCaret();
-        }       
+        }     
+        private Item readByPartNumberInList(BOMAccess bom, List<Item> list)
+        {
+            foreach (Item item in list)
+            {
+                if (item.PartNumber.Trim() == bom.PartNumber.Trim() && item.Material.Trim() == bom.Material.Trim() && item.Description.Trim() == bom.AssemblyDescription.Trim())
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
     }
 }

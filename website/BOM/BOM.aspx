@@ -1,5 +1,5 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="BOM.aspx.cs" Inherits="_Default"
-    MasterPageFile="~/_Layouts/MasterP.master" %>
+    MasterPageFile="~/_Layouts/MasterP.master" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc2" %>
 <%@ Register src="bomForm.ascx" tagname="bomForm" tagprefix="uc1" %>

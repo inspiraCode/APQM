@@ -1209,6 +1209,7 @@ namespace Data_Base_MNG
             Build_Command(Command);
             try
             {
+                _command.Transaction = _transaction;
                 _command.ExecuteNonQuery();
                 //Stop_Connection();
                 ErrorFlag = false;
