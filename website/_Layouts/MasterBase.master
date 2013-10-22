@@ -128,7 +128,7 @@
         type="text/javascript"></script>
 
 </head>
-<body style="padding: 0 20px;">
+<body style="padding: 0 20px;font-family: Tahoma;font-size: 13px;">
     <%-- <table width="100%" style="margin-bottom: -20px;">
         
     </table>--%>
@@ -186,9 +186,9 @@
 </html>
 
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 187).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 185).toString());
     jQuery(window).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 187).toString());
+        jQuery('#divContent').css('height', (jQuery(window).height() - 185).toString());
     });
 </script>
 

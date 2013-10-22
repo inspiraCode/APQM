@@ -37,6 +37,8 @@ namespace SalesDB_To_APQM.entities
         private string assemblyDescription = ""; 
         private string status = "";
         private string importComment = "";
+        private string salesComments = "";
+        private string vendorQuoteEst = "";
 
         public string MaterialPosition
         {
@@ -77,6 +79,16 @@ namespace SalesDB_To_APQM.entities
         {
             get { return importComment; }
             set { importComment = value; }
+        }
+        public string VendorQuoteEst
+        {
+            get { return vendorQuoteEst; }
+            set { vendorQuoteEst = value; }
+        }
+        public string SalesComments
+        {
+            get { return salesComments; }
+            set { salesComments = value; }
         }
         public override string ToString()
         {

@@ -79,7 +79,10 @@ public class BOMDetail
     private string material = "";
     private string itemDescription = "";
     private string itemUm = "";
-
+    private string vendorQuoteEst = "";
+    private string salesComments = "";
+    private string purchasingComments = "";
+    
     public string ItemUm
     {
         get { return itemUm; }
@@ -187,7 +190,21 @@ public class BOMDetail
         get { return itemDescription; }
         set { itemDescription = value; }
     }
-    
+    public string VendorQuoteEst
+    {
+        get { return vendorQuoteEst; }
+        set { vendorQuoteEst = value; }
+    }
+    public string SalesComments
+    {
+        get { return salesComments; }
+        set { salesComments = value; }
+    }
+    public string PurchasingComments
+    {
+        get { return purchasingComments; }
+        set { purchasingComments = value; }
+    }
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";

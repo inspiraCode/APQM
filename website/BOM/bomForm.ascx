@@ -3,7 +3,7 @@
 <%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
 <div align="center">
 <br />
-    <table cellspacing="1" style="width: 590px; " align="center">
+    <table cellspacing="1"  align="left">
         <tr style="display: none;">
             <td align="right" >
                 Mode:
@@ -27,7 +27,7 @@
                 <asp:Label ID="lblSifID" runat="server"></asp:Label>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none">
             <td align="right">
                 Part #</td>
             <td align="left">
@@ -36,18 +36,30 @@
         </tr>
         <tr>
             <td align="right">
-                Description</td>
+                Inquiry Number</td>
             <td align="left">
-                <asp:TextBox ID="txtDescription" runat="server" Width="380px"></asp:TextBox>
+                <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
             <td align="right">
                 Revision</td>
             <td align="left">
-                <asp:TextBox ID="txtRevision" runat="server" Width="380px"></asp:TextBox>
+                <asp:TextBox ID="txtRevision" runat="server" Width="70px"></asp:TextBox>
             </td>
         </tr>
+        <tr>
+            <td align="right">
+                Product</td>
+            <td align="left">
+                <asp:TextBox ID="txtDescription" runat="server" Width="380px"></asp:TextBox>
+            </td>
+        </tr>
+        </table>
+        
+        
+        
+        <table cellspacing="1" align="center">
         <tr align="left">
             <td align="right" height="25px" colspan="2">
                 <div style="border: solid;border-color: gray;border-width: 2px;"></div>

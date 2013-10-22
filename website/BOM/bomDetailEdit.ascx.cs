@@ -42,6 +42,8 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         bomDetailEdit.Cost = float.Parse(txtCost.Text);
         bomDetailEdit.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailEdit.PurchasingStatus = cboPurchasingStatus.SelectedValue;
+        bomDetailEdit.PurchasingComments = txtPurchasingComments.Text;
+
         if (bomDetailEdit.Id > -1)
         {
             bomDetailEdit.internalAction = "UPDATE";
@@ -76,6 +78,9 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         txtCost.Text = bomDetailEdit.Cost.ToString();
         chkDirectedBuy.Checked = bomDetailEdit.DirectedBuy;
         cboPurchasingStatus.SelectedValue = bomDetailEdit.PurchasingStatus;
+        txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
+        lblSalesComments.Text = bomDetailEdit.SalesComments;
+        lblVendorQuoteEst.Text = bomDetailEdit.VendorQuoteEst;
     }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {

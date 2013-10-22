@@ -51,6 +51,7 @@ public partial class bomForm : System.Web.UI.UserControl
         txtPartNumber.Text = bom.TopPartNumber;
         txtDescription.Text = bom.PartDescription;
         txtRevision.Text = bom.Revision;
+        lblInquiryNumber.Text = bom.InquiryNumber;
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
         uscBOMDetailList.load();

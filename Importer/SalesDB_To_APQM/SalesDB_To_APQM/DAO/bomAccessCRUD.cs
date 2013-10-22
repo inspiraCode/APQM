@@ -56,6 +56,8 @@ public class bomAccessCRUD
                 bom.Material = table[i]["Material/Assembly Description"].ToString();
                 bom.AssemblyDescription = table[i]["Assembly Description"].ToString();
                 bom.Status = table[i]["Status"].ToString();
+                bom.VendorQuoteEst = table[i]["Vendor Quote Est"].ToString();
+                bom.SalesComments = table[i]["Comments"].ToString();
                 try
                 {
                     bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
@@ -79,7 +81,7 @@ public class bomAccessCRUD
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
                         "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], " + 
-                        "Status, [Inquiry Number], Revision " +
+                        "Status, [Inquiry Number], Revision, [Vendor Quote Est], Comments " +
                         "FROM [Mat Assm Tool Descrip Table]";
 
         BOMLineAccessData = DM.Execute_Query(query);

@@ -257,7 +257,9 @@ namespace SalesDB_To_APQM
                                                 bomDetail.Cost = bom.PartCost;
                                                 bomDetail.Qty = bom.NoRequired;
                                                 bomDetail.PartNumber = bom.PartNumber;
-                                               
+                                                bomDetail.SalesComments = bom.SalesComments;
+                                                bomDetail.VendorQuoteEst = bom.VendorQuoteEst;
+
                                                 bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
                                                 
                                                 bomDetail.ItemMasterkey = item.Id;

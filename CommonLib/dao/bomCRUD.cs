@@ -274,6 +274,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@Um", entity.Um);
+            DM.Load_SP_Parameters("@VendorQuoteEst", entity.VendorQuoteEst);
+            DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
+            DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
 
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
         }
@@ -303,6 +306,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@Um", entity.Um);
+            DM.Load_SP_Parameters("@VendorQuoteEst", entity.VendorQuoteEst);
+            DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
+            DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
         }
@@ -318,7 +324,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     {
         BOMDetail bomDetail = new BOMDetail();
 
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, Um " +
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, PurchasingComments " +
                         "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -374,6 +380,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.DirectedBuy = bool.Parse(table.Rows[0][11].ToString());
                 bomDetail.Material = table.Rows[0][12].ToString();
                 bomDetail.Um = table.Rows[0][13].ToString();
+                bomDetail.VendorQuoteEst = table.Rows[0][14].ToString();
+                bomDetail.SalesComments = table.Rows[0][15].ToString();
+                bomDetail.PurchasingComments = table.Rows[0][16].ToString();
 
                 sqlConnection.Dispose();
                 return bomDetail;
@@ -386,7 +395,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         List<BOMDetail> recordset = new List<BOMDetail>();
 
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, PartNumber, " +
-                        "ItemUm, ItemMaterial, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, ItemDescription, Um " +
+                        "ItemUm, ItemMaterial, LinePosition, SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, ItemDescription, Um, VendorQuoteEst, SalesComments, PurchasingComments " +
                         "FROM viewBOMDetail_ReadAll WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -447,6 +456,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.Material = table.Rows[i][15].ToString();
                 bomDetail.ItemDescription = table.Rows[i][16].ToString();
                 bomDetail.Um = table.Rows[i][17].ToString();
+                bomDetail.VendorQuoteEst = table.Rows[i][18].ToString();
+                bomDetail.SalesComments = table.Rows[i][19].ToString();
+                bomDetail.PurchasingComments = table.Rows[i][20].ToString();
                 bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
@@ -460,7 +472,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, " +
-                        "SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, Um " +
+                        "SalesStatus, UserKey, PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, PurchasingComments " +
                         "FROM BOMDetail ORDER BY BOMDetailKey";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -510,6 +522,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.DirectedBuy = bool.Parse(table.Rows[i][11].ToString());
             bomDetail.Material = table.Rows[i][12].ToString();
             bomDetail.Um = table.Rows[i][13].ToString();
+            bomDetail.VendorQuoteEst = table.Rows[i][14].ToString();
+            bomDetail.SalesComments = table.Rows[i][15].ToString();
+            bomDetail.PurchasingComments = table.Rows[i][16].ToString();
             bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
@@ -537,6 +552,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@Um", entity.Um);
+            DM.Load_SP_Parameters("@VendorQuoteEst", entity.VendorQuoteEst);
+            DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
+            DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
         }
@@ -567,6 +585,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@Um", entity.Um);
+            DM.Load_SP_Parameters("@VendorQuoteEst", entity.VendorQuoteEst);
+            DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
+            DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
         }

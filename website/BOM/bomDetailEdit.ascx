@@ -63,7 +63,7 @@
     </tr>
     <tr>
         <td class="style5" align="right">
-            Quantity</td>
+            No Required</td>
         <td class="style3">
             <asp:TextBox ID="txtQuantity" runat="server" Style="text-align: right" 
                 validate="number" Width="70px">0</asp:TextBox>
@@ -75,6 +75,21 @@
         <td class="style4">
             <asp:TextBox ID="txtCost" runat="server" Style="text-align: right" 
                 validate="number" Width="70px">0</asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="style5" align="right">
+            Vendor Quote Est</td>
+        <td class="style3">
+            <asp:Label ID="lblVendorQuoteEst" runat="server" Text="Label"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td class="style5" align="right">
+            Sales Comments</td>
+        <td class="style3">
+            <asp:Label ID="lblSalesComments" runat="server" Height="36px" Text="Label" 
+                Width="245px"></asp:Label>
         </td>
     </tr>
     <tr>
@@ -97,6 +112,20 @@
                 <asp:ListItem Value="M">Manufacture</asp:ListItem>
                 <asp:ListItem Value="Firm Requirement"></asp:ListItem>
             </asp:DropDownList>
+        </td>
+    </tr>
+    <tr>
+        <td class="style5" align="right">
+            Assigned To</td>
+        <td class="style3">
+            &nbsp;</td>
+    </tr>
+    <tr>
+        <td class="style5" align="right">
+            Purchasing Comments</td>
+        <td class="style3">
+            <asp:TextBox ID="txtPurchasingComments" runat="server" Rows="2" 
+                TextMode="MultiLine" Width="245px"></asp:TextBox>
         </td>
     </tr>
     <tr>

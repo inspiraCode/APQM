@@ -26,7 +26,7 @@
             Description
         </th>
         <th class="camposSinBordes">
-            Quantity
+            No Required
         </th>
         <th class="camposSinBordes">
             Cost
@@ -35,24 +35,33 @@
             Sales Status
         </th>
         <th class="camposSinBordes">
+            Vendor Quote Est
+        </th>
+        <th class="camposSinBordes">
+            Sales Comments
+        </th>
+        <th class="camposSinBordes">
             Directed Buy
         </th>
         <th class="camposSinBordes">
             Purchasing Status
         </th>
         <th class="camposSinBordes">
-            Assigned To
+           Purchasing Comments
+        </th>
+        <th class="camposSinBordes">
+             Assigned To
         </th>
         <th style="border-color: Gray;" class="camposSinBordes">
         </th>
     </tr>
     <tr>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <div style="width: 155px;">
-                <asp:DropDownList ID="cboPartNumber" Width="100px" runat="server" AutoPostBack="True"
+            <div style="width: 100px;">
+                <asp:DropDownList ID="cboPartNumber" Width="90px" runat="server" AutoPostBack="True"
                     OnSelectedIndexChanged="cboPartNumber_SelectedIndexChanged">
-                </asp:DropDownList>
-                <asp:Button ID="btnNewPartNumber" Width="45px" runat="server" Text="New" />
+                </asp:DropDownList><br />
+                <asp:Button ID="btnNewPartNumber" Width="90px" runat="server" Text="New" />
             </div>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
@@ -62,18 +71,26 @@
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes">
-            <asp:TextBox ID="txtMaterial" runat="server" Width="161px" Height="40px" Rows="2"
-                TextMode="MultiLine" Style="overflow-y: auto;"></asp:TextBox>
+            <asp:TextBox ID="txtMaterial" runat="server" Width="136px" Height="40px" Rows="2"
+                TextMode="MultiLine" Style="overflow-y: auto;font-family:Tahoma"></asp:TextBox>
         </th>
         <th class="camposSinBordes">
-            <asp:TextBox ID="txtDescription" runat="server" Width="160px" Height="40px" TextMode="MultiLine"
-                Style="overflow-y: auto;"></asp:TextBox>
+            <asp:TextBox ID="txtDescription" runat="server" Width="136px" Height="40px" TextMode="MultiLine"
+                Style="overflow-y: auto;font-family:Tahoma"></asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtQuantity" validate="number" runat="server" Width="66px" Style="text-align: right">0</asp:TextBox>
+            <asp:TextBox ID="txtQuantity" validate="number" runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtCost" validate="number" runat="server" Width="60px" Style="text-align: right">0</asp:TextBox>
+            <asp:TextBox ID="txtCost" validate="number" runat="server" Width="50px" Style="text-align: right">0</asp:TextBox>
+        </th>
+        <th class="camposSinBordes">
+            <div style="width: 70px;">
+            </div>
+        </th>
+        <th class="camposSinBordes">
+            <div style="width: 70px;">
+            </div>
         </th>
         <th class="camposSinBordes">
             <div style="width: 70px;">
@@ -96,6 +113,10 @@
             <div style="width: 70px;">
             </div>
         </th>
+        <th class="camposSinBordes">
+            <div style="width: 70px;">
+            </div>
+        </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" />
         </th>
@@ -103,6 +124,7 @@
         </th>
     </tr>
 </table>
+<uc1:Validator ID="Validator1" runat="server" />
 <div align="left">
     <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
@@ -110,34 +132,43 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
-                <td width="154px">
+                <td width="98px">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>
                 </td>
-                <td width="70px" align="center">
+                <td width="67px" align="center">
                     <%# DataBinder.Eval(Container.DataItem, "Um")%>
                 </td>
-                <td width="162px">
+                <td width="140px">
                     <%# DataBinder.Eval(Container.DataItem, "Material")%>
                 </td>
-                <td width="163px">
+                <td width="140px">
                     <%# DataBinder.Eval(Container.DataItem, "Description")%>
                 </td>
-                <td width="68px" align="right">
+                <td width="60px" align="right">
                     <%# DataBinder.Eval(Container.DataItem, "Qty")%>
                 </td>
-                <td width="62px" align="right">
+                <td width="52px" align="right">
                     <%# DataBinder.Eval(Container.DataItem, "Cost")%>
                 </td>
                 <td width="70px" align="center">
                     <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
                 </td>
-                <td width="60px" align="center">
+                <td width="70px" align="center">
+                    <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
+                </td>
+                <td width="70px" align="center">
+                    <%# DataBinder.Eval(Container.DataItem, "SalesComments")%>
+                </td>
+                <td width="50px" align="center">
                     <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
                 </td>
                 <td width="90px" align="center">
                     <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
+                </td>
+                <td width="70px" align="center">
+                    <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
                 </td>
                 <td width="70px" align="center">
                     <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine">
@@ -173,4 +204,3 @@
     </script>
 
 </asp:Panel>
-<uc1:Validator ID="Validator1" runat="server" />
