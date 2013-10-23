@@ -1,11 +1,16 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterBaseStatic.master.cs"
     Inherits="_Layouts_MasterBase_Static" %>
 
+<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc1" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Advanced Purchasing Quote Management</title>
-    
+     <style type="text/css">
+        ::-ms-clear { display: none; }
+    </style>
+        
     <style type="text/css" title="currentStyle">
         /*@import '<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/css/jquery.dataTables_themeroller.css") %>';*/
         /*@import '<%= this.ResolveUrl("~/Tab.css") %>';*/
@@ -78,11 +83,10 @@ font-size: 13px;">
         <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">
         </asp:ContentPlaceHolder>
     </div>
-    </form>
     <div id="divFooter" style="font-size: 12px;">
         <table width="100%" cellspacing="0" style="bottom: 0; left: 0; background-color: white;">
             <tr>
-                <td colspan="2" align="center" style="background-color: #424242; height: 20px;">
+                <td colspan="2" align="center" style="background-color: #424242; height: 12px;">
                 </td>
             </tr>
             <tr>
@@ -95,7 +99,12 @@ font-size: 13px;">
             </tr>
         </table>
     </div>
-</body>
+    
+    </form>
+    </body>
 </html>
 
-
+<script type="text/javascript">
+    jQuery('.-ms-clear').css('display', 'none');
+</script>
+<uc1:Validator ID="Validator1" runat="server" />

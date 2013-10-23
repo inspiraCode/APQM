@@ -82,54 +82,63 @@
         <tr>
             <th class="camposSinBordes">
                 <div style="width: 160px;">
-                    <asp:TextBox ID="txtPartNumber" runat="server" Width="152px" TabIndex="9"></asp:TextBox>
+                    <asp:TextBox validate="required" validationid="validatingRFQDetail" ID="txtPartNumber" runat="server" Width="152px"
+                        TabIndex="9"></asp:TextBox>
                 </div>
             </th>
             <th class="camposSinBordes">
                 <asp:TextBox ID="txtUOM" runat="server" Width="45px" TabIndex="11"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtQuantity" style="text-align:right;" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtQuantity" Style="text-align: right;" runat="server"
+                    Width="68px" TabIndex="12"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtCostUnit" style="text-align:right;" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtCostUnit" Style="text-align: right;" runat="server"
+                    Width="70px" TabIndex="13"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label1" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtOutsideServicesQuantity" style="text-align:right;" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesQuantity" Style="text-align: right;"
+                    runat="server" Width="70px" TabIndex="14"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtOutsideServicesCostUnit" style="text-align:right;"  runat="server" Width="70px" TabIndex="15"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesCostUnit" Style="text-align: right;"
+                    runat="server" Width="70px" TabIndex="15"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label2" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtScrapValue" style="text-align:right;"  runat="server" Width="70px" TabIndex="16"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtScrapValue" Style="text-align: right;" runat="server"
+                    Width="70px" TabIndex="16"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label3" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtDirectHrlyLaborRate" style="text-align:right;"  runat="server" Width="70px" TabIndex="17"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtDirectHrlyLaborRate" Style="text-align: right;"
+                    runat="server" Width="70px" TabIndex="17"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtStdHrs" style="text-align:right;"  runat="server" Width="70px" TabIndex="18"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtStdHrs" Style="text-align: right;" runat="server"
+                    Width="70px" TabIndex="18"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label4" runat="server" Width="70px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtBurden" runat="server"  style="text-align:right;" Width="70px" TabIndex="19"></asp:TextBox>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtBurden" runat="server" Style="text-align: right;"
+                    Width="70px" TabIndex="19"></asp:TextBox>
             </th>
             <th class="camposSinBordes">
                 <asp:Label ID="Label5" runat="server" Width="50px"></asp:Label>
             </th>
             <th class="camposSinBordes">
-                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" Width="50px"
-                    TabIndex="20" />
+                <asp:Button ID="btnAdd" validationid="validatingRFQDetail" runat="server" Text="Add" OnClick="add_Click" Width="50px"
+                    TabIndex="20" OnClientClick="return validate();" />
             </th>
         </tr>
     </table>
@@ -147,43 +156,43 @@
                     <td width="51px">
                         <%# DataBinder.Eval(Container.DataItem, "Um")%>
                     </td>
-                    <td width="74px" style="text-align:right;" >
+                    <td width="74px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "RpcQty")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "RpcCostPerUnit")%>
                     </td>
-                    <td width="72px" style="text-align:right;" >
+                    <td width="72px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "OSQty")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "OSCostPerUnit")%>
                     </td>
-                    <td width="72px" style="text-align:right;" >
+                    <td width="72px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "ScrapValue")%>
                     </td>
-                    <td width="72px" style="text-align:right;" >
+                    <td width="72px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "ScrapCost")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "DirectHrlyLaborRate")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "StdHrs")%>
                     </td>
-                    <td width="72px" style="text-align:right;" >
+                    <td width="72px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "LaborCost")%>
                     </td>
-                    <td width="76px" style="text-align:right;" >
+                    <td width="76px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "Burden")%>
                     </td>
-                    <td width="53px" style="text-align:right;" >
+                    <td width="53px" style="text-align: right;">
                         <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
                     </td>
                     <td width="52px">
@@ -205,27 +214,32 @@
                 <td class="camposSinBordes" width="365px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalMaterial"  style="text-align:right" runat="server" Width="74px" BackColor="Silver">0</asp:Label>
+                    <asp:Label ID="lblTotalMaterial" Style="text-align: right" runat="server" Width="74px"
+                        BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="150px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalService"  style="text-align:right" runat="server" Width="72px" BackColor="Silver">0</asp:Label>
+                    <asp:Label ID="lblTotalService" Style="text-align: right" runat="server" Width="72px"
+                        BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="70px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalScrap"  style="text-align:right" runat="server" Width="77px" BackColor="Silver">0</asp:Label>
+                    <asp:Label ID="lblTotalScrap" Style="text-align: right" runat="server" Width="77px"
+                        BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="147px">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalLabor"  style="text-align:right" runat="server" Width="76px" BackColor="Silver">0</asp:Label>
+                    <asp:Label ID="lblTotalLabor" Style="text-align: right" runat="server" Width="76px"
+                        BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="71x">
                 </td>
                 <td class="camposSinBordes">
-                    <asp:Label ID="lblTotalBurden"  style="text-align:right" runat="server" Width="57px" BackColor="Silver">0</asp:Label>
+                    <asp:Label ID="lblTotalBurden" Style="text-align: right" runat="server" Width="57px"
+                        BackColor="Silver">0</asp:Label>
                 </td>
                 <td class="camposSinBordes" width="52px">
                 </td>

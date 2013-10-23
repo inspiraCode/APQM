@@ -30,7 +30,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         Session.Remove("bomDetailListAllItems");
         Session.Remove("bomDetailObject");
         Session.Remove("bomDetailObjectToDelete");
-    }    
+    }
     private void loadDetail(){
         repeaterBOMDetail.DataSource = bomDetail;
         repeaterBOMDetail.DataBind();

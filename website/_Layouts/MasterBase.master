@@ -88,6 +88,7 @@
         {
             display: none;
         }
+        ::-ms-clear { display: none; }
     </style>
     <style type="text/css" title="currentStyle">
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/css/jquery.dataTables_themeroller.css") %>';

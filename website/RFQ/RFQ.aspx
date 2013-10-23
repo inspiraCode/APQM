@@ -8,6 +8,7 @@
 <%@ Register Src="sendNewRFQ.ascx" TagName="sendNewRFQ" TagPrefix="uc5" %>
 <%@ Register Src="rfqCountPerSharedItems.ascx" TagName="rfqCountPerSharedItems" TagPrefix="uc6" %>
 <%@ Register Src="rfqList.ascx" TagName="rfqList" TagPrefix="uc7" %>
+<%@ Register Src="rfqStatusInfo.ascx" TagName="rfqStatusInfo" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Functions" runat="server">
@@ -26,7 +27,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 800, modal: true,
-                        dialogClass: "no-close", closeOnEscape:false     
+                        dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>
 
@@ -40,7 +41,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 530, modal: true,
-                        dialogClass: "no-close", closeOnEscape:false     
+                        dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>
 
@@ -57,9 +58,10 @@
             Text="RFQs per Shared Items" />
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
-        <asp:View ID="viewRFQList" runat="server">
+        <asp:View ID="viewRFQList" runat="server">            
+            <uc8:rfqStatusInfo ID="uscRfqStatusInfo" runat="server" />
             <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
-                <div runat="server" id="divRFQ">
+                <div runat="server" id="divRFQ" style="margin-top: 80px;">
                     <uc7:rfqList ID="uscRfqList" runat="server" />
                 </div>
             </div>

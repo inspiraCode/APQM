@@ -117,13 +117,27 @@ public partial class VendorRFQ : System.Web.UI.Page
     }
     protected void btnToSupplierForm_Click(object sender, EventArgs e)
     {
-        ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
-        Navigator.goToPage("~/Vendor/RFQ.aspx", "supplier");
+        try
+        {
+            ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
+            Navigator.goToPage("~/Vendor/RFQ.aspx", "supplier");
+        }
+        catch
+        {
+            exitByError();
+        }
     }    
     protected void btnToRFQForm_Click(object sender, EventArgs e)
     {
-        ((SessionObject)Session["rfqObject"]).Status = "forUpdate";
-        Navigator.goToPage("~/Vendor/RFQ.aspx", "rfq");
+        try
+        {
+            ((SessionObject)Session["rfqObject"]).Status = "forUpdate";
+            Navigator.goToPage("~/Vendor/RFQ.aspx", "rfq");
+        }
+        catch
+        {
+            exitByError();
+        }
     }
     protected void btnFinalize_Click(object sender, EventArgs e)
     {
