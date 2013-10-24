@@ -278,7 +278,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
             DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
             DM.Load_SP_Parameters("@CapComAssm", entity.CapComAssm);
-            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP.ToString());
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
         }
@@ -312,7 +312,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
             DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
             DM.Load_SP_Parameters("@CapComAssm", entity.CapComAssm);
-            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP.ToString());
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);            
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
         }
@@ -390,7 +390,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.SalesComments = table.Rows[0][15].ToString();
                 bomDetail.PurchasingComments = table.Rows[0][16].ToString();
                 bomDetail.CapComAssm = table.Rows[0][17].ToString();
-                bomDetail.LeadTimePPAP = float.Parse(table.Rows[0][18].ToString());
+                bomDetail.LeadTimePPAP =table.Rows[0][18].ToString();
 
                 sqlConnection.Dispose();
                 return bomDetail;
@@ -468,7 +468,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.SalesComments = table.Rows[i][19].ToString();
                 bomDetail.PurchasingComments = table.Rows[i][20].ToString();
                 bomDetail.CapComAssm = table.Rows[i][21].ToString();
-                bomDetail.LeadTimePPAP = float.Parse(table.Rows[i][22].ToString());
+                bomDetail.LeadTimePPAP = table.Rows[i][22].ToString();
                 bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
@@ -536,7 +536,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.SalesComments = table.Rows[i][15].ToString();
             bomDetail.PurchasingComments = table.Rows[i][16].ToString();
             bomDetail.CapComAssm = table.Rows[i][17].ToString();
-            bomDetail.LeadTimePPAP = float.Parse(table.Rows[i][18].ToString());
+            bomDetail.LeadTimePPAP = table.Rows[i][18].ToString();
             bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
@@ -568,7 +568,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
             DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
             DM.Load_SP_Parameters("@CapComAssm", entity.CapComAssm);
-            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP.ToString());
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
         }
@@ -603,7 +603,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
             DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
             DM.Load_SP_Parameters("@CapComAssm", entity.CapComAssm);
-            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP.ToString());
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
         }

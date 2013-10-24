@@ -4,7 +4,7 @@
 </asp:SqlDataSource>
 <div align="center">
     <asp:GridView ID="GridViewSif" runat="server" AutoGenerateColumns="False" OnPreRender="preRenderGridView"
-        class="display" DataSourceID="SqlDataSource1" OnRowCommand="gridView_RowCommand"
+        class="display" style="display:none;" DataSourceID="SqlDataSource1" OnRowCommand="gridView_RowCommand"
         DataKeyNames="BOMHeaderKey" RowStyle-Height="27px">
         <Columns>
             <asp:ButtonField CommandName="selectSIF" DataTextField="InquiryNumber" HeaderText="Inquiry Number"
@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#<%= this.GridViewSif.ClientID %>').dataTable();
+        jQuery('#<%= this.GridViewSif.ClientID %>').dataTable().show();
     });
 </script>
 

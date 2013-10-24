@@ -166,7 +166,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
                     case "p":
                         Item item = new Item();
                         item.PartNumber = prompt[1];
-                        item.Um = "UM";
                                                
                         string idGenerated = item_CRUD.createAndReturnIdGenerated(item);
                         if (idGenerated != "")
@@ -174,6 +173,8 @@ public partial class bomDetailList : System.Web.UI.UserControl
                             allItems = null;
                             loadDropDowns();
                             cboPartNumber.SelectedValue = idGenerated;
+                            txtMaterial.Text = "";
+                            cboUM.SelectedValue = "";
                             cboPartNumber.Focus();
                         }
                         break;

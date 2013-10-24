@@ -42,37 +42,41 @@ public class bomAccessCRUD
 
     static public List<BOMAccess> readBySIF(SIF sif)
     {
-
-
         List<BOMAccess> recordset = new List<BOMAccess>();
-        try
+        
+        DataRow[] table = readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
+        for (int i = 0; i < table.Count(); i++)
         {
-            DataRow[] table = readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
-            for (int i = 0; i < table.Count(); i++)
+            BOMAccess bom = new BOMAccess();
+            bom.MaterialPosition = table[i]["Material Position"].ToString();
+            bom.PartNumber = table[i]["Part Number/Code ID"].ToString();
+            bom.Material = table[i]["Material/Assembly Description"].ToString();
+            bom.AssemblyDescription = table[i]["Assembly Description"].ToString();
+            bom.Status = table[i]["Status"].ToString();
+            bom.VendorQuoteEst = table[i]["Vendor Quote Est"].ToString();
+            bom.SalesComments = table[i]["Comments"].ToString();
+            bom.CapComAssm = table[i]["Cap Com Assm"].ToString();
+            bom.LeadTimePPAP = table[i]["Lead Time PPAP"].ToString();
+            try
             {
-                BOMAccess bom = new BOMAccess();
-                bom.MaterialPosition = table[i]["Material Position"].ToString();
-                bom.PartNumber = table[i]["Part Number/Code ID"].ToString();
-                bom.Material = table[i]["Material/Assembly Description"].ToString();
-                bom.AssemblyDescription = table[i]["Assembly Description"].ToString();
-                bom.Status = table[i]["Status"].ToString();
-                bom.VendorQuoteEst = table[i]["Vendor Quote Est"].ToString();
-                bom.SalesComments = table[i]["Comments"].ToString();
-                bom.CapComAssm = table[i]["Cap Com Assm"].ToString();
-                try
-                {
-                    bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
-                    bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
-                    bom.LeadTimePPAP = float.Parse(table[i]["Lead Time PPAP"].ToString());
-                }
-                catch (Exception ex)
-                {
-                    bom.ImportComment = "BOM Line imported with error, please review it and export it agian if necessary. Error: " + ex.Message;
-                }
-                recordset.Add(bom);
-            }            
-        }
-        catch {}
+                bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
+            }
+            catch (Exception ex)
+            { 
+                bom.ImportComment = "BOM Line with incorrect field formatted: 'PartCost', please review it and export it agian if necessary. Error: " + ex.Message; 
+            }
+            try
+            {
+                bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
+            }
+            catch (Exception ex) {
+                bom.ImportComment = "BOM Line with incorrect field formatted: 'No Required', please review it and export it agian if necessary. Error: " + ex.Message; 
+            }
+            
+            
+            recordset.Add(bom);
+        }            
+        
         return recordset;
     }
     static public DataTable readAll()

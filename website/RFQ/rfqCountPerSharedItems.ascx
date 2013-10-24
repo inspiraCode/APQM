@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqCountPerSharedItems.ascx.cs" Inherits="rfqCountPerSharedItems" %>
 <div align="center" >
-    <asp:GridView ID="gridRFQCountPerSharedItems" runat="server" AllowPaging="False" class="display" OnPreRender="preRenderGridView"
+    <asp:GridView ID="gridRFQCountPerSharedItems" runat="server" AllowPaging="False" class="display" style="display:none;" OnPreRender="preRenderGridView"
         AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource" RowStyle-Height="27px">
         <Columns>
             <asp:BoundField DataField="ItemMasterKey" HeaderText="ItemMasterKey" 
@@ -27,6 +27,6 @@
 </asp:SqlDataSource>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-    jQuery('#<%= this.gridRFQCountPerSharedItems.ClientID %>').dataTable();
+    jQuery('#<%= this.gridRFQCountPerSharedItems.ClientID %>').dataTable().show();
     });
 </script>

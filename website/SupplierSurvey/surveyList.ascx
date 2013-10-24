@@ -2,7 +2,7 @@
 <div align="center" style="padding-right: 20px">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
-            <table border="1" id="tableSurvey" class="display">
+            <table border="1" id="tableSurvey" class="display" style="display:none;">
                 <thead>
                     <th>
                         Last Survey
@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableSurvey').dataTable();
+        jQuery('#tableSurvey').dataTable().show();
     });
 </script>
 

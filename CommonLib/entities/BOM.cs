@@ -83,7 +83,7 @@ public class BOMDetail
     private string salesComments = "";
     private string purchasingComments = "";
     private string capComAssm;
-    private float leadTimePPAP;
+    private string leadTimePPAP = "";
         
     public string ItemUm
     {
@@ -212,7 +212,7 @@ public class BOMDetail
         get { return capComAssm; }
         set { capComAssm = value; }
     }
-    public float LeadTimePPAP
+    public string LeadTimePPAP
     {
         get { return leadTimePPAP; }
         set { leadTimePPAP = value; }

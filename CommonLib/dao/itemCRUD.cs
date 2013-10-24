@@ -143,7 +143,8 @@ public class itemCRUD : ICRUD<Item>
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
-        {            
+        {
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@PartNumber", entity.PartNumber);
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
@@ -164,6 +165,7 @@ public class itemCRUD : ICRUD<Item>
         bool result = false;
         try
         {
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@PartNumber", entity.PartNumber);
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
@@ -211,6 +213,4 @@ public class itemCRUD : ICRUD<Item>
     }
 
     #endregion
-
-    
 }

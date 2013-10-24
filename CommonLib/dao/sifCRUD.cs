@@ -251,7 +251,7 @@ public class sifCRUD : ICRUD<SIF>
     {
         foreach (SIF sifLocal in list)
         {
-            if (sifLocal.SalesDBID == sifParameter.SalesDBID)
+            if (sifLocal.SalesDBID == sifParameter.SalesDBID && sifLocal.InquiryNumber.Trim() == sifParameter.InquiryNumber.Trim())
             {
                 return sifLocal;
             }

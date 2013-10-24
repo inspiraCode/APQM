@@ -3,7 +3,7 @@
 <div align="center">
 <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound" >
     <HeaderTemplate>
-        <table border="1" id="tableSupplier" class="display">
+        <table border="1" id="tableSupplier" class="display" style="display:none;">
         <thead>
             <th>
                 Supplier Name
@@ -74,6 +74,6 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableSupplier').dataTable();
+        jQuery('#tableSupplier').dataTable().show();
     });
 </script>

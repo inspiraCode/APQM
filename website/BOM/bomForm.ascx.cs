@@ -122,6 +122,7 @@ public partial class bomForm : System.Web.UI.UserControl
                     return;
                 }
             }
+            
             if (detail.internalAction == "UPDATE")
             {
                 detail.BomHeaderKey = this.bom.Id;

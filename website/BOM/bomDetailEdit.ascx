@@ -61,8 +61,8 @@
         <td class="style6" align="right">
             Cost</td>
         <td class="style3">
-            <asp:TextBox ID="txtCost" runat="server" Style="text-align: right" 
-                validate="number" Width="70px">0</asp:TextBox>
+            <asp:TextBox ID="txtCost" validate="number" validationid="bomlineedit" runat="server" Style="text-align: right" 
+               Width="70px">0</asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -77,7 +77,7 @@
             No Required</td>
         <td class="style3">
             <asp:TextBox ID="txtQuantity" runat="server" Style="text-align: right" 
-                validate="number" Width="70px">0</asp:TextBox>
+                validate="number" validationid="bomlineedit" Width="70px">0</asp:TextBox>
         </td>
     </tr>
     <tr>
@@ -139,7 +139,7 @@
         <td class="style5" colspan="2">
             <div align="center">
                 <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" 
-                    Width="70px" />
+                    Width="70px" OnClientClick="return validate();"  validationid="bomlineedit" />
                 <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" 
                     Text="Cancel" Width="70px" />
             </div>

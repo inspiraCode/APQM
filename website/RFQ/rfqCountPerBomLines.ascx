@@ -4,7 +4,7 @@
     SelectCommand="SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]">
 </asp:SqlDataSource>
 <div align="center" >
-<asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display"
+<asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display" style="display:none;"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
     OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 
     PagerSettings-PageButtonCount="10" AllowSorting="False" RowStyle-Height="27px">
@@ -27,6 +27,6 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-    jQuery('#<%= this.GridViewRFQCountPerBOMDetail.ClientID %>').dataTable();
+    jQuery('#<%= this.GridViewRFQCountPerBOMDetail.ClientID %>').dataTable().show();
     });
 </script>

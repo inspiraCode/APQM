@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
 <div align="center">
-    <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" class="display"
+    <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" class="display" style="display:none;"
         DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView"
         RowStyle-Height="27px">
         <Columns>
@@ -24,7 +24,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#<%= this.gridRFQList.ClientID %>').dataTable();
+        jQuery('#<%= this.gridRFQList.ClientID %>').dataTable().show();
     });
 </script>
 

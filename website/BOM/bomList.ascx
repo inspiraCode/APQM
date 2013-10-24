@@ -2,7 +2,7 @@
 <div align="center" >
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
-            <table border="1" id="tableBOM" class="display">
+            <table border="1" id="tableBOM" class="display" style="display:none;">
              <thead>
              <tr>
                 <th>
@@ -58,6 +58,6 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableBOM').dataTable();
+        jQuery('#tableBOM').dataTable().show();
     });
 </script>

@@ -1091,7 +1091,7 @@ namespace Data_Base_MNG
         }
         public void RollBack()
         {
-            ErrorFlag = true;
+            ErrorFlag = false;
             _error_mjs = "";
             try
             {
@@ -1099,6 +1099,7 @@ namespace Data_Base_MNG
             }
             catch (Exception ex)
             {
+                ErrorFlag = true;
                 _error_mjs = ex.Message;
             }
         }

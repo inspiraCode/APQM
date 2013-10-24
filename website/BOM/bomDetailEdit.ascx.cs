@@ -103,6 +103,8 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                             allItems = null;
                             loadDropDowns();
                             cboPartNumber.SelectedValue = idGenerated;
+                            txtMaterial.Text = "";
+                            cboUM.SelectedValue = "";
                             cboPartNumber.Focus();
                         }
                         break;

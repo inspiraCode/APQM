@@ -93,7 +93,10 @@ namespace SalesDB_To_APQM
                 System.Threading.Thread.Sleep(10);
                 //txtLog.AppendText("INFO: Found " + sifsInAccessToExport.Count + " SIFs to import.\n");
                 foreach (SIF sif in sifsInAccessToExport)
-                {                    
+                {
+                    //if (sif.InquiryNumber == "120629702") 
+                    //    MessageBox.Show("Here");
+
                     log = "INFO: Reading an active SIF: " + sif + "\n";
                     backgroundWorker1.ReportProgress(progress);
                     System.Threading.Thread.Sleep(10);
@@ -204,7 +207,7 @@ namespace SalesDB_To_APQM
                                                 }
                                                 else
                                                 {
-                                                    log += "...RollBack done.\n" + "Error Description: " + DM.Error_Mjs + "\n\n";
+                                                    log += "...RollBack done.\n\n";
                                                 }
 
                                                 backgroundWorker1.ReportProgress(++progress);
@@ -284,7 +287,10 @@ namespace SalesDB_To_APQM
                                             }
                                         }
                                         if (errorInBOM)
+                                        {
+                                            DM.Close_Open_Connection();
                                             continue;
+                                        }
                                     }
                                     else
                                     {
@@ -307,7 +313,15 @@ namespace SalesDB_To_APQM
 
                         /* End Transaction */
                         DM.CommitTransaction();
-                        log = "SUCCESS: SIF exported: " + sif + "\n";
+                        if (DM.ErrorOccur)
+                        {
+                            log = "ERROR: Could not commit transaction for SIF: " + sif + "\n";
+                        }
+                        else
+                        {
+                            log = "SUCCESS: SIF exported: " + sif + "\n";
+                        }
+                        DM.Close_Open_Connection();
                         backgroundWorker1.ReportProgress(progress);
                         System.Threading.Thread.Sleep(10);
                         //txtLog.AppendText("SUCCESS: SIF exported: " + sif + "\n");
