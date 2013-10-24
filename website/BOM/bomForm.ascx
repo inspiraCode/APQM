@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs"
     Inherits="bomForm" %>
 <%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
+<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc2" %>
 <div align="center">
 <br />
     <table cellspacing="1"  align="left">
@@ -35,24 +36,24 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="font-weight: bold">
                 Inquiry Number</td>
             <td align="left">
                 <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="font-weight: bold">
                 Revision</td>
             <td align="left">
-                <asp:TextBox ID="txtRevision" runat="server" Width="70px"></asp:TextBox>
+                <asp:Label ID="lblRevision" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="font-weight: bold">
                 Product</td>
             <td align="left">
-                <asp:TextBox ID="txtDescription" runat="server" Width="380px"></asp:TextBox>
+                <asp:Label ID="lblProduct" runat="server"></asp:Label>
             </td>
         </tr>
         </table>
@@ -86,3 +87,4 @@
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
 <br />
+<uc2:Validator ID="Validator1" runat="server" />

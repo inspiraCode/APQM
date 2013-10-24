@@ -164,7 +164,7 @@
             <asp:ContentPlaceHolder ID="ContentPlaceHolderBase" runat="server">
             </asp:ContentPlaceHolder>
         </div>
-    </form>
+    </div>
     <div id="divFooter" style="font-size: 12px;">
         <table width="101%" cellspacing="0" style="position: fixed; bottom: 0; left: -1px; background-color: white;">
             <tr>
@@ -183,7 +183,8 @@
             </tr>
         </table>
     </div>
-</body>
+    </form>    
+    </body>
 </html>
 
 <script type="text/javascript">
@@ -192,4 +193,3 @@
         jQuery('#divContent').css('height', (jQuery(window).height() - 185).toString());
     });
 </script>
-

@@ -51,18 +51,25 @@
     </tr>
     <tr>
         <td class="style6" align="right">
-            Material</td>
+            Material / Assembly Description</td>
         <td class="style3">
             <asp:TextBox ID="txtMaterial" runat="server" Height="40px" Rows="2" 
-                Style="overflow-y: auto;" TextMode="MultiLine" Width="250px"></asp:TextBox>
+                Style="overflow-y: auto;" TextMode="MultiLine" Width="340px"></asp:TextBox>
         </td>
     </tr>
     <tr>
         <td class="style6" align="right">
-            Description</td>
+            Cost</td>
         <td class="style3">
-            <asp:TextBox ID="txtDescription" runat="server" Height="40px" 
-                Style="overflow-y: auto;" TextMode="MultiLine" Width="250px"></asp:TextBox>
+            <asp:TextBox ID="txtCost" runat="server" Style="text-align: right" 
+                validate="number" Width="70px">0</asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="style2" align="right">
+            Vendor Quote Est</td>
+        <td class="style4">
+            <asp:Label ID="lblVendorQuoteEst" runat="server" Text=""></asp:Label>
         </td>
     </tr>
     <tr>
@@ -74,26 +81,10 @@
         </td>
     </tr>
     <tr>
-        <td class="style2" align="right">
-            Cost</td>
-        <td class="style4">
-            <asp:TextBox ID="txtCost" runat="server" Style="text-align: right" 
-                validate="number" Width="70px">0</asp:TextBox>
-        </td>
-    </tr>
-    <tr>
         <td class="style6" align="right">
-            Vendor Quote Est</td>
+            Sales Status</td>
         <td class="style3">
-            <asp:Label ID="lblVendorQuoteEst" runat="server" Text=""></asp:Label>
-        </td>
-    </tr>
-    <tr>
-        <td class="style6" align="right">
-            Sales Comments</td>
-        <td class="style3">
-            <asp:Label ID="lblSalesComments" runat="server" Height="36px" Text="" 
-                Width="245px"></asp:Label>
+            <asp:Label ID="lblSalesStatus" runat="server"></asp:Label>
         </td>
     </tr>
     <tr>
@@ -107,8 +98,7 @@
         <td class="style6" align="right">
             Purchasing Status</td>
         <td class="style3">
-            <asp:DropDownList ID="cboPurchasingStatus" runat="server" Width="150px" 
-                Height="17px">
+            <asp:DropDownList ID="cboPurchasingStatus" runat="server" Width="200px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Q">Quote</asp:ListItem>
                 <asp:ListItem Value="E">Estimate</asp:ListItem>
@@ -120,22 +110,29 @@
     </tr>
     <tr>
         <td class="style6" align="right">
-            Assigned To</td>
-        <td class="style3">
-            &nbsp;</td>
-    </tr>
-    <tr>
-        <td class="style6" align="right">
             Purchasing Comments</td>
         <td class="style3">
             <asp:TextBox ID="txtPurchasingComments" runat="server" Rows="2" 
-                TextMode="MultiLine" Width="245px"></asp:TextBox>
+                TextMode="MultiLine" Width="340px"></asp:TextBox>
         </td>
     </tr>
     <tr>
-        <td class="style6">
-            &nbsp;</td>
+        <td class="style6" align="right">
+            Cap Com Assm</td>
         <td class="style3">
+            <asp:TextBox ID="txtCapComAssm" runat="server" Style="text-align: right" 
+                validate="number" Width="100px"></asp:TextBox>
+        </td>
+    </tr>
+    <tr>
+        <td class="style6" align="right">
+            Assigned To</td>
+        <td class="style3">
+            <asp:Label ID="lblAssignedTo" runat="server"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td class="style5" colspan="2">
             &nbsp;</td>
     </tr>
     <tr>

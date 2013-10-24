@@ -220,7 +220,7 @@ namespace SalesDB_To_APQM
                                                 {
                                                     item = new Item();
                                                     item.PartNumber = bom.PartNumber;
-                                                    item.Description = bom.AssemblyDescription;
+                                                    item.Description = bom.AssemblyDescription; //wont be used anymore
                                                     item.Um = "";
                                                     item.Material = bom.Material;
 
@@ -252,13 +252,15 @@ namespace SalesDB_To_APQM
                                                 BOMDetail bomDetail = new BOMDetail();
                                                 bomDetail.LinePosition = bom.MaterialPosition;
                                                 bomDetail.Material = bom.Material;
-                                                bomDetail.Description = bom.AssemblyDescription;
+                                                bomDetail.Description = bom.AssemblyDescription; //Wont be used anymore
                                                 bomDetail.SalesStatus = bom.Status;
                                                 bomDetail.Cost = bom.PartCost;
                                                 bomDetail.Qty = bom.NoRequired;
                                                 bomDetail.PartNumber = bom.PartNumber;
-                                                bomDetail.SalesComments = bom.SalesComments;
+                                                bomDetail.SalesComments = bom.SalesComments; //wont be used anymore
                                                 bomDetail.VendorQuoteEst = bom.VendorQuoteEst;
+                                                bomDetail.CapComAssm = bom.CapComAssm;
+                                                bomDetail.LeadTimePPAP = bom.LeadTimePPAP;
 
                                                 bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
                                                 

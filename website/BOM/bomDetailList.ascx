@@ -11,46 +11,50 @@
         border-left: 0px;
     }
 </style>
-<table cellspacing="0" align="left" class="camposSinBordes">
+<table cellspacing="0" align="left">
     <tr>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:97px;max-width:97px;">
             Part Number
         </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:68px;max-width:68px;">
             UM
         </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:145px;max-width:145px;">
             Material / Assembly Description
         </th>
-        <th class="camposSinBordes">
-            Description
-        </th>
-        <th class="camposSinBordes">
-            No Required
-        </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:52px;max-width:52px;">
             Cost
         </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:70px;max-width:70px;">
+            Vendor Quote Est
+        </th>        
+        <th class="camposSinBordes" style="width:60px;max-width:60px;">
+            No Required
+        </th>
+        <%--<th class="camposSinBordes">
+            Comm Code
+        </th>--%>
+        <th class="camposSinBordes" style="width:70px;max-width:70px;">
             Sales Status
         </th>
-        <th class="camposSinBordes">
-            Vendor Quote Est
-        </th>
-        <th class="camposSinBordes">
+        
+        <%--<th class="camposSinBordes">
             Sales Comments
-        </th>
-        <th class="camposSinBordes">
+        </th>--%>
+        <th class="camposSinBordes" style="width:50px;max-width:50px;">
             Directed Buy
         </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes" style="width:93px;max-width:93px;">
             Purchasing Status
         </th>
-        <th class="camposSinBordes">
-           Purchasing Comments
+        <th class="camposSinBordes" style="width:80px;max-width:80px;">
+            Purchasing Comments
         </th>
-        <th class="camposSinBordes">
-             Assigned To
+        <th class="camposSinBordes" style="width:50px;max-width:50px;">
+            Cap Com Assm
+        </th>
+        <th class="camposSinBordes" style="width:73px;max-width:73px;">
+            Assigned To
         </th>
         <th style="border-color: Gray;" class="camposSinBordes">
         </th>
@@ -74,29 +78,22 @@
             <asp:TextBox ID="txtMaterial" runat="server" Width="136px" Height="40px" Rows="2"
                 TextMode="MultiLine" Style="overflow-y: auto;font-family:Tahoma"></asp:TextBox>
         </th>
-        <th class="camposSinBordes">
+       <th class="camposSinBordes" style="vertical-align: top;">
+            <asp:TextBox ID="txtCost" validate="number" validationid="validatingBOMDetail" runat="server" Width="50px" Style="text-align: right">0</asp:TextBox>
+        </th><th class="camposSinBordes">
+            <div style="width: 70px;">
+            </div>
+        </th><%-- <th class="camposSinBordes">
             <asp:TextBox ID="txtDescription" runat="server" Width="136px" Height="40px" TextMode="MultiLine"
                 Style="overflow-y: auto;font-family:Tahoma"></asp:TextBox>
-        </th>
+        </th>--%>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtQuantity" validate="number" runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
-        </th>
-        <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtCost" validate="number" runat="server" Width="50px" Style="text-align: right">0</asp:TextBox>
+            <asp:TextBox ID="txtQuantity" validate="number" validationid="validatingBOMDetail" runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes">
             <div style="width: 70px;">
             </div>
-        </th>
-        <th class="camposSinBordes">
-            <div style="width: 70px;">
-            </div>
-        </th>
-        <th class="camposSinBordes">
-            <div style="width: 70px;">
-            </div>
-        </th>
-        <th class="camposSinBordes" style="vertical-align: top;">
+        </th><th class="camposSinBordes" style="vertical-align: top;">
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
@@ -110,68 +107,67 @@
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes">
-            <div style="width: 70px;">
-            </div>
+            <asp:TextBox ID="txtPurchasingComments" runat="server" Width="136px" Height="40px" TextMode="MultiLine"
+                Style="overflow-y: auto;font-family:Tahoma"></asp:TextBox>
+        </th>
+        <th class="camposSinBordes" style="vertical-align: top;">
+            <asp:TextBox ID="txtCapComAssm" validate="required" validationid="validatingBOMDetail" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes">
             <div style="width: 70px;">
             </div>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="add_Click" />
+            <asp:Button ID="btnAdd" validationid="validatingBOMDetail" runat="server" Text="Add" OnClick="add_Click" />
         </th>
         <th class="camposSinBordes">
         </th>
     </tr>
-</table>
-<div id="validationMessage" align="center" style="color:Red;display:none"></div>
-<uc1:Validator ID="Validator1" runat="server" />
-<div align="left">
     <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
-        <HeaderTemplate>
-            <table border="1" cellspacing="0" align="left">
-        </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
-                <td style="overflow: hidden;max-width:98px;">
+                <td style="overflow: hidden;border: solid 1px;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>
                 </td>
-                <td width="67px" align="center" style="overflow: hidden;max-width:67px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "Um")%>
                 </td>
-                <td width="140px" style="overflow: hidden;max-width:140px;">
+                <td style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "Material")%>
                 </td>
-                <td width="140px" style="overflow: hidden;max-width:140px;">
-                    <%# DataBinder.Eval(Container.DataItem, "Description")%>
-                </td>
-                <td width="60px" align="right" style="overflow: hidden;max-width:60px;">
-                    <%# DataBinder.Eval(Container.DataItem, "Qty")%>
-                </td>
-                <td width="52px" align="right" style="overflow: hidden;max-width:52px;">
+                <td align="right" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "Cost")%>
                 </td>
-                <td width="70px" align="center" style="overflow: hidden;max-width:70px;">
-                    <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
-                </td>
-                <td width="70px" align="center" style="overflow: hidden;max-width:70px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
                 </td>
-                <td width="70px" align="center" style="overflow: hidden;max-width:70px;">
-                    <%# DataBinder.Eval(Container.DataItem, "SalesComments")%>
+                <%--<td style="overflow: hidden;width:142px;max-width:142px;">
+                    <%# DataBinder.Eval(Container.DataItem, "Description")%>
+                </td>--%>
+                <td align="right" style="overflow: hidden;border: solid 1px;border-left:0px">
+                    <%# DataBinder.Eval(Container.DataItem, "Qty")%>
                 </td>
-                <td width="50px" align="center" style="overflow: hidden;max-width:50px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
+                    <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
+                </td>
+                <%--<td align="center" style="overflow: hidden;width:75px;max-width:75px;">
+                    <%# DataBinder.Eval(Container.DataItem, "SalesComments")%>
+                </td>--%>
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
                 </td>
-                <td width="90px" align="center" style="overflow: hidden;max-width:90px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
                 </td>
-                <td width="70px" align="center" style="overflow: hidden;max-width:70px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
                     <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
                 </td>
-                <td width="70px" align="center" style="overflow: hidden;max-width:70px;">
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px">
+                    <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
+                </td>
+                <td align="center" style="overflow: hidden;border: solid 1px;border-left:0px;border-left:0px">
                     <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine">
                         Take
                     </asp:LinkButton>
@@ -187,8 +183,7 @@
             </table>
         </FooterTemplate>
     </asp:Repeater>
-</div>
-<div id="divBOMDetailList" runat="server" align="center">
+<div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
 </div>
 <asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -199,7 +194,7 @@
         document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
         jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
-            width: 420, modal: true,
+            width: 560, modal: true,
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>

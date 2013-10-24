@@ -58,10 +58,12 @@ public class bomAccessCRUD
                 bom.Status = table[i]["Status"].ToString();
                 bom.VendorQuoteEst = table[i]["Vendor Quote Est"].ToString();
                 bom.SalesComments = table[i]["Comments"].ToString();
+                bom.CapComAssm = table[i]["Cap Com Assm"].ToString();
                 try
                 {
                     bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
                     bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
+                    bom.LeadTimePPAP = float.Parse(table[i]["Lead Time PPAP"].ToString());
                 }
                 catch (Exception ex)
                 {
@@ -81,7 +83,7 @@ public class bomAccessCRUD
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
                         "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], " + 
-                        "Status, [Inquiry Number], Revision, [Vendor Quote Est], Comments " +
+                        "Status, [Inquiry Number], Revision, [Vendor Quote Est], Comments, [Cap Com Assm], [Lead Time PPAP] " +
                         "FROM [Mat Assm Tool Descrip Table]";
 
         BOMLineAccessData = DM.Execute_Query(query);

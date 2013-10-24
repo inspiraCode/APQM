@@ -82,7 +82,9 @@ public class BOMDetail
     private string vendorQuoteEst = "";
     private string salesComments = "";
     private string purchasingComments = "";
-    
+    private string capComAssm;
+    private float leadTimePPAP;
+        
     public string ItemUm
     {
         get { return itemUm; }
@@ -204,6 +206,16 @@ public class BOMDetail
     {
         get { return purchasingComments; }
         set { purchasingComments = value; }
+    }
+    public string CapComAssm
+    {
+        get { return capComAssm; }
+        set { capComAssm = value; }
+    }
+    public float LeadTimePPAP
+    {
+        get { return leadTimePPAP; }
+        set { leadTimePPAP = value; }
     }
     public override string ToString()
     {

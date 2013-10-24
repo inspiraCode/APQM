@@ -34,11 +34,13 @@ namespace SalesDB_To_APQM.entities
         private string material = ""; 
         private float partCost;
         private float noRequired;
-        private string assemblyDescription = ""; 
+        private string assemblyDescription = ""; //Wont be used anymore
         private string status = "";
         private string importComment = "";
-        private string salesComments = "";
+        private string salesComments = ""; //Wont be used anymore
         private string vendorQuoteEst = "";
+        private string capComAssm = "";
+        private float leadTimePPAP;
 
         public string MaterialPosition
         {
@@ -89,6 +91,17 @@ namespace SalesDB_To_APQM.entities
         {
             get { return salesComments; }
             set { salesComments = value; }
+        }
+        public float LeadTimePPAP
+        {
+            get { return leadTimePPAP; }
+            set { leadTimePPAP = value; }
+        }
+
+        public string CapComAssm
+        {
+            get { return capComAssm; }
+            set { capComAssm = value; }
         }
         public override string ToString()
         {

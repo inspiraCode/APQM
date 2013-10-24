@@ -101,18 +101,19 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         BOMDetail bomDetailLine = new BOMDetail();
 
-        bomDetailLine.Qty = float.Parse(txtQuantity.Text);
-        bomDetailLine.Description = txtDescription.Text;
-        bomDetailLine.Status = "System status";
-        bomDetailLine.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
         bomDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
+        bomDetailLine.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
+        bomDetailLine.Um = cboUM.SelectedValue;
         bomDetailLine.Material = txtMaterial.Text;
-        bomDetailLine.SalesStatus = "";
+        bomDetailLine.Cost = float.Parse(txtCost.Text);        
+        bomDetailLine.Qty = float.Parse(txtQuantity.Text);
+        bomDetailLine.Status = "System status";
         bomDetailLine.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailLine.PurchasingStatus = cboPurchasingStatus.SelectedValue;
-        bomDetailLine.UserKey = -1; //TODO: Set logged user.
-        bomDetailLine.Cost = float.Parse(txtCost.Text);
-        bomDetailLine.Um = cboUM.SelectedValue;
+        bomDetailLine.PurchasingComments = txtPurchasingComments.Text;
+        bomDetailLine.CapComAssm = txtCapComAssm.Text;    
+        bomDetailLine.UserKey = -1; //TODO: Set logged user.        
+        
         
         if (bomDetail == null) bomDetail = new List<BOMDetail>();
 
@@ -129,7 +130,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         item.Id = long.Parse(cboPartNumber.SelectedValue);
         item.Material = txtMaterial.Text;
-        item.Description = txtDescription.Text;       
+        //item.Description = txtDescription.Text;       
         item.PartNumber = cboPartNumber.SelectedItem.Text;
         item.Um = cboUM.SelectedValue;
 
@@ -144,13 +145,14 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     private void clearAddFields()
     {
-        txtMaterial.Text = "";
-        txtDescription.Text = "";
-        txtQuantity.Text = "0";
-        txtCost.Text = "0";
-        chkDirectedBuy.Checked = false;
-        cboPurchasingStatus.SelectedIndex = -1;
         cboUM.SelectedIndex = -1;
+        txtMaterial.Text = "";
+        txtCost.Text = "0";
+        txtQuantity.Text = "0";        
+        chkDirectedBuy.Checked = false;
+        cboPurchasingStatus.SelectedIndex = -1;        
+        txtPurchasingComments.Text = "";
+        txtCapComAssm.Text = "";
     }    
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
@@ -202,14 +204,14 @@ public partial class bomDetailList : System.Web.UI.UserControl
         Item item = item_CRUD.readById(long.Parse(cboPartNumber.SelectedValue));
         if (item != null)
         {
-            txtDescription.Text = item.Description;
+            //txtDescription.Text = item.Description;
             txtMaterial.Text = item.Material;
             cboUM.SelectedValue = item.Um;
             cboPartNumber.Focus();
         }
         else
         {
-            txtDescription.Text = "";
+            //txtDescription.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedValue = "";
             cboPartNumber.Focus();
@@ -217,19 +219,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     protected void on_edit_line(object sender, EventArgs e)
     {
-        //BOMDetail bomDetailEdit = (BOMDetail)Session["BOMDetailEdit"];
-
-        //foreach (BOMDetail detail in bomDetail)
-        //{
-        //    if (detail.Sequence == sequence)
-        //    {
-        //        detail.internalAction = "DELETE";
-        //        bomDetailToDelete.Add(detail);
-        //        bomDetail.Remove(detail);
-        //        loadDetail();
-        //        break;
-        //    }
-        //}
         loadDetail();
         panelPopup.Visible = false;
     }

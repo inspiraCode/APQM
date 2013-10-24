@@ -27,22 +27,22 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         Item item = new Item();
 
         item.Id = long.Parse(cboPartNumber.SelectedValue);
-        item.Material = txtMaterial.Text;
-        item.Description = txtDescription.Text;
         item.PartNumber = cboPartNumber.SelectedItem.Text;
         item.Um = cboUM.SelectedValue;
-
+        item.Material = txtMaterial.Text;
+        
         bomDetailEdit.Item = item;
 
         bomDetailEdit.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
+        bomDetailEdit.PartNumber = cboPartNumber.SelectedItem.Text;
         bomDetailEdit.Um = cboUM.SelectedValue;
         bomDetailEdit.Material =  txtMaterial.Text;
-        bomDetailEdit.Description = txtDescription.Text;
+        bomDetailEdit.Cost = float.Parse(txtCost.Text);        
         bomDetailEdit.Qty = float.Parse( txtQuantity.Text);
-        bomDetailEdit.Cost = float.Parse(txtCost.Text);
         bomDetailEdit.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailEdit.PurchasingStatus = cboPurchasingStatus.SelectedValue;
         bomDetailEdit.PurchasingComments = txtPurchasingComments.Text;
+        bomDetailEdit.CapComAssm = txtCapComAssm.Text = "";
 
         if (bomDetailEdit.Id > -1)
         {
@@ -73,14 +73,15 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         cboPartNumber.SelectedValue = bomDetailEdit.ItemMasterkey.ToString();
         cboUM.SelectedValue = bomDetailEdit.Um;
         txtMaterial.Text = bomDetailEdit.Material;
-        txtDescription.Text = bomDetailEdit.Description;
-        txtQuantity.Text = bomDetailEdit.Qty.ToString();
         txtCost.Text = bomDetailEdit.Cost.ToString();
+        lblVendorQuoteEst.Text = bomDetailEdit.VendorQuoteEst;
+        txtQuantity.Text = bomDetailEdit.Qty.ToString();
+        lblSalesStatus.Text = bomDetailEdit.SalesStatus;
         chkDirectedBuy.Checked = bomDetailEdit.DirectedBuy;
         cboPurchasingStatus.SelectedValue = bomDetailEdit.PurchasingStatus;
         txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
-        lblSalesComments.Text = bomDetailEdit.SalesComments;
-        lblVendorQuoteEst.Text = bomDetailEdit.VendorQuoteEst;
+        txtCapComAssm.Text = bomDetailEdit.CapComAssm;
+        //lblAssignedTo.Text = bomDetailEdit TODO
     }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
@@ -128,14 +129,14 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         Item item = item_CRUD.readById(long.Parse(cboPartNumber.SelectedValue));
         if (item != null)
         {
-            txtDescription.Text = item.Description;
+            //txtDescription.Text = item.Description;
             txtMaterial.Text = item.Material;
             cboUM.SelectedValue = item.Um;
             cboPartNumber.Focus();
         }
         else
         {
-            txtDescription.Text = "";
+            //txtDescription.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedValue = "";
             cboPartNumber.Focus();

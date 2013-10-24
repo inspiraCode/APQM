@@ -49,8 +49,8 @@ public partial class bomForm : System.Web.UI.UserControl
         lblID.Text = bom.Id.ToString();
         lblSifID.Text = bom.SifId.ToString();
         txtPartNumber.Text = bom.TopPartNumber;
-        txtDescription.Text = bom.PartDescription;
-        txtRevision.Text = bom.Revision;
+        lblProduct.Text = bom.PartDescription;
+        lblRevision.Text = bom.Revision;
         lblInquiryNumber.Text = bom.InquiryNumber;
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
@@ -61,8 +61,8 @@ public partial class bomForm : System.Web.UI.UserControl
         BOM bom = new BOM();
         bom.SifId = long.Parse(lblSifID.Text);
         bom.TopPartNumber = txtPartNumber.Text;
-        bom.PartDescription = txtDescription.Text;
-        bom.Revision = txtRevision.Text;
+        bom.PartDescription = lblProduct.Text;
+        bom.Revision = lblRevision.Text;
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
