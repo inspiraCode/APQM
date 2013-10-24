@@ -50,7 +50,7 @@
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <div id="Tabs" class="tabDiv" class="Content">
+    <div id="Tabs" class="tabDiv" class="Content" style="min-width: 600px;">
         <asp:Button ID="tabRFQ" runat="server" Text="RFQ" OnClick="tabRFQ_Click" class="tabSelected" />
         <asp:Button ID="tabRFQCountPerBOMDetail" runat="server" class="tabUnselected" OnClick="tabRFQPerBOMDetail_Click"
             Text="RFQs per BOM Lines" />
@@ -58,11 +58,15 @@
             Text="RFQs per Shared Items" />
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
-        <asp:View ID="viewRFQList" runat="server">            
-            <uc8:rfqStatusInfo ID="uscRfqStatusInfo" runat="server" />
-            <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
-                <div runat="server" id="divRFQ" style="margin-top: 80px;">
-                    <uc7:rfqList ID="uscRfqList" runat="server" />
+        <asp:View ID="viewRFQList" runat="server">
+            <div style="border-left: solid 1px;padding: 0px 10px 0 10px;width: 97%;min-width: 450px;">
+                <div align="right" style="top:20px; position:relative;">
+                    <uc8:rfqStatusInfo ID="uscRfqStatusInfo" runat="server" />
+                </div>
+                <div style="position: relative;margin-top: 40px;">
+                    
+                        <uc7:rfqList ID="uscRfqList" runat="server" />
+                   
                 </div>
             </div>
         </asp:View>

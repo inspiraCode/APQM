@@ -8,8 +8,10 @@
     .style2
     {
         padding-right: 5px;
+        font-weight:bold;
     }
 </style>
+<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 110px;width: 440px;">
 <table align="left" cellspacing="0" class="style1">
     <tr>
         <td class="style2" align="right">
@@ -64,3 +66,4 @@
         </td>
     </tr>
 </table>
+</div>
