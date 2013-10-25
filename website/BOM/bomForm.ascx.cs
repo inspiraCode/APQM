@@ -137,6 +137,12 @@ public partial class bomForm : System.Web.UI.UserControl
         DM.CommitTransaction();
         DM.Close_Open_Connection();
         
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+        
         Session.Remove("bom");
         Ok_Click(this, e);
     }

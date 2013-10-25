@@ -94,6 +94,42 @@ public class RfqCRUD : ICRUD<RFQ>
 
         return idGenerated;
     }
+    public string createAndReturnIdGenerated(RFQ entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
+            DM.Load_SP_Parameters("@EstimatedAnnualVolume", entity.EstimatedAnnualVolume);
+            DM.Load_SP_Parameters("@PrototypePiece", entity.PrototypePiece.ToString());
+            DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
+            DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
+            DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
+            DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
+            DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
+            DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
+            DM.Load_SP_Parameters("@ToolingDetail", entity.ToolingDetail);
+            DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
+            DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
     public RFQ readById(long id)
     {
         RFQ rfq = new RFQ();
@@ -236,6 +272,42 @@ public class RfqCRUD : ICRUD<RFQ>
 
         return result;
     }
+    public bool update(RFQ entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;        
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@EstimatedAnnualVolume", entity.EstimatedAnnualVolume);
+            DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
+            DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
+            DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
+            DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
+            DM.Load_SP_Parameters("@ToolingDetail", entity.ToolingDetail);
+            DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
+            DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
+            DM.Load_SP_Parameters("@PrototypePiece", entity.PrototypePiece.ToString());
+            DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
+            DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
+            DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
     public bool delete(long id)
     {
         int rowsAffected=0;
@@ -303,6 +375,33 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure("RFQDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(RFQDetail entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemDescription", entity.ItemDescription.ToString());
+            DM.Load_SP_Parameters("@UM", entity.Um.ToString());
+            DM.Load_SP_Parameters("@RPCQty", entity.RpcQty.ToString());
+            DM.Load_SP_Parameters("@RPCCostPerUnit", entity.RpcCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@OSQty", entity.OSQty.ToString());
+            DM.Load_SP_Parameters("@OSCostPerUnit", entity.OSCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@ScrapValue", entity.ScrapValue.ToString());
+            DM.Load_SP_Parameters("@DirectHrlyLaborRate", entity.DirectHrlyLaborRate.ToString());
+            DM.Load_SP_Parameters("@StdHrs", entity.StdHrs.ToString());
+            DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("RFQDetail_NewDetail", true);
         }
         catch (Exception e)
         {
@@ -513,6 +612,16 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
         }
         return false;
     }
+
+    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
+        }
+        return false;
+    }
     #endregion
 }
 
@@ -538,6 +647,25 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
             DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
 
             result = DM.Execute_StoreProcedure("RFQACR_NewACR", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(RFQACR entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year.ToString());
+            DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("RFQACR_NewACR", true);
         }
         catch (Exception e)
         {
@@ -710,6 +838,15 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();
             }
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM RFQACR WHERE RFQHeaderKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
         }
         return false;
     }

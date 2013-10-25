@@ -138,11 +138,17 @@ public partial class rfqForm : System.Web.UI.UserControl
         List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();
         List<RFQACR> rfqACRList = uscRfqACR.getEntity();
 
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("RFQ Save");
+
         if (lblMode.Text == "New")
         {
             rfq.Status = "PENDING";
             rfq.SentToVendor = DateTime.Now;
-            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
+            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
             if (idGenerated != "")
             {
                 this.rfq.Id = long.Parse(idGenerated);
@@ -157,17 +163,17 @@ public partial class rfqForm : System.Web.UI.UserControl
         {
             rfq.Status = "IN PROGRESS";
             rfq.Id = this.rfq.Id;
-            if (!rfqCRUD.update(rfq))
+            if (!rfqCRUD.update(rfq, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return false;
             }
-            if (!rfqDetailCRUD.deleteByParentID(rfq.Id))
+            if (!rfqDetailCRUD.deleteByParentID(rfq.Id, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return false;
             }
-            if (!rfqACRCRUD.deleteByParentID(rfq.Id))
+            if (!rfqACRCRUD.deleteByParentID(rfq.Id, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return false;
@@ -176,7 +182,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         foreach (RFQDetail detail in rfqDetailList)
         {
             detail.RfqHeaderKey = this.rfq.Id;
-            if (!rfqDetailCRUD.create(detail))
+            if (!rfqDetailCRUD.create(detail, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return false;
@@ -185,12 +191,22 @@ public partial class rfqForm : System.Web.UI.UserControl
         foreach (RFQACR detail in rfqACRList)
         {
             detail.RfqHeaderKey = this.rfq.Id;
-            if (!rfqACRCRUD.create(detail))
+            if (!rfqACRCRUD.create(detail, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return false;
             }
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+        
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return false;
+        }
+
         return true;
     }
     protected void btnCancel_Click(object sender, EventArgs e)

@@ -23,14 +23,17 @@ public partial class Vendor_Supplier : System.Web.UI.Page
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
 
-        if (Session["supplierObject"] != null)
+        if (!IsPostBack)
         {
-            supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
-            ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
-            uscSupplierForm.load();
-            return;
+            if (Session["supplierObject"] != null)
+            {
+                supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
+                ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
+                uscSupplierForm.load();
+                return;
+            }
+            exitByError();
         }
-        exitByError();
     }
     private bool retrieveEntity()
     {
