@@ -5,11 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Vendor_ThankYou : System.Web.UI.Page
+public partial class Vendor_ThankYou : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Control btnHome = Master.FindControl("btnHome");
-        btnHome.Visible = false;
+
     }
 }

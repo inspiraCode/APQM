@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Vendor_RFQ : System.Web.UI.Page
+public partial class Vendor_Supplier : System.Web.UI.Page
 {
     private Token token;
 
@@ -16,23 +16,21 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
 
     RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
-    RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD(); 
+    RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
-        if (!IsPostBack)
+
+        if (Session["supplierObject"] != null)
         {
-            if (Session["supplierObject"] != null)
-            {
-                supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;            
-                ((SessionObject)Session["rfqObject"]).Status = "forUpdate";           
-                uscRfqForm.load();
-                return;
-            }
-            exitByError();
+            supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
+            ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
+            uscSupplierForm.load();
+            return;
         }
+        exitByError();
     }
     private bool retrieveEntity()
     {
@@ -63,62 +61,39 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         }
         return false;
     }
+    protected void on_save_supplier(object sender, EventArgs e)
+    {   
+        if (retrieveEntity())
+        {
+            Navigator.goToPage("~/Vendor/RFQ.aspx", "");
+        }
+        else
+        {
+            exitByError();
+        }
+    }
+    protected void on_cancel_supplier(object sender, EventArgs e)
+    {   
+        if (retrieveEntity())
+        {
+            Navigator.goToPage("~/Vendor/Supplier.aspx", "");
+        }
+        else
+        {
+            exitByError();
+        }
+    }
+    protected void btnToRFQForm_Click(object sender, EventArgs e)
+    {
+        on_save_supplier(null,null);
+    }
     private void exitByError()
     {
         Session.Remove("SECTION");
         Session.Remove("supplierObject");
         Session.Remove("rfqObject");
         Session.Remove("token");
-        token = null;
         supplier = null;
         Navigator.goToPage("~/Error.aspx", "");
-    }
-    protected void btnToSupplierForm_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
-            Navigator.goToPage("~/Vendor/Supplier.aspx", "");
-        }
-        catch
-        {
-            exitByError();
-        }
-    }
-    protected void btnFinalize_Click(object sender, EventArgs e)
-    {
-        if (uscRfqForm.save(true))
-        {
-            Session.Remove("SECTION");
-            Session.Remove("supplierObject");
-            Session.Remove("rfqObject");
-            Session.Remove("token");
-            token = null;
-            supplier = null;
-        
-            Navigator.goToPage("~/Vendor/ThankYou.aspx", "");
-        }
-    }
-    protected void on_save_rfq(object sender, EventArgs e)
-    {
-        if (retrieveEntity())
-        {
-            Navigator.goToPage("~/Vendor/RFQ.aspx", "");
-        }
-        else
-        {
-            exitByError();
-        }
-    }
-    protected void on_cancel_rfq(object sender, EventArgs e)
-    {
-        if (retrieveEntity())
-        {
-            Navigator.goToPage("~/Vendor/RFQ.aspx", "");
-        }
-        else
-        {
-            exitByError();
-        }
     }
 }

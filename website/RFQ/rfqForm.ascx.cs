@@ -195,7 +195,6 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("rfqObject");       
         Cancel_Click(this, e);        
     }
 }

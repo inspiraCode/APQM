@@ -11,11 +11,4 @@ public partial class _Layouts_MasterBase_Static : System.Web.UI.MasterPage
     {
         lblDate.Text = DateTime.Now.ToString("dddd, MMMM d, yyyy");
     }
-   
-
-    protected void logout_Click(object sender, EventArgs e)
-    {
-
-    }
-    
 }
