@@ -26,7 +26,7 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
             {
                 context.Session["token"] = token;
                 if (retrieveEntity(context))
-                {
+                {   
                     Navigator.goToPage("~/Vendor/Supplier.aspx", "supplier");
                     return;
                 }

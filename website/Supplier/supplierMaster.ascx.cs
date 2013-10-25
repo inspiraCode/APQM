@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class supplierMaster : System.Web.UI.UserControl
 {
-    public event EventHandler Ok_Click;
-    public event EventHandler Cancel_Click;
+    public event EventHandler AfterSave;
+    public event EventHandler AfterCancel;
 
     SupplierCRUD supplierCRUD = new SupplierCRUD();
     Supplier supplier;
@@ -37,7 +37,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
         txtContactEmail.Text = supplier.ContactEmail;
         lblMode.Text = "Update";
     }
-    protected void btnSave_Click(object sender, EventArgs e)
+    public void save()
     {
         Supplier supplier = new Supplier();
         supplier.SupplierName = txtSupplierName.Text;
@@ -62,11 +62,12 @@ public partial class supplierMaster : System.Web.UI.UserControl
                 return;
             }
         }
-        Ok_Click(this, e);
+        AfterSave(this,null);
     }
-    protected void btnCancel_Click(object sender, EventArgs e)
+    public void cancel()
     {
         Session.Remove("supplierObject");
-        Cancel_Click(this, e);
+        AfterCancel(this, null);
     }
+
 }

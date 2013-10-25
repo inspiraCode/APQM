@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class rfqForm : System.Web.UI.UserControl
 {
-    public event EventHandler Ok_Click;
-    public event EventHandler Cancel_Click;
+    public event EventHandler AfterSave;
+    public event EventHandler AfterCancel;
 
     RfqCRUD rfqCRUD = new RfqCRUD();
     public RFQ rfq = null;
@@ -87,28 +87,28 @@ public partial class rfqForm : System.Web.UI.UserControl
         uscRfqACR.load();
 
     }
-    protected void btnSave_Click(object sender, EventArgs e)
+    public void save()
     {
-        
-        if (save()) Ok_Click(this, e);
-           
+        if (saveRFQ()) AfterSave(null, null);
     }
-    public bool save(bool finalize) {
-        if (finalize)
+    public bool finalize() {
+        if (saveRFQ())
         {
-            if (save()) {
-                RFQ rfq = rfqCRUD.readById(this.rfq.Id);
-                rfq.Status = "COMPLETED";                
-                if (!rfqCRUD.update(rfq))
-                {
-                    Navigator.goToPage("~/Error.aspx", "");
-                    return false;
-                }
+            RFQ rfq = rfqCRUD.readById(this.rfq.Id);
+            rfq.Status = "COMPLETED";
+            if (!rfqCRUD.update(rfq))
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return false;
             }
+        }
+        else
+        {
+            return false;
         }
         return true;
     }
-    public bool save()
+    public bool saveRFQ()
     {
         RFQ rfq = new RFQ();
 
@@ -209,8 +209,8 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         return true;
     }
-    protected void btnCancel_Click(object sender, EventArgs e)
+    public void cancel()
     {
-        Cancel_Click(this, e);        
+        AfterCancel(null, null);        
     }
 }

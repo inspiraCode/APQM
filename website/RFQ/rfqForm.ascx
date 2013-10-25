@@ -334,16 +334,8 @@
     </table>
 </div>
 <br />
-
 <br />
-<div align="center">
-    <asp:Button ID="btnSave" validationid="validatingRFQForm" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
-        TabIndex="30" OnClientClick="return validate();"  />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
-        TabIndex="31" />
-    <asp:HiddenField ID="hiddenSupplierID" runat="server" />
-</div>
-
+<asp:HiddenField ID="hiddenSupplierID" runat="server" />
 <br />
 <br />
 <script type="text/javascript">

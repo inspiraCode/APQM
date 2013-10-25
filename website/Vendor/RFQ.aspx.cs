@@ -22,6 +22,12 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     {
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
+        if (Session["rfqObject"] != null && ((RFQ)(((SessionObject)Session["rfqObject"]).Content)).Status == "COMPLETED")
+        {
+            divInfo.InnerText = "You have already send us your information, but you can see it as read only.";
+            btnFinalize.Visible = false;
+            divButtons.Visible = false;
+        }       
         if (!IsPostBack)
         {
             if (Session["supplierObject"] != null)
@@ -87,7 +93,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     }
     protected void btnFinalize_Click(object sender, EventArgs e)
     {
-        if (uscRfqForm.save(true))
+        if (uscRfqForm.finalize())
         {
             Session.Remove("SECTION");
             Session.Remove("supplierObject");
@@ -120,5 +126,13 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         {
             exitByError();
         }
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        uscRfqForm.save();
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        uscRfqForm.cancel();
     }
 }

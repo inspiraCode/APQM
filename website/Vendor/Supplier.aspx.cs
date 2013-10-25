@@ -22,9 +22,13 @@ public partial class Vendor_Supplier : System.Web.UI.Page
     {
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
-
-        if (!IsPostBack)
+        if (Session["rfqObject"] != null && ((RFQ)(((SessionObject)Session["rfqObject"]).Content)).Status == "COMPLETED")
         {
+            divInfo.InnerText = "You have already send us your information, but you can see it as read only.";
+            divButtons.Visible = false;
+        }       
+        if (!IsPostBack)
+        {   
             if (Session["supplierObject"] != null)
             {
                 supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
@@ -98,5 +102,13 @@ public partial class Vendor_Supplier : System.Web.UI.Page
         Session.Remove("token");
         supplier = null;
         Navigator.goToPage("~/Error.aspx", "");
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        uscSupplierForm.save();
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        uscSupplierForm.cancel();
     }
 }
