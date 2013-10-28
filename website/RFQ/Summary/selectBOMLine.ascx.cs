@@ -8,14 +8,10 @@ using System.Web.UI.WebControls;
 public partial class RFQ_Summary_selectBOMLine : System.Web.UI.UserControl
 {
     public event GridViewCommandEventHandler Row_Command;  
-    public void setBOMHeaderKey(long id){
-        lblBOMHeaderKey.Text = id.ToString();
-    }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
-        SqlDataSourceForm.ConnectionString = connection.getConnection().ConnectionString;
     }
     public static void MakeAccessible(GridView grid)
     {
@@ -33,5 +29,9 @@ public partial class RFQ_Summary_selectBOMLine : System.Web.UI.UserControl
     {
         base.OnPreRender(e);
         MakeAccessible(gridViewBOM);
+    }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
     }
 }

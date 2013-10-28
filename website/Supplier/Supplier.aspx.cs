@@ -76,7 +76,7 @@ public partial class _Default : System.Web.UI.Page
     {        
         Navigator.goToPage("~/default.aspx","supplier");
     }
-    protected void on_cancel_supplier(object sender, EventArgs e)
+    protected void on_after_cancel_supplier(object sender, EventArgs e)
     {       
         Navigator.goToPage("~/default.aspx", "supplier");
     }
@@ -126,5 +126,13 @@ public partial class _Default : System.Web.UI.Page
                 tabSurvey.CssClass = "tabSelected"; 
                 break;            
         }
+    }
+    protected void on_save_supplier(object sender, EventArgs e)
+    {
+        uscSupplierMasterForm.save();
+    }
+    protected void on_cancel_supplier(object sender, EventArgs e)
+    {
+        uscSupplierMasterForm.cancel();
     }
 }

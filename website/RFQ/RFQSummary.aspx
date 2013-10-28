@@ -13,28 +13,6 @@
     </asp:MultiView>
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-            <asp:View ID="viewSIF" runat="server">
-                <div class="mainSection">
-                    <uc3:selectSIF ID="uscSelectSIF" runat="server" OnRow_Command="on_rowCommand" />
-                    <br />
-                    <br />
-                </div>
-                <div align="right">
-                    <asp:Button ID="Button1" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
-
-                <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Step 1: Please select SIF/BOM");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 900, modal: true,
-                        height: 460,
-                        dialogClass: "no-close",
-                        closeOnEscape: false,
-                        draggable: false
-                    });
-                </script>
-
-            </asp:View>
             <asp:View ID="viewBOM" runat="server">
                 <div class="mainSection">
                     <uc4:selectBOMLine ID="uscSelectBOM" runat="server" OnRow_Command="on_rowCommand" />
@@ -46,7 +24,7 @@
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
 
                 <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Step 2: Please select BOM Line");
+                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Please select a BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 900, modal: true,

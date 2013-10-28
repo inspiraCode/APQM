@@ -125,8 +125,6 @@ public partial class _Default : System.Web.UI.Page
         Navigator.goToPage("~/default.aspx","rfq");
     }
 
-
-
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
         Navigator.goToPage("~/default.aspx","popupSupplier");        
@@ -139,4 +137,13 @@ public partial class _Default : System.Web.UI.Page
     {
         Navigator.goToPage("~/default.aspx","popupRFQ");
     }
+    protected void on_save_supplier(object sender, EventArgs e)
+    {
+        uscSupplierForm.save();
+    }
+    protected void on_cancel_supplier(object sender, EventArgs e)
+    {
+        uscSupplierForm.cancel();
+    }
+
 }

@@ -46,26 +46,24 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     protected void btnSelect_Click(object sender, EventArgs e)
     {
         panelPopup.Visible = true;
-        multiViewPopup.SetActiveView(viewSIF);
     }
     protected void on_rowCommand(Object sender, GridViewCommandEventArgs e)
     {
         int index;
-        long bomHeaderKey;
+        //long bomHeaderKey;
         switch (e.CommandName)
         {
-            case "selectSIF":
-                try
-                {
-                    index = Convert.ToInt32(e.CommandArgument);
-                    bomHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
-                    multiViewPopup.SetActiveView(viewBOM);
-                    uscSelectBOM.setBOMHeaderKey(bomHeaderKey);
-                }
-                catch {
-                    Navigator.goToPage("~/Error.aspx", "");
-                }
-                break;
+            //case "selectSIF":
+            //    try
+            //    {
+            //        index = Convert.ToInt32(e.CommandArgument);
+            //        bomHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
+            //        multiViewPopup.SetActiveView(viewBOM);
+            //    }
+            //    catch {
+            //        Navigator.goToPage("~/Error.aspx", "");
+            //    }
+            //    break;
             case "selectBOM":
                 try
                 {
@@ -89,7 +87,6 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     }
     protected void btnBackToSIF_Click(object sender, EventArgs e)
     {
-        multiViewPopup.SetActiveView(viewSIF);
-        uscSelectBOM.setBOMHeaderKey(-1);
+        
     }
 }

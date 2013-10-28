@@ -78,9 +78,9 @@
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
             <asp:View ID="viewPopupSupplier" runat="server">
-                <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnOk_Click="on_add_supplier"
-                    OnCancel_Click="on_cancelAdd_supplier" />
-
+                <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnAfterSave="on_add_supplier"
+                    OnAfterCancel="on_cancelAdd_supplier" />
+                
                 <script type="text/javascript">
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
@@ -89,7 +89,10 @@
                         dialogClass: "no-close", closeOnEscape:false
                     });
                 </script>
-
+                <div id="divButtons" align="center" runat="server">
+                    <asp:Button ID="btnSaveSupplier" runat="server" Text="Save" Width="70px" OnClick="on_save_supplier" />
+                    <asp:Button ID="btnCancelSupplier" runat="server" Text="Cancel" Width="70px" OnClick="on_cancel_supplier" />
+                </div>
             </asp:View>
             <asp:View ID="viewPopupSIF" runat="server">
                 <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif" OnCancel_Click="on_cancelAdd_sif" />
