@@ -6,7 +6,7 @@
     <div align="left">
         <asp:Repeater ID="repeaterRFQSummary" runat="server" OnItemDataBound="R1_ItemDataBound">
             <HeaderTemplate>
-                <table border="0" style="text-align: right;float: left;margin-top: 7px;">
+                <table border="0" style="text-align: right;float: left;margin-top: 8px;">
                     <tr>
                         <td>
                             <table>
@@ -262,24 +262,6 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        var count = 1;
-        //        jQuery('.movible').each(function() {
-        //            jQuery(this).attr('data-row', '1');
-        //            jQuery(this).attr('data-col', count++);
-        //            jQuery(this).attr('data-sizex', '1');
-        //            jQuery(this).attr('data-sizey', '1');
-        //            jQuery(this).css('list-style-type', 'none');            
-        //        });
-
-
-        //        jQuery(".gridster ul").gridster({
-        //            max_size_x: 9,
-        //            max_size_y: 8,            
-        //            widget_margins: [14][14],
-        //            widget_base_dimensions: [1000][1000]
-        //        });
-
-        //[110][319]
         var width = 0;
         jQuery('.movible').each(function() {
             width += 150;
@@ -288,4 +270,3 @@
         jQuery('.container').shapeshift();
     });
 </script>
-
