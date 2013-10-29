@@ -209,8 +209,16 @@
             <tr>
                 <td class="camposSinBordes">
                 </td>
+                <td class="camposSinBordes">
+                </td>
+                <td class="camposSinBordes">
+                </td>
+                <td class="camposSinBordes">
+                </td>
                 <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
                     <asp:Label ID="lblTotalMaterial" runat="server">0</asp:Label>
+                </td>
+                <td class="camposSinBordes">
                 </td>
                 <td class="camposSinBordes">
                 </td>
@@ -221,6 +229,8 @@
                 </td>
                 <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
                     <asp:Label ID="lblTotalScrap" runat="server">0</asp:Label>
+                </td>
+                <td class="camposSinBordes">
                 </td>
                 <td class="camposSinBordes">
                 </td>
