@@ -35,12 +35,12 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         if (rfqSummary.Count > 0)
         {
             repeaterRFQSummary.Visible = true;
-            divHeader.Visible = true;            
+            //divHeader.Visible = true;            
         }
         else
         {
             repeaterRFQSummary.Visible = false;
-            divHeader.Visible = false;            
+            //divHeader.Visible = false;            
         }
     }
     public void summarizeTotals()
