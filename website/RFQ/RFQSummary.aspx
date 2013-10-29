@@ -41,13 +41,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" runat="Server">
     <br />
-    <asp:Button ID="btnSelect" runat="server" Text="Select Program" TabIndex="1" OnClick="btnSelect_Click" />
-    <br />
-    <br />
-    <div align="left">
-        <asp:HyperLink ID="hlnkOpenPage" runat="server" NavigateUrl="~/RFQ/Summary/rfqSummaryPage.aspx"
+    <asp:Button ID="btnSelect" runat="server" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
+    <asp:HyperLink ID="hlnkOpenPage" runat="server" NavigateUrl="~/RFQ/Summary/rfqSummaryPage.aspx"
             Target="_blank" Visible="False">Open in a separate page</asp:HyperLink>
-    </div>
-    <br />
     <uc2:RFQSummaryForm ID="uscRFQSummaryForm" runat="server"  />
 </asp:Content>

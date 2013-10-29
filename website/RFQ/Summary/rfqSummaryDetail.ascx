@@ -129,7 +129,7 @@
                         </td>
                     </tr>
                 </table>
-                <div id="zone" class="container" style="margin-left: 160px;position:relative;" >
+                <div id="zone" class="container" style="margin-left: 90px;position:relative;" >
                     
             </HeaderTemplate>
             <ItemTemplate>
@@ -212,14 +212,14 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td>
-                                <asp:TextBox ID="TextBox1" runat="server" Width="100px" Style="font-size: 11px">"TotalBCost"</asp:TextBox>
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="TextBox1" runat="server" Width="60px" Style="font-size: 11px;border:0px;background-color:Transparent;">"00000.00"</asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
                                 <asp:Label ID="Label12" runat="server" Text=''>
-                            TotalAcquisition
+                            00000.00
                                 </asp:Label>
                             </td>
                         </tr>
@@ -232,22 +232,22 @@
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                AnnualPurchaseCost
+                                00000.00
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                Tooling
+                                00000.00
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                Cavitation
+                                00000.00
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                Material
+                                00000.00
                             </td>
                         </tr>
                     </table>
@@ -264,7 +264,7 @@
     jQuery(document).ready(function() {
         var width = 0;
         jQuery('.movible').each(function() {
-            width += 150;
+            width += 120;
         });
         jQuery('#zone').width(width);
         jQuery('.container').shapeshift();

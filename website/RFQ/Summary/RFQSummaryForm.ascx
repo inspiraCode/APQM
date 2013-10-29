@@ -1,88 +1,122 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs" Inherits="RFQSummaryForm" %>
-<%@ Register src="rfqSummaryDetail.ascx" tagname="rfqSummaryDetail" tagprefix="uc1" %>
-<%@ Register src="selectRFQ.ascx" tagname="selectRFQ" tagprefix="uc2" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs"
+    Inherits="RFQSummaryForm" %>
+<%@ Register Src="rfqSummaryDetail.ascx" TagName="rfqSummaryDetail" TagPrefix="uc1" %>
+<%@ Register Src="selectRFQ.ascx" TagName="selectRFQ" TagPrefix="uc2" %>
 <style type="text/css">
     .style1
     {
-        width: 100%;
+        width: 550px;
     }
-</style>
-<asp:FormView ID="frmRFQSummaryHeader" runat="server" 
-    DataSourceID="SqlDataSource1">
+    .style4
+    {
+        max-width: 350px;
+    }
+    .style5
+    {
+        width: 230px;
+    }
+    </style>
+<asp:FormView ID="frmRFQSummaryHeader" runat="server" DataSourceID="SqlDataSource1" style="float:right;margin-top:8px;font-size: 12px;">
     <ItemTemplate>
-        SIFHeaderKey:
-        <asp:Label ID="SIFHeaderKeyLabel" runat="server" 
-            Text='<%# Eval("SIFHeaderKey") %>' />
-        <br />
-        InquiryNumber:
-        <asp:Label ID="InquiryNumberLabel" runat="server" 
-            Text='<%# Bind("InquiryNumber") %>' />
-        <br />
-        BOMHeaderKey:
-        <asp:Label ID="BOMHeaderKeyLabel" runat="server" 
-            Text='<%# Eval("BOMHeaderKey") %>' />
-        <br />
-        TopPartNumber:
-        <asp:Label ID="TopPartNumberLabel" runat="server" 
-            Text='<%# Bind("TopPartNumber") %>' />
-        <br />
-        PartDescription:
-        <asp:Label ID="PartDescriptionLabel" runat="server" 
-            Text='<%# Bind("PartDescription") %>' />
-        <br />
-        BOMDetailKey:
-        <asp:Label ID="BOMDetailKeyLabel" runat="server" 
-            Text='<%# Eval("BOMDetailKey") %>' />
-        <br />
-        Qty:
-        <asp:Label ID="QtyLabel" runat="server" Text='<%# Bind("Qty") %>' />
-        <br />
-        PartNumber:
-        <asp:Label ID="PartNumberLabel" runat="server" 
-            Text='<%# Bind("PartNumber") %>' />
-        <br />
-        Description:
-        <asp:Label ID="DescriptionLabel" runat="server" 
-            Text='<%# Bind("Description") %>' />
-        <br />
-        UM:
-        <asp:Label ID="UMLabel" runat="server" Text='<%# Bind("UM") %>' />
-        <br />
-        Material:
-        <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
-        <br />
-        Cost:
-        <asp:Label ID="CostLabel" runat="server" Text='<%# Bind("Cost") %>' />
-        <br />
+        <table cellspacing="0" class="style1">
+            <tr>
+                <td  align="right" class="style5">
+                    InquiryNumber:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    Part Description:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="PartDescriptionLabel" Width="100%" runat="server" Text='<%# Bind("PartDescription") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    SIF Program:</td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    &nbsp;
+                    Component
+                    Part Number:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    Component
+                    Material:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    Component
+                    Description:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    Component
+                    No Required:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="QtyLabel" runat="server" Text='<%# Bind("Qty") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td  align="right" class="style5">
+                    Component
+                    UM:
+                </td>
+                <td class="style4" style="background-color: #C0C0C0">
+                    <asp:Label ID="UMLabel" runat="server" Text='<%# Bind("UM") %>' />
+                </td>
+            </tr>
+        </table>
     </ItemTemplate>
 </asp:FormView>
+
 <div align="center">
     <br />
-    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" onSelect_RFQ="on_select_rfq" />
-
+    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" Onselect_RFQ="on_select_rfq" />
 </div>
-
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
-    SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMHeader.TopPartNumber, BOMHeader.PartDescription, BOMDetail.BOMDetailKey, BOMDetail.Qty, ItemMaster.PartNumber, ItemMaster.Description, ItemMaster.UM, ItemMaster.Material, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)" 
+    SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMHeader.TopPartNumber, BOMHeader.PartDescription, BOMDetail.BOMDetailKey, BOMDetail.Qty, ItemMaster.PartNumber, ItemMaster.Description, ItemMaster.UM, ItemMaster.Material, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)"
     ProviderName="System.Data.SqlClient">
     <SelectParameters>
-        <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" 
-            PropertyName="Text" />
+        <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" PropertyName="Text" />
     </SelectParameters>
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
-
 <asp:Panel ID="panelPopup" runat="server" Visible="false" title="RFQ Selection">
     <uc2:selectRFQ ID="uscSelectRFQ" runat="server" OnOk_click="on_confirm_rfq" OnCancel_click="on_cancel_rfq" />
+
     <script type="text/javascript">
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 430, 
-                        modal: true,
-                        height: 320,
-                        dialogClass: "no-close",
-                        closeOnEscape: false,
-                        draggable: true
-                    });
-                </script>
+        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 430,
+            modal: true,
+            height: 320,
+            dialogClass: "no-close",
+            closeOnEscape: false,
+            draggable: true
+        });
+    </script>
+
 </asp:Panel>
