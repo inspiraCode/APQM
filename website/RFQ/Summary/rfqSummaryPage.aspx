@@ -4,4 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" Runat="Server">
     <uc1:RFQSummaryForm ID="uscRFQSummaryForm" runat="server" />
+   <script type="text/javascript">
+        jQuery('')
+    </script>
 </asp:Content>
