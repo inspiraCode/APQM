@@ -355,7 +355,7 @@ public class RFQSummary
     }
     public float TotalACost
     {
-        get { return sgaProfit + packingPerUnit + assemblyCostPerUnit;}
+        get { return ManufacturingCost + sgaProfit + packingPerUnit + assemblyCostPerUnit;}
     }
     public long Id
     {

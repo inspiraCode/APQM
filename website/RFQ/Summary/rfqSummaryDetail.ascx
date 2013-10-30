@@ -145,68 +145,68 @@
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label1" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>'>                            
+                                <asp:Label ID="lblMaterialTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTotal")%>'>                            
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label2" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>'>
+                                <asp:Label ID="lblServiceTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ServiceTotal")%>'>
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label3" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ScrapTotal")%>'>
+                                <asp:Label ID="lblScrapTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ScrapTotal")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label4" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "LaborTotal")%>'>
+                                <asp:Label ID="lblLaborTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "LaborTotal")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label5" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>'>
+                                <asp:Label ID="lblBurdenTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label6" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ManufacturingCost")%>'>
+                                <asp:Label ID="lblManufacturingCost" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ManufacturingCost")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label7" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SgaProfit")%>'>
+                                <asp:Label ID="lblSgaProfit" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "SgaProfit")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label8" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PackingPerUnit")%>'>
+                                <asp:Label ID="lblPackingPerUnit" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PackingPerUnit")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label9" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "AssemblyCostPerUnit")%>'>
+                                <asp:Label ID="lblAssemblyCostPerUnit" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "AssemblyCostPerUnit")%>'>
                             
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label10" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TotalACost")%>'>
+                                <asp:Label ID="lblTotalACost" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "TotalACost")%>'>
                             
                                 </asp:Label>
                             </td>
