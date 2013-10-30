@@ -334,28 +334,59 @@ public class RFQACR
 public class RFQSummary
 {
     private long id;
+    private long rfqHeaderKey = -1;
     private long bomDetailKey = -1; 
     private string rfqNumber = ""; 
     private long supplierKey = -1;
     private string supplierName = "";
-    private float materialTotal; 
-    private float serviceTotal; 
-    private float scrapTotal; 
-    private float laborTotal; 
-    private float burdenTotal; 
-    private float sgaProfit; 
-    private long packingPerUnit; 
-    private float assemblyCostPerUnit; 
-    private float estimatedAnnualVolume;
-    private float newCost;
-
+    private float materialTotal;
+    private float serviceTotal; //Material O/S
+    private float scrapTotal;
+    private float laborTotal;
+    private float burdenTotal;
+    
     public float ManufacturingCost
     {
-        get { return materialTotal + serviceTotal + scrapTotal + laborTotal + burdenTotal; }       
+        get { return MaterialTotal + ServiceTotal + ScrapTotal + LaborTotal + BurdenTotal; }       
     }
+    
+    private float sgaProfit;
+    private long packingPerUnit;
+    private float assemblyCostPerUnit;
+    
     public float TotalACost
     {
-        get { return ManufacturingCost + sgaProfit + packingPerUnit + assemblyCostPerUnit;}
+        get { return ManufacturingCost + SgaProfit + PackingPerUnit + AssemblyCostPerUnit;}
+    }
+    private float totalBCost;
+    private float totalCCost;
+    
+    public float TotalAcquisitionCost
+    {
+        get { return TotalACost + TotalBCost + TotalCCost; }
+    }
+    private float estimatedAnnualVolume;
+    public float AnnualPurchaseCost
+    {
+        get { return TotalAcquisitionCost * EstimatedAnnualVolume; }
+    }
+    private float tooling;
+    private float cavitation;
+    private string materialTooling;
+    
+    private float newCost;
+    private float eav;
+
+    public float EAV
+    {
+        get { return eav; }
+        set { eav = value; }
+    }
+
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
     }
     public long Id
     {
@@ -431,5 +462,30 @@ public class RFQSummary
     {
         get { return newCost; }
         set { newCost = value; }
+    }
+    public float TotalBCost
+    {
+        get { return totalBCost; }
+        set { totalBCost = value; }
+    }
+    public float TotalCCost
+    {
+        get { return totalCCost; }
+        set { totalCCost = value; }
+    }
+    public float Tooling
+    {
+        get { return tooling; }
+        set { tooling = value; }
+    }
+    public float Cavitation
+    {
+        get { return cavitation; }
+        set { cavitation = value; }
+    }
+    public string MaterialTooling
+    {
+        get { return materialTooling; }
+        set { materialTooling = value; }
     }
 }

@@ -866,7 +866,8 @@ public class RfqSummaryCRUD
         RFQSummary rfqSummary = new RFQSummary();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQNumber, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY RFQHeaderKey";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -879,7 +880,7 @@ public class RfqSummaryCRUD
 
             if (table.Rows.Count > 0)
             {
-                rfqSummary.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqSummary.RfqHeaderKey = long.Parse(table.Rows[0][0].ToString());
                 rfqSummary.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
                 rfqSummary.RfqNumber = table.Rows[0][2].ToString();
                 rfqSummary.SupplierKey = long.Parse(table.Rows[0][3].ToString());
@@ -893,6 +894,13 @@ public class RfqSummaryCRUD
                 rfqSummary.AssemblyCostPerUnit = float.Parse(table.Rows[0][11].ToString());
                 rfqSummary.EstimatedAnnualVolume = float.Parse(table.Rows[0][12].ToString());
                 rfqSummary.SupplierName = table.Rows[0][13].ToString();
+                rfqSummary.Id = long.Parse(table.Rows[0][14].ToString());
+                rfqSummary.TotalBCost = float.Parse(table.Rows[0][15].ToString());
+                rfqSummary.TotalCCost = float.Parse(table.Rows[0][16].ToString());
+                rfqSummary.EAV = float.Parse(table.Rows[0][17].ToString());
+                rfqSummary.Tooling = float.Parse(table.Rows[0][18].ToString());
+                rfqSummary.Cavitation = float.Parse(table.Rows[0][19].ToString());
+                rfqSummary.MaterialTooling = table.Rows[0][20].ToString();
 
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -906,7 +914,8 @@ public class RfqSummaryCRUD
         List<RFQSummary> recordset = new List<RFQSummary>();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQNumber, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -920,24 +929,34 @@ public class RfqSummaryCRUD
             for (int i = 0; i < table.Rows.Count; i++)
             {
                 RFQSummary rfq = new RFQSummary();
-                rfq.Id = long.Parse(table.Rows[i][0].ToString());
+                rfq.RfqHeaderKey = long.Parse(table.Rows[i][0].ToString());
                 rfq.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
-                rfq.RfqNumber= table.Rows[i][2].ToString();
-                rfq.SupplierKey= long.Parse (table.Rows[i][3].ToString());
+                rfq.RfqNumber = table.Rows[i][2].ToString();
+                rfq.SupplierKey = long.Parse(table.Rows[i][3].ToString());
                 rfq.MaterialTotal = float.Parse(table.Rows[i][4].ToString());
-                rfq.ServiceTotal= float.Parse(table.Rows[i][5].ToString());
-                rfq.ScrapTotal= float.Parse(table.Rows[i][6].ToString());
-                rfq.LaborTotal= float.Parse((table.Rows[i][7].ToString()));
+                rfq.ServiceTotal = float.Parse(table.Rows[i][5].ToString());
+                rfq.ScrapTotal = float.Parse(table.Rows[i][6].ToString());
+                rfq.LaborTotal = float.Parse((table.Rows[i][7].ToString()));
                 rfq.BurdenTotal = float.Parse(table.Rows[i][8].ToString());
                 rfq.SgaProfit = float.Parse(table.Rows[i][9].ToString());
-                rfq.PackingPerUnit= long.Parse(table.Rows[i][10].ToString());
+                rfq.PackingPerUnit = long.Parse(table.Rows[i][10].ToString());
                 rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][11].ToString());
                 rfq.EstimatedAnnualVolume = float.Parse(table.Rows[i][12].ToString());
                 rfq.SupplierName = table.Rows[i][13].ToString();
+                if (table.Rows[i][14].ToString() != "")
+                {
+                    rfq.Id = long.Parse(table.Rows[i][14].ToString());
+                    rfq.TotalBCost = float.Parse(table.Rows[i][15].ToString());
+                    rfq.TotalCCost = float.Parse(table.Rows[i][16].ToString());
+                    rfq.EAV = float.Parse(table.Rows[i][17].ToString());
+                    rfq.Tooling = float.Parse(table.Rows[i][18].ToString());
+                    rfq.Cavitation = float.Parse(table.Rows[i][19].ToString());
+                    rfq.MaterialTooling = table.Rows[i][20].ToString();
+                }
 
                 recordset.Add(rfq);
             }
         }
         return recordset;
-    }   
+    }
 }

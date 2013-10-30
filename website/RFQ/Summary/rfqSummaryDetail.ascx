@@ -1,6 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqSummaryDetail.ascx.cs"
     Inherits="rfqSummaryDetail" %>
-<div align="center" style="font-size: 11px;">
+    <style type="text/css">
+        .textManual
+        {
+            font-size: 12px;
+            border:0px;
+            height: 13px;
+            background-color:Transparent;
+            text-align: right;
+        }
+    </style>
+<div align="center" style="font-size: 12px;">
     <%--<div style="float: left" runat="server" id="divHeader" visible="false">
     </div>--%>
     <div align="left">
@@ -10,116 +20,121 @@
                     <tr>
                         <td>
                             <table>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label13" runat="server" Text="Supplier Name">                            
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label1" runat="server" Text="Material">                            
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label2" runat="server" Text="Material O/S">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label3" runat="server" Text="Scrap">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label4" runat="server" Text="Labor">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label5" runat="server" Text="Burden">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label6" runat="server" Text="Manufacturing Cost">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label7" runat="server" Text="SGA&A Profit">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label8" runat="server" Text="Packaging">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label9" runat="server" Text="Assembly Cost Per Unit">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
-                                        <asp:Label ID="Label10" runat="server" Text="Total A Cost">
+                                        <asp:Label ID="Label10" runat="server" Text="A Cost">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
-                                        <asp:Label ID="TextBox1" runat="server" Text="Total B Cost"></asp:Label>
+                                        <asp:Label ID="TextBox1" runat="server" Text="B Cost"></asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                 <tr height='12px;'>
                                     <td>
-                                        <asp:Label ID="Label12" runat="server" Text="Total Acquisition">
+                                        <asp:Label ID="Label18" runat="server" Text="C Cost"></asp:Label>
+                                    </td>
+                                </tr>
+                                <tr height='12px;'>
+                                    <td>
+                                        <asp:Label ID="Label12" runat="server" Text="Total Acquisition Cost">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label11" runat="server" Text="Estimated Annual Volume">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label14" runat="server" Text="Annual Purchase Cost">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label15" runat="server" Text="Tooling">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label16" runat="server" Text="Cavitation">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='11px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label17" runat="server" Text="Material">
                                         </asp:Label>
@@ -134,7 +149,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="movible" style="position:absolute;">
-                    <table>
+                    <table style="text-align: right;">
                         <tr height='11px;'>
                             <td>
                                 <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
@@ -213,41 +228,46 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="TextBox1" runat="server" Width="60px" Style="font-size: 11px;border:0px;background-color:Transparent;">"00000.00"</asp:TextBox>
+                                <asp:TextBox ID="txtTotalBCost" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="txtTotalCCost" runat="server" Width="60px" class="textManual"  Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
+                            </td>
+                        </tr>
+                       <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label12" runat="server" Text=''>
+                                <asp:Label ID="lblTotalAcquisitionCost" runat="server" Text=''>
                             00000.00
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="txtEAV" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
+                            </td>
+                        </tr>
+                       <tr height='11px;'>
                             <td>
-                                <asp:Label ID="Label11" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "EstimatedAnnualVolume")%>'>
-                            
+                                <asp:Label ID="lblAnnualPurchaseCost" runat="server" Text=''>
+                                    00000.00
                                 </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td>
-                                00000.00
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="txtTooling" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td>
-                                00000.00
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="txtCavitation" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td>
-                                00000.00
-                            </td>
-                        </tr>
-                        <tr height='11px;'>
-                            <td>
-                                00000.00
+                            <td style="background-color:#C0C0C0;">
+                                <asp:TextBox ID="txtMaterial" runat="server" Width="60px" class="textManual" style="text-align: right;" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -264,7 +284,7 @@
     jQuery(document).ready(function() {
         var width = 0;
         jQuery('.movible').each(function() {
-            width += 120;
+            width += 110;
         });
         jQuery('#zone').width(width);
         jQuery('.container').shapeshift();
