@@ -196,13 +196,13 @@ public class RFQDetail
     private long rfqHeaderKey;
     private string itemDescription = "";
     private string um = "";
-    private long rpcQty;
+    private float rpcQty;
     private float rpcCostPerUnit;
-    private long oSQty;
+    private float oSQty;
     private float oSCostPerUnit;
     private float scrapValue;
     private float directHrlyLaborRate;
-    private int stdHrs;
+    private float stdHrs;
     private float burden;
     private int sequence = -1;
 
@@ -241,7 +241,7 @@ public class RFQDetail
         get { return sequence; }
         set { sequence = value; }
     }
-    public int StdHrs
+    public float StdHrs
     {
         get { return stdHrs; }
         set { stdHrs = value; }
@@ -261,7 +261,7 @@ public class RFQDetail
         get { return itemDescription; }
         set { itemDescription = value; }
     }
-    public long RpcQty
+    public float RpcQty
     {
         get { return rpcQty; }
         set { rpcQty = value; }
@@ -271,7 +271,7 @@ public class RFQDetail
         get { return rpcCostPerUnit; }
         set { rpcCostPerUnit = value; }
     }
-    public long OSQty
+    public float OSQty
     {
         get { return oSQty; }
         set { oSQty = value; }

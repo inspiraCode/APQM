@@ -434,13 +434,13 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 rfq.RfqHeaderKey = long.Parse(table.Rows[0][1].ToString());
                 rfq.ItemDescription = table.Rows[0][2].ToString();
                 rfq.Um = table.Rows[0][3].ToString();
-                rfq.RpcQty = long.Parse(table.Rows[0][4].ToString());
+                rfq.RpcQty = float.Parse(table.Rows[0][4].ToString());
                 rfq.RpcCostPerUnit = float.Parse(table.Rows[0][5].ToString());
-                rfq.OSQty = long.Parse(table.Rows[0][6].ToString());
+                rfq.OSQty = float.Parse(table.Rows[0][6].ToString());
                 rfq.OSCostPerUnit = float.Parse((table.Rows[0][7].ToString()));
                 rfq.ScrapValue = float.Parse(table.Rows[0][8].ToString());
                 rfq.DirectHrlyLaborRate = float.Parse(table.Rows[0][9].ToString());
-                rfq.StdHrs = int.Parse(table.Rows[0][10].ToString());
+                rfq.StdHrs = float.Parse(table.Rows[0][10].ToString());
                 rfq.Burden = float.Parse(table.Rows[0][11].ToString());
 
                 sqlConnection.Dispose();
@@ -474,13 +474,13 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
                 rfq.ItemDescription = table.Rows[i][2].ToString();
                 rfq.Um = table.Rows[i][3].ToString();
-                rfq.RpcQty = long.Parse(table.Rows[i][4].ToString());
+                rfq.RpcQty = float.Parse(table.Rows[i][4].ToString());
                 rfq.RpcCostPerUnit = float.Parse(table.Rows[i][5].ToString());
-                rfq.OSQty = long.Parse(table.Rows[i][6].ToString());
+                rfq.OSQty = float.Parse(table.Rows[i][6].ToString());
                 rfq.OSCostPerUnit = float.Parse((table.Rows[i][7].ToString()));
                 rfq.ScrapValue = float.Parse(table.Rows[i][8].ToString());
                 rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][9].ToString());
-                rfq.StdHrs = int.Parse(table.Rows[i][10].ToString());
+                rfq.StdHrs = float.Parse(table.Rows[i][10].ToString());
                 rfq.Burden = float.Parse(table.Rows[i][11].ToString());               
                 rfq.Sequence = i;
 
@@ -510,13 +510,13 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             rfq.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
             rfq.ItemDescription =table.Rows[i][2].ToString();
             rfq.Um = table.Rows[i][3].ToString();
-            rfq.RpcQty = long.Parse(table.Rows[i][4].ToString());
+            rfq.RpcQty = float.Parse(table.Rows[i][4].ToString());
             rfq.RpcCostPerUnit = float.Parse(table.Rows[i][5].ToString());
-            rfq.OSQty = long.Parse(table.Rows[i][6].ToString());
+            rfq.OSQty = float.Parse(table.Rows[i][6].ToString());
             rfq.OSCostPerUnit = float.Parse((table.Rows[i][7].ToString()));
             rfq.ScrapValue = float.Parse(table.Rows[i][8].ToString());
             rfq.DirectHrlyLaborRate = float.Parse(table.Rows[i][9].ToString());
-            rfq.StdHrs = int.Parse(table.Rows[i][10].ToString());
+            rfq.StdHrs = float.Parse(table.Rows[i][10].ToString());
             rfq.Burden = float.Parse(table.Rows[i][11].ToString());
             rfq.Sequence = i;
 

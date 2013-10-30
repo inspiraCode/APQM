@@ -11,7 +11,7 @@
 </style>
 <div style="min-width: 1220px; max-width: 1200px;" align="center">
     <table border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
-        <tr>
+        <tr style="background-color=#D3D3D3">
             <th colspan="5">
                 Raw Material and Purchased Components
             </th>

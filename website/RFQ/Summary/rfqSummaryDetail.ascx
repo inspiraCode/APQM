@@ -129,7 +129,7 @@
                         </td>
                     </tr>
                 </table>
-                <div id="zone" class="container" style="margin-left: 90px;position:relative;" >
+                <div id="zone" class="container" style="margin-left: 75px;position:relative;" >
                     
             </HeaderTemplate>
             <ItemTemplate>

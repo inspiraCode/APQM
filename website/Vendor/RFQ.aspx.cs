@@ -22,11 +22,15 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     {
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
-        if (Session["rfqObject"] != null && ((RFQ)(((SessionObject)Session["rfqObject"]).Content)).Status == "COMPLETED")
+        
+        if (Session["rfqObject"] != null)
         {
-            divInfo.InnerText = "You have already send us your information, but you can see it as read only.";
-            btnFinalize.Visible = false;
-            divButtons.Visible = false;
+            RFQ rfqObject = (RFQ)(((SessionObject)Session["rfqObject"]).Content);
+            if(rfqObject.Status != "PENDING" && rfqObject.Status != "IN PROGRESS"){
+                divInfo.InnerText = "You have already sent us your information, but you can see it as read only.";
+                btnFinalize.Visible = false;
+                divButtons.Visible = false;
+            }
         }       
         if (!IsPostBack)
         {
