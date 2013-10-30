@@ -5,7 +5,7 @@
 <style type="text/css">
     .style1
     {
-        width: 550px;
+        width: 410px;
     }
     .style4
     {
@@ -13,10 +13,10 @@
     }
     .style5
     {
-        width: 230px;
+        width: 150px;
     }
     </style>
-<asp:FormView ID="frmRFQSummaryHeader" runat="server" DataSourceID="SqlDataSource1" style="float:right;margin-top:8px;font-size: 12px;">
+<asp:FormView ID="frmRFQSummaryHeader" runat="server" DataSourceID="SqlDataSource1" style="float:right;margin-top:8px;">
     <ItemTemplate>
         <table cellspacing="0" class="style1">
             <tr>

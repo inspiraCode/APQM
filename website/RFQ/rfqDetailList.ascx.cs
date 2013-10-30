@@ -76,7 +76,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();            
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -98,13 +98,13 @@ public partial class rfqDetailList : System.Web.UI.UserControl
 
         rfqDetailLine.ItemDescription = txtPartNumber.Text;
         rfqDetailLine.Um = txtUOM.Text;
-        rfqDetailLine.RpcQty = long.Parse(txtQuantity.Text);
+        rfqDetailLine.RpcQty = float.Parse(txtQuantity.Text);
         rfqDetailLine.RpcCostPerUnit = float.Parse(txtCostUnit.Text);
-        rfqDetailLine.OSQty = long.Parse(txtOutsideServicesQuantity.Text);
+        rfqDetailLine.OSQty = float.Parse(txtOutsideServicesQuantity.Text);
         rfqDetailLine.OSCostPerUnit = float.Parse(txtOutsideServicesCostUnit.Text);
         rfqDetailLine.ScrapValue = float.Parse(txtScrapValue.Text);
         rfqDetailLine.DirectHrlyLaborRate = float.Parse(txtDirectHrlyLaborRate.Text);
-        rfqDetailLine.StdHrs = int.Parse(txtStdHrs.Text);
+        rfqDetailLine.StdHrs = float.Parse(txtStdHrs.Text);
         rfqDetailLine.Burden = float.Parse(txtBurden.Text);
         
         if (rfqDetail == null) rfqDetail = new List<RFQDetail>();

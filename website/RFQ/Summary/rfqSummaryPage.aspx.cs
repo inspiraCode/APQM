@@ -14,6 +14,9 @@ public partial class rfqSummaryPage : System.Web.UI.Page
         {
             //Session["rfqSummary"] = bomDetailKey;
             uscRFQSummaryForm.setBomDetailID(bomDetailKey);
+            FormView frmHeader = (FormView) uscRFQSummaryForm.FindControl("frmRFQSummaryHeader");
+            frmHeader.Style.Remove("float");
+            
         }
     }   
     private bool retrieveEntity()

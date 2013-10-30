@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master" AutoEventWireup="true" CodeFile="rfqSummaryPage.aspx.cs" Inherits="rfqSummaryPage" %>
+<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master" AutoEventWireup="true" CodeFile="rfqSummaryPage.aspx.cs" Inherits="rfqSummaryPage" %>
 
 <%@ Register src="RFQSummaryForm.ascx" tagname="RFQSummaryForm" tagprefix="uc1" %>
 
