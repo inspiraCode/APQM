@@ -90,7 +90,30 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             RFQSummary rfqSummary = (RFQSummary)e.Item.DataItem;
-            ((LinkButton)e.Item.FindControl("lnkSupplier")).CommandArgument = rfqSummary.Id.ToString();            
+            ((LinkButton)e.Item.FindControl("lnkSupplier")).CommandArgument = rfqSummary.Id.ToString();
+            ((Label)e.Item.FindControl("lblTotalACost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((Label)e.Item.FindControl("lblTotalACost")).Attributes.Add("fieldName", "lblTotalACost");
+
+            ((TextBox)e.Item.FindControl("txtTotalBCost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((TextBox)e.Item.FindControl("txtTotalBCost")).Attributes.Add("fieldName", "txtTotalBCost");
+            ((TextBox)e.Item.FindControl("txtTotalBCost")).Attributes.Add("onchange", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+            ((TextBox)e.Item.FindControl("txtTotalBCost")).Attributes.Add("onkeyup", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+
+            ((TextBox)e.Item.FindControl("txtTotalCCost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((TextBox)e.Item.FindControl("txtTotalCCost")).Attributes.Add("fieldName", "txtTotalCCost"); 
+            ((TextBox)e.Item.FindControl("txtTotalCCost")).Attributes.Add("onchange", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+            ((TextBox)e.Item.FindControl("txtTotalCCost")).Attributes.Add("onkeyup", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+
+            ((Label)e.Item.FindControl("lblTotalAcquisitionCost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((Label)e.Item.FindControl("lblTotalAcquisitionCost")).Attributes.Add("fieldName", "lblTotalAcquisitionCost");
+
+            ((TextBox)e.Item.FindControl("txtEAV")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((TextBox)e.Item.FindControl("txtEAV")).Attributes.Add("fieldName", "txtEAV"); 
+            ((TextBox)e.Item.FindControl("txtEAV")).Attributes.Add("onchange", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+            ((TextBox)e.Item.FindControl("txtEAV")).Attributes.Add("onkeyup", "summarizeColumn(" + e.Item.ItemIndex.ToString() + ")");
+
+            ((Label)e.Item.FindControl("lblAnnualPurchaseCost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
+            ((Label)e.Item.FindControl("lblAnnualPurchaseCost")).Attributes.Add("fieldName", "lblAnnualPurchaseCost");
         }
     }
     public void selectRFQ(object sender, CommandEventArgs e)

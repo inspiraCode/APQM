@@ -8,6 +8,8 @@
             height: 13px;
             background-color:Transparent;
             text-align: right;
+            max-width: 70px;
+            width:70px;
         }
     </style>
 <div align="center" style="font-size: 12px;">
@@ -228,12 +230,12 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTotalBCost" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTotalBCost" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTotalCCost" runat="server" Width="60px" class="textManual"  Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTotalCCost" runat="server"  class="textManual"  Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                        <tr height='11px;'>
@@ -245,7 +247,7 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtEAV" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtEAV" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
                             </td>
                         </tr>
                        <tr height='11px;'>
@@ -257,17 +259,17 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTooling" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTooling" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtCavitation" runat="server" Width="60px" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtCavitation" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtMaterial" runat="server" Width="60px" class="textManual" style="text-align: right;" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtMaterial" runat="server"  class="textManual" style="text-align: right;" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -281,12 +283,33 @@
 </div>
 
 <script type="text/javascript">
+    var arrColumns = {};
     jQuery(document).ready(function() {
         var width = 0;
         jQuery('.movible').each(function() {
-            width += 110;
+            width += 120;
         });
         jQuery('#zone').width(width);
         jQuery('.container').shapeshift();
+
+        jQuery('[item]').each(function() {
+            if (!arrColumns.hasOwnProperty(jQuery(this).attr("item")))
+                arrColumns[jQuery(this).attr("item")] = jQuery("[item = " + jQuery(this).attr("item") + "]");
+
+            summarizeColumn(jQuery(this).attr("item"));
+        });
     });
+    
+    function summarizeColumn(index) {
+        var ACost = Number(arrColumns[index].filter('[fieldname=lblTotalACost]').text());
+        var BCost = Number(arrColumns[index].filter('[fieldname=txtTotalBCost]').val());
+        var CCost = Number(arrColumns[index].filter('[fieldname=txtTotalCCost]').val());
+
+        var EAV = Number(arrColumns[index].filter('[fieldname=txtEAV]').val());
+        
+        var totalAcquisitionCost = ACost + BCost + CCost;
+        
+        arrColumns[index].filter('[fieldname=lblTotalAcquisitionCost]').text(totalAcquisitionCost.toFixed(2));
+        arrColumns[index].filter('[fieldname=lblAnnualPurchaseCost]').text((EAV * totalAcquisitionCost).toFixed(2));
+    }
 </script>

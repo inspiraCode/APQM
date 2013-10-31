@@ -379,4 +379,3 @@
         lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
 </script>
-
