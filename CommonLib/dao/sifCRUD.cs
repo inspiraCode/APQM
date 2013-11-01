@@ -400,3 +400,299 @@ public class sifCRUD : ICRUD<SIF>
     #endregion
 
 }
+
+public class sifDetailCRUD : ICRUD<SIFDetail>
+{
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public sifDetailCRUD()
+    {
+    }
+
+    #region ICRUD<SIFDetail> Members
+
+    public bool create(SIFDetail entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ProgramYear", entity.ProgramYear);
+            DM.Load_SP_Parameters("@ProjectedAnnualVolume", entity.ProjectedAnnualVolume.ToString());
+            DM.Load_SP_Parameters("@PercentVolumePerAward", entity.PercentVolumePerAward.ToString());
+            DM.Load_SP_Parameters("@ProjectedTargetPrice", entity.ProjectedTargetPrice.ToString());
+            DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());            
+
+            result = DM.Execute_StoreProcedure("SIFDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool create(SIFDetail entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ProgramYear", entity.ProgramYear);
+            DM.Load_SP_Parameters("@ProjectedAnnualVolume", entity.ProjectedAnnualVolume.ToString());
+            DM.Load_SP_Parameters("@PercentVolumePerAward", entity.PercentVolumePerAward.ToString());
+            DM.Load_SP_Parameters("@ProjectedTargetPrice", entity.ProjectedTargetPrice.ToString());
+            DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SIFDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public string createAndReturnIdGenerated(SIFDetail entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ProgramYear", entity.ProgramYear);
+            DM.Load_SP_Parameters("@ProjectedAnnualVolume", entity.ProjectedAnnualVolume.ToString());
+            DM.Load_SP_Parameters("@PercentVolumePerAward", entity.PercentVolumePerAward.ToString());
+            DM.Load_SP_Parameters("@ProjectedTargetPrice", entity.ProjectedTargetPrice.ToString());
+            DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("SIFDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+    public string createAndReturnIdGenerated(SIFDetail entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ProgramYear", entity.ProgramYear);
+            DM.Load_SP_Parameters("@ProjectedAnnualVolume", entity.ProjectedAnnualVolume.ToString());
+            DM.Load_SP_Parameters("@PercentVolumePerAward", entity.PercentVolumePerAward.ToString());
+            DM.Load_SP_Parameters("@ProjectedTargetPrice", entity.ProjectedTargetPrice.ToString());
+            DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("SIFDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+
+    public SIFDetail readById(long id)
+    {
+        SIFDetail sifDetail = new SIFDetail();
+
+        string query = "SELECT SIFDetailkey, SIFHeaderKey, ProgramYear, ProjectedAnnualVolume, " + 
+                        "PercentVolumePerAward, ProjectedTargetPrice, AnnualRevenue " +
+                        "FROM SIFDetail WHERE(SIFDetailkey = @key)";
+
+        DataTable table = new DataTable();
+
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+            if (table.Rows.Count > 0)
+            {
+                sifDetail.Id = long.Parse(table.Rows[0][0].ToString());
+                sifDetail.SifHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                sifDetail.ProgramYear = table.Rows[0][2].ToString();
+                sifDetail.ProjectedAnnualVolume = long.Parse(table.Rows[0][3].ToString());
+                sifDetail.PercentVolumePerAward = float.Parse(table.Rows[0][4].ToString());
+                sifDetail.ProjectedTargetPrice = float.Parse(table.Rows[0][5].ToString());
+                sifDetail.AnnualRevenue = float.Parse(table.Rows[0][6].ToString());
+                
+                sqlConnection.Dispose();
+                return sifDetail;
+            }
+        }
+        return null;
+    }
+    public List<SIFDetail> readByParentID(long id)
+    {
+        List<SIFDetail> recordset = new List<SIFDetail>();
+
+        string query = "SELECT SIFDetailkey, SIFHeaderKey, ProgramYear, ProjectedAnnualVolume, " + 
+                        "PercentVolumePerAward, ProjectedTargetPrice, AnnualRevenue " +
+                        "FROM SIFDetail WHERE(SIFHeaderKey = @key) ORDER BY SIFDetailkey";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SIFDetail sifDetail = new SIFDetail();
+                sifDetail.Id = long.Parse(table.Rows[i][0].ToString());
+                sifDetail.SifHeaderKey = long.Parse(table.Rows[i][1].ToString());
+                sifDetail.ProgramYear = table.Rows[i][2].ToString();
+                sifDetail.ProjectedAnnualVolume = long.Parse(table.Rows[i][3].ToString());
+                sifDetail.PercentVolumePerAward = float.Parse(table.Rows[i][4].ToString());
+                sifDetail.ProjectedTargetPrice = float.Parse(table.Rows[i][5].ToString());
+                sifDetail.AnnualRevenue = float.Parse(table.Rows[i][6].ToString());
+                sifDetail.Sequence = i;
+
+               recordset.Add(sifDetail);
+            }
+        }
+        return recordset;
+    }
+    public IList<SIFDetail> readAll()
+    {
+        List<SIFDetail> recordset = new List<SIFDetail>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT SIFDetailkey, SIFHeaderKey, ProgramYear, ProjectedAnnualVolume, " + 
+                        "PercentVolumePerAward, ProjectedTargetPrice, AnnualRevenue " +
+                        "FROM SIFDetail ORDER BY SIFDetailkey ASC";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+        if (DM.ErrorOccur)
+        {
+            throw new Exception(DM.Error_Mjs);
+        }
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            SIFDetail sifDetail = new SIFDetail();
+            sifDetail.Id = long.Parse(table.Rows[i][0].ToString());
+            sifDetail.SifHeaderKey = long.Parse(table.Rows[i][1].ToString());
+            sifDetail.ProgramYear = table.Rows[i][2].ToString();
+            sifDetail.ProjectedAnnualVolume = long.Parse(table.Rows[i][3].ToString());
+            sifDetail.PercentVolumePerAward = float.Parse(table.Rows[i][4].ToString());
+            sifDetail.ProjectedTargetPrice = float.Parse(table.Rows[i][5].ToString());
+            sifDetail.AnnualRevenue = float.Parse(table.Rows[i][6].ToString());
+            sifDetail.Sequence = i;
+
+            recordset.Add(sifDetail);
+        }
+
+        return recordset;
+    }
+    public bool update(SIFDetail entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SIFDetailkey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ProgramYear", entity.ProgramYear);
+            DM.Load_SP_Parameters("@ProjectedAnnualVolume", entity.ProjectedAnnualVolume.ToString());
+            DM.Load_SP_Parameters("@PercentVolumePerAward", entity.PercentVolumePerAward.ToString());
+            DM.Load_SP_Parameters("@ProjectedTargetPrice", entity.ProjectedTargetPrice.ToString());
+            DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
+
+            result = DM.Execute_StoreProcedure("SIFDetail_EditDetail", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SIFDetail WHERE SIFHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM SIFDetail WHERE SIFHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    public bool saveSIFDetailInSIF(SIF entity, ref Data_Base_MNG.SQL DM)
+    {
+        
+        foreach(SIFDetail detail in entity.SifDetail){
+            detail.SifHeaderKey = entity.Id;
+            if (!this.create(detail, ref DM))
+                return false;
+        }
+
+        return true;
+    }
+    #endregion
+
+}

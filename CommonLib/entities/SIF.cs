@@ -34,7 +34,14 @@ public class SIF
     private DateTime quoteDue = new DateTime(1985, 2, 10);
     private DateTime sop = new DateTime(1985, 2, 10);
     private string salesStatus = "";
-    private long salesDBID = -1;    
+    private long salesDBID = -1;
+    private List<SIFDetail> sifDetail = new List<SIFDetail>();
+
+    public List<SIFDetail> SifDetail
+    {
+        get { return sifDetail; }
+        set { sifDetail = value; }
+    }
 
     public string CustomerName
     {
@@ -190,5 +197,59 @@ public class SIF
     public override string ToString()
     {
         return "{Inquiry Number: " + this.InquiryNumber + " Revision: " + this.Revision + " Product: " + this.Product + " Sales Person: " + this.SalesPerson + "}";
+    }
+}
+
+public class SIFDetail
+{
+    private long id;
+    private long sifHeaderKey = -1;
+    private string programYear = ""; 
+    private long projectedAnnualVolume;
+    private float percentVolumePerAward;
+    private float projectedTargetPrice;
+    private float annualRevenue;
+    private int sequence;
+
+    public int Sequence
+    {
+        get { return sequence; }
+        set { sequence = value; }
+    }
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long SifHeaderKey
+    {
+        get { return sifHeaderKey; }
+        set { sifHeaderKey = value; }
+    }
+    public string ProgramYear
+    {
+        get { return programYear; }
+        set { programYear = value; }
+    }
+    public long ProjectedAnnualVolume
+    {
+        get { return projectedAnnualVolume; }
+        set { projectedAnnualVolume = value; }
+    }
+    public float PercentVolumePerAward
+    {
+        get { return percentVolumePerAward; }
+        set { percentVolumePerAward = value; }
+    }
+    public float ProjectedTargetPrice
+    {
+        get { return projectedTargetPrice; }
+        set { projectedTargetPrice = value; }
+    }
+    public float AnnualRevenue
+    {
+        get { return annualRevenue; }
+        set { annualRevenue = value; }
     }
 }

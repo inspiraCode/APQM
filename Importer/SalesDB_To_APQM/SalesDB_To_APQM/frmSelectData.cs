@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SalesDB_To_APQM.entities;
 
 namespace SalesDB_To_APQM
 {
@@ -202,26 +203,26 @@ namespace SalesDB_To_APQM
                 {
                     SIF sif = new SIF();
                     sif.InquiryNumber = row.Cells["Inquiry Number"].Value.ToString();
-                    sif.Priority = row.Cells["Priority"].Value.ToString();
                     sif.Revision = row.Cells["Revision"].Value.ToString();
                     sif.SalesPerson = row.Cells["Sales Person"].Value.ToString();
+                    sif.CustomerName = row.Cells["Customer"].Value.ToString();
+                    sif.Priority = row.Cells["Priority"].Value.ToString();
                     sif.CostModelLoc = row.Cells["Cost Model Location"].Value.ToString();
-                    sif.Contact = row.Cells["Contact"].Value.ToString();
-                    sif.BussinesClass = row.Cells["Business Class"].Value.ToString();
-                    sif.Product = row.Cells["Product"].Value.ToString();
                     sif.DivLoc = row.Cells["Division/Location"].Value.ToString();
+                    sif.Contact = row.Cells["Contact"].Value.ToString();
                     sif.Department = row.Cells["Department"].Value.ToString();
+                    sif.BussinesClass = row.Cells["Business Class"].Value.ToString();
                     sif.Reason4Quote = row.Cells["Reason For Quote"].Value.ToString();
+                    sif.Product = row.Cells["Product"].Value.ToString();
                     sif.Application = row.Cells["Application/Program"].Value.ToString();
                     sif.Specification = row.Cells["Specification"].Value.ToString();
-                    sif.TaskDescription = row.Cells["Task Description"].Value.ToString();
                     sif.PartPrint = row.Cells["Part Print (Rev)"].Value.ToString();
                     sif.Sample = row.Cells["Samples"].Value.ToString();
+                    sif.TaskDescription = row.Cells["Task Description"].Value.ToString();
                     sif.ToolingTarget = row.Cells["Tooling Target (Incl Prototypes)"].Value.ToString();
                     sif.PrimaryCompetitors = row.Cells["Primary Competitors"].Value.ToString();
                     sif.SpecificResourceRequirements = row.Cells["Specific Response Requirements"].Value.ToString();
                     sif.Technical = row.Cells["Technical/subsource Constraints"].Value.ToString();
-                    sif.CustomerName = row.Cells["Customer"].Value.ToString();
                     sif.SalesStatus = row.Cells["Status"].Value.ToString();
                     sif.SalesDBID = long.Parse(row.Cells["ID"].Value.ToString());
                     try
@@ -235,6 +236,35 @@ namespace SalesDB_To_APQM
                     }
                     catch { }
                     sif.DrawingLevel = row.Cells["DWG Level"].Value.ToString();
+
+
+                    //SIF Detail:
+                    for (int i = 1; i <= 7; i++)
+                    {
+                        
+                        SIFDetail sifDetail = new SIFDetail();
+                        sifDetail.ProgramYear = row.Cells["Year " + i].Value.ToString();
+                        try
+                        {    
+                            sifDetail.ProjectedAnnualVolume = long.Parse(row.Cells["Projected Annual Volume Yr " + i].Value.ToString());
+                            sifDetail.ProjectedTargetPrice = float.Parse(row.Cells["Projected/Target Price Yr " + i].Value.ToString());
+                            sifDetail.AnnualRevenue = float.Parse(row.Cells["Annual Revenue Yr " + i].Value.ToString());
+                            if (i == 2)
+                            {
+                                sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% of Volume Yr 2"].Value.ToString());
+                            }
+                            else
+                            {
+                                sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% of Volume per Award Yr " + i].Value.ToString());
+                            }
+
+                            if (sifDetail.AnnualRevenue > 0)
+                            {
+                                sif.SifDetail.Add(sifDetail);
+                            }
+                        }
+                        catch { }//If there is a null value on numeric fields the record is not imported.
+                    }
                     recordset.Add(sif);
                 }
                 frmExport frmExportDialog = new frmExport();
