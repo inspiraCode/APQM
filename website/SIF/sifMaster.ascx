@@ -1,4 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SifMaster.ascx.cs" Inherits="SifMaster" %>
+<%@ Register Src="sifDetail.ascx" TagName="sifDetail" TagPrefix="uc1" %>
+<br />
 <div align="center">
     <table cellspacing="1" style="width: 916px; margin-right: 0px;">
         <tr>
@@ -9,16 +11,12 @@
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr>
@@ -29,16 +27,14 @@
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
             <td align="left">
-                &nbsp; BOM:
+                BOM:
             </td>
             <td align="left">
                 <asp:Label ID="lblBOM" runat="server"></asp:Label>
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr>
@@ -47,16 +43,12 @@
             <td align="left">
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr>
@@ -99,7 +91,7 @@
         </tr>
         <tr>
             <td align="right" height="25px" colspan="6">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
+                <div style="border: solid; border-color: gray; border-width: 1px;">
                 </div>
             </td>
         </tr>
@@ -108,11 +100,9 @@
                 Customer
             </td>
             <td align="left" colspan="2">
-                <asp:DropDownList ID="cboCustomer" runat="server" Height="22px" Width="195px" 
-                    TabIndex="6">
+                <asp:DropDownList ID="cboCustomer" runat="server" Height="22px" Width="195px" TabIndex="6">
                 </asp:DropDownList>
-                <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" 
-                        TabIndex="7" />
+                <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" TabIndex="7" />
             </td>
             <td align="right">
                 Division/Location
@@ -127,10 +117,9 @@
             </td>
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtContact" runat="server" Width="240px" TabIndex="8"></asp:TextBox>
-                &nbsp;
             </td>
             <td align="right">
-                &nbsp;Department
+                Department
             </td>
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtDepartment" runat="server" Width="260px" TabIndex="12"></asp:TextBox>
@@ -158,7 +147,7 @@
                 <asp:TextBox ID="txtProduct" runat="server" Width="240px" TabIndex="10"></asp:TextBox>
             </td>
             <td align="right">
-                &nbsp;Application/Program
+                Application/Program
             </td>
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtApplication" runat="server" Width="260px" TabIndex="14"></asp:TextBox>
@@ -166,7 +155,7 @@
         </tr>
         <tr style="display: none">
             <td align="right" height="25px" colspan="6">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
+                <div style="border: solid; border-color: gray; border-width: 1px;">
                 </div>
             </td>
         </tr>
@@ -178,7 +167,6 @@
                 <asp:TextBox ID="txtSpecification" runat="server" Width="180px" TabIndex="15"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="right">
                 Part Print
@@ -195,7 +183,6 @@
                 <asp:TextBox ID="txtDrawingLevel" runat="server" Width="180px" TabIndex="16"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="right">
                 Sample
@@ -212,21 +199,24 @@
                 <asp:TextBox ID="txtTaskDescription" runat="server" Width="180px" TabIndex="17"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="left">
-                &nbsp;
             </td>
             <td align="right">
-                &nbsp;
             </td>
         </tr>
         <tr>
             <td align="right" height="25px" colspan="6">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
+                <div style="border: solid; border-color: gray; border-width: 1px;">
+                </div>
+            </td>
+        </tr>
+        <tr align="center">
+            <td align="center" colspan="6">
+                <div style="border-radius: 10px;border: solid #D3D3D3;background-color: #D3D3D3;">
+                    <uc1:sifDetail ID="uscSifDetail" runat="server" />
                 </div>
             </td>
         </tr>
@@ -238,7 +228,6 @@
                 <asp:TextBox ID="txtToolingTarget" runat="server" Width="180px" TabIndex="20"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr>
@@ -246,11 +235,9 @@
                 Primary Competitors
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtPrimaryCompetitors" runat="server" Width="320px" 
-                    TabIndex="21"></asp:TextBox>
+                <asp:TextBox ID="txtPrimaryCompetitors" runat="server" Width="320px" TabIndex="21"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr style="display: none">
@@ -258,11 +245,9 @@
                 Specific Resource Requirements
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtSpecificResourceRequirements" runat="server" Width="320px" 
-                    TabIndex="22"></asp:TextBox>
+                <asp:TextBox ID="txtSpecificResourceRequirements" runat="server" Width="320px" TabIndex="22"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr style="display: none">
@@ -273,41 +258,40 @@
                 <asp:TextBox ID="txtTechnical" runat="server" Width="320px" TabIndex="23"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;
             </td>
         </tr>
         <tr>
             <td align="right" height="25px" colspan="6">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
+                <div style="border: solid; border-color: gray; border-width: 1px;">
                 </div>
             </td>
         </tr>
         <tr>
             <td align="right" colspan="3">
-                Quote Due</td>
+                Quote Due
+            </td>
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtQuoteDue" runat="server" Width="180px" TabIndex="20"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;</td>
+            </td>
         </tr>
         <tr>
             <td align="right" colspan="3">
-                SOP</td>
+                SOP
+            </td>
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtSOP" runat="server" Width="180px" TabIndex="20"></asp:TextBox>
             </td>
             <td align="left">
-                &nbsp;</td>
+            </td>
         </tr>
     </table>
 </div>
-<div align="center" style="display:none;">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
-        OnClick="btnSave_Click" TabIndex="24" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
-        OnClick="btnCancel_Click" TabIndex="25" />
+<div align="center" style="display: none;">
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
+        TabIndex="24" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
+        TabIndex="25" />
 </div>
-                <asp:HiddenField ID="txtPrompt" runat="server" 
-                    onvaluechanged="txtPrompt_ValueChanged" />                
-            
+<asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />

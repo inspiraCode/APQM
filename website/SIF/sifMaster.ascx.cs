@@ -69,6 +69,8 @@ public partial class SifMaster : System.Web.UI.UserControl
         txtQuoteDue.Text = sif.QuoteDue.ToShortDateString();
         txtSOP.Text = sif.Sop.ToShortDateString();
 
+        uscSifDetail.setEntity(sif.SifDetail);
+
         lblMode.Text = "Update";
     }
     protected void btnSave_Click(object sender, EventArgs e)

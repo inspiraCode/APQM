@@ -85,6 +85,9 @@ public partial class bomList : System.Web.UI.UserControl
             }
             else
             {
+                sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
+                sif.SifDetail = sifDetailCRUD.readByParentID(sif.Id);
+
                 so = new SessionObject();
                 so.Content = sif;
                 so.Status = "forUpdate";

@@ -66,6 +66,9 @@ public partial class sifList : System.Web.UI.UserControl
         sif = sif_CRUD.readById(id);
         if (sif != null)
         {
+            sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
+            sif.SifDetail = sifDetailCRUD.readByParentID(sif.Id);
+
             SessionObject so = new SessionObject();
             so.Content = sif;
             so.Status = "forUpdate";
