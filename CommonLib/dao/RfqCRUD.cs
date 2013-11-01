@@ -162,10 +162,10 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ToolingDetail = table.Rows[0][10].ToString();
                 rfq.ProductionTooling = float.Parse(table.Rows[0][11].ToString());
                 rfq.PrototypeTooling = float.Parse(table.Rows[0][12].ToString());
-                rfq.PrototypePiece = long.Parse(table.Rows[0][13].ToString());
-                rfq.SgAProfit = long.Parse(table.Rows[0][14].ToString());
-                rfq.PackingPerUnit = long.Parse(table.Rows[0][15].ToString());
-                rfq.AssemblyCostPerUnit = long.Parse(table.Rows[0][16].ToString());
+                rfq.PrototypePiece = float.Parse(table.Rows[0][13].ToString());
+                rfq.SgAProfit = float.Parse(table.Rows[0][14].ToString());
+                rfq.PackingPerUnit = float.Parse(table.Rows[0][15].ToString());
+                rfq.AssemblyCostPerUnit = float.Parse(table.Rows[0][16].ToString());
                 rfq.Status = table.Rows[0][17].ToString();
                 rfq.DueDate = DateTime.Parse(table.Rows[0][18].ToString());
                 rfq.SentToVendor = DateTime.Parse(table.Rows[0][19].ToString());
@@ -214,10 +214,10 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.ToolingDetail = table.Rows[i][10].ToString();
             rfq.ProductionTooling = float.Parse(table.Rows[i][11].ToString());
             rfq.PrototypeTooling = float.Parse(table.Rows[i][12].ToString());
-            rfq.PrototypePiece = long.Parse(table.Rows[i][13].ToString());
-            rfq.SgAProfit = long.Parse(table.Rows[i][14].ToString());
-            rfq.PackingPerUnit = long.Parse(table.Rows[i][15].ToString());
-            rfq.AssemblyCostPerUnit = long.Parse(table.Rows[i][16].ToString());
+            rfq.PrototypePiece = float.Parse(table.Rows[i][13].ToString());
+            rfq.SgAProfit = float.Parse(table.Rows[i][14].ToString());
+            rfq.PackingPerUnit = float.Parse(table.Rows[i][15].ToString());
+            rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][16].ToString());
             rfq.Status = table.Rows[i][17].ToString();
             rfq.DueDate = DateTime.Parse(table.Rows[i][18].ToString());
             rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
@@ -890,7 +890,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LaborTotal = float.Parse((table.Rows[0][7].ToString()));
                 rfqSummary.BurdenTotal = float.Parse(table.Rows[0][8].ToString());
                 rfqSummary.SgaProfit = float.Parse(table.Rows[0][9].ToString());
-                rfqSummary.PackingPerUnit = long.Parse(table.Rows[0][10].ToString());
+                rfqSummary.PackingPerUnit = float.Parse(table.Rows[0][10].ToString());
                 rfqSummary.AssemblyCostPerUnit = float.Parse(table.Rows[0][11].ToString());
                 rfqSummary.EstimatedAnnualVolume = float.Parse(table.Rows[0][12].ToString());
                 rfqSummary.SupplierName = table.Rows[0][13].ToString();
@@ -939,7 +939,7 @@ public class RfqSummaryCRUD
                 rfq.LaborTotal = float.Parse((table.Rows[i][7].ToString()));
                 rfq.BurdenTotal = float.Parse(table.Rows[i][8].ToString());
                 rfq.SgaProfit = float.Parse(table.Rows[i][9].ToString());
-                rfq.PackingPerUnit = long.Parse(table.Rows[i][10].ToString());
+                rfq.PackingPerUnit = float.Parse(table.Rows[i][10].ToString());
                 rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][11].ToString());
                 rfq.EstimatedAnnualVolume = float.Parse(table.Rows[i][12].ToString());
                 rfq.SupplierName = table.Rows[i][13].ToString();

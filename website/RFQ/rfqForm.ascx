@@ -135,7 +135,7 @@
                 SG&amp;A Profit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
-                <asp:TextBox ID="txtSGAProfit" validate="required" validationid="validatingRFQForm" style="text-align:right"  runat="server" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
                     Width="100px" TabIndex="2"></asp:TextBox>
             </td>
         </tr>
@@ -156,7 +156,7 @@
                 Packing Cost/Unit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
-                <asp:TextBox ID="txtPackingCostUnit" validate="required" validationid="validatingRFQForm"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
+                <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
                     Width="100px" TabIndex="3"></asp:TextBox>
             </td>
         </tr>
@@ -177,7 +177,7 @@
                 Assembly Cost/Unit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
-                <asp:TextBox ID="txtAssemblyCostUnit" validate="required" validationid="validatingRFQForm"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
+                <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"  style="text-align:right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()" runat="server"
                     Width="100px" TabIndex="4"></asp:TextBox>
             </td>
         </tr>
@@ -303,7 +303,7 @@
                 Production Tooling
             </td>
             <td class="style62" align="right">
-                <asp:TextBox ID="txtProductionTooling" validate="required" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="22"></asp:TextBox>
+                <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="22"></asp:TextBox>
             </td>
             <td class="style63">
                 &nbsp;
@@ -314,7 +314,7 @@
                 Prototype Tooling
             </td>
             <td class="style62" align="right">
-                <asp:TextBox ID="txtPrototypeTooling" validate="required" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="23"></asp:TextBox>
+                <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="23"></asp:TextBox>
             </td>
             <td class="style63">
                 &nbsp;
@@ -325,7 +325,7 @@
                 Prototype Piece
             </td>
             <td class="style62" align="right">
-                <asp:TextBox ID="txtPrototypePiece" validate="required" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="24"></asp:TextBox>
+                <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="24"></asp:TextBox>
             </td>
             <td class="style63">
                 &nbsp;

@@ -16,12 +16,12 @@ public class RFQ
     private string prototypeToolingLeadTime = "";
     private string prototypePieceLeadTime = "";
     private string toolingDetail = "";
-    private float productionTooling = 0;
-    private float prototypeTooling = 0;
-    private float prototypePiece = 0; 
-    private float sgAProfit = 0; 
-    private long packingPerUnit = 0; 
-    private float assemblyCostPerUnit = 0;
+    private float productionTooling;
+    private float prototypeTooling;
+    private float prototypePiece; 
+    private float sgAProfit; 
+    private float packingPerUnit; 
+    private float assemblyCostPerUnit;
     private string status = "";
     private DateTime dueDate = new DateTime(1985, 2, 10);
     private DateTime sentToVendor = new DateTime(1985, 2, 10);
@@ -148,7 +148,7 @@ public class RFQ
         get { return sgAProfit; }
         set { sgAProfit = value; }
     }
-    public long PackingPerUnit
+    public float PackingPerUnit
     {
         get { return packingPerUnit; }
         set { packingPerUnit = value; }
@@ -351,7 +351,7 @@ public class RFQSummary
     }
     
     private float sgaProfit;
-    private long packingPerUnit;
+    private float packingPerUnit;
     private float assemblyCostPerUnit;
     
     public float TotalACost
@@ -443,7 +443,7 @@ public class RFQSummary
         get { return sgaProfit; }
         set { sgaProfit = value; }
     }
-    public long PackingPerUnit
+    public float PackingPerUnit
     {
         get { return packingPerUnit; }
         set { packingPerUnit = value; }
