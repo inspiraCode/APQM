@@ -8,7 +8,6 @@ using System.Web.UI.WebControls;
 public partial class rfqDetailList : System.Web.UI.UserControl
 {    
     private List<RFQDetail> rfqDetail = null;
-    private itemCRUD item_CRUD = new itemCRUD();
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,12 +15,10 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     }
     public void load()
     {
-        //loadDropDowns();
         loadDetail();
     }
     public void reset()
     {
-        //allItems = null;
         rfqDetail = null;
         Session.Remove("rfqDetailObject");
     }
@@ -136,20 +133,5 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         txtStdHrs.Text = "";
         txtBurden.Text = "";
         txtPartNumber.Text = "";
-    }   
-
-    //private void loadDropDowns()
-    //{
-    //    if (allItems == null)
-    //    {
-    //        allItems = (List<Item>)item_CRUD.readAll();
-    //    }
-    //    if (cboPartNumber.DataSource == null)
-    //    {
-    //        cboPartNumber.DataSource = allItems;
-    //        cboPartNumber.DataTextField = "PartNumber";
-    //        cboPartNumber.DataValueField = "Id";
-    //        cboPartNumber.DataBind();
-    //    }
-    //}
+    }
 }

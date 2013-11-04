@@ -27,7 +27,7 @@
     }
 </style>
 <table cellspacing="0" class="style1">
-    <tr>
+    <tr class="itemFields">
         <td class="style6" align="right">
             Part Number</td>
         <td class="style3">
@@ -39,7 +39,7 @@
             </div>
         </td>
     </tr>
-    <tr>
+    <tr class="itemFields">
         <td class="style6" align="right">
             Unit of Measure</td>
         <td class="style3">
@@ -49,7 +49,7 @@
             </asp:DropDownList>
         </td>
     </tr>
-    <tr>
+    <tr class="itemFields">
         <td class="style6" align="right">
             Material / Assembly Description</td>
         <td class="style3">
@@ -57,7 +57,7 @@
                 Style="overflow-y: auto;" TextMode="MultiLine" Width="340px"></asp:TextBox>
         </td>
     </tr>
-    <tr>
+    <tr class="itemFields">
         <td class="style6" align="right">
             Cost</td>
         <td class="style3">

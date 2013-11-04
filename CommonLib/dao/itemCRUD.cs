@@ -29,6 +29,7 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_NewItem", true);
         }
@@ -50,6 +51,7 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("ItemMaster_NewItem", true);
         }
@@ -71,6 +73,7 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("ItemMaster_NewItem", true);
         }
@@ -85,7 +88,7 @@ public class itemCRUD : ICRUD<Item>
     {
         Item item = new Item();
 
-        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material " +
+        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost " +
                         "FROM  ItemMaster WHERE (ItemMasterKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -102,6 +105,7 @@ public class itemCRUD : ICRUD<Item>
                 item.Description= table.Rows[0][2].ToString();
                 item.Um= table.Rows[0][3].ToString();
                 item.Material= table.Rows[0][4].ToString();
+                item.Cost = float.Parse(table.Rows[0][5].ToString());
                 
                 sqlConnection.Dispose();
                 return item;
@@ -116,7 +120,7 @@ public class itemCRUD : ICRUD<Item>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material " +
+        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost " +
                         "FROM  ItemMaster ORDER BY PartNumber";
 
         DataTable table = new DataTable();
@@ -130,6 +134,7 @@ public class itemCRUD : ICRUD<Item>
             item.Description = table.Rows[i][2].ToString();
             item.Um = table.Rows[i][3].ToString();
             item.Material = table.Rows[i][4].ToString();
+            item.Cost = float.Parse(table.Rows[i][5].ToString());
 
             recordset.Add(item);
         }
@@ -149,6 +154,7 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_EditItem", true);
         }
@@ -170,6 +176,7 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@PartDescription", entity.Description);
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("ItemMaster_EditItem", true);
         }

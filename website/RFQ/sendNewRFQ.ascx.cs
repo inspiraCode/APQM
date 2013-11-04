@@ -59,7 +59,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                 Email NewMail = new Email();
                 MailMessage Message = new MailMessage();
 
-                Message.From = new MailAddress("aaron.corrales.zt@gmail.com", "aaron.corrales.zt@gmail.com");
+                Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
                 Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
                 Message.Subject = "test from APQM WEB - sending RFQ";
                 Message.IsBodyHtml = true;

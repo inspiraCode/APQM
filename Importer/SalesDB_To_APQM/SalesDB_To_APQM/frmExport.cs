@@ -248,6 +248,7 @@ namespace SalesDB_To_APQM
                                                     item = new Item();
                                                     item.PartNumber = bom.PartNumber;
                                                     item.Description = bom.AssemblyDescription; //wont be used anymore
+                                                    item.Cost = bom.PartCost;
                                                     item.Um = "";
                                                     item.Material = bom.Material;
 

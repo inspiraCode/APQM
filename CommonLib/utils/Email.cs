@@ -17,8 +17,8 @@ using System.Net.Mail;
 public class Email
 {
     public SmtpClient server = new SmtpClient("smtp.gmail.com", 587);
-    public string EmailAddress = "aaron.corrales.zt@gmail.com";
-    public string Password = "chingon123";
+    public string EmailAddress = "capsonic.apps@gmail.com";
+    public string Password = "cApsOnIc13";
 
     public Email()
     {
@@ -29,7 +29,7 @@ public class Email
          * Direccion de Correo (Gmail o Hotmail)
          * y Contrasena correspondiente
          */
-        //aaron.corrales.zt@gmail.com
+        //capsonic.apps@gmail.com
 
         server.Credentials = new System.Net.NetworkCredential(EmailAddress, Password);
         server.EnableSsl = true;

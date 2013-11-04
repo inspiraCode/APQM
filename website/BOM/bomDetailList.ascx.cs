@@ -131,6 +131,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         item.Id = long.Parse(cboPartNumber.SelectedValue);
         item.Material = txtMaterial.Text;
         //item.Description = txtDescription.Text;       
+        item.Cost = float.Parse(txtCost.Text);
         item.PartNumber = cboPartNumber.SelectedItem.Text;
         item.Um = cboUM.SelectedValue;
 
@@ -175,6 +176,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
                             cboPartNumber.SelectedValue = idGenerated;
                             txtMaterial.Text = "";
                             cboUM.SelectedValue = "";
+                            txtCost.Text = "0";
                             cboPartNumber.Focus();
                         }
                         break;
@@ -208,6 +210,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             //txtDescription.Text = item.Description;
             txtMaterial.Text = item.Material;
             cboUM.SelectedValue = item.Um;
+            txtCost.Text = item.Cost.ToString();
             cboPartNumber.Focus();
         }
         else
@@ -215,6 +218,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             //txtDescription.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedValue = "";
+            txtCost.Text = "0";
             cboPartNumber.Focus();
         }
     }

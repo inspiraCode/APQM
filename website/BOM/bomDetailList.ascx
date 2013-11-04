@@ -10,19 +10,24 @@
         border-right: 0px;
         border-left: 0px;
     }
+    .itemFields
+    {
+        background-color: #D3D3D3;
+        border: solid #D3D3D3 2px;
+    }
 </style>
 <table cellspacing="0" align="left">
     <tr>
-        <th class="camposSinBordes" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
             Part Number
         </th>
-        <th class="camposSinBordes" style="width: 145px; max-width: 145px;">
+        <th class="camposSinBordes itemFields" style="width: 145px; max-width: 145px;">
             Material / Assembly Description
         </th>
-        <th class="camposSinBordes" style="width: 68px; max-width: 68px;">
+        <th class="camposSinBordes itemFields" style="width: 68px; max-width: 68px;">
             UM
         </th>
-        <th class="camposSinBordes" style="width: 52px; max-width: 52px;">
+        <th class="camposSinBordes itemFields" style="width: 52px; max-width: 52px;">
             Cost
         </th>
         <th class="camposSinBordes" style="width: 70px; max-width: 70px;">
@@ -59,7 +64,7 @@
         </th>
     </tr>
     <tr>
-        <th class="camposSinBordes" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <div style="width: 100px;">
                 <asp:DropDownList ID="cboPartNumber" Width="95px" runat="server" AutoPostBack="True"
                     OnSelectedIndexChanged="cboPartNumber_SelectedIndexChanged">
@@ -68,17 +73,17 @@
                 <asp:Button ID="btnNewPartNumber" Width="95px" runat="server" style="margin-top:4px;" Text="New" />
             </div>
         </th>
-        <th class="camposSinBordes">
+        <th class="camposSinBordes itemFields">
             <asp:TextBox ID="txtMaterial" runat="server" Width="140px" Height="40px" Rows="2"
-                TextMode="MultiLine" Style="overflow-y: auto; font-family: Tahoma"></asp:TextBox>
+                TextMode="MultiLine" Style="overflow-y: auto; font-family: Tahoma;"></asp:TextBox>
         </th>
-        <th class="camposSinBordes" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:DropDownList ID="cboUM" runat="server" Width="70px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Each">Each</asp:ListItem>
             </asp:DropDownList>
         </th>
-        <th class="camposSinBordes" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:TextBox ID="txtCost" validate="number" validationid="validatingBOMDetail" runat="server"
                 Width="50px" Style="text-align: right">0</asp:TextBox>
         </th>

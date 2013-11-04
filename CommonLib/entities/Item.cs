@@ -10,6 +10,7 @@ public class Item
     private string description = "";
     private string um = "";
     private string material = "";
+    private float cost;
 
     public long Id
     {
@@ -36,7 +37,11 @@ public class Item
         get { return material; }
         set { material = value; }
     }
-
+    public float Cost
+    {
+        get { return cost; }
+        set { cost = value; }
+    }
     public override string ToString()
     {
         return "{Part Number: " + this.partNumber + " Description: " + this.description + " Material: " + this.material + "}";
