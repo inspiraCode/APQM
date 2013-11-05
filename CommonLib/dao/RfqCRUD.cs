@@ -32,7 +32,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
-            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
             DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
             DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
@@ -46,7 +46,6 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
-            
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
         }
@@ -70,7 +69,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
-            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
             DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
             DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
@@ -106,7 +105,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
-            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
             DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
             DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
@@ -134,10 +133,10 @@ public class RfqCRUD : ICRUD<RFQ>
     {
         RFQ rfq = new RFQ();
         
-        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, " +
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, " +
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
-            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll " + 
+            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -152,7 +151,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.Id = long.Parse(table.Rows[0][0].ToString());
                 rfq.BomDetailId = long.Parse(table.Rows[0][1].ToString());
                 rfq.SupplierId = long.Parse(table.Rows[0][2].ToString());
-                rfq.RfqNumber = table.Rows[0][3].ToString();
+                rfq.RfqNumberKey = long.Parse(table.Rows[0][3].ToString());
                 rfq.DrawingLevel = table.Rows[0][4].ToString();
                 rfq.EstimatedAnnualVolume = table.Rows[0][5].ToString();
                 rfq.ProductionLeadTime = (table.Rows[0][6].ToString());
@@ -176,7 +175,8 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.SupplierName = table.Rows[0][24].ToString();
                 rfq.ManufacturingLocation = table.Rows[0][25].ToString();
                 rfq.ShipLocation = table.Rows[0][26].ToString();
-                rfq.PreparedBy = table.Rows[0][27].ToString(); 
+                rfq.PreparedBy = table.Rows[0][27].ToString();
+                rfq.RfqGenerated = table.Rows[0][28].ToString(); 
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -191,10 +191,9 @@ public class RfqCRUD : ICRUD<RFQ>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
                       "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
-                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll";
-
+                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -204,7 +203,7 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.Id = long.Parse(table.Rows[i][0].ToString());
             rfq.BomDetailId = long.Parse(table.Rows[i][1].ToString());
             rfq.SupplierId = long.Parse(table.Rows[i][2].ToString());
-            rfq.RfqNumber =table.Rows[i][3].ToString();
+            rfq.RfqNumberKey = long.Parse(table.Rows[i][3].ToString());
             rfq.DrawingLevel = table.Rows[i][4].ToString();
             rfq.EstimatedAnnualVolume = table.Rows[i][5].ToString();
             rfq.ProductionLeadTime = (table.Rows[i][6].ToString());
@@ -228,7 +227,8 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.SupplierName = table.Rows[i][24].ToString();
             rfq.ManufacturingLocation = table.Rows[i][25].ToString();
             rfq.ShipLocation = table.Rows[i][26].ToString();
-            rfq.PreparedBy = table.Rows[i][27].ToString(); 
+            rfq.PreparedBy = table.Rows[i][27].ToString();
+            rfq.RfqGenerated = table.Rows[i][28].ToString(); 
 
             recordset.Add(rfq);
         }       
@@ -244,7 +244,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@RFQHeaderKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
-            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
             DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
             DM.Load_SP_Parameters("@EstimatedAnnualVolume", entity.EstimatedAnnualVolume);
             DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
@@ -280,7 +280,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@RFQHeaderKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
-            DM.Load_SP_Parameters("@RFQNumber", entity.RfqNumber.ToString());
+            DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
             DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
             DM.Load_SP_Parameters("@EstimatedAnnualVolume", entity.EstimatedAnnualVolume);
             DM.Load_SP_Parameters("@ProductionLeadTime", entity.ProductionLeadTime);
@@ -340,6 +340,195 @@ public class RfqCRUD : ICRUD<RFQ>
         return false;
     }   
     #endregion
+}
+
+
+public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
+{
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public RFQNumberCRUD()
+    { }
+
+    #region ICRUD<RFQ> Members
+
+    public bool create(RFQNumberEntity entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BOMDetailKey.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
+            
+            result = DM.Execute_StoreProcedure("RFQNumber_NewNumber", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public string createAndReturnIdGenerated(RFQNumberEntity entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BOMDetailKey.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("RFQNumber_NewNumber", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+    public string createAndReturnIdGenerated(RFQNumberEntity entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BOMDetailKey.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQNumber_NewNumber", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+    public RFQNumberEntity readById(long id)
+    {
+        RFQNumberEntity rfqNumber = new RFQNumberEntity();
+
+        string query =  "SELECT RFQNumberKey, BOMDetailKey, SIFHeaderKey, InquiryNumber, RFQNumber, RFQGenerated " +
+                        "FROM   viewRFQNumber WHERE  RFQNumberKey = @key";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                rfqNumber.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqNumber.BOMDetailKey = long.Parse(table.Rows[0][1].ToString());
+                rfqNumber.SifHeaderKey = long.Parse(table.Rows[0][2].ToString());
+                rfqNumber.InquireyNumber = table.Rows[0][3].ToString();
+                rfqNumber.RFQNumber = long.Parse(table.Rows[0][4].ToString());
+                rfqNumber.RfqGenerated = table.Rows[0][5].ToString();
+                
+                sqlConnection.Dispose();
+                return rfqNumber;
+            }
+        }
+        return null;
+    }
+
+    public IList<RFQNumberEntity> readAll()
+    {
+        List<RFQNumberEntity> recordset = new List<RFQNumberEntity>();
+        //recordset.Clear();
+        //DM = connectionManager.getDataManager();
+
+        //string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
+        //              "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
+        //              "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll";
+
+        //DataTable table = new DataTable();
+        //table = DM.Execute_Query(query);
+
+        //for (int i = 0; i < table.Rows.Count; i++)
+        //{
+        //    RFQ rfq = new RFQ();
+        //    rfq.Id = long.Parse(table.Rows[i][0].ToString());
+        //    rfq.BomDetailId = long.Parse(table.Rows[i][1].ToString());
+        //    rfq.SupplierId = long.Parse(table.Rows[i][2].ToString());
+        //    rfq.RfqNumber = table.Rows[i][3].ToString();
+        //    rfq.DrawingLevel = table.Rows[i][4].ToString();
+        //    rfq.EstimatedAnnualVolume = table.Rows[i][5].ToString();
+        //    rfq.ProductionLeadTime = (table.Rows[i][6].ToString());
+        //    rfq.ProductionToolingLeadTime = table.Rows[i][7].ToString();
+        //    rfq.PrototypeToolingLeadTime = table.Rows[i][8].ToString();
+        //    rfq.PrototypePieceLeadTime = table.Rows[i][9].ToString();
+        //    rfq.ToolingDetail = table.Rows[i][10].ToString();
+        //    rfq.ProductionTooling = float.Parse(table.Rows[i][11].ToString());
+        //    rfq.PrototypeTooling = float.Parse(table.Rows[i][12].ToString());
+        //    rfq.PrototypePiece = float.Parse(table.Rows[i][13].ToString());
+        //    rfq.SgAProfit = float.Parse(table.Rows[i][14].ToString());
+        //    rfq.PackingPerUnit = float.Parse(table.Rows[i][15].ToString());
+        //    rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][16].ToString());
+        //    rfq.Status = table.Rows[i][17].ToString();
+        //    rfq.DueDate = DateTime.Parse(table.Rows[i][18].ToString());
+        //    rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
+        //    rfq.FilledUp = DateTime.Parse(table.Rows[i][20].ToString());
+        //    rfq.PartNumber = table.Rows[i][21].ToString();
+        //    rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+        //    rfq.Acknowledgement = table.Rows[i][23].ToString();
+        //    rfq.SupplierName = table.Rows[i][24].ToString();
+        //    rfq.ManufacturingLocation = table.Rows[i][25].ToString();
+        //    rfq.ShipLocation = table.Rows[i][26].ToString();
+        //    rfq.PreparedBy = table.Rows[i][27].ToString();
+
+        //    recordset.Add(rfq);
+        //}
+        return recordset;
+    }
+
+    public bool update(RFQNumberEntity entity)
+    {
+        bool result = false;
+        return result;
+    }
+    public bool delete(long id)
+    {        
+        return false;
+    }
+    #endregion
+
+
+    public long generateNewRFQNumber(long SIFHeaderID)
+    {
+        RFQNumberEntity rfqNumber = new RFQNumberEntity();
+        long RFQNumberGenerated = -1;
+
+        string query = "SELECT TOP (1) RFQNumber, SIFHeaderKey " +
+                        "FROM viewRFQNumber WHERE SIFHeaderKey = @key " +
+                        "ORDER BY RFQNumber DESC";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", SIFHeaderID);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                RFQNumberGenerated = long.Parse(table.Rows[0][0].ToString());
+                sqlConnection.Dispose();
+            }
+            RFQNumberGenerated++;
+        }
+        return RFQNumberGenerated;
+    }
 }
 
 /// <summary>

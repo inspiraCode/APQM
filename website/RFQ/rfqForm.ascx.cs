@@ -56,7 +56,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblBOMDetailID.Text = rfq.BomDetailId.ToString();
         lblID.Text = rfq.Id.ToString();
         lblDueDate.Text = rfq.DueDate.ToShortDateString();
-        lblRFQNumber.Text = rfq.RfqNumber.ToString();
+        lblRFQNumber.Text = rfq.RfqGenerated;
         lblPartNumber.Text = rfq.PartNumber;
         // lblPartName.Text
         lblDrawingLevel.Text = rfq.DrawingLevel;
@@ -112,10 +112,9 @@ public partial class rfqForm : System.Web.UI.UserControl
     {
         RFQ rfq = new RFQ();
 
-        rfq.RfqNumber = lblRFQNumber.Text;
         rfq.BomDetailId = long.Parse(lblBOMDetailID.Text);
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
-        rfq.RfqNumber = lblRFQNumber.Text;
+        //rfq.RfqNumber = lblRFQNumber.Text;
         rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.EstimatedAnnualVolume = lblEstimatedAnnualVolume.Text;
         rfq.ProductionLeadTime = txtProductionLeadTime.Text;
@@ -206,7 +205,6 @@ public partial class rfqForm : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "");
             return false;
         }
-
         return true;
     }
     public void cancel()

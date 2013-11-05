@@ -36,59 +36,82 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             }
         }
 
-        RFQ rfq = new RFQ();
-        RfqCRUD rfqCRUD = new RfqCRUD();
+        RFQNumberEntity rfqNumber = new RFQNumberEntity();
+        RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
 
-        rfq.SupplierId = supplier.Id;
-        rfq.SentToVendor = DateTime.Now;
-        rfq.Status = "PENDING";
-        rfq.BomDetailId = (long) ViewState["bomDetailID"];
-        rfq.RfqNumber = txtRfqNumber.Text;
-        rfq.DueDate = DateTime.Parse(txtDueDate.Text);
-        string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
-
-        if (idGenerated != "")
-        {
-            TokenCRUD token_CRUD = new TokenCRUD();
-            Token token = new Token();
-            token.Subject = "RFQ";
-            token.SubjectKey = long.Parse(idGenerated);
-            token.TokenNumber =  MD5HashGenerator.GenerateKey(DateTime.Now);
-            if (token_CRUD.create(token))
-            {
-                Email NewMail = new Email();
-                MailMessage Message = new MailMessage();
-
-                Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
-                Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                Message.Subject = "test from APQM WEB - sending RFQ";
-                Message.IsBodyHtml = true;
-                Message.BodyEncoding = System.Text.Encoding.UTF8;
-
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the RFQ form:  http://" + 
-                    Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
-                Message.AlternateViews.Add(htmlView);
-                
-                string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
-
-                Attachment x = new Attachment(path);
-
-                Message.Attachments.Add(x);
-                try
-                {
-                    NewMail.SendMail(Message);
-                }
-                catch {
-                    Navigator.goToPage("~/Error.aspx", "");
-                    return;
-                }
-            }
-        }
-        else
+        rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
+        rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
+        rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
+        if (rfqNumber.RFQNumber == -1)
         {
             Navigator.goToPage("~/Error.aspx", "");
             return;
         }
+        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber);
+        if (idGeneratedRFQNumber == "")
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+        else 
+        {
+            RFQ rfq = new RFQ();
+            RfqCRUD rfqCRUD = new RfqCRUD();
+
+            rfq.SupplierId = supplier.Id;
+            rfq.SentToVendor = DateTime.Now;
+            rfq.Status = "PENDING";
+            rfq.BomDetailId = (long)ViewState["bomDetailID"];
+            rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
+            rfq.DueDate = DateTime.Parse(txtDueDate.Text);
+            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
+
+            if (idGenerated != "")
+            {
+                TokenCRUD token_CRUD = new TokenCRUD();
+                Token token = new Token();
+                token.Subject = "RFQ";
+                token.SubjectKey = long.Parse(idGenerated);
+                token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
+                if (token_CRUD.create(token))
+                {
+                    Email NewMail = new Email();
+                    MailMessage Message = new MailMessage();
+
+                    Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
+                    Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+                    Message.Subject = "test from APQM WEB - sending RFQ";
+                    Message.IsBodyHtml = true;
+                    Message.BodyEncoding = System.Text.Encoding.UTF8;
+
+                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the RFQ form:  http://" +
+                        Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
+                    Message.AlternateViews.Add(htmlView);
+
+                    string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+
+                    Attachment x = new Attachment(path);
+
+                    Message.Attachments.Add(x);
+                    try
+                    {
+                        NewMail.SendMail(Message);
+                    }
+                    catch
+                    {
+                        Navigator.goToPage("~/Error.aspx", "");
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return;
+            }
+        
+        }
+        
         supplier = null;
         Ok_Click(this, e);
     }
@@ -134,6 +157,10 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         lblBomDetailID.Text = id.ToString();
         frmBOMLine.DataBind();
         cboSupplier.Focus();
+    }
+    public void setSIFHeaderID(long id)
+    {
+        ViewState["sifHeaderID"] = id;        
     }
     protected void btnCalendar_Click(object sender, EventArgs e)
     {

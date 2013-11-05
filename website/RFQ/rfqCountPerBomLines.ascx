@@ -6,7 +6,7 @@
 <div align="center" >
 <asp:GridView ID="GridViewRFQCountPerBOMDetail" runat="server" AllowPaging="False" OnPreRender="preRenderGridView" class="display" style="display:none;"
     AutoGenerateColumns="False" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
-    OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey" 
+    OnRowCommand="gridView_RowCommand" DataKeyNames="BOMDetailKey, SIFHeaderKey" 
     PagerSettings-PageButtonCount="10" AllowSorting="False" RowStyle-Height="27px">
     <Columns>
         <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" SortExpression="BOMDetailKey"

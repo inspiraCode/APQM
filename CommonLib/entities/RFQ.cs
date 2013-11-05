@@ -8,7 +8,7 @@ public class RFQ
     private long id;
     private long bomDetailId = -1;
     private long supplierId = -1;
-    private string rfqNumber = "";
+    private long rfqNumberKey = -1;
     private string drawingLevel = "";
     private string estimatedAnnualVolume = "";
     private string productionLeadTime = "";
@@ -34,7 +34,9 @@ public class RFQ
     private string supplierName = ""; //From SupplierMaster
     private string manufacturingLocation = ""; //From SupplierMaster
     private string shipLocation = "";//From SupplierMaster
-    
+
+    private string rfqGenerated = ""; //From RFQNumber
+
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
 
@@ -88,10 +90,10 @@ public class RFQ
         get { return supplierId; }
         set { supplierId = value; }
     }    
-    public string RfqNumber
+    public long RfqNumberKey
     {
-        get { return rfqNumber; }
-        set { rfqNumber = value; }
+        get { return rfqNumberKey; }
+        set { rfqNumberKey = value; }
     }   
     public string DrawingLevel
     {
@@ -187,6 +189,52 @@ public class RFQ
     {
         get { return rfqAcr; }
         set { rfqAcr = value; }
+    }
+    public string RfqGenerated
+    {
+        get { return rfqGenerated; }
+        set { rfqGenerated = value; }
+    }
+}
+
+public class RFQNumberEntity
+{
+    private long id;
+    private long rfqNumber = -1;
+    private long bomDetailKey = -1;
+    private long sifHeaderKey = -1;
+    private string inquireyNumber = "";
+    private string rfqGenerated = "";
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }    
+    public string InquireyNumber
+    {
+        get { return inquireyNumber; }
+        set { inquireyNumber = value; }
+    }
+    public string RfqGenerated
+    {
+        get { return rfqGenerated; }
+        set { rfqGenerated = value; }
+    }
+    public long RFQNumber
+    {
+        get { return rfqNumber; }
+        set { rfqNumber = value; }
+    }
+    public long BOMDetailKey
+    {
+        get { return bomDetailKey; }
+        set { bomDetailKey = value; }
+    }
+    public long SifHeaderKey
+    {
+        get { return sifHeaderKey; }
+        set { sifHeaderKey = value; }
     }
 }
 

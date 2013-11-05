@@ -5,7 +5,7 @@
         RowStyle-Height="27px">
         <Columns>
             <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" SortExpression="RFQHeaderKey" />
-            <asp:BoundField DataField="RFQNumber" HeaderText="RFQ Number" SortExpression="RFQNumber" />
+            <asp:BoundField DataField="RfqGenerated" HeaderText="RFQ Number" SortExpression="RFQGenerated" />
             <asp:BoundField DataField="PartNumber" HeaderText="Part Number" SortExpression="PartNumber" />
             <asp:BoundField DataField="SupplierName" HeaderText="Vendor" SortExpression="SupplierName" />
             <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate"

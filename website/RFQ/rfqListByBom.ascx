@@ -10,7 +10,7 @@
     }
 </style>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"    
-    SelectCommand="SELECT [RFQHeaderKey], [RFQNumber], [PartNumber], [SupplierName], [DueDate], [SentToVendor], [Status] FROM [viewRFQHeader_ReadAll] WHERE ([BOMDetailKey] = @BOMDetailKey)">
+    SelectCommand="SELECT [RFQHeaderKey], [RfqGenerated], [PartNumber], [SupplierName], [DueDate], [SentToVendor], [Status] FROM [viewRFQHeader_ReadAll] WHERE ([BOMDetailKey] = @BOMDetailKey)">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" 
             Name="BOMDetailKey" PropertyName="Text" Type="Decimal" />
@@ -124,8 +124,8 @@
     <Columns>
         <asp:BoundField DataField="RFQHeaderKey" HeaderText="RFQHeaderKey" 
             SortExpression="RFQHeaderKey" Visible="False" />
-        <asp:BoundField DataField="RFQNumber" HeaderText="RFQNumber" 
-            SortExpression="RFQNumber" />
+        <asp:BoundField DataField="RfqGenerated" HeaderText="RFQ Number" 
+            SortExpression="RfqGenerated" />
         <asp:BoundField DataField="PartNumber" HeaderText="PartNumber" 
             SortExpression="PartNumber" />
         <asp:BoundField DataField="SupplierName" HeaderText="SupplierName" 

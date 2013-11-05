@@ -116,10 +116,12 @@ public partial class RFQDefault : System.Web.UI.Page
                 try
                 {
                     index = Convert.ToInt32(e.CommandArgument);
-                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
+                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index]["BOMDetailKey"].ToString());
+                    long sifHeaderID = long.Parse(((GridView)sender).DataKeys[index]["SIFHeaderKey"].ToString());
                     openpopupContainer();
                     multiViewPopup.SetActiveView(viewSendNewRFQ);
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);
+                    uscSendNewRFQ.setSIFHeaderID(sifHeaderID);
                 }
                 catch
                 {

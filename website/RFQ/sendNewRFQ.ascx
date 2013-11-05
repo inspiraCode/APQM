@@ -156,7 +156,7 @@
         </tr>
         <tr>
             <td align="center" colspan="2">
-                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Text="Send New RFQ"
+                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click"  Text="Send New RFQ"
                     Width="136px" />
                 &nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
                     Width="70px" />
@@ -185,3 +185,9 @@
         </SelectParameters>
     </asp:SqlDataSource>
 </div>
+<script type="text/javascript">
+    function EnviarMail() {
+        event.srcElement.disabled = true;
+        return true;
+    }
+</script>
