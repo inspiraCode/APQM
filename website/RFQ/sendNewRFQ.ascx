@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewRFQ.ascx.cs" Inherits="SendNewRFQ" %>
+<%@ Register src="rfqEAV.ascx" tagname="rfqEAV" tagprefix="uc1" %>
 <style type="text/css">
     .style1
     {
@@ -131,10 +132,9 @@
         </tr>
         <tr>
             <td align="right" class="style1">
-                RFQ Number
-            </td>
+                EAV</td>
             <td class="style3" align="left">
-                <asp:TextBox ID="txtRfqNumber" runat="server" Width="200px"></asp:TextBox>
+                <uc1:rfqEAV ID="uscRfqEAV" runat="server" />
             </td>
         </tr>
         <tr>

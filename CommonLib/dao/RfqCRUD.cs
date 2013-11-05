@@ -342,6 +342,234 @@ public class RfqCRUD : ICRUD<RFQ>
     #endregion
 }
 
+public class RFQEAVCRUD : ICRUD<RFQEAV>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public RFQEAVCRUD()
+    { }
+
+    #region ICRUD<RFQEAV> Members
+
+    public bool create(RFQEAV entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year);
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure("RFQEAV_NewEAV", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public string createAndReturnIdGenerated(RFQEAV entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year);
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("RFQEAV_NewEAV", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+
+    public string createAndReturnIdGenerated(RFQEAV entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year);
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQEAV_NewEAV", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
+
+    public RFQEAV readById(long id)
+    {
+        RFQEAV rfqEAV = new RFQEAV();
+
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume " +
+                        "FROM  RFQEAV WHERE     (EAVKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                rfqEAV.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqEAV.RfqHeaderKey = long.Parse(table.Rows[0][1].ToString());
+                rfqEAV.Year = table.Rows[0][2].ToString();
+                rfqEAV.Volume = float.Parse(table.Rows[0][3].ToString());
+
+                sqlConnection.Dispose();
+                return rfqEAV;
+            }
+        }
+        return null;
+    }
+    public List<RFQEAV> readByParentID(long id)
+    {
+        List<RFQEAV> recordset = new List<RFQEAV>();
+
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume " +
+                        "FROM  RFQEAV WHERE RFQHeaderKey = @key ORDER BY RFQHeaderKey, Year";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                RFQEAV rfqEAV = new RFQEAV();
+                rfqEAV.Id = long.Parse(table.Rows[i][0].ToString());
+                rfqEAV.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
+                rfqEAV.Year = table.Rows[i][2].ToString();
+                rfqEAV.Volume = float.Parse(table.Rows[i][3].ToString());
+
+                recordset.Add(rfqEAV);
+            }
+        }
+        return recordset;
+    }
+    public IList<RFQEAV> readAll()
+    {
+        List<RFQEAV> recordset = new List<RFQEAV>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume " +
+                        "FROM  RFQEAV ORDER BY RFQHeaderKey, Year";
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            RFQEAV rfqEAV = new RFQEAV();
+            rfqEAV.Id = long.Parse(table.Rows[i][0].ToString());
+            rfqEAV.RfqHeaderKey = long.Parse(table.Rows[i][1].ToString());
+            rfqEAV.Year = table.Rows[i][2].ToString();
+            rfqEAV.Volume = float.Parse(table.Rows[i][3].ToString());
+
+            recordset.Add(rfqEAV);
+        }
+
+        return recordset;
+    }
+
+    public bool update(RFQEAV entity)
+    {
+
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@EAVKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year);
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure("RFQEAV_EditEAV", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool update(RFQEAV entity, ref Data_Base_MNG.SQL DM)
+    {
+
+        bool result = false;
+
+        try
+        {
+            DM.Load_SP_Parameters("@EAVKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@Year", entity.Year);
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("RFQEAV_EditEAV", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM RFQEAV WHERE EAVKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
 
 public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 {
@@ -1041,7 +1269,6 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
     }
     #endregion
 }
-
 
 public class RfqSummaryCRUD
 {

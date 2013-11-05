@@ -18,6 +18,7 @@ public partial class rfqForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        uscRfqEAV.setEnabled(false);
         if (Session["rfqObject"] != null)
         {
             rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
@@ -60,7 +61,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblPartNumber.Text = rfq.PartNumber;
         // lblPartName.Text
         lblDrawingLevel.Text = rfq.DrawingLevel;
-        lblEstimatedAnnualVolume.Text = rfq.DrawingLevel;
+        
         lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
         lblManufacturingLocation.Text = rfq.ManufacturingLocation;
@@ -85,6 +86,10 @@ public partial class rfqForm : System.Web.UI.UserControl
         uscRfqACR.reset();
         uscRfqACR.setEntity(rfq.RfqAcr);
         uscRfqACR.load();
+
+        uscRfqEAV.reset();
+        uscRfqEAV.setEntity(rfq.RfqEAV);
+        uscRfqEAV.load();
 
     }
     public void save()
@@ -116,7 +121,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
         rfq.DrawingLevel = lblDrawingLevel.Text;
-        rfq.EstimatedAnnualVolume = lblEstimatedAnnualVolume.Text;
+        
         rfq.ProductionLeadTime = txtProductionLeadTime.Text;
         rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
         rfq.PrototypeToolingLeadTime = txtPrototypeToolingLeadTime.Text;

@@ -65,9 +65,22 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
             rfq.DueDate = DateTime.Parse(txtDueDate.Text);
             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
-
+            
             if (idGenerated != "")
             {
+                rfq.Id = long.Parse(idGenerated);
+                List<RFQEAV> rfqEAVList = uscRfqEAV.getEntity();
+                RFQEAVCRUD rfqEAVCRUD = new RFQEAVCRUD();
+
+                foreach(RFQEAV rfqEAV in rfqEAVList){
+                    rfqEAV.RfqHeaderKey = rfq.Id;
+                    if (!rfqEAVCRUD.create(rfqEAV))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "");
+                        return;
+                    }
+                }
+
                 TokenCRUD token_CRUD = new TokenCRUD();
                 Token token = new Token();
                 token.Subject = "RFQ";
@@ -156,6 +169,8 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         ViewState["bomDetailID"] = id;
         lblBomDetailID.Text = id.ToString();
         frmBOMLine.DataBind();
+        uscRfqEAV.setEntity(new List<RFQEAV>());
+
         cboSupplier.Focus();
     }
     public void setSIFHeaderID(long id)

@@ -13,7 +13,7 @@ public partial class rfqFormMain : System.Web.UI.Page
 
     RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
     RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
-
+    RFQEAVCRUD rfqEAVCRUD = new RFQEAVCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -64,6 +64,9 @@ public partial class rfqFormMain : System.Web.UI.Page
 
             List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
             rfq.RfqAcr = rfqACR;
+
+            List<RFQEAV> rfqEAV = rfqEAVCRUD.readByParentID(rfq.Id);
+            rfq.RfqEAV = rfqEAV;
 
             SessionObject soRFQ = new SessionObject();
             soRFQ.Content = rfq;

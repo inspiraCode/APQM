@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
+<%@ Register src="rfqEAV.ascx" tagname="rfqEAV" tagprefix="uc3" %>
 <style type="text/css">
     .style2
     {
@@ -8,47 +9,20 @@
     }
     .style26
     {
-        width: 257px;
-        height: 24px;
     }
     .style27
     {
-        width: 142px;
-        height: 24px;
-    }
-    .style28
-    {
-        width: 201px;
+        width: 163px;
         height: 24px;
     }
     .style29
     {
-        width: 247px;
-        height: 24px;
-    }
-    .style30
-    {
-        width: 219px;
+        width: 226px;
         height: 24px;
     }
     .style31
     {
         height: 24px;
-    }
-    .style32
-    {
-        width: 257px;
-        height: 23px;
-    }
-    .style33
-    {
-        width: 142px;
-        height: 23px;
-    }
-    .style34
-    {
-        width: 201px;
-        height: 23px;
     }
     .style35
     {
@@ -76,22 +50,41 @@
     {
         width: 116px;
     }
+    .style66
+    {
+        width: 165px;
+    }
+    .style68
+    {
+        width: 214px;
+    }
+    .style70
+    {
+        height: 24px;
+        width: 157px;
+    }
+    .style71
+    {
+        width: 159px;
+        height: 24px;
+    }
 </style>
 <div align="center">
-    <table cellspacing="0" style="min-width: 995px; max-width: 995px; width: 1180px;">
+    <table cellspacing="0" 
+        style="min-width: 995px; max-width: 995px; width: 1053px;">
         <tr>
-            <td align="right" class="style26">
+            <td align="right" class="style66">
                 Due Date
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblDueDate" runat="server" BackColor="Silver" 
-                    style="text-align:center" Width="120px"></asp:Label>
+                    style="text-align:center" Width="145px"></asp:Label>
             </td>
-            <td align="left" class="style28">
+            <td align="left" class="style70">
             </td>
             <td align="left" class="style29">
             </td>
-            <td align="left" class="style30">
+            <td align="left" class="style71" colspan="2">
                 &nbsp;
             </td>
             <td align="left" class="style31">
@@ -99,19 +92,21 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
+            <td align="right" class="style66">
                 RFQ #
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblRFQNumber" runat="server"  style="text-align:center" Width="120px" BackColor="Silver"></asp:Label>
+                <asp:Label ID="lblRFQNumber" runat="server"  style="text-align:center" 
+                    Width="145px" BackColor="Silver"></asp:Label>
             </td>
-            <td align="right" class="style28">
+            <td align="right" class="style70">
                 Supplier Name
             </td>
             <td align="left" class="style29">
                 <asp:Label ID="lblSupplierName" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30" style="border-top: solid gray;border-left: solid gray;" >
+            <td align="right" class="style71" 
+                style="border-top: solid gray;border-left: solid gray;" colspan="2" >
                 Total Manufacturing Cost
             </td>
             <td align="left" class="style31"  style="border-top: solid gray;border-right: solid gray;" >
@@ -119,19 +114,21 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
+            <td align="right" class="style66">
                 Part #
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblPartNumber" style="text-align:center"  runat="server" BackColor="Silver" Width="120px"></asp:Label>
+                <asp:Label ID="lblPartNumber" style="text-align:center"  runat="server" 
+                    BackColor="Silver" Width="145px"></asp:Label>
             </td>
-            <td align="right" class="style28">
+            <td align="right" class="style70">
                 Manufacturing Location
             </td>
             <td align="left" class="style29">
                 <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30"  style="border-left: solid gray;" >
+            <td align="right" class="style71"  style="border-left: solid gray;" 
+                colspan="2" >
                 SG&amp;A Profit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
@@ -140,19 +137,20 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
+            <td align="right" class="style66">
                 Part Name
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblPartName" style="text-align:center"  runat="server" BackColor="Silver" Width="120px"></asp:Label>
+                <asp:Label ID="lblPartName" style="text-align:center"  runat="server" 
+                    BackColor="Silver" Width="145px"></asp:Label>
             </td>
-            <td align="right" class="style28">
+            <td align="right" class="style70">
                 Ship From Location
             </td>
             <td align="left" class="style29">
                 <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
             </td>
-            <td align="right" class="style30" style="border-left: solid gray;" >
+            <td align="right" class="style71" style="border-left: solid gray;" colspan="2" >
                 Packing Cost/Unit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
@@ -161,19 +159,20 @@
             </td>
         </tr>
         <tr align="left">
-            <td align="right" class="style26">
+            <td align="right" class="style66">
                 Drawing Level
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblDrawingLevel" runat="server"  style="text-align:center" BackColor="Silver" Width="120px"></asp:Label>
+                <asp:Label ID="lblDrawingLevel" runat="server"  style="text-align:center" 
+                    BackColor="Silver" Width="145px"></asp:Label>
             </td>
-            <td align="right" class="style28">
+            <td align="right" class="style70">
                 Prepared By
             </td>
             <td align="left" class="style29">
                 <asp:TextBox ID="txtPreparedBy" validate="required" validationid="validatingRFQForm" runat="server" Style="width: 216px" TabIndex="1"></asp:TextBox>
             </td>
-            <td align="right" class="style30" style="border-left: solid gray;" >
+            <td align="right" class="style71" style="border-left: solid gray;" colspan="2" >
                 Assembly Cost/Unit
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;" >
@@ -182,17 +181,19 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
-                Estimated Annual Volume
+            <td align="right" class="style66">
+                <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
             </td>
             <td align="left" class="style27">
-                <asp:Label ID="lblEstimatedAnnualVolume" style="text-align:center"  runat="server" BackColor="Silver" Width="120px">0</asp:Label>
+                <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
             </td>
-            <td align="right" class="style28">
+            <td align="right" class="style70">
+                <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
             </td>
             <td align="right" class="style29">
             </td>
-            <td align="right" class="style30" style="border-left: solid gray;border-bottom: solid gray;" >
+            <td align="right" class="style71" 
+                style="border-left: solid gray;border-bottom: solid gray;" colspan="2" >
                 Total Piece Cost
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;border-bottom: solid gray;" >
@@ -200,20 +201,18 @@
             </td>
         </tr>
         <tr>
-            <td align="right" height="25px" colspan="6">
+            <td align="right" height="25px" colspan="7">
                 <div style="border: solid; border-color: silver; border-width: 2px;">
                 </div>
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
+            <td align="center" class="style26" colspan="3" rowspan="5">
+                <%--<div style="border: solid; border-color: gray; border-width: 2px;">
+                </div>--%>
+                Estimated Annual Volume<br/><uc3:rfqEAV ID="uscRfqEAV" runat="server" />
             </td>
-            <td align="left" class="style27">
-                <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
-            </td>
-            <td align="right" class="style28">
-            </td>
-            <td align="right" class="style31" colspan="2">
+            <td align="right" class="style31" colspan="3">
                 Production Lead Time
             </td>
             <td align="left" class="style31">
@@ -221,15 +220,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style32">
-            </td>
-            <td align="left" class="style33">
-                <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
-            </td>
-            <td align="right" class="style34">
-                <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
-            </td>
-            <td align="right" class="style35" colspan="2">
+            <td align="right" class="style35" colspan="3">
                 Production Tooling Lead Time
             </td>
             <td align="left" class="style35">
@@ -237,13 +228,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
-            </td>
-            <td align="left" class="style27">
-            </td>
-            <td align="left" class="style28">
-            </td>
-            <td align="right" class="style31" colspan="2">
+            <td align="right" class="style31" colspan="3">
                 Prototype Tooling Lead Time
             </td>
             <td align="left" class="style31">
@@ -251,13 +236,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right" class="style26">
-            </td>
-            <td align="left" class="style27">
-            </td>
-            <td align="right" class="style28">
-            </td>
-            <td align="right" class="style31" colspan="2">
+            <td align="right" class="style31" colspan="3">
                 Prototype Piece Lead Time
             </td>
             <td align="left" class="style31">
@@ -265,12 +244,12 @@
             </td>
         </tr>
         <tr>
-            <td align="center" height="25px" colspan="6">
-                <%--<div style="border: solid; border-color: gray; border-width: 2px;">
-                </div>--%>
-            </td>
+            <td align="center" height="25px" colspan="2" class="style68">
+                &nbsp;</td>
+            <td align="center" height="25px" colspan="2">
+                &nbsp;</td>
         </tr>
-    </table>
+    </table><br />
     <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
 </div>
 <div align="center">

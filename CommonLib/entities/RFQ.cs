@@ -39,6 +39,7 @@ public class RFQ
 
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
+    private List<RFQEAV> rfqEAV;
 
     public string Status
     {
@@ -194,6 +195,45 @@ public class RFQ
     {
         get { return rfqGenerated; }
         set { rfqGenerated = value; }
+    }
+    public List<RFQEAV> RfqEAV
+    {
+        get { return rfqEAV; }
+        set { rfqEAV = value; }
+    }
+}
+
+public class RFQEAV
+{
+    private long id;
+    private long rfqHeaderKey = -1;
+    private string year = "";
+    private float volume;
+
+    public string EAV_Year_Volume
+    {
+        get { return year + " - " + volume; } 
+    }
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
+    }
+    public string Year
+    {
+        get { return year; }
+        set { year = value; }
+    }
+    public float Volume
+    {
+        get { return volume; }
+        set { volume = value; }
     }
 }
 

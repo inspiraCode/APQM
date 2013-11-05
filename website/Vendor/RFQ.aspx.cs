@@ -16,7 +16,8 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
 
     RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
-    RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD(); 
+    RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
+    RFQEAVCRUD rfqEAVCRUD = new RFQEAVCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -63,6 +64,9 @@ public partial class Vendor_RFQ : System.Web.UI.Page
 
                 List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
                 rfq.RfqAcr = rfqACR;
+
+                List<RFQEAV> rfqEAV = rfqEAVCRUD.readByParentID(rfq.Id);
+                rfq.RfqEAV = rfqEAV;
 
                 SessionObject soRFQ = new SessionObject();
                 soRFQ.Content = rfq;
