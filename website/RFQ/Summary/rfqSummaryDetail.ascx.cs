@@ -90,7 +90,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             RFQSummary rfqSummary = (RFQSummary)e.Item.DataItem;
-            ((LinkButton)e.Item.FindControl("lnkSupplier")).CommandArgument = rfqSummary.Id.ToString();
+            ((LinkButton)e.Item.FindControl("lnkSupplier")).CommandArgument = rfqSummary.RfqHeaderKey.ToString();
             ((Label)e.Item.FindControl("lblTotalACost")).Attributes.Add("item", e.Item.ItemIndex.ToString());
             ((Label)e.Item.FindControl("lblTotalACost")).Attributes.Add("fieldName", "lblTotalACost");
 
@@ -120,7 +120,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
     {
         long id = long.Parse((string)e.CommandArgument);
         RFQSummary rfqSummary = new RFQSummary();
-        rfqSummary = rfqSummaryCRUD.readById(id);
+        rfqSummary = rfqSummaryCRUD.readByRFQHeaderId(id);
         if (rfqSummary != null)
         {
             SessionObject so = new SessionObject();

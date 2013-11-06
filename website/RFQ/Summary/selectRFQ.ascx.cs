@@ -23,7 +23,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
         if (Session["rfqSummarySelected"] != null)
         {
             rfqSummary = (RFQSummary)((SessionObject)Session["rfqSummarySelected"]).Content;
-            lblRFQHeaderKey.Text = rfqSummary.Id.ToString();            
+            lblRFQHeaderKey.Text = rfqSummary.RfqHeaderKey.ToString();            
         
             frmSelectRFQ.DataBind();
             if (frmSelectRFQ.DataItemCount > 0)
@@ -41,13 +41,13 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
         RfqCRUD rfqCRUD = new RfqCRUD();
         RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
 
-        RFQ rfq = rfqCRUD.readById(rfqSummary.Id);
+        RFQ rfq = rfqCRUD.readById(rfqSummary.RfqHeaderKey);
         List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(rfq.BomDetailId);
 
         foreach(RFQSummary rsl in rfqSummaryList){
-            if (rsl.Id != rfq.Id)
+            if (rsl.RfqHeaderKey != rfq.Id)
             {
-                RFQ rfqAux = rfqCRUD.readById(rsl.Id);
+                RFQ rfqAux = rfqCRUD.readById(rsl.RfqHeaderKey);
                 if(rfqAux!=null){
                     rfqAux.Status = "DISCARDED";
                     if(!rfqCRUD.update(rfqAux)){

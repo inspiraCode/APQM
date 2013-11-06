@@ -6,7 +6,9 @@
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" 
     OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" 
-    SelectCommand="SELECT RFQHeader.RFQHeaderKey, SIFHeader.InquiryNumber, BOMHeader.TopPartNumber, ItemMaster.PartNumber, RFQHeader.RFQNumber, SupplierMaster.SupplierName, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey INNER JOIN RFQHeader ON BOMDetail.BOMDetailKey = RFQHeader.BOMDetailKey INNER JOIN SupplierMaster ON RFQHeader.SupplierMasterKey = SupplierMaster.SupplierMasterKey WHERE (RFQHeader.RFQHeaderKey = @key )">
+    
+    SelectCommand="SELECT RFQHeader.RFQHeaderKey, SIFHeader.InquiryNumber, BOMHeader.TopPartNumber, ItemMaster.PartNumber, viewRFQNumber.RFQGenerated, SupplierMaster.SupplierName, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey INNER JOIN RFQHeader ON BOMDetail.BOMDetailKey = RFQHeader.BOMDetailKey INNER JOIN SupplierMaster ON RFQHeader.SupplierMasterKey = SupplierMaster.SupplierMasterKey INNER JOIN viewRFQNumber ON RFQHeader.RFQNumberKey = viewRFQNumber.RFQNumberKey WHERE (RFQHeader.RFQHeaderKey = @key )" 
+    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblRFQHeaderKey" Name="key" 
             PropertyName="Text" />
@@ -32,7 +34,7 @@
                     Text='<%# Bind("PartNumber") %>' />
                 <br />
                 RFQ Number:
-                <asp:Label ID="RFQNumberLabel" runat="server" Text='<%# Bind("RFQNumber") %>' />
+                <asp:Label ID="RFQNumberLabel" runat="server" Text='<%# Bind("RFQGenerated") %>' />
                 <br />
                 Supplier Name:
                 <asp:Label ID="SupplierNameLabel" runat="server" 

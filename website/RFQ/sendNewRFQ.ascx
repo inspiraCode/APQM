@@ -18,91 +18,66 @@
     {
         height: 10px;
     }
+    .style5
+    {
+        width: 100%;
+    }
 </style>
 <div align="center">
     <br />
     <asp:Label ID="lblBomDetailID" runat="server" Text="1" Visible="False"></asp:Label>
     <asp:FormView ID="frmBOMLine" runat="server" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
         Width="480px">
-        <EditItemTemplate>
-            <div width="100px">
-                InquiryNumber:</div>
-            <asp:TextBox ID="InquiryNumberTextBox" runat="server" Text='<%# Bind("InquiryNumber") %>' />
-            <br />
-            TopPartNumber:
-            <asp:TextBox ID="TopPartNumberTextBox" runat="server" Text='<%# Bind("TopPartNumber") %>' />
-            <br />
-            PartDescription:
-            <asp:TextBox ID="PartDescriptionTextBox" runat="server" Text='<%# Bind("PartDescription") %>' />
-            <br />
-            PartNumber:
-            <asp:TextBox ID="PartNumberTextBox" runat="server" Text='<%# Bind("PartNumber") %>' />
-            <br />
-            Description:
-            <asp:TextBox ID="DescriptionTextBox" runat="server" Text='<%# Bind("Description") %>' />
-            <br />
-            Qty:
-            <asp:TextBox ID="QtyTextBox" runat="server" Text='<%# Bind("Qty") %>' />
-            <br />
-            Cost:
-            <asp:TextBox ID="CostTextBox" runat="server" Text='<%# Bind("Cost") %>' />
-            <br />
-            <asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update"
-                Text="Update" />
-            &nbsp;<asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False"
-                CommandName="Cancel" Text="Cancel" />
-        </EditItemTemplate>
-        <InsertItemTemplate>
-            InquiryNumber:
-            <asp:TextBox ID="InquiryNumberTextBox0" runat="server" Text='<%# Bind("InquiryNumber") %>' />
-            <br />
-            TopPartNumber:
-            <asp:TextBox ID="TopPartNumberTextBox0" runat="server" Text='<%# Bind("TopPartNumber") %>' />
-            <br />
-            PartDescription:
-            <asp:TextBox ID="PartDescriptionTextBox0" runat="server" Text='<%# Bind("PartDescription") %>' />
-            <br />
-            PartNumber:
-            <asp:TextBox ID="PartNumberTextBox0" runat="server" Text='<%# Bind("PartNumber") %>' />
-            <br />
-            Description:
-            <asp:TextBox ID="DescriptionTextBox0" runat="server" Text='<%# Bind("Description") %>' />
-            <br />
-            Qty:
-            <asp:TextBox ID="QtyTextBox0" runat="server" Text='<%# Bind("Qty") %>' />
-            <br />
-            Cost:
-            <asp:TextBox ID="CostTextBox0" runat="server" Text='<%# Bind("Cost") %>' />
-            <br />
-            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert"
-                Text="Insert" />
-            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False"
-                CommandName="Cancel" Text="Cancel" />
-        </InsertItemTemplate>
         <ItemTemplate>
-            InquiryNumber:
-            <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
-            <br />
-            TopPartNumber:
-            <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
-            <br />
-            PartDescription:
-            <asp:Label ID="PartDescriptionLabel" runat="server" Text='<%# Bind("PartDescription") %>' />
-            <br />
-            PartNumber:
-            <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
-            <br />
-            Description:
-            <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' />
-            <br />
-            Qty:
-            <asp:Label ID="QtyLabel" runat="server" Text='<%# Bind("Qty") %>' />
-            <br />
-            Cost:
-            <asp:Label ID="CostLabel" runat="server" Text='<%# Bind("Cost") %>' />
-            <br />
+        <table cellspacing="0" class="style5">
+        <tr>
+            <td align="right">
+                Inquiry Number:</td>
+            <td align="left">
+                <asp:Label ID="InquiryNumberLabel" runat="server" 
+                    Text='<%# Bind("InquiryNumber") %>' />
+                </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Revision:</td>
+            <td align="left">
+                <asp:Label ID="RevisionLabel" runat="server" 
+                    Text='<%# Bind("Revision") %>' />
+                </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Product:</td>
+            <td align="left">
+                <asp:Label ID="PartDescriptionLabel" runat="server" 
+                    Text='<%# Bind("PartDescription") %>' />
+                </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Part Number:</td>
+            <td align="left">
+                <asp:Label ID="PartNumberLabel" runat="server" 
+                    Text='<%# Bind("PartNumber") %>' />
+                </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Material</td>
+            <td align="left">
+                <asp:Label ID="MaterialLabel" runat="server" 
+                    Text='<%# Bind("Material") %>' />
+                </td>
+        </tr>
+        </table>
         </ItemTemplate>
     </asp:FormView>
+    
+    
+    
+    
+    
     <br />
     <table cellspacing="0" style="width: 479px">
         <tr>
@@ -146,19 +121,29 @@
                 <asp:Button ID="btnCalendar" runat="server" OnClick="btnCalendar_Click" Text="..." />
             </td>
         </tr>
+        <tr style="height:30px;">
+            <td class="style1" align="right">
+                
+                Target Price</td>
+            <td align="left">
+                
+                <input id="chkTargetPrice" type="checkbox" onchange="toggleTargetPrice();" /><asp:TextBox ID="txtTargetPrice" style="display:none;"
+                    runat="server"></asp:TextBox>
+            </td>
+        </tr>
         <tr>
             <td class="style1">
-                &nbsp;
+                
             </td>
             <td>
-                &nbsp;
-            </td>
+                
+                &nbsp;</td>
         </tr>
         <tr>
             <td align="center" colspan="2">
                 <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click"  Text="Send New RFQ"
                     Width="136px" />
-                &nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
+                <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
                     Width="70px" />
             </td>
         </tr>
@@ -178,7 +163,10 @@
     <asp:SqlDataSource 
     OnInit="on_sqldatasource_Init"
     ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" 
-        SelectCommand="SELECT [InquiryNumber], [TopPartNumber], [PartDescription], [PartNumber], [Description], [Qty], [Cost] FROM [viewRFQCountPerBOMDetail] WHERE ([BOMDetailKey] = @BOMDetailKey)">
+        
+        SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Description, Qty, Cost, Revision, Material FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)" 
+        ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+        ProviderName="System.Data.SqlClient">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"
                 PropertyName="Text" Type="Decimal" />
@@ -189,5 +177,8 @@
     function EnviarMail() {
         event.srcElement.disabled = true;
         return true;
+    }
+    function toggleTargetPrice() {
+        jQuery('#<%= txtTargetPrice.ClientID %>').toggle();
     }
 </script>
