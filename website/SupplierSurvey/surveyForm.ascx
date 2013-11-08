@@ -585,7 +585,7 @@
             </td>
             <td align="left" colspan="2">
                 <div style="width: 260px" align="right">
-            <asp:DropDownList ID="cboIndustries" runat="server" style="margin-left: 0px" 
+            <asp:DropDownList ID="cboIndustries" chosen = "true" runat="server" style="margin-left: 0px" 
                     Width="140px" TabIndex="23">
                 </asp:DropDownList>
                 <asp:Button ID="btnAddIndustrie" runat="server" Text="+" Width="26px" 
@@ -601,7 +601,7 @@
             </td>
             <td align="left" class="style16">
             <div style="width: 260px" align="right">
-            <asp:DropDownList ID="cboCertification" runat="server" style="margin-left: 0px" 
+            <asp:DropDownList ID="cboCertification" chosen = "true" runat="server" style="margin-left: 0px" 
                     Width="140px" TabIndex="28" >
                 </asp:DropDownList>
                 <asp:Button ID="btnAddCertification" runat="server" Text="+" Width="26px" 

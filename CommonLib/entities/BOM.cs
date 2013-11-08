@@ -14,6 +14,8 @@ public class BOM
     private string partDescription = "";
     private string revision = "";
     private string inquiryNumber = "";
+    private int annualVolume;
+    private string autoAero = "";   
 
     private List<BOMDetail> bomDetail;
 
@@ -52,7 +54,16 @@ public class BOM
         get { return inquiryNumber; }
         set { inquiryNumber = value; }
     }
-
+    public int AnnualVolume
+    {
+        get { return annualVolume; }
+        set { annualVolume = value; }
+    }
+    public string AutoAero
+    {
+        get { return autoAero; }
+        set { autoAero = value; }
+    }
     public override string ToString()
     {
         return "{Inquiry Number: " + this.inquiryNumber + " Top Part Number: " + this.topPartNumber + " Part Description: " + this.partDescription + "}";
@@ -82,9 +93,44 @@ public class BOMDetail
     private string vendorQuoteEst = "";
     private string salesComments = "";
     private string purchasingComments = "";
-    private string capComAssm;
-    private string leadTimePPAP = "";
-        
+    private string capComAssm = "";
+    private string capsonicPN = "";
+    private string customerPN = ""; 
+    private string manufacturePN = ""; 
+    private string supplierPN = ""; 
+    private string commCode = ""; 
+    private int eau; 
+
+    public string CapsonicPN
+    {
+        get { return capsonicPN; }
+        set { capsonicPN = value; }
+    }
+    public string CustomerPN
+    {
+        get { return customerPN; }
+        set { customerPN = value; }
+    }    
+    public string ManufacturePN
+    {
+        get { return manufacturePN; }
+        set { manufacturePN = value; }
+    }
+    public string SupplierPN
+    {
+        get { return supplierPN; }
+        set { supplierPN = value; }
+    }
+    public string CommCode
+    {
+        get { return commCode; }
+        set { commCode = value; }
+    }
+    public int EAU
+    {
+        get { return eau; }
+        set { eau = value; }
+    }
     public string ItemUm
     {
         get { return itemUm; }
@@ -211,12 +257,7 @@ public class BOMDetail
     {
         get { return capComAssm; }
         set { capComAssm = value; }
-    }
-    public string LeadTimePPAP
-    {
-        get { return leadTimePPAP; }
-        set { leadTimePPAP = value; }
-    }
+    }    
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";

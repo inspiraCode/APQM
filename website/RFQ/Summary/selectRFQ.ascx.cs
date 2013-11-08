@@ -23,7 +23,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
         if (Session["rfqSummarySelected"] != null)
         {
             rfqSummary = (RFQSummary)((SessionObject)Session["rfqSummarySelected"]).Content;
-            lblRFQHeaderKey.Text = rfqSummary.RfqHeaderKey.ToString();            
+            lblRFQHeaderKey.Text = rfqSummary.RfqHeaderKey.ToString();
         
             frmSelectRFQ.DataBind();
             if (frmSelectRFQ.DataItemCount > 0)

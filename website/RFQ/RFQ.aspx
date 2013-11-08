@@ -59,14 +59,12 @@
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
         <asp:View ID="viewRFQList" runat="server">
-            <div style="border-left: solid 1px;padding: 0px 10px 0 10px;width: 97%;min-width: 450px;">
-                <div align="right" style="top:20px; position:relative;">
+            <div style="border-left: solid 1px; padding: 0px 10px 0 10px; width: 97%; min-width: 450px;">
+                <div align="right" style="top: 20px; position: relative;">
                     <uc8:rfqStatusInfo ID="uscRfqStatusInfo" runat="server" />
                 </div>
-                <div style="position: relative;margin-top: 40px;">
-                    
-                        <uc7:rfqList ID="uscRfqList" runat="server" />
-                   
+                <div style="position: relative; margin-top: 40px;">
+                    <uc7:rfqList ID="uscRfqList" runat="server" />
                 </div>
             </div>
         </asp:View>

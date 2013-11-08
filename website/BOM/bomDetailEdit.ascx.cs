@@ -30,19 +30,35 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         item.Cost = float.Parse(txtCost.Text);
         item.Um = cboUM.SelectedValue;
         item.Material = txtMaterial.Text;
+        item.CapsonicPN = txtCapsonicPN.Text;
+        item.CustomerPN = txtCustomerPN.Text;
+        item.ManufacturePN = txtManufacturePN.Text;
+        item.SupplierPN = txtSupplierPN.Text;
+        item.CommCode = txtCommCode.Text;
+        item.EAU = int.Parse(txtEAU.Text);
         
         bomDetailEdit.Item = item;
 
-        bomDetailEdit.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
         bomDetailEdit.PartNumber = cboPartNumber.SelectedItem.Text;
+        bomDetailEdit.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
+        bomDetailEdit.CapsonicPN = txtCapsonicPN.Text;
+        bomDetailEdit.CustomerPN = txtCustomerPN.Text;
+        bomDetailEdit.ManufacturePN = txtManufacturePN.Text;
+        bomDetailEdit.SupplierPN = txtSupplierPN.Text;
+        bomDetailEdit.CommCode = txtCommCode.Text;
+        bomDetailEdit.Material = txtMaterial.Text;
         bomDetailEdit.Um = cboUM.SelectedValue;
-        bomDetailEdit.Material =  txtMaterial.Text;
-        bomDetailEdit.Cost = float.Parse(txtCost.Text);        
-        bomDetailEdit.Qty = float.Parse( txtQuantity.Text);
+        //vendorQuote imported from sales db
+        bomDetailEdit.Qty = float.Parse(txtQuantity.Text);
+        bomDetailEdit.EAU = int.Parse(txtEAU.Text);
+        bomDetailEdit.Cost = float.Parse(txtCost.Text);
+        bomDetailEdit.CapComAssm = txtCapComAssm.Text;
+        bomDetailEdit.PurchasingComments = txtPurchasingComments.Text;
+        //salesStatus imported from sales db
         bomDetailEdit.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailEdit.PurchasingStatus = cboPurchasingStatus.SelectedValue;
-        bomDetailEdit.PurchasingComments = txtPurchasingComments.Text;
-        bomDetailEdit.CapComAssm = txtCapComAssm.Text = "";
+        bomDetailEdit.UserKey = -1; //TODO: Set logged user.
+        bomDetailEdit.Status = "System status"; //TODO handle system status
 
         if (bomDetailEdit.Id > -1)
         {
@@ -71,17 +87,25 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         bomDetailEdit = (BOMDetail)Session["BOMDetailEdit"];
 
         cboPartNumber.SelectedValue = bomDetailEdit.ItemMasterkey.ToString();
-        cboUM.SelectedValue = bomDetailEdit.Um;
+        txtCapsonicPN.Text = bomDetailEdit.CapsonicPN;
+        txtCustomerPN.Text = bomDetailEdit.CustomerPN;
+        txtManufacturePN.Text = bomDetailEdit.ManufacturePN;
+        txtSupplierPN.Text = bomDetailEdit.SupplierPN;
+        txtCommCode.Text = bomDetailEdit.CommCode;
         txtMaterial.Text = bomDetailEdit.Material;
-        txtCost.Text = bomDetailEdit.Cost.ToString();
+        cboUM.SelectedValue = bomDetailEdit.Um;
         lblVendorQuoteEst.Text = bomDetailEdit.VendorQuoteEst;
         txtQuantity.Text = bomDetailEdit.Qty.ToString();
+        txtEAU.Text = bomDetailEdit.EAU.ToString();
+        txtCost.Text = bomDetailEdit.Cost.ToString();
+        txtCapComAssm.Text = bomDetailEdit.CapComAssm;
+        txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
         lblSalesStatus.Text = bomDetailEdit.SalesStatus;
         chkDirectedBuy.Checked = bomDetailEdit.DirectedBuy;
         cboPurchasingStatus.SelectedValue = bomDetailEdit.PurchasingStatus;
-        txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
-        txtCapComAssm.Text = bomDetailEdit.CapComAssm;
         //lblAssignedTo.Text = bomDetailEdit TODO
+        //TODO system status
+        
     }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
@@ -103,8 +127,14 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                             allItems = null;
                             loadDropDowns();
                             cboPartNumber.SelectedValue = idGenerated;
+                            txtCapsonicPN.Text = "";
+                            txtCustomerPN.Text = "";
+                            txtManufacturePN.Text = "";
+                            txtSupplierPN.Text = "";
+                            txtCommCode.Text = "";
                             txtMaterial.Text = "";
-                            cboUM.SelectedValue = "";
+                            cboUM.SelectedIndex = -1;
+                            txtEAU.Text = "0";
                             txtCost.Text = "0";
                             cboPartNumber.Focus();
                         }
@@ -136,13 +166,24 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             txtMaterial.Text = item.Material;
             cboUM.SelectedValue = item.Um;
             txtCost.Text = item.Cost.ToString();
+            txtCapsonicPN.Text = item.CapsonicPN;
+            txtCustomerPN.Text = item.CustomerPN;
+            txtManufacturePN.Text = item.ManufacturePN;
+            txtSupplierPN.Text = item.SupplierPN;
+            txtCommCode.Text = item.CommCode;
+            txtEAU.Text = item.EAU.ToString();
             cboPartNumber.Focus();
         }
         else
         {
-            //txtDescription.Text = "";
+            txtCapsonicPN.Text = "";
+            txtCustomerPN.Text = "";
+            txtManufacturePN.Text = "";
+            txtSupplierPN.Text = "";
+            txtCommCode.Text = "";
             txtMaterial.Text = "";
-            cboUM.SelectedValue = "";
+            cboUM.SelectedIndex = -1;
+            txtEAU.Text = "0";
             txtCost.Text = "0";
             cboPartNumber.Focus();
         }

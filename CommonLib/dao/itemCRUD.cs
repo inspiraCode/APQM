@@ -30,6 +30,12 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
             DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_NewItem", true);
         }
@@ -52,6 +58,12 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
             DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("ItemMaster_NewItem", true);
         }
@@ -74,6 +86,12 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
             DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("ItemMaster_NewItem", true);
         }
@@ -88,7 +106,8 @@ public class itemCRUD : ICRUD<Item>
     {
         Item item = new Item();
 
-        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost " +
+        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost, " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
                         "FROM  ItemMaster WHERE (ItemMasterKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -106,6 +125,12 @@ public class itemCRUD : ICRUD<Item>
                 item.Um= table.Rows[0][3].ToString();
                 item.Material= table.Rows[0][4].ToString();
                 item.Cost = float.Parse(table.Rows[0][5].ToString());
+                item.CapsonicPN = table.Rows[0][6].ToString();
+                item.CustomerPN = table.Rows[0][7].ToString();
+                item.ManufacturePN = table.Rows[0][8].ToString();
+                item.SupplierPN = table.Rows[0][9].ToString();
+                item.CommCode =table.Rows[0][10].ToString();
+                item.EAU = int.Parse(table.Rows[0][11].ToString());
                 
                 sqlConnection.Dispose();
                 return item;
@@ -120,7 +145,8 @@ public class itemCRUD : ICRUD<Item>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost " +
+        string query = "SELECT ItemMasterKey, PartNumber, Description, UM, Material, Cost, " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +  
                         "FROM  ItemMaster ORDER BY PartNumber";
 
         DataTable table = new DataTable();
@@ -135,6 +161,12 @@ public class itemCRUD : ICRUD<Item>
             item.Um = table.Rows[i][3].ToString();
             item.Material = table.Rows[i][4].ToString();
             item.Cost = float.Parse(table.Rows[i][5].ToString());
+            item.CapsonicPN = table.Rows[i][6].ToString();
+            item.CustomerPN = table.Rows[i][7].ToString();
+            item.ManufacturePN = table.Rows[i][8].ToString();
+            item.SupplierPN = table.Rows[i][9].ToString();
+            item.CommCode = table.Rows[i][10].ToString();
+            item.EAU = int.Parse(table.Rows[i][11].ToString());
 
             recordset.Add(item);
         }
@@ -155,6 +187,12 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
             DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_EditItem", true);
         }
@@ -177,6 +215,12 @@ public class itemCRUD : ICRUD<Item>
             DM.Load_SP_Parameters("@UM", entity.Um);
             DM.Load_SP_Parameters("@PartMaterial", entity.Material);
             DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("ItemMaster_EditItem", true);
         }

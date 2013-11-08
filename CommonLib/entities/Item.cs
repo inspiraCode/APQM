@@ -11,6 +11,12 @@ public class Item
     private string um = "";
     private string material = "";
     private float cost;
+    private string capsonicPN = "";
+    private string customerPN = "";
+    private string manufacturePN = "";
+    private string supplierPN = "";
+    private string commCode = "";
+    private int eau;   
 
     public long Id
     {
@@ -41,6 +47,36 @@ public class Item
     {
         get { return cost; }
         set { cost = value; }
+    }
+    public string CapsonicPN
+    {
+        get { return capsonicPN; }
+        set { capsonicPN = value; }
+    }
+    public string CustomerPN
+    {
+        get { return customerPN; }
+        set { customerPN = value; }
+    }
+    public string ManufacturePN
+    {
+        get { return manufacturePN; }
+        set { manufacturePN = value; }
+    }
+    public string SupplierPN
+    {
+        get { return supplierPN; }
+        set { supplierPN = value; }
+    }
+    public string CommCode
+    {
+        get { return commCode; }
+        set { commCode = value; }
+    }
+    public int EAU
+    {
+        get { return eau; }
+        set { eau = value; }
     }
     public override string ToString()
     {

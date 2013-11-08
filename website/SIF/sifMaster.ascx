@@ -100,7 +100,7 @@
                 Customer
             </td>
             <td align="left" colspan="2">
-                <asp:DropDownList ID="cboCustomer" runat="server" Height="22px" Width="195px" TabIndex="6">
+                <asp:DropDownList ID="cboCustomer" chosen = "true" runat="server" Height="22px" Width="195px" TabIndex="6">
                 </asp:DropDownList>
                 <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" TabIndex="7" />
             </td>

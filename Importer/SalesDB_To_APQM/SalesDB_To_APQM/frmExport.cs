@@ -251,6 +251,8 @@ namespace SalesDB_To_APQM
                                                     item.Cost = bom.PartCost;
                                                     item.Um = "";
                                                     item.Material = bom.Material;
+                                                    item.CommCode = bom.CommCode;
+                                                    
 
                                                     string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item, ref DM);
                                                     if (itemIDGenerated == "")
@@ -288,7 +290,7 @@ namespace SalesDB_To_APQM
                                                 bomDetail.SalesComments = bom.SalesComments; //wont be used anymore
                                                 bomDetail.VendorQuoteEst = bom.VendorQuoteEst;
                                                 bomDetail.CapComAssm = bom.CapComAssm;
-                                                bomDetail.LeadTimePPAP = bom.LeadTimePPAP;
+                                                bomDetail.CommCode = bom.CommCode;
 
                                                 bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
 

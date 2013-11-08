@@ -1,12 +1,11 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs"
-    Inherits="bomForm" %>
-<%@ Register src="bomDetailList.ascx" tagname="bomDetailList" tagprefix="uc1" %>
-<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc2" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
+<%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
+<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
 <div align="center">
-<br />
-    <table cellspacing="1"  align="left">
+    <br />
+    <table cellspacing="1" align="left">
         <tr style="display: none;">
-            <td align="right" >
+            <td align="right">
                 Mode:
             </td>
             <td align="left">
@@ -23,54 +22,58 @@
         </tr>
         <tr style="display: none;">
             <td align="right">
-                SIF ID:</td>
+                SIF ID:
+            </td>
             <td align="left">
                 <asp:Label ID="lblSifID" runat="server"></asp:Label>
             </td>
         </tr>
         <tr style="display: none">
             <td align="right">
-                Part #</td>
+                Part #
+            </td>
             <td align="left">
                 <asp:TextBox ID="txtPartNumber" runat="server" Width="380px"></asp:TextBox>
             </td>
         </tr>
         <tr>
             <td align="right" style="font-weight: bold">
-                Inquiry Number</td>
+                Inquiry Number
+            </td>
             <td align="left">
                 <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
             <td align="right" style="font-weight: bold">
-                Revision</td>
+                Revision
+            </td>
             <td align="left">
                 <asp:Label ID="lblRevision" runat="server"></asp:Label>
             </td>
         </tr>
         <tr>
             <td align="right" style="font-weight: bold">
-                Product</td>
+                Product
+            </td>
             <td align="left">
                 <asp:Label ID="lblProduct" runat="server"></asp:Label>
             </td>
         </tr>
-        </table>
-        
-        
-        
-        <table cellspacing="1" align="center">
+    </table>
+    <table cellspacing="1" align="center">
         <tr align="left">
             <td align="right" height="25px" colspan="2">
-                <div style="border: solid;border-color: gray;border-width: 2px;"></div>
-            </td> 
+                <div style="border: solid; border-color: gray; border-width: 2px;">
+                </div>
+            </td>
         </tr>
         <tr>
             <td colspan="2">
                 <div id="divDetail" runat="server">
                     <uc1:bomDetailList ID="uscBOMDetailList" runat="server" />
-                </div></td>
+                </div>
+            </td>
         </tr>
         <tr>
             <td align="right">
@@ -79,7 +82,7 @@
             <td align="left">
                 &nbsp;
             </td>
-        </tr>        
+        </tr>
     </table>
 </div>
 <div align="center">

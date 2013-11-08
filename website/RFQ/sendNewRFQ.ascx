@@ -85,7 +85,7 @@
                 Vendor
             </td>
             <td class="style3" align="left">
-                <asp:DropDownList ID="cboSupplier" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1"
+                <asp:DropDownList ID="cboSupplier" chosen = "true" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1"
                     DataTextField="SupplierName" DataValueField="SupplierMasterKey" OnDataBound="on_dataBound_supplier"
                     OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="350px">
                 </asp:DropDownList>

@@ -18,7 +18,8 @@ public class bomHeaderAccessCRUD
         BOMHeaderAccess bom = new BOMHeaderAccess();
         try
         {
-            DataRow[] table = sifAccessCRUD.readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
+            DataRow[] table = sifAccessCRUD.readAll().Select("[Inquiry Number] = '" 
+                + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
             if (table.Count() > 0)
             {
                 bom.PartDescription = table[0]["Product"].ToString();
@@ -44,7 +45,8 @@ public class bomAccessCRUD
     {
         List<BOMAccess> recordset = new List<BOMAccess>();
         
-        DataRow[] table = readAll().Select("[Inquiry Number] = '" + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
+        DataRow[] table = readAll().Select("[Inquiry Number] = '" 
+            + sif.InquiryNumber + "' and Revision = '" + sif.Revision + "'");
         for (int i = 0; i < table.Count(); i++)
         {
             BOMAccess bom = new BOMAccess();
@@ -56,21 +58,23 @@ public class bomAccessCRUD
             bom.VendorQuoteEst = table[i]["Vendor Quote Est"].ToString();
             bom.SalesComments = table[i]["Comments"].ToString();
             bom.CapComAssm = table[i]["Cap Com Assm"].ToString();
-            bom.LeadTimePPAP = table[i]["Lead Time PPAP"].ToString();
+            bom.CommCode = table[i]["Component Lead Time"].ToString();
             try
             {
                 bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
             }
             catch (Exception ex)
             { 
-                bom.ImportComment = "BOM Line with incorrect field formatted: 'PartCost', please review it and export it agian if necessary. Error: " + ex.Message; 
+                bom.ImportComment = "BOM Line with incorrect field formatted: 'PartCost', " 
+                    + "please review it and export it agian if necessary. Error: " + ex.Message; 
             }
             try
             {
                 bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
             }
             catch (Exception ex) {
-                bom.ImportComment = "BOM Line with incorrect field formatted: 'No Required', please review it and export it agian if necessary. Error: " + ex.Message; 
+                bom.ImportComment = "BOM Line with incorrect field formatted: 'No Required', " 
+                    + "please review it and export it agian if necessary. Error: " + ex.Message; 
             }
             
             
@@ -86,8 +90,9 @@ public class bomAccessCRUD
         DM = connectionManager.getDataManager();
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
-                        "[Material/Assembly Description], [Part Cost ($)], [No Required], [Assembly Description], " + 
-                        "Status, [Inquiry Number], Revision, [Vendor Quote Est], Comments, [Cap Com Assm], [Lead Time PPAP] " +
+                        "[Material/Assembly Description], [Part Cost ($)], [No Required], "
+                        + "[Assembly Description], Status, [Inquiry Number], Revision, " 
+                        + "[Vendor Quote Est], Comments, [Cap Com Assm], [Lead Time PPAP], [Component Lead Time] " +
                         "FROM [Mat Assm Tool Descrip Table]";
 
         BOMLineAccessData = DM.Execute_Query(query);

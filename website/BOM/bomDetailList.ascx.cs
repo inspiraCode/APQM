@@ -14,6 +14,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        uscNotifier.hide();   
         bomDetail = (List<BOMDetail>)Session["bomDetailObject"];
         bomDetailToDelete = (List<BOMDetail>)Session["bomDetailObjectToDelete"];
         allItems = (List<Item>)Session["bomDetailListAllItems"];
@@ -103,17 +104,24 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         bomDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
         bomDetailLine.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
-        bomDetailLine.Um = cboUM.SelectedValue;
+        bomDetailLine.CapsonicPN = txtCapsonicPN.Text;
+        bomDetailLine.CustomerPN = txtCustomerPN.Text;
+        bomDetailLine.ManufacturePN = txtManufacturePN.Text;
+        bomDetailLine.SupplierPN = txtSupplierPN.Text;
+        bomDetailLine.CommCode = txtCommCode.Text;
         bomDetailLine.Material = txtMaterial.Text;
-        bomDetailLine.Cost = float.Parse(txtCost.Text);        
+        bomDetailLine.Um = cboUM.SelectedValue;
+        //vendorQuote imported from sales db
         bomDetailLine.Qty = float.Parse(txtQuantity.Text);
-        bomDetailLine.Status = "System status";
+        bomDetailLine.EAU = int.Parse(txtEAU.Text);
+        bomDetailLine.Cost = float.Parse(txtCost.Text);
+        bomDetailLine.CapComAssm = txtCapComAssm.Text;
+        bomDetailLine.PurchasingComments = txtPurchasingComments.Text;
+        //salesStatus imported from sales db
         bomDetailLine.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailLine.PurchasingStatus = cboPurchasingStatus.SelectedValue;
-        bomDetailLine.PurchasingComments = txtPurchasingComments.Text;
-        bomDetailLine.CapComAssm = txtCapComAssm.Text;    
-        bomDetailLine.UserKey = -1; //TODO: Set logged user.        
-        
+        bomDetailLine.UserKey = -1; //TODO: Set logged user.
+        bomDetailLine.Status = "System status"; //TODO handle system status
         
         if (bomDetail == null) bomDetail = new List<BOMDetail>();
 
@@ -130,10 +138,16 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         item.Id = long.Parse(cboPartNumber.SelectedValue);
         item.Material = txtMaterial.Text;
-        //item.Description = txtDescription.Text;       
+        //item.Description = txtDescription.Text;
         item.Cost = float.Parse(txtCost.Text);
         item.PartNumber = cboPartNumber.SelectedItem.Text;
         item.Um = cboUM.SelectedValue;
+        item.CapsonicPN = txtCapsonicPN.Text;
+        item.CustomerPN = txtCustomerPN.Text;
+        item.ManufacturePN = txtManufacturePN.Text;
+        item.SupplierPN = txtSupplierPN.Text;
+        item.CommCode = txtCommCode.Text;
+        item.EAU = int.Parse(txtEAU.Text);
 
         bomDetailLine.Item = item;
         bomDetailLine.internalAction = "CREATE";
@@ -142,19 +156,28 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         loadDetail();
         clearAddFields();
-        cboPartNumber.Focus();        
+        cboPartNumber.Focus();
     }
     private void clearAddFields()
     {
-        cboUM.SelectedIndex = -1;
+        //Fields in BOMDetail and Item:
+        txtCapsonicPN.Text = "";
+        txtCustomerPN.Text = "";
+        txtManufacturePN.Text = "";
+        txtSupplierPN.Text = "";
+        txtCommCode.Text = "";
         txtMaterial.Text = "";
+        cboUM.SelectedIndex = -1;
+        txtEAU.Text = "0";
         txtCost.Text = "0";
-        txtQuantity.Text = "0";        
-        chkDirectedBuy.Checked = false;
-        cboPurchasingStatus.SelectedIndex = -1;        
-        txtPurchasingComments.Text = "";
+
+        //Fields only in BOMDetail       
+        txtQuantity.Text = "0";
         txtCapComAssm.Text = "";
-    }    
+        txtPurchasingComments.Text = "";
+        chkDirectedBuy.Checked = false;
+        cboPurchasingStatus.SelectedIndex = -1;
+    }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {
         if (txtPrompt.Value.Trim() != "")
@@ -167,17 +190,29 @@ public partial class bomDetailList : System.Web.UI.UserControl
                     case "p":
                         Item item = new Item();
                         item.PartNumber = prompt[1];
-                                               
+
                         string idGenerated = item_CRUD.createAndReturnIdGenerated(item);
                         if (idGenerated != "")
                         {
                             allItems = null;
                             loadDropDowns();
                             cboPartNumber.SelectedValue = idGenerated;
+
+                            txtCapsonicPN.Text = "";
+                            txtCustomerPN.Text = "";
+                            txtManufacturePN.Text = "";
+                            txtSupplierPN.Text = "";
+                            txtCommCode.Text = "";
                             txtMaterial.Text = "";
                             cboUM.SelectedValue = "";
+                            txtEAU.Text = "0";
                             txtCost.Text = "0";
+
                             cboPartNumber.Focus();
+                        }
+                        else
+                        {
+                            uscNotifier.showAlert("This part number could not be saved, may be already exists.");
                         }
                         break;
                 }
@@ -211,13 +246,25 @@ public partial class bomDetailList : System.Web.UI.UserControl
             txtMaterial.Text = item.Material;
             cboUM.SelectedValue = item.Um;
             txtCost.Text = item.Cost.ToString();
+            txtCapsonicPN.Text = item.CapsonicPN;
+            txtCustomerPN.Text = item.CustomerPN;
+            txtManufacturePN.Text = item.ManufacturePN;
+            txtSupplierPN.Text = item.SupplierPN;
+            txtCommCode.Text = item.CommCode;
+            //txtEAU.Text = item.EAU.ToString();
+
             cboPartNumber.Focus();
         }
         else
         {
-            //txtDescription.Text = "";
+            txtCapsonicPN.Text = "";
+            txtCustomerPN.Text = "";
+            txtManufacturePN.Text = "";
+            txtSupplierPN.Text = "";
+            txtCommCode.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedValue = "";
+            //txtEAU.Text = "0";
             txtCost.Text = "0";
             cboPartNumber.Focus();
         }

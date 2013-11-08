@@ -37,6 +37,15 @@ public class RFQ
 
     private string rfqGenerated = ""; //From RFQNumber
 
+    private string moq = ""; 
+    private float targetPrice; 
+    private bool noQuote = false; 
+    private string autoAero = ""; 
+    private string comments = "";
+    private bool iAgree = false; 
+    private DateTime dateFilledOut = new DateTime(1985, 2, 10); 
+    private string make = "";
+
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -200,6 +209,46 @@ public class RFQ
     {
         get { return rfqEAV; }
         set { rfqEAV = value; }
+    }
+    public string Moq
+    {
+        get { return moq; }
+        set { moq = value; }
+    }
+    public float TargetPrice
+    {
+        get { return targetPrice; }
+        set { targetPrice = value; }
+    }
+    public bool NoQuote
+    {
+        get { return noQuote; }
+        set { noQuote = value; }
+    }
+    public string AutoAero
+    {
+        get { return autoAero; }
+        set { autoAero = value; }
+    }
+    public string Comments
+    {
+        get { return comments; }
+        set { comments = value; }
+    }
+    public bool IAgree
+    {
+        get { return iAgree; }
+        set { iAgree = value; }
+    }
+    public DateTime DateFilledOut
+    {
+        get { return dateFilledOut; }
+        set { dateFilledOut = value; }
+    }
+    public string Make
+    {
+        get { return make; }
+        set { make = value; }
     }
 }
 

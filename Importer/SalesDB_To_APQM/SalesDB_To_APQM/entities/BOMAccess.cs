@@ -40,7 +40,9 @@ namespace SalesDB_To_APQM.entities
         private string salesComments = ""; //Wont be used anymore
         private string vendorQuoteEst = "";
         private string capComAssm = "";
-        private string leadTimePPAP;
+        private string commCode = "";
+
+       
 
         public string MaterialPosition
         {
@@ -92,16 +94,15 @@ namespace SalesDB_To_APQM.entities
             get { return salesComments; }
             set { salesComments = value; }
         }
-        public string LeadTimePPAP
-        {
-            get { return leadTimePPAP; }
-            set { leadTimePPAP = value; }
-        }
-
         public string CapComAssm
         {
             get { return capComAssm; }
             set { capComAssm = value; }
+        }
+        public string CommCode
+        {
+            get { return commCode; }
+            set { commCode = value; }
         }
         public override string ToString()
         {

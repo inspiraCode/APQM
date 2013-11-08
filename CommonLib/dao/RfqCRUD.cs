@@ -46,6 +46,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
+            DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
+            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@Make", entity.Make);
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
         }
@@ -83,6 +91,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
+            DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
+            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@Make", entity.Make);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
         }
@@ -119,6 +135,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
+            DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
+            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@Make", entity.Make);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
         }
@@ -136,7 +160,8 @@ public class RfqCRUD : ICRUD<RFQ>
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, " +
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
-            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated FROM viewRFQHeader_ReadAll " + 
+            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
+            "MOQ, TargetPrice, NoQuote, AutoAero, Comments, IAgree, DateFilledOut, Make FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -176,7 +201,15 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ManufacturingLocation = table.Rows[0][25].ToString();
                 rfq.ShipLocation = table.Rows[0][26].ToString();
                 rfq.PreparedBy = table.Rows[0][27].ToString();
-                rfq.RfqGenerated = table.Rows[0][28].ToString(); 
+                rfq.RfqGenerated = table.Rows[0][28].ToString();
+                rfq.Moq = table.Rows[0][29].ToString();
+                rfq.TargetPrice = float.Parse(table.Rows[0][30].ToString());
+                rfq.NoQuote = bool.Parse(table.Rows[0][31].ToString());
+                rfq.AutoAero = table.Rows[0][32].ToString();
+                rfq.Comments = table.Rows[0][33].ToString();
+                rfq.IAgree = bool.Parse( table.Rows[0][34].ToString());
+                rfq.DateFilledOut = DateTime.Parse(table.Rows[0][35].ToString());
+                rfq.Make = table.Rows[0][36].ToString();
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -191,9 +224,13 @@ public class RfqCRUD : ICRUD<RFQ>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
-                      "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
-                      "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated FROM viewRFQHeader_ReadAll";
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, " 
+                    + "EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
+                      "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, "
+                    + "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " 
+                    + "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
+                    + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
+                      "MOQ, TargetPrice, NoQuote, AutoAero, Comments, IAgree, DateFilledOut, Make FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -228,8 +265,15 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.ManufacturingLocation = table.Rows[i][25].ToString();
             rfq.ShipLocation = table.Rows[i][26].ToString();
             rfq.PreparedBy = table.Rows[i][27].ToString();
-            rfq.RfqGenerated = table.Rows[i][28].ToString(); 
-
+            rfq.RfqGenerated = table.Rows[i][28].ToString();
+            rfq.Moq = table.Rows[i][29].ToString();
+            rfq.TargetPrice = float.Parse(table.Rows[i][30].ToString());
+            rfq.NoQuote = bool.Parse(table.Rows[i][31].ToString());
+            rfq.AutoAero = table.Rows[i][32].ToString();
+            rfq.Comments = table.Rows[i][33].ToString();
+            rfq.IAgree = bool.Parse(table.Rows[i][34].ToString());
+            rfq.DateFilledOut = DateTime.Parse(table.Rows[i][35].ToString());
+            rfq.Make = table.Rows[i][36].ToString();
             recordset.Add(rfq);
         }       
         return recordset;
@@ -262,6 +306,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
+            DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
+            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@Make", entity.Make);
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
         }
@@ -298,6 +350,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
             DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
+            DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
+            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@Make", entity.Make);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
         }

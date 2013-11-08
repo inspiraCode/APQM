@@ -1,6 +1,5 @@
 ﻿<%@ Master Language="C#" MasterPageFile="~/_Layouts/MasterBase.master" AutoEventWireup="true"
     CodeFile="MasterP.master.cs" Inherits="_Layouts_MasterP" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
     <div style="width: 160px; background-color: #A4A4A4; position: fixed; height: 100%;
         float: left;">
