@@ -13,20 +13,20 @@
     .style27
     {
         width: 163px;
-        height: 24px;
+        
     }
     .style29
     {
         width: 226px;
-        height: 24px;
+        
     }
     .style31
     {
-        height: 24px;
+        
     }
     .style35
     {
-        height: 23px;
+       
     }
     .style55
     {
@@ -60,13 +60,13 @@
     }
     .style70
     {
-        height: 24px;
+        
         width: 157px;
     }
     .style71
     {
         width: 159px;
-        height: 24px;
+        
     }
 </style>
 <div align="center">
@@ -78,18 +78,17 @@
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblDueDate" runat="server" BackColor="Silver" 
-                    style="text-align:center" Width="145px"></asp:Label>
+                    style="text-align:center" Width="145px" Height="20px"></asp:Label>
             </td>
             <td align="left" class="style70">
             </td>
             <td align="left" class="style29">
             </td>
             <td align="left" class="style71" colspan="2">
-                &nbsp;
+                
             </td>
             <td align="left" class="style31">
-                &nbsp;
-            </td>
+                </td>
         </tr>
         <tr>
             <td align="right" class="style66">
@@ -97,20 +96,20 @@
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblRFQNumber" runat="server"  style="text-align:center" 
-                    Width="145px" BackColor="Silver"></asp:Label>
+                    Width="145px" BackColor="Silver" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style70">
                 Supplier Name
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblSupplierName" runat="server" BackColor="Silver" Width="220px"></asp:Label>
+                <asp:Label ID="lblSupplierName" runat="server" BackColor="Silver" Width="220px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style71" 
                 style="border-top: solid gray;border-left: solid gray;" colspan="2" >
                 Total Manufacturing Cost
             </td>
             <td align="left" class="style31"  style="border-top: solid gray;border-right: solid gray;" >
-                <asp:Label ID="lblTotalManufacturingCost"  style="text-align:right;"  runat="server" BackColor="Silver" Width="104px">0</asp:Label>
+                <asp:Label ID="lblTotalManufacturingCost"  style="text-align:right;"  runat="server" BackColor="Silver" Width="104px" Height="20px">0</asp:Label>
             </td>
         </tr>
         <tr>
@@ -119,13 +118,13 @@
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblPartNumber" style="text-align:center"  runat="server" 
-                    BackColor="Silver" Width="145px"></asp:Label>
+                    BackColor="Silver" Width="145px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style70">
                 Manufacturing Location
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
+                <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Silver" Width="220px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style71"  style="border-left: solid gray;" 
                 colspan="2" >
@@ -142,13 +141,13 @@
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblPartName" style="text-align:center"  runat="server" 
-                    BackColor="Silver" Width="145px"></asp:Label>
+                    BackColor="Silver" Width="145px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style70">
                 Ship From Location
             </td>
             <td align="left" class="style29">
-                <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Silver" Width="220px"></asp:Label>
+                <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Silver" Width="220px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style71" style="border-left: solid gray;" colspan="2" >
                 Packing Cost/Unit
@@ -164,7 +163,7 @@
             </td>
             <td align="left" class="style27">
                 <asp:Label ID="lblDrawingLevel" runat="server"  style="text-align:center" 
-                    BackColor="Silver" Width="145px"></asp:Label>
+                    BackColor="Silver" Width="145px" Height="20px"></asp:Label>
             </td>
             <td align="right" class="style70">
                 Prepared By
@@ -197,7 +196,7 @@
                 Total Piece Cost
             </td>
             <td align="left" class="style31"  style="border-right: solid gray;border-bottom: solid gray;" >
-                <asp:Label ID="lblTotalPieceCost" runat="server"  style="text-align:right" BackColor="Silver" Width="104px">123456</asp:Label>
+                <asp:Label ID="lblTotalPieceCost" runat="server"  style="text-align:right" BackColor="Silver" Width="104px" Height="20px">123456</asp:Label>
             </td>
         </tr>
         <tr>
@@ -244,10 +243,10 @@
             </td>
         </tr>
         <tr>
-            <td align="center" height="25px" colspan="2" class="style68">
-                &nbsp;</td>
-            <td align="center" height="25px" colspan="2">
-                &nbsp;</td>
+            <td align="center" colspan="2" class="style68">
+                </td>
+            <td align="center" colspan="2">
+                </td>
         </tr>
     </table><br />
     <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
@@ -259,7 +258,7 @@
                 Tooling Detail
             </td>
             <td class="style63">
-                &nbsp;
+                
             </td>
             <td>
                 Annual Cost Reduction Commitment
@@ -271,7 +270,7 @@
                     TextMode="MultiLine"></asp:TextBox>
             </td>
             <td class="style63">
-                &nbsp;
+                
             </td>
             <td align="center" rowspan="4">
                 <uc2:rfqACR ID="uscRfqACR" runat="server" />
@@ -285,7 +284,7 @@
                 <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="22"></asp:TextBox>
             </td>
             <td class="style63">
-                &nbsp;
+                
             </td>
         </tr>
         <tr>
@@ -296,7 +295,7 @@
                 <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="23"></asp:TextBox>
             </td>
             <td class="style63">
-                &nbsp;
+                
             </td>
         </tr>
         <tr>
@@ -307,7 +306,7 @@
                 <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm" style="text-align:right"  runat="server" TabIndex="24"></asp:TextBox>
             </td>
             <td class="style63">
-                &nbsp;
+                
             </td>
         </tr>
     </table>

@@ -224,7 +224,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         }
                         else
                         {
-                            uscNotifier.showAlert("Supplier could not be saved, may be already exists.");
+                            uscNotifier.showAlert("Supplier could not be saved.");
                         }
                         break;
                 }

@@ -242,6 +242,10 @@ namespace SalesDB_To_APQM
                                             }
                                             else
                                             {
+                                                //if (bom.PartNumber == "26-3706-c")
+                                                //{
+                                                //    MessageBox.Show("here");
+                                                //}
                                                 Item item = readByPartNumberInList(bom, itemList);
                                                 if (item == null)
                                                 {
@@ -423,7 +427,7 @@ namespace SalesDB_To_APQM
         {
             foreach (Item item in list)
             {
-                if (item.PartNumber.Trim() == bom.PartNumber.Trim())
+                if (item.PartNumber.Trim().ToLower() == bom.PartNumber.Trim().ToLower())
                 {
                     return item;
                 }

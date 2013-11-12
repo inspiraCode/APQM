@@ -89,11 +89,11 @@
                 <asp:DropDownList ID="cboSupplier" chosen = "true" runat="server" 
                     AutoPostBack="True" DataSourceID="SqlDataSource1"
                     DataTextField="SupplierName" DataValueField="SupplierMasterKey" OnDataBound="on_dataBound_supplier"
-                    OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="300px" 
+                    OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="285px" 
                     Height="16px">
                 </asp:DropDownList>
                 <asp:Button ID="btnNewSupplier" runat="server" 
-                    Text="New" Width="40px" />
+                    Text="New" Width="60px" />
             </td>
         </tr>
         <tr>
