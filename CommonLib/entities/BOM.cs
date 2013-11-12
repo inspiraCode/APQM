@@ -15,7 +15,10 @@ public class BOM
     private string revision = "";
     private string inquiryNumber = "";
     private int annualVolume;
-    private string autoAero = "";   
+    private string autoAero = "";
+    private string salesPerson = "";
+    private string customerName = "";
+    
 
     private List<BOMDetail> bomDetail;
 
@@ -64,6 +67,16 @@ public class BOM
         get { return autoAero; }
         set { autoAero = value; }
     }
+    public string SalesPerson
+    {
+        get { return salesPerson; }
+        set { salesPerson = value; }
+    }
+    public string CustomerName
+    {
+        get { return customerName; }
+        set { customerName = value; }
+    }
     public override string ToString()
     {
         return "{Inquiry Number: " + this.inquiryNumber + " Top Part Number: " + this.topPartNumber + " Part Description: " + this.partDescription + "}";
@@ -99,7 +112,8 @@ public class BOMDetail
     private string manufacturePN = ""; 
     private string supplierPN = ""; 
     private string commCode = ""; 
-    private int eau; 
+    private int eau;
+    
 
     public string CapsonicPN
     {

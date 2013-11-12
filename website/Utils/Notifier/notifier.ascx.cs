@@ -7,9 +7,10 @@ using System.Web.UI.WebControls;
 
 public partial class Utils_Alertify_notifier : System.Web.UI.UserControl
 {
+    public event EventHandler Prompt;
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
     public void showAlert(String message)
     {
@@ -19,5 +20,9 @@ public partial class Utils_Alertify_notifier : System.Web.UI.UserControl
     public void hide()
     {
         this.alertify.Visible = false;
+    }
+    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
+    {
+        Prompt(sender, e);
     }
 }

@@ -67,7 +67,7 @@
         <th class="camposSinBordes" style="width: 50px; max-width: 50px;">
             Directed Buy
         </th>
-        <th class="camposSinBordes" style="width: 93px; max-width: 93px;">
+        <th class="camposSinBordes" style="width: 120px; max-width: 120px;">
             Purchasing Status
         </th>
         <th class="camposSinBordes" style="width: 73px; max-width: 73px;">
@@ -84,7 +84,7 @@
                 </asp:DropDownList>
                 <br />
                 <asp:Button ID="btnNewPartNumber" Width="120px" runat="server" Style="margin-top: 4px;"
-                    Text="New" />
+                    Text="New Part Number" />
             </div>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -126,7 +126,7 @@
                 runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtEAU" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtEAU" validate="number" validationid="validatingBOMDetail"  runat="server" Width="60px">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtCapComAssm" validationid="validatingBOMDetail" runat="server"
@@ -145,7 +145,7 @@
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:DropDownList ID="cboPurchasingStatus" chosen = "true" runat="server" Width="90px">
+            <asp:DropDownList ID="cboPurchasingStatus" chosen = "true" runat="server" Width="120px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Q">Quote</asp:ListItem>
                 <asp:ListItem Value="E">Estimate</asp:ListItem>
@@ -241,7 +241,6 @@
     </asp:Repeater>
     <div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
     </div>
-    <asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
             OnCancel_Click="on_cancelEdit_line" />
@@ -254,8 +253,6 @@
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>
-
     </asp:Panel>
 </table>
-<uc3:notifier ID="uscNotifier" runat="server" />
-
+<uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber"  runat="server" />

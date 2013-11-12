@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomDetailEdit.ascx.cs"
     Inherits="BOM_bomDetailEdit" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
 <style type="text/css">
     .style1
     {
@@ -34,7 +35,7 @@
         </td>
         <td class="style3">
             <div style="width: 368px;">
-                <asp:DropDownList ID="cboPartNumber" chosen = "true" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cboPartNumber_SelectedIndexChanged"
+                <asp:DropDownList ID="cboPartNumberEdit" chosen = "true" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cboPartNumberEdit_SelectedIndexChanged"
                     Width="300px">
                 </asp:DropDownList>
                 <asp:Button ID="btnNewPartNumber" runat="server" Text="New" Width="45px" />
@@ -114,8 +115,8 @@
                         EAU
         </td>
         <td class="style3">
-            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right" validate="number"
-                Width="150px"></asp:TextBox>
+            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right"  validate="number" validationid="bomlineedit" 
+                Width="150px">0</asp:TextBox>
         </td>
     </tr>
     <tr class="itemFields">
@@ -207,4 +208,4 @@
         </td>
     </tr>
 </table>
-<asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />
+<uc1:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />

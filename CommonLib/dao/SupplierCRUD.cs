@@ -52,7 +52,29 @@ public class SupplierCRUD : ICRUD<Supplier>
 
         return result;
     }
+    public string createAndReturnIdGenerated(Supplier entity)
+    {
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierName", entity.SupplierName);
+            DM.Load_SP_Parameters("@ContactName", entity.ContactName);
+            DM.Load_SP_Parameters("@ContactPhoneNumber", entity.ContactPhone);
+            DM.Load_SP_Parameters("@ContactEmail", entity.ContactEmail);
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
 
+            idGenerated = DM.Execute_StoreProcedure_Scalar("SupplierMaster_NewSupplier", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
     public Supplier readById(long id)
     {
         Supplier supplier = new Supplier();

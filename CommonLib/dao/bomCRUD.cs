@@ -92,7 +92,7 @@ public class bomCRUD : ICRUD<BOM>
         BOM bom = new BOM();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, " +
-                        "InquiryNumber, AnnualVolume, AutoAero FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
+                        "InquiryNumber, AnnualVolume, AutoAero, SalesPerson, CustomerName FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -118,6 +118,8 @@ public class bomCRUD : ICRUD<BOM>
                 bom.InquiryNumber = table.Rows[0][5].ToString();
                 bom.AnnualVolume = int.Parse(table.Rows[0][6].ToString());
                 bom.AutoAero = table.Rows[0][7].ToString();
+                bom.SalesPerson = table.Rows[0][8].ToString();
+                bom.CustomerName= table.Rows[0][9].ToString();
                 
                 sqlConnection.Dispose();
                 return bom;

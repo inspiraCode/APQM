@@ -52,6 +52,10 @@ public partial class bomForm : System.Web.UI.UserControl
         lblProduct.Text = bom.PartDescription;
         lblRevision.Text = bom.Revision;
         lblInquiryNumber.Text = bom.InquiryNumber;
+        cboMarketSector.SelectedValue = bom.AutoAero;
+        txtAnnualVolume.Text = bom.AnnualVolume.ToString();
+        lblCustomer.Text = bom.CustomerName;
+        lblSalesRep.Text = bom.SalesPerson;
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
         uscBOMDetailList.load();
@@ -63,6 +67,8 @@ public partial class bomForm : System.Web.UI.UserControl
         bom.TopPartNumber = txtPartNumber.Text;
         bom.PartDescription = lblProduct.Text;
         bom.Revision = lblRevision.Text;
+        bom.AnnualVolume = int.Parse(txtAnnualVolume.Text);
+        bom.AutoAero = cboMarketSector.SelectedValue;
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();

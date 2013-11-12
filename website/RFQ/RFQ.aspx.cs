@@ -98,7 +98,7 @@ public partial class RFQDefault : System.Web.UI.Page
                     //GridViewRow selectedRow = ((GridView)sender).Rows[index];
                     //TableCell rfqCountCell = selectedRow.Cells[8];
 
-                    LinkButton lnkRfqCount = (LinkButton)((GridView)sender).Rows[index].Cells[8].Controls[0];
+                    LinkButton lnkRfqCount = (LinkButton)((GridView)sender).Rows[index].Cells[19].Controls[0];
 
                     int iRfqCount = int.Parse(lnkRfqCount.Text);
                     if (iRfqCount > 0)
@@ -123,7 +123,7 @@ public partial class RFQDefault : System.Web.UI.Page
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);
                     uscSendNewRFQ.setSIFHeaderID(sifHeaderID);
                 }
-                catch
+                catch (Exception ex)
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                 }

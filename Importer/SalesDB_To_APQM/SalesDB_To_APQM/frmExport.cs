@@ -252,7 +252,7 @@ namespace SalesDB_To_APQM
                                                     item.Um = "";
                                                     item.Material = bom.Material;
                                                     item.CommCode = bom.CommCode;
-                                                    
+
 
                                                     string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item, ref DM);
                                                     if (itemIDGenerated == "")
@@ -273,6 +273,12 @@ namespace SalesDB_To_APQM
                                                         System.Threading.Thread.Sleep(5);
                                                         itemList.Add(item);
                                                     }
+                                                }
+                                                else
+                                                {
+                                                    log = "INFO: Item already exists.\n";
+                                                    backgroundWorker1.ReportProgress(progress);
+                                                    System.Threading.Thread.Sleep(5);
                                                 }
 
                                                 log = "INFO: Attempting to export its BOM Line\n";
@@ -298,7 +304,7 @@ namespace SalesDB_To_APQM
                                                 if (!bomDetailCRUD.create(bomDetail, ref DM))
                                                 {
                                                     summary.totalErrors++;
-                                                    log = "ERROR: Could not export BOM Line: " + bomDetail + " Error: " + DM.Error_Mjs + "\n\n";
+                                                    log = "ERROR: Could not export BOM Line: " + bomDetail.PartNumber + ", " + bomDetail + " Error: " + DM.Error_Mjs + "\n\n";
                                                     backgroundWorker1.ReportProgress(++progress);
                                                     System.Threading.Thread.Sleep(5);
                                                     errorInBOM = true;
@@ -306,7 +312,7 @@ namespace SalesDB_To_APQM
                                                 }
                                                 else
                                                 {
-                                                    log = "INFO: BOM Line exported: " + bomDetail + "\n";
+                                                    log = "INFO: BOM Line exported: " + bomDetail.PartNumber + ", " + bomDetail + "\n";
                                                     backgroundWorker1.ReportProgress(progress);
                                                     System.Threading.Thread.Sleep(5);
                                                     //txtLog.AppendText("INFO: BOM Line exported: " + bomDetail + "\n");
@@ -417,7 +423,7 @@ namespace SalesDB_To_APQM
         {
             foreach (Item item in list)
             {
-                if (item.PartNumber.Trim() == bom.PartNumber.Trim() && item.Material.Trim() == bom.Material.Trim() && item.Description.Trim() == bom.AssemblyDescription.Trim())
+                if (item.PartNumber.Trim() == bom.PartNumber.Trim())
                 {
                     return item;
                 }

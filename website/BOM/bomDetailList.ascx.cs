@@ -22,7 +22,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     public void load()
     {
-        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p~' + prompt('New Part Number')";
+        btnNewPartNumber.OnClientClick = "return promptUser('New Part Number', 'p~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         loadDropDowns();
         loadDetail();
     }
@@ -178,11 +178,13 @@ public partial class bomDetailList : System.Web.UI.UserControl
         chkDirectedBuy.Checked = false;
         cboPurchasingStatus.SelectedIndex = -1;
     }
-    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
+    protected void on_prompt_partNumber(object sender, EventArgs e)
     {
-        if (txtPrompt.Value.Trim() != "")
+        string value = ((HiddenField)sender).Value;
+
+        if (value.Trim() != "")
         {
-            string[] prompt = txtPrompt.Value.Split('~');
+            string[] prompt = value.Split('~');
             if (prompt[1] != "null" && prompt[1].Trim() != "")
             {
                 switch (prompt[0])
@@ -217,7 +219,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
                         break;
                 }
             }
-            txtPrompt.Value = "";
+            ((HiddenField)sender).Value = "";
         }
     }
     private void loadDropDowns()
@@ -231,10 +233,10 @@ public partial class bomDetailList : System.Web.UI.UserControl
             cboPartNumber.DataValueField = "Id";
             cboPartNumber.DataBind();
 
-            if (allItems.Count > 0)
-            {
-                cboPartNumber_SelectedIndexChanged(null, null);
-            }
+            //if (allItems.Count > 0)
+            //{
+            //    cboPartNumber_SelectedIndexChanged(null, null);
+            //}
         }
     }
     protected void cboPartNumber_SelectedIndexChanged(object sender, EventArgs e)

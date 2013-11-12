@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewRFQ.ascx.cs" Inherits="SendNewRFQ" %>
 <%@ Register src="rfqEAV.ascx" tagname="rfqEAV" tagprefix="uc1" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
 <style type="text/css">
     .style1
     {
@@ -85,10 +86,14 @@
                 Vendor
             </td>
             <td class="style3" align="left">
-                <asp:DropDownList ID="cboSupplier" chosen = "true" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1"
+                <asp:DropDownList ID="cboSupplier" chosen = "true" runat="server" 
+                    AutoPostBack="True" DataSourceID="SqlDataSource1"
                     DataTextField="SupplierName" DataValueField="SupplierMasterKey" OnDataBound="on_dataBound_supplier"
-                    OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="350px">
+                    OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="300px" 
+                    Height="16px">
                 </asp:DropDownList>
+                <asp:Button ID="btnNewSupplier" runat="server" 
+                    Text="New" Width="40px" />
             </td>
         </tr>
         <tr>
@@ -164,7 +169,7 @@
     OnInit="on_sqldatasource_Init"
     ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" 
         
-        SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Description, Qty, Cost, Revision, Material FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)" 
+        SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)" 
         ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
         ProviderName="System.Data.SqlClient">
         <SelectParameters>
@@ -173,6 +178,7 @@
         </SelectParameters>
     </asp:SqlDataSource>
 </div>
+<uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
 <script type="text/javascript">
     function EnviarMail() {
         event.srcElement.disabled = true;

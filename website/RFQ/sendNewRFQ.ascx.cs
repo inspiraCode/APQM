@@ -15,6 +15,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     private Supplier supplier = null;
     protected void Page_Load(object sender, EventArgs e)
     {
+        btnNewSupplier.OnClientClick = "return promptUser('New Supplier', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         if (Session["supplierObject"] != null)
         {
             this.supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
@@ -93,7 +94,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                     Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
                     Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                    Message.Subject = "test from APQM WEB - sending RFQ";
+                    Message.Subject = "Test from APQM WEB - sending RFQ";
                     Message.IsBodyHtml = true;
                     Message.BodyEncoding = System.Text.Encoding.UTF8;
 
@@ -195,5 +196,40 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         ConnectionManager connection = new ConnectionManager();
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
+    }
+    protected void on_prompt(object sender, EventArgs e)
+    {
+        string value = ((HiddenField)sender).Value;
+
+        if (value.Trim() != "")
+        {
+            string[] prompt = value.Split('~');
+            if (prompt[1] != "null" && prompt[1].Trim() != "")
+            {
+                switch (prompt[0])
+                {
+                    case "s":
+                        Supplier supplier = new Supplier();
+                        supplier.SupplierName = prompt[1];
+
+                        string idGenerated =supplierCRUD.createAndReturnIdGenerated(supplier);
+                        if (idGenerated != "")
+                        {
+                            //SqlDataSource1.DataBind();
+                            cboSupplier.DataBind();
+                            cboSupplier.SelectedValue = idGenerated;
+
+                            txtEmail.Text = "";
+                            cboSupplier.Focus();
+                        }
+                        else
+                        {
+                            uscNotifier.showAlert("Supplier could not be saved, may be already exists.");
+                        }
+                        break;
+                }
+            }
+            ((HiddenField)sender).Value = "";
+        }
     }
 }

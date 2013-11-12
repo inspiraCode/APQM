@@ -11,6 +11,10 @@
             <td align="left">
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
+            <td align="left">
+                </td>
+            <td align="left">
+                </td>
         </tr>
         <tr style="display: none;">
             <td align="right">
@@ -19,6 +23,10 @@
             <td align="left">
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
+            <td align="left">
+                </td>
+            <td align="left">
+                </td>
         </tr>
         <tr style="display: none;">
             <td align="right">
@@ -27,40 +35,80 @@
             <td align="left">
                 <asp:Label ID="lblSifID" runat="server"></asp:Label>
             </td>
-        </tr>
-        <tr style="display: none">
-            <td align="right">
-                Part #
-            </td>
             <td align="left">
-                <asp:TextBox ID="txtPartNumber" runat="server" Width="380px"></asp:TextBox>
-            </td>
+                </td>
+            <td align="left">
+                </td>
         </tr>
-        <tr>
+        <tr style="height:25px;">
             <td align="right" style="font-weight: bold">
                 Inquiry Number
             </td>
             <td align="left">
                 <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
+            <td align="left"style="font-weight: bold">
+                Sales Rep</td>
+            <td align="left">
+                <asp:Label ID="lblSalesRep" runat="server"></asp:Label>
+                </td>
         </tr>
-        <tr>
+        <tr style="height:25px;">
             <td align="right" style="font-weight: bold">
                 Revision
             </td>
             <td align="left">
                 <asp:Label ID="lblRevision" runat="server"></asp:Label>
             </td>
+            <td align="left"style="font-weight: bold">
+                Customer</td>
+            <td align="left">
+                <asp:Label ID="lblCustomer" runat="server"></asp:Label>
+                </td>
         </tr>
-        <tr>
+        <tr style="height:25px;">
             <td align="right" style="font-weight: bold">
                 Product
             </td>
             <td align="left">
                 <asp:Label ID="lblProduct" runat="server"></asp:Label>
             </td>
+            <td align="left" style="font-weight: bold">
+                Market Sector
+                </td>
+            <td align="left">
+                <asp:DropDownList ID="cboMarketSector" chosen="true" runat="server" Width="124px">
+                    <asp:ListItem Selected="True"></asp:ListItem>
+                    <asp:ListItem Value="Aero">Aerospace</asp:ListItem>
+                    <asp:ListItem Value="Auto">Automotive</asp:ListItem>
+                </asp:DropDownList>
+                </td>
         </tr>
-    </table>
+        <tr style="height:25px;">
+            <td align="right" style="font-weight: bold">
+                Finished Good Part #
+            </td>
+            <td align="left">
+                <asp:TextBox ID="txtPartNumber" runat="server" Width="120px"></asp:TextBox>
+            </td>
+            <td align="left">
+                </td>
+            <td align="left">
+                </td>
+        </tr>
+        <tr style="height:25px;">
+            <td align="right" style="font-weight: bold">
+                Annual Volume
+            </td>
+            <td align="left">
+                <asp:TextBox ID="txtAnnualVolume" runat="server" Width="120px"></asp:TextBox>
+            </td>
+            <td align="left">
+                </td>
+            <td align="left">
+                </td>
+        </tr>
+        </table>
     <table cellspacing="1" align="center">
         <tr align="left">
             <td align="right" height="25px" colspan="2">
@@ -77,10 +125,10 @@
         </tr>
         <tr>
             <td align="right">
-                &nbsp;
+                
             </td>
             <td align="left">
-                &nbsp;
+                
             </td>
         </tr>
     </table>

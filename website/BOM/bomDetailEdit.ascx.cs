@@ -25,8 +25,8 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
 
         Item item = new Item();
 
-        item.Id = long.Parse(cboPartNumber.SelectedValue);
-        item.PartNumber = cboPartNumber.SelectedItem.Text;
+        item.Id = long.Parse(cboPartNumberEdit.SelectedValue);
+        item.PartNumber = cboPartNumberEdit.SelectedItem.Text;
         item.Cost = float.Parse(txtCost.Text);
         item.Um = cboUM.SelectedValue;
         item.Material = txtMaterial.Text;
@@ -39,8 +39,8 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         
         bomDetailEdit.Item = item;
 
-        bomDetailEdit.PartNumber = cboPartNumber.SelectedItem.Text;
-        bomDetailEdit.ItemMasterkey = long.Parse(cboPartNumber.SelectedValue);
+        bomDetailEdit.PartNumber = cboPartNumberEdit.SelectedItem.Text;
+        bomDetailEdit.ItemMasterkey = long.Parse(cboPartNumberEdit.SelectedValue);
         bomDetailEdit.CapsonicPN = txtCapsonicPN.Text;
         bomDetailEdit.CustomerPN = txtCustomerPN.Text;
         bomDetailEdit.ManufacturePN = txtManufacturePN.Text;
@@ -73,7 +73,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
     }
     public void setEntity(BOMDetail detail)
     {
-        btnNewPartNumber.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'p~' + prompt('New Part Number')";
+        btnNewPartNumber.OnClientClick = "return promptUser('New Part Number', 'p~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         loadDropDowns();
 
         if (detail != null)
@@ -86,7 +86,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         }
         bomDetailEdit = (BOMDetail)Session["BOMDetailEdit"];
 
-        cboPartNumber.SelectedValue = bomDetailEdit.ItemMasterkey.ToString();
+        cboPartNumberEdit.SelectedValue = bomDetailEdit.ItemMasterkey.ToString();
         txtCapsonicPN.Text = bomDetailEdit.CapsonicPN;
         txtCustomerPN.Text = bomDetailEdit.CustomerPN;
         txtManufacturePN.Text = bomDetailEdit.ManufacturePN;
@@ -107,11 +107,13 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         //TODO system status
         
     }
-    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
+    protected void on_prompt(object sender, EventArgs e)
     {
-        if (txtPrompt.Value.Trim() != "")
+        string value = ((HiddenField)sender).Value;
+
+        if (value.Trim() != "")
         {
-            string[] prompt = txtPrompt.Value.Split('~');
+            string[] prompt = value.Split('~');
             if (prompt[1] != "null" && prompt[1].Trim() != "")
             {
                 switch (prompt[0])
@@ -119,14 +121,13 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                     case "p":
                         Item item = new Item();
                         item.PartNumber = prompt[1];
-                        item.Um = "UM";
-
+                        
                         string idGenerated = item_CRUD.createAndReturnIdGenerated(item);
                         if (idGenerated != "")
                         {
                             allItems = null;
                             loadDropDowns();
-                            cboPartNumber.SelectedValue = idGenerated;
+                            cboPartNumberEdit.SelectedValue = idGenerated;
                             txtCapsonicPN.Text = "";
                             txtCustomerPN.Text = "";
                             txtManufacturePN.Text = "";
@@ -136,14 +137,17 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                             cboUM.SelectedIndex = -1;
                             txtEAU.Text = "0";
                             txtCost.Text = "0";
-                            cboPartNumber.Focus();
+                            cboPartNumberEdit.Focus();
+                        }
+                        else
+                        {
+                            uscNotifier.showAlert("This part number could not be saved, may be it already exists.");
                         }
                         break;
                 }
             }
-            txtPrompt.Value = "";
+            ((HiddenField)sender).Value = "";
         }
-
     }
     private void loadDropDowns()
     {
@@ -152,14 +156,14 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             allItems = (List<Item>)item_CRUD.readAll();
         }
         Session["bomDetailListAllItems"] = allItems;
-        cboPartNumber.DataSource = allItems;
-        cboPartNumber.DataTextField = "PartNumber";
-        cboPartNumber.DataValueField = "Id";
-        cboPartNumber.DataBind();
+        cboPartNumberEdit.DataSource = allItems;
+        cboPartNumberEdit.DataTextField = "PartNumber";
+        cboPartNumberEdit.DataValueField = "Id";
+        cboPartNumberEdit.DataBind();
     }
-    protected void cboPartNumber_SelectedIndexChanged(object sender, EventArgs e)
+    protected void cboPartNumberEdit_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Item item = item_CRUD.readById(long.Parse(cboPartNumber.SelectedValue));
+        Item item = item_CRUD.readById(long.Parse(cboPartNumberEdit.SelectedValue));
         if (item != null)
         {
             //txtDescription.Text = item.Description;
@@ -172,7 +176,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             txtSupplierPN.Text = item.SupplierPN;
             txtCommCode.Text = item.CommCode;
             txtEAU.Text = item.EAU.ToString();
-            cboPartNumber.Focus();
+            cboPartNumberEdit.Focus();
         }
         else
         {
@@ -185,7 +189,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             cboUM.SelectedIndex = -1;
             txtEAU.Text = "0";
             txtCost.Text = "0";
-            cboPartNumber.Focus();
+            cboPartNumberEdit.Focus();
         }
     }
 }
