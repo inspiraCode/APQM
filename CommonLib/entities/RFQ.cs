@@ -45,6 +45,8 @@ public class RFQ
     private bool iAgree = false; 
     private DateTime dateFilledOut = new DateTime(1985, 2, 10); 
     private string make = "";
+    private string reasonNoQuote = "";
+    private float weight;
 
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
@@ -249,6 +251,16 @@ public class RFQ
     {
         get { return make; }
         set { make = value; }
+    }
+    public string ReasonNoQuote
+    {
+        get { return reasonNoQuote; }
+        set { reasonNoQuote = value; }
+    }
+    public float Weight
+    {
+        get { return weight; }
+        set { weight = value; }
     }
 }
 
