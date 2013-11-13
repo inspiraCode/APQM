@@ -33,7 +33,7 @@
             
             <asp:TemplateField HeaderText="RFQ Sent" ShowHeader="true">
                 <ItemTemplate>
-                <asp:LinkButton runat="server" Text='<%# Eval("RFQCount") %>' CommandName="seeRFQ" OnClientClick='<%# "return (" + Eval("RFQCount") + "> 0);" %>' />
+                <asp:LinkButton runat="server" Text='<%# Eval("RFQCount") %>' CommandArgument='<%# Eval("RFQCount") %>' CommandName="seeRFQ" OnClientClick='<%# "return (" + Eval("RFQCount") + "> 0);" %>' />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:ButtonField CommandName="sendNewRFQ" Text="New" />

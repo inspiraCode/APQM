@@ -90,25 +90,23 @@ public partial class RFQDefault : System.Web.UI.Page
         {
             case "seeRFQ":
                 try
-                {
-                    index = Convert.ToInt32(e.CommandArgument);
+                {   
+                    index = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
                     bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
                     // Get the last name of the selected author from the appropriate
                     // cell in the GridView control.
                     //GridViewRow selectedRow = ((GridView)sender).Rows[index];
                     //TableCell rfqCountCell = selectedRow.Cells[8];
-
-                    LinkButton lnkRfqCount = (LinkButton)((GridView)sender).Rows[index].Cells[19].Controls[0];
-
-                    int iRfqCount = int.Parse(lnkRfqCount.Text);
+                    int iRfqCount = int.Parse(e.CommandArgument.ToString());
                     if (iRfqCount > 0)
                     {
                         openpopupContainer();
                         multiViewPopup.SetActiveView(viewRFQListByBom);
                         uscRfqListByBom.setBomID(bomDetailId);
-                    }                    
+                    }
                 }
-                catch {
+                catch(Exception ex)
+                {
                     Navigator.goToPage("~/Error.aspx", "");
                 }                
                 break;
