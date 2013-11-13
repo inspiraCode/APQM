@@ -22,22 +22,24 @@
         var fieldNeedsCorrection = null;
         var target = event.target ? event.target : event.srcElement;
         jQuery('[validate]').filter('[validationid = ' + target.attributes['validationid'].value + ']').each(function() {
-            switch (jQuery(this).attr('validate')) {
-                case 'number':
-                    if (jQuery(this).val().trim() == '' || isNaN(jQuery(this).val()) || Number(jQuery(this).val()) < 0) {
-                        strErrorMessage = 'Number did not pass validation.';
-                        fieldNeedsCorrection = jQuery(this);
-                        return false;
-                    }
-                    break;
-                case 'required':
-                    if (jQuery(this).val().trim() == '') {
-                        strErrorMessage = 'Field is required.';
-                        fieldNeedsCorrection = jQuery(this);
-                        return false;
-                    }
-                    break;
-                default:
+            if (jQuery(this).css('display') != "none") {
+                switch (jQuery(this).attr('validate')) {
+                    case 'number':
+                        if (jQuery(this).val().trim() == '' || isNaN(jQuery(this).val()) || Number(jQuery(this).val()) < 0) {
+                            strErrorMessage = 'Number did not pass validation.';
+                            fieldNeedsCorrection = jQuery(this);
+                            return false;
+                        }
+                        break;
+                    case 'required':
+                        if (jQuery(this).val().trim() == '') {
+                            strErrorMessage = 'Field is required.';
+                            fieldNeedsCorrection = jQuery(this);
+                            return false;
+                        }
+                        break;
+                    default:
+                }
             }
         });
 

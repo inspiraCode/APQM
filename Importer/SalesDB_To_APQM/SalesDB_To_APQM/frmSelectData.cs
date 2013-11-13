@@ -104,7 +104,7 @@ namespace SalesDB_To_APQM
 
             if (txtInquiryNumber.Text.Trim() != "")
             {
-                filter += "[Inquiry Number] = '" + txtInquiryNumber.Text.Trim() + "' AND ";
+                filter += "[Inquiry Number] like '%" + txtInquiryNumber.Text.Trim() + "%' AND ";
             }
 
             if (listSalesPersonSelected.Count > 0)

@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewRFQ.ascx.cs" Inherits="SendNewRFQ" %>
 <%@ Register src="rfqEAV.ascx" tagname="rfqEAV" tagprefix="uc1" %>
 <%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
+<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc3" %>
 <style type="text/css">
     .style1
     {
@@ -90,10 +91,10 @@
                     AutoPostBack="True" DataSourceID="SqlDataSource1"
                     DataTextField="SupplierName" DataValueField="SupplierMasterKey" OnDataBound="on_dataBound_supplier"
                     OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="285px" 
-                    Height="16px">
+                    Height="16px" TabIndex="22">
                 </asp:DropDownList>
                 <asp:Button ID="btnNewSupplier" runat="server" 
-                    Text="New" Width="60px" />
+                    Text="New" Width="60px" TabIndex="23" />
             </td>
         </tr>
         <tr>
@@ -101,7 +102,7 @@
                 Email
             </td>
             <td class="style3" align="left">
-                <asp:TextBox ID="txtEmail" runat="server" Width="346px"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" Width="346px" TabIndex="24"></asp:TextBox>
             </td>
         </tr>
         <tr style="height:10px;">
@@ -122,8 +123,9 @@
                 Due Date
             </td>
             <td align="left">
-                <asp:TextBox ID="txtDueDate" runat="server" Width="200px"></asp:TextBox>
-                <asp:Button ID="btnCalendar" runat="server" OnClick="btnCalendar_Click" Text="..." />
+                <asp:TextBox ID="txtDueDate" runat="server" Width="200px" TabIndex="29"></asp:TextBox>
+                <asp:Button ID="btnCalendar" runat="server" OnClick="btnCalendar_Click" 
+                    Text="..." TabIndex="30" />
             </td>
         </tr>
         <tr style="height:30px;">
@@ -132,8 +134,23 @@
                 Target Price</td>
             <td align="left">
                 
-                <input id="chkTargetPrice" type="checkbox" onchange="toggleTargetPrice();" /><asp:TextBox ID="txtTargetPrice" style="display:none;"
+                <asp:CheckBox ID="chkTargetPrice" ClientID="chkTargetPrice" onchange="toggleTargetPrice();" TabIndex="31" runat="server" />
+                
+               <asp:TextBox ID="txtTargetPrice" TabIndex="32" style="display:none;" validate="number" validationid="validatingNewRFQ"
                     runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="style1" style="text-align:right;">
+                
+                Market Sector</td>
+            <td align="left">
+                
+                <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" 
+                    Width="124px" TabIndex="33">
+                    <asp:ListItem Selected="True" Value="Aero">Aerospace</asp:ListItem>
+                    <asp:ListItem Value="Auto">Automotive</asp:ListItem>
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -146,10 +163,10 @@
         </tr>
         <tr>
             <td align="center" colspan="2">
-                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click"  Text="Send New RFQ"
-                    Width="136px" />
+                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" OnClientClick="return validate();" validationid="validatingNewRFQ" Text="Send New RFQ"
+                    Width="136px" TabIndex="34" />
                 <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
-                    Width="70px" />
+                    Width="70px" TabIndex="35" />
             </td>
         </tr>
     </table>
@@ -179,6 +196,8 @@
     </asp:SqlDataSource>
 </div>
 <uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
+<uc3:Validator ID="Validator1" runat="server" />
+
 <script type="text/javascript">
     function EnviarMail() {
         event.srcElement.disabled = true;

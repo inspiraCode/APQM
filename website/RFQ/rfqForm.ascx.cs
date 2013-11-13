@@ -22,6 +22,11 @@ public partial class rfqForm : System.Web.UI.UserControl
         if (Session["rfqObject"] != null)
         {
             rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
+            if (rfq.TargetPrice < 0)
+            {
+                lblTargetPrice.Visible = false;
+                lblTargetPriceLabel.Visible = false;
+            }
         }
     }
     public void load()

@@ -38,7 +38,7 @@ public class RFQ
     private string rfqGenerated = ""; //From RFQNumber
 
     private string moq = ""; 
-    private float targetPrice; 
+    private float targetPrice = -1; //-1 means that buyer did not want to specify targetPrice 
     private bool noQuote = false; 
     private string autoAero = ""; 
     private string comments = "";

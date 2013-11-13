@@ -56,15 +56,13 @@
     {
         width: 57px;
     }
-    .style73
-    {
-        width: 300px;
-    }
-</style>
+    </style>
 <div>
-    <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" Checked="True" onchange="on_change_option_quote()" />
+    <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" 
+        Checked="True" onchange="on_change_option_quote()" TabIndex="1" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" Text="No Quote" onchange="on_change_option_quote()" />
+    <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" 
+        Text="No Quote" onchange="on_change_option_quote()" TabIndex="1" />
 </div>
 <div id="quoteSection">
     <div align="center">
@@ -203,7 +201,8 @@
             </tr>
             <tr>
                 <td align="right" class="style66">
-                    Target Price
+                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right"
+                        Width="145px" Height="20px">Target Price</asp:Label>
                 </td>
                 <td align="left" class="style27">
                     <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="Silver"
@@ -292,21 +291,21 @@
                             <td align="right">
                                 Weight
                                 <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="5"></asp:TextBox>
+                                    runat="server" Style="text-align: right" Width="130px" TabIndex="30"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 MOQ
                                 <asp:TextBox ID="txtMOQ" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="5"></asp:TextBox>
+                                    runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 Make
                                 <asp:TextBox ID="txtMake" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="5"></asp:TextBox>
+                                    runat="server" Style="text-align: right" Width="130px" TabIndex="32"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -317,7 +316,7 @@
                         <tr>
                             <td align="left">
                                 <asp:TextBox ID="txtComments" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: left" Width="300px" TabIndex="5" Height="47px"
+                                    runat="server" Style="text-align: left" Width="300px" TabIndex="33" Height="47px"
                                     TextMode="MultiLine"></asp:TextBox>
                             </td>
                         </tr>
@@ -363,7 +362,7 @@
         </table>
         <div align="center">
         <br />
-            <asp:CheckBox ID="chkIAgree" runat="server" Text="I Agree" />
+            <asp:CheckBox ID="chkIAgree" runat="server" Text="I Agree" TabIndex="34" />
         </div>
     </div>
 </div>
@@ -372,7 +371,7 @@
 <br />
     Reason
     <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
-        Width="400px"></asp:TextBox>
+        Width="400px" TabIndex="35"></asp:TextBox>
 </div>
 <br />
 <br />

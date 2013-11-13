@@ -115,14 +115,11 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     }
     protected void on_save_rfq(object sender, EventArgs e)
     {
-        if (retrieveEntity())
-        {
-            Navigator.goToPage("~/Vendor/RFQ.aspx", "");
-        }
-        else
-        {
-            exitByError();
-        }
+        divInfo.InnerText = "You have saved this RFQ but not finalized it, you can close this window and continue later.";
+        btnFinalize.Visible = false;
+        uscRfqForm.Visible = false;
+        btnSave.Visible = false;
+        btnCancel.Visible = false;
     }
     protected void on_cancel_rfq(object sender, EventArgs e)
     {
@@ -137,7 +134,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        uscRfqForm.save();
+        uscRfqForm.save();        
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {

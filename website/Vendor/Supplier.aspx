@@ -4,11 +4,16 @@
 
 <%@ Register Src="../Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
+    
     <br />
     <br />
     <div id="divInfo" runat="server">
         If your information is correct click next, otherwise please update it.<br />        
     </div>
+    
+
+    
+    
     <asp:Button ID="btnToRFQ" runat="server" Text="Next" Width="132px" OnClick="btnToRFQForm_Click" />    
     <br />
     <br />
@@ -20,5 +25,5 @@
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
     </div>
     <br />
-    <br />
+    <br />    
 </asp:Content>

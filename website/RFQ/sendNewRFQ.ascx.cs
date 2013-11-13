@@ -7,8 +7,7 @@ using System.Web.UI.WebControls;
 using System.Net.Mail;
 
 public partial class SendNewRFQ : System.Web.UI.UserControl
-{
-    
+{   
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
@@ -65,6 +64,12 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             rfq.BomDetailId = (long)ViewState["bomDetailID"];
             rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
             rfq.DueDate = DateTime.Parse(txtDueDate.Text);
+            rfq.AutoAero = cboMarketSector.SelectedValue;
+            if (chkTargetPrice.Checked)
+            {   
+                rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
+            }
+            
             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
             
             if (idGenerated != "")
