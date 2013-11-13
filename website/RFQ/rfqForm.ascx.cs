@@ -54,6 +54,9 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     public void fillWithEntity(RFQ rfq)
     {
+        optNoQuote.Checked = rfq.NoQuote;
+        optQuote.Checked = !rfq.NoQuote;
+        txtReasonNoQuote.Text = rfq.ReasonNoQuote;
         lblBOMDetailID.Text = rfq.BomDetailId.ToString();
         lblID.Text = rfq.Id.ToString();
         lblDueDate.Text = rfq.DueDate.ToShortDateString();
@@ -61,23 +64,34 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblPartNumber.Text = rfq.PartNumber;
         // lblPartName.Text
         lblDrawingLevel.Text = rfq.DrawingLevel;
+        lblMarketSector.Text = rfq.AutoAero;
+        lblTargetPrice.Text = rfq.TargetPrice.ToString();
         
         lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
         lblManufacturingLocation.Text = rfq.ManufacturingLocation;
         lblShipFromLocation.Text = rfq.ShipLocation;
         txtPreparedBy.Text = rfq.PreparedBy;
+
         txtSGAProfit.Text = rfq.SgAProfit.ToString();
         txtPackingCostUnit.Text = rfq.PackingPerUnit.ToString();
         txtAssemblyCostUnit.Text = rfq.AssemblyCostPerUnit.ToString();
+        
         txtProductionLeadTime.Text = rfq.ProductionLeadTime;
         txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
-        txtPrototypeToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
+        txtPrototypeToolingLeadTime.Text = rfq.PrototypeToolingLeadTime;
         txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
         txtToolingDetail.Text = rfq.ToolingDetail;
         txtProductionTooling.Text = rfq.ProductionTooling.ToString();
         txtPrototypeTooling.Text = rfq.PrototypeTooling.ToString();
         txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
+
+        txtWeight.Text = rfq.Weight.ToString();
+        txtMOQ.Text = rfq.Moq;
+        txtMake.Text = rfq.Make;
+        txtComments.Text = rfq.Comments;
+
+        chkIAgree.Checked = rfq.IAgree;
 
         uscRFQDetailList.reset();
         uscRFQDetailList.setEntity(rfq.RfqDetail);
@@ -101,6 +115,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         {
             RFQ rfq = rfqCRUD.readById(this.rfq.Id);
             rfq.Status = "COMPLETED";
+            rfq.DateFilledOut = DateTime.Now;
             if (!rfqCRUD.update(rfq))
             {
                 Navigator.goToPage("~/Error.aspx", "");
@@ -116,28 +131,43 @@ public partial class rfqForm : System.Web.UI.UserControl
     public bool saveRFQ()
     {
         RFQ rfq = new RFQ();
+        //lblPartNumber.Text
+        if (lblDueDate.Text.Trim() != "") rfq.DueDate = DateTime.Parse(lblDueDate.Text);
+
+        rfq.NoQuote = !optQuote.Checked;
+        if(rfq.NoQuote)
+            rfq.ReasonNoQuote = txtReasonNoQuote.Text;
+        else
+            rfq.ReasonNoQuote = "";
 
         rfq.BomDetailId = long.Parse(lblBOMDetailID.Text);
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
         rfq.DrawingLevel = lblDrawingLevel.Text;
+        rfq.AutoAero = lblMarketSector.Text;
+        rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         
+        rfq.PreparedBy = txtPreparedBy.Text;
+        if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
+        if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);
+        if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
+
         rfq.ProductionLeadTime = txtProductionLeadTime.Text;
         rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
         rfq.PrototypeToolingLeadTime = txtPrototypeToolingLeadTime.Text;
         rfq.PrototypePieceLeadTime = txtPrototypePieceLeadTime.Text;
+        
         rfq.ToolingDetail = txtToolingDetail.Text;
         if (txtProductionTooling.Text.Trim() != "") rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);
         if (txtPrototypeTooling.Text.Trim() != "") rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
         if (txtPrototypePiece.Text.Trim() != "") rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
-        if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
-        if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);
-        if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
-        if (lblDueDate.Text.Trim() != "") rfq.DueDate = DateTime.Parse(lblDueDate.Text);
 
-        //lblPartNumber.Text
+        if (txtWeight.Text.Trim() != "") rfq.Weight = float.Parse(txtWeight.Text);
+        rfq.Moq = txtMOQ.Text;
+        rfq.Make = txtMake.Text;
+        rfq.Comments = txtComments.Text;
 
-        rfq.PreparedBy = txtPreparedBy.Text;
+        rfq.IAgree = chkIAgree.Checked;
 
         List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();
         List<RFQACR> rfqACRList = uscRfqACR.getEntity();

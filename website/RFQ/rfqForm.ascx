@@ -317,7 +317,7 @@
                         <tr>
                             <td align="left">
                                 <asp:TextBox ID="txtComments" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="300px" TabIndex="5" Height="47px"
+                                    runat="server" Style="text-align: left" Width="300px" TabIndex="5" Height="47px"
                                     TextMode="MultiLine"></asp:TextBox>
                             </td>
                         </tr>
@@ -368,9 +368,11 @@
     </div>
 </div>
 <div id="noQuoteSection" style="vertical-align: top;">
+<br />
+<br />
     Reason
-    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="60px" TextMode="MultiLine"
-        Width="220px"></asp:TextBox>
+    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
+        Width="400px"></asp:TextBox>
 </div>
 <br />
 <br />

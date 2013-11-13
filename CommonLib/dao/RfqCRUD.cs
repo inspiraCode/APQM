@@ -282,8 +282,8 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.IAgree = bool.Parse(table.Rows[i][34].ToString());
             rfq.DateFilledOut = DateTime.Parse(table.Rows[i][35].ToString());
             rfq.Make = table.Rows[i][36].ToString();
-            rfq.ReasonNoQuote = table.Rows[i][36].ToString();
-            rfq.Weight = float.Parse(table.Rows[i][37].ToString());
+            rfq.ReasonNoQuote = table.Rows[i][37].ToString();
+            rfq.Weight = float.Parse(table.Rows[i][38].ToString());
             recordset.Add(rfq);
         }       
         return recordset;
