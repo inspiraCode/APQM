@@ -1,15 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewRFQ.ascx.cs" Inherits="SendNewRFQ" %>
-<%@ Register src="rfqEAV.ascx" tagname="rfqEAV" tagprefix="uc1" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
-<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc3" %>
+<%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc1" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc2" %>
+<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc3" %>
+<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <style type="text/css">
     .style1
     {
-        width: 118px;
+        width: 139px;
     }
     .style2
     {
-        width: 118px;
+        width: 139px;
         height: 10px;
     }
     .style3
@@ -31,70 +32,69 @@
     <asp:FormView ID="frmBOMLine" runat="server" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
         Width="480px">
         <ItemTemplate>
-        <table cellspacing="0" class="style5">
-        <tr>
-            <td align="right">
-                Inquiry Number:</td>
-            <td align="left">
-                <asp:Label ID="InquiryNumberLabel" runat="server" 
-                    Text='<%# Bind("InquiryNumber") %>' />
-                </td>
-        </tr>
-        <tr>
-            <td align="right">
-                Revision:</td>
-            <td align="left">
-                <asp:Label ID="RevisionLabel" runat="server" 
-                    Text='<%# Bind("Revision") %>' />
-                </td>
-        </tr>
-        <tr>
-            <td align="right">
-                Product:</td>
-            <td align="left">
-                <asp:Label ID="PartDescriptionLabel" runat="server" 
-                    Text='<%# Bind("PartDescription") %>' />
-                </td>
-        </tr>
-        <tr>
-            <td align="right">
-                Part Number:</td>
-            <td align="left">
-                <asp:Label ID="PartNumberLabel" runat="server" 
-                    Text='<%# Bind("PartNumber") %>' />
-                </td>
-        </tr>
-        <tr>
-            <td align="right">
-                Material</td>
-            <td align="left">
-                <asp:Label ID="MaterialLabel" runat="server" 
-                    Text='<%# Bind("Material") %>' />
-                </td>
-        </tr>
-        </table>
+            <table cellspacing="0" class="style5">
+                <tr>
+                    <td align="right" style="font-weight: bold;">
+                        Inquiry Number:
+                    </td>
+                    <td align="left">
+                        <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight: bold;">
+                        Revision:
+                    </td>
+                    <td align="left">
+                        <asp:Label ID="RevisionLabel" runat="server" Text='<%# Bind("Revision") %>' />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight: bold;">
+                        Product:
+                    </td>
+                    <td align="left">
+                        <asp:Label ID="PartDescriptionLabel" runat="server" Text='<%# Bind("PartDescription") %>' />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight: bold;">
+                        Part Number:
+                    </td>
+                    <td align="left">
+                        <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" style="font-weight: bold;">
+                        Material
+                    </td>
+                    <td align="left">
+                        <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
+                    </td>
+                </tr>
+            </table>
         </ItemTemplate>
     </asp:FormView>
-    
-    
-    
-    
-    
+    <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+        display: inline-block;">
+        EAV pulled from SIF
+        <uc4:sifDetail ID="uscSifDetail" runat="server" />
+    </div>
     <br />
-    <table cellspacing="0" style="width: 479px">
+    <br />
+    <table cellspacing="0" style="width: 491px" align="center">
         <tr>
             <td align="right" class="style1">
                 Vendor
             </td>
             <td class="style3" align="left">
-                <asp:DropDownList ID="cboSupplier" chosen = "true" runat="server" 
-                    AutoPostBack="True" DataSourceID="SqlDataSource1"
-                    DataTextField="SupplierName" DataValueField="SupplierMasterKey" OnDataBound="on_dataBound_supplier"
-                    OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" Width="285px" 
-                    Height="16px" TabIndex="22">
+                <asp:DropDownList ID="cboSupplier" chosen="true" runat="server" AutoPostBack="True"
+                    DataSourceID="SqlDataSource1" DataTextField="SupplierName" DataValueField="SupplierMasterKey"
+                    OnDataBound="on_dataBound_supplier" OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged"
+                    Width="285px" Height="16px" TabIndex="26">
                 </asp:DropDownList>
-                <asp:Button ID="btnNewSupplier" runat="server" 
-                    Text="New" Width="60px" TabIndex="23" />
+                <asp:Button ID="btnNewSupplier" runat="server" Text="New" Width="60px" TabIndex="27" />
             </td>
         </tr>
         <tr>
@@ -102,92 +102,70 @@
                 Email
             </td>
             <td class="style3" align="left">
-                <asp:TextBox ID="txtEmail" runat="server" Width="346px" TabIndex="24"></asp:TextBox>
+                <asp:TextBox ID="txtEmail" runat="server" Width="346px" TabIndex="28"></asp:TextBox>
             </td>
         </tr>
-        <tr style="height:10px;">
+        <tr style="height: 10px;">
             <td class="style2">
             </td>
             <td class="style4">
             </td>
         </tr>
-        <tr>
-            <td align="right" class="style1">
-                EAV</td>
-            <td class="style3" align="left">
-                <uc1:rfqEAV ID="uscRfqEAV" runat="server" />
-            </td>
-        </tr>
-        <tr>
-            <td align="right" class="style1">
+        <tr style="height: 10px;">
+            <td class="style2" align="right">
                 Due Date
             </td>
-            <td align="left">
+            <td class="style4" align="left">
                 <asp:TextBox ID="txtDueDate" runat="server" Width="200px" TabIndex="29"></asp:TextBox>
-                <asp:Button ID="btnCalendar" runat="server" OnClick="btnCalendar_Click" 
-                    Text="..." TabIndex="30" />
-            </td>
-        </tr>
-        <tr style="height:30px;">
-            <td class="style1" align="right">
-                
-                Target Price</td>
-            <td align="left">
-                
-                <asp:CheckBox ID="chkTargetPrice" ClientID="chkTargetPrice" onchange="toggleTargetPrice();" TabIndex="31" runat="server" />
-                
-               <asp:TextBox ID="txtTargetPrice" TabIndex="32" style="display:none;" validate="number" validationid="validatingNewRFQ"
-                    runat="server"></asp:TextBox>
             </td>
         </tr>
         <tr>
-            <td class="style1" style="text-align:right;">
-                
-                Market Sector</td>
-            <td align="left">
-                
-                <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" 
-                    Width="124px" TabIndex="33">
+            <td align="right" class="style1">
+                Market Sector
+            </td>
+            <td class="style3" align="left">
+                <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" Width="124px"
+                    TabIndex="31">
                     <asp:ListItem Selected="True" Value="Aero">Aerospace</asp:ListItem>
                     <asp:ListItem Value="Auto">Automotive</asp:ListItem>
                 </asp:DropDownList>
+                <asp:Button ID="btnNewMarketSector" runat="server" Text="New" Width="60px" 
+                    TabIndex="27" />
             </td>
         </tr>
-        <tr>
-            <td class="style1">
-                
+        <tr style="height: 30px;">
+            <td align="right" class="style1">
+                Target Price
             </td>
-            <td>
-                
-                &nbsp;</td>
+            <td align="left">
+                <asp:CheckBox ID="chkTargetPrice" onchange="toggleTargetPrice();" TabIndex="32" runat="server" />
+                <asp:TextBox ID="txtTargetPrice" TabIndex="33" Style="display: none;" validate="number"
+                    validationid="validatingNewRFQ" runat="server"></asp:TextBox>
+            </td>
         </tr>
-        <tr>
-            <td align="center" colspan="2">
-                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" OnClientClick="return validate();" validationid="validatingNewRFQ" Text="Send New RFQ"
-                    Width="136px" TabIndex="34" />
-                <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
-                    Width="70px" TabIndex="35" />
+        <tr style="height: 30px;">
+            <td class="style1" align="right">
+                Comments to Vendor
+            </td>
+            <td align="left">
+                <asp:TextBox ID="txtCommentToVendor" runat="server" Height="50px" Width="300px" TextMode="MultiLine"
+                    TabIndex="34"></asp:TextBox>
             </td>
         </tr>
     </table>
-    <asp:SqlDataSource OnInit="on_sqldatasource_Init"
-     ID="SqlDataSource1" runat="server" 
+    <br />
+    <div>
+        <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" OnClientClick="return validate();"
+            validationid="validatingNewRFQ" Text="Send New RFQ" Width="136px" TabIndex="35" />
+        <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
+            Width="70px" TabIndex="36" />
+    </div>
+    <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSource1" runat="server"
         SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
     </asp:SqlDataSource>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:Button runat="server" Text="" CssClass="OverlayCalendar" Style="border: 0;"
-            ID="btnCalendarBackground" OnClick="btnCalendarBackground_Click" />
-        <asp:Panel ID="popupContainer" runat="server" CssClass="PopUpCalendar">
-            <asp:Calendar ID="calendar" runat="server" OnSelectionChanged="calendar_SelectionChanged">
-            </asp:Calendar>
-        </asp:Panel>
-    </asp:Panel>
-    <asp:SqlDataSource 
-    OnInit="on_sqldatasource_Init"
-    ID="SqlDataSourceRFQCountPerBOMDetail" runat="server" 
-        
-        SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)" 
-        ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+    <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceRFQCountPerBOMDetail"
+        runat="server" SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material, SIFHeaderKey FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)"
+        ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True"
         ProviderName="System.Data.SqlClient">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"
@@ -204,6 +182,23 @@
         return true;
     }
     function toggleTargetPrice() {
-        jQuery('#<%= txtTargetPrice.ClientID %>').toggle();
+        var checkboxTargetPriceIsChecked = jQuery('#<%= chkTargetPrice.ClientID %>').is(":checked");
+        if (checkboxTargetPriceIsChecked) {
+            jQuery('#<%= txtTargetPrice.ClientID %>').show();
+        }
+        else {
+            jQuery('#<%= txtTargetPrice.ClientID %>').hide();
+        }
+
     }
+    jQuery(document).ready(function() {
+        jQuery("[toHide]").hide();
+        toggleTargetPrice();
+        jQuery('#<%= txtDueDate.ClientID %>').datepicker({
+            showOn: "button",
+            buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
+            buttonImageOnly: true
+        });
+    });
 </script>
+

@@ -18,7 +18,6 @@ public partial class rfqForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        uscRfqEAV.setEnabled(false);
         if (Session["rfqObject"] != null)
         {
             rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
@@ -59,6 +58,7 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     public void fillWithEntity(RFQ rfq)
     {
+        txtCommentsToVendor.Text = rfq.CommentsToVendor;
         optNoQuote.Checked = rfq.NoQuote;
         optQuote.Checked = !rfq.NoQuote;
         txtReasonNoQuote.Text = rfq.ReasonNoQuote;
@@ -67,7 +67,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblDueDate.Text = rfq.DueDate.ToShortDateString();
         lblRFQNumber.Text = rfq.RfqGenerated;
         lblPartNumber.Text = rfq.PartNumber;
-        // lblPartName.Text
+        lblPartName.Text = rfq.PartMaterial;
         lblDrawingLevel.Text = rfq.DrawingLevel;
         lblMarketSector.Text = rfq.AutoAero;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
@@ -92,9 +92,10 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
 
         txtWeight.Text = rfq.Weight.ToString();
+        cboUMWeight.SelectedValue = rfq.UmWeight;
         txtMOQ.Text = rfq.Moq;
         txtMake.Text = rfq.Make;
-        txtComments.Text = rfq.Comments;
+        txtComments.Text = rfq.CommentsToBuyer;
 
         chkIAgree.Checked = rfq.IAgree;
 
@@ -106,9 +107,10 @@ public partial class rfqForm : System.Web.UI.UserControl
         uscRfqACR.setEntity(rfq.RfqAcr);
         uscRfqACR.load();
 
-        uscRfqEAV.reset();
-        uscRfqEAV.setEntity(rfq.RfqEAV);
-        uscRfqEAV.load();
+        sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
+        List<SIFDetail> sifDetailList = sifDetailCRUD.readByParentID(rfq.SifHeaderKey);
+
+        uscSifDetail.setEntity(sifDetailList);        
 
     }
     public void save()
@@ -139,6 +141,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         //lblPartNumber.Text
         if (lblDueDate.Text.Trim() != "") rfq.DueDate = DateTime.Parse(lblDueDate.Text);
 
+        rfq.CommentsToVendor = txtCommentsToVendor.Text;
         rfq.NoQuote = !optQuote.Checked;
         if(rfq.NoQuote)
             rfq.ReasonNoQuote = txtReasonNoQuote.Text;
@@ -167,10 +170,15 @@ public partial class rfqForm : System.Web.UI.UserControl
         if (txtPrototypeTooling.Text.Trim() != "") rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
         if (txtPrototypePiece.Text.Trim() != "") rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
 
-        if (txtWeight.Text.Trim() != "") rfq.Weight = float.Parse(txtWeight.Text);
+        if (txtWeight.Text.Trim() != "")
+        {
+            rfq.Weight = float.Parse(txtWeight.Text);
+            rfq.UmWeight = cboUMWeight.SelectedValue;
+        }
+
         rfq.Moq = txtMOQ.Text;
         rfq.Make = txtMake.Text;
-        rfq.Comments = txtComments.Text;
+        rfq.CommentsToBuyer = txtComments.Text;
 
         rfq.IAgree = chkIAgree.Checked;
 

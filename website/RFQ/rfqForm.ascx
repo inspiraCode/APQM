@@ -2,6 +2,7 @@
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
 <%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc3" %>
+<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <style type="text/css">
     .style2
     {
@@ -56,15 +57,31 @@
     {
         width: 57px;
     }
-    </style>
+</style>
+<br />
+<br />
+<div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
+</div>
+<br />
 <div>
-    <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" 
-        Checked="True" onchange="on_change_option_quote()" TabIndex="1" />
+    <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" Checked="True"
+        onchange="on_change_option_quote()" TabIndex="1" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" 
-        Text="No Quote" onchange="on_change_option_quote()" TabIndex="1" />
+    <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" Text="No Quote"
+        onchange="on_change_option_quote()" TabIndex="1" />
+</div>
+<br />
+<div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
 <div id="quoteSection">
+    <div>
+        <br />
+        Comments to vendor:<br />
+        <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
+            ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1"></asp:TextBox>
+        <br />
+        <br />
+    </div>
     <div align="center">
         <table cellspacing="0" style="min-width: 995px; max-width: 995px; width: 1053px;">
             <tr>
@@ -72,7 +89,7 @@
                     Due Date
                 </td>
                 <td align="left" class="style27">
-                    <asp:Label ID="lblDueDate" runat="server" BackColor="Silver" Style="text-align: center"
+                    <asp:Label ID="lblDueDate" runat="server" BackColor="#D3D3D3" Style="text-align: center"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
                 <td align="left" class="style70">
@@ -91,20 +108,21 @@
                 </td>
                 <td align="left" class="style27">
                     <asp:Label ID="lblRFQNumber" runat="server" Style="text-align: center" Width="145px"
-                        BackColor="Silver" Height="20px"></asp:Label>
+                        BackColor="#D3D3D3" Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style70">
                     Supplier Name
                 </td>
                 <td align="left" class="style29">
-                    <asp:Label ID="lblSupplierName" runat="server" BackColor="Silver" Width="220px" Height="20px"></asp:Label>
+                    <asp:Label ID="lblSupplierName" runat="server" BackColor="#D3D3D3" Width="220px"
+                        Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style71" style="border-top: solid gray; border-left: solid gray;">
                     Total Manufacturing Cost
                 </td>
                 <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;">
                     <asp:Label ID="lblTotalManufacturingCost" Style="text-align: right;" runat="server"
-                        BackColor="Silver" Width="104px" Height="20px">0</asp:Label>
+                        BackColor="#D3D3D3" Width="104px" Height="20px">0</asp:Label>
                 </td>
             </tr>
             <tr>
@@ -112,14 +130,14 @@
                     Part #
                 </td>
                 <td align="left" class="style27">
-                    <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="Silver"
+                    <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style70">
                     Manufacturing Location
                 </td>
                 <td align="left" class="style29">
-                    <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="Silver" Width="220px"
+                    <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="#D3D3D3" Width="220px"
                         Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style71" style="border-left: solid gray;">
@@ -133,17 +151,17 @@
             </tr>
             <tr>
                 <td align="right" class="style66">
-                    Part Name
+                    Market Sector
                 </td>
                 <td align="left" class="style27">
-                    <asp:Label ID="lblPartName" Style="text-align: center" runat="server" BackColor="Silver"
+                    <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style70">
                     Ship From Location
                 </td>
                 <td align="left" class="style29">
-                    <asp:Label ID="lblShipFromLocation" runat="server" BackColor="Silver" Width="220px"
+                    <asp:Label ID="lblShipFromLocation" runat="server" BackColor="#D3D3D3" Width="220px"
                         Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style71" style="border-left: solid gray;">
@@ -160,7 +178,7 @@
                     Drawing Level
                 </td>
                 <td align="left" class="style27">
-                    <asp:Label ID="lblDrawingLevel" runat="server" Style="text-align: center" BackColor="Silver"
+                    <asp:Label ID="lblDrawingLevel" runat="server" Style="text-align: center" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style70">
@@ -181,11 +199,11 @@
             </tr>
             <tr>
                 <td align="right" class="style66">
-                    Market Sector
+                    Part Description
                 </td>
-                <td align="left" class="style27">
-                    <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="Silver"
-                        Width="145px" Height="20px"></asp:Label>
+                <td align="left" class="style27" rowspan="2">
+                    <asp:Label ID="lblPartName" Style="text-align: center" runat="server" BackColor="#D3D3D3"
+                        Width="200px" Height="45px"></asp:Label>
                 </td>
                 <td align="right" class="style70">
                 </td>
@@ -195,17 +213,34 @@
                     Total Piece Cost
                 </td>
                 <td align="left" class="style31" style="border-right: solid gray; border-bottom: solid gray;">
-                    <asp:Label ID="lblTotalPieceCost" runat="server" Style="text-align: right" BackColor="Silver"
+                    <asp:Label ID="lblTotalPieceCost" runat="server" Style="text-align: right" BackColor="#D3D3D3"
                         Width="104px" Height="20px">123456</asp:Label>
                 </td>
             </tr>
             <tr>
                 <td align="right" class="style66">
-                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right"
-                        Width="145px" Height="20px">Target Price</asp:Label>
+                    &nbsp;
+                </td>
+                <td align="right" class="style70">
+                    &nbsp;
+                </td>
+                <td align="left" class="style29">
+                    &nbsp;
+                </td>
+                <td align="right" class="style71">
+                    &nbsp;
+                </td>
+                <td align="left" class="style72">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style66">
+                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right" Width="145px"
+                        Height="20px">Target Price</asp:Label>
                 </td>
                 <td align="left" class="style27">
-                    <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="Silver"
+                    <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="#D3D3D3"
                         Width="145px" Height="20px">123456</asp:Label>
                 </td>
                 <td align="right" class="style70">
@@ -223,7 +258,10 @@
             <tr>
                 <td align="center">
                     Estimated Annual Volume<br />
-                    <uc3:rfqEAV ID="uscRfqEAV" runat="server" />
+                    <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+                        display: inline-block;">
+                        <uc4:sifDetail ID="uscSifDetail" runat="server" />
+                    </div>
                 </td>
                 <td align="center">
                     <table>
@@ -267,7 +305,8 @@
                 </td>
             </tr>
         </table>
-        <div style="border: solid; height: 25px; border-color: silver; border-width: 2px;">
+        <br />
+        <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
         </div>
         <br />
         <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
@@ -291,21 +330,28 @@
                             <td align="right">
                                 Weight
                                 <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="30"></asp:TextBox>
+                                    runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
+                                <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" 
+                                    TabIndex="32">
+                                    <asp:ListItem Selected="True"></asp:ListItem>
+                                    <asp:ListItem Value="Each">Each</asp:ListItem>
+                                    <asp:ListItem Value="Kg">Kg</asp:ListItem>
+                                    <asp:ListItem Value="Lb">Lb</asp:ListItem>
+                                </asp:DropDownList>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 MOQ
-                                <asp:TextBox ID="txtMOQ" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
+                                <asp:TextBox ID="txtMOQ" validate="required" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="130px" TabIndex="33"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 Make
-                                <asp:TextBox ID="txtMake" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="32"></asp:TextBox>
+                                <asp:TextBox ID="txtMake" validate="required" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="130px" TabIndex="34"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -316,7 +362,7 @@
                         <tr>
                             <td align="left">
                                 <asp:TextBox ID="txtComments" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: left" Width="300px" TabIndex="33" Height="47px"
+                                    runat="server" Style="text-align: left" Width="300px" TabIndex="35" Height="47px"
                                     TextMode="MultiLine"></asp:TextBox>
                             </td>
                         </tr>
@@ -326,7 +372,7 @@
             <tr>
                 <td class="style56" colspan="2" align="right">
                     <asp:TextBox ID="txtToolingDetail" validate="required" validationid="validatingRFQForm"
-                        runat="server" Width="300px" Height="40px" TabIndex="21" TextMode="MultiLine"></asp:TextBox>
+                        runat="server" Width="300px" Height="40px" TabIndex="22" TextMode="MultiLine"></asp:TextBox>
                 </td>
                 <td align="center" rowspan="4">
                     <uc2:rfqACR ID="uscRfqACR" runat="server" />
@@ -338,7 +384,7 @@
                 </td>
                 <td class="style62" align="right">
                     <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="22"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="23"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -347,7 +393,7 @@
                 </td>
                 <td class="style62" align="right">
                     <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="23"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -356,22 +402,22 @@
                 </td>
                 <td class="style62" align="right">
                     <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
                 </td>
             </tr>
         </table>
         <div align="center">
-        <br />
-            <asp:CheckBox ID="chkIAgree" runat="server" Text="I Agree" TabIndex="34" />
+            <br />
+            <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail." TabIndex="36" />
         </div>
     </div>
 </div>
 <div id="noQuoteSection" style="vertical-align: top;">
-<br />
-<br />
+    <br />
+    <br />
     Reason
     <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
-        Width="400px" TabIndex="35"></asp:TextBox>
+        Width="400px" TabIndex="37"></asp:TextBox>
 </div>
 <br />
 <br />
@@ -382,6 +428,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function() {
         on_change_option_quote();
+        jQuery("[toHide]").hide();
     });
 
     function on_change_option_quote() {
@@ -394,7 +441,7 @@
             jQuery("#noQuoteSection").show();
         }
     }
-    
+
     function summarizeTotalPieceCost() {
 
         var txtSGAProfit = document.getElementById("<%= txtSGAProfit.ClientID %>");
@@ -435,3 +482,4 @@
     }
     window.onload = summarizeTotalPieceCost();
 </script>
+

@@ -87,7 +87,12 @@
                 </div>
             </th>
             <th class="camposSinBordes">
-                <asp:TextBox ID="txtUOM" runat="server" Width="45px" TabIndex="11"></asp:TextBox>
+                <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" TabIndex="10">
+                    <asp:ListItem Selected="True"></asp:ListItem>
+                    <asp:ListItem Value="Each">Each</asp:ListItem>
+                    <asp:ListItem Value="Kg">Kg</asp:ListItem>
+                    <asp:ListItem Value="Lb">Lb</asp:ListItem>
+                </asp:DropDownList>
             </th>
             <th class="camposSinBordes">
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtQuantity"

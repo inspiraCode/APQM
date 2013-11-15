@@ -84,9 +84,5 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-    }
-    protected void btnBackToSIF_Click(object sender, EventArgs e)
-    {
-        
-    }
+    }    
 }

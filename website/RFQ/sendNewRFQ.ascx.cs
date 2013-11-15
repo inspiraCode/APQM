@@ -15,6 +15,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         btnNewSupplier.OnClientClick = "return promptUser('New Supplier', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
+        btnNewMarketSector.OnClientClick = "return promptUser('New Market Sector', 'm~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         if (Session["supplierObject"] != null)
         {
             this.supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
@@ -69,24 +70,13 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             {   
                 rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
             }
-            
+            rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
             
             if (idGenerated != "")
             {
                 rfq.Id = long.Parse(idGenerated);
-                List<RFQEAV> rfqEAVList = uscRfqEAV.getEntity();
-                RFQEAVCRUD rfqEAVCRUD = new RFQEAVCRUD();
-
-                foreach(RFQEAV rfqEAV in rfqEAVList){
-                    rfqEAV.RfqHeaderKey = rfq.Id;
-                    if (!rfqEAVCRUD.create(rfqEAV))
-                    {
-                        Navigator.goToPage("~/Error.aspx", "");
-                        return;
-                    }
-                }
-
+                
                 TokenCRUD token_CRUD = new TokenCRUD();
                 Token token = new Token();
                 token.Subject = "RFQ";
@@ -175,26 +165,15 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         ViewState["bomDetailID"] = id;
         lblBomDetailID.Text = id.ToString();
         frmBOMLine.DataBind();
-        uscRfqEAV.setEntity(new List<RFQEAV>());
 
         cboSupplier.Focus();
     }
     public void setSIFHeaderID(long id)
     {
-        ViewState["sifHeaderID"] = id;        
-    }
-    protected void btnCalendar_Click(object sender, EventArgs e)
-    {
-        panelPopup.Visible = true;
-    }
-    protected void btnCalendarBackground_Click(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-    }
-    protected void calendar_SelectionChanged(object sender, EventArgs e)
-    {
-        txtDueDate.Text = calendar.SelectedDate.ToShortDateString();
-        panelPopup.Visible = false;
+        ViewState["sifHeaderID"] = id;
+        sifDetailCRUD sifDetail_CRUD = new sifDetailCRUD();
+        List<SIFDetail> sifDetail = sifDetail_CRUD.readByParentID(id);
+        uscSifDetail.setEntity(sifDetail);
     }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {

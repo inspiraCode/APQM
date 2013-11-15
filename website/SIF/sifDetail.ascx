@@ -33,20 +33,20 @@
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='12px;'>
+                                <tr height='12px;' toHide="true">
                                     <td>
                                         <asp:Label ID="Label2" runat="server" Text="% of Volume per Award">
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='12px;'>
+                                <tr height='12px;' toHide="true">
                                     <td>
                                         <asp:Label ID="Label3" runat="server" Text="Projected/Target Price">
                             
                                         </asp:Label>
                                     </td>
                                 </tr>
-                                <tr height='12px;'>
+                                <tr height='12px;' toHide="true">
                                     <td>
                                         <asp:Label ID="Label4" runat="server" Text="Annual Revenue">
                             
@@ -75,19 +75,19 @@
                                 </asp:Label>
                             </td>
                         </tr>
-                        <tr height='11px;'>
+                        <tr height='11px;' toHide="true">
                             <td>
                                 <asp:Label ID="lblServiceTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PercentVolumePerAward")%>'>
                                 </asp:Label>
                             </td>
                         </tr>
-                        <tr height='11px;'>
+                        <tr height='11px;' toHide="true">
                             <td>
                                 <asp:Label ID="lblScrapTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ProjectedTargetPrice")%>'>
                                 </asp:Label>
                             </td>
                         </tr>
-                        <tr height='11px;'>
+                        <tr height='11px;' toHide="true">
                             <td>
                                 <asp:Label ID="lblLaborTotal" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "AnnualRevenue")%>'>
                                 </asp:Label>

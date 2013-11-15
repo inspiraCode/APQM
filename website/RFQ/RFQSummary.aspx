@@ -20,14 +20,13 @@
                     <br />
                 </div>
                 <div align="right">
-                    <asp:Button ID="btnBackToSIFList" runat="server" Text="Back" OnClick="btnBackToSIF_Click" />
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
 
                 <script type="text/javascript">
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Please select a BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 900, modal: true,
+                        width: 900, modal: false,
                         height: 460,
                         dialogClass: "no-close",
                         closeOnEscape: false,

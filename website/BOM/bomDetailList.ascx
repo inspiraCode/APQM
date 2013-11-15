@@ -2,7 +2,7 @@
     Inherits="bomDetailList" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc3" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -79,7 +79,7 @@
     <tr>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <div style="width: 125px;">
-                <asp:DropDownList ID="cboPartNumber" chosen = "true" Width="120px" runat="server" AutoPostBack="True"
+                <asp:DropDownList ID="cboPartNumber" chosen="true" Width="120px" runat="server" AutoPostBack="True"
                     OnSelectedIndexChanged="cboPartNumber_SelectedIndexChanged">
                 </asp:DropDownList>
                 <br />
@@ -107,9 +107,11 @@
                 TextMode="MultiLine" Style="overflow-y: auto; font-family: Tahoma;"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:DropDownList ID="cboUM" chosen = "true" runat="server" Width="70px">
+            <asp:DropDownList ID="cboUM" chosen="true" runat="server" Width="70px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Each">Each</asp:ListItem>
+                <asp:ListItem Value="Kg">Kg</asp:ListItem>
+                <asp:ListItem Value="Lb">Lb</asp:ListItem>
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -126,7 +128,8 @@
                 runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtEAU" validate="number" validationid="validatingBOMDetail"  runat="server" Width="60px">0</asp:TextBox>
+            <asp:TextBox ID="txtEAU" validate="number" validationid="validatingBOMDetail" runat="server"
+                Width="60px">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtCapComAssm" validationid="validatingBOMDetail" runat="server"
@@ -145,7 +148,7 @@
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:DropDownList ID="cboPurchasingStatus" chosen = "true" runat="server" Width="120px">
+            <asp:DropDownList ID="cboPurchasingStatus" chosen="true" runat="server" Width="120px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Q">Quote</asp:ListItem>
                 <asp:ListItem Value="E">Estimate</asp:ListItem>
@@ -249,10 +252,11 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 560, modal: true,
+                width: 560, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>
+
     </asp:Panel>
 </table>
-<uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber"  runat="server" />
+<uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />

@@ -63,7 +63,7 @@
      Here are the <a href="http://www.enable-javascript.com/" target="_blank">
      instructions how to enable JavaScript in your web browser</a>.
     </noscript>
-    <div id="javascriptEnabled" style="display:none;">
+    <div id="javascriptEnabled" style="visibility:hidden;">
         <form id="form1" runat="server">
         <div id="divHeader" style="top: 0; left: 0; width: 100%;">
             <table width="100%" style="background-color: white;">
@@ -120,7 +120,7 @@
 <script type="text/javascript">
     jQuery('.-ms-clear').css('display', 'none');
     jQuery(document).ready(function() {
-        jQuery("#javascriptEnabled").show();
+        jQuery("#javascriptEnabled").css("visibility", "visible");
     });
 </script>
 

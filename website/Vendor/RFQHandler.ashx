@@ -15,7 +15,7 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
 
     RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
     RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
-    RFQEAVCRUD rfqEAVCRUD = new RFQEAVCRUD();
+    
     
     public void ProcessRequest (HttpContext context) {
         
@@ -54,8 +54,6 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
 
                 System.Collections.Generic.List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
                 rfq.RfqAcr = rfqACR;
-                System.Collections.Generic.List<RFQEAV> rfqEAV = rfqEAVCRUD.readByParentID(rfq.Id);
-                rfq.RfqEAV = rfqEAV;
                 
                 SessionObject soRFQ = new SessionObject();
                 soRFQ.Content = rfq;

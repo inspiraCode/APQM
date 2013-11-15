@@ -94,7 +94,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         RFQDetail rfqDetailLine = new RFQDetail();
 
         rfqDetailLine.ItemDescription = txtPartNumber.Text;
-        rfqDetailLine.Um = txtUOM.Text;
+        rfqDetailLine.Um = cboUM.SelectedValue;
         rfqDetailLine.RpcQty = float.Parse(txtQuantity.Text);
         rfqDetailLine.RpcCostPerUnit = float.Parse(txtCostUnit.Text);
         rfqDetailLine.OSQty = float.Parse(txtOutsideServicesQuantity.Text);
@@ -123,7 +123,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     }
     private void clearAddFields()
     {
-        txtUOM.Text = "";
+        cboUM.SelectedIndex = 0;
         txtQuantity.Text = "";
         txtCostUnit.Text = "";
         txtOutsideServicesQuantity.Text = "";

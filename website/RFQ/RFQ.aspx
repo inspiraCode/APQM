@@ -26,7 +26,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 800, modal: true,
+                        width: 800, modal: false,
                         dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>
@@ -40,7 +40,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 530, modal: true,
+                        width: 600, modal: false,
                         dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>

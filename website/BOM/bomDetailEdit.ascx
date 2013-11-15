@@ -99,6 +99,8 @@
             <asp:DropDownList ID="cboUM" chosen = "true" runat="server" Width="130px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Each">Each</asp:ListItem>
+                <asp:ListItem Value="Kg">Kg</asp:ListItem>
+                <asp:ListItem Value="Lb">Lb</asp:ListItem>      
             </asp:DropDownList>
         </td>
     </tr>

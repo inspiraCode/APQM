@@ -85,7 +85,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 630, modal: true,
+                        width: 630, modal: false,
                         dialogClass: "no-close", closeOnEscape:false
                     });
                 </script>
@@ -101,7 +101,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 950, modal: true,
+                        width: 950, modal: false,
                         dialogClass: "no-close", closeOnEscape:false
                     });                    
                 </script>
@@ -113,7 +113,7 @@
                 <script type="text/javascript">
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 950, modal: true,
+                        width: 950, modal: false,
                         dialogClass: "no-close", closeOnEscape:false
                     });                    
                 </script>

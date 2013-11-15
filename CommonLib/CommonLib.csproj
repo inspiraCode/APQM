@@ -57,6 +57,7 @@
     <Compile Include="entities\BOM.cs" />
     <Compile Include="entities\Customer.cs" />
     <Compile Include="entities\Item.cs" />
+    <Compile Include="entities\MarketSector.cs" />
     <Compile Include="entities\RFQ.cs" />
     <Compile Include="entities\SIF.cs" />
     <Compile Include="entities\Supplier.cs" />

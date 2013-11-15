@@ -6,6 +6,7 @@ using System.Web;
 public class RFQ
 {
     private long id;
+    private long sifHeaderKey = -1;
     private long bomDetailId = -1;
     private long supplierId = -1;
     private long rfqNumberKey = -1;
@@ -40,18 +41,27 @@ public class RFQ
     private string moq = ""; 
     private float targetPrice = -1; //-1 means that buyer did not want to specify targetPrice 
     private bool noQuote = false; 
-    private string autoAero = ""; 
-    private string comments = "";
+    private string autoAero = "";
+    private string commentsToBuyer = "";
+    private string commentsToVendor = "";
+    
     private bool iAgree = false; 
     private DateTime dateFilledOut = new DateTime(1985, 2, 10); 
     private string make = "";
     private string reasonNoQuote = "";
     private float weight;
+    private string umWeight = "";
+    private string partMaterial = "";
 
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
 
+    public long SifHeaderKey
+    {
+        get { return sifHeaderKey; }
+        set { sifHeaderKey = value; }
+    }
     public string Status
     {
         get { return status; }
@@ -232,11 +242,6 @@ public class RFQ
         get { return autoAero; }
         set { autoAero = value; }
     }
-    public string Comments
-    {
-        get { return comments; }
-        set { comments = value; }
-    }
     public bool IAgree
     {
         get { return iAgree; }
@@ -261,6 +266,26 @@ public class RFQ
     {
         get { return weight; }
         set { weight = value; }
+    }
+    public string CommentsToBuyer
+    {
+        get { return commentsToBuyer; }
+        set { commentsToBuyer = value; }
+    }
+    public string CommentsToVendor
+    {
+        get { return commentsToVendor; }
+        set { commentsToVendor = value; }
+    }
+    public string UmWeight
+    {
+        get { return umWeight; }
+        set { umWeight = value; }
+    }
+    public string PartMaterial
+    {
+        get { return partMaterial; }
+        set { partMaterial = value; }
     }
 }
 
