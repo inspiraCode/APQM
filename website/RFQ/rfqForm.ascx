@@ -349,7 +349,7 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                Make
+                                Brand
                                 <asp:TextBox ID="txtMake" validate="required" validationid="validatingRFQForm" runat="server"
                                     Style="text-align: right" Width="130px" TabIndex="34"></asp:TextBox>
                             </td>
@@ -361,9 +361,8 @@
                         </tr>
                         <tr>
                             <td align="left">
-                                <asp:TextBox ID="txtComments" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: left" Width="300px" TabIndex="35" Height="47px"
-                                    TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" 
+                                Width="300px" TabIndex="35" Height="47px" TextMode="MultiLine"></asp:TextBox>
                             </td>
                         </tr>
                     </table>

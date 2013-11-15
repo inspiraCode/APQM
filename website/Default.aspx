@@ -87,7 +87,7 @@
                         appendTo: jQuery('form:first'),
                         width: 630, modal: false,
                         dialogClass: "no-close", closeOnEscape:false
-                    });
+                    });                    
                 </script>
                 <div id="divButtons" align="center" runat="server">
                     <asp:Button ID="btnSaveSupplier" runat="server" Text="Save" Width="70px" OnClick="on_save_supplier" />

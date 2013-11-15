@@ -125,7 +125,8 @@
             </td>
             <td class="style3" align="left">
                 <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" Width="124px"
-                    TabIndex="31">
+                    TabIndex="31" DataSourceID="SqlDataSourceMarketSector" 
+                    DataTextField="Name" DataValueField="MarketSectorID">
                     <asp:ListItem Selected="True" Value="Aero">Aerospace</asp:ListItem>
                     <asp:ListItem Value="Auto">Automotive</asp:ListItem>
                 </asp:DropDownList>
@@ -174,6 +175,11 @@
     </asp:SqlDataSource>
 </div>
 <uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
+<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" 
+    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+    ProviderName="System.Data.SqlClient" 
+    SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
+</asp:SqlDataSource>
 <uc3:Validator ID="Validator1" runat="server" />
 
 <script type="text/javascript">
@@ -201,4 +207,3 @@
         });
     });
 </script>
-

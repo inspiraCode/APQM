@@ -49,6 +49,7 @@
     <Compile Include="dao\bomCRUD.cs" />
     <Compile Include="dao\customerCRUD.cs" />
     <Compile Include="dao\itemCRUD.cs" />
+    <Compile Include="dao\MarketSectorCRUD.cs" />
     <Compile Include="dao\RfqCRUD.cs" />
     <Compile Include="dao\sifCRUD.cs" />
     <Compile Include="dao\SupplierCRUD.cs" />

@@ -54,6 +54,7 @@ namespace SalesDB_To_APQM
             sifCRUD sif_CRUD_APQM = new sifCRUD();
             sifDetailCRUD sifDetail_CRUD_APQM = new sifDetailCRUD();
             customerCRUD customer_CRUD = new customerCRUD();
+            MarketSectorCRUD marketSector_CRUD = new MarketSectorCRUD();
             bomHeaderAccessCRUD bomHeaderAccess = new bomHeaderAccessCRUD();
             bomAccessCRUD bomAccessCRUD = new bomAccessCRUD();
             bomCRUD bomCRUD = new bomCRUD();
@@ -62,6 +63,7 @@ namespace SalesDB_To_APQM
 
             List<SIF> sifsInAPQM;
             List<Customer> customersList;
+            List<MarketSector> marketSectorList;
             List<Item> itemList;
 
             int progress = 0;
@@ -71,6 +73,7 @@ namespace SalesDB_To_APQM
                 //sifsInAccess = (List<SIF>)sif_CRUD_Access.readActive();
                 sifsInAPQM = (List<SIF>)sif_CRUD_APQM.readAll();
                 customersList = (List<Customer>)customer_CRUD.readAll();
+                marketSectorList = (List<MarketSector>)marketSector_CRUD.readAll();
                 itemList = (List<Item>) item_CRUD.readAll();
             }
             catch (Exception ex)
@@ -108,6 +111,8 @@ namespace SalesDB_To_APQM
                         /*Begin Transaction*/
                         DM.Open_Connection("ImportingSIF");
 
+                        //Persisting Customer ***********************************************************************************************************
+
                         Customer customer = customer_CRUD.readByNameInList(sif.CustomerName, customersList);
                         if (customer == null) //Customer does not exist
                         {
@@ -134,6 +139,38 @@ namespace SalesDB_To_APQM
                             }
                         }
                         sif.CustomerKey = customer.Id;
+
+
+                        //Persisting Market Sector ******************************************************************************************************
+
+                        MarketSector marketSector = marketSector_CRUD.readByNameInList(sif.MarketSector, marketSectorList);
+                        if (marketSector == null) //Market Sector does not exist
+                        {
+                            marketSector = new MarketSector();
+                            marketSector.Name = sif.MarketSector;
+                            string idGenerated = marketSector_CRUD.createAndReturnIdGenerated(marketSector, ref DM);
+                            if (idGenerated == "")
+                            {
+                                summary.totalErrors++;
+                                log = "ERROR: Could not create Market Sector: " + marketSector.Name + " for SIF with Inquiry Number: " + sif.InquiryNumber + "\n" +
+                                      "Error Description: " + DM.Error_Mjs + "\n\n";
+                                backgroundWorker1.ReportProgress(++progress);
+                                System.Threading.Thread.Sleep(5);
+                                continue;
+                            }
+                            else
+                            {
+                                marketSector.Id = long.Parse(idGenerated);
+                                log = "INFO: Market Sector created in APQM database: " + marketSector.Name + "\n";
+                                backgroundWorker1.ReportProgress(progress);
+                                System.Threading.Thread.Sleep(5);
+                                marketSectorList.Add(marketSector);
+                            }
+                        }
+                        sif.MarketSectorID = marketSector.Id;
+
+
+                        //Persisting SIF Header *********************************************************************************************************
                         log = "INFO: Attempting to export SIF: " + sif + "\n";
                         backgroundWorker1.ReportProgress(progress);
                         System.Threading.Thread.Sleep(5);
@@ -151,6 +188,9 @@ namespace SalesDB_To_APQM
                         else
                         {
                             sif.Id = long.Parse(sifIDGenerated);
+
+                            //Persisting SIF Detail ****************************************************************************************************
+
                             if (sif.SifDetail.Count > 0)
                             {
                                 log = "INFO: SIF exported, attempting to export its SIF Detail.\n";
@@ -176,7 +216,9 @@ namespace SalesDB_To_APQM
                             log = "INFO: SIF Detail exported, reading its BOMHeader.\n";
                             backgroundWorker1.ReportProgress(progress);
                             System.Threading.Thread.Sleep(5);
-                            //txtLog.AppendText("INFO: SIF exported, reading its BOMHeader.\n");
+                            
+                            
+                            //Persisting BOM Header *****************************************************************************************************
 
                             BOMHeaderAccess bomHeaderByActualSIF = bomHeaderAccess.readBySIF(sif);
 
@@ -207,6 +249,10 @@ namespace SalesDB_To_APQM
                                     log = "INFO: BOMHeader exported, reading Bom Lines.\n";
                                     backgroundWorker1.ReportProgress(progress);
                                     System.Threading.Thread.Sleep(5);
+
+
+
+
                                     //txtLog.AppendText("INFO: BOMHeader exported, reading Bom Lines.\n");
                                     List<BOMAccess> bomsByActualSIF = bomAccessCRUD.readBySIF(sif);
                                     if (bomsByActualSIF.Count > 0)
@@ -242,6 +288,9 @@ namespace SalesDB_To_APQM
                                             }
                                             else
                                             {
+
+
+                                                //Persisting Item Master *******************************************************************************
                                                 //if (bom.PartNumber == "26-3706-c")
                                                 //{
                                                 //    MessageBox.Show("here");
@@ -284,6 +333,9 @@ namespace SalesDB_To_APQM
                                                     backgroundWorker1.ReportProgress(progress);
                                                     System.Threading.Thread.Sleep(5);
                                                 }
+
+
+                                                //Persisting BOM Detail ********************************************************************************
 
                                                 log = "INFO: Attempting to export its BOM Line\n";
                                                 backgroundWorker1.ReportProgress(progress);

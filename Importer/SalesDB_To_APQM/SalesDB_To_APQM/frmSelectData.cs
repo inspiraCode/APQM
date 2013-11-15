@@ -52,49 +52,6 @@ namespace SalesDB_To_APQM
         {
             filterData();
         }
-        //private void filterData()
-        //{
-        //    filter = "";
-        //    CheckedListBox.CheckedItemCollection listSalesPersonSelected = chkListSalesPerson.CheckedItems;
-        //    CheckedListBox.CheckedItemCollection listStatusSelected = chkListStatus.CheckedItems;
-
-        //    if (txtInquiryNumber.Text.Trim() != "" || listSalesPersonSelected.Count > 0 || listStatusSelected.Count > 0)
-        //    {
-        //        filter = "WHERE ";
-
-        //        if (txtInquiryNumber.Text.Trim() != "")
-        //        {
-        //            filter += "[Inquiry Number] = '" + txtInquiryNumber.Text.Trim() + "' AND ";
-        //        }
-
-        //        if (listSalesPersonSelected.Count > 0)
-        //        {
-        //            for (var i = 0; i < listSalesPersonSelected.Count; i++)
-        //            {
-        //                filter += "([Sales Person] = '" + listSalesPersonSelected[i].ToString() + "' OR ";
-        //            }
-        //            filter = filter.Substring(0, filter.Length - 4);
-        //            filter += ") AND ";
-        //        }
-
-        //        if (listStatusSelected.Count > 0)
-        //        {
-        //            filter += "( ";
-        //            for (var i = 0; i < listStatusSelected.Count; i++)
-        //            {
-        //                filter += "[Status] = '" + listStatusSelected[i].ToString() + "' OR ";
-        //            }
-        //            filter = filter.Substring(0, filter.Length - 4);
-        //            filter += ") AND ";
-        //        }
-        //        filter = filter.Substring(0, filter.Length - 4);
-        //    }
-
-        //    gridSIF.DataSource = sifAccess_CRUD.readFilterd(filter);
-        //    lblTotalRecords.Text = gridSIF.RowCount.ToString();
-        //    gridSIF.ClearSelection();
-        //}
-
         private void filterData()
         {
             DataTable dtFilter;
@@ -224,6 +181,7 @@ namespace SalesDB_To_APQM
                     sif.SpecificResourceRequirements = row.Cells["Specific Response Requirements"].Value.ToString();
                     sif.Technical = row.Cells["Technical/subsource Constraints"].Value.ToString();
                     sif.SalesStatus = row.Cells["Status"].Value.ToString();
+                    sif.MarketSector = row.Cells["Market Sector"].Value.ToString();
                     sif.SalesDBID = long.Parse(row.Cells["ID"].Value.ToString());
                     try
                     {

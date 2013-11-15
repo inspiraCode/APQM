@@ -2,7 +2,7 @@
     Inherits="supplierMaster" %>
 <div align="center">
     <table cellspacing="1" style="width: 590px">
-        <tr>
+        <tr style="display: none;">
             <td align="right">
                 Mode:
             </td>
@@ -10,7 +10,7 @@
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
         </tr>
-        <tr>
+        <tr style="display: none;">
             <td align="right">
                 ID:
             </td>

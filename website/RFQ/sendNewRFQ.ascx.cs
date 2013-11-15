@@ -65,7 +65,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             rfq.BomDetailId = (long)ViewState["bomDetailID"];
             rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
             rfq.DueDate = DateTime.Parse(txtDueDate.Text);
-            rfq.AutoAero = cboMarketSector.SelectedValue;
+            rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
             if (chkTargetPrice.Checked)
             {   
                 rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
@@ -209,6 +209,27 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         else
                         {
                             uscNotifier.showAlert("Supplier could not be saved.");
+                        }
+                        break;
+                    case "m":
+                        MarketSector marketSector = new MarketSector();
+                        marketSector.Name = prompt[1];
+
+                        MarketSectorCRUD marketSector_CRUD = new MarketSectorCRUD();
+
+
+                        string idGeneratedMarket = marketSector_CRUD.createAndReturnIdGenerated(marketSector);
+                        if (idGeneratedMarket != "")
+                        {
+                            //SqlDataSource1.DataBind();
+                            cboMarketSector.DataBind();
+                            cboMarketSector.SelectedValue = idGeneratedMarket;
+
+                            cboMarketSector.Focus();
+                        }
+                        else
+                        {
+                            uscNotifier.showAlert("Market Sector could not be saved.");
                         }
                         break;
                 }

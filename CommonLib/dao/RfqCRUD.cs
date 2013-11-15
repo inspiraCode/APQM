@@ -49,7 +49,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
             DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
@@ -98,7 +98,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
             DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
@@ -146,7 +146,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
             DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
@@ -173,7 +173,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
-            "MOQ, TargetPrice, NoQuote, AutoAero, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
+            "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
@@ -218,7 +218,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.Moq = table.Rows[0][29].ToString();
                 rfq.TargetPrice = float.Parse(table.Rows[0][30].ToString());
                 rfq.NoQuote = bool.Parse(table.Rows[0][31].ToString());
-                rfq.AutoAero = table.Rows[0][32].ToString();
+                rfq.MarketSectorID = long.Parse(table.Rows[0][32].ToString());
                 rfq.CommentsToBuyer = table.Rows[0][33].ToString();
                 rfq.CommentsToVendor = table.Rows[0][34].ToString();
                 rfq.IAgree = bool.Parse( table.Rows[0][35].ToString());
@@ -249,7 +249,7 @@ public class RfqCRUD : ICRUD<RFQ>
                     + "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " 
                     + "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
-                      "MOQ, TargetPrice, NoQuote, AutoAero, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
+                      "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -289,7 +289,7 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.Moq = table.Rows[i][29].ToString();
             rfq.TargetPrice = float.Parse(table.Rows[i][30].ToString());
             rfq.NoQuote = bool.Parse(table.Rows[i][31].ToString());
-            rfq.AutoAero = table.Rows[i][32].ToString();
+            rfq.MarketSectorID = long.Parse(table.Rows[i][32].ToString());
             rfq.CommentsToBuyer = table.Rows[i][33].ToString();
             rfq.CommentsToVendor = table.Rows[i][34].ToString();
             rfq.IAgree = bool.Parse(table.Rows[i][35].ToString());
@@ -335,7 +335,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
             DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
@@ -383,7 +383,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
             DM.Load_SP_Parameters("@NoQuote", entity.NoQuote.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());

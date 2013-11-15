@@ -39,6 +39,7 @@
                             width: 1090, modal: false,
                             dialogClass: "no-close", closeOnEscape: false
                         });
+                        
                     </script>
 
                 </div>

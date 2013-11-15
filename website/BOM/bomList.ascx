@@ -1,27 +1,27 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomList.ascx.cs" Inherits="bomList" %>
-<div align="center" >
+<div align="center">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
-            <table border="1" id="tableBOM" class="display" style="display:none;">
-             <thead>
-             <tr>
-                <th>
-                    Top Part Number
-                </th>
-                <th>
-                    SIF
-                </th>
-                <th>
-                    Part Description
-                </th>
-                <th>
-                    Revision
-                </th>
-                <th>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
+            <table border="1" id="tableBOM" class="display" style="display: none;">
+                <thead>
+                    <tr>
+                        <th>
+                            Finished Good PN
+                        </th>
+                        <th>
+                            SIF
+                        </th>
+                        <th>
+                            Revision
+                        </th>
+                        <th>
+                            Part Description
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
@@ -38,10 +38,10 @@
                     </asp:LinkButton>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "PartDescription")%>
+                    <%# DataBinder.Eval(Container.DataItem, "Revision")%>
                 </td>
                 <td>
-                    <%# DataBinder.Eval(Container.DataItem, "Revision")%>
+                    <%# DataBinder.Eval(Container.DataItem, "PartDescription")%>
                 </td>
                 <td>
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="bomID"
@@ -56,8 +56,10 @@
         </FooterTemplate>
     </asp:Repeater>
 </div>
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#tableBOM').dataTable().show();
     });
 </script>
+

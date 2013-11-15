@@ -15,10 +15,12 @@
     <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"
         Text="Back" Width="85px" />
     <asp:Button ID="btnFinalize" validationid="validatingRFQForm" OnClientClick="return validate();"
-        runat="server" Text="Finalize and send" Width="132px" OnClick="btnFinalize_Click" />
+        runat="server" Text="Finalize and submit" Width="132px" OnClick="btnFinalize_Click" />
     <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_save_rfq" OnAfterCancel="on_cancel_rfq" />
     <div id="divButtons" align="center" runat="server">
-        <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
+        <asp:Button ID="btnFinalizeBottom" validationid="validatingRFQForm" OnClientClick="return validate();"
+        runat="server" Text="Finalize and submit" Width="132px" OnClick="btnFinalize_Click" />
+        <asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="70px" OnClick="btnSave_Click"
             validationid="validatingRFQForm" OnClientClick="return validate();" 
             TabIndex="36" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 

@@ -17,7 +17,7 @@
             <asp:BoundField DataField="TopPartNumber" HeaderText="Top Part Number" />
             <asp:BoundField DataField="PartDescription" HeaderText="Product" />
             <asp:BoundField DataField="AnnualVolume" HeaderText="Annual Volume" />
-            <asp:BoundField DataField="AutoAero" HeaderText="Auto / Aero" />
+            <asp:BoundField DataField="MarketSector" HeaderText="Market Sector" />
             <asp:BoundField DataField="PartNumber" HeaderText="Line Part Number" />
             <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" />
             <asp:BoundField DataField="ManufacturePN" HeaderText="Manufacture PN" />

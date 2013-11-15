@@ -14,12 +14,11 @@ public partial class bomForm : System.Web.UI.UserControl
     public BOM bom;
 
     private bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-    private itemCRUD item_CRUD = new itemCRUD(); 
+    private itemCRUD item_CRUD = new itemCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         bom = (BOM)Session["bom"];
-        
     }
     public void load()
     {
@@ -52,7 +51,7 @@ public partial class bomForm : System.Web.UI.UserControl
         lblProduct.Text = bom.PartDescription;
         lblRevision.Text = bom.Revision;
         lblInquiryNumber.Text = bom.InquiryNumber;
-        cboMarketSector.SelectedValue = bom.AutoAero;
+        lblMarketSector.Text = bom.MarketSector.ToString();
         txtAnnualVolume.Text = bom.AnnualVolume.ToString();
         lblCustomer.Text = bom.CustomerName;
         lblSalesRep.Text = bom.SalesPerson;
@@ -68,7 +67,7 @@ public partial class bomForm : System.Web.UI.UserControl
         bom.PartDescription = lblProduct.Text;
         bom.Revision = lblRevision.Text;
         bom.AnnualVolume = int.Parse(txtAnnualVolume.Text);
-        bom.AutoAero = cboMarketSector.SelectedValue;
+        bom.MarketSector = lblMarketSector.Text;
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();

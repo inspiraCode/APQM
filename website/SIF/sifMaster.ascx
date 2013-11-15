@@ -1,5 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SifMaster.ascx.cs" Inherits="SifMaster" %>
 <%@ Register Src="sifDetail.ascx" TagName="sifDetail" TagPrefix="uc1" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
+<style type="text/css">
+    .style1
+    {
+        width: 195px;
+    }
+</style>
 <br />
 <div align="center">
     <table cellspacing="1" style="width: 916px; margin-right: 0px;">
@@ -12,7 +19,7 @@
             </td>
             <td align="left">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
             </td>
             <td align="left">
             </td>
@@ -29,7 +36,7 @@
             <td align="left">
                 BOM:
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblBOM" runat="server"></asp:Label>
             </td>
             <td align="left">
@@ -44,7 +51,7 @@
             </td>
             <td align="left">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
             </td>
             <td align="left">
             </td>
@@ -61,7 +68,7 @@
             <td align="right">
                 Priority
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:TextBox ID="txtPriority" runat="server" Width="100px" TabIndex="3"></asp:TextBox>
             </td>
             <td align="right">
@@ -79,8 +86,14 @@
                 <asp:TextBox ID="txtRevision" runat="server" Width="100px" TabIndex="2"></asp:TextBox>
             </td>
             <td align="left">
-            </td>
-            <td align="left">
+                Market Sector</td>
+            <td align="left" class="style1">
+                <asp:DropDownList ID="cboMarketSector" chosen="true" runat="server" 
+                    Width="124px" DataSourceID="SqlDataSourceMarketSector" DataTextField="Name" 
+                    DataValueField="MarketSectorID">
+                </asp:DropDownList>
+                <asp:Button ID="btnNewMarketSector" runat="server" Text="New" Width="60px" 
+                    TabIndex="27" />
             </td>
             <td align="right">
                 Cost Model Location
@@ -104,7 +117,7 @@
                 </asp:DropDownList>
                 <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" TabIndex="7" />
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Division/Location
             </td>
             <td align="left" colspan="2">
@@ -118,7 +131,7 @@
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtContact" runat="server" Width="240px" TabIndex="8"></asp:TextBox>
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Department
             </td>
             <td align="left" colspan="2">
@@ -132,7 +145,7 @@
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtBussinesClass" runat="server" Width="240px" TabIndex="9"></asp:TextBox>
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Reason For Quote
             </td>
             <td align="left" colspan="2">
@@ -146,7 +159,7 @@
             <td align="left" colspan="2">
                 <asp:TextBox ID="txtProduct" runat="server" Width="240px" TabIndex="10"></asp:TextBox>
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Application/Program
             </td>
             <td align="left" colspan="2">
@@ -168,7 +181,7 @@
             </td>
             <td align="left">
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Part Print
             </td>
             <td align="left" colspan="2">
@@ -184,7 +197,7 @@
             </td>
             <td align="left">
             </td>
-            <td align="right">
+            <td align="right" class="style1">
                 Sample
             </td>
             <td align="left" colspan="2">
@@ -200,7 +213,7 @@
             </td>
             <td align="left">
             </td>
-            <td align="left">
+            <td align="left" class="style1">
             </td>
             <td align="left">
             </td>
@@ -295,3 +308,9 @@
         TabIndex="25" />
 </div>
 <asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />
+<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" 
+    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+    ProviderName="System.Data.SqlClient" 
+    SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
+</asp:SqlDataSource>
+<uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />

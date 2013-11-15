@@ -69,7 +69,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblPartNumber.Text = rfq.PartNumber;
         lblPartName.Text = rfq.PartMaterial;
         lblDrawingLevel.Text = rfq.DrawingLevel;
-        lblMarketSector.Text = rfq.AutoAero;
+        lblMarketSector.Text = rfq.MarketSectorID.ToString();
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
         
         lblSupplierName.Text = rfq.SupplierName;
@@ -122,6 +122,10 @@ public partial class rfqForm : System.Web.UI.UserControl
         {
             RFQ rfq = rfqCRUD.readById(this.rfq.Id);
             rfq.Status = "COMPLETED";
+            if (rfq.NoQuote)
+            {
+                rfq.Status = "DECLINED";
+            }
             rfq.DateFilledOut = DateTime.Now;
             if (!rfqCRUD.update(rfq))
             {
@@ -152,7 +156,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
         rfq.DrawingLevel = lblDrawingLevel.Text;
-        rfq.AutoAero = lblMarketSector.Text;
+        rfq.MarketSectorID = long.Parse(lblMarketSector.Text);
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         
         rfq.PreparedBy = txtPreparedBy.Text;

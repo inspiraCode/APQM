@@ -15,9 +15,15 @@ public class BOM
     private string revision = "";
     private string inquiryNumber = "";
     private int annualVolume;
-    private string autoAero = "";
     private string salesPerson = "";
     private string customerName = "";
+    private string marketSector = ""; //Read from SIF table in view.
+
+    public string MarketSector
+    {
+        get { return marketSector; }
+        set { marketSector = value; }
+    }
     
 
     private List<BOMDetail> bomDetail;
@@ -61,11 +67,6 @@ public class BOM
     {
         get { return annualVolume; }
         set { annualVolume = value; }
-    }
-    public string AutoAero
-    {
-        get { return autoAero; }
-        set { autoAero = value; }
     }
     public string SalesPerson
     {

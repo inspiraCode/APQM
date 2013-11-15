@@ -9,7 +9,8 @@ namespace SalesDB_To_APQM.entities
     {
         private string topPartNumber = "";
         private string partDescription = ""; 
-        private string revision = "";       
+        private string revision = "";
+        private long marketSectorID = -1;
 
         public string TopPartNumber
         {
@@ -25,6 +26,11 @@ namespace SalesDB_To_APQM.entities
         {
             get { return revision; }
             set { revision = value; }
+        }
+        public long MarketSectorID
+        {
+            get { return marketSectorID; }
+            set { marketSectorID = value; }
         }
     }
     public class BOMAccess

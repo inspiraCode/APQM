@@ -34,7 +34,7 @@ public partial class _Default : System.Web.UI.Page
                     break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
-                    uscSupplierList.load();
+                    uscSupplierList.load();                   
                     break;
                 case "popupSupplier":
                     Session.Remove("supplierObject");

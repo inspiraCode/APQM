@@ -36,7 +36,9 @@ public class SIF
     private string salesStatus = "";
     private long salesDBID = -1;
     private List<SIFDetail> sifDetail = new List<SIFDetail>();
-
+    private string marketSector = ""; //Auxiliar when importing from sales db
+    private long marketSectorID = -1;
+    
     public List<SIFDetail> SifDetail
     {
         get { return sifDetail; }
@@ -193,6 +195,16 @@ public class SIF
     {
         get { return salesDBID; }
         set { salesDBID = value; }
+    }
+    public string MarketSector
+    {
+        get { return marketSector; }
+        set { marketSector = value; }
+    }
+    public long MarketSectorID
+    {
+        get { return marketSectorID; }
+        set { marketSectorID = value; }
     }
     public override string ToString()
     {

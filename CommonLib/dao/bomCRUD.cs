@@ -30,7 +30,6 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
 
             result = DM.Execute_StoreProcedure("BOMHeader_NewBOM", true);
         }
@@ -53,7 +52,6 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("BOMHeader_NewBOM", true);
         }
@@ -75,7 +73,6 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMHeader_NewBOM", true);
         }
@@ -92,7 +89,7 @@ public class bomCRUD : ICRUD<BOM>
         BOM bom = new BOM();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, " +
-                        "InquiryNumber, AnnualVolume, AutoAero, SalesPerson, CustomerName FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
+                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -117,9 +114,9 @@ public class bomCRUD : ICRUD<BOM>
                 bom.Revision = table.Rows[0][4].ToString();
                 bom.InquiryNumber = table.Rows[0][5].ToString();
                 bom.AnnualVolume = int.Parse(table.Rows[0][6].ToString());
-                bom.AutoAero = table.Rows[0][7].ToString();
-                bom.SalesPerson = table.Rows[0][8].ToString();
-                bom.CustomerName= table.Rows[0][9].ToString();
+                bom.SalesPerson = table.Rows[0][7].ToString();
+                bom.CustomerName= table.Rows[0][8].ToString();
+                bom.MarketSector = table.Rows[0][9].ToString();
                 
                 sqlConnection.Dispose();
                 return bom;
@@ -135,7 +132,7 @@ public class bomCRUD : ICRUD<BOM>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, " +
-                        "Revision, InquiryNumber, AnnualVolume, AutoAero FROM viewBOMHeader_ReadAll ORDER BY PartDescription";
+                        "Revision, InquiryNumber, AnnualVolume,  MarketSector, SalesPerson, CustomerName  FROM viewBOMHeader_ReadAll ORDER BY PartDescription";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -149,8 +146,10 @@ public class bomCRUD : ICRUD<BOM>
             bom.Revision = table.Rows[i][4].ToString();
             bom.InquiryNumber = table.Rows[i][5].ToString();
             bom.AnnualVolume = int.Parse(table.Rows[i][6].ToString());
-            bom.AutoAero = table.Rows[i][7].ToString();
-
+            bom.MarketSector = table.Rows[0][7].ToString();
+            bom.SalesPerson = table.Rows[0][8].ToString();
+            bom.CustomerName = table.Rows[0][9].ToString();
+            
             recordset.Add(bom);
         }
        
@@ -170,8 +169,7 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
-
+            
             result = DM.Execute_StoreProcedure("BOMHeader_EditBOM", true);
         }
         catch (Exception e)
@@ -194,8 +192,7 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
-            DM.Load_SP_Parameters("@AutoAero", entity.AutoAero);
-
+            
             result = DM.Execute_StoreProcedure_Open_Conn("BOMHeader_EditBOM", true);
         }
         catch (Exception e)

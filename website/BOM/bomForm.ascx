@@ -79,16 +79,12 @@
                 Market Sector
             </td>
             <td align="left">
-                <asp:DropDownList ID="cboMarketSector" chosen="true" runat="server" Width="124px">
-                    <asp:ListItem Selected="True"></asp:ListItem>
-                    <asp:ListItem Value="Aero">Aerospace</asp:ListItem>
-                    <asp:ListItem Value="Auto">Automotive</asp:ListItem>
-                </asp:DropDownList>
+                <asp:Label ID="lblMarketSector" runat="server"></asp:Label>
             </td>
         </tr>
         <tr style="height: 25px;">
             <td align="right" style="font-weight: bold">
-                Finished Good Part #
+                Finished Good PN
             </td>
             <td align="left">
                 <asp:TextBox ID="txtPartNumber" runat="server" Width="120px"></asp:TextBox>

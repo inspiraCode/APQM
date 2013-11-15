@@ -40,8 +40,8 @@ public class RFQ
 
     private string moq = ""; 
     private float targetPrice = -1; //-1 means that buyer did not want to specify targetPrice 
-    private bool noQuote = false; 
-    private string autoAero = "";
+    private bool noQuote = false;
+    private long marketSectorID = -1;
     private string commentsToBuyer = "";
     private string commentsToVendor = "";
     
@@ -237,10 +237,10 @@ public class RFQ
         get { return noQuote; }
         set { noQuote = value; }
     }
-    public string AutoAero
+    public long MarketSectorID
     {
-        get { return autoAero; }
-        set { autoAero = value; }
+        get { return marketSectorID; }
+        set { marketSectorID = value; }
     }
     public bool IAgree
     {
