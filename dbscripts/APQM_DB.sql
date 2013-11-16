@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [APQM_DB]    Script Date: 11/15/2013 16:15:18 ******/
+/****** Object:  Database [APQM_DB]    Script Date: 11/15/2013 17:48:46 ******/
 CREATE DATABASE [APQM_DB] ON  PRIMARY 
 ( NAME = N'APQM_DB', FILENAME = N'C:\Program Files (x86)\Microsoft SQL Server\MSSQL.1\MSSQL\DATA\APQM_DB.mdf' , SIZE = 9216KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
@@ -65,9 +65,10 @@ ALTER DATABASE [APQM_DB] SET PAGE_VERIFY CHECKSUM
 GO
 ALTER DATABASE [APQM_DB] SET DB_CHAINING OFF 
 
+
 USE [APQM_DB]
 GO
-/****** Object:  Table [dbo].[RFQACR]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQACR]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -79,7 +80,7 @@ CREATE TABLE [dbo].[RFQACR](
 	[Porcentage] [float] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQNumber]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQNumber]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -97,7 +98,7 @@ CREATE TABLE [dbo].[RFQNumber](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -113,7 +114,7 @@ CREATE TABLE [dbo].[SupplierMaster](
 	[QuotedCurrency] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -145,7 +146,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -175,7 +176,7 @@ WHERE EAVKey=@EAVKey
 
 END
 GO
-/****** Object:  Table [dbo].[RFQEAV]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQEAV]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -187,7 +188,7 @@ CREATE TABLE [dbo].[RFQEAV](
 	[Volume] [float] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SIFDetail]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -202,7 +203,7 @@ CREATE TABLE [dbo].[SIFDetail](
 	[AnnualRevenue] [float] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ItemMaster]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[ItemMaster]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -222,7 +223,7 @@ CREATE TABLE [dbo].[ItemMaster](
 	[EAU] [numeric](18, 0) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[BOMDetail]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -254,7 +255,7 @@ CREATE TABLE [dbo].[BOMDetail](
 	[EAU] [numeric](18, 0) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -277,7 +278,7 @@ UPDATE [APQM_DB].[dbo].[MarketSector]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -302,7 +303,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  Table [dbo].[MarketSector]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[MarketSector]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -312,7 +313,7 @@ CREATE TABLE [dbo].[MarketSector](
 	[Name] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMHeader]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[BOMHeader]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -326,7 +327,7 @@ CREATE TABLE [dbo].[BOMHeader](
 	[AnnualVolume] [numeric](18, 0) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQHeader]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQHeader]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -368,7 +369,7 @@ CREATE TABLE [dbo].[RFQHeader](
 	[UMWeight] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFHeader]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SIFHeader]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -404,7 +405,7 @@ CREATE TABLE [dbo].[SIFHeader](
 	[MarketSector] [numeric](18, 0) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -415,7 +416,7 @@ CREATE TABLE [dbo].[SupplierSurveyCertification](
 	[Certifications] [nvarchar](max) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -426,7 +427,7 @@ CREATE TABLE [dbo].[SupplierSurveyIndustriesSupplied](
 	[IndustriesSuplied] [nvarchar](max) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -438,7 +439,7 @@ CREATE TABLE [dbo].[SupplierSurveyForecastSales](
 	[ForecastSales] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -455,7 +456,7 @@ CREATE TABLE [dbo].[SupplierSurveyContacts](
 	[Email] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -485,7 +486,7 @@ CREATE TABLE [dbo].[SupplierSuvey](
 	[SentToVendor] [datetime] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[TokenMaster]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[TokenMaster]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -499,7 +500,7 @@ CREATE TABLE [dbo].[TokenMaster](
 	[Acknowledgement] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -509,7 +510,7 @@ CREATE TABLE [dbo].[CustomerMaster](
 	[CustomerName] [nvarchar](50) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -631,7 +632,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQDetail_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -812,7 +813,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItemAux'
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[User]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -825,7 +826,7 @@ CREATE TABLE [dbo].[User](
 	[LastAccess] [datetime] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQDetail]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -845,7 +846,7 @@ CREATE TABLE [dbo].[RFQDetail](
 	[Burden] [float] NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQSummary]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  Table [dbo].[RFQSummary]    Script Date: 11/15/2013 17:49:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -861,7 +862,7 @@ CREATE TABLE [dbo].[RFQSummary](
 	[Material] [nvarchar](100) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -912,7 +913,7 @@ AND [AnnualRevenue]=@AnnualRevenue
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -946,7 +947,7 @@ UPDATE [APQM_DB].[dbo].[SIFDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -980,7 +981,7 @@ WHERE     (RFQHeaderKey = @RFQHeaderKey) AND ([Year] = @Year) AND (Porcentage = 
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1008,7 +1009,7 @@ UPDATE [APQM_DB].[dbo].[RFQACR]
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1153,7 +1154,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQNumber'
 GO
-/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1185,7 +1186,7 @@ INSERT INTO [APQM_DB].[dbo].[RFQNumber]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1229,7 +1230,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1239,11 +1240,13 @@ AS
 SELECT     dbo.ItemMaster.PartNumber, dbo.BOMDetail.CapsonicPN, dbo.BOMDetail.CustomerPN, dbo.BOMDetail.ManufacturePN, dbo.BOMDetail.SupplierPN, 
                       dbo.BOMDetail.CommCode, dbo.BOMDetail.Material, dbo.BOMDetail.VendorQuoteEst, dbo.BOMDetail.Qty, dbo.BOMDetail.EAU, dbo.RFQHeader.MOQ, 
                       dbo.SupplierMaster.SupplierName, dbo.BOMDetail.CapComAssm, dbo.BOMDetail.PurchasingComments, dbo.RFQHeader.ToolingDetail, 
-                      dbo.RFQHeader.ProductionToolingLeadTime, dbo.RFQHeader.ProductionLeadTime
+                      dbo.RFQHeader.ProductionToolingLeadTime, dbo.RFQHeader.ProductionLeadTime, dbo.BOMDetail.BOMHeaderKey
 FROM         dbo.BOMDetail INNER JOIN
                       dbo.ItemMaster ON dbo.BOMDetail.ItemMasterKey = dbo.ItemMaster.ItemMasterKey INNER JOIN
                       dbo.SupplierMaster INNER JOIN
-                      dbo.RFQHeader ON dbo.SupplierMaster.SupplierMasterKey = dbo.RFQHeader.SupplierMasterKey ON dbo.BOMDetail.BOMDetailKey = dbo.RFQHeader.BOMDetailKey
+                      dbo.RFQHeader ON dbo.SupplierMaster.SupplierMasterKey = dbo.RFQHeader.SupplierMasterKey ON 
+                      dbo.BOMDetail.BOMDetailKey = dbo.RFQHeader.BOMDetailKey
+WHERE     (dbo.RFQHeader.Status = N'AWARDED')
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
@@ -1254,7 +1257,7 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
-         Configuration = "(H (1[50] 4[23] 3) )"
+         Configuration = "(H (1[18] 4[78] 3) )"
       End
       Begin PaneConfiguration = 2
          NumPanes = 3
@@ -1326,16 +1329,6 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "RFQHeader"
-            Begin Extent = 
-               Top = 0
-               Left = 453
-               Bottom = 530
-               Right = 672
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
          Begin Table = "ItemMaster"
             Begin Extent = 
                Top = 221
@@ -1356,6 +1349,16 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
+         Begin Table = "RFQHeader"
+            Begin Extent = 
+               Top = 0
+               Left = 453
+               Bottom = 530
+               Right = 672
+            End
+            DisplayFlags = 280
+            TopColumn = 3
+         End
       End
    End
    Begin SQLPane = 
@@ -1364,8 +1367,18 @@ Begin DesignProperties =
    Begin DataPane = 
       Begin ParameterDefaults = ""
       End
-      Begin ColumnWidths = 9
+      Begin ColumnWidths = 19
          Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
          Width = 1500
          Width = 1500
          Width = 1500
@@ -1378,9 +1391,11 @@ Begin DesignProperties =
    End
    Begin CriteriaPane = 
       Begin ColumnWidths = 11
-         Column = 1440
-         Alias = 900
-         Table = 1170
+         Column = 2445
+         Alias = 720
+      ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'   Table = 1260
          Output = 720
          Append = 1400
          NewValue = 1170
@@ -1390,9 +1405,6 @@ Begin DesignProperties =
          Filter = 1350
          Or = 1350
          Or = 1350
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'
          Or = 1350
       End
    End
@@ -1401,7 +1413,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
 GO
-/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1596,7 +1608,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQ_Summary'
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1635,7 +1647,7 @@ WHERE     (SupplierMasterKey = @SupplierKey)
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1833,7 +1845,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCompleted'
 GO
-/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2050,7 +2062,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountPerBOMDetail'
 GO
-/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2188,7 +2200,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2258,7 +2270,7 @@ UPDATE [APQM_DB].[dbo].[BOMDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2351,7 +2363,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2407,7 +2419,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2452,7 +2464,7 @@ UPDATE [APQM_DB].[dbo].[ItemMaster]
 
 END
 GO
-/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2610,7 +2622,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMHeader_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2650,7 +2662,7 @@ SELECT  @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2682,7 +2694,7 @@ WHERE     (BOMHeaderKey = @BOMHeaderKey)
 
 END
 GO
-/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2844,7 +2856,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSIF_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2966,7 +2978,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3052,7 +3064,7 @@ WHERE     (RFQHeaderKey = @RFQHeaderKey)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3156,7 +3168,7 @@ INSERT INTO [APQM_DB].[dbo].[SIFHeader]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3233,7 +3245,7 @@ WHERE SIFHeaderKey=@SIFHeaderKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3265,7 +3277,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3290,7 +3302,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyCertification]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3319,7 +3331,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [IndustriesSuplied]=@Industrie
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3342,7 +3354,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyIndustriesSupplied]
  WHERE SupplierIndustriesSuppliedKey=@SupplierIndustriesSuppliedKey
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3375,7 +3387,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [ForecastSalesYear]=@ForecastS
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3402,7 +3414,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyForecastSales]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3458,7 +3470,7 @@ WHERE [SupplierSurveyKey] = @SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3494,7 +3506,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyContacts]
  WHERE [SupplierSuveryContactsKey]=@SupplierSuveryContactsKey
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3602,7 +3614,7 @@ SELECT [SupplierSuveyKey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3663,7 +3675,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSuvey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3706,7 +3718,7 @@ WHERE ([Token]=@Token
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3738,7 +3750,7 @@ WHERE [TokenKey]=@TokenKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3765,7 +3777,7 @@ WHERE     (CustomerName = @CustomerName)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3789,7 +3801,7 @@ WHERE     (CustomerKey = @CustomerKey)
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3951,7 +3963,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItems'
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3996,7 +4008,7 @@ UPDATE [APQM_DB].[dbo].[RFQDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4064,7 +4076,7 @@ WHERE ([RFQHeaderKey] = @RFQHeaderKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4101,7 +4113,7 @@ WHERE (RFQSummaryKey = @RFQSummaryKey)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -4148,7 +4160,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 11/15/2013 16:14:08 ******/
+/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 11/15/2013 17:49:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
