@@ -333,7 +333,6 @@
                                     runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
                                 <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" 
                                     TabIndex="32">
-                                    <asp:ListItem Selected="True"></asp:ListItem>
                                     <asp:ListItem Value="Each">Each</asp:ListItem>
                                     <asp:ListItem Value="Kg">Kg</asp:ListItem>
                                     <asp:ListItem Value="Lb">Lb</asp:ListItem>

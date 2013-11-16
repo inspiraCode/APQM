@@ -127,8 +127,6 @@
                 <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" Width="124px"
                     TabIndex="31" DataSourceID="SqlDataSourceMarketSector" 
                     DataTextField="Name" DataValueField="MarketSectorID">
-                    <asp:ListItem Selected="True" Value="Aero">Aerospace</asp:ListItem>
-                    <asp:ListItem Value="Auto">Automotive</asp:ListItem>
                 </asp:DropDownList>
                 <asp:Button ID="btnNewMarketSector" runat="server" Text="New" Width="60px" 
                     TabIndex="27" />
