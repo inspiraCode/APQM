@@ -10,7 +10,7 @@
     }
 </style>
 <br />
-    <asp:Label ID="lblBOMHeader" runat="server" Text="1" Visible="False"></asp:Label>
+    <asp:Label ID="lblBOMHeader" runat="server" Text="" Visible="False"></asp:Label>
     <asp:Panel ID="panelContent" runat="server">
         <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSourceForm">
             <ItemTemplate>
@@ -101,7 +101,7 @@
     </asp:Panel>
     <br />
     <br />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True"
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
         ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [viewSalesReportDetail] WHERE ([BOMHeaderKey] = @BOMHeaderKey) ORDER BY [PartNumber]">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBOMHeader" Name="BOMHeaderKey" PropertyName="Text"
@@ -112,7 +112,7 @@
         Text="Export" />
         <br />
         <br />
-    <asp:SqlDataSource ID="SqlDataSourceForm" runat="server" ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True"
+    <asp:SqlDataSource ID="SqlDataSourceForm" runat="server" OnInit="on_sqldatasource_Init"
         ProviderName="System.Data.SqlClient" SelectCommand="SELECT SIFHeader.InquiryNumber, SIFHeader.Revision, SIFHeader.SalesPerson, CustomerMaster.CustomerName, BOMHeader.TopPartNumber, BOMHeader.AnnualVolume, MarketSector.Name AS MarketSector FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN CustomerMaster ON SIFHeader.CustomerKey = CustomerMaster.CustomerKey INNER JOIN MarketSector ON SIFHeader.MarketSector = MarketSector.MarketSectorID WHERE (BOMHeader.BOMHeaderKey = @BOMHeaderKey)">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBOMHeader" Name="BOMHeaderKey" PropertyName="Text" />

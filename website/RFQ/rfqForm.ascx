@@ -404,7 +404,7 @@
                 </td>
             </tr>
         </table>
-        <div align="center">
+        <div align="center" style="visibility:hidden;">
             <br />
             <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail." TabIndex="36" />
         </div>

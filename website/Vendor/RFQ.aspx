@@ -20,7 +20,7 @@
     <div id="divButtons" align="center" runat="server">
         <asp:Button ID="btnFinalizeBottom" validationid="validatingRFQForm" OnClientClick="return validate();"
         runat="server" Text="Finalize and submit" Width="132px" OnClick="btnFinalize_Click" />
-        <asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="70px" OnClick="btnSave_Click"
+        <asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="160px" OnClick="btnSave_Click"
             validationid="validatingRFQForm" OnClientClick="return validate();" 
             TabIndex="36" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 

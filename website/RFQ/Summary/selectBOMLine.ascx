@@ -1,8 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="selectBOMLine.ascx.cs"
     Inherits="RFQ_Summary_selectBOMLine" %>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" ProviderName="System.Data.SqlClient"
-    OnInit="on_sqldatasource_Init" SelectCommand="SELECT * FROM [viewRFQCompleted]"
-    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True">
+    OnInit="on_sqldatasource_Init" SelectCommand="SELECT * FROM [viewRFQCompleted]">
 </asp:SqlDataSource>
 <div>
 </div>

@@ -68,24 +68,25 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             }
             else
             {
-                if (chkUpdateBOMLineCost.Checked)
+                bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+                BOMDetail bomDetail = bomDetailCRUD.readById(rfqSummary.BomDetailKey);
+                if (bomDetail != null)
                 {
-                    bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-                    BOMDetail bomDetail = bomDetailCRUD.readById(rfqSummary.BomDetailKey);
-                    if (bomDetail != null)
+                    if (chkUpdateBOMLineCost.Checked)
                     {
                         bomDetail.Cost = float.Parse(lblNewCost.Text);
-                        if (!bomDetailCRUD.update(bomDetail))
-                        {
-                            Navigator.goToPage("~/Error.aspx", "");
-                            return;
-                        }
                     }
-                    else
+                    bomDetail.Status = "Processed";
+                    if (!bomDetailCRUD.update(bomDetail))
                     {
                         Navigator.goToPage("~/Error.aspx", "");
                         return;
                     }
+                }
+                else
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
                 }
             }
         }

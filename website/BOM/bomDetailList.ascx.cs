@@ -121,7 +121,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailLine.PurchasingStatus = cboPurchasingStatus.SelectedValue;
         bomDetailLine.UserKey = -1; //TODO: Set logged user.
-        bomDetailLine.Status = "System status"; //TODO handle system status
+        bomDetailLine.Status = "For Add"; //TODO handle system status
         
         if (bomDetail == null) bomDetail = new List<BOMDetail>();
 

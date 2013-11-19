@@ -287,7 +287,7 @@
     jQuery(document).ready(function() {
         var width = 0;
         jQuery('.movible').each(function() {
-            width += 120;
+            jQuery(this).width(     jQuery(this).width()+100  );
         });
         jQuery('#zone').width(width);
         jQuery('.container').shapeshift();

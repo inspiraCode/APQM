@@ -10,7 +10,17 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        string strBOM = Request["BOM"].ToString();
+        if (strBOM != "" && strBOM != null)
+        {
+            lblBOMHeader.Text = strBOM;
+        }
+        else
+        {
+            lblBOMHeader.Text = "";
+        }
+        SqlDataSource1.DataBind();
+        SqlDataSourceForm.DataBind();
     }
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
@@ -28,5 +38,11 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
     public override void VerifyRenderingInServerForm(Control control)
     {
 
+    }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceForm.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
     }
 }

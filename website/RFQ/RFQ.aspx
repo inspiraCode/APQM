@@ -40,7 +40,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 600, modal: false,
+                        width: 600, height:500, modal: false,
                         dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>

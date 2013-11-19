@@ -19,6 +19,9 @@
 </style>
 <table cellspacing="0" align="left">
     <tr>
+        <th class="camposSinBordes itemFields" style="width: 60px; max-width: 60px;">
+            Status
+        </th>
         <th class="camposSinBordes itemFields" style="width: 120px; max-width: 120px;">
             Part Number / Code ID
         </th>
@@ -77,6 +80,8 @@
         </th>
     </tr>
     <tr>
+        <th class="camposSinBordes itemFields" style="vertical-align: top;">            
+        </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <div style="width: 125px;">
                 <asp:DropDownList ID="cboPartNumber" chosen="true" Width="120px" runat="server" AutoPostBack="True"
@@ -171,7 +176,10 @@
     <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
         <ItemTemplate>
             <tr height='27px;'>
-                <td style="overflow: hidden; border: solid 1px;">
+                <td align="center" style="overflow: hidden; border: solid 1px;">
+                    <%# DataBinder.Eval(Container.DataItem, "Status")%>
+                </td>
+                <td style="overflow: hidden; border: solid 1px;border-left: 0px">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>

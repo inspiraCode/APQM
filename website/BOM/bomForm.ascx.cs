@@ -121,6 +121,7 @@ public partial class bomForm : System.Web.UI.UserControl
             if (detail.internalAction == "CREATE")
             {
                 detail.BomHeaderKey = this.bom.Id;
+                detail.Status = "";
                 if (!bomDetailCRUD.create(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
@@ -131,6 +132,7 @@ public partial class bomForm : System.Web.UI.UserControl
             if (detail.internalAction == "UPDATE")
             {
                 detail.BomHeaderKey = this.bom.Id;
+                detail.Status = "";
                 if (!bomDetailCRUD.update(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
@@ -156,5 +158,9 @@ public partial class bomForm : System.Web.UI.UserControl
         Session.Remove("bom");
         Session.Remove("bomObject");
         Cancel_Click(this, e);
+    }
+    protected void lnkReportToSales_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/HTMLReports/SalesReport.aspx?BOM=" + lblID.Text,true);
     }
 }

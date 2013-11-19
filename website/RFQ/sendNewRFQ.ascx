@@ -164,7 +164,6 @@
     </asp:SqlDataSource>
     <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceRFQCountPerBOMDetail"
         runat="server" SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material, SIFHeaderKey FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)"
-        ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True"
         ProviderName="System.Data.SqlClient">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"
@@ -173,8 +172,7 @@
     </asp:SqlDataSource>
 </div>
 <uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
-<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" 
-    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" 
     SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
 </asp:SqlDataSource>

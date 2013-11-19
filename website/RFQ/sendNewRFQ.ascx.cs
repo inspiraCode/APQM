@@ -180,6 +180,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         ConnectionManager connection = new ConnectionManager();
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSourceMarketSector.ConnectionString = connection.getConnection().ConnectionString;
     }
     protected void on_prompt(object sender, EventArgs e)
     {

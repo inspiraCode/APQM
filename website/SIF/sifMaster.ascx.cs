@@ -209,4 +209,9 @@ public partial class SifMaster : System.Web.UI.UserControl
             txtPrompt.Value = "";
         }
     }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceMarketSector.ConnectionString = connection.getConnection().ConnectionString;
+    }
 }
