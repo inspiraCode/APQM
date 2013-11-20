@@ -7,9 +7,8 @@
     <br />
     <br />
     <div id="divInfo" runat="server">
-        Please fill this RFQ, when you finish press the "Finalize and send" button.<br />
-        Also, you can click the "Save" button at the bottom if you want to continue filling
-        up later.
+        INSTRUCTIONS: Please fill up this RFQ, when completing this, press the "Finalize and send" button.<br />
+        Gray fields are blocked.
     </div>
     <br />
     <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"

@@ -8,7 +8,7 @@
     <br />
     <br />
     <div id="divInfo" runat="server">
-        If your information is correct click next, otherwise please update it.<br />        
+        INSTRUCTIONS: If your information is correct click next, otherwise please update it. All fields are required.<br />        
     </div>
     
 
