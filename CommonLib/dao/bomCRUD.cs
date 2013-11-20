@@ -352,7 +352,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.BomHeaderKey = long.Parse(table.Rows[0][1].ToString());
                 bomDetail.ItemMasterkey = long.Parse(table.Rows[0][2].ToString());
                 bomDetail.Qty = float.Parse(table.Rows[0][3].ToString());
-                bomDetail.Cost = long.Parse(table.Rows[0][4].ToString());
+                bomDetail.Cost = float.Parse(table.Rows[0][4].ToString());
                 bomDetail.Status = table.Rows[0][5].ToString();
                 bomDetail.Description = table.Rows[0][6].ToString();
                 bomDetail.LinePosition = table.Rows[0][7].ToString();
@@ -476,7 +476,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             }
             if (table.Rows[i][4].ToString() != "")
             {
-                bomDetail.Cost = long.Parse(table.Rows[i][4].ToString());
+                bomDetail.Cost = float.Parse(table.Rows[i][4].ToString());
             }
             else
             {
