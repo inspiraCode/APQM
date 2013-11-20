@@ -164,7 +164,7 @@
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
-                        <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/logo portal.png" />
+                        <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/APQM logo.png" />
                     </td>
                 </tr>
                 <tr>
