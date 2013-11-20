@@ -23,7 +23,7 @@
                 Supplier Name
             </td>
             <td align="left">
-                <asp:TextBox ID="txtSupplierName" runat="server" Width="380px"></asp:TextBox>
+                <asp:TextBox ID="txtSupplierName" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
                 Manufacturing Location
             </td>
             <td align="left">
-                <asp:TextBox ID="txtManufacturingLocation" runat="server" Width="380px"></asp:TextBox>
+                <asp:TextBox ID="txtManufacturingLocation" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -39,7 +39,7 @@
                 Ship Location
             </td>
             <td align="left">
-                <asp:TextBox ID="txtShipLocation" runat="server" Width="380px"></asp:TextBox>
+                <asp:TextBox ID="txtShipLocation" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr align="left">
@@ -47,7 +47,7 @@
                 Quoted Currency
             </td>
             <td align="left">
-                <asp:TextBox ID="txtQuotedCurrency" runat="server" Width="200px"></asp:TextBox>
+                <asp:TextBox ID="txtQuotedCurrency" runat="server" Width="200px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -63,7 +63,7 @@
                 Contact Name
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactName" runat="server" Width="380px"></asp:TextBox>
+                <asp:TextBox ID="txtContactName" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@
                 Contact Phone Number
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactPhoneNumber" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtContactPhoneNumber" runat="server" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -79,7 +79,7 @@
                 Contact Email
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactEmail" runat="server" Width="300px"></asp:TextBox>
+                <asp:TextBox ID="txtContactEmail" runat="server" Width="300px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
             </td>
         </tr>
         <tr>

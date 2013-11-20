@@ -49,7 +49,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             {
                 RFQ rfqAux = rfqCRUD.readById(rsl.RfqHeaderKey);
                 if(rfqAux!=null){
-                    rfqAux.Status = "DISCARDED";
+                    rfqAux.Status = "DISMISSED";
                     if(!rfqCRUD.update(rfqAux)){
                         Navigator.goToPage("~/Error.aspx", "");
                         return;

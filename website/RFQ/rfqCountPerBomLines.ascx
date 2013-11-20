@@ -19,12 +19,13 @@
             <asp:BoundField DataField="AnnualVolume" HeaderText="Annual Volume" />
             <asp:BoundField DataField="MarketSector" HeaderText="Market Sector" />
             <asp:BoundField DataField="PartNumber" HeaderText="Line Part Number" />
+            <asp:BoundField DataField="Material" HeaderText="Part Name" />
             <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" />
             <asp:BoundField DataField="ManufacturePN" HeaderText="Manufacture PN" />
             <asp:BoundField DataField="SupplierPN" HeaderText="Supplier PN" />
             <asp:BoundField DataField="CommCode" HeaderText="Comm Code" />
             <asp:BoundField DataField="VendorQuoteEst" HeaderText="Vendor Quote Est" />
-            <asp:BoundField DataField="Qty" HeaderText="No Required"  />            
+            <asp:BoundField DataField="Qty" HeaderText="Qty Required"  />            
             <asp:BoundField DataField="CapComAssm" HeaderText="Cap Com Assm" />
             <asp:BoundField DataField="DirectedBuy" HeaderText="Directed Buy" />
             <asp:BoundField DataField="PurchasingStatus" HeaderText="Purchasing Status"  />

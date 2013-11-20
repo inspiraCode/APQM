@@ -481,7 +481,7 @@ public class RFQACR
 
     public string ACR_Year_Porcentage
     {
-        get { return year + " - " + porcentage; }
+        get { return year + " - " + porcentage + "%"; }
     }
     public long Id
     {

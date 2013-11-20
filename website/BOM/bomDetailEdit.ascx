@@ -140,7 +140,7 @@
     </tr>
     <tr>
         <td class="style6" align="right">
-            No Required
+            Qty Required
         </td>
         <td class="style3">
             <asp:TextBox ID="txtQuantity" runat="server" Style="text-align: right" validate="number"

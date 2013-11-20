@@ -86,7 +86,7 @@
                 <asp:BoundField DataField="CommCode" HeaderText="Comm Code" SortExpression="CommCode" />
                 <asp:BoundField DataField="Material" HeaderText="Material" SortExpression="Material" />
                 <asp:BoundField DataField="VendorQuoteEst" HeaderText="Vendor Quote Est" SortExpression="VendorQuoteEst" />
-                <asp:BoundField DataField="Qty" HeaderText="No Required" SortExpression="Qty" />
+                <asp:BoundField DataField="Qty" HeaderText="Qty Required" SortExpression="Qty" />
                 <asp:BoundField DataField="EAU" HeaderText="EAU" SortExpression="EAU" />
                 <asp:BoundField DataField="MOQ" HeaderText="MOQ" SortExpression="MOQ" />
                 <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" SortExpression="SupplierName" />

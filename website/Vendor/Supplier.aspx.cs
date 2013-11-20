@@ -21,8 +21,9 @@ public partial class Vendor_Supplier : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Control btnHome = Master.FindControl("btnHome");
+        Control btnHome = Master.FindControl("btnHome");        
         btnHome.Visible = false;
+        btnToRFQ.OnClientClick = "return validate();";
         if (Session["rfqObject"] != null)
         {
             RFQ rfqObject = (RFQ)(((SessionObject)Session["rfqObject"]).Content);
@@ -30,12 +31,13 @@ public partial class Vendor_Supplier : System.Web.UI.Page
             {
                 divInfo.InnerText = "You have already send us your information, but you can see it as read only.";
                 divButtons.Visible = false;
+                btnToRFQ.OnClientClick = "return true;";
             }
         }      
         if (!IsPostBack)
         {   
             if (Session["supplierObject"] != null)
-            {
+            {   
                 supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
                 ((SessionObject)Session["supplierObject"]).Status = "forUpdate";
                 uscSupplierForm.load();
@@ -100,7 +102,7 @@ public partial class Vendor_Supplier : System.Web.UI.Page
     }
     protected void btnToRFQForm_Click(object sender, EventArgs e)
     {
-        on_save_supplier(null,null);
+        btnSave_Click(null, null);
     }
     private void exitByError()
     {

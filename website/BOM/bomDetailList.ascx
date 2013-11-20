@@ -53,7 +53,7 @@
             Vendor Quote Est
         </th>
         <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
-            No Required
+            Qty Required
         </th>
         <th class="camposSinBordes" style="width: 70px; max-width: 70px;">
             EAU
