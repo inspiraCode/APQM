@@ -7,16 +7,12 @@
                             <table align="center" style="width: 120px">
                                 <tr>
                                     <td align="center">
-                                        <b>Name: 
-                                        <br />
-                                        </b>
-                                        <asp:Label ID="Label2" runat="server" Text="name"></asp:Label>
+                                        <asp:LoginName ID="uscLoginName" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="center">
-                                        <b>Last Visit: </b>
-                                        <asp:Label ID="Label3" runat="server" Text="name"></asp:Label>
+                                        <asp:LinkButton runat="server" onclick="btnLogout_Click" >Logout</asp:LinkButton>
                                     </td>
                                 </tr>
                             </table>

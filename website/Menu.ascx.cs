@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 
 public partial class Menu : System.Web.UI.UserControl
 {
@@ -49,5 +50,12 @@ public partial class Menu : System.Web.UI.UserControl
         btnRFQ.Enabled = true;
         btnSuppliers.Enabled = true;
         btnRFQSummary.Enabled = true;
+    }
+
+    protected void btnLogout_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        FormsAuthentication.SignOut();
+        Response.Redirect("~/Default.aspx",false);
     }
 }
