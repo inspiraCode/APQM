@@ -11,6 +11,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Reflection;
 using System.Collections.Generic;
+using System.IO;
 
 public partial class RFQDefault : System.Web.UI.Page 
 {   
@@ -18,6 +19,20 @@ public partial class RFQDefault : System.Web.UI.Page
     {
         if (Session["SECTION"] != null)
         {
+            HttpPostedFile file = Request.Files["myfile"];
+            HttpFileCollection fileCollection = Request.Files;
+            if (file != null)
+            {
+                string fileName = file.FileName;
+                HttpPostedFile postedFile = file;
+                if (postedFile.ContentLength > 0)
+                {
+                    postedFile.SaveAs(Server.MapPath(@"RFQAttachments\") + Path.GetFileName(postedFile.FileName));
+                    
+                }
+                return;
+            }
+
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "RFQ":

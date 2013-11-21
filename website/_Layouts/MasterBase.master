@@ -99,6 +99,8 @@
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/Alertify/alertify.core.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/Alertify/alertify.default.css") %>';
+        @import '<%= this.ResolveUrl("~/Scripts/jQuery/UploadFile/uploadfile.css") %>';
+        
     </style>
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/jQuery2/jQuery2.js") %>' type="text/javascript"></script>
@@ -146,19 +148,24 @@
         type="text/javascript"></script>
 
     <script src='<%= this.ResolveUrl("~/Scripts/Alertify/alertify.js") %>' type="text/javascript"></script>
+
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.datepicker.js") %>'
         type="text/javascript"></script>
+    
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/UploadFile/jquery.uploadfile.js") %>'
+        type="text/javascript"></script>
+    
 </head>
 <body style="padding: 0 20px; font-family: Tahoma; font-size: 12px;">
     <%-- <table width="100%" style="margin-bottom: -20px;">
         
     </table>--%>
     <noscript>
-     For full functionality of this site it is necessary to enable JavaScript.
-     Here are the <a href="http://www.enable-javascript.com/" target="_blank">
-     instructions how to enable JavaScript in your web browser</a>.
+        For full functionality of this site it is necessary to enable JavaScript. Here are
+        the <a href="http://www.enable-javascript.com/" target="_blank">instructions how to
+            enable JavaScript in your web browser</a>.
     </noscript>
-    <div id="javascriptEnabled" style="visibility:hidden;">
+    <div id="javascriptEnabled" style="visibility: hidden;">
         <form id="form1" runat="server">
         <div id="divHeader" style="position: fixed; top: 0; left: 0; width: 100%;">
             <table width="100%" style="background-color: white;">
@@ -224,7 +231,7 @@
     jQuery(document).ready(function() {
         jQuery("#javascriptEnabled").css("visibility", "visible");
         jQuery('[chosen="true"]').chosen();
-        
+
     });
 </script>
 
