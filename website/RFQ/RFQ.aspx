@@ -23,12 +23,12 @@
                     <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
 
                 <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 800, modal: false,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });
+                            document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
+                            jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                                appendTo: jQuery('form:first'),
+                                width: 800, modal: false,
+                                dialogClass: "no-close", closeOnEscape: false
+                            });
                 </script>
 
             </asp:View>
@@ -37,12 +37,12 @@
                     OnOk_Click="on_ok_sendRFQ" />
 
                 <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 1000, height:500, modal: false,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });
+                            document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
+                            jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                                appendTo: jQuery('form:first'),
+                                width: 1050, height: 530, modal: false,
+                                dialogClass: "no-close", closeOnEscape: false
+                            });
                 </script>
 
             </asp:View>

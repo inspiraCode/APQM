@@ -6,7 +6,6 @@
 <style type="text/css">
     .style1
     {
-        width: 139px;
     }
     .style2
     {
@@ -26,11 +25,8 @@
         width: 100%;
     }
 </style>
-<uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
-<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
-    ProviderName="System.Data.SqlClient" SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
-</asp:SqlDataSource>
-<uc3:Validator ID="Validator1" runat="server" />
+<asp:ScriptManager ID="ScriptManager1" runat="server">
+</asp:ScriptManager>
 <table cellspacing="0" class="style5">
     <tr>
         <td style="vertical-align: top;">
@@ -93,24 +89,34 @@
                 <br />
                 <table cellspacing="0" style="width: 491px" align="center">
                     <tr>
-                        <td align="right" class="style1">
-                            Vendor
-                        </td>
-                        <td class="style3" align="left">
-                            <asp:DropDownList ID="cboSupplier" chosen="true" runat="server" AutoPostBack="True"
-                                DataSourceID="SqlDataSource1" DataTextField="SupplierName" DataValueField="SupplierMasterKey"
-                                OnDataBound="on_dataBound_supplier" OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged"
-                                Width="285px" Height="16px" TabIndex="26">
-                            </asp:DropDownList>
-                            <asp:Button ID="btnNewSupplier" runat="server" Text="New" Width="60px" TabIndex="27" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right" class="style1">
-                            Email
-                        </td>
-                        <td class="style3" align="left">
-                            <asp:TextBox ID="txtEmail" runat="server" Width="346px" TabIndex="28"></asp:TextBox>
+                        <td align="right" class="style1" colspan="2">
+                            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                <ContentTemplate>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Vendor
+                                            </td>
+                                            <td>
+                                                <asp:DropDownList ID="cboSupplier" chosen="true" runat="server" AutoPostBack="True"
+                                                    DataSourceID="SqlDataSource1" DataTextField="SupplierName" DataValueField="SupplierMasterKey"
+                                                    OnDataBound="on_dataBound_supplier" OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged"
+                                                    Width="285px" Height="16px" TabIndex="26">
+                                                </asp:DropDownList>
+                                                <asp:Button ID="btnNewSupplier" runat="server" Text="New" Width="60px" TabIndex="27" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Email
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="txtEmail" runat="server" Width="346px" TabIndex="28"></asp:TextBox>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
                         </td>
                     </tr>
                     <tr style="height: 10px;">
@@ -178,7 +184,7 @@
                 </asp:SqlDataSource>
             </div>
         </td>
-        <td style="padding: 0px 10px;vertical-align: top;">
+        <td style="padding: 0px 10px; vertical-align: top;">
             Attachments (less than 4MB per file):<br />
             <div id="uploadContainer" style="height: 360px; overflow-y: auto; align: center;
                 width: 470px;">
@@ -197,6 +203,10 @@
         </td>
     </tr>
 </table>
+<uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
+<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
+    ProviderName="System.Data.SqlClient" SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
+</asp:SqlDataSource>
 
 <script type="text/javascript">
     function EnviarMail() {
@@ -228,5 +238,11 @@
             uploadButtonClass: "ajax-file-upload-green"
         });
     });
+    function pageLoad(sender, args) {
+        if (args.get_isPartialLoad()) {
+            makeDropDownsChosen();
+        }
+    }
 </script>
 
+<uc3:Validator ID="Validator1" runat="server" />

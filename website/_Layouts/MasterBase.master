@@ -230,8 +230,11 @@
 
     jQuery(document).ready(function() {
         jQuery("#javascriptEnabled").css("visibility", "visible");
-        jQuery('[chosen="true"]').chosen();
+        makeDropDownsChosen();
 
     });
+    function makeDropDownsChosen() {
+        jQuery('[chosen="true"]').chosen();
+    }
 </script>
 
