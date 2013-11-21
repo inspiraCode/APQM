@@ -1,0 +1,4 @@
+Where do you take Revision and TopPartNumber fields from Sales Database?
+
+
+ILMerge.exe /out:SalesDB2APQM.exe SalesDB_To_APQM.exe BD_MNG.dll CommonLib.dll
