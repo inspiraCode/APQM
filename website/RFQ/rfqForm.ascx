@@ -270,7 +270,7 @@
                                 Production Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionLeadTime" validate="required" validationid="validatingRFQForm"
+                                <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
                             </td>
                         </tr>
@@ -279,7 +279,7 @@
                                 Production Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionToolingLeadTime" validate="required" validationid="validatingRFQForm"
+                                <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
@@ -288,7 +288,7 @@
                                 Prototype Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypeToolingLeadTime" validate="required" validationid="validatingRFQForm"
+                                <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
                             </td>
                         </tr>
@@ -297,7 +297,7 @@
                                 Prototype Piece Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypePieceLeadTime" validate="required" validationid="validatingRFQForm"
+                                <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
                             </td>
                         </tr>

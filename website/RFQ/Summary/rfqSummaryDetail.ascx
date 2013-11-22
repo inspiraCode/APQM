@@ -151,7 +151,7 @@
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="movible" style="position:absolute;">
-                    <table style="text-align: right;">
+                    <table style="text-align: right;width:100%;">
                         <tr height='11px;'>
                             <td>
                                 <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
@@ -286,10 +286,18 @@
     var arrColumns = {};
     jQuery(document).ready(function() {
         var width = 0;
+        var count = 0;
         jQuery('.movible').each(function() {
-            jQuery(this).width(     jQuery(this).width()+100  );
+            if (jQuery(this).outerWidth() > width) {
+                width = jQuery(this).outerWidth() + 10;
+            }
+            count++;
         });
-        jQuery('#zone').width(width);
+        jQuery('.movible').each(function() {
+            jQuery(this).width(width);
+        });
+        width += 30;
+        jQuery('#zone').width(width * count);
         jQuery('.container').shapeshift();
 
         jQuery('[item]').each(function() {
