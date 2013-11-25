@@ -104,8 +104,8 @@
             <td align="left">
             </td>
             <td align="left">
-                <asp:LinkButton ID="lnkReportToSales" runat="server" 
-                    onclick="lnkReportToSales_Click">Report to Sales</asp:LinkButton>
+            <a href="../HTMLReports/SalesReport.aspx?BOM=<%= lblID.Text %>"  target="_blank">Report to Sales
+            </a>
             </td>
         </tr>
     </table>

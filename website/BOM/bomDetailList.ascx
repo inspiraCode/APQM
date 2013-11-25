@@ -19,7 +19,7 @@
 </style>
 <table cellspacing="0" align="left">
     <tr>
-        <th class="camposSinBordes itemFields" style="width: 60px; max-width: 60px;">
+        <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
             Status
         </th>
         <th class="camposSinBordes itemFields" style="width: 120px; max-width: 120px;">
@@ -80,7 +80,7 @@
         </th>
     </tr>
     <tr>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;">            
+        <th class="camposSinBordes" style="vertical-align: top;">            
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <div style="width: 125px;">
@@ -133,7 +133,7 @@
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtEAU" validate="number" validationid="validatingBOMDetail" runat="server"
-                Width="60px">0</asp:TextBox>
+                Width="60px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtCapComAssm" validationid="validatingBOMDetail" runat="server"

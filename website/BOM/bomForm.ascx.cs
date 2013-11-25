@@ -159,8 +159,4 @@ public partial class bomForm : System.Web.UI.UserControl
         Session.Remove("bomObject");
         Cancel_Click(this, e);
     }
-    protected void lnkReportToSales_Click(object sender, EventArgs e)
-    {
-        Response.Redirect("~/HTMLReports/SalesReport.aspx?BOM=" + lblID.Text,true);
-    }
 }

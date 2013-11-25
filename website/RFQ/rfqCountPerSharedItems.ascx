@@ -7,8 +7,6 @@
                 SortExpression="ItemMasterKey" Visible="false"/>
             <asp:BoundField DataField="PartNumber" HeaderText="Part Number" 
                 SortExpression="PartNumber" />
-            <asp:BoundField DataField="Description" HeaderText="Description" 
-                SortExpression="Description" />
             <asp:BoundField DataField="Material" HeaderText="Material" 
                 SortExpression="Material" />
             <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
