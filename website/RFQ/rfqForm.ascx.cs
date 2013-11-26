@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Configuration;
 
 public partial class rfqForm : System.Web.UI.UserControl
 {
@@ -110,8 +112,21 @@ public partial class rfqForm : System.Web.UI.UserControl
         sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
         List<SIFDetail> sifDetailList = sifDetailCRUD.readByParentID(rfq.SifHeaderKey);
 
-        uscSifDetail.setEntity(sifDetailList);        
-
+        uscSifDetail.setEntity(sifDetailList);
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsFolder"];
+        if (Directory.Exists(baseAttachmentsPath + rfq.AttachmentsFolder))
+        {
+            List<RFQAttachments> rfqAttachmentsList = new List<RFQAttachments>();
+            DirectoryInfo directory = new DirectoryInfo(baseAttachmentsPath + rfq.AttachmentsFolder);
+            foreach(FileInfo file in directory.GetFiles()){
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = rfq.AttachmentsFolder;
+                rfqAttachmentsList.Add(rfqAttachment);
+            }
+            uscRfqAttachments.setEntity(rfqAttachmentsList);
+            uscRfqAttachments.load();
+        }
     }
     public void save()
     {

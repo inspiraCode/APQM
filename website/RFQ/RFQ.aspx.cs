@@ -26,24 +26,30 @@ public partial class RFQDefault : System.Web.UI.Page
                 string fileName = file.FileName;
                 HttpPostedFile postedFile = file;
 
-                string serverPath = Server.MapPath(@"RFQAttachments\");
-                string pathAttachments = (string)Session["RFQTEMPFOLDER"];
-                if (pathAttachments == null)
-                {
-                    DateTime date = DateTime.Now;
+
+
+                string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsFolder"];
+
+                string currentPathAttachments = (string)Session["RFQATTACHMENTS"];
+                string folderName = (string)Session["RFQATTACHMENTSFOLDER"];
+                if (currentPathAttachments == null)
+                {                    
                     do
                     {
-                        pathAttachments = serverPath + date.Year.ToString() + date.Month.ToString() +
-                                        date.Day.ToString() + MD5HashGenerator.GenerateKey(date);                        
-                    } while (Directory.Exists(pathAttachments));
-                    Directory.CreateDirectory(pathAttachments);
-                    pathAttachments += @"\";
-                    Session["RFQTEMPFOLDER"] = pathAttachments;
+                        DateTime date = DateTime.Now;
+                        folderName = date.Year.ToString() + date.Month.ToString() +
+                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                        currentPathAttachments = baseAttachmentsPath + folderName;
+                    } while (Directory.Exists(currentPathAttachments));
+                    Directory.CreateDirectory(currentPathAttachments);
+                    currentPathAttachments += @"\";
+                    Session["RFQATTACHMENTS"] = currentPathAttachments;
+                    Session["RFQATTACHMENTSFOLDER"] = folderName;
                 }
 
                 if (postedFile.ContentLength > 0)
                 {
-                    postedFile.SaveAs(pathAttachments + Path.GetFileName(postedFile.FileName));
+                    postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
                 }
                 return;
             }
@@ -146,6 +152,8 @@ public partial class RFQDefault : System.Web.UI.Page
                     index = Convert.ToInt32(e.CommandArgument);
                     bomDetailId = long.Parse(((GridView)sender).DataKeys[index]["BOMDetailKey"].ToString());
                     long sifHeaderID = long.Parse(((GridView)sender).DataKeys[index]["SIFHeaderKey"].ToString());
+                    Session.Remove("RFQATTACHMENTS");
+                    Session.Remove("RFQATTACHMENTSFOLDER");
                     openpopupContainer();
                     multiViewPopup.SetActiveView(viewSendNewRFQ);
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);

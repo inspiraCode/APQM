@@ -3,6 +3,7 @@
 <%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
 <%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc3" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
+<%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc5" %>
 <style type="text/css">
     .style2
     {
@@ -78,8 +79,16 @@
         <br />
         Comments to vendor:<br />
         <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
-            ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1"></asp:TextBox>
+            ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1" Style="border: 0;"></asp:TextBox>
         <br />
+        <br />
+    </div>
+    <div>
+        <br />
+        Attachments:<br />
+        <div style="background-color: #D3D3D3; width: 550px;">
+            <uc5:rfqAttachments ID="uscRfqAttachments" runat="server" />
+        </div>
         <br />
     </div>
     <div align="center">
@@ -270,8 +279,8 @@
                                 Production Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                                <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -279,8 +288,8 @@
                                 Production Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                                <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -288,8 +297,8 @@
                                 Prototype Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
+                                <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -297,8 +306,8 @@
                                 Prototype Piece Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
+                                <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -331,8 +340,7 @@
                                 Weight
                                 <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
-                                <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" 
-                                    TabIndex="32">
+                                <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" TabIndex="32">
                                     <asp:ListItem Value="Each">Each</asp:ListItem>
                                     <asp:ListItem Value="Kg">Kg</asp:ListItem>
                                     <asp:ListItem Value="Lb">Lb</asp:ListItem>
@@ -360,8 +368,8 @@
                         </tr>
                         <tr>
                             <td align="left">
-                                <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" 
-                                Width="300px" TabIndex="35" Height="47px" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="300px"
+                                    TabIndex="35" Height="47px" TextMode="MultiLine"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -404,9 +412,10 @@
                 </td>
             </tr>
         </table>
-        <div align="center" style="visibility:hidden;">
+        <div align="center" style="visibility: hidden;">
             <br />
-            <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail." TabIndex="36" />
+            <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail."
+                TabIndex="36" />
         </div>
     </div>
 </div>
@@ -480,4 +489,3 @@
     }
     window.onload = summarizeTotalPieceCost();
 </script>
-

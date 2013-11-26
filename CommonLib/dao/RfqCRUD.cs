@@ -58,6 +58,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
         }
@@ -107,6 +108,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
         }
@@ -155,6 +157,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
         }
@@ -174,7 +177,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
-            "Material, SIFHeaderKey FROM viewRFQHeader_ReadAll " + 
+            "Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -229,6 +232,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.UmWeight = table.Rows[0][40].ToString();
                 rfq.PartMaterial = table.Rows[0][41].ToString();
                 rfq.SifHeaderKey = long.Parse(table.Rows[0][42].ToString());
+                rfq.AttachmentsFolder = table.Rows[0][43].ToString();
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -250,7 +254,7 @@ public class RfqCRUD : ICRUD<RFQ>
                     + "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
                       "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
-                      "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey FROM viewRFQHeader_ReadAll";
+                      "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -297,9 +301,10 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.Make = table.Rows[i][37].ToString();
             rfq.ReasonNoQuote = table.Rows[i][38].ToString();
             rfq.Weight = float.Parse(table.Rows[i][39].ToString());
-            rfq.UmWeight = table.Rows[0][40].ToString();
-            rfq.PartMaterial = table.Rows[0][41].ToString();
-            rfq.SifHeaderKey = long.Parse(table.Rows[0][42].ToString());
+            rfq.UmWeight = table.Rows[i][40].ToString();
+            rfq.PartMaterial = table.Rows[i][41].ToString();
+            rfq.SifHeaderKey = long.Parse(table.Rows[i][42].ToString());
+            rfq.AttachmentsFolder = table.Rows[i][43].ToString();
             recordset.Add(rfq);
         }       
         return recordset;
@@ -344,6 +349,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
         }
@@ -392,6 +398,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
         }

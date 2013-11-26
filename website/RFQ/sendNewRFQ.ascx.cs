@@ -71,12 +71,20 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                 rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
             }
             rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+
+            string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
+            if (folderAttachments != null)
+            {
+                rfq.AttachmentsFolder = folderAttachments;
+            }
+            Session.Remove("RFQATTACHMENTS");
+            Session.Remove("RFQATTACHMENTSFOLDER");
+
             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
             
             if (idGenerated != "")
             {
                 rfq.Id = long.Parse(idGenerated);
-                
                 TokenCRUD token_CRUD = new TokenCRUD();
                 Token token = new Token();
                 token.Subject = "RFQ";
@@ -105,7 +113,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                     try
                     {
                         NewMail.SendMail(Message);
-                        Session.Remove("RFQTEMPFOLDER");
+                        
                     }
                     catch
                     {

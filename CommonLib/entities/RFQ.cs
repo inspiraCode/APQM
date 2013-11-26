@@ -53,6 +53,10 @@ public class RFQ
     private string umWeight = "";
     private string partMaterial = "";
 
+    private string attachmentsFolder = "";
+
+    
+
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -286,6 +290,11 @@ public class RFQ
     {
         get { return partMaterial; }
         set { partMaterial = value; }
+    }
+    public string AttachmentsFolder
+    {
+        get { return attachmentsFolder; }
+        set { attachmentsFolder = value; }
     }
 }
 
@@ -661,5 +670,29 @@ public class RFQSummary
     {
         get { return materialTooling; }
         set { materialTooling = value; }
+    }
+}
+
+public class RFQAttachments
+{
+    private string fileName = ""; 
+    private string comments = "";
+    private string directory = "";
+
+    public string Directory
+    {
+        get { return directory; }
+        set { directory = value; }
+    }
+
+    public string FileName
+    {
+        get { return fileName; }
+        set { fileName = value; }
+    }
+    public string Comments
+    {
+        get { return comments; }
+        set { comments = value; }
     }
 }
