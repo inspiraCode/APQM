@@ -25,10 +25,25 @@ public partial class RFQDefault : System.Web.UI.Page
             {
                 string fileName = file.FileName;
                 HttpPostedFile postedFile = file;
+
+                string serverPath = Server.MapPath(@"RFQAttachments\");
+                string pathAttachments = (string)Session["RFQTEMPFOLDER"];
+                if (pathAttachments == null)
+                {
+                    DateTime date = DateTime.Now;
+                    do
+                    {
+                        pathAttachments = serverPath + date.Year.ToString() + date.Month.ToString() +
+                                        date.Day.ToString() + MD5HashGenerator.GenerateKey(date);                        
+                    } while (Directory.Exists(pathAttachments));
+                    Directory.CreateDirectory(pathAttachments);
+                    pathAttachments += @"\";
+                    Session["RFQTEMPFOLDER"] = pathAttachments;
+                }
+
                 if (postedFile.ContentLength > 0)
                 {
-                    postedFile.SaveAs(Server.MapPath(@"RFQAttachments\") + Path.GetFileName(postedFile.FileName));
-                    
+                    postedFile.SaveAs(pathAttachments + Path.GetFileName(postedFile.FileName));
                 }
                 return;
             }
@@ -36,7 +51,7 @@ public partial class RFQDefault : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "RFQ":
-                    MultiViewMain.SetActiveView(viewRFQList);                    
+                    MultiViewMain.SetActiveView(viewRFQList);
                     ViewState["actualSection"] = "RFQ";
                     break;
                 case "RFQPerBOMDetail":

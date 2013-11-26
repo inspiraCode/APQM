@@ -166,8 +166,10 @@
                 </table>
                 <br />
                 <div>
-                    <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" OnClientClick="return validate();"
-                        validationid="validatingNewRFQ" Text="Send New RFQ" Width="136px" TabIndex="35" />
+                    <input id="btnSendFiles" type="button" validationid="validatingNewRFQ" value="Send New RFQ"
+                        onclick="uploadFiles();" />
+                    <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="visibility: hidden;"
+                        Text="Send New RFQ" Width="136px" TabIndex="35" />
                     <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
                         Width="70px" TabIndex="36" />
                 </div>
@@ -192,6 +194,11 @@
                     Upload
                 </div>
             </div>
+            <br />
+            <div id="divImgEmail" style="display:none;">
+                <img id="" alt="" src="../Utils/loading.gif" style="display:inline;" />
+                <span style="display:inline;">Sending Email, Please wait..</span>
+            </div>
         </td>
     </tr>
     <tr>
@@ -209,10 +216,6 @@
 </asp:SqlDataSource>
 
 <script type="text/javascript">
-    function EnviarMail() {
-        event.srcElement.disabled = true;
-        return true;
-    }
     function toggleTargetPrice() {
         var checkboxTargetPriceIsChecked = jQuery('#<%= chkTargetPrice.ClientID %>').is(":checked");
         if (checkboxTargetPriceIsChecked) {
@@ -223,6 +226,7 @@
         }
 
     }
+    var uploadObj = null;
     jQuery(document).ready(function() {
         jQuery("[toHide]").hide();
         toggleTargetPrice();
@@ -231,16 +235,30 @@
             buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
             buttonImageOnly: true
         });
-        jQuery("#uploadZone").uploadFile({
+        uploadObj = jQuery("#uploadZone").uploadFile({
             url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>',
             multiple: true,
             fileName: "myfile",
-            uploadButtonClass: "ajax-file-upload-green"
+            autoSubmit: false,
+            uploadButtonClass: "ajax-file-upload-green",
+            afterUploadAll: function() {
+                setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                jQuery("#divImgEmail").css("display", "block");
+            }
         });
     });
     function pageLoad(sender, args) {
         if (args.get_isPartialLoad()) {
             makeDropDownsChosen();
+        }
+    }
+    function uploadFiles() {
+        if (validate()) {
+            if (uploadObj != null) {
+                jQuery("#btnSendFiles").prop("disabled",true);
+                uploadObj.startUpload();
+                //return true;
+            }
         }
     }
 </script>

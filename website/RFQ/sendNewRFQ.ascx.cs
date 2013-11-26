@@ -105,6 +105,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                     try
                     {
                         NewMail.SendMail(Message);
+                        Session.Remove("RFQTEMPFOLDER");
                     }
                     catch
                     {
