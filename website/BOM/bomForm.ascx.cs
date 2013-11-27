@@ -58,6 +58,7 @@ public partial class bomForm : System.Web.UI.UserControl
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
         uscBOMDetailList.load();
+        hiddenProgressBar.Value = uscBOMDetailList.getProgress().ToString();
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

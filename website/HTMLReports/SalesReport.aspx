@@ -78,7 +78,7 @@
         <br />
         <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:BoundField DataField="RFQStatus" HeaderText="RFQ Status" SortExpression="RFQStatus" />
                 <asp:BoundField DataField="LinePosition" HeaderText="Material Position" SortExpression="LinePosition" />
                 <asp:BoundField DataField="PartNumber" HeaderText="Part Number" SortExpression="PartNumber" />
                 <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" SortExpression="CapsonicPN" />

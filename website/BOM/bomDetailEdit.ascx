@@ -202,6 +202,7 @@
             <asp:DropDownList ID="cboSystemStatus" runat="server" 
                 Width="140px">
                 <asp:ListItem></asp:ListItem>
+                <asp:ListItem>Created</asp:ListItem>
                 <asp:ListItem>In Progress</asp:ListItem>
                 <asp:ListItem>Processed</asp:ListItem>
                 <asp:ListItem>No Quote</asp:ListItem>

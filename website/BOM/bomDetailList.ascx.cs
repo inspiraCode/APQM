@@ -280,4 +280,20 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         panelPopup.Visible = false;
     }
+
+    public int getProgress()
+    {
+        int countProcessed = 0;
+        foreach(BOMDetail bom in bomDetail){
+            if (bom.Status == "Processed" || bom.Status == "No Quote")
+            {
+                countProcessed++;
+            }
+        }
+
+        if (countProcessed > 0)
+            return countProcessed * 100 / bomDetail.Count;
+
+        return -1;
+    }
 }

@@ -1,6 +1,12 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
+<style type="text/css">
+    .style1
+    {
+        width: 228px;
+    }
+</style>
 <div align="center">
     <br />
     <table cellspacing="1" align="left">
@@ -8,7 +14,7 @@
             <td align="right">
                 Mode:
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
             <td align="left">
@@ -20,7 +26,7 @@
             <td align="right">
                 ID:
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
             <td align="left">
@@ -32,7 +38,7 @@
             <td align="right">
                 SIF ID:
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblSifID" runat="server"></asp:Label>
             </td>
             <td align="left">
@@ -44,10 +50,10 @@
             <td align="right" style="font-weight: bold">
                 Inquiry Number
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
-            <td align="left" style="font-weight: bold">
+            <td align="right" style="font-weight: bold">
                 Sales Rep
             </td>
             <td align="left">
@@ -58,10 +64,10 @@
             <td align="right" style="font-weight: bold">
                 Revision
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblRevision" runat="server"></asp:Label>
             </td>
-            <td align="left" style="font-weight: bold">
+            <td align="right" style="font-weight: bold">
                 Customer
             </td>
             <td align="left">
@@ -72,7 +78,7 @@
             <td align="right" style="font-weight: bold">
                 Product
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:Label ID="lblProduct" runat="server"></asp:Label>
             </td>
             <td align="left" style="font-weight: bold">
@@ -86,19 +92,19 @@
             <td align="right" style="font-weight: bold">
                 Finished Good PN
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:TextBox ID="txtPartNumber" runat="server" Width="120px"></asp:TextBox>
             </td>
+            <td align="right" style="font-weight: bold">
+                Status</td>
             <td align="left">
-            </td>
-            <td align="left">
-            </td>
+                <div id="progressBar" style="height:20px;width:100px;"><div id="progress-label"></div></div></td>
         </tr>
         <tr style="height: 25px;">
             <td align="right" style="font-weight: bold">
                 Annual Volume
             </td>
-            <td align="left">
+            <td align="left" class="style1">
                 <asp:TextBox ID="txtAnnualVolume" runat="server" Width="120px"></asp:TextBox>
             </td>
             <td align="left">
@@ -137,3 +143,25 @@
 </div>
 <br />
 <uc2:Validator ID="Validator1" runat="server" />
+<asp:HiddenField ID="hiddenProgressBar" runat="server" Value="0" />
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var progressBar = jQuery('#progressBar');
+        var progressLabel = jQuery('#progress-label')
+        progressBar.css("position", "relative");
+        progressLabel.css("position", "absolute").css("left", "40%").css("top", "3px");
+        progressBar.progressbar({
+            value: false,
+            change: function() {
+                progressLabel.text(progressBar.progressbar("value") + "%");
+                progressLabel.css("left", "40%");
+            },
+            complete: function() {
+                progressLabel.text("Complete!");
+                progressLabel.css("left", "23%");
+            }
+        });
+        progressBar.progressbar({ value: Number("<%= hiddenProgressBar.Value  %>") });
+    });
+</script>
