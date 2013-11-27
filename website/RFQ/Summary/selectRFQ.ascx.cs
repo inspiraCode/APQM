@@ -60,7 +60,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
 
         if (rfq != null)
         {
-            rfq.Status = "AWARDED";
+            rfq.Status = "SELECTED";
             if (!rfqCRUD.update(rfq))
             {
                 Navigator.goToPage("~/Error.aspx", "");

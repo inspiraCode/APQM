@@ -43,7 +43,7 @@
     </tr>
     <tr>
         <td class="style2" align="right">
-            AWARDED
+            SELECTED
         </td>
         <td align="left">
             A buyer chose this RFQ.

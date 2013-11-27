@@ -217,7 +217,7 @@
     <tr>
         <td class="style5" colspan="2">
             <div align="center">
-                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" Width="70px"
+                <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="OK" Width="70px"
                     OnClientClick="return validate();" validationid="bomlineedit" />
                 <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
                     Width="70px" />

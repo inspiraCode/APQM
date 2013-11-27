@@ -163,7 +163,7 @@
                 <asp:ListItem Value="E">Estimate</asp:ListItem>
                 <asp:ListItem Value="P">Pass Thru</asp:ListItem>
                 <asp:ListItem Value="M">Manufacture</asp:ListItem>
-                <asp:ListItem Value="Firm Requirement"></asp:ListItem>
+                <asp:ListItem Value="Firm Requirement">Firm Requirement</asp:ListItem>
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes">
