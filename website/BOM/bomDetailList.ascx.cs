@@ -14,7 +14,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        uscNotifier.hide();   
+        uscNotifier.hide();
         bomDetail = (List<BOMDetail>)Session["bomDetailObject"];
         bomDetailToDelete = (List<BOMDetail>)Session["bomDetailObjectToDelete"];
         allItems = (List<Item>)Session["bomDetailListAllItems"];

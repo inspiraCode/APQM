@@ -22,6 +22,9 @@
         <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
             Status
         </th>
+        <th class="camposSinBordes" style="width: 30px; max-width: 30px;">
+            #
+        </th>
         <th class="camposSinBordes itemFields" style="width: 120px; max-width: 120px;">
             Part Number / Code ID
         </th>
@@ -80,6 +83,8 @@
         </th>
     </tr>
     <tr>
+        <th class="camposSinBordes" style="vertical-align: top;">            
+        </th>
         <th class="camposSinBordes" style="vertical-align: top;">            
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -179,7 +184,10 @@
                 <td align="center" style="overflow: hidden; border: solid 1px;">
                     <%# DataBinder.Eval(Container.DataItem, "Status")%>
                 </td>
-                <td style="overflow: hidden; border: solid 1px;border-left: 0px">
+                <td align="center" style="overflow: hidden; border: solid 1px;border-left: 0px;">
+                    <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
+                </td>
+                <td style="overflow: hidden; border: solid 1px;border-left: 0px;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>

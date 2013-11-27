@@ -255,9 +255,13 @@
     function uploadFiles() {
         if (validate()) {
             if (uploadObj != null) {
-                jQuery("#btnSendFiles").prop("disabled",true);
-                uploadObj.startUpload();
-                //return true;
+                jQuery("#btnSendFiles").prop("disabled", true);
+                if (uploadObj.fileCounter > 1) {
+                    uploadObj.startUpload();
+                } else {
+                    setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                    jQuery("#divImgEmail").css("display", "block");
+                }                
             }
         }
     }
