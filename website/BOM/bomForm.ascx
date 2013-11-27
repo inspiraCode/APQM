@@ -132,7 +132,7 @@
     </table>
 </div>
 <div align="center">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" />
+    <asp:Button ID="btnSave" runat="server" Text="OK" Width="70px" OnClick="btnSave_Click" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
 <br />

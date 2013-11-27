@@ -121,7 +121,7 @@ public partial class bomForm : System.Web.UI.UserControl
             if (detail.internalAction == "CREATE")
             {
                 detail.BomHeaderKey = this.bom.Id;
-                detail.Status = "";
+                detail.Status = "Created";
                 if (!bomDetailCRUD.create(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
@@ -131,8 +131,7 @@ public partial class bomForm : System.Web.UI.UserControl
             
             if (detail.internalAction == "UPDATE")
             {
-                detail.BomHeaderKey = this.bom.Id;
-                detail.Status = "";
+                detail.BomHeaderKey = this.bom.Id;                
                 if (!bomDetailCRUD.update(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");

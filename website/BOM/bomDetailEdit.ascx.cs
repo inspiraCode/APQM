@@ -58,7 +58,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         bomDetailEdit.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailEdit.PurchasingStatus = cboPurchasingStatus.SelectedValue;
         bomDetailEdit.UserKey = -1; //TODO: Set logged user.
-        bomDetailEdit.Status = "For Edit"; //TODO handle system status
+        bomDetailEdit.Status = cboSystemStatus.SelectedValue;
 
         if (bomDetailEdit.Id > -1)
         {
@@ -103,6 +103,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         lblSalesStatus.Text = bomDetailEdit.SalesStatus;
         chkDirectedBuy.Checked = bomDetailEdit.DirectedBuy;
         cboPurchasingStatus.SelectedValue = bomDetailEdit.PurchasingStatus;
+        cboSystemStatus.SelectedValue = bomDetailEdit.Status;
         //lblAssignedTo.Text = bomDetailEdit TODO
         //TODO system status
         

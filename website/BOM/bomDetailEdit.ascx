@@ -30,7 +30,7 @@
 </style>
 <table cellspacing="0" class="style1">
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Part Number
         </td>
         <td class="style3">
@@ -43,7 +43,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Capsonic PN
         </td>
         <td class="style3">
@@ -51,7 +51,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Customer PN
         </td>
         <td class="style3">
@@ -59,7 +59,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Manufacture PN
         </td>
         <td class="style3">
@@ -67,7 +67,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Supplier PN
         </td>
         <td class="style3">
@@ -75,7 +75,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Comm Code
         </td>
         <td class="style3">
@@ -83,7 +83,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Material / Assembly Description
         </td>
         <td class="style3">
@@ -92,7 +92,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Unit of Measure
         </td>
         <td class="style3">
@@ -105,7 +105,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Vendor Quote Est
         </td>
         <td class="style3">
@@ -113,7 +113,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
                         EAU
         </td>
         <td class="style3">
@@ -122,7 +122,7 @@
         </td>
     </tr>
     <tr class="itemFields">
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Cost
         </td>
         <td class="style3">
@@ -131,7 +131,7 @@
         </td>
     </tr>
     <tr>
-        <td class="style2" align="right">
+        <td class="style2" align="right" style="font-weight: bold">
             Cap Com Assm
         </td>
         <td class="style4">
@@ -139,7 +139,7 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Qty Required
         </td>
         <td class="style3">
@@ -148,7 +148,7 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Purchasing Comments
         </td>
         <td class="style3">
@@ -157,7 +157,7 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Sales Status
         </td>
         <td class="style3">
@@ -165,7 +165,7 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Directed Buy
         </td>
         <td class="style3">
@@ -173,11 +173,11 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right">
+        <td class="style6" align="right" style="font-weight: bold">
             Purchasing Status
         </td>
         <td class="style3">
-            <asp:DropDownList ID="cboPurchasingStatus" chosen = "true" runat="server" Width="200px">
+            <asp:DropDownList ID="cboPurchasingStatus" runat="server" Width="200px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Q">Quote</asp:ListItem>
                 <asp:ListItem Value="E">Estimate</asp:ListItem>
@@ -187,12 +187,26 @@
             </asp:DropDownList>
         </td>
     </tr>
-    <tr>
-        <td class="style6" align="right">
+    <tr style="height: 25px">
+        <td class="style6" align="right" style="font-weight: bold">
             Assigned To
         </td>
         <td class="style3">
             <asp:Label ID="lblAssignedTo" runat="server"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td class="style6" align="right" style="font-weight: bold">
+            System Status</td>
+        <td class="style3">
+            <asp:DropDownList ID="cboSystemStatus" runat="server" 
+                Width="140px">
+                <asp:ListItem></asp:ListItem>
+                <asp:ListItem>In Progress</asp:ListItem>
+                <asp:ListItem>Processed</asp:ListItem>
+                <asp:ListItem>No Quote</asp:ListItem>
+                <asp:ListItem>Imported</asp:ListItem>
+            </asp:DropDownList>
         </td>
     </tr>
     <tr>
