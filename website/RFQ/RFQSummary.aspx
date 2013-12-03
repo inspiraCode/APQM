@@ -38,7 +38,7 @@
         </asp:MultiView>
     </asp:Panel>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" runat="Server">    
     <br />
     <asp:Button ID="btnSelect" runat="server" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
     <asp:HyperLink ID="hlnkOpenPage" runat="server" NavigateUrl="~/RFQ/Summary/rfqSummaryPage.aspx"

@@ -50,6 +50,8 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                 RFQ rfqAux = rfqCRUD.readById(rsl.RfqHeaderKey);
                 if(rfqAux!=null){
                     rfqAux.Status = "DISMISSED";
+                    if(rfqAux.NoQuote == true)
+                        rfqAux.Status = "DECLINED";
                     if(!rfqCRUD.update(rfqAux)){
                         Navigator.goToPage("~/Error.aspx", "");
                         return;

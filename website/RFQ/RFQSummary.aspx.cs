@@ -10,6 +10,10 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     private long bomDetailKey = -1;
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+    }
+    public void load()
+    {
         if (retrieveEntity())
         {
             //Session["rfqSummary"] = bomDetailKey;
@@ -71,7 +75,7 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
                     long bomDetailKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
                     Session["rfqSummary"] = bomDetailKey;
                     panelPopup.Visible = false;
-                    Page_Load(null,null);
+                    load();
                 }
                 catch (Exception ex)
                 {

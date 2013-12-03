@@ -1,7 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs"
     Inherits="RFQSummaryForm" %>
 <%@ Register Src="rfqSummaryDetail.ascx" TagName="rfqSummaryDetail" TagPrefix="uc1" %>
-<%@ Register Src="selectRFQ.ascx" TagName="selectRFQ" TagPrefix="uc2" %>
 <style type="text/css">
     .style1
     {
@@ -16,6 +15,7 @@
         width: 150px;
     }
 </style>
+   
 <asp:FormView ID="frmRFQSummaryHeader" runat="server" DataSourceID="SqlDataSource1"
     Style="float: right; margin-top: 8px;">
     <ItemTemplate>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td align="right" class="style5">
-                     Component Part Number:
+                    Component Part Number:
                 </td>
                 <td class="style4" style="background-color: #C0C0C0">
                     <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
@@ -67,13 +67,14 @@
                 <td class="style4" style="background-color: #C0C0C0">
                     <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' />
                 </td>
-            </tr>            
+            </tr>
             <tr>
                 <td align="right" class="style5">
                     Estimated Annual Volume
                 </td>
                 <td class="style4" style="background-color: #C0C0C0">
-                    <asp:TextBox ID="txtEAV" Width="100px" runat="server" mainEAV="" onchange="setEAVValues()" onkeyup="setEAVValues()" style="text-align:right;"></asp:TextBox>
+                    <asp:TextBox ID="txtEAV" Width="100px" runat="server" mainEAV="" onchange="setEAVValues()"
+                        onkeyup="setEAVValues()" Style="text-align: right;"></asp:TextBox>
                 </td>
             </tr>
         </table>
@@ -81,8 +82,8 @@
 </asp:FormView>
 <div align="center">
     <br />
-    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" Onselect_RFQ="on_select_rfq" />
-</div>
+    <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" />
+</div> 
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT SIFHeader.SIFHeaderKey, SIFHeader.InquiryNumber, BOMHeader.BOMHeaderKey, BOMDetail.BOMDetailKey, ItemMaster.PartNumber, SIFHeader.Application,
                     BOMDetail.Material, BOMDetail.Description, SIFHeader.Product 
@@ -94,29 +95,18 @@
     </SelectParameters>
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
-<asp:Panel ID="panelPopup" runat="server" Visible="false" title="RFQ Selection">
-    <uc2:selectRFQ ID="uscSelectRFQ" runat="server" OnOk_click="on_confirm_rfq" OnCancel_click="on_cancel_rfq" />
 
-    <script type="text/javascript">
-        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-            appendTo: jQuery('form:first'),
-            width: 430,
-            modal: false,
-            height: 320,
-            dialogClass: "no-close",
-            closeOnEscape: false,
-            draggable: true
-        });
-    </script>
-
-</asp:Panel>
 <script type="text/javascript">
     var mainEAV = jQuery('[mainEAV]');
     jQuery(document).ready(function() {
-        setEAVValues();
+        //setEAVValues();
+        
     });
+    
     function setEAVValues() {
         jQuery('[fieldName=txtEAV]').each(function() { jQuery(this).val(mainEAV.val()) });
         jQuery('[item]').each(function() { summarizeColumn(jQuery(this).attr("item")) });
     }
+    
 </script>
+

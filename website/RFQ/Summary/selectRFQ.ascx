@@ -1,6 +1,19 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="selectRFQ.ascx.cs" Inherits="RFQ_Summary_selectRFQ" %>
+<style type="text/css">
+    .styleRFQSelectionTable
+    {
+        width: 350px;
+        border-color: lightgray;
+        height: 140px;
+    }
+    .columnInfo
+    {
+        width: 150px;
+    }
+</style>
 <p>
     <asp:Label ID="lblRFQHeaderKey" runat="server" Width="200px" Visible="False"></asp:Label>
+    Do you wish to select this RFQ?
 </p>
 <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT RFQHeader.RFQHeaderKey, SIFHeader.InquiryNumber, BOMHeader.TopPartNumber, ItemMaster.PartNumber, viewRFQNumber.RFQGenerated, SupplierMaster.SupplierName, BOMDetail.Cost FROM SIFHeader INNER JOIN BOMHeader ON SIFHeader.SIFHeaderKey = BOMHeader.SIFHeaderKey INNER JOIN BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey INNER JOIN RFQHeader ON BOMDetail.BOMDetailKey = RFQHeader.BOMDetailKey INNER JOIN SupplierMaster ON RFQHeader.SupplierMasterKey = SupplierMaster.SupplierMasterKey INNER JOIN viewRFQNumber ON RFQHeader.RFQNumberKey = viewRFQNumber.RFQNumberKey WHERE (RFQHeader.RFQHeaderKey = @key )">
@@ -8,29 +21,50 @@
         <asp:ControlParameter ControlID="lblRFQHeaderKey" Name="key" PropertyName="Text" />
     </SelectParameters>
 </asp:SqlDataSource>
-<asp:FormView ID="frmSelectRFQ" runat="server" DataSourceID="SqlDataSource1">
+<asp:FormView ID="frmSelectRFQ" runat="server" DataSourceID="SqlDataSource1" Width="100%">
     <ItemTemplate>
-        RFQ Header Key:
-        <asp:Label ID="RFQHeaderKeyLabel" runat="server" Text='<%# Eval("RFQHeaderKey") %>' />
-        <br />
-        Inquiry Number:
-        <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
-        <br />
-        Top Part Number:
-        <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
-        <br />
-        Part Number:
-        <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
-        <br />
-        RFQ Number:
-        <asp:Label ID="RFQNumberLabel" runat="server" Text='<%# Bind("RFQGenerated") %>' />
-        <br />
-        Supplier Name:
-        <asp:Label ID="SupplierNameLabel" runat="server" Text='<%# Bind("SupplierName") %>' />
-        <br />
-        Current Cost:
-        <asp:Label ID="CostLabel" runat="server" Text='<%# Bind("Cost") %>' />
-        <br />
+        <table cellspacing="0" class="styleRFQSelectionTable" align="center" border="1px">
+            <tr>
+                <td align="right" class="columnInfo">
+                    Inquiry Number:
+                </td>
+                <td>
+                    <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="columnInfo">
+                    Part Number:
+                </td>
+                <td>
+                    <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="columnInfo">
+                    RFQ Number:
+                </td>
+                <td>
+                    <asp:Label ID="RFQNumberLabel" runat="server" Text='<%# Bind("RFQGenerated") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="columnInfo">
+                    Supplier Name:
+                </td>
+                <td>
+                    <asp:Label ID="SupplierNameLabel" runat="server" Text='<%# Bind("SupplierName") %>' />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="columnInfo">
+                    Assembly Cost:
+                </td>
+                <td>
+                    <asp:Label ID="CostLabel" runat="server" Text='<%# Bind("Cost") %>' />
+                </td>
+            </tr>
+        </table>
     </ItemTemplate>
 </asp:FormView>
 <p>
@@ -40,6 +74,6 @@
     <asp:CheckBox ID="chkUpdateBOMLineCost" runat="server" Text="Update Cost for this BOM Line" />
 </p>
 <div align="center">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="90px" OnClick="btnSave_Click" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="90px" OnClick="btnCancel_Click" />
+    <asp:Button ID="btnSave" runat="server" Text="Select" Width="90px" OnClick="btnSave_Click" />
+    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="90px" OnClick="btnCancel_Click"/>
 </div>

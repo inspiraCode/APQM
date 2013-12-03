@@ -1372,7 +1372,7 @@ public class RfqSummaryCRUD
 {
 
     ConnectionManager connectionManager = new ConnectionManager();
-    //Data_Base_MNG.SQL DM;
+    Data_Base_MNG.SQL DM;
 
 
     public RFQSummary readById(long id)
@@ -1381,7 +1381,7 @@ public class RfqSummaryCRUD
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Status, Sequence FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1415,6 +1415,8 @@ public class RfqSummaryCRUD
                 rfqSummary.Tooling = float.Parse(table.Rows[0][18].ToString());
                 rfqSummary.Cavitation = float.Parse(table.Rows[0][19].ToString());
                 rfqSummary.MaterialTooling = table.Rows[0][20].ToString();
+                rfqSummary.Status = table.Rows[0][21].ToString();
+                rfqSummary.Sequence = int.Parse(table.Rows[0][22].ToString());
 
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -1427,8 +1429,8 @@ public class RfqSummaryCRUD
         RFQSummary rfqSummary = new RFQSummary();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY RFQHeaderKey";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, Status, " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Sequence FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1455,15 +1457,17 @@ public class RfqSummaryCRUD
                 rfqSummary.AssemblyCostPerUnit = float.Parse(table.Rows[0][11].ToString());
                 rfqSummary.EstimatedAnnualVolume = float.Parse(table.Rows[0][12].ToString());
                 rfqSummary.SupplierName = table.Rows[0][13].ToString();
-                if (table.Rows[0][14].ToString() != "")
+                rfqSummary.Status = table.Rows[0][14].ToString();
+                if (table.Rows[0][15].ToString() != "")
                 {
-                    rfqSummary.Id = long.Parse(table.Rows[0][14].ToString());
-                    rfqSummary.TotalBCost = float.Parse(table.Rows[0][15].ToString());
-                    rfqSummary.TotalCCost = float.Parse(table.Rows[0][16].ToString());
-                    rfqSummary.EAV = float.Parse(table.Rows[0][17].ToString());
-                    rfqSummary.Tooling = float.Parse(table.Rows[0][18].ToString());
-                    rfqSummary.Cavitation = float.Parse(table.Rows[0][19].ToString());
-                    rfqSummary.MaterialTooling = table.Rows[0][20].ToString();
+                    rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
+                    rfqSummary.TotalBCost = float.Parse(table.Rows[0][16].ToString());
+                    rfqSummary.TotalCCost = float.Parse(table.Rows[0][17].ToString());
+                    rfqSummary.EAV = float.Parse(table.Rows[0][18].ToString());
+                    rfqSummary.Tooling = float.Parse(table.Rows[0][19].ToString());
+                    rfqSummary.Cavitation = float.Parse(table.Rows[0][20].ToString());
+                    rfqSummary.MaterialTooling = table.Rows[0][21].ToString();
+                    rfqSummary.Sequence = int.Parse(table.Rows[0][22].ToString());
                 }
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -1476,8 +1480,8 @@ public class RfqSummaryCRUD
         List<RFQSummary> recordset = new List<RFQSummary>();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, Status, " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Sequence FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1505,20 +1509,53 @@ public class RfqSummaryCRUD
                 rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][11].ToString());
                 rfq.EstimatedAnnualVolume = float.Parse(table.Rows[i][12].ToString());
                 rfq.SupplierName = table.Rows[i][13].ToString();
-                if (table.Rows[i][14].ToString() != "")
+                rfq.Status = table.Rows[i][14].ToString();
+                if (table.Rows[i][15].ToString() != "")
                 {
-                    rfq.Id = long.Parse(table.Rows[i][14].ToString());
-                    rfq.TotalBCost = float.Parse(table.Rows[i][15].ToString());
-                    rfq.TotalCCost = float.Parse(table.Rows[i][16].ToString());
-                    rfq.EAV = float.Parse(table.Rows[i][17].ToString());
-                    rfq.Tooling = float.Parse(table.Rows[i][18].ToString());
-                    rfq.Cavitation = float.Parse(table.Rows[i][19].ToString());
-                    rfq.MaterialTooling = table.Rows[i][20].ToString();
+                    rfq.Id = long.Parse(table.Rows[i][15].ToString());
+                    rfq.TotalBCost = float.Parse(table.Rows[i][16].ToString());
+                    rfq.TotalCCost = float.Parse(table.Rows[i][17].ToString());
+                    rfq.EAV = float.Parse(table.Rows[i][18].ToString());
+                    rfq.Tooling = float.Parse(table.Rows[i][19].ToString());
+                    rfq.Cavitation = float.Parse(table.Rows[i][20].ToString());
+                    rfq.MaterialTooling = table.Rows[i][21].ToString();
+                    rfq.Sequence = int.Parse(table.Rows[i][22].ToString());
                 }
 
                 recordset.Add(rfq);
             }
         }
         return recordset;
+    }
+    public bool updateOrCreate(RFQSummary entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@BCost", entity.TotalBCost.ToString());
+            DM.Load_SP_Parameters("@CCost", entity.TotalCCost.ToString());
+            DM.Load_SP_Parameters("@EAV", entity.EAV.ToString());
+            DM.Load_SP_Parameters("@Tooling", entity.Tooling.ToString());
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation.ToString());
+            DM.Load_SP_Parameters("@Material", entity.MaterialTooling);
+            DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+
+            if (entity.Id > -1)
+            {
+                DM.Load_SP_Parameters("@RFQSummaryKey", entity.Id.ToString());
+                result = DM.Execute_StoreProcedure("RFQSummary_EditSummary", true);
+            }
+            else
+            {
+                result = DM.Execute_StoreProcedure("RFQSummary_NewSummary", true);
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        return result;
     }
 }

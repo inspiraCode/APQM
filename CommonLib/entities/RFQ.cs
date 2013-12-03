@@ -516,10 +516,10 @@ public class RFQACR
 
 public class RFQSummary
 {
-    private long id;
+    private long id =-1;
     private long rfqHeaderKey = -1;
-    private long bomDetailKey = -1; 
-    private string rfqNumber = ""; 
+    private long bomDetailKey = -1;
+    private string rfqNumber = "";
     private long supplierKey = -1;
     private string supplierName = "";
     private float materialTotal;
@@ -527,6 +527,7 @@ public class RFQSummary
     private float scrapTotal;
     private float laborTotal;
     private float burdenTotal;
+    private int sequence;
     
     public float ManufacturingCost
     {
@@ -559,6 +560,8 @@ public class RFQSummary
     
     private float newCost;
     private float eav;
+
+    private string status;
 
     public float EAV
     {
@@ -670,6 +673,16 @@ public class RFQSummary
     {
         get { return materialTooling; }
         set { materialTooling = value; }
+    }
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
+    }
+    public int Sequence
+    {
+        get { return sequence; }
+        set { sequence = value; }
     }
 }
 

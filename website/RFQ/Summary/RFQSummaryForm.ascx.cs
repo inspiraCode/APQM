@@ -12,6 +12,9 @@ public partial class RFQSummaryForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        
+      
+
         //if (Session["rfqSummaryObject"] != null)
         //{
         //    rfqSummary = (RFQSummary)((SessionObject)Session["rfqSummaryObject"]).Content;
@@ -48,37 +51,13 @@ public partial class RFQSummaryForm : System.Web.UI.UserControl
 
     public void setBomDetailID(long bomDetailID)
     {
-        try
-        {
-            txtBomDetailID.Text = bomDetailID.ToString();
-            
-            List<RFQSummary> rfqSummary = rfqSummaryCRUD.readByBOMDetailID(bomDetailID);
-            uscRfqSummaryList.setEntity(rfqSummary);
-            uscRfqSummaryList.load();
-
-            frmRFQSummaryHeader.DataBind();
-        }
-        catch (Exception e)
-        {
-            throw e;
-        }
+        txtBomDetailID.Text = bomDetailID.ToString();
+        uscRfqSummaryList.setEntity(bomDetailID);
+        frmRFQSummaryHeader.DataBind();
     }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();        
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
-    }
-    protected void on_select_rfq(Object sender, EventArgs e)
-    {
-        panelPopup.Visible = true;
-        uscSelectRFQ.load();
-    }
-    protected void on_confirm_rfq(Object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-    }
-    protected void on_cancel_rfq(Object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
     }
 }

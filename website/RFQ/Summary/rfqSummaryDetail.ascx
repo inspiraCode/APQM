@@ -1,27 +1,41 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqSummaryDetail.ascx.cs"
     Inherits="rfqSummaryDetail" %>
-    <style type="text/css">
-        .textManual
-        {
-            font-size: 12px;
-            border:0px;
-            height: 13px;
-            background-color:Transparent;
-            text-align: right;
-            max-width: 70px;
-            width:70px;
-        }
-    </style>
+<%@ Register Src="selectRFQ.ascx" TagName="selectRFQ" TagPrefix="uc1" %>
+<style type="text/css">
+    .textManual
+    {
+        font-size: 12px;
+        border: 0px;
+        height: 13px;
+        background-color: Transparent;
+        text-align: right;
+        max-width: 70px;
+        width: 70px;
+    }
+    .rfqSelected
+    {
+        background: -webkit-linear-gradient(white,goldenrod);
+        background: linear-gradient(white,goldenrod); /*border: solid 1px lawngreen;*/
+    }
+    .rfqUnselected
+    {
+        background: -webkit-linear-gradient(white,gainsboro);
+        background: linear-gradient(white,gainsboro);
+    }
+</style>
+<asp:HiddenField ID="hiddenBOMLineKey" runat="server" />
 <div align="center" style="font-size: 12px;">
     <%--<div style="float: left" runat="server" id="divHeader" visible="false">
     </div>--%>
     <div align="left">
         <asp:Repeater ID="repeaterRFQSummary" runat="server" OnItemDataBound="R1_ItemDataBound">
             <HeaderTemplate>
-                <table border="0" style="text-align: right;float: left;margin-top: 8px;">
+                <table border="0" style="text-align: right; float: left; margin-top: 8px;">
                     <tr>
                         <td>
                             <table>
+                                <tr height='16px;'>
+                                </tr>
                                 <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label13" runat="server" Text="Supplier Name">                            
@@ -101,7 +115,7 @@
                                         <asp:Label ID="TextBox1" runat="server" Text="B Cost"></asp:Label>
                                     </td>
                                 </tr>
-                                 <tr height='12px;'>
+                                <tr height='12px;'>
                                     <td>
                                         <asp:Label ID="Label18" runat="server" Text="C Cost"></asp:Label>
                                     </td>
@@ -142,20 +156,29 @@
                                         </asp:Label>
                                     </td>
                                 </tr>
+                                <tr height='12px;'>
+                                    <td>                                        
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>
                 </table>
-                <div id="zone" class="container" style="margin-left: 120px;position:relative;" >
-                    
+                <div id="zone" class="container" style="margin-left: 125px; position: relative;">
             </HeaderTemplate>
             <ItemTemplate>
-                <div class="movible" style="position:absolute;">
-                    <table style="text-align: right;width:100%;">
+                <div class="movible" style="position: absolute;">
+                    <table class="rfqUnselected" style="text-align: right; width: 100%;">
+                        <tr height='11px;'>
+                            <td align="center">
+                                <asp:Label ID="lblSelected" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'>                            
+                                </asp:Label>
+                            </td>
+                        </tr>
                         <tr height='11px;'>
                             <td>
                                 <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
-                                    OnCommand="selectRFQ">
+                                    OnCommand="selectRFQ" style="text-align:center;">
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
                                 </asp:LinkButton>
                             </td>
@@ -229,16 +252,16 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTotalBCost" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtTotalBCost" runat="server" Width="100%" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTotalCCost" runat="server"  class="textManual"  Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtTotalCCost" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
                             </td>
                         </tr>
-                       <tr height='11px;'>
+                        <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblTotalAcquisitionCost" runat="server" Text=''>
                             00000.00
@@ -246,11 +269,11 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtEAV" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtEAV" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
                             </td>
                         </tr>
-                       <tr height='11px;'>
+                        <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblAnnualPurchaseCost" runat="server" Text=''>
                                     00000.00
@@ -258,29 +281,49 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtTooling" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtTooling" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtCavitation" runat="server"  class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtCavitation" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color:#C0C0C0;">
-                                <asp:TextBox ID="txtMaterial" runat="server"  class="textManual" style="text-align: right;" Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
+                            <td style="background-color: lightgray;">
+                                <asp:TextBox ID="txtMaterial" runat="server" class="textManual" Style="text-align: right;"
+                                    Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr height='11px;' style="display:none;">
+                            <td>
+                            <asp:TextBox ID="txtSeq" runat="server" class="Sequence" Width="20px"
+                                    Text='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>'></asp:TextBox>
+                                    <asp:TextBox ID="txtKey" runat="server" Width="20px"
+                                    Text='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>'></asp:TextBox>
+                                <asp:HiddenField ID="txtHiddenRFQKey" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>' />
+                                <asp:HiddenField ID="txtHiddenSeq" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>' />
                             </td>
                         </tr>
                     </table>
                 </div>
             </ItemTemplate>
-            <FooterTemplate>                
+            <FooterTemplate>
                 </div>
             </FooterTemplate>
         </asp:Repeater>
     </div>
 </div>
+<asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <ContentTemplate>
+        <asp:Panel ID="panelPopup" runat="server" Visible="False" title="RFQ Selection">
+            <uc1:selectRFQ ID="uscSelectRFQ" runat="server" OnOk_click="on_confirm_rfq" OnCancel_click="on_cancel_rfq" />
+        </asp:Panel>
+    </ContentTemplate>
+</asp:UpdatePanel>
 
 <script type="text/javascript">
     var arrColumns = {};
@@ -295,10 +338,19 @@
         });
         jQuery('.movible').each(function() {
             jQuery(this).width(width);
+            if (jQuery(this).children().children().children(":first").children().children().text() == "SELECTED") {
+                jQuery(this).children().removeClass("rfqUnselected").addClass("rfqSelected");
+            }
         });
         width += 30;
         jQuery('#zone').width(width * count);
         jQuery('.container').shapeshift();
+        jQuery('.container').on("ss-rearranged", function(e, selected) {            
+            var sort = 0;
+            jQuery('.movible').each(function() {
+                jQuery(this).find(".Sequence").val(sort++);
+            });
+        });
 
         jQuery('[item]').each(function() {
             if (!arrColumns.hasOwnProperty(jQuery(this).attr("item")))
@@ -307,17 +359,53 @@
             summarizeColumn(jQuery(this).attr("item"));
         });
     });
-    
+
     function summarizeColumn(index) {
         var ACost = Number(arrColumns[index].filter('[fieldname=lblTotalACost]').text());
         var BCost = Number(arrColumns[index].filter('[fieldname=txtTotalBCost]').val());
         var CCost = Number(arrColumns[index].filter('[fieldname=txtTotalCCost]').val());
 
         var EAV = Number(arrColumns[index].filter('[fieldname=txtEAV]').val());
-        
+
         var totalAcquisitionCost = ACost + BCost + CCost;
-        
+
         arrColumns[index].filter('[fieldname=lblTotalAcquisitionCost]').text(totalAcquisitionCost.toFixed(2));
         arrColumns[index].filter('[fieldname=lblAnnualPurchaseCost]').text((EAV * totalAcquisitionCost).toFixed(2));
     }
+
+    /******************************************************************/
+    function openPopup() {
+
+        var popupSelectRFQ = jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 430,
+            modal: false,
+            height: 320,
+            dialogClass: "no-close",
+            closeOnEscape: false,
+            draggable: true
+        }
+        
+        
+        
+        
+//        )
+//        .find('#<%= ((Button) uscSelectRFQ.FindControl("btnCancel")).ClientID %>').click(function() {
+//            jQuery(this).closest(".ui-dialog-content").dialog("close").dialog("destroy").remove();
+//        }
+        );  
+    }
+//    function pageLoad(sender, args) {
+//        if (args.get_isPartialLoad()) {
+//            setTimeout(openPopup(), 100);
+//        }
+//    }
+    function setSort() {
+        var sort = 0;
+        jQuery('.movible').each(function() {
+            jQuery(this).find(":hidden").eq(1).val(sort++);
+        });
+        return true;
+    }
+    
 </script>
