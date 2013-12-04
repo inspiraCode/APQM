@@ -2,7 +2,9 @@
 <div align="center">
     <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" class="display" style="display:none;"
         DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView"
-        RowStyle-Height="27px">
+        RowStyle-Height="27px" OnRowCommand="gridView_RowCommand"
+        onrowdatabound="gridRFQList_RowDataBound">
+<RowStyle Height="27px"></RowStyle>
         <Columns>
             <asp:BoundField DataField="RfqGenerated" HeaderText="RFQ Number" SortExpression="RFQGenerated" />
             <asp:BoundField DataField="PartNumber" HeaderText="Part Number" SortExpression="PartNumber" />
@@ -13,6 +15,12 @@
                 <ItemTemplate>
                     <a target="_blank" href='<%# "rfqFormMain.aspx?rfq=" + Eval("RFQHeaderKey")%>'>
                         <%# Eval("Status")%></a>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField ShowHeader="False">
+                <ItemTemplate>
+                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?');"
+                        CommandName="setAwarded" Text="Set Awarded"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>

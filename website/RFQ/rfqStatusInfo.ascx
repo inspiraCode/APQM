@@ -11,12 +11,8 @@
         font-weight:bold;
     }
 </style>
-<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 110px;width: 440px;">
+<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 115px;width: 440px;">
 <table align="left" cellspacing="0" class="style1">
-    <tr>
-        <td class="style2" align="right">
-        </td>
-    </tr>
     <tr>
         <td class="style2" align="right">
             PENDING
@@ -43,6 +39,14 @@
     </tr>
     <tr>
         <td class="style2" align="right">
+            DECLINED
+        </td>
+        <td align="left">
+            Vendor is not able to quote.
+        </td>
+    </tr>
+    <tr>
+        <td class="style2" align="right">
             SELECTED
         </td>
         <td align="left">
@@ -59,11 +63,9 @@
     </tr>
     <tr>
         <td class="style2" align="right">
-            DECLINED
-        </td>
+            AWARDED</td>
         <td align="left">
-            Vendor is not able to quote.
-        </td>
+            RFQ which was approved for use.</td>
     </tr>
 </table>
 </div>

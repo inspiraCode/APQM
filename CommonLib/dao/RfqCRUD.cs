@@ -240,7 +240,79 @@ public class RfqCRUD : ICRUD<RFQ>
         }
         return null;
     }
+    public List<RFQ> readByBOMDetailKey(long id)
+    {
+        List<RFQ> recordset = new List<RFQ>();
+        recordset.Clear();
+        
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, " +
+            "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
+            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
+            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
+            "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
+            "Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll " +
+            "WHERE (BOMDetailKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
 
+            for (int i = 0; i < table.Rows.Count; i++)        
+            {
+                RFQ rfq = new RFQ();
+                rfq.Id = long.Parse(table.Rows[i][0].ToString());
+                rfq.BomDetailId = long.Parse(table.Rows[i][1].ToString());
+                rfq.SupplierId = long.Parse(table.Rows[i][2].ToString());
+                rfq.RfqNumberKey = long.Parse(table.Rows[i][3].ToString());
+                rfq.DrawingLevel = table.Rows[i][4].ToString();
+                rfq.EstimatedAnnualVolume = table.Rows[i][5].ToString();
+                rfq.ProductionLeadTime = (table.Rows[i][6].ToString());
+                rfq.ProductionToolingLeadTime = table.Rows[i][7].ToString();
+                rfq.PrototypeToolingLeadTime = table.Rows[i][8].ToString();
+                rfq.PrototypePieceLeadTime = table.Rows[i][9].ToString();
+                rfq.ToolingDetail = table.Rows[i][10].ToString();
+                rfq.ProductionTooling = float.Parse(table.Rows[i][11].ToString());
+                rfq.PrototypeTooling = float.Parse(table.Rows[i][12].ToString());
+                rfq.PrototypePiece = float.Parse(table.Rows[i][13].ToString());
+                rfq.SgAProfit = float.Parse(table.Rows[i][14].ToString());
+                rfq.PackingPerUnit = float.Parse(table.Rows[i][15].ToString());
+                rfq.AssemblyCostPerUnit = float.Parse(table.Rows[i][16].ToString());
+                rfq.Status = table.Rows[i][17].ToString();
+                rfq.DueDate = DateTime.Parse(table.Rows[i][18].ToString());
+                rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
+                rfq.FilledUp = DateTime.Parse(table.Rows[i][20].ToString());
+                rfq.PartNumber = table.Rows[i][21].ToString();
+                rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+                rfq.Acknowledgement = table.Rows[i][23].ToString();
+                rfq.SupplierName = table.Rows[i][24].ToString();
+                rfq.ManufacturingLocation = table.Rows[i][25].ToString();
+                rfq.ShipLocation = table.Rows[i][26].ToString();
+                rfq.PreparedBy = table.Rows[i][27].ToString();
+                rfq.RfqGenerated = table.Rows[i][28].ToString();
+                rfq.Moq = table.Rows[i][29].ToString();
+                rfq.TargetPrice = float.Parse(table.Rows[i][30].ToString());
+                rfq.NoQuote = bool.Parse(table.Rows[i][31].ToString());
+                rfq.MarketSectorID = long.Parse(table.Rows[i][32].ToString());
+                rfq.CommentsToBuyer = table.Rows[i][33].ToString();
+                rfq.CommentsToVendor = table.Rows[i][34].ToString();
+                rfq.IAgree = bool.Parse(table.Rows[i][35].ToString());
+                rfq.DateFilledOut = DateTime.Parse(table.Rows[i][36].ToString());
+                rfq.Make = table.Rows[i][37].ToString();
+                rfq.ReasonNoQuote = table.Rows[i][38].ToString();
+                rfq.Weight = float.Parse(table.Rows[i][39].ToString());
+                rfq.UmWeight = table.Rows[i][40].ToString();
+                rfq.PartMaterial = table.Rows[i][41].ToString();
+                rfq.SifHeaderKey = long.Parse(table.Rows[i][42].ToString());
+                rfq.AttachmentsFolder = table.Rows[i][43].ToString();
+                recordset.Add(rfq);
+            }
+        }
+        return recordset;
+    }
     public IList<RFQ> readAll()
     {
         List<RFQ>  recordset = new List<RFQ>();
