@@ -86,7 +86,7 @@
     <div>
         <br />
         Attachments:<br />
-        <div style="background-color: #D3D3D3; width: 550px;">
+        <div style="background-color: #D3D3D3; width: 550px;min-height: 20px;">
             <uc5:rfqAttachments ID="uscRfqAttachments" runat="server" />
         </div>
         <br />

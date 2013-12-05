@@ -80,6 +80,26 @@ public partial class rfqList : System.Web.UI.UserControl
                         {
                             Navigator.goToPage("~/Error.aspx", "");
                         }
+                        else
+                        {
+                            bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+                            BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
+                            if (bomDetail != null)
+                            {
+                                bomDetail.Status = "Processed";
+                                if (!bomDetailCRUD.update(bomDetail))
+                                {
+                                    Navigator.goToPage("~/Error.aspx", "");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                Navigator.goToPage("~/Error.aspx", "");
+                                return;
+                            }
+                        }
+
                         gridRFQList.DataBind();
                     }
                     else

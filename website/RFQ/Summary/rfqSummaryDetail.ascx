@@ -338,14 +338,15 @@
         });
         jQuery('.movible').each(function() {
             jQuery(this).width(width);
-            if (jQuery(this).children().children().children(":first").children().children().text() == "SELECTED") {
+            var strStatus = jQuery(this).children().children().children(":first").children().children().text();
+            if (strStatus == "SELECTED" || strStatus == "AWARDED") {
                 jQuery(this).children().removeClass("rfqUnselected").addClass("rfqSelected");
             }
         });
         width += 30;
         jQuery('#zone').width(width * count);
         jQuery('.container').shapeshift();
-        jQuery('.container').on("ss-rearranged", function(e, selected) {            
+        jQuery('.container').on("ss-rearranged", function(e, selected) {
             var sort = 0;
             jQuery('.movible').each(function() {
                 jQuery(this).find(".Sequence").val(sort++);

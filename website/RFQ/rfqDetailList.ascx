@@ -9,7 +9,7 @@
         border-left: 0px;
     }
 </style>
-<div style="min-width: 1220px; max-width: 1200px;" align="center">
+<div align="center">
     <table border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
         <tr style="background-color:#D3D3D3">
             <th colspan="5">
@@ -79,7 +79,7 @@
             <th width="70px">
             </th>
         </tr>
-        <tr>
+        <tr style="background-color:#DADADA">
             <th class="camposSinBordes">
                 <div style="width: 160px;">
                     <asp:TextBox validate="required" validationid="validatingRFQDetail" ID="txtPartNumber"
