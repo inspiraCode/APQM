@@ -54,6 +54,9 @@ public class RFQ
     private string partMaterial = "";
 
     private string attachmentsFolder = "";
+    private string leadTimePPAP = "";
+
+   
 
     
 
@@ -295,6 +298,11 @@ public class RFQ
     {
         get { return attachmentsFolder; }
         set { attachmentsFolder = value; }
+    }
+    public string LeadTimePPAP
+    {
+        get { return leadTimePPAP; }
+        set { leadTimePPAP = value; }
     }
 }
 

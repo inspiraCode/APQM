@@ -22,7 +22,7 @@
     }
     .style55
     {
-        width: 147px;
+        width: 911px;
     }
     .style56
     {
@@ -37,10 +37,6 @@
     .style62
     {
         width: 147px;
-    }
-    .style63
-    {
-        width: 116px;
     }
     .style66
     {
@@ -57,6 +53,14 @@
     .style72
     {
         width: 57px;
+    }
+    .style73
+    {
+        width: 12px;
+    }
+    .style74
+    {
+        width: 3px;
     }
 </style>
 <br />
@@ -310,6 +314,20 @@
                                     Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
                             </td>
                         </tr>
+                        <tr>
+                            <td align="right">
+                                &nbsp;</td>
+                            <td align="left">
+                                &nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                Lead Time PPAP</td>
+                            <td align="left">
+                                <asp:TextBox ID="txtLeadTimePPAP" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="9"></asp:TextBox>
+                            </td>
+                        </tr>
                     </table>
                 </td>
             </tr>
@@ -326,18 +344,18 @@
                 <td class="style58" colspan="2">
                     Tooling Detail
                 </td>
-                <td class="style63" rowspan="5">
+                <td class="style74" rowspan="5">
                 </td>
                 <td>
                     Annual Cost Reduction Commitment
                 </td>
-                <td rowspan="5" class="style63">
+                <td rowspan="5" class="style73">
                 </td>
                 <td rowspan="5">
                     <table>
                         <tr>
                             <td align="right">
-                                Weight
+                            <div style="display:inline;">Weight
                                 <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
                                     runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
                                 <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" TabIndex="32">
@@ -345,6 +363,8 @@
                                     <asp:ListItem Value="Kg">Kg</asp:ListItem>
                                     <asp:ListItem Value="Lb">Lb</asp:ListItem>
                                 </asp:DropDownList>
+                            </div>
+                                
                             </td>
                         </tr>
                         <tr>
@@ -363,14 +383,11 @@
                         </tr>
                         <tr>
                             <td align="left">
-                                Comments
-                            </td>
+                                &nbsp;</td>
                         </tr>
                         <tr>
                             <td align="left">
-                                <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="300px"
-                                    TabIndex="35" Height="47px" TextMode="MultiLine"></asp:TextBox>
-                            </td>
+                                &nbsp;</td>
                         </tr>
                     </table>
                 </td>
@@ -410,6 +427,22 @@
                     <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
                 </td>
+            </tr>
+            <tr>
+            <td colspan=6>
+                &nbsp;</td>
+            </tr>
+            <tr>
+            <td colspan=6>
+                                Comments
+                            </td>
+            </tr>
+            <tr>
+            <td colspan=6>
+                                <asp:TextBox ID="txtComments" runat="server" 
+                    Style="text-align: left" Width="300px"
+                                    TabIndex="35" Height="62px" TextMode="MultiLine"></asp:TextBox>
+            </td>
             </tr>
         </table>
         <div align="center" style="visibility: hidden;">

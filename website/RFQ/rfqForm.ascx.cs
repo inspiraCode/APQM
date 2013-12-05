@@ -88,6 +88,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
         txtPrototypeToolingLeadTime.Text = rfq.PrototypeToolingLeadTime;
         txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
+        txtLeadTimePPAP.Text = rfq.LeadTimePPAP;
+
         txtToolingDetail.Text = rfq.ToolingDetail;
         txtProductionTooling.Text = rfq.ProductionTooling.ToString();
         txtPrototypeTooling.Text = rfq.PrototypeTooling.ToString();
@@ -183,6 +185,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
         rfq.PrototypeToolingLeadTime = txtPrototypeToolingLeadTime.Text;
         rfq.PrototypePieceLeadTime = txtPrototypePieceLeadTime.Text;
+        rfq.LeadTimePPAP = txtLeadTimePPAP.Text;
         
         rfq.ToolingDetail = txtToolingDetail.Text;
         if (txtProductionTooling.Text.Trim() != "") rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);

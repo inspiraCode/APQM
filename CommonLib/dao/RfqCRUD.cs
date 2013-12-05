@@ -59,6 +59,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
             DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
         }
@@ -109,6 +110,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
             DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
         }
@@ -158,6 +160,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
             DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
         }
@@ -177,7 +180,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
-            "Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll " + 
+            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -233,6 +236,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.PartMaterial = table.Rows[0][41].ToString();
                 rfq.SifHeaderKey = long.Parse(table.Rows[0][42].ToString());
                 rfq.AttachmentsFolder = table.Rows[0][43].ToString();
+                rfq.LeadTimePPAP = table.Rows[0][44].ToString();
 
                 sqlConnection.Dispose();
                 return rfq;
@@ -250,7 +254,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
-            "Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll " +
+            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP FROM viewRFQHeader_ReadAll " +
             "WHERE (BOMDetailKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -308,6 +312,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.PartMaterial = table.Rows[i][41].ToString();
                 rfq.SifHeaderKey = long.Parse(table.Rows[i][42].ToString());
                 rfq.AttachmentsFolder = table.Rows[i][43].ToString();
+                rfq.LeadTimePPAP = table.Rows[i][44].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -326,7 +331,7 @@ public class RfqCRUD : ICRUD<RFQ>
                     + "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
                       "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
-                      "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder FROM viewRFQHeader_ReadAll";
+                      "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -377,6 +382,7 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.PartMaterial = table.Rows[i][41].ToString();
             rfq.SifHeaderKey = long.Parse(table.Rows[i][42].ToString());
             rfq.AttachmentsFolder = table.Rows[i][43].ToString();
+            rfq.LeadTimePPAP = table.Rows[i][44].ToString();
             recordset.Add(rfq);
         }       
         return recordset;
@@ -422,6 +428,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
             DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
         }
@@ -471,6 +478,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
             DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
+            DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
         }

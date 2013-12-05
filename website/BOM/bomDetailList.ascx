@@ -117,7 +117,7 @@
                 TextMode="MultiLine" Style="overflow-y: auto; font-family: Tahoma;"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:DropDownList ID="cboUM" chosen="true" runat="server" Width="70px">
+            <asp:DropDownList ID="cboUM" runat="server" Width="70px">
                 <asp:ListItem Value="Each">Each</asp:ListItem>
                 <asp:ListItem Value="Kg">Kg</asp:ListItem>
                 <asp:ListItem Value="Lb">Lb</asp:ListItem>
@@ -157,7 +157,7 @@
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:DropDownList ID="cboPurchasingStatus" chosen="true" runat="server" Width="120px">
+            <asp:DropDownList ID="cboPurchasingStatus" runat="server" Width="120px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Q">Quote</asp:ListItem>
                 <asp:ListItem Value="E">Estimate</asp:ListItem>

@@ -50,10 +50,10 @@
                             <asp:Label ID="SalesPersonLabel" runat="server" Text='<%# Bind("SalesPerson") %>' />
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                     </tr>
                     <tr>
@@ -64,10 +64,10 @@
                             <asp:Label ID="CustomerNameLabel" runat="server" Text='<%# Bind("CustomerName") %>' />
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                     </tr>
                     <tr>
@@ -78,10 +78,10 @@
                             <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                     </tr>
                     <tr>
@@ -92,10 +92,10 @@
                             <asp:Label ID="AnnualVolumeLabel" runat="server" Text='<%# Bind("AnnualVolume") %>' />
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                     </tr>
                     <tr>
@@ -106,10 +106,10 @@
                             <asp:Label ID="MarketSectorLabel" runat="server" Text='<%# Bind("MarketSector") %>' />
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                         <td align="left">
-                            &nbsp;
+                            
                         </td>
                     </tr>
                 </table>
@@ -119,68 +119,70 @@
         <br />
         <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:BoundField DataField="RFQStatus" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="RFQ Status" SortExpression="RFQStatus" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="RFQStatus" ItemStyle-HorizontalAlign="Center" HeaderText="RFQ Status"
+                    SortExpression="RFQStatus">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="LinePosition" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Material Position" SortExpression="LinePosition" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="LinePosition" ItemStyle-HorizontalAlign="Center" HeaderText="Material Position"
+                    SortExpression="LinePosition">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="PartNumber" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Part Number" SortExpression="PartNumber" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="PartNumber" ItemStyle-HorizontalAlign="Center" HeaderText="Part Number"
+                    SortExpression="PartNumber">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Capsonic PN" SortExpression="CapsonicPN" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" HeaderText="Capsonic PN"
+                    SortExpression="CapsonicPN">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Customer PN" SortExpression="CustomerPN" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" HeaderText="Customer PN"
+                    SortExpression="CustomerPN">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="ManufacturePN" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Manufacture PN" SortExpression="ManufacturePN" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="ManufacturePN" ItemStyle-HorizontalAlign="Center" HeaderText="Manufacture PN"
+                    SortExpression="ManufacturePN">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Supplier PN" SortExpression="SupplierPN" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier PN"
+                    SortExpression="SupplierPN">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CommCode" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Comm Code" SortExpression="CommCode" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="CommCode" ItemStyle-HorizontalAlign="Center" HeaderText="Comm Code"
+                    SortExpression="CommCode">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="Material" HeaderText="Material" SortExpression="Material" />
-                <asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Vendor Quote Est" SortExpression="VendorQuoteEst" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor Quote Est"
+                    SortExpression="VendorQuoteEst">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Qty" ItemStyle-HorizontalAlign="Right" 
-                    HeaderText="Qty Required" SortExpression="Qty" >
-                <ItemStyle HorizontalAlign="Right" />
+                <asp:BoundField DataField="Qty" ItemStyle-HorizontalAlign="Right" HeaderText="Qty Required"
+                    SortExpression="Qty">
+                    <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="EAU" ItemStyle-HorizontalAlign="Right" 
-                    HeaderText="EAU" SortExpression="EAU" >
-                <ItemStyle HorizontalAlign="Right" />
+                <asp:BoundField DataField="EAU" ItemStyle-HorizontalAlign="Right" HeaderText="EAU"
+                    SortExpression="EAU">
+                    <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
                 <asp:BoundField DataField="MOQ" HeaderText="MOQ" SortExpression="MOQ" />
-                <asp:BoundField DataField="TotalACost" ItemStyle-HorizontalAlign="Right" 
-                    HeaderText="Part Cost" SortExpression="TotalACost" DataFormatString="{0:C}" >
-                <ItemStyle HorizontalAlign="Right" />
+                <asp:BoundField DataField="TotalACost" ItemStyle-HorizontalAlign="Right" HeaderText="Part Cost"
+                    SortExpression="TotalACost" DataFormatString="{0:C}">
+                    <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="SupplierName" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Supplier Name" SortExpression="SupplierName" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="SupplierName" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier Name"
+                    SortExpression="SupplierName">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CapComAssm" ItemStyle-HorizontalAlign="Center" 
-                    HeaderText="Cap Com Assm" SortExpression="CapComAssm" >
-                <ItemStyle HorizontalAlign="Center" />
+                <asp:BoundField DataField="CapComAssm" ItemStyle-HorizontalAlign="Center" HeaderText="Cap Com Assm"
+                    SortExpression="CapComAssm">
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="PurchasingComments" HeaderText="Purchasing Comments" SortExpression="PurchasingComments" />
                 <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling Detail" SortExpression="ToolingDetail" />
+                <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost" SortExpression="ProductionTooling" />
                 <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Production Tooling Lead Time"
                     SortExpression="ProductionToolingLeadTime" />
+                <asp:BoundField DataField="LeadTimePPAP" HeaderText="Lead Time PPAP" SortExpression="LeadTimePPAP" />
                 <asp:BoundField DataField="ProductionLeadTime" HeaderText="Production Lead Time"
                     SortExpression="ProductionLeadTime" />
             </Columns>

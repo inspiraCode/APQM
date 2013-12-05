@@ -83,11 +83,12 @@
             <th class="camposSinBordes">
                 <div style="width: 160px;">
                     <asp:TextBox validate="required" validationid="validatingRFQDetail" ID="txtPartNumber"
-                        runat="server" Width="152px" TabIndex="9"></asp:TextBox>
+                        runat="server" Width="152px" TabIndex="10"></asp:TextBox>
                 </div>
             </th>
             <th class="camposSinBordes">
-                <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" TabIndex="10">
+                <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" 
+                    TabIndex="11">
                     <asp:ListItem Value="Each">Each</asp:ListItem>
                     <asp:ListItem Value="Kg">Kg</asp:ListItem>
                     <asp:ListItem Value="Lb">Lb</asp:ListItem>

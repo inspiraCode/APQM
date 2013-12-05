@@ -96,7 +96,7 @@
             Unit of Measure
         </td>
         <td class="style3">
-            <asp:DropDownList ID="cboUM" chosen = "true" runat="server" Width="130px">
+            <asp:DropDownList ID="cboUM" runat="server" Width="130px">
                 <asp:ListItem Selected="True"></asp:ListItem>
                 <asp:ListItem Value="Each">Each</asp:ListItem>
                 <asp:ListItem Value="Kg">Kg</asp:ListItem>
@@ -202,6 +202,8 @@
             <asp:DropDownList ID="cboSystemStatus" runat="server" 
                 Width="140px">
                 <asp:ListItem></asp:ListItem>
+                <asp:ListItem>For Add</asp:ListItem>
+                <asp:ListItem>For Edit</asp:ListItem>
                 <asp:ListItem>Created</asp:ListItem>
                 <asp:ListItem>In Progress</asp:ListItem>
                 <asp:ListItem>Processed</asp:ListItem>
