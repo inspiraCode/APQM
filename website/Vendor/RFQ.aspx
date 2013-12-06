@@ -10,7 +10,8 @@
         INSTRUCTIONS: Please fill up this RFQ, when completing this, press the "Finalize and send" button.<br />
         Gray fields are blocked.
     </div>
-    <br />
+    <asp:Button ID="btnInstructions" runat="server" Text="Instructions" OnClientClick="introJs().start(); return false;" />
+    <br /><br />
     <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"
         Text="Back" Width="85px" />
     <asp:Button ID="btnFinalize" validationid="validatingRFQForm" OnClientClick="return validate();"

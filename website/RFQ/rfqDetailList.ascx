@@ -53,11 +53,10 @@
                 Cost/Unit
             </th>
             <th width="70px">
-                Service Total
-            </th>
+                                Service Total</th>
             <th width="70px">
                 Scrap Value
-            </th>
+                %</th>
             <th width="70px">
                 Scrap Cost
             </th>
@@ -80,13 +79,13 @@
             </th>
         </tr>
         <tr style="background-color:#DADADA">
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='27' data-intro='Please indicate the type of material.'>
                 <div style="width: 160px;">
                     <asp:TextBox validate="required" validationid="validatingRFQDetail" ID="txtPartNumber"
                         runat="server" Width="152px" TabIndex="10"></asp:TextBox>
                 </div>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='28' data-intro='Please indicate the unit of measure.'>
                 <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" 
                     TabIndex="11">
                     <asp:ListItem Value="Each">Each</asp:ListItem>
@@ -94,54 +93,54 @@
                     <asp:ListItem Value="Lb">Lb</asp:ListItem>
                 </asp:DropDownList>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='29' data-intro='Quantity of material used.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtQuantity"
                     Style="text-align: right;" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='30' data-intro='Material cost per unit of measure'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtCostUnit"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='31' data-intro='This is the material cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
                 <asp:Label ID="Label1" runat="server" Width="70px"></asp:Label>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='32' data-intro='Enter the quantity of outside service.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesQuantity"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='33' data-intro='Cost of the outside service.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesCostUnit"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="15"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='34' data-intro='This is the outside service cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
                 <asp:Label ID="Label2" runat="server" Width="70px"></asp:Label>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='35' data-intro='Percentage of scrap. i.e. if it is 12%, enter .12'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtScrapValue"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="16"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='36' data-intro='This is the scrap cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>(Material Total + Service Total) x Scrap Value'>
                 <asp:Label ID="Label3" runat="server" Width="70px"></asp:Label>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='37' data-intro='Enter directly labor rate.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtDirectHrlyLaborRate"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="17"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='38' data-intro='Enter the number of standards hours required per part.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtStdHrs"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="18"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='39' data-intro='This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.' data-position='left'>
                 <asp:Label ID="Label4" runat="server" Width="70px"></asp:Label>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='40' data-intro='Enter your total burden cost per unit.' data-position='left'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtBurden"
                     runat="server" Style="text-align: right;" Width="70px" TabIndex="19"></asp:TextBox>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='41' data-intro='This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden' data-position='left'>
                 <asp:Label ID="Label5" runat="server" Width="50px"></asp:Label>
             </th>
-            <th class="camposSinBordes">
+            <th class="camposSinBordes" data-step='42' data-intro='If your information in this line is correct, press this button to add it to the list.' data-position='left'>
                 <asp:Button ID="btnAdd" validationid="validatingRFQDetail" runat="server" Text="Add"
                     OnClick="add_Click" Width="50px" TabIndex="20" OnClientClick="return validate();" />
             </th>

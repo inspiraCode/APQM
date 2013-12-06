@@ -182,7 +182,7 @@
         <ItemTemplate>
             <tr height='27px;'>
                 <td align="center" style="overflow: hidden; border: solid 1px;">
-                    <%# DataBinder.Eval(Container.DataItem, "Status")%>
+                    <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>    
                 </td>
                 <td align="center" style="overflow: hidden; border: solid 1px;border-left: 0px;">
                     <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>

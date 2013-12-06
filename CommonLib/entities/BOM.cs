@@ -98,7 +98,7 @@ public class BOMDetail
     private string itemMaterial = "";
     private string linePosition = "";
     private string salesStatus = "";
-    private long userKey = -1; 
+    private string user = ""; 
     private string purchasingStatus = "";
     private bool directedBuy;
     private string material = "";
@@ -233,10 +233,10 @@ public class BOMDetail
         get { return purchasingStatus; }
         set { purchasingStatus = value; }
     }
-    public long UserKey
+    public string User
     {
-        get { return userKey; }
-        set { userKey = value; }
+        get { return user; }
+        set { user = value; }
     }
     public bool DirectedBuy
     {

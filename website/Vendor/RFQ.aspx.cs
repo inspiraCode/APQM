@@ -31,6 +31,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
                 divInfo.InnerText = "You have already sent us your information, but you can see it as read only.";
                 btnFinalize.Visible = false;
                 divButtons.Visible = false;
+                btnInstructions.Visible = false;
             }
         }       
         if (!IsPostBack)

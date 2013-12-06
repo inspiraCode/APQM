@@ -57,7 +57,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         //salesStatus imported from sales db
         bomDetailEdit.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailEdit.PurchasingStatus = cboPurchasingStatus.SelectedValue;
-        bomDetailEdit.UserKey = -1; //TODO: Set logged user.
+        //bomDetailEdit.User = ; //TODO: Be user able to leave bom line
         bomDetailEdit.Status = cboSystemStatus.SelectedValue;
 
         if (bomDetailEdit.Id > -1)

@@ -61,14 +61,41 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((BOMDetail)e.Item.DataItem).Sequence.ToString();
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((BOMDetail)e.Item.DataItem).Sequence.ToString();
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            BOMDetail bomDetail = (BOMDetail)e.Item.DataItem;
+            if (bomDetail.PartNumber.Trim() == "")
+            {
+                ((LinkButton)e.Item.FindControl("updateByID")).Text = "(Empty)";
+            }
+            if (bomDetail.User != "")
+            {
+                ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Text = bomDetail.User;
+                ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Enabled = false;
+            }
+            if(bomDetail.internalAction == "UPDATE"){
+
+                ((Label)e.Item.FindControl("lblStatus")).Text = "For Edit";
+            }
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Sequence.ToString();
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
+            ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
         }
     }
     public void takeBOMLine(object sender, CommandEventArgs e)
     {
-       
+        String authUser = HttpContext.Current.User.Identity.Name;
+        int sequence = int.Parse((string)e.CommandArgument);
+        foreach (BOMDetail detail in bomDetail)
+        {
+            if (detail.Sequence == sequence)
+            {
+                detail.User = authUser;
+                detail.internalAction= "UPDATE";
+                loadDetail();
+                break;
+            }
+        }
     }
     public void deleteByID(object sender, CommandEventArgs e)
     {
@@ -100,6 +127,8 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     public void add_Click(object sender, EventArgs e)
     {
+        String authUser = HttpContext.Current.User.Identity.Name;
+
         BOMDetail bomDetailLine = new BOMDetail();
 
         bomDetailLine.PartNumber = cboPartNumber.SelectedItem.Text;
@@ -120,7 +149,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         //salesStatus imported from sales db
         bomDetailLine.DirectedBuy = chkDirectedBuy.Checked;
         bomDetailLine.PurchasingStatus = cboPurchasingStatus.SelectedValue;
-        bomDetailLine.UserKey = -1; //TODO: Set logged user.
+        bomDetailLine.User = authUser;
         bomDetailLine.Status = "For Add"; //TODO handle system status
         
         if (bomDetail == null) bomDetail = new List<BOMDetail>();

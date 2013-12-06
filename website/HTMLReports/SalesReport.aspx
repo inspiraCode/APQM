@@ -2,7 +2,7 @@
     AutoEventWireup="true" CodeFile="SalesReport.aspx.cs" Inherits="HTMLReports_SalesReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
-    <style>
+    <style type="text/css">
         .HeaderTable
         {
             font-weight: bold;
@@ -127,7 +127,7 @@
                     SortExpression="LinePosition">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="PartNumber" ItemStyle-HorizontalAlign="Center" HeaderText="Part Number"
+                <asp:BoundField DataField="PartNumber" ItemStyle-HorizontalAlign="Center" HeaderText="Part Number / Code ID"
                     SortExpression="PartNumber">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
@@ -151,7 +151,7 @@
                     SortExpression="CommCode">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Material" HeaderText="Material" SortExpression="Material" />
+                <asp:BoundField DataField="Material" HeaderText="Material / Assembly Description" SortExpression="Material" />
                 <asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor Quote Est"
                     SortExpression="VendorQuoteEst">
                     <ItemStyle HorizontalAlign="Center" />
@@ -169,7 +169,7 @@
                     SortExpression="TotalACost" DataFormatString="{0:C}">
                     <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
-                <asp:BoundField DataField="SupplierName" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier Name"
+                <asp:BoundField DataField="SupplierName" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor"
                     SortExpression="SupplierName">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
@@ -178,12 +178,12 @@
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="PurchasingComments" HeaderText="Purchasing Comments" SortExpression="PurchasingComments" />
-                <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling Detail" SortExpression="ToolingDetail" />
-                <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost" SortExpression="ProductionTooling" />
-                <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Production Tooling Lead Time"
+                <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling / Equiptment Type" SortExpression="ToolingDetail" />
+                <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost ($)" SortExpression="ProductionTooling" />
+                <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Tooling Lead Time"
                     SortExpression="ProductionToolingLeadTime" />
                 <asp:BoundField DataField="LeadTimePPAP" HeaderText="Lead Time PPAP" SortExpression="LeadTimePPAP" />
-                <asp:BoundField DataField="ProductionLeadTime" HeaderText="Production Lead Time"
+                <asp:BoundField DataField="ProductionLeadTime" HeaderText="Lead Time Production"
                     SortExpression="ProductionLeadTime" />
             </Columns>
         </asp:GridView>

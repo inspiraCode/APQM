@@ -24,7 +24,7 @@
         </td>
     </tr>
     <tr>
-        <td align="center">
+        <td align="center" data-step='46' data-intro='Step one!'>
             <asp:ListBox ID="lstItems" runat="server" Height="100px" Width="290px" 
                 TabIndex="30">
             </asp:ListBox>
