@@ -74,6 +74,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();
+            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((RFQDetail)e.Item.DataItem).Sequence.ToString();
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -133,5 +134,27 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         txtStdHrs.Text = "";
         txtBurden.Text = "";
         txtPartNumber.Text = "";
+    }
+    protected void on_edit_line(object sender, EventArgs e)
+    {
+        loadDetail();
+        panelPopup.Visible = false;
+    }
+    protected void on_cancelEdit_line(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
+    public void updateByID(object sender, CommandEventArgs e)
+    {
+        int sequence = int.Parse((string)e.CommandArgument);
+        foreach (RFQDetail detail in rfqDetail)
+        {
+            if (detail.Sequence == sequence)
+            {
+                uscRfqDetailEdit.setEntity(detail);
+                panelPopup.Visible = true;
+                break;
+            }
+        }
     }
 }

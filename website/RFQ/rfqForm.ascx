@@ -68,7 +68,8 @@
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
 <br />
-<div data-step='1' data-intro='Select "Quote" if you are available to quote this piece. Otherwise select "No Quote" and please specify your reason.' style="width:300px;">
+<div data-step='1' data-intro='Select "Quote" if you are available to quote this piece. Otherwise select "No Quote" and please specify your reason.'
+    style="width: 300px;">
     <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" Checked="True"
         onchange="on_change_option_quote()" TabIndex="1" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -81,21 +82,21 @@
 <div id="quoteSection">
     <div>
         <br />
-        
-        <div data-step='2' data-intro='Sometimes you can receive some comments from Purchasing department that can be helpful for you to quote the piece.' style="width:555px;">
-        Comments to vendor:<br />
-        <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
-            ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1" Style="border: 0;"></asp:TextBox>
+        <div data-step='2' data-intro='Sometimes you can receive some comments from Purchasing department that can be helpful for you to quote the piece.'
+            style="width: 555px;">
+            Comments to vendor:<br />
+            <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
+                ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1" Style="border: 0;"></asp:TextBox>
         </div>
-        
         <br />
         <br />
     </div>
     <div>
         <br />
-        
-        <div style="background-color: #D3D3D3; width: 550px;min-height: 20px;" data-step='3' data-intro='Sometimes you can receive attachments from Purchasing department that can be helpful for you to quote the piece.'>
-            Attachments:<br /><uc5:rfqAttachments ID="uscRfqAttachments" runat="server" />
+        <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='3'
+            data-intro='Sometimes you can receive attachments from Purchasing department that can be helpful for you to quote the piece.'>
+            Attachments:<br />
+            <uc5:rfqAttachments ID="uscRfqAttachments" runat="server" />
         </div>
         <br />
     </div>
@@ -137,7 +138,8 @@
                 <td align="right" class="style71" style="border-top: solid gray; border-left: solid gray;">
                     Total Manufacturing Cost
                 </td>
-                <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;" data-step='15' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
+                <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
+                    data-step='15' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
                     <asp:Label ID="lblTotalManufacturingCost" Style="text-align: right;" runat="server"
                         BackColor="#D3D3D3" Width="104px" Height="20px">0</asp:Label>
                 </td>
@@ -160,7 +162,8 @@
                 <td align="right" class="style71" style="border-left: solid gray;">
                     SG&amp;A Profit
                 </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='16' data-intro='Enter combined cost for SG%A and Profit.'>
+                <td align="left" class="style31" style="border-right: solid gray;" data-step='16'
+                    data-intro='Enter combined cost for SG%A and Profit.'>
                     <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
                         onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
@@ -179,12 +182,13 @@
                 </td>
                 <td align="left" class="style29" data-step='13' data-intro='This is your Ship Location, if it is wrong, please save first this RFQ without finilizing, and then go back to correct it.'>
                     <asp:Label ID="lblShipFromLocation" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px" ></asp:Label>
+                        Height="20px"></asp:Label>
                 </td>
                 <td align="right" class="style71" style="border-left: solid gray;">
                     Packing Cost/Unit
                 </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='17' data-intro='Enter packaging cost per unit.'>
+                <td align="left" class="style31" style="border-right: solid gray;" data-step='17'
+                    data-intro='Enter packaging cost per unit.'>
                     <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
                         runat="server" Width="100px" TabIndex="3"></asp:TextBox>
@@ -208,7 +212,8 @@
                 <td align="right" class="style71" style="border-left: solid gray;">
                     Assembly Cost/Unit
                 </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='18' data-intro='Enter any additional labor of assembly if required.'>
+                <td align="left" class="style31" style="border-right: solid gray;" data-step='18'
+                    data-intro='Enter any additional labor of assembly if required.'>
                     <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
                         runat="server" Width="100px" TabIndex="4"></asp:TextBox>
@@ -229,7 +234,8 @@
                 <td align="right" class="style71" style="border-left: solid gray; border-bottom: solid gray;">
                     Total Piece Cost
                 </td>
-                <td align="left" class="style31" data-step='19' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).' style="border-right: solid gray; border-bottom: solid gray;">
+                <td align="left" class="style31" data-step='19' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
+                    style="border-right: solid gray; border-bottom: solid gray;">
                     <asp:Label ID="lblTotalPieceCost" runat="server" Style="text-align: right" BackColor="#D3D3D3"
                         Width="104px" Height="20px">0</asp:Label>
                 </td>
@@ -281,7 +287,7 @@
                     </div>
                 </td>
                 <td align="center">
-                    <table  data-step='21' data-intro='Please complete these fields if apply.'>
+                    <table data-step='21' data-intro='Please complete these fields if apply.'>
                         <tr>
                             <td align="right">
                                 Production Lead Time
@@ -304,7 +310,7 @@
                             <td align="right">
                                 Prototype Tooling Lead Time
                             </td>
-                            <td align="left"'>
+                            <td align="left"'">
                                 <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" runat="server"
                                     Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
                             </td>
@@ -320,13 +326,16 @@
                         </tr>
                         <tr>
                             <td align="right">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                             <td align="left">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">
-                                Lead Time PPAP</td>
+                                Lead Time PPAP
+                            </td>
                             <td align="left">
                                 <asp:TextBox ID="txtLeadTimePPAP" validationid="validatingRFQForm" runat="server"
                                     Style="text-align: right" Width="240px" TabIndex="9"></asp:TextBox>
@@ -340,7 +349,7 @@
         <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
         </div>
         <br />
-        <uc1:rfqDetailList ID="uscRFQDetailList" runat="server"/>
+        <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
     </div>
     <div align="center">
         <table cellspacing="0" class="style55">
@@ -359,16 +368,16 @@
                     <table>
                         <tr>
                             <td align="right">
-                            <div style="width:290px;" align="right" data-step='48' data-intro='Please enter the weight of the final assembly.'>Weight
-                                <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
-                                <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" TabIndex="32">
-                                    <asp:ListItem Value="Each">Each</asp:ListItem>
-                                    <asp:ListItem Value="Kg">Kg</asp:ListItem>
-                                    <asp:ListItem Value="Lb">Lb</asp:ListItem>
-                                </asp:DropDownList>
-                            </div>
-                                
+                                <div style="width: 290px;" align="right" data-step='48' data-intro='Please enter the weight of the final assembly.'>
+                                    Weight
+                                    <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
+                                        runat="server" Style="text-align: right" Width="130px" TabIndex="31"></asp:TextBox>
+                                    <asp:DropDownList ID="cboUMWeight" runat="server" chosen="true" Width="100px" TabIndex="32">
+                                        <asp:ListItem Value="Each">Each</asp:ListItem>
+                                        <asp:ListItem Value="Kg">Kg</asp:ListItem>
+                                        <asp:ListItem Value="Lb">Lb</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -387,11 +396,13 @@
                         </tr>
                         <tr>
                             <td align="left">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                         </tr>
                         <tr>
                             <td align="left">
-                                &nbsp;</td>
+                                &nbsp;
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -401,7 +412,7 @@
                     <asp:TextBox ID="txtToolingDetail" validate="required" validationid="validatingRFQForm"
                         runat="server" Width="300px" Height="40px" TabIndex="22" TextMode="MultiLine"></asp:TextBox>
                 </td>
-                <td align="center" rowspan="4"  data-step='47' data-intro='Outline your annual cost reduction commitment.'>
+                <td align="center" rowspan="4" data-step='47' data-intro='Outline your annual cost reduction commitment.'>
                     <uc2:rfqACR ID="uscRfqACR" runat="server" />
                 </td>
             </tr>
@@ -433,23 +444,23 @@
                 </td>
             </tr>
             <tr>
-            <td colspan=6>
-                &nbsp;</td>
+                <td colspan="6">
+                    &nbsp;
+                </td>
             </tr>
             <tr>
-            <td colspan=6 align="left">
-                                Comments
-                            </td>
+                <td colspan="6" align="left">
+                    Comments
+                </td>
             </tr>
             <tr>
-            <td colspan=6 align="left">
-            <div  data-step='51' data-intro='If you have any comments to share us, please use this field.' data-position='right' style="width:305px;">
-            <asp:TextBox ID="txtComments" runat="server"
-                    Style="text-align: left" Width="300px"
-                                    TabIndex="35" Height="62px" TextMode="MultiLine"></asp:TextBox>
-            </div>
-                                
-            </td>
+                <td colspan="6" align="left">
+                    <div data-step='51' data-intro='If you have any comments to share us, please use this field.'
+                        data-position='right' style="width: 305px;">
+                        <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="300px"
+                            TabIndex="35" Height="62px" TextMode="MultiLine"></asp:TextBox>
+                    </div>
+                </td>
             </tr>
         </table>
         <div align="center" style="visibility: hidden;">

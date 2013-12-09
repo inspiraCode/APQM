@@ -7,21 +7,34 @@
         {
             font-weight: bold;
         }
+        .style1
+        {
+            font-weight: bold;
+            width: 283px;
+        }
+        .style2
+        {
+            width: 283px;
+        }
+        .style3
+        {
+            width: 162px;
+        }
     </style>
     <br />
     <asp:Label ID="lblBOMHeader" runat="server" Text="" Visible="False"></asp:Label>
     <asp:Panel ID="panelContent" runat="server">
         <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSourceForm">
             <ItemTemplate>
-                <table cellspacing="0" style="width: 100%">
+                <table cellspacing="0" style="width: 89%">
                     <tr>
                         <td align="right" class="HeaderTable">
                             Inquiry Number:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
                         </td>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style1">
                             Total Material Cost:
                         </td>
                         <td align="left">
@@ -32,10 +45,10 @@
                         <td align="right" class="HeaderTable">
                             Revision:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="RevisionLabel" runat="server" Text='<%# Bind("Revision") %>' />
                         </td>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style1">
                             Total Cost Reduction:
                         </td>
                         <td align="left">
@@ -46,75 +59,67 @@
                         <td align="right" class="HeaderTable">
                             Sales Person:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="SalesPersonLabel" runat="server" Text='<%# Bind("SalesPerson") %>' />
                         </td>
+                        <td align="right" class="style1">
+                            Total Material Cost with Reduction:</td>
                         <td align="left">
-                            
-                        </td>
-                        <td align="left">
-                            
+                            <asp:Label ID="lblTotalMaterialCostWithReduction" runat="server" />
                         </td>
                     </tr>
                     <tr>
                         <td align="right" class="HeaderTable">
                             Customer Name:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="CustomerNameLabel" runat="server" Text='<%# Bind("CustomerName") %>' />
                         </td>
-                        <td align="left">
-                            
+                        <td align="left" class="style2">
                         </td>
                         <td align="left">
-                            
                         </td>
                     </tr>
                     <tr>
                         <td align="right" class="HeaderTable">
                             Finished Good PN:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
                         </td>
-                        <td align="left">
-                            
+                        <td align="left" class="style2">
                         </td>
                         <td align="left">
-                            
                         </td>
                     </tr>
                     <tr>
                         <td align="right" class="HeaderTable">
                             Annual Volume:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="AnnualVolumeLabel" runat="server" Text='<%# Bind("AnnualVolume") %>' />
                         </td>
-                        <td align="left">
-                            
+                        <td align="left" class="style2">
                         </td>
                         <td align="left">
-                            
                         </td>
                     </tr>
                     <tr>
                         <td align="right" class="HeaderTable">
                             Market Sector:
                         </td>
-                        <td align="left">
+                        <td align="left" class="style3">
                             <asp:Label ID="MarketSectorLabel" runat="server" Text='<%# Bind("MarketSector") %>' />
                         </td>
-                        <td align="left">
-                            
+                        <td align="left" class="style2">
                         </td>
                         <td align="left">
-                            
                         </td>
                     </tr>
                 </table>
             </ItemTemplate>
         </asp:FormView>
+        
         <br />
         <br />
         <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
@@ -151,7 +156,8 @@
                     SortExpression="CommCode">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Material" HeaderText="Material / Assembly Description" SortExpression="Material" />
+                <asp:BoundField DataField="Material" HeaderText="Material / Assembly Description"
+                    SortExpression="Material" />
                 <asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor Quote Est"
                     SortExpression="VendorQuoteEst">
                     <ItemStyle HorizontalAlign="Center" />
@@ -178,7 +184,8 @@
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="PurchasingComments" HeaderText="Purchasing Comments" SortExpression="PurchasingComments" />
-                <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling / Equiptment Type" SortExpression="ToolingDetail" />
+                <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling / Equiptment Type"
+                    SortExpression="ToolingDetail" />
                 <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost ($)" SortExpression="ProductionTooling" />
                 <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Tooling Lead Time"
                     SortExpression="ProductionToolingLeadTime" />
@@ -191,7 +198,15 @@
     <br />
     <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
-        ProviderName="System.Data.SqlClient" SelectCommand="SELECT * FROM [viewSalesReportDetail] WHERE ([BOMHeaderKey] = @BOMHeaderKey) ORDER BY [PartNumber]">
+        ProviderName="System.Data.SqlClient" SelectCommand="
+        SELECT DISTINCT  PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, 
+			        VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail,
+			        ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], ISNULL(RFQStatus,'IN PROCESS') AS RFQStatus,
+			        TotalACost, LeadTimePPAP, ProductionTooling, [User]
+        FROM        viewSalesReportDetail
+        WHERE       ([BOMHeaderKey] = @BOMHeaderKey) AND (RFQStatus = 'SELECTED' OR RFQStatus = 'DISMISSED' OR RFQStatus = 'AWARDED' OR RFQStatus IS NULL OR [Status] = 'No Quote' )
+        ORDER BY    PartNumber
+        ">
         <SelectParameters>
             <asp:ControlParameter ControlID="lblBOMHeader" Name="BOMHeaderKey" PropertyName="Text"
                 Type="Decimal" />

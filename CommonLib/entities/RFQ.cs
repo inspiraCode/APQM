@@ -56,10 +56,6 @@ public class RFQ
     private string attachmentsFolder = "";
     private string leadTimePPAP = "";
 
-   
-
-    
-
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -396,6 +392,10 @@ public class RFQDetail
     private float stdHrs;
     private float burden;
     private int sequence = -1;
+
+    //Fields not in database:
+    public string internalAction = "";
+
 
     public string Um
     {

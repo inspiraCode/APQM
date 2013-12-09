@@ -3,7 +3,7 @@
                 <tr>
                     <td align="center" style="width: 100%">
                         <fieldset>
-                            <legend>Loged User</legend>
+                            <legend>Logged User</legend>
                             <table align="center" style="width: 120px">
                                 <tr>
                                     <td align="center">

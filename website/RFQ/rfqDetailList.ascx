@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqDetailList.ascx.cs"
     Inherits="rfqDetailList" %>
+<%@ Register Src="rfqDetailEdit.ascx" TagName="rfqDetailEdit" TagPrefix="uc1" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -11,9 +12,9 @@
 </style>
 <div align="center">
     <table border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
-        <tr style="background-color:#D3D3D3">
+        <tr style="background-color: #D3D3D3">
             <th colspan="5">
-                Raw Material and Purchased Components
+                Raw Material And Purchased Components
             </th>
             <th colspan="3">
                 Outside Services
@@ -25,9 +26,9 @@
                 Labor
             </th>
             <th colspan="2">
-                Burden per Unit
+                Burden Per Unit
             </th>
-            <th>
+            <th colspan="2">
             </th>
         </tr>
         <tr>
@@ -53,15 +54,16 @@
                 Cost/Unit
             </th>
             <th width="70px">
-                                Service Total</th>
+                Service Total
+            </th>
             <th width="70px">
-                Scrap Value
-                %</th>
+                Scrap Value %
+            </th>
             <th width="70px">
                 Scrap Cost
             </th>
             <th width="70px">
-                Directly Hrly Labor rate
+                Directly Hrly Labor Rate
             </th>
             <th width="70px">
                 Std Hrs.
@@ -75,10 +77,10 @@
             <th width="70px">
                 Total Burden
             </th>
-            <th width="70px">
+            <th width="80px" colspan='2'>
             </th>
         </tr>
-        <tr style="background-color:#DADADA">
+        <tr style="background-color: #DADADA">
             <th class="camposSinBordes" data-step='27' data-intro='Please indicate the type of material.'>
                 <div style="width: 160px;">
                     <asp:TextBox validate="required" validationid="validatingRFQDetail" ID="txtPartNumber"
@@ -86,61 +88,64 @@
                 </div>
             </th>
             <th class="camposSinBordes" data-step='28' data-intro='Please indicate the unit of measure.'>
-                <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" 
-                    TabIndex="11">
+                <asp:DropDownList ID="cboUM" runat="server" chosen="true" Width="100px" TabIndex="11">
                     <asp:ListItem Value="Each">Each</asp:ListItem>
                     <asp:ListItem Value="Kg">Kg</asp:ListItem>
                     <asp:ListItem Value="Lb">Lb</asp:ListItem>
                 </asp:DropDownList>
             </th>
             <th class="camposSinBordes" data-step='29' data-intro='Quantity of material used.'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtQuantity"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtQuantity" onchange="calculateMaterialCost()" onkeyup="calculateMaterialCost()"
                     Style="text-align: right;" runat="server" Width="68px" TabIndex="12"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='30' data-intro='Material cost per unit of measure'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtCostUnit"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtCostUnit" onchange="calculateMaterialCost()" onkeyup="calculateMaterialCost()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="13"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='31' data-intro='This is the material cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
-                <asp:Label ID="Label1" runat="server" Width="70px"></asp:Label>
+                <asp:Label ID="lblMaterialTotal" runat="server" Width="70px">0.00</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='32' data-intro='Enter the quantity of outside service.'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesQuantity"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesQuantity" onchange="calculateServiceTotal()" onkeyup="calculateServiceTotal()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='33' data-intro='Cost of the outside service.'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesCostUnit"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtOutsideServicesCostUnit" onchange="calculateServiceTotal()" onkeyup="calculateServiceTotal()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="15"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='34' data-intro='This is the outside service cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
-                <asp:Label ID="Label2" runat="server" Width="70px"></asp:Label>
+                <asp:Label ID="lblServiceTotal" runat="server" Width="70px">0.00</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='35' data-intro='Percentage of scrap. i.e. if it is 12%, enter .12'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtScrapValue"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtScrapValue" onchange="calculateScrap()" onkeyup="calculateScrap()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="16"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='36' data-intro='This is the scrap cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>(Material Total + Service Total) x Scrap Value'>
-                <asp:Label ID="Label3" runat="server" Width="70px"></asp:Label>
+                <asp:Label ID="lblScrapCost" runat="server" Width="70px">0.00</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='37' data-intro='Enter directly labor rate.'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtDirectHrlyLaborRate"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtDirectHrlyLaborRate" onchange="calculateLaborCost()" onkeyup="calculateLaborCost()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="17"></asp:TextBox>
             </th>
             <th class="camposSinBordes" data-step='38' data-intro='Enter the number of standards hours required per part.'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtStdHrs"
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtStdHrs" onchange="calculateLaborCost()" onkeyup="calculateLaborCost()"
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="18"></asp:TextBox>
             </th>
-            <th class="camposSinBordes" data-step='39' data-intro='This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.' data-position='left'>
-                <asp:Label ID="Label4" runat="server" Width="70px"></asp:Label>
+            <th class="camposSinBordes" data-step='39' data-intro='This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.'
+                data-position='left'>
+                <asp:Label ID="lblLaborCost" runat="server" Width="70px">0.00</asp:Label>
             </th>
-            <th class="camposSinBordes" data-step='40' data-intro='Enter your total burden cost per unit.' data-position='left'>
-                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtBurden"
+            <th class="camposSinBordes" data-step='40' data-intro='Enter your total burden cost per unit.'
+                data-position='left'>
+                <asp:TextBox validate="number" validationid="validatingRFQDetail" ID="txtBurden" onchange="calculateBurdenTotal()" onkeyup="calculateBurdenTotal()"
                     runat="server" Style="text-align: right;" Width="70px" TabIndex="19"></asp:TextBox>
             </th>
-            <th class="camposSinBordes" data-step='41' data-intro='This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden' data-position='left'>
-                <asp:Label ID="Label5" runat="server" Width="50px"></asp:Label>
+            <th class="camposSinBordes" data-step='41' data-intro='This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden'
+                data-position='left'>
+                <asp:Label ID="lblBurdenTotal" runat="server" Width="50px">0.00</asp:Label>
             </th>
-            <th class="camposSinBordes" data-step='42' data-intro='If your information in this line is correct, press this button to add it to the list.' data-position='left'>
+            <th class="camposSinBordes" colspan='2' data-step='42' data-intro='If your information in this line is correct, press this button to add it to the list.'
+                data-position='left'>
                 <asp:Button ID="btnAdd" validationid="validatingRFQDetail" runat="server" Text="Add"
                     OnClick="add_Click" Width="50px" TabIndex="20" OnClientClick="return validate();" />
             </th>
@@ -196,6 +201,12 @@
                             <%# DataBinder.Eval(Container.DataItem, "BurdenTotal")%>
                         </td>
                         <td width="52px">
+                            <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID"
+                                OnClientClick="return setSrcElementForEditForm();">
+                            Edit
+                            </asp:LinkButton>
+                        </td>
+                        <td width="52px">
                             <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
                                 OnClientClick="return  confirm('Do you wish to delete this RFQ Line?')">
                             Delete
@@ -205,7 +216,7 @@
                 </ItemTemplate>
             </asp:Repeater>
             <tr>
-                <td colspan="16" class="camposSinBordes">
+                <td colspan="17" class="camposSinBordes">
                     <div style="border: solid; border-color: silver; border-width: 2px; margin-bottom: -2px;">
                     </div>
                 </td>
@@ -219,36 +230,109 @@
                 </td>
                 <td class="camposSinBordes">
                 </td>
-                <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
+                <td class="camposSinBordes" style="background-color: Silver; text-align: right;">
                     <asp:Label ID="lblTotalMaterial" runat="server">0</asp:Label>
                 </td>
                 <td class="camposSinBordes">
                 </td>
                 <td class="camposSinBordes">
                 </td>
-                <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
+                <td class="camposSinBordes" style="background-color: Silver; text-align: right;">
                     <asp:Label ID="lblTotalService" runat="server">0</asp:Label>
                 </td>
                 <td class="camposSinBordes">
                 </td>
-                <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
+                <td class="camposSinBordes" style="background-color: Silver; text-align: right;">
                     <asp:Label ID="lblTotalScrap" runat="server">0</asp:Label>
                 </td>
                 <td class="camposSinBordes">
                 </td>
                 <td class="camposSinBordes">
                 </td>
-                <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
+                <td class="camposSinBordes" style="background-color: Silver; text-align: right;">
                     <asp:Label ID="lblTotalLabor" runat="server">0</asp:Label>
                 </td>
                 <td class="camposSinBordes">
                 </td>
-                <td class="camposSinBordes" style="background-color: Silver;text-align: right;">
+                <td class="camposSinBordes" style="background-color: Silver; text-align: right;">
                     <asp:Label ID="lblTotalBurden" runat="server">0</asp:Label>
                 </td>
-                <td class="camposSinBordes">
+                <td class="camposSinBordes" colspan="2">
                 </td>
             </tr>
     </table>
 </div>
 <br />
+<asp:HiddenField ID="hiddenEditFormTopPosition" runat="server" />
+<asp:HiddenField ID="hiddenEditFormLeftPosition" runat="server" />
+
+<script type="text/javascript">
+    function setSrcElementForEditForm() {
+        var src = event.srcElement;
+        jQuery("#<%= hiddenEditFormTopPosition.ClientID %>").val(src.id);
+        return true;
+    }    
+    function calculateMaterialCost() {
+        var qty = Number(jQuery("#<%= txtQuantity.ClientID %>").val());
+        var costUnit = Number(jQuery("#<%= txtCostUnit.ClientID %>").val());
+        jQuery("#<%= lblMaterialTotal.ClientID %>").text((qty * costUnit).toFixed(2));
+        calculateScrap();
+    }
+    function calculateServiceTotal() {
+        var qty = Number(jQuery("#<%= txtOutsideServicesQuantity.ClientID %>").val());
+        var costUnit = Number(jQuery("#<%= txtOutsideServicesCostUnit.ClientID %>").val());
+        jQuery("#<%= lblServiceTotal.ClientID %>").text((qty * costUnit).toFixed(2));
+        calculateScrap();
+    }
+    function calculateScrap() {
+        var materialTotal = Number(jQuery("#<%= lblMaterialTotal.ClientID %>").text()); 
+        var serviceTotal = Number(jQuery("#<%= lblServiceTotal.ClientID %>").text()); 
+        var scrap = Number(jQuery("#<%= txtScrapValue.ClientID %>").val());
+        jQuery("#<%= lblScrapCost.ClientID %>").text((((materialTotal + serviceTotal) * scrap)).toFixed(2));
+    }
+    function calculateLaborCost() {
+        var directlyHrlyLaborRate = Number(jQuery("#<%= txtDirectHrlyLaborRate.ClientID %>").val());
+        var stdHrs = Number(jQuery("#<%= txtStdHrs.ClientID %>").val());
+        jQuery("#<%= lblLaborCost.ClientID %>").text((directlyHrlyLaborRate * stdHrs).toFixed(2));
+    }
+    function calculateBurdenTotal() {
+        var burden = Number(jQuery("#<%= txtBurden.ClientID %>").val());
+        jQuery("#<%= lblBurdenTotal.ClientID %>").text(burden.toFixed(2));
+    }
+</script>
+
+<asp:Panel ID="panelPopup" runat="server" Visible="false" Style="padding: 1px; overflow: hidden;">
+    <uc1:rfqDetailEdit ID="uscRfqDetailEdit" runat="server" OnOk_Click="on_edit_line"
+        OnCancel_Click="on_cancelEdit_line" />
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ Line Edit");
+            jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 1280, height: 60, modal: true,
+                dialogClass: "no-close", closeOnEscape: false
+            });
+
+            jQuery(".ui-dialog-titlebar").hide();
+            jQuery("[role = dialog]").css('overflow', 'hidden').hide();
+            setTimeout("setEditFormPosition()", 50);
+
+        });
+
+
+        function setEditFormPosition() {
+            var id = jQuery("#<%= hiddenEditFormTopPosition.ClientID %>").val();
+            var src = jQuery("#" + id);
+            var top = src.parent().parent().position().top;
+            var left = src.parent().parent().position().left - 2;
+            jQuery("[role = dialog]").css("top", top).css("left", left).show();
+            
+        }
+
+        jQuery(window).resize(function() {
+            setEditFormPosition();
+        });
+    </script>
+
+</asp:Panel>

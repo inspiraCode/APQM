@@ -9,7 +9,7 @@
     background-color: #DCDCDC;
     border-bottom: 0px;
     position: relative;    
-    top: 3px;
+    top: 5px;
     margin-right: -4px;
 }
 
@@ -23,7 +23,7 @@
     background-color: white;
     border-bottom: 0px;
     position: relative;    
-    top: 4px;
+    top: 6px;
     margin-right: -4px;
 }
 
@@ -34,6 +34,7 @@
     margin: 0;
     padding: 0;
     outline: 0px solid #A4A4A4;
-    height: 22px;
+    height: 23px;
     border-bottom: 1px solid black;    
+    position:relative;
 }

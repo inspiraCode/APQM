@@ -64,7 +64,8 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             }
         }
         ((Label)FormView1.FindControl("lblTotalMaterialCost")).Text = String.Format("{0:C}", totalCostMaterial);
-        ((Label)FormView1.FindControl("lblTotalCostReduction")).Text = String.Format("{0:C}", totalCostMaterial - totalCostReduction);
+        ((Label)FormView1.FindControl("lblTotalCostReduction")).Text = String.Format("{0:C}", totalCostReduction);
+        ((Label)FormView1.FindControl("lblTotalMaterialCostWithReduction")).Text = String.Format("{0:C}", totalCostMaterial - totalCostReduction);
     }
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
