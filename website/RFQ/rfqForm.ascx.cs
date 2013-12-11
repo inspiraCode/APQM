@@ -11,6 +11,7 @@ public partial class rfqForm : System.Web.UI.UserControl
 {
     public event EventHandler AfterSave;
     public event EventHandler AfterCancel;
+    public event EventHandler AfterFinalize;
 
     RfqCRUD rfqCRUD = new RfqCRUD();
     public RFQ rfq = null;
@@ -115,24 +116,47 @@ public partial class rfqForm : System.Web.UI.UserControl
         List<SIFDetail> sifDetailList = sifDetailCRUD.readByParentID(rfq.SifHeaderKey);
 
         uscSifDetail.setEntity(sifDetailList);
-        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsFolder"];
-        if (Directory.Exists(baseAttachmentsPath + rfq.AttachmentsFolder))
+
+        hiddenSentAttachmentsFolder.Value = rfq.SentAttachmentsFolder;
+
+        string baseSentAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        if (Directory.Exists(baseSentAttachmentsPath + rfq.SentAttachmentsFolder))
         {
-            List<RFQAttachments> rfqAttachmentsList = new List<RFQAttachments>();
-            DirectoryInfo directory = new DirectoryInfo(baseAttachmentsPath + rfq.AttachmentsFolder);
+            List<RFQAttachments> rfqSentAttachmentsList = new List<RFQAttachments>();
+            DirectoryInfo directory = new DirectoryInfo(baseSentAttachmentsPath + rfq.SentAttachmentsFolder);
             foreach(FileInfo file in directory.GetFiles()){
                 RFQAttachments rfqAttachment = new RFQAttachments();
                 rfqAttachment.FileName = file.Name;
-                rfqAttachment.Directory = rfq.AttachmentsFolder;
-                rfqAttachmentsList.Add(rfqAttachment);
+                rfqAttachment.Directory = rfq.SentAttachmentsFolder;
+                rfqSentAttachmentsList.Add(rfqAttachment);
             }
-            uscRfqAttachments.setEntity(rfqAttachmentsList);
-            uscRfqAttachments.load();
+            uscRfqAttachmentsSent.setEntity(rfqSentAttachmentsList);
+            uscRfqAttachmentsSent.load();
         }
+
+        updateListAttachmentsVendor(rfq);
+        
     }
-    public void save()
+    public void updateListAttachmentsVendor(RFQ rfq)
     {
-        if (saveRFQ()) AfterSave(null, null);
+        hiddenInboxAttachments.Value = rfq.InboxAttachmentsFolder;
+        Session["RFQATTACHMENTSFOLDERINBOX"] = rfq.InboxAttachmentsFolder;
+
+        string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        if (Directory.Exists(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder))
+        {
+            List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
+            DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = rfq.InboxAttachmentsFolder;
+                rfqInboxAttachmentsList.Add(rfqAttachment);
+            }
+            uscRfqInboxAttachments.setEntity(rfqInboxAttachmentsList);
+            uscRfqInboxAttachments.load();
+        }
     }
     public bool finalize() {
         if (saveRFQ())
@@ -203,6 +227,20 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.CommentsToBuyer = txtComments.Text;
 
         rfq.IAgree = chkIAgree.Checked;
+
+        rfq.SentAttachmentsFolder = hiddenSentAttachmentsFolder.Value;
+
+        string folderVendorAttachments = (string)Session["RFQATTACHMENTSFOLDERINBOX"];
+        if (folderVendorAttachments != null)
+        {
+            rfq.InboxAttachmentsFolder = folderVendorAttachments;
+        }
+        else
+        {
+            rfq.InboxAttachmentsFolder = hiddenInboxAttachments.Value;
+        }
+        Session.Remove("RFQATTACHMENTSINBOX");
+        Session.Remove("RFQATTACHMENTSFOLDERINBOX");
 
         List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();
         List<RFQACR> rfqACRList = uscRfqACR.getEntity();
@@ -277,8 +315,26 @@ public partial class rfqForm : System.Web.UI.UserControl
         }
         return true;
     }
-    public void cancel()
+    public void setEnabled(bool enabled)
     {
-        AfterCancel(null, null);        
+        if (enabled)
+        {
+            
+        }
+    }
+    protected void btnSave_Click(object sender, EventArgs e)
+    {
+        if (saveRFQ()) AfterSave(null, null);
+    }
+    protected void btnFinalize_Click(object sender, EventArgs e)
+    {
+        if (finalize())
+        {
+            AfterFinalize(null,null);
+        }
+    }
+    protected void on_after_delete_vendorAttachment(object sender, EventArgs e)
+    {
+        updateListAttachmentsVendor(rfq);
     }
 }

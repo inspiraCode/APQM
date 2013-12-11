@@ -7,27 +7,48 @@
     <br />
     <br />
     <div id="divInfo" runat="server">
-        INSTRUCTIONS: Please fill up this RFQ, when completing this, press the "Finalize and send" button. Gray fields are blocked.
+        INSTRUCTIONS: Please fill up this RFQ, when completing this, press the "Finalize
+        and submit" button. Gray fields are blocked.
     </div>
     <br />
+    <div id="divButtonsTop" align="left" runat="server">
+        <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"
+            Text="Back" Width="132px" />
+        <div runat="server" id="divButtonsTopToHide" style="display: inline;">
+            <input id="btnSendFilesAndFinalize1" onclick="uploadFiles('finalize');" type="button"
+                style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit" />
+            <input id="btnSendFilesAndSave1" onclick="uploadFiles('save');" type="button" validationid="validatingRFQForm"
+                style="width: 150px;" value="Save and continue later" />
+            <asp:Button ID="btnInstructions" runat="server" Width="132px" Text="Instructions"
+                OnClientClick="introJs().start(); return false;" />
+        </div>
+    </div>
     
-    <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"
-        Text="Back" Width="132px" />
-    <asp:Button ID="btnFinalize" validationid="validatingRFQForm" OnClientClick="return validate();"
-        runat="server" Text="Finalize and submit" Width="132px" OnClick="btnFinalize_Click" />
-    
-    <asp:Button ID="btnInstructions" runat="server" Width="132px" Text="Instructions" OnClientClick="introJs().start(); return false;" />
+    <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_afterSave_rfq" OnAfterFinalize="on_afterFinalize_rfq" />
     <br />
-    <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_save_rfq" OnAfterCancel="on_cancel_rfq" />
     <div id="divButtons" align="center" runat="server">
-        <asp:Button ID="btnFinalizeBottom" validationid="validatingRFQForm" OnClientClick="return validate();"
-        runat="server" Text="Finalize and submit" Width="132px" OnClick="btnFinalize_Click" />
-        <asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="160px" OnClick="btnSave_Click"
-            validationid="validatingRFQForm" OnClientClick="return validate();" 
-            TabIndex="36" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
-            OnClick="btnCancel_Click" TabIndex="37" />
+        <input id="btnSendFilesAndFinalize" onclick="uploadFiles('finalize');" type="button"
+            style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit" />
+        <input id="btnSendFilesAndSave" onclick="uploadFiles('save');" type="button" validationid="validatingRFQForm"
+            style="width: 150px;" value="Save and continue later" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
+            TabIndex="37" />
     </div>
     <br />
-    <br />
+
+    <script type="text/javascript">
+        function enableCaller(bEnable) {
+            if (bEnable) {
+                jQuery("#<%= divButtons.ClientID %>").children().prop("disabled", false);
+                jQuery("#<%= divButtonsTop.ClientID %>").children().prop("disabled", false);
+            }
+            else {
+                jQuery("#<%= divButtons.ClientID %>").children().prop("disabled", true);
+                jQuery("#<%= divButtonsTop.ClientID %>").children().prop("disabled", true);
+            }
+        }
+    </script>
+
+
+   
 </asp:Content>

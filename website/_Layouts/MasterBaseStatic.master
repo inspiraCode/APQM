@@ -17,6 +17,7 @@
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/css/jquery.ui.core.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/css/jquery.ui.all.css") %>';
          @import '<%= this.ResolveUrl("~/Scripts/Intro/introjs.css") %>';
+                 @import '<%= this.ResolveUrl("~/Scripts/jQuery/UploadFile/uploadfile.css") %>';
     </style>
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/jQuery2/jQuery2.js") %>' type="text/javascript"></script>
@@ -56,6 +57,9 @@
         
         <script src='<%= this.ResolveUrl("~/Scripts/Intro/intro.js") %>'
         type="text/javascript"></script>
+        
+        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/UploadFile/jquery.uploadfile.js") %>'
+        type="text/javascript"></script>
 
 </head>
 <body style="padding: 0 20px; font-family: Tahoma; font-size: 13px;">
@@ -67,7 +71,7 @@
      Here are the <a href="http://www.enable-javascript.com/" target="_blank">
      instructions how to enable JavaScript in your web browser</a>.
     </noscript>
-    <div id="javascriptEnabled" style="visibility:hidden;">
+    <div id="javascriptEnabled" style="visibility:visible;">
         <form id="form1" runat="server">
         <div id="divHeader" style="top: 0; left: 0; width: 100%;">
             <table width="100%" style="background-color: white;">
@@ -109,9 +113,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        WebMasters: Aaron Corrales <a tabindex="-1" href="mailto:acorrales@capsonic.com">acorrales@capsonic.com</a>,
-                        Alfredo Pacheco <a tabindex="-1" href="mailto:apacheco@capsonic.com">apacheco@capsonic.com</a>
-                        LMD: 12/06/2013
+                        LMD: 12/11/2013
                     </td>
                 </tr>
             </table>

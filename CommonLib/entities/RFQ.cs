@@ -53,7 +53,10 @@ public class RFQ
     private string umWeight = "";
     private string partMaterial = "";
 
-    private string attachmentsFolder = "";
+    private string sentAttachmentsFolder = "";
+    private string inboxAttachmentsFolder = "";
+
+    
     private string leadTimePPAP = "";
 
     private List<RFQDetail> rfqDetail;
@@ -290,10 +293,15 @@ public class RFQ
         get { return partMaterial; }
         set { partMaterial = value; }
     }
-    public string AttachmentsFolder
+    public string SentAttachmentsFolder
     {
-        get { return attachmentsFolder; }
-        set { attachmentsFolder = value; }
+        get { return sentAttachmentsFolder; }
+        set { sentAttachmentsFolder = value; }
+    }
+    public string InboxAttachmentsFolder
+    {
+        get { return inboxAttachmentsFolder; }
+        set { inboxAttachmentsFolder = value; }
     }
     public string LeadTimePPAP
     {

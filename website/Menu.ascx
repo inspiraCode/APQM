@@ -15,6 +15,11 @@
                                         <asp:LinkButton runat="server" onclick="btnLogout_Click" >Logout</asp:LinkButton>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td align="center">
+                                        <asp:LinkButton runat="server" PostBackUrl="~/Login/ChangePasswordForm.aspx">Change Password</asp:LinkButton>
+                                    </td>
+                                </tr>
                             </table>
                         </fieldset>
                     </td>

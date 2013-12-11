@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.IO;
+using System.Configuration;
 
 public partial class Vendor_RFQ : System.Web.UI.Page
 {
@@ -23,17 +25,19 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     {
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
-        
+
+        if (getPostedFiles()) return;
+
         if (Session["rfqObject"] != null)
         {
             RFQ rfqObject = (RFQ)(((SessionObject)Session["rfqObject"]).Content);
             if(rfqObject.Status != "PENDING" && rfqObject.Status != "IN PROGRESS"){
                 divInfo.InnerText = "You have already sent us your information, but you can see it as read only.";
-                btnFinalize.Visible = false;
+                //btnFinalize.Visible = false;
                 divButtons.Visible = false;
                 btnInstructions.Visible = false;
             }
-        }       
+        }
         if (!IsPostBack)
         {
             if (Session["supplierObject"] != null)
@@ -45,6 +49,52 @@ public partial class Vendor_RFQ : System.Web.UI.Page
             }
             exitByError();
         }
+    }
+    public bool getPostedFiles()
+    {
+        HttpPostedFile file = Request.Files["myfile"];
+        HttpFileCollection fileCollection = Request.Files;
+        if (file != null)
+        {
+            string fileName = file.FileName;
+            HttpPostedFile postedFile = file;
+
+            string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+
+            string currentPathAttachments = (string)Session["RFQATTACHMENTSINBOX"];
+            
+            string folderName = (string)Session["RFQATTACHMENTSFOLDERINBOX"];
+            if (currentPathAttachments == null)
+            {
+                if (folderName != null)
+                {
+                    currentPathAttachments = baseAttachmentsPath + folderName + @"\";
+                    Session["RFQATTACHMENTSINBOX"] = currentPathAttachments;
+                    Session["RFQATTACHMENTSFOLDERINBOX"] = folderName;
+                }
+                else
+                {
+                    do
+                    {
+                        DateTime date = DateTime.Now;
+                        folderName = date.Year.ToString() + date.Month.ToString() +
+                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                        currentPathAttachments = baseAttachmentsPath + folderName;
+                    } while (Directory.Exists(currentPathAttachments));
+                    Directory.CreateDirectory(currentPathAttachments);
+                    currentPathAttachments += @"\";
+                    Session["RFQATTACHMENTSINBOX"] = currentPathAttachments;
+                    Session["RFQATTACHMENTSFOLDERINBOX"] = folderName;
+                }
+            }
+
+            if (postedFile.ContentLength > 0)
+            {
+                postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
+            }
+            return true;
+        }
+        return false;
     }
     private bool retrieveEntity()
     {
@@ -100,29 +150,28 @@ public partial class Vendor_RFQ : System.Web.UI.Page
             exitByError();
         }
     }
-    protected void btnFinalize_Click(object sender, EventArgs e)
-    {
-        if (uscRfqForm.finalize())
-        {
-            Session.Remove("SECTION");
-            Session.Remove("supplierObject");
-            Session.Remove("rfqObject");
-            Session.Remove("token");
-            token = null;
-            supplier = null;
-        
-            Navigator.goToPage("~/Vendor/ThankYou.aspx", "");
-        }
-    }
-    protected void on_save_rfq(object sender, EventArgs e)
+    protected void on_afterSave_rfq(object sender, EventArgs e)
     {
         divInfo.InnerText = "You have saved this RFQ but not finalized it, you can close this window and continue later.";
-        btnFinalize.Visible = false;
+        //btnFinalize.Visible = false;
         uscRfqForm.Visible = false;
-        btnSave.Visible = false;
-        btnCancel.Visible = false;
+        //btnSave.Visible = false;
+        //btnCancel.Visible = false;
+        divButtonsTopToHide.Visible = false;
+        divButtons.Visible = false;
     }
-    protected void on_cancel_rfq(object sender, EventArgs e)
+   protected void on_afterFinalize_rfq(object sender, EventArgs e)
+    {
+        Session.Remove("SECTION");
+        Session.Remove("supplierObject");
+        Session.Remove("rfqObject");
+        Session.Remove("token");
+        token = null;
+        supplier = null;
+
+        Navigator.goToPage("~/Vendor/ThankYou.aspx", "");
+    }
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
         if (retrieveEntity())
         {
@@ -132,13 +181,5 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         {
             exitByError();
         }
-    }
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-        uscRfqForm.save();        
-    }
-    protected void btnCancel_Click(object sender, EventArgs e)
-    {
-        uscRfqForm.cancel();
     }
 }

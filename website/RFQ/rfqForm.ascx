@@ -4,6 +4,7 @@
 <%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc3" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc5" %>
+<%@ Register src="rfqVendorAttachments.ascx" tagname="rfqVendorAttachments" tagprefix="uc6" %>
 <style type="text/css">
     .style2
     {
@@ -65,6 +66,7 @@
 </style>
 <br />
 <br />
+<br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
 <br />
@@ -96,8 +98,9 @@
         <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='3'
             data-intro='Sometimes you can receive attachments from Purchasing department that can be helpful for you to quote the piece.'>
             Attachments:<br />
-            <uc5:rfqAttachments ID="uscRfqAttachments" runat="server" />
+            <uc5:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" />
         </div>
+        <asp:HiddenField ID="hiddenSentAttachmentsFolder" runat="server" />
         <br />
     </div>
     <div align="center">
@@ -450,6 +453,31 @@
             </tr>
             <tr>
                 <td colspan="6" align="left">
+                    <div style="display: inline;">
+                        Attachments (less than 4MB per file):<br />
+                        <div id="uploadContainer" style="height: 100px; overflow-y: auto; align: center;
+                            width: 470px;">
+                            <div id="uploadZone">
+                                Upload
+                            </div>
+                        </div>
+                        <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='50'
+                            data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                            Attachments Sent:
+                            <br />
+                            <uc6:rfqVendorAttachments ID="uscRfqInboxAttachments" runat="server" OnAfterDeleteVendorAttachment="on_after_delete_vendorAttachment" />
+                        </div>
+                         <asp:HiddenField ID="hiddenInboxAttachments" runat="server" />
+                        <br />
+                        <div id="divImgEmail" style="display: none;">
+                            <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
+                            <span style="display: inline;">Please wait..</span>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6" align="left">
                     Comments
                 </td>
             </tr>
@@ -469,6 +497,10 @@
                 TabIndex="36" />
         </div>
     </div>
+    <asp:Button ID="btnFinalize" runat="server" Text="Finalize and submit" Width="132px"
+        OnClick="btnFinalize_Click" Style="display: none;" />
+    <asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="160px"
+        Style="display: none;" OnClick="btnSave_Click" />
 </div>
 <div id="noQuoteSection" style="vertical-align: top;">
     <br />
@@ -480,6 +512,7 @@
 <br />
 <br />
 <asp:HiddenField ID="hiddenSupplierID" runat="server" />
+<asp:HiddenField ID="hiddenSaveButtonClickedID" runat="server" />
 <br />
 <br />
 
@@ -487,6 +520,28 @@
     jQuery(document).ready(function() {
         on_change_option_quote();
         jQuery("[toHide]").hide();
+
+        uploadObj = jQuery("#uploadZone").uploadFile({
+            url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>',
+            multiple: true,
+            fileName: "myfile",
+            autoSubmit: false,
+            uploadButtonClass: "ajax-file-upload-green",
+            maxFileSize: 4194304,
+            onError: function(files, status, errMsg) {
+                //files: list of files
+                //status: error status
+                //errMsg: error message
+                try {
+                    enableCaller(true);
+                } catch (e) {
+                }
+            },
+            afterUploadAll: function() {
+                setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
+                jQuery("#divImgEmail").css("display", "block");
+            }
+        });
     });
 
     function on_change_option_quote() {
@@ -539,4 +594,31 @@
         lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
     window.onload = summarizeTotalPieceCost();
+
+    var uploadObj = null;
+
+    function uploadFiles(strSaveMode) {
+        if (strSaveMode == "finalize") {
+            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
+        } else if (strSaveMode == "save") {
+            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
+        }
+
+        if (validate()) {
+            if (uploadObj != null) {
+                try {
+                    enableCaller(false);
+                } catch (e) {
+                }
+
+                if (uploadObj.fileCounter > 1) {
+                    uploadObj.startUpload();
+                } else {
+                    setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
+                    jQuery("#divImgEmail").css("display", "block");
+                }
+            }
+        }
+    }
 </script>
+

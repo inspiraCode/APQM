@@ -28,7 +28,7 @@ public partial class RFQDefault : System.Web.UI.Page
 
 
 
-                string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsFolder"];
+                string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
 
                 string currentPathAttachments = (string)Session["RFQATTACHMENTS"];
                 string folderName = (string)Session["RFQATTACHMENTSFOLDER"];

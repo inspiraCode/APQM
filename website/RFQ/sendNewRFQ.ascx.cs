@@ -75,7 +75,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
             if (folderAttachments != null)
             {
-                rfq.AttachmentsFolder = folderAttachments;
+                rfq.SentAttachmentsFolder = folderAttachments;
             }
             Session.Remove("RFQATTACHMENTS");
             Session.Remove("RFQATTACHMENTSFOLDER");
