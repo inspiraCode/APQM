@@ -42,6 +42,10 @@ public class RFQ
     private float targetPrice = -1; //-1 means that buyer did not want to specify targetPrice 
     private bool noQuote = false;
     private long marketSectorID = -1;
+    private string marketSectorName = "";
+
+    
+
     private string commentsToBuyer = "";
     private string commentsToVendor = "";
     
@@ -50,7 +54,7 @@ public class RFQ
     private string make = "";
     private string reasonNoQuote = "";
     private float weight;
-    private string umWeight = "";
+    private string umWeight = "lb"; //always lb
     private string partMaterial = "";
 
     private string sentAttachmentsFolder = "";
@@ -308,6 +312,11 @@ public class RFQ
         get { return leadTimePPAP; }
         set { leadTimePPAP = value; }
     }
+    public string MarketSectorName
+    {
+        get { return marketSectorName; }
+        set { marketSectorName = value; }
+    }
 }
 
 public class RFQEAV
@@ -420,7 +429,7 @@ public class RFQDetail
     }
     public float ScrapCost
     {
-        get { return (MaterialTotal + ServiceTotal) * scrapValue; }
+        get { return (MaterialTotal + ServiceTotal) * scrapValue / 100; }
     }
     public float LaborCost
     {

@@ -98,15 +98,9 @@
 
 <script type="text/javascript">
     var mainEAV = jQuery('[mainEAV]');
-    jQuery(document).ready(function() {
-        //setEAVValues();
-        
-    });
-    
     function setEAVValues() {
         jQuery('[fieldName=txtEAV]').each(function() { jQuery(this).val(mainEAV.val()) });
         jQuery('[item]').each(function() { summarizeColumn(jQuery(this).attr("item")) });
     }
-    
 </script>
 

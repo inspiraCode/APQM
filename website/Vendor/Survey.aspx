@@ -17,10 +17,10 @@
         
         <asp:View ID="viewSurvey" runat="server">
         <br /><br />
-            Once your survey is ready to be sent, please click "Finalize and send".<br />
+            Once your survey is ready to be sent, please click "Finalize and submit".<br />
             <asp:Button ID="btnToSupplierForm" runat="server" 
                 onclick="btnToSupplierForm_Click" Text="Back" Width="85px" />
-            <asp:Button ID="btnFinalize" runat="server" Text="Finalize and send" 
+            <asp:Button ID="btnFinalize" runat="server" Text="Finalize and submit" 
                 Width="132px" onclick="btnFinalize_Click" />
             <br /><br />            
             <uc3:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey" />            

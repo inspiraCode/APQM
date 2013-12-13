@@ -29,7 +29,7 @@ public partial class Vendor_Supplier : System.Web.UI.Page
             RFQ rfqObject = (RFQ)(((SessionObject)Session["rfqObject"]).Content);
             if (rfqObject.Status != "PENDING" && rfqObject.Status != "IN PROGRESS")
             {
-                divInfo.InnerText = "You have already send us your information, but you can see it as read only.";
+                divInfo.InnerText = "You have already sent us your information, but you can see it as read only.";
                 divButtons.Visible = false;
                 btnToRFQ.OnClientClick = "return true;";
             }

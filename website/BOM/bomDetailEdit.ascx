@@ -208,7 +208,7 @@
                 <asp:ListItem>In Progress</asp:ListItem>
                 <asp:ListItem>Processed</asp:ListItem>
                 <asp:ListItem>No Quote</asp:ListItem>
-                <asp:ListItem>Imported</asp:ListItem>
+                <asp:ListItem>Imported From Sales DB</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>

@@ -26,8 +26,6 @@ public partial class RFQDefault : System.Web.UI.Page
                 string fileName = file.FileName;
                 HttpPostedFile postedFile = file;
 
-
-
                 string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
 
                 string currentPathAttachments = (string)Session["RFQATTACHMENTS"];

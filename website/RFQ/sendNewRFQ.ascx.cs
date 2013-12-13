@@ -105,11 +105,10 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
                     Message.AlternateViews.Add(htmlView);
 
-                    string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
-
-                    Attachment x = new Attachment(path);
-
-                    Message.Attachments.Add(x);
+                    //NDA Attachment not used anymore
+                    //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+                    //Attachment x = new Attachment(path);
+                    //Message.Attachments.Add(x);
                     try
                     {
                         NewMail.SendMail(Message);
@@ -246,5 +245,17 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             }
             ((HiddenField)sender).Value = "";
         }
+    }
+    protected void btnSelectMaterial_Click(object sender, EventArgs e)
+    {
+        panelPopupSelectMaterial.Visible = true;
+    }
+    protected void btnOKSelectMaterial_Click(object sender, EventArgs e)
+    {
+        panelPopupSelectMaterial.Visible = false;
+    }
+    protected void btnCancelSelectMaterial_Click(object sender, EventArgs e)
+    {
+        panelPopupSelectMaterial.Visible = false;
     }
 }

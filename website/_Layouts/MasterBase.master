@@ -168,13 +168,13 @@
         the <a href="http://www.enable-javascript.com/" target="_blank">instructions how to
             enable JavaScript in your web browser</a>.
     </noscript>
-    <div id="javascriptEnabled" style="visibility: visible;">
+    <div id="javascriptEnabled" style="visibility: hidden;">
         <form id="form1" runat="server">
         <div id="divHeader" style="position: fixed; top: 0; left: 0; width: 100%;">
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
-                        <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/APQM logo.png" />
+                        <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/CA2 Logo Full Standard Format resized.jpg.png" />
                     </td>
                 </tr>
                 <tr>
@@ -213,7 +213,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        LMD: 12/11/2013
+                        LMD: 12/13/2013
                     </td>
                 </tr>
             </table>

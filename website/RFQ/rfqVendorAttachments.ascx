@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqVendorAttachments.ascx.cs"
-    Inherits="RFQ_rfqAttachments" %>
+    Inherits="RFQ_rfqAttachmentsVendor" %>
 <asp:Repeater ID="repeaterRFQAttachments" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
         <table>

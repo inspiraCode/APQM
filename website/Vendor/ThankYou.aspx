@@ -2,6 +2,5 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" Runat="Server">
     <br /><br />
-        <div style="height:300px;">Thank you. Your information has been sent.</div>
+        <div style="height:300px;">Thank you! Your information has been sent.</div>
 </asp:Content>
-

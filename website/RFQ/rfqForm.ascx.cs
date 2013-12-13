@@ -71,8 +71,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblRFQNumber.Text = rfq.RfqGenerated;
         lblPartNumber.Text = rfq.PartNumber;
         lblPartName.Text = rfq.PartMaterial;
-        lblDrawingLevel.Text = rfq.DrawingLevel;
-        lblMarketSector.Text = rfq.MarketSectorID.ToString();
+        lblMarketSector.Text = rfq.MarketSectorName;
+        ViewState["MarketSectoryID"] = rfq.MarketSectorID;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
         
         lblSupplierName.Text = rfq.SupplierName;
@@ -97,7 +97,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
 
         txtWeight.Text = rfq.Weight.ToString();
-        cboUMWeight.SelectedValue = rfq.UmWeight;
+        //cboUMWeight.SelectedValue = rfq.UmWeight; Not to be used anymore: always lb
         txtMOQ.Text = rfq.Moq;
         txtMake.Text = rfq.Make;
         txtComments.Text = rfq.CommentsToBuyer;
@@ -120,7 +120,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         hiddenSentAttachmentsFolder.Value = rfq.SentAttachmentsFolder;
 
         string baseSentAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
-        if (Directory.Exists(baseSentAttachmentsPath + rfq.SentAttachmentsFolder))
+        
+        if (rfq.SentAttachmentsFolder.Trim() != "" && Directory.Exists(baseSentAttachmentsPath + rfq.SentAttachmentsFolder.Trim()))
         {
             List<RFQAttachments> rfqSentAttachmentsList = new List<RFQAttachments>();
             DirectoryInfo directory = new DirectoryInfo(baseSentAttachmentsPath + rfq.SentAttachmentsFolder);
@@ -143,7 +144,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         Session["RFQATTACHMENTSFOLDERINBOX"] = rfq.InboxAttachmentsFolder;
 
         string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
-        if (Directory.Exists(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder))
+        if (rfq.InboxAttachmentsFolder.Trim() != "" && Directory.Exists(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder.Trim()))
         {
             List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
             DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder);
@@ -196,8 +197,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.BomDetailId = long.Parse(lblBOMDetailID.Text);
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
-        rfq.DrawingLevel = lblDrawingLevel.Text;
-        rfq.MarketSectorID = long.Parse(lblMarketSector.Text);
+        rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         
         rfq.PreparedBy = txtPreparedBy.Text;
@@ -219,7 +219,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         if (txtWeight.Text.Trim() != "")
         {
             rfq.Weight = float.Parse(txtWeight.Text);
-            rfq.UmWeight = cboUMWeight.SelectedValue;
+            //rfq.UmWeight = cboUMWeight.SelectedValue; Not to be used anymore: always lb
         }
 
         rfq.Moq = txtMOQ.Text;

@@ -33,9 +33,9 @@ public partial class Vendor_RFQ : System.Web.UI.Page
             RFQ rfqObject = (RFQ)(((SessionObject)Session["rfqObject"]).Content);
             if(rfqObject.Status != "PENDING" && rfqObject.Status != "IN PROGRESS"){
                 divInfo.InnerText = "You have already sent us your information, but you can see it as read only.";
-                //btnFinalize.Visible = false;
+                divButtonsTopToHide.Visible = false;
                 divButtons.Visible = false;
-                btnInstructions.Visible = false;
+                //btnInstructions.Visible = false;
             }
         }
         if (!IsPostBack)
@@ -66,7 +66,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
             string folderName = (string)Session["RFQATTACHMENTSFOLDERINBOX"];
             if (currentPathAttachments == null)
             {
-                if (folderName != null)
+                if (folderName != null && folderName.Trim() != "")
                 {
                     currentPathAttachments = baseAttachmentsPath + folderName + @"\";
                     Session["RFQATTACHMENTSINBOX"] = currentPathAttachments;
@@ -152,7 +152,10 @@ public partial class Vendor_RFQ : System.Web.UI.Page
     }
     protected void on_afterSave_rfq(object sender, EventArgs e)
     {
-        divInfo.InnerText = "You have saved this RFQ but not finalized it, you can close this window and continue later.";
+        divInfo.InnerHtml = "You have saved this RFQ but have not finalized it.  The purchasing department will not see the information until it is Finalized.<br />" +  
+                            "Since it is saved, you may close this window.<br />" +
+                            "To come back to this form, click on the original link in the e-mail you received from us and you will be guided back to your RFQ form.<br />" +
+                            "Do not forget to Finalize and Submit.";
         //btnFinalize.Visible = false;
         uscRfqForm.Visible = false;
         //btnSave.Visible = false;

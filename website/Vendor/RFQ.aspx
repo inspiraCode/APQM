@@ -7,8 +7,9 @@
     <br />
     <br />
     <div id="divInfo" runat="server">
-        INSTRUCTIONS: Please fill up this RFQ, when completing this, press the "Finalize
-        and submit" button. Gray fields are blocked.
+        Please fill in all the non-shaded fields.  The gray fields are locked informational fields and the blue fields are calculated fields based on the information you provide.<br />
+        Please click on the Instructions button below for a tutorial on filling out this form.<br />
+        Upon completion, please click the Finalize & Submit button.  You will have the opportunity to Save & Continue later should you need to do so.
     </div>
     <br />
     <div id="divButtonsTop" align="left" runat="server">
@@ -18,19 +19,18 @@
             <input id="btnSendFilesAndFinalize1" onclick="uploadFiles('finalize');" type="button"
                 style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit" />
             <input id="btnSendFilesAndSave1" onclick="uploadFiles('save');" type="button" validationid="validatingRFQForm"
-                style="width: 150px;" value="Save and continue later" />
+                style="width: 150px;" value="Save & Continue Later" />
             <asp:Button ID="btnInstructions" runat="server" Width="132px" Text="Instructions"
-                OnClientClick="introJs().start(); return false;" />
+                OnClientClick="return beginTutorial();" />
         </div>
     </div>
-    
     <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_afterSave_rfq" OnAfterFinalize="on_afterFinalize_rfq" />
     <br />
     <div id="divButtons" align="center" runat="server">
         <input id="btnSendFilesAndFinalize" onclick="uploadFiles('finalize');" type="button"
             style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit" />
         <input id="btnSendFilesAndSave" onclick="uploadFiles('save');" type="button" validationid="validatingRFQForm"
-            style="width: 150px;" value="Save and continue later" />
+            style="width: 150px;" value="Save & Continue Later" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
             TabIndex="37" />
     </div>
@@ -47,8 +47,20 @@
                 jQuery("#<%= divButtonsTop.ClientID %>").children().prop("disabled", true);
             }
         }
+        function beginTutorial() {
+            alertify.alert("This tutorial will guide you so you can complete this RFQ without trouble." +
+            "<br /><br />You can use your arrow keys to navigate thru the instructions and press Esc to exit.", function(e, str) {
+                if (e) {
+                    introJs().setOptions({
+                        'exitOnOverlayClick': false,
+                        'showStepNumbers': true,
+                        'showButtons': true,
+                        'showBullets': false
+                    }).start();
+                }
+            });
+            return false;
+        }
     </script>
 
-
-   
 </asp:Content>

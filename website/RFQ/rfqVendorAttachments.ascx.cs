@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Configuration;
 
-public partial class RFQ_rfqAttachments : System.Web.UI.UserControl
+public partial class RFQ_rfqAttachmentsVendor : System.Web.UI.UserControl
 {
     public event EventHandler AfterDeleteVendorAttachment;
 
