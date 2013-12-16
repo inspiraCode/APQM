@@ -152,6 +152,7 @@ public partial class RFQDefault : System.Web.UI.Page
                     long sifHeaderID = long.Parse(((GridView)sender).DataKeys[index]["SIFHeaderKey"].ToString());
                     Session.Remove("RFQATTACHMENTS");
                     Session.Remove("RFQATTACHMENTSFOLDER");
+                    Session.Remove("SupplierList");
                     openpopupContainer();
                     multiViewPopup.SetActiveView(viewSendNewRFQ);
                     uscSendNewRFQ.setBOMDetailID(bomDetailId);

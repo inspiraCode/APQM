@@ -6,7 +6,7 @@ using System.Web;
 public class Supplier
 {
     private long id;
-    private string supplierName ="";
+    private string supplierName = "";
     private string manufacturingLocation = "";
     private string shipLocation = "";
     private string quotedCurrency = "";
@@ -14,7 +14,11 @@ public class Supplier
     private string contactPhone = "";
     private string contactEmail = "";
     private SupplierSurvey supplierSurvey;
-    
+
+    public string NameAndEmail
+    {
+        get {return supplierName.Trim() + " - " + contactEmail.Trim();}
+    }
     public long Id
     {
         get { return id; }

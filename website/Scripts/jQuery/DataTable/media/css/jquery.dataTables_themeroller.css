@@ -20,12 +20,13 @@ table.dataTable tfoot th {
 	padding: 3px 10px;
 }
 
-table.dataTable td {
+table.dataTable td 
+{
+    overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+    
 	padding: 3px 10px;
-	height:27px;
-	max-height:27px;
-	overflow: hidden;
-	text-overflow: ellipsis;
 }
 
 table.dataTable td.center,

@@ -103,9 +103,9 @@
                                             <asp:DropDownList ID="cboSupplier" runat="server" AutoPostBack="True" chosen="true"
                                                 DataSourceID="SqlDataSource1" DataTextField="SupplierName" DataValueField="SupplierMasterKey"
                                                 Height="16px" OnDataBound="on_dataBound_supplier" OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged"
-                                                TabIndex="26" Width="285px">
+                                                Width="285px">
                                             </asp:DropDownList>
-                                            <asp:Button ID="btnNewSupplier" runat="server" TabIndex="27" Text="New" Width="60px" />
+                                            <asp:Button ID="btnNewSupplier" runat="server" TabIndex="1" Text="New" Width="60px" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -113,14 +113,18 @@
                                             Email
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtEmail" runat="server" TabIndex="28" Width="346px"></asp:TextBox>
+                                            <asp:TextBox ID="txtEmail" runat="server" TabIndex="2" Width="346px"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td align="right" style="vertical-align:middle;">
+                                            <asp:Button ID="btnAddEmail" runat="server" Text="Add" Width="60px" style="padding: 6px 0px;margin:0;"
+                                                onclick="btnAddEmail_Click" /><div style="height:2px;"></div>
+                                                <asp:Button ID="btnRemoveEmail" runat="server" Text="Remove" style="padding: 6px 0px;margin:0;"
+                                                onclick="btnRemoveEmail_Click" Width="60px" />
                                         </td>
-                                        <td>
-                                            <asp:ListBox ID="lstEmail" runat="server" Width="346px"></asp:ListBox>
+                                        <td style="vertical-align:middle;">
+                                            <asp:ListBox ID="lstEmail" runat="server" Width="350px" TabIndex="4"></asp:ListBox>
                                         </td>
                                     </tr>
                                 </table>
@@ -131,7 +135,8 @@
                 <tr>
                     <td>
                         <div align="right">
-                            <asp:Button ID="btnSelectMaterial" runat="server" Text="Select Material" OnClick="btnSelectMaterial_Click" />
+                            <asp:Button ID="btnSelectMaterial" runat="server" Text="Select Material" OnClick="btnSelectMaterial_Click"
+                                TabIndex="5" Visible="false" />
                         </div>
                         <uc5:SendNewRFQDetail ID="SendNewRFQDetail1" runat="server" />
                     </td>
@@ -139,7 +144,6 @@
             </table>
         </td>
         <td>
-            <br />
             <table cellspacing="0" class="style5">
                 <tr>
                     <td>
@@ -149,7 +153,7 @@
                                     Due Date
                                 </td>
                                 <td align="left" class="style4">
-                                    <asp:TextBox ID="txtDueDate" runat="server" TabIndex="29" Width="200px"></asp:TextBox>
+                                    <asp:TextBox ID="txtDueDate" runat="server" TabIndex="6" Width="200px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -157,10 +161,10 @@
                                     Market Sector
                                 </td>
                                 <td align="left" class="style3">
-                                    <asp:DropDownList ID="cboMarketSector" runat="server" chosen="true" DataSourceID="SqlDataSourceMarketSector"
-                                        DataTextField="Name" DataValueField="MarketSectorID" TabIndex="31" Width="124px">
+                                    <asp:DropDownList ID="cboMarketSector" runat="server" DataSourceID="SqlDataSourceMarketSector"
+                                        DataTextField="Name" DataValueField="MarketSectorID" TabIndex="7" Width="124px">
                                     </asp:DropDownList>
-                                    <asp:Button ID="btnNewMarketSector" runat="server" TabIndex="27" Text="New" Width="60px" />
+                                    <asp:Button ID="btnNewMarketSector" runat="server" TabIndex="8" Text="New" Width="60px" />
                                 </td>
                             </tr>
                             <tr style="height: 30px;">
@@ -169,7 +173,7 @@
                                 </td>
                                 <td align="left">
                                     <asp:CheckBox ID="chkTargetPrice" runat="server" onchange="toggleTargetPrice();"
-                                        TabIndex="32" />
+                                        TabIndex="9" />
                                     <asp:TextBox ID="txtTargetPrice" runat="server" Style="display: none;" TabIndex="33"
                                         validate="number" validationid="validatingNewRFQ"></asp:TextBox>
                                 </td>
@@ -179,7 +183,7 @@
                                     Comments to Vendor
                                 </td>
                                 <td align="left">
-                                    <asp:TextBox ID="txtCommentToVendor" runat="server" Height="50px" TabIndex="34" TextMode="MultiLine"
+                                    <asp:TextBox ID="txtCommentToVendor" runat="server" Height="50px" TabIndex="10" TextMode="MultiLine"
                                         Width="300px"></asp:TextBox>
                                 </td>
                             </tr>
@@ -188,9 +192,8 @@
                 </tr>
                 <tr>
                     <td style="padding: 0px 10px; vertical-align: top;">
-                        Attachments (less than 4MB per file):<br />
-                        <div id="uploadContainer" style="height: 150px; overflow-y: auto; align: center;
-                            width: 470px;">
+                        Attachments (less than 4MB per file):
+                        <div id="uploadContainer" style="height: 270px; overflow-y: auto; width: 444px;background-color: #D3D3D3;">
                             <div id="uploadZone">
                                 Upload
                             </div>
@@ -209,8 +212,8 @@
 <br />
 <div align="center">
     <input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
-        value="Send New RFQ" />
-    <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="36"
+        value="Send New RFQ" tabindex="11" />
+    <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="12"
         Text="Cancel" Width="136px" />
     <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
         TabIndex="35" Text="Send New RFQ" Width="136px" />
@@ -227,15 +230,14 @@
             dialogClass: "no-close", closeOnEscape: false
         });
         //popupSelectMaterial.dialog("moveToTop");
-        
     </script>
-<br />
-<br />
-    <div align="center" style="clear:both;">
-        
+
+    <br />
+    <br />
+    <div align="center" style="clear: both;">
         <asp:Button ID="btnOKSelectMaterial" runat="server" Text="OK" Width="60px" OnClick="btnOKSelectMaterial_Click" />
         <asp:Button ID="btnCancelSelectMaterial" runat="server" Text="Cancel" Width="60px"
-            OnClick="btnCancelSelectMaterial_Click" />
+            OnClick="btnCancelSelectMaterial_Click" TabIndex="-1" />
     </div>
 </asp:Panel>
 
@@ -277,16 +279,21 @@
     }
     function uploadFiles() {
         if (validate()) {
-            if (uploadObj != null) {
-                jQuery("#btnSendFiles").prop("disabled", true);
-                if (uploadObj.fileCounter > 1) {
-                    uploadObj.startUpload();
-                } else {
-                    setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
-                    jQuery("#divImgEmail").css("display", "block");
+            var items = jQuery("#<%= lstEmail.ClientID %> option");
+            if (items.length > 0) {
+                if (uploadObj != null) {
+                    jQuery("#btnSendFiles").prop("disabled", true);
+                    if (uploadObj.fileCounter > 1) {
+                        uploadObj.startUpload();
+                    } else {
+                        setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                        jQuery("#divImgEmail").css("display", "block");
+                    }
                 }
+            }
+            else {
+                alertify.alert("You have not added any Supplier.");
             }
         }
     }
 </script>
-
