@@ -169,6 +169,13 @@
                             </tr>
                             <tr style="height: 30px;">
                                 <td align="right" class="style1">
+                                    Drawing Level</td>
+                                <td align="left">
+                                    <asp:TextBox ID="txtDrawingLevel" runat="server" Width="120px"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr style="height: 30px;">
+                                <td align="right" class="style1">
                                     Target Price
                                 </td>
                                 <td align="left">

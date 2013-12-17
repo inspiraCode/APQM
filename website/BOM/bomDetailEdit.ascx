@@ -98,9 +98,18 @@
         <td class="style3">
             <asp:DropDownList ID="cboUM" runat="server" Width="130px">
                 <asp:ListItem Selected="True"></asp:ListItem>
-                <asp:ListItem Value="Each">Each</asp:ListItem>
-                <asp:ListItem Value="Kg">Kg</asp:ListItem>
-                <asp:ListItem Value="Lb">Lb</asp:ListItem>      
+                    <asp:ListItem Value="Each">Each</asp:ListItem>
+                    <asp:ListItem Value="in">in</asp:ListItem>
+                    <asp:ListItem Value="ft">ft</asp:ListItem>
+                    <asp:ListItem Value="yd">yd</asp:ListItem>
+                    <asp:ListItem Value="mm">mm</asp:ListItem>
+                    <asp:ListItem Value="cm">cm</asp:ListItem>
+                    <asp:ListItem Value="m">m</asp:ListItem>
+                    <asp:ListItem Value="g">g</asp:ListItem>
+                    <asp:ListItem Value="kg">kg</asp:ListItem>
+                    <asp:ListItem Value="lb">lb</asp:ListItem>
+                    <asp:ListItem Value="oz">oz</asp:ListItem>
+                    <asp:ListItem Value="lt">lt</asp:ListItem>    
             </asp:DropDownList>
         </td>
     </tr>
@@ -117,7 +126,7 @@
                         EAU
         </td>
         <td class="style3">
-            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right"  validate="number" validationid="bomlineedit" 
+            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right"
                 Width="150px">0</asp:TextBox>
         </td>
     </tr>

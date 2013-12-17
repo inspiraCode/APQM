@@ -98,14 +98,15 @@
                 <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif" OnCancel_Click="on_cancelAdd_sif" />
 
                 <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 950, modal: false,
-                        dialogClass: "no-close", closeOnEscape:false
-                    });                    
+                    jQuery(document).ready(function() {
+                        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
+                        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                            appendTo: jQuery('form:first'),
+                            width: 950, modal: true,
+                            dialogClass: "no-close", closeOnEscape: false
+                        });
+                    });
                 </script>
-
             </asp:View>
             <asp:View ID="viewPopupRFQ" runat="server">
                 <uc7:rfqForm ID="uscRFQForm" runat="server" OnOk_Click="on_add_rfq" OnCancel_Click="on_cancelAdd_rfq" />
@@ -133,8 +134,8 @@
             <div runat="server" id="divSIF" class="Content">
                 SIFs
                 <br />                
-                <%--<asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
-                    OnClick="btnAddSIF_Click" />--%>
+                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
+                    OnClick="btnAddSIF_Click" />
                 <br />
                 <uc4:sifList ID="uscSIFList" runat="server" />
             </div>

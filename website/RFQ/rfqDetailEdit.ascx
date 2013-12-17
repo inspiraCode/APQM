@@ -12,9 +12,18 @@
         <td class="camposSinBordes">
             <asp:DropDownList ID="cboUMEdit" runat="server" chosen="true" Width="100px" 
                 TabIndex="38">
-                <asp:ListItem Value="Each">Each</asp:ListItem>
-                <asp:ListItem Value="Kg">Kg</asp:ListItem>
-                <asp:ListItem Value="Lb">Lb</asp:ListItem>
+                    <asp:ListItem Value="Each">Each</asp:ListItem>
+                    <asp:ListItem Value="in">in</asp:ListItem>
+                    <asp:ListItem Value="ft">ft</asp:ListItem>
+                    <asp:ListItem Value="yd">yd</asp:ListItem>
+                    <asp:ListItem Value="mm">mm</asp:ListItem>
+                    <asp:ListItem Value="cm">cm</asp:ListItem>
+                    <asp:ListItem Value="m">m</asp:ListItem>
+                    <asp:ListItem Value="g">g</asp:ListItem>
+                    <asp:ListItem Value="kg">kg</asp:ListItem>
+                    <asp:ListItem Value="lb">lb</asp:ListItem>
+                    <asp:ListItem Value="oz">oz</asp:ListItem>
+                    <asp:ListItem Value="lt">lt</asp:ListItem>
             </asp:DropDownList>
         </td>
         <td class="camposSinBordes">

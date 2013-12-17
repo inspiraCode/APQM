@@ -10,14 +10,19 @@
         .style1
         {
             font-weight: bold;
-            width: 283px;
+            width: 252px;
         }
         .style2
         {
-            width: 283px;
+            width: 252px;
         }
         .style3
         {
+            width: 268px;
+        }
+        .style4
+        {
+            font-weight: bold;
             width: 162px;
         }
     </style>
@@ -26,9 +31,9 @@
     <asp:Panel ID="panelContent" runat="server">
         <asp:FormView ID="FormView1" runat="server" DataSourceID="SqlDataSourceForm">
             <ItemTemplate>
-                <table cellspacing="0" style="width: 89%">
+                <table cellspacing="0">
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Inquiry Number:
                         </td>
                         <td align="left" class="style3">
@@ -42,7 +47,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Revision:
                         </td>
                         <td align="left" class="style3">
@@ -56,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Sales Person:
                         </td>
                         <td align="left" class="style3">
@@ -69,7 +74,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Customer Name:
                         </td>
                         <td align="left" class="style3">
@@ -81,7 +86,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Finished Good PN:
                         </td>
                         <td align="left" class="style3">
@@ -93,7 +98,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Annual Volume:
                         </td>
                         <td align="left" class="style3">
@@ -105,7 +110,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td align="right" class="HeaderTable">
+                        <td align="right" class="style4">
                             Market Sector:
                         </td>
                         <td align="left" class="style3">

@@ -69,24 +69,27 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
                 Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
                 Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                Message.Subject = "test from APQM WEB - sending Survey";
+                Message.Subject = "Test from APQM WEB - sending Survey";
                 Message.IsBodyHtml = true;
                 Message.BodyEncoding = System.Text.Encoding.UTF8;
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://localhost:29724/APQM/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\">Link</a>";
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the Survey form:= http://" + 
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the Survey form:" + Environment.NewLine + "http://" + 
                     Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber);
                 Message.AlternateViews.Add(htmlView);
-                
-                string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
 
-                Attachment x = new Attachment(path);
+                try
+                {
+                    NewMail.SendMail(Message);
 
-                Message.Attachments.Add(x);
-
-                NewMail.SendMail(Message);
+                }
+                catch
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
+                }
                 
             }
         }

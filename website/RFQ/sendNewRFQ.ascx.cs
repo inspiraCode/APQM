@@ -66,6 +66,8 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                     rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
                     rfq.DueDate = DateTime.Parse(txtDueDate.Text);
                     rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+                    rfq.DrawingLevel = txtDrawingLevel.Text;
+
                     if (chkTargetPrice.Checked)
                     {
                         rfq.TargetPrice = float.Parse(txtTargetPrice.Text);

@@ -16,7 +16,7 @@ public class Item
     private string manufacturePN = "";
     private string supplierPN = "";
     private string commCode = "";
-    private int eau;   
+    //private int eau;   
 
     public long Id
     {
@@ -73,11 +73,11 @@ public class Item
         get { return commCode; }
         set { commCode = value; }
     }
-    public int EAU
-    {
-        get { return eau; }
-        set { eau = value; }
-    }
+    //public int EAU
+    //{
+    //    get { return eau; }
+    //    set { eau = value; }
+    //}
     public override string ToString()
     {
         return "{Part Number: " + this.partNumber + " Description: " + this.description + " Material: " + this.material + "}";

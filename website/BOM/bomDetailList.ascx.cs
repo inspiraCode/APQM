@@ -37,11 +37,11 @@ public partial class bomDetailList : System.Web.UI.UserControl
         repeaterBOMDetail.DataBind();
         if (bomDetail != null) divBOMDetailList.InnerHtml = bomDetail.Count.ToString() + " records.";
     }
-    public void setEntity(List<BOMDetail> detail)
+    public void setEntity(List<BOMDetail> detailList)
     {
-        if (detail != null)
+        if (detailList != null)
         {
-            bomDetail = detail;
+            bomDetail = detailList;
         }
         else
         {
@@ -142,7 +142,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.Um = cboUM.SelectedValue;
         //vendorQuote imported from sales db
         bomDetailLine.Qty = float.Parse(txtQuantity.Text);
-        bomDetailLine.EAU = int.Parse(txtEAU.Text);
+        bomDetailLine.EAU = txtEAU.Text;
         bomDetailLine.Cost = float.Parse(txtCost.Text);
         bomDetailLine.CapComAssm = txtCapComAssm.Text;
         bomDetailLine.PurchasingComments = txtPurchasingComments.Text;
@@ -176,7 +176,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         item.ManufacturePN = txtManufacturePN.Text;
         item.SupplierPN = txtSupplierPN.Text;
         item.CommCode = txtCommCode.Text;
-        item.EAU = int.Parse(txtEAU.Text);
+        //item.EAU = int.Parse(txEAU.Text);
 
         bomDetailLine.Item = item;
         bomDetailLine.internalAction = "CREATE";

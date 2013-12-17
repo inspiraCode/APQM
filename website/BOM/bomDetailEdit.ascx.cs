@@ -35,7 +35,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         item.ManufacturePN = txtManufacturePN.Text;
         item.SupplierPN = txtSupplierPN.Text;
         item.CommCode = txtCommCode.Text;
-        item.EAU = int.Parse(txtEAU.Text);
+        //item.EAU = int.Parse(txtEAU.Text);
         
         bomDetailEdit.Item = item;
 
@@ -50,7 +50,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         bomDetailEdit.Um = cboUM.SelectedValue;
         //vendorQuote imported from sales db
         bomDetailEdit.Qty = float.Parse(txtQuantity.Text);
-        bomDetailEdit.EAU = int.Parse(txtEAU.Text);
+        bomDetailEdit.EAU = txtEAU.Text;
         bomDetailEdit.Cost = float.Parse(txtCost.Text);
         bomDetailEdit.CapComAssm = txtCapComAssm.Text;
         bomDetailEdit.PurchasingComments = txtPurchasingComments.Text;
@@ -96,7 +96,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         cboUM.SelectedValue = bomDetailEdit.Um;
         lblVendorQuoteEst.Text = bomDetailEdit.VendorQuoteEst;
         txtQuantity.Text = bomDetailEdit.Qty.ToString();
-        txtEAU.Text = bomDetailEdit.EAU.ToString();
+        txtEAU.Text = bomDetailEdit.EAU;
         txtCost.Text = bomDetailEdit.Cost.ToString();
         txtCapComAssm.Text = bomDetailEdit.CapComAssm;
         txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
@@ -176,7 +176,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             txtManufacturePN.Text = item.ManufacturePN;
             txtSupplierPN.Text = item.SupplierPN;
             txtCommCode.Text = item.CommCode;
-            txtEAU.Text = item.EAU.ToString();
+            //txtEAU.Text = item.EAU.ToString();
             cboPartNumberEdit.Focus();
         }
         else
@@ -188,7 +188,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
             txtCommCode.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedIndex = -1;
-            txtEAU.Text = "0";
+            //txtEAU.Text = "0";
             txtCost.Text = "0";
             cboPartNumberEdit.Focus();
         }

@@ -14,6 +14,7 @@ public partial class bomForm : System.Web.UI.UserControl
     public BOM bom;
 
     private bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+    private bomDetailVolumeCRUD bomDetailVolumeCRUD = new bomDetailVolumeCRUD();
     private itemCRUD item_CRUD = new itemCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -55,6 +56,22 @@ public partial class bomForm : System.Web.UI.UserControl
         txtAnnualVolume.Text = bom.AnnualVolume.ToString();
         lblCustomer.Text = bom.CustomerName;
         lblSalesRep.Text = bom.SalesPerson;
+
+        foreach(BOMDetail detail in bom.BomDetail){
+            string strVolume = "";
+            detail.VolumeList = bomDetailVolumeCRUD.readByParentID(detail.Id);
+            if (detail.VolumeList.Count > 0)
+            {
+                
+                foreach (BOMDetailVolume objVolume in detail.VolumeList)
+                {
+                    strVolume += objVolume.Volume + ", ";
+                }
+                strVolume = strVolume.Substring(0, strVolume.Length - 2);
+            }
+            detail.EAU = strVolume;
+        }
+
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
         uscBOMDetailList.load();
@@ -123,20 +140,47 @@ public partial class bomForm : System.Web.UI.UserControl
             {
                 detail.BomHeaderKey = this.bom.Id;
                 detail.Status = "Created";
-                if (!bomDetailCRUD.create(detail, ref DM))
+                string bomDetailIDGenerated = bomDetailCRUD.createAndReturnIdGenerated(detail, ref DM);
+                if (bomDetailIDGenerated == "")
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
+                }
+                else
+                {
+                    detail.Id = long.Parse(bomDetailIDGenerated);
                 }
             }
             
             if (detail.internalAction == "UPDATE")
             {
-                detail.BomHeaderKey = this.bom.Id;                
+                detail.BomHeaderKey = this.bom.Id;
                 if (!bomDetailCRUD.update(detail, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
+                }
+            }
+
+            if (detail.internalAction != "")
+            {
+                if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id))
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
+                }
+
+                string[] arrEAU = detail.EAU.Split(',');
+                for (var i = 0; i < arrEAU.Length; i++)
+                {
+                    BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+                    bomDetailVolume.BomDetailKey = detail.Id;
+                    bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
+                    if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "");
+                        return;
+                    }
                 }
             }
         }

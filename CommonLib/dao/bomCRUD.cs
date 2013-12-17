@@ -276,7 +276,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
+            DM.Load_SP_Parameters("@EAU", entity.EAU);
             
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
         }
@@ -315,7 +315,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
+            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
         }
@@ -326,7 +326,44 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 
         return result;
     }
+    public string createAndReturnIdGenerated(BOMDetail entity, ref Data_Base_MNG.SQL DM)
+    {
+        string idGenerated = "";
+        try
+        {
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomHeaderKey.ToString());
+            DM.Load_SP_Parameters("@ItemMasterKey", entity.ItemMasterkey.ToString());
+            DM.Load_SP_Parameters("@Qty", entity.Qty.ToString());
+            DM.Load_SP_Parameters("@Cost", entity.Cost.ToString());
+            DM.Load_SP_Parameters("@Status", entity.Status);
+            DM.Load_SP_Parameters("@Description", entity.Description);
+            DM.Load_SP_Parameters("@LinePosition", entity.LinePosition);
+            DM.Load_SP_Parameters("@SalesStatus", entity.SalesStatus);
+            DM.Load_SP_Parameters("@User", entity.User);
+            DM.Load_SP_Parameters("@PurchasingStatus", entity.PurchasingStatus);
+            DM.Load_SP_Parameters("@DirectedBuy", entity.DirectedBuy.ToString());
+            DM.Load_SP_Parameters("@Material", entity.Material);
+            DM.Load_SP_Parameters("@Um", entity.Um);
+            DM.Load_SP_Parameters("@VendorQuoteEst", entity.VendorQuoteEst);
+            DM.Load_SP_Parameters("@SalesComments", entity.SalesComments);
+            DM.Load_SP_Parameters("@PurchasingComments", entity.PurchasingComments);
+            DM.Load_SP_Parameters("@CapComAssm", entity.CapComAssm);
+            DM.Load_SP_Parameters("@CapsonicPN", entity.CapsonicPN);
+            DM.Load_SP_Parameters("@CustomerPN", entity.CustomerPN);
+            DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
+            DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
+            DM.Load_SP_Parameters("@CommCode", entity.CommCode);
+            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
+            idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMDetail_NewDetail", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return idGenerated;
+    }
     public BOMDetail readById(long id)
     {
         BOMDetail bomDetail = new BOMDetail();
@@ -371,7 +408,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.ManufacturePN = table.Rows[0][20].ToString();
                 bomDetail.SupplierPN = table.Rows[0][21].ToString();
                 bomDetail.CommCode = table.Rows[0][22].ToString();
-                bomDetail.EAU = int.Parse(table.Rows[0][23].ToString());
+                bomDetail.EAU = table.Rows[0][23].ToString();
 
                 sqlConnection.Dispose();
                 return bomDetail;
@@ -425,7 +462,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.ManufacturePN = table.Rows[i][21].ToString();
                 bomDetail.SupplierPN = table.Rows[i][22].ToString();
                 bomDetail.CommCode = table.Rows[i][23].ToString();
-                bomDetail.EAU = int.Parse(table.Rows[i][24].ToString());
+                bomDetail.EAU = table.Rows[i][24].ToString();
                 bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
@@ -500,7 +537,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.ManufacturePN = table.Rows[i][20].ToString();
             bomDetail.SupplierPN = table.Rows[i][21].ToString();
             bomDetail.CommCode = table.Rows[i][22].ToString();
-            bomDetail.EAU = int.Parse(table.Rows[i][23].ToString());
+            bomDetail.EAU = table.Rows[i][23].ToString();
             bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
@@ -536,7 +573,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
+            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
         }
@@ -576,7 +613,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
+            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
         }
@@ -642,6 +679,264 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 sqlConnection.Open();
                 rowsAffected = sqlCommand.ExecuteNonQuery();                
                 return true;                
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+
+    #endregion
+}
+
+public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
+{
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public bomDetailVolumeCRUD()
+    { }
+
+    #region ICRUD<BOMDetailVolume> Members
+
+    public bool create(BOMDetailVolume entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+
+            result = DM.Execute_StoreProcedure("BOMDetailVolume_NewVolume", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool create(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_NewVolume", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public BOMDetailVolume readById(long id)
+    {
+        BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+
+        string query =  "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
+                        "FROM       BOMDetailVolume " +
+                        "WHERE      (BOMDetailVolumeKey = @key) " +
+                        "ORDER BY Volume";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                bomDetailVolume.Id = long.Parse(table.Rows[0][0].ToString());
+                bomDetailVolume.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
+                bomDetailVolume.Volume = float.Parse(table.Rows[0][2].ToString());
+
+                sqlConnection.Dispose();
+                return bomDetailVolume;
+            }
+        }
+        return null;
+    }
+    public List<BOMDetailVolume> readByParentID(long id)
+    {
+        List<BOMDetailVolume> recordset = new List<BOMDetailVolume>();
+
+        string query = "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
+                        "FROM       BOMDetailVolume " +
+                        "WHERE      (BOMDetailKey = @key) " +
+                        "ORDER BY Volume";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                BOMDetailVolume bomDetail = new BOMDetailVolume();
+                bomDetail.Id = long.Parse(table.Rows[i][0].ToString());
+                bomDetail.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
+                bomDetail.Volume = float.Parse(table.Rows[i][2].ToString());
+                
+                recordset.Add(bomDetail);
+            }
+        }
+        return recordset;
+    }
+    public IList<BOMDetailVolume> readAll()
+    {
+        List<BOMDetailVolume> recordset = new List<BOMDetailVolume>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
+                       "FROM       BOMDetailVolume " +
+                       "ORDER BY Volume";
+
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+            bomDetailVolume.Id = long.Parse(table.Rows[i][0].ToString());
+            if (table.Rows[i][1].ToString() != "")
+            {
+                bomDetailVolume.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
+            }
+            else
+            {
+                bomDetailVolume.BomDetailKey = -1;
+            }
+            if (table.Rows[i][2].ToString() != "")
+            {
+                bomDetailVolume.Volume = float.Parse(table.Rows[i][2].ToString());
+            }
+            else
+            {
+                bomDetailVolume.Volume = -1;
+            }
+            
+            recordset.Add(bomDetailVolume);
+        }
+
+        return recordset;
+    }
+    public bool update(BOMDetailVolume entity)
+    {
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailVolumeKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure("BOMDetailVolume_EditVolume", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool update(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailVolumeKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
+            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_EditVolume", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        return false;
+    }
+    public bool delete(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id)
+    {
+        int rowsAffected = 0;
+        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                return true;
             }
             catch (Exception e)
             {

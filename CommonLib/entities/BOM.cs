@@ -113,8 +113,8 @@ public class BOMDetail
     private string manufacturePN = ""; 
     private string supplierPN = ""; 
     private string commCode = ""; 
-    private int eau;
-    
+    private string eau;
+    private List<BOMDetailVolume> volumeList;    
 
     public string CapsonicPN
     {
@@ -141,7 +141,7 @@ public class BOMDetail
         get { return commCode; }
         set { commCode = value; }
     }
-    public int EAU
+    public string EAU
     {
         get { return eau; }
         set { eau = value; }
@@ -272,9 +272,38 @@ public class BOMDetail
     {
         get { return capComAssm; }
         set { capComAssm = value; }
-    }    
+    }
+    public List<BOMDetailVolume> VolumeList
+    {
+        get { return volumeList; }
+        set { volumeList = value; }
+    }
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";
+    }
+}
+
+public class BOMDetailVolume
+{
+    private long id;
+    private long bomDetailKey = -1;
+    private float volume;
+
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long BomDetailKey
+    {
+        get { return bomDetailKey; }
+        set { bomDetailKey = value; }
+    }
+    public float Volume
+    {
+        get { return volume; }
+        set { volume = value; }
     }
 }

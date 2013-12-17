@@ -69,10 +69,11 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblID.Text = rfq.Id.ToString();
         lblDueDate.Text = rfq.DueDate.ToShortDateString();
         lblRFQNumber.Text = rfq.RfqGenerated;
-        lblPartNumber.Text = rfq.PartNumber;
-        lblPartName.Text = rfq.PartMaterial;
         lblMarketSector.Text = rfq.MarketSectorName;
         ViewState["MarketSectoryID"] = rfq.MarketSectorID;
+        lblPartNumber.Text = rfq.PartNumber;
+        lblPartName.Text = rfq.PartMaterial;
+        lblDrawingLevel.Text = rfq.DrawingLevel;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
         
         lblSupplierName.Text = rfq.SupplierName;
@@ -197,6 +198,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.BomDetailId = long.Parse(lblBOMDetailID.Text);
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
+        rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         
