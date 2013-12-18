@@ -34,105 +34,114 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     {
         RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
         string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
+
+        string[] arrEAU = ((Label)frmBOMLine.FindControl("EAULabel")).Text.Split(',');
+        
         if (supplierList.Count > 0)
         {
             foreach (Supplier supplier in supplierList)
             {
-                RFQNumberEntity rfqNumber = new RFQNumberEntity();
-
-                rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
-                rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
-                rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
-                if (rfqNumber.RFQNumber == -1)
+                for (var i = 0; i < arrEAU.Length; i++)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
-                    return;
-                }
-                String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber);
-                if (idGeneratedRFQNumber == "")
-                {
-                    Navigator.goToPage("~/Error.aspx", "");
-                    return;
-                }
-                else
-                {
-                    RFQ rfq = new RFQ();
-                    RfqCRUD rfqCRUD = new RfqCRUD();
-
-                    rfq.SupplierId = supplier.Id;
-                    rfq.SentToVendor = DateTime.Now;
-                    rfq.Status = "PENDING";
-                    rfq.BomDetailId = (long)ViewState["bomDetailID"];
-                    rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
-                    rfq.DueDate = DateTime.Parse(txtDueDate.Text);
-                    rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
-                    rfq.DrawingLevel = txtDrawingLevel.Text;
-
-                    if (chkTargetPrice.Checked)
+                    if (arrEAU[i].Trim() != "")
                     {
-                        rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
-                    }
-                    rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+                        RFQNumberEntity rfqNumber = new RFQNumberEntity();
 
-                    if (folderAttachments != null)
-                    {
-                        rfq.SentAttachmentsFolder = folderAttachments;
-                    }
-
-                    string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
-
-                    if (idGenerated != "")
-                    {
-                        rfq.Id = long.Parse(idGenerated);
-                        TokenCRUD token_CRUD = new TokenCRUD();
-                        Token token = new Token();
-                        token.Subject = "RFQ";
-                        token.SubjectKey = long.Parse(idGenerated);
-                        token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
-                        if (token_CRUD.create(token))
+                        rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
+                        rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
+                        rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
+                       
+                        if (rfqNumber.RFQNumber == -1)
                         {
-                            Email NewMail = new Email();
-                            MailMessage Message = new MailMessage();
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
+                        }
+                        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber);
+                        if (idGeneratedRFQNumber == "")
+                        {
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
+                        }
+                        else
+                        {
+                            RFQ rfq = new RFQ();
+                            RfqCRUD rfqCRUD = new RfqCRUD();
 
-                            Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
-                            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                            Message.Subject = "Test from APQM WEB - sending RFQ";
-                            Message.IsBodyHtml = true;
-                            Message.BodyEncoding = System.Text.Encoding.UTF8;
-
-                            AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the RFQ form:" + Environment.NewLine + "http://" +
-                                Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
-                            Message.AlternateViews.Add(htmlView);
-
-                            //NDA Attachment not used anymore
-                            //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
-                            //Attachment x = new Attachment(path);
-                            //Message.Attachments.Add(x);
-                            try
+                            rfq.SupplierId = supplier.Id;
+                            rfq.SentToVendor = DateTime.Now;
+                            rfq.Status = "PENDING";
+                            rfq.BomDetailId = (long)ViewState["bomDetailID"];
+                            rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
+                            rfq.DueDate = DateTime.Parse(txtDueDate.Text);
+                            rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+                            rfq.DrawingLevel = txtDrawingLevel.Text;
+                            rfq.EstimatedAnnualVolume = arrEAU[i].Trim();
+                            if (chkTargetPrice.Checked)
                             {
-                                NewMail.SendMail(Message);
-
+                                rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
                             }
-                            catch
+                            rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+
+                            if (folderAttachments != null)
                             {
+                                rfq.SentAttachmentsFolder = folderAttachments;
+                            }
+
+                            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
+
+                            if (idGenerated != "")
+                            {
+                                rfq.Id = long.Parse(idGenerated);
+                                TokenCRUD token_CRUD = new TokenCRUD();
+                                Token token = new Token();
+                                token.Subject = "RFQ";
+                                token.SubjectKey = long.Parse(idGenerated);
+                                token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
+                                if (token_CRUD.create(token))
+                                {
+                                    Email NewMail = new Email();
+                                    MailMessage Message = new MailMessage();
+
+                                    Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
+                                    Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+                                    Message.Subject = "Test from APQM WEB - sending RFQ";
+                                    Message.IsBodyHtml = true;
+                                    Message.BodyEncoding = System.Text.Encoding.UTF8;
+
+                                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the RFQ form:" + Environment.NewLine + "http://" +
+                                        Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
+                                    Message.AlternateViews.Add(htmlView);
+
+
+                                    //NDA Attachment not used anymore
+                                    //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+                                    //Attachment x = new Attachment(path);
+                                    //Message.Attachments.Add(x);
+                                    try
+                                    {
+                                        NewMail.SendMail(Message);
+                                    }
+                                    catch
+                                    {
+                                        Navigator.goToPage("~/Error.aspx", "");
+                                        return;
+                                    }
+                                }
+                            }
+                            else
+                            {   
                                 Navigator.goToPage("~/Error.aspx", "");
                                 return;
                             }
                         }
                     }
-                    else
-                    {
-                        Navigator.goToPage("~/Error.aspx", "");
-                        return;
-                    }
-
                 }
             }
-        }        
+        }
 
         Session.Remove("RFQATTACHMENTS");
         Session.Remove("RFQATTACHMENTSFOLDER");
-        
+
         supplierList = null;
         Ok_Click(this, e);
     }

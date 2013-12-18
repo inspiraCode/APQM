@@ -38,8 +38,8 @@ public partial class rfqForm : System.Web.UI.UserControl
             rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
             //rfq.RfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
             if (((SessionObject)Session["rfqObject"]).Status == "forUpdate")
-            {                
-                lblMode.Text = "Update"; 
+            {
+                lblMode.Text = "Update";
                 fillWithEntity(rfq);
             }
             else if (((SessionObject)Session["rfqObject"]).Status == "forNew")
@@ -75,7 +75,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblPartName.Text = rfq.PartMaterial;
         lblDrawingLevel.Text = rfq.DrawingLevel;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
-        
+        lblEAV.Text = rfq.EstimatedAnnualVolume;
+
         lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
         lblManufacturingLocation.Text = rfq.ManufacturingLocation;
@@ -201,7 +202,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
-        
+        rfq.EstimatedAnnualVolume = lblEAV.Text;
+
         rfq.PreparedBy = txtPreparedBy.Text;
         if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
         if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);

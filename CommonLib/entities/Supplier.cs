@@ -14,10 +14,10 @@ public class Supplier
     private string contactPhone = "";
     private string contactEmail = "";
     private SupplierSurvey supplierSurvey;
-
+   
     public string NameAndEmail
     {
-        get {return supplierName.Trim() + " - " + contactEmail.Trim();}
+        get { return supplierName.Trim() + " - " + contactEmail.Trim(); }
     }
     public long Id
     {

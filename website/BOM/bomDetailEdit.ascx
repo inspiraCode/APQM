@@ -126,7 +126,8 @@
                         EAU
         </td>
         <td class="style3">
-            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right"
+            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right" validate="required"
+                validationid="bomlineedit"
                 Width="150px">0</asp:TextBox>
         </td>
     </tr>

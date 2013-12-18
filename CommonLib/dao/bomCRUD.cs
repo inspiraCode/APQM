@@ -950,6 +950,15 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
         }
         return false;
     }
-
+    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
+        }
+        return false;
+    }
+   
     #endregion
 }

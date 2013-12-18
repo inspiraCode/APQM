@@ -17,7 +17,7 @@
     SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
 </asp:SqlDataSource>
 <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceRFQCountPerBOMDetail"
-    runat="server" SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material, SIFHeaderKey FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)"
+    runat="server" SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material, SIFHeaderKey, EAU FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)"
     ProviderName="System.Data.SqlClient">
     <SelectParameters>
         <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"
@@ -74,6 +74,14 @@
                                             <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td align="right" style="font-weight: bold;">
+                                            EAU
+                                        </td>
+                                        <td align="left">
+                                            <asp:Label ID="EAULabel" runat="server" Text='<%# Bind("EAU") %>' />
+                                        </td>
+                                    </tr>
                                 </table>
                             </ItemTemplate>
                         </asp:FormView>
@@ -113,17 +121,19 @@
                                             Email
                                         </td>
                                         <td>
-                                            <asp:TextBox ID="txtEmail" runat="server" TabIndex="2" Width="346px"></asp:TextBox>
+                                            <asp:TextBox ID="txtEmail" validate="email" validationid="newvendor"
+                                            runat="server" TabIndex="2" Width="346px"></asp:TextBox>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="right" style="vertical-align:middle;">
-                                            <asp:Button ID="btnAddEmail" runat="server" Text="Add" Width="60px" style="padding: 6px 0px;margin:0;"
-                                                onclick="btnAddEmail_Click" /><div style="height:2px;"></div>
-                                                <asp:Button ID="btnRemoveEmail" runat="server" Text="Remove" style="padding: 6px 0px;margin:0;"
-                                                onclick="btnRemoveEmail_Click" Width="60px" />
+                                        <td align="right" style="vertical-align: middle;">
+                                            <asp:Button ID="btnAddEmail" runat="server"  OnClientClick="return validate();" validationid="newvendor" Text="Add" Width="60px" Style="padding: 6px 0px;
+                                                margin: 0;" OnClick="btnAddEmail_Click" /><div style="height: 2px;">
+                                                </div>
+                                            <asp:Button ID="btnRemoveEmail" runat="server" Text="Remove" Style="padding: 6px 0px;
+                                                margin: 0;" OnClick="btnRemoveEmail_Click" Width="60px" />
                                         </td>
-                                        <td style="vertical-align:middle;">
+                                        <td style="vertical-align: middle;">
                                             <asp:ListBox ID="lstEmail" runat="server" Width="350px" TabIndex="4"></asp:ListBox>
                                         </td>
                                     </tr>
@@ -169,7 +179,8 @@
                             </tr>
                             <tr style="height: 30px;">
                                 <td align="right" class="style1">
-                                    Drawing Level</td>
+                                    Drawing Level
+                                </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtDrawingLevel" runat="server" Width="120px"></asp:TextBox>
                                 </td>
@@ -200,15 +211,10 @@
                 <tr>
                     <td style="padding: 0px 10px; vertical-align: top;">
                         Attachments (less than 4MB per file):
-                        <div id="uploadContainer" style="height: 270px; overflow-y: auto; width: 444px;background-color: #D3D3D3;">
+                        <div id="uploadContainer" style="height: 230px; overflow-y: auto; width: 444px; background-color: #D3D3D3;">
                             <div id="uploadZone">
                                 Upload
                             </div>
-                        </div>
-                        <br />
-                        <div id="divImgEmail" style="display: none;">
-                            <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
-                            <span style="display: inline;">Sending Email, Please wait..</span>
                         </div>
                     </td>
                 </tr>
@@ -218,13 +224,29 @@
 </table>
 <br />
 <div align="center">
-    <input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
+<table>
+<tr>
+<td>
+<div id="divImgEmail" style="visibility:hidden;">
+        <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
+        <span style="position: relative;top: -10px;">Sending Email, Please wait..</span>
+    </div>
+</td>
+<td>
+<input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
         value="Send New RFQ" tabindex="11" />
     <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="12"
         Text="Cancel" Width="136px" />
     <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
         TabIndex="35" Text="Send New RFQ" Width="136px" />
+</td>
+</tr>
+</table>
+    
+    
 </div>
+
+
 <asp:Panel ID="panelPopupSelectMaterial" runat="server" Visible="false">
     <uc6:rfqCountPerBomLines ID="uscRfqCountPerBomLines" runat="server" />
 
@@ -275,7 +297,7 @@
             uploadButtonClass: "ajax-file-upload-green",
             afterUploadAll: function() {
                 setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
-                jQuery("#divImgEmail").css("display", "block");
+                jQuery("#divImgEmail").css("visibility", "visible");
             }
         });
     });
@@ -294,7 +316,7 @@
                         uploadObj.startUpload();
                     } else {
                         setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
-                        jQuery("#divImgEmail").css("display", "block");
+                        jQuery("#divImgEmail").css("visibility", "visible");
                     }
                 }
             }

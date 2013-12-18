@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
-<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
 <style type="text/css">
     .style1
     {
@@ -142,13 +141,15 @@
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
 <br />
-<uc2:Validator ID="Validator1" runat="server" />
 <asp:HiddenField ID="hiddenProgressBar" runat="server" Value="0" />
+
+
+
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
         var progressBar = jQuery('#progressBar');
-        var progressLabel = jQuery('#progress-label')
+        var progressLabel = jQuery('#progress-label');
         progressBar.css("position", "relative");
         progressLabel.css("position", "absolute").css("left", "40%").css("top", "3px");
         progressBar.progressbar({

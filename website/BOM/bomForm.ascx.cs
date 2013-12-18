@@ -117,7 +117,12 @@ public partial class bomForm : System.Web.UI.UserControl
         }
         List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
         foreach (BOMDetail detail in bomDetailListToDelete)
-        {            
+        {
+            if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
+            {
+                Navigator.goToPage("~/Error.aspx", "");
+                return;
+            }
             if (!bomDetailCRUD.delete(detail.Id, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
@@ -164,7 +169,7 @@ public partial class bomForm : System.Web.UI.UserControl
 
             if (detail.internalAction != "")
             {
-                if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id))
+                if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
@@ -173,13 +178,16 @@ public partial class bomForm : System.Web.UI.UserControl
                 string[] arrEAU = detail.EAU.Split(',');
                 for (var i = 0; i < arrEAU.Length; i++)
                 {
-                    BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-                    bomDetailVolume.BomDetailKey = detail.Id;
-                    bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
-                    if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
+                    if (arrEAU[i].Trim() != "")
                     {
-                        Navigator.goToPage("~/Error.aspx", "");
-                        return;
+                        BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+                        bomDetailVolume.BomDetailKey = detail.Id;
+                        bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
+                        if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
+                        {
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
+                        }
                     }
                 }
             }

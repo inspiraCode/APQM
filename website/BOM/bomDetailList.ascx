@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomDetailList.ascx.cs"
     Inherits="bomDetailList" %>
-<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
+<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc1" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -17,6 +17,7 @@
         border: solid #D3D3D3 2px;
     }
 </style>
+
 <table cellspacing="0" align="left">
     <tr>
         <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
@@ -146,7 +147,7 @@
                 runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtEAU" runat="server"
+            <asp:TextBox ID="txtEAU" runat="server" validate="required" validationid="validatingBOMDetail"
                 Width="60px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
@@ -267,6 +268,7 @@
         </FooterTemplate>
     </asp:Repeater>
     <div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
+    
     </div>
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
@@ -284,3 +286,5 @@
     </asp:Panel>
 </table>
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
+<uc1:Validator ID="Validator1" runat="server" />
+

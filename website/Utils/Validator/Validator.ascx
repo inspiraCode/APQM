@@ -16,6 +16,10 @@
         jQuery('#scrim').hide();
         jQuery('#messageDisplayer').hide();
     }
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
     function validate() {    
         var targetMessage = jQuery('#messageDisplayer').text('');
         var strErrorMessage = '';
@@ -23,9 +27,10 @@
         var target = event.target ? event.target : event.srcElement;
         jQuery('[validate]').filter('[validationid = ' + target.attributes['validationid'].value + ']').each(function() {
             if (jQuery(this).css('display') != "none" && jQuery(this).is(":visible")) {
+                jQuery(this).val(jQuery(this).val().trim());
                 switch (jQuery(this).attr('validate')) {
                     case 'number':
-                        if (jQuery(this).val().trim() == '')
+                        if (jQuery(this).val() == '')
                             jQuery(this).val(0);
                         if (isNaN(jQuery(this).val()) || Number(jQuery(this).val()) < 0) {
                             strErrorMessage = 'Number did not pass validation.';
@@ -34,8 +39,15 @@
                         }
                         break;
                     case 'required':
-                        if (jQuery(this).val().trim() == '') {
+                        if (jQuery(this).val() == '') {
                             strErrorMessage = 'Field is required.';
+                            fieldNeedsCorrection = jQuery(this);
+                            return false;
+                        }
+                        break;
+                    case 'email':
+                        if (!validateEmail(jQuery(this).val())) {
+                            strErrorMessage = 'Email did not pass validation.';
                             fieldNeedsCorrection = jQuery(this);
                             return false;
                         }
