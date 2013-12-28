@@ -41,6 +41,27 @@ public class bomCRUD : ICRUD<BOM>
         return result;
     }
 
+    public bool create(BOM entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
+            DM.Load_SP_Parameters("@TopPartNumber", entity.TopPartNumber);
+            DM.Load_SP_Parameters("@PartDescription", entity.PartDescription);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+            DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("BOMHeader_NewBOM", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
     public string createAndReturnIdGenerated(BOM entity)
     {
         string idGenerated = "";

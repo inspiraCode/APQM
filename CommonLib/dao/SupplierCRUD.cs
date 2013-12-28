@@ -37,6 +37,11 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
+            DM.Load_SP_Parameters("@Capabilities", entity.Capabilities);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
+            DM.Load_SP_Parameters("@Commodity", entity.Commodity);
+            DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
 
             result = DM.Execute_StoreProcedure("SupplierMaster_NewSupplier", true);
 
@@ -65,6 +70,11 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
+            DM.Load_SP_Parameters("@Capabilities", entity.Capabilities);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
+            DM.Load_SP_Parameters("@Commodity", entity.Commodity);
+            DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SupplierMaster_NewSupplier", true);
         }
@@ -79,7 +89,10 @@ public class SupplierCRUD : ICRUD<Supplier>
     {
         Supplier supplier = new Supplier();
         
-        string query = "SELECT SupplierMasterKey, SupplierName, ManufacturingLocation, ShipLocation, QuotedCurrency, ContactName, ContactPhoneNumber, ContactEmail FROM SupplierMaster WHERE SupplierMasterKey=@key";
+        string query = "SELECT SupplierMasterKey, SupplierName, ManufacturingLocation, " + 
+            "ShipLocation, QuotedCurrency, ContactName, ContactPhoneNumber, ContactEmail, " +
+            "Capabilities, Comments, Visible, Commodity, ContactCellPhoneNumber " +
+            "FROM SupplierMaster WHERE SupplierMasterKey=@key";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -98,6 +111,12 @@ public class SupplierCRUD : ICRUD<Supplier>
                 supplier.ContactName = table.Rows[0][5].ToString();
                 supplier.ContactPhone = table.Rows[0][6].ToString();
                 supplier.ContactEmail = table.Rows[0][7].ToString();
+                supplier.Capabilities = table.Rows[0][8].ToString();
+                supplier.Comments = table.Rows[0][9].ToString();
+                supplier.Visible = bool.Parse(table.Rows[0][10].ToString());
+                supplier.Commodity = table.Rows[0][11].ToString();
+                supplier.ContactCellPhone = table.Rows[0][12].ToString();
+
                 sqlConnection.Dispose();
                 return supplier;
             }
@@ -111,7 +130,10 @@ public class SupplierCRUD : ICRUD<Supplier>
         recordset.Clear();
         DM = connectionManager.getDataManager();
         
-        string query = "SELECT SupplierMasterKey, SupplierName, ManufacturingLocation, ShipLocation, QuotedCurrency, ContactName, ContactPhoneNumber, ContactEmail FROM SupplierMaster ORDER BY SupplierName";
+        string query = "SELECT SupplierMasterKey, SupplierName, ManufacturingLocation, " +
+            "ShipLocation, QuotedCurrency, ContactName, ContactPhoneNumber, ContactEmail, " +
+            "Capabilities, Comments, Visible, Commodity, ContactCellPhoneNumber " +
+            "FROM SupplierMaster ORDER BY SupplierName";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -126,6 +148,11 @@ public class SupplierCRUD : ICRUD<Supplier>
             supplier.ContactName = table.Rows[i][5].ToString();
             supplier.ContactPhone = table.Rows[i][6].ToString();
             supplier.ContactEmail = table.Rows[i][7].ToString();
+            supplier.Capabilities = table.Rows[i][8].ToString();
+            supplier.Comments = table.Rows[i][9].ToString();
+            supplier.Visible = bool.Parse(table.Rows[i][10].ToString());
+            supplier.Commodity = table.Rows[i][11].ToString();
+            supplier.ContactCellPhone = table.Rows[i][12].ToString();
             recordset.Add(supplier);
         }
        
@@ -147,6 +174,11 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
+            DM.Load_SP_Parameters("@Capabilities", entity.Capabilities);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
+            DM.Load_SP_Parameters("@Commodity", entity.Commodity);
+            DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
 
             result = DM.Execute_StoreProcedure("SupplierMaster_EditSupplier", true);
         }

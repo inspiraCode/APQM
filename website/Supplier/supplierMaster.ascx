@@ -23,7 +23,8 @@
                 Supplier Name
             </td>
             <td align="left">
-                <asp:TextBox ID="txtSupplierName" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm"></asp:TextBox>
+                <asp:TextBox ID="txtSupplierName" runat="server" Width="380px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -31,7 +32,8 @@
                 Manufacturing Location
             </td>
             <td align="left">
-                <asp:TextBox ID="txtManufacturingLocation" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtManufacturingLocation" runat="server" Width="380px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -39,7 +41,8 @@
                 Ship Location
             </td>
             <td align="left">
-                <asp:TextBox ID="txtShipLocation" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtShipLocation" runat="server" Width="380px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr align="left">
@@ -47,7 +50,8 @@
                 Quoted Currency
             </td>
             <td align="left">
-                <asp:TextBox ID="txtQuotedCurrency" runat="server" Width="200px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtQuotedCurrency" runat="server" Width="200px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -63,7 +67,8 @@
                 Contact Name
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactName" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtContactName" runat="server" Width="380px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -71,7 +76,17 @@
                 Contact Phone Number
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactPhoneNumber" runat="server" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtContactPhoneNumber" runat="server" validate="required" validationid="validatingSupplierForm"
+                    Width="380px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Contact Cell Phone
+            </td>
+            <td align="left">
+                <asp:TextBox ID="txtContactCellPhone" runat="server" validate="required" validationid="validatingSupplierForm"
+                    Width="380px"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -79,7 +94,8 @@
                 Contact Email
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactEmail" runat="server" Width="300px" validate="required" validationid="validatingSupplierForm" ></asp:TextBox>
+                <asp:TextBox ID="txtContactEmail" runat="server" Width="380px" validate="required"
+                    validationid="validatingSupplierForm"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -89,6 +105,52 @@
             <td align="left">
                 &nbsp;
             </td>
-        </tr>       
+        </tr>
     </table>
+    <div id="fieldsToHideForVendor" runat="server">
+        <table>
+            <tr>
+                <td align="right">
+                    Capabilities
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtCapabilities" runat="server" Width="380px" validate="required"
+                        validationid="validatingSupplierForm" Height="60px" TextMode="MultiLine"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Comments
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtComments" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm"
+                        Height="60px" TextMode="MultiLine"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Commodity
+                </td>
+                <td align="left">
+                    <asp:TextBox ID="txtCommodity" runat="server" Width="380px" validate="required" validationid="validatingSupplierForm"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    Visible
+                </td>
+                <td align="left">
+                    <asp:CheckBox ID="chkVisible" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    &nbsp;
+                </td>
+                <td align="left">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>

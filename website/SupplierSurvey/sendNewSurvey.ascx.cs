@@ -53,7 +53,16 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
         survey.SentToVendor = DateTime.Now;
         supplier.SupplierSurvey = survey;
 
-        string idGenerated = surveyCRUD.createAndReturnIdGenerated(survey);
+
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("Survey Save");
+
+
+        string idGenerated = surveyCRUD.createAndReturnIdGenerated(survey, ref DM);
 
         if (idGenerated != "")
         {
@@ -62,7 +71,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             token.Subject = "SURVEY";
             token.SubjectKey = long.Parse(idGenerated);
             token.TokenNumber =  MD5HashGenerator.GenerateKey(DateTime.Now);
-            if (token_CRUD.create(token))
+            if (token_CRUD.create(token, ref DM))
             {
                 Email NewMail = new Email();
                 MailMessage Message = new MailMessage();
@@ -87,6 +96,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 }
                 catch
                 {
+                    DM.RollBack();
                     Navigator.goToPage("~/Error.aspx", "");
                     return;
                 }
@@ -98,6 +108,16 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "");
             return;
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+
         supplier = null;
         Ok_Click(this, e);
     }

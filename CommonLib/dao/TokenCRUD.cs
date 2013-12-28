@@ -40,7 +40,26 @@ public class TokenCRUD : ICRUD<Token>
 
         return result;
     }
+    public bool create(Token entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@Token", entity.TokenNumber);
+            DM.Load_SP_Parameters("@Subject", entity.Subject);
+            DM.Load_SP_Parameters("@SubjectKey", entity.SubjectKey.ToString());
+            DM.Load_SP_Parameters("@DeadDate", entity.DeadDate.ToString());
+            DM.Load_SP_Parameters("@Acknowledgement", entity.Acnkowledgment);
 
+            result = DM.Execute_StoreProcedure_Open_Conn("TokenMaster_NewToken", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
     public string createAndReturnIdGenerated(Token entity)
     {
         string idGenerated = "";

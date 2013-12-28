@@ -32,6 +32,5 @@ public partial class RFQ_Summary_selectBOMLine : System.Web.UI.UserControl
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
     }
 }

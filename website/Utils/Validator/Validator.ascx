@@ -52,6 +52,25 @@
                             return false;
                         }
                         break;
+                    case 'numbers':
+                        var arrNumbers = jQuery(this).val();
+                        if (arrNumbers != '') {
+                            arrNumbers = arrNumbers.split(',');
+                            for (var i = 0; i < arrNumbers.length; i++) {
+                                arrNumbers[i] = arrNumbers[i].trim();
+                                if (isNaN(arrNumbers[i]) || Number(arrNumbers[i]) < 0) {
+                                    strErrorMessage = 'Number did not pass validation.';
+                                    fieldNeedsCorrection = jQuery(this);
+                                    return false;
+                                }
+                            }
+                        }
+                        else {
+                            strErrorMessage = 'Number did not pass validation.';
+                            fieldNeedsCorrection = jQuery(this);
+                            return false;
+                        }
+                        break;
                     default:
                 }
             }

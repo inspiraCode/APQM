@@ -16,6 +16,10 @@ public partial class supplierMaster : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+    public void hideFieldsForVendor()
+    {
+        fieldsToHideForVendor.Visible = false;
+    }
     public void load(){
         if (Session["supplierObject"] != null)
         {
@@ -35,6 +39,12 @@ public partial class supplierMaster : System.Web.UI.UserControl
         txtContactName.Text = supplier.ContactName;
         txtContactPhoneNumber.Text = supplier.ContactPhone;
         txtContactEmail.Text = supplier.ContactEmail;
+        txtCapabilities.Text = supplier.Capabilities;
+        txtComments.Text = supplier.Comments;
+        txtCommodity.Text = supplier.Commodity;
+        chkVisible.Checked = supplier.Visible;
+        txtContactCellPhone.Text = supplier.ContactCellPhone;
+
         lblMode.Text = "Update";
     }
     public void save()
@@ -47,6 +57,11 @@ public partial class supplierMaster : System.Web.UI.UserControl
         supplier.ManufacturingLocation = txtManufacturingLocation.Text;
         supplier.ShipLocation = txtShipLocation.Text;
         supplier.QuotedCurrency = txtQuotedCurrency.Text;
+        supplier.Capabilities = txtCapabilities.Text;
+        supplier.Comments = txtComments.Text;
+        supplier.Commodity = txtCommodity.Text;
+        supplier.Visible = chkVisible.Checked;
+        supplier.ContactCellPhone = txtContactCellPhone.Text;
 
         if (lblMode.Text == "New") {
             if (!supplierCRUD.create(supplier))

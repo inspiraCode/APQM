@@ -23,6 +23,7 @@ public partial class Vendor_Supplier : System.Web.UI.Page
     {
         Control btnHome = Master.FindControl("btnHome");        
         btnHome.Visible = false;
+        uscSupplierForm.hideFieldsForVendor();
         btnToRFQ.OnClientClick = "return validate();";
         if (Session["rfqObject"] != null)
         {

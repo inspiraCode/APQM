@@ -113,9 +113,17 @@ public partial class SifMaster : System.Web.UI.UserControl
         sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
         sif.Technical = txtTechnical.Text;
         sif.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
-        
+
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("SIF Save");
+
+
         if (lblMode.Text == "New") {
-            string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif);
+            string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif, ref DM);
             if (idGenerated == "")
             {
                 Navigator.goToPage("~/Error.aspx","");
@@ -125,18 +133,28 @@ public partial class SifMaster : System.Web.UI.UserControl
                 BOM bom = new BOM();
                 bom.SifId = long.Parse(idGenerated);
                 bomCRUD bomCrud = new bomCRUD();
-                if (!bomCrud.create(bom))
+                if (!bomCrud.create(bom, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx","");
                 }
             }
         }else if(lblMode.Text == "Update"){
             sif.Id = long.Parse(lblID.Text);
-            if (!sif_CRUD.update(sif))
+            if (!sif_CRUD.update(sif, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx","");
             }
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+
         Session.Remove("allCustomers");
         Ok_Click(this, e);
     }

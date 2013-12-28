@@ -50,13 +50,22 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
                         rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
                         rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
-                       
+
                         if (rfqNumber.RFQNumber == -1)
                         {
                             Navigator.goToPage("~/Error.aspx", "");
                             return;
                         }
-                        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber);
+
+                        ConnectionManager CM = new ConnectionManager();
+                        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+                        /*Begin Transaction*/
+                        DM.Open_Connection("Send New RFQ Save");
+
+
+
+                        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
                         if (idGeneratedRFQNumber == "")
                         {
                             Navigator.goToPage("~/Error.aspx", "");
@@ -87,7 +96,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                                 rfq.SentAttachmentsFolder = folderAttachments;
                             }
 
-                            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq);
+                            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
 
                             if (idGenerated != "")
                             {
@@ -97,7 +106,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                                 token.Subject = "RFQ";
                                 token.SubjectKey = long.Parse(idGenerated);
                                 token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
-                                if (token_CRUD.create(token))
+                                if (token_CRUD.create(token, ref DM))
                                 {
                                     Email NewMail = new Email();
                                     MailMessage Message = new MailMessage();
@@ -123,16 +132,26 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                                     }
                                     catch
                                     {
+                                        DM.RollBack();
                                         Navigator.goToPage("~/Error.aspx", "");
                                         return;
                                     }
                                 }
                             }
                             else
-                            {   
+                            {
                                 Navigator.goToPage("~/Error.aspx", "");
                                 return;
                             }
+                        }
+
+                        DM.CommitTransaction();
+                        DM.Close_Open_Connection();
+
+                        if (DM.ErrorOccur)
+                        {
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
                         }
                     }
                 }

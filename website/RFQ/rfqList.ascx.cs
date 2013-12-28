@@ -54,8 +54,18 @@ public partial class rfqList : System.Web.UI.UserControl
                     
                     RfqCRUD rfqCRUD = new RfqCRUD();
                     RFQ rfq = rfqCRUD.readById(rfqHeaderKey);
+
+                    bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+                    BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
+
                     if (rfq != null)
                     {
+                        ConnectionManager CM = new ConnectionManager();
+                        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+                        /*Begin Transaction*/
+                        DM.Open_Connection("RFQ Save");
+
                         List<RFQ> rfqList = rfqCRUD.readByBOMDetailKey(rfq.BomDetailId);
                         if (rfqList.Count > 0)
                         {
@@ -82,8 +92,7 @@ public partial class rfqList : System.Web.UI.UserControl
                         }
                         else
                         {
-                            bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-                            BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
+                            
                             if (bomDetail != null)
                             {
                                 bomDetail.Status = "Processed";
@@ -98,6 +107,15 @@ public partial class rfqList : System.Web.UI.UserControl
                                 Navigator.goToPage("~/Error.aspx", "");
                                 return;
                             }
+                        }
+
+                        DM.CommitTransaction();
+                        DM.Close_Open_Connection();
+
+                        if (DM.ErrorOccur)
+                        {
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
                         }
 
                         gridRFQList.DataBind();

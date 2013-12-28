@@ -43,19 +43,27 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
 
         RFQ rfq = rfqCRUD.readById(rfqSummary.RfqHeaderKey);
         List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(rfq.BomDetailId);
+        List<RFQ> rfqList = rfqCRUD.readByBOMDetailKey(rfq.BomDetailId);
 
-        foreach(RFQSummary rsl in rfqSummaryList){
-            if (rsl.RfqHeaderKey != rfq.Id)
+        bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+        BOMDetail bomDetail = bomDetailCRUD.readById(rfqSummary.BomDetailKey);
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("RFQSummary Save");
+
+        foreach(RFQ rfqObj in rfqList){
+            if (rfqObj.Id != rfq.Id)
             {
-                RFQ rfqAux = rfqCRUD.readById(rsl.RfqHeaderKey);
-                if(rfqAux!=null){
-                    rfqAux.Status = "DISMISSED";
-                    if(rfqAux.NoQuote == true)
-                        rfqAux.Status = "DECLINED";
-                    if(!rfqCRUD.update(rfqAux)){
-                        Navigator.goToPage("~/Error.aspx", "");
-                        return;
-                    }
+                rfqObj.Status = "DISMISSED";
+                if (rfqObj.NoQuote == true)
+                    rfqObj.Status = "DECLINED";
+                if (!rfqCRUD.update(rfqObj, ref DM))
+                {
+                    Navigator.goToPage("~/Error.aspx", "");
+                    return;
                 }
             }
         }
@@ -63,15 +71,14 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
         if (rfq != null)
         {
             rfq.Status = "SELECTED";
-            if (!rfqCRUD.update(rfq))
+            if (!rfqCRUD.update(rfq, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "");
                 return;
             }
             else
             {
-                bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-                BOMDetail bomDetail = bomDetailCRUD.readById(rfqSummary.BomDetailKey);
+                
                 if (bomDetail != null)
                 {
                     if (chkUpdateBOMLineCost.Checked)
@@ -79,7 +86,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                         bomDetail.Cost = float.Parse(lblNewCost.Text);
                     }
                     bomDetail.Status = "Processed";
-                    if (!bomDetailCRUD.update(bomDetail))
+                    if (!bomDetailCRUD.update(bomDetail, ref DM))
                     {
                         Navigator.goToPage("~/Error.aspx", "");
                         return;
@@ -97,6 +104,16 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "");
             return;
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+
         Ok_click(sender, e);
     }
     public void on_sqldatasource_Init(Object sender, EventArgs e)

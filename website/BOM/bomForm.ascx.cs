@@ -182,7 +182,15 @@ public partial class bomForm : System.Web.UI.UserControl
                     {
                         BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
                         bomDetailVolume.BomDetailKey = detail.Id;
-                        bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
+                        try
+                        {
+                            bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
+                        }
+                        catch {
+                            DM.RollBack();
+                            Navigator.goToPage("~/Error.aspx", "");
+                            return;
+                        }
                         if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
                         {
                             Navigator.goToPage("~/Error.aspx", "");

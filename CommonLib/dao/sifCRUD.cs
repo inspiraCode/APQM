@@ -374,6 +374,49 @@ public class sifCRUD : ICRUD<SIF>
 
         return result;
     }
+    public bool update(SIF entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
+            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
+            DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
+            DM.Load_SP_Parameters("@Priority", entity.Priority);
+            DM.Load_SP_Parameters("@Revision", entity.Revision);
+            DM.Load_SP_Parameters("@SalesPerson", entity.SalesPerson);
+            DM.Load_SP_Parameters("@CostModelLoc", entity.CostModelLoc);
+            DM.Load_SP_Parameters("@Contact", entity.Contact);
+            DM.Load_SP_Parameters("@BussinesClass", entity.BussinesClass);
+            DM.Load_SP_Parameters("@Product", entity.Product);
+            DM.Load_SP_Parameters("@DivLoc", entity.DivLoc);
+            DM.Load_SP_Parameters("@Department", entity.Department);
+            DM.Load_SP_Parameters("@Reason4Quote", entity.Reason4Quote);
+            DM.Load_SP_Parameters("@Application", entity.Application);
+            DM.Load_SP_Parameters("@Specification", entity.Specification);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@TaskDescription", entity.TaskDescription);
+            DM.Load_SP_Parameters("@PartPrint", entity.PartPrint);
+            DM.Load_SP_Parameters("@Sample", entity.Sample);
+            DM.Load_SP_Parameters("@ToolingTarget", entity.ToolingTarget);
+            DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
+            DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
+            DM.Load_SP_Parameters("@Technical", entity.Technical);
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
+            DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SIFHeader_EditSIF", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
     public bool delete(long id)
     {
         int rowsAffected = 0;

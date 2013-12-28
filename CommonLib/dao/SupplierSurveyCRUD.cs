@@ -54,6 +54,43 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         return result;
     }
 
+    public string createAndReturnIdGenerated(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
+    {
+        string result = "";
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure_Scalar_Open_Conn("SupplierSurvey_NewSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return "";
+        }
+
+        return result;
+    }
+
     public bool create(SupplierSurvey entity)
     {
         bool result = false;        
@@ -88,6 +125,43 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         {
             return false;
         }       
+
+        return result;
+    }
+
+    public bool create(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurvey_NewSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
 
         return result;
     }
@@ -267,6 +341,42 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         }
         return result;
     }
+
+    public bool update(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSuveyKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierMasterKey.ToString());
+            DM.Load_SP_Parameters("@StreetAddress", entity.StreetAddress);
+            DM.Load_SP_Parameters("@City", entity.City);
+            DM.Load_SP_Parameters("@State", entity.State);
+            DM.Load_SP_Parameters("@ZipCode", entity.ZipCode);
+            DM.Load_SP_Parameters("@WebSite", entity.Website);
+            DM.Load_SP_Parameters("@LastSurvey", entity.LastSurvey.ToString());
+            DM.Load_SP_Parameters("@NDARec", entity.NDARec.ToString());
+            DM.Load_SP_Parameters("@PrimaryBusiness", entity.PrimaryBusiness);
+            DM.Load_SP_Parameters("@SecundaryBusiness", entity.SecundaryBusiness);
+            DM.Load_SP_Parameters("@UnionYN", entity.UnionYN.ToString());
+            DM.Load_SP_Parameters("@Local", entity.Local);
+            DM.Load_SP_Parameters("@ContractExpiration", entity.ContractExpiration);
+            DM.Load_SP_Parameters("@CurrentCapacity", entity.CurrentCapacity);
+            DM.Load_SP_Parameters("@ManufacturingMetod", entity.ManufacturingMetod);
+            DM.Load_SP_Parameters("@ToolingNewInHouseYN", entity.ToolingNewInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingNewOutsourcedYN", entity.ToolingNewOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
+            DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes);
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurvey_EditSurvey", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        return result;
+    }
     public bool delete(long id)
     {
         int rowsAffected=0;
@@ -323,6 +433,24 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyIndustriesSupplied_NewIndustry", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(SupplierSurveyIndustriesSupplied entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@IndustriesSuplied", entity.IndustriesSupplied.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyIndustriesSupplied_NewIndustry", true);
         }
         catch (Exception e)
         {
@@ -501,6 +629,16 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
         return false;
     }
     #endregion
+
+    public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierSurveyKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
+        }
+        return false;
+    }
 }
 
 public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales>
@@ -525,6 +663,25 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_NewForecast", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(SupplierSurveyForecastSales entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@ForecastSalesYear", entity.ForecastSalesYear.ToString());
+            DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyForecastSales_NewForecast", true);
         }
         catch (Exception e)
         {
@@ -708,6 +865,16 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
     }
 
     #endregion
+
+    public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM SupplierSurveyForecastSales WHERE SupplierSurveyKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
+        }
+        return false;
+    }
 }
 
 public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
@@ -737,6 +904,30 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
             DM.Load_SP_Parameters("@Email", entity.Email.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyContacts_NewContact", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(SupplierSurveyContacts entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Position", entity.Position.ToString());
+            DM.Load_SP_Parameters("@Name", entity.Name.ToString());
+            DM.Load_SP_Parameters("@Title", entity.Title.ToString());
+            DM.Load_SP_Parameters("@Address", entity.Address.ToString());
+            DM.Load_SP_Parameters("@Phone", entity.Phone.ToString());
+            DM.Load_SP_Parameters("@Cell", entity.Cell.ToString());
+            DM.Load_SP_Parameters("@Email", entity.Email.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyContacts_NewContact", true);
         }
         catch (Exception e)
         {
@@ -848,6 +1039,31 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
 
         return result;
     }
+    public bool update(SupplierSurveyContacts entity, ref Data_Base_MNG.SQL DM)
+    {
+
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSuveryContactsKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Position", entity.Position.ToString());
+            DM.Load_SP_Parameters("@Name", entity.Name.ToString());
+            DM.Load_SP_Parameters("@Title", entity.Title.ToString());
+            DM.Load_SP_Parameters("@Address", entity.Address.ToString());
+            DM.Load_SP_Parameters("@Phone", entity.Phone.ToString());
+            DM.Load_SP_Parameters("@Cell", entity.Cell.ToString());
+            DM.Load_SP_Parameters("@Email", entity.Email.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyContacts_EditContact", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
     public bool delete(long id)
     {
         int rowsAffected = 0;
@@ -904,6 +1120,24 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyCertification_NewCertification", true);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+
+        return result;
+    }
+
+    public bool create(SupplierSurveyCertification entity, ref Data_Base_MNG.SQL DM)
+    {
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
+            DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyCertification_NewCertification", true);
         }
         catch (Exception e)
         {
@@ -1076,6 +1310,15 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();
             }
+        }
+        return false;
+    }
+    public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
+    {
+        string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierSurveyKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            return true;
         }
         return false;
     }

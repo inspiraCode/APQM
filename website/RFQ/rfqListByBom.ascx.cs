@@ -10,7 +10,8 @@ public partial class rfqListByBom : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
     }
-    public void setBomID(long bomID) {
+    public void setBomID(long bomID)
+    {
         try
         {
             lblBomDetailID.Text = bomID.ToString();
@@ -22,13 +23,10 @@ public partial class rfqListByBom : System.Web.UI.UserControl
             throw e;
         }
     }
-
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
         SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
-
     }
-
 }

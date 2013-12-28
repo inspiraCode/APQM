@@ -194,75 +194,82 @@ public partial class SurveyForm : System.Web.UI.UserControl
         survey.ToolingOutsourcedYN = chkRepairOutsource.Checked;
         survey.Notes = txtNotes.Text;
 
-        certification_CRUD.deleteByParentId(supplier.SupplierSurvey.Id);
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("Survey Save");
+
+
+        certification_CRUD.deleteByParentId(supplier.SupplierSurvey.Id, ref DM);
         foreach (SupplierSurveyCertification certification in supplier.SupplierSurvey.Certifications)
         {            
             certification.SupplierSurveyKey = supplier.SupplierSurvey.Id;
-            certification_CRUD.create(certification);            
+            certification_CRUD.create(certification, ref DM);            
         }
-        industries_CRUD.deleteByParentId(supplier.SupplierSurvey.Id);
+        industries_CRUD.deleteByParentId(supplier.SupplierSurvey.Id, ref DM);
         foreach (SupplierSurveyIndustriesSupplied industrie in supplier.SupplierSurvey.IndustriesSupplied)
         {                           
             industrie.SupplierSurveyKey = supplier.SupplierSurvey.Id;
-            industries_CRUD.create(industrie);            
+            industries_CRUD.create(industrie, ref DM);
         }
-        forecast_CRUD.deleteByParentId(supplier.SupplierSurvey.Id);
+        forecast_CRUD.deleteByParentId(supplier.SupplierSurvey.Id, ref DM);
         foreach (SupplierSurveyForecastSales forecastSale in supplier.SupplierSurvey.ForecastSales)
         {
-            forecast_CRUD.create(forecastSale);
+            forecast_CRUD.create(forecastSale, ref DM);
         }
         SupplierSurveyContacts executive = uscContactExecutive.getEntity();
         executive.SupplierSurveyKey = supplier.SupplierSurvey.Id;
         if (supplier.SupplierSurvey.ContactExecutive != null)
         {
-            contacts_CRUD.update(executive);
+            contacts_CRUD.update(executive, ref DM);
         }
         else
         {
-            contacts_CRUD.create(executive);
+            contacts_CRUD.create(executive, ref DM);
         }
         SupplierSurveyContacts sales = uscContactSales.getEntity();
         sales.SupplierSurveyKey = supplier.SupplierSurvey.Id;
         if (supplier.SupplierSurvey.ContactSales != null)
         {
-            contacts_CRUD.update(sales);
+            contacts_CRUD.update(sales, ref DM);
         }
         else
         {
-            contacts_CRUD.create(sales);
+            contacts_CRUD.create(sales, ref DM);
         }
         SupplierSurveyContacts quality = uscContactQuality.getEntity();
         quality.SupplierSurveyKey = supplier.SupplierSurvey.Id;
         if (supplier.SupplierSurvey.ContactQuality != null)
         {
-            contacts_CRUD.update(quality);
+            contacts_CRUD.update(quality, ref DM);
         }
         else
         {
-            contacts_CRUD.create(quality);
+            contacts_CRUD.create(quality, ref DM);
         }
         SupplierSurveyContacts support = uscContactCustomerSupport.getEntity();
         support.SupplierSurveyKey = supplier.SupplierSurvey.Id;
         if (supplier.SupplierSurvey.ContactCustomerSupport != null)
         {
-            contacts_CRUD.update(support);
+            contacts_CRUD.update(support, ref DM);
         }
         else
         {
-            contacts_CRUD.create(support);
+            contacts_CRUD.create(support, ref DM);
         }
         SupplierSurveyContacts afterHours = uscContactAfterHours.getEntity();
         afterHours.SupplierSurveyKey = supplier.SupplierSurvey.Id;
         if (supplier.SupplierSurvey.ContactAfterHoursContact != null)
         {
-            contacts_CRUD.update(afterHours);
+            contacts_CRUD.update(afterHours, ref DM);
         }
         else
         {
-            contacts_CRUD.create(afterHours);
+            contacts_CRUD.create(afterHours, ref DM);
         }
         if (lblMode.Text == "New") {
-            if (!survey_CRUD.create(survey))
+            if (!survey_CRUD.create(survey, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx","");
             }
@@ -278,11 +285,21 @@ public partial class SurveyForm : System.Web.UI.UserControl
             //}
         }else if(lblMode.Text == "Update"){
             survey.Id = long.Parse(lblID.Text);
-            if (!survey_CRUD.update(survey))
+            if (!survey_CRUD.update(survey, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx","");
             }
         }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "");
+            return;
+        }
+
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)

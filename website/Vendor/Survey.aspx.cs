@@ -49,6 +49,7 @@ public partial class VendorSurvey : System.Web.UI.Page
                     {
                         case "supplier":
                             multiView.SetActiveView(viewSupplier);
+                            uscSupplierForm.hideFieldsForVendor();
                             uscSupplierForm.load();
                             return;
                         case "survey":

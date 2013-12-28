@@ -393,7 +393,7 @@
                                 <div style="width: 226px; display: inline;" align="right" data-step='44' 
                                     data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
-                                    <asp:TextBox ID="txtWeight" validate="required" validationid="validatingRFQForm"
+                                    <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm"
                                         runat="server" Style="text-align: right" Width="94px" TabIndex="31"></asp:TextBox>
                                 </div>
                             </td>

@@ -264,7 +264,7 @@
                         <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblTotalAcquisitionCost" runat="server" Text=''>
-                            00000.00
+                            0.00
                                 </asp:Label>
                             </td>
                         </tr>
@@ -276,7 +276,7 @@
                         <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblAnnualPurchaseCost" runat="server" Text=''>
-                                    00000.00
+                                    0.00
                                 </asp:Label>
                             </td>
                         </tr>

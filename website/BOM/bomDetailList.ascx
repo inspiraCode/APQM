@@ -147,7 +147,7 @@
                 runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtEAU" runat="server" validate="required" validationid="validatingBOMDetail"
+            <asp:TextBox ID="txtEAU" runat="server" validate="numbers" validationid="validatingBOMDetail"
                 Width="60px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">

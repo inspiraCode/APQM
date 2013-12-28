@@ -113,7 +113,7 @@ public class BOMDetail
     private string manufacturePN = ""; 
     private string supplierPN = ""; 
     private string commCode = ""; 
-    private string eau;
+    private string eau = "0";
     private List<BOMDetailVolume> volumeList;    
 
     public string CapsonicPN
