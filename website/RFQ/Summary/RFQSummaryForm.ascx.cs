@@ -57,7 +57,7 @@ public partial class RFQSummaryForm : System.Web.UI.UserControl
     }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
-        ConnectionManager connection = new ConnectionManager();        
+        ConnectionManager connection = new ConnectionManager();
         SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
     }
 }

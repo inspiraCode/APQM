@@ -12,7 +12,7 @@ using System.Xml.Linq;
 using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page 
-{   
+{
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["SECTION"] != null)
@@ -30,12 +30,13 @@ public partial class _Default : System.Web.UI.Page
                 case "popupSIF":
                     disablePageForModalPopup();
                     openpopupContainer();
-                    //load()
+                    Session.Remove("SIFObject");
+                    uscSIFMasterForm.load();
                     break;
-                default:                    
+                default:
                     break;
             }
-        }        
+        }
     }
     private void disablePageForModalPopup()
     {

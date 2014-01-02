@@ -20,11 +20,11 @@ public partial class SifMaster : System.Web.UI.UserControl
     public void load()
     {
         btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c~' + prompt('New Customer')";
+        loadDropDowns();
         if (Session["SIFObject"] != null)
         {
             if (((SessionObject)Session["SIFObject"]).Status == "forUpdate")
-            {
-                loadDropDowns();
+            {   
                 fillWithEntity((SIF)(((SessionObject)Session["SIFObject"]).Content));
                 ((SessionObject)Session["SIFObject"]).Status = "Retrieved";
             }
@@ -39,6 +39,7 @@ public partial class SifMaster : System.Web.UI.UserControl
             cboCustomer.DataTextField = "CustomerName";
             cboCustomer.DataValueField = "Id";
             cboCustomer.DataBind();
+            if (cboCustomer.Items.Count > 0) cboCustomer.SelectedIndex = 0;
         }
     }
     public void fillWithEntity(SIF sif)
@@ -67,8 +68,29 @@ public partial class SifMaster : System.Web.UI.UserControl
         txtPrimaryCompetitors.Text = sif.PrimaryCompetitors;
         txtSpecificResourceRequirements.Text = sif.SpecificResourceRequirements;
         txtTechnical.Text = sif.Technical;
-        txtQuoteDue.Text = sif.QuoteDue.ToShortDateString();
-        txtSOP.Text = sif.Sop.ToShortDateString();
+        
+        if (sif.QuoteDue.Year == 1985 &&
+                sif.QuoteDue.Month == 2 &&
+                sif.QuoteDue.Day == 10)
+        {
+            txtQuoteDue.Text = "";
+        }
+        else
+        {
+            txtQuoteDue.Text = sif.QuoteDue.ToShortDateString();
+        }
+
+        if (sif.Sop.Year == 1985 &&
+               sif.Sop.Month == 2 &&
+               sif.Sop.Day == 10)
+        {
+            txtSOP.Text = "";
+        }
+        else
+        {
+            txtSOP.Text = sif.Sop.ToShortDateString();
+        }
+
         cboMarketSector.SelectedValue = sif.MarketSectorID.ToString();
 
         uscSifDetail.setEntity(sif.SifDetail);

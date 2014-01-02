@@ -240,7 +240,7 @@
                 Tooling Target
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtToolingTarget" runat="server" Width="180px" TabIndex="22"></asp:TextBox>
+                <asp:TextBox ID="txtToolingTarget" runat="server"  Width="180px" TabIndex="22" style="text-align:right;" ></asp:TextBox>
             </td>
             <td align="left">
             </td>
