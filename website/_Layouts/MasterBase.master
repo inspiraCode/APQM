@@ -229,13 +229,20 @@
         jQuery('#divContent').css('height', (jQuery(window).height() - 183).toString());
     });
 
+    function makeDropDownsChosen() {
+        jQuery('[chosen="true"]').chosen();
+    }
+    
     jQuery(document).ready(function() {
         jQuery("#javascriptEnabled").css("visibility", "visible");
         makeDropDownsChosen();
 
     });
-    function makeDropDownsChosen() {
-        jQuery('[chosen="true"]').chosen();
-    }
+
+    jQuery('[datepicker="true"]').datepicker({
+        showOn: "button",
+        buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
+        buttonImageOnly: true
+    });
 </script>
 

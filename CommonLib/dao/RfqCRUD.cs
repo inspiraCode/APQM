@@ -357,7 +357,7 @@ public class RfqCRUD : ICRUD<RFQ>
                     + "EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
                       "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, "
                     + "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " 
-                    + "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
+                    + "AssemblyCostPerUnit, [Status], DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
                       "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, " +
@@ -980,7 +980,7 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 
         //string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumber, DrawingLevel, EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
         //              "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " +
-        //              "AssemblyCostPerUnit, Status, DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll";
+        //              "AssemblyCostPerUnit, [Status], DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy FROM viewRFQHeader_ReadAll";
 
         //DataTable table = new DataTable();
         //table = DM.Execute_Query(query);
@@ -1706,7 +1706,7 @@ public class RfqSummaryCRUD
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Status, Sequence FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Status], [Sequence] FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1754,8 +1754,8 @@ public class RfqSummaryCRUD
         RFQSummary rfqSummary = new RFQSummary();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, Status, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Sequence FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence] FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1805,8 +1805,8 @@ public class RfqSummaryCRUD
         List<RFQSummary> recordset = new List<RFQSummary>();
 
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
-                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, Status, " +
-                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, Sequence FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
+                        "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
+                        "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence] FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();

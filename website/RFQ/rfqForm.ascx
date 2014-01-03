@@ -299,11 +299,11 @@
             </tr>
         </table>
         <br />
-        <table>
+        <table style="min-width:200px;">
             <tr>
                 <td align="center">
                     Estimated Annual Volume<br />
-                    <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+                    <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;height:80px;width:160px;
                         display: inline-block;" data-step='21' data-intro='This is FYI. This shows annual volume for the first 3 years of program.'>
                         <uc4:sifDetail ID="uscSifDetail" runat="server" />
                     </div>

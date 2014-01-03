@@ -163,7 +163,7 @@
                                     Due Date
                                 </td>
                                 <td align="left" class="style4">
-                                    <asp:TextBox ID="txtDueDate" runat="server" TabIndex="6" Width="200px"></asp:TextBox>
+                                    <asp:TextBox ID="txtDueDate" datepicker="true" runat="server" TabIndex="6" Width="200px"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -284,11 +284,7 @@
     jQuery(document).ready(function() {
         jQuery("[toHide]").hide();
         toggleTargetPrice();
-        jQuery('#<%= txtDueDate.ClientID %>').datepicker({
-            showOn: "button",
-            buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
-            buttonImageOnly: true
-        });
+        
         uploadObj = jQuery("#uploadZone").uploadFile({
             url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>',
             multiple: true,

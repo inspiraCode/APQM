@@ -463,8 +463,8 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     {
         BOMDetail bomDetail = new BOMDetail();
 
-        string query =  "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, " +
-                        "LinePosition, SalesStatus, User, PurchasingStatus, DirectedBuy, Material, Um, " +
+        string query =  "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, " +
+                        "LinePosition, SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, " +
                         "VendorQuoteEst, SalesComments, PurchasingComments, CapComAssm, " +
                         "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
                         "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDetailKey";
@@ -570,8 +570,8 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, Status, Description, LinePosition, " +
-                        "SalesStatus, User, PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, " +
+        string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, LinePosition, " +
+                        "SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, " +
                         "PurchasingComments, CapComAssm, " +
                         "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
                         "FROM BOMDetail ORDER BY BOMDetailKey";

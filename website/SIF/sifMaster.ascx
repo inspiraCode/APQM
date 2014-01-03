@@ -288,7 +288,7 @@
                 Quote Due
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtQuoteDue" runat="server" Width="180px" TabIndex="26"></asp:TextBox>
+                <asp:TextBox ID="txtQuoteDue" datepicker="true" runat="server" Width="180px" TabIndex="26"></asp:TextBox>
             </td>
             <td align="left">
             </td>
@@ -298,7 +298,7 @@
                 SOP
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtSOP" runat="server" Width="180px" TabIndex="27"></asp:TextBox>
+                <asp:TextBox ID="txtSOP" datepicker="true" runat="server" Width="180px" TabIndex="27"></asp:TextBox>
             </td>
             <td align="left">
             </td>
