@@ -99,19 +99,19 @@
             </div>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCapsonicPN" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCapsonicPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCustomerPN" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtManufacturePN" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtManufacturePN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtSupplierPN" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtSupplierPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCommCode" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCommCode" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:TextBox ID="txtMaterial" runat="server" Width="140px" Height="40px" Rows="2"

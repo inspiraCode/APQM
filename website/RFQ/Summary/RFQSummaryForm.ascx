@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RFQSummaryForm.ascx.cs"
     Inherits="RFQSummaryForm" %>
 <%@ Register Src="rfqSummaryDetail.ascx" TagName="rfqSummaryDetail" TagPrefix="uc1" %>
+<%@ Register src="../../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc2" %>
 <style type="text/css">
     .style1
     {
@@ -95,6 +96,9 @@
     </SelectParameters>
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
+
+<uc2:Validator ID="uscValidator" runat="server" />
+
 
 <script type="text/javascript">
     var mainEAV = jQuery('[mainEAV]');

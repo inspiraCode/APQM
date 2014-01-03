@@ -104,7 +104,7 @@
                 Annual Volume
             </td>
             <td align="left" class="style1">
-                <asp:TextBox ID="txtAnnualVolume" runat="server" Width="120px"></asp:TextBox>
+                <asp:TextBox ID="txtAnnualVolume" style="text-align:right;" runat="server" Width="120px"></asp:TextBox>
             </td>
             <td align="left">
             </td>
