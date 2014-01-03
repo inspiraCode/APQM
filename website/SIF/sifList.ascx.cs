@@ -56,7 +56,7 @@ public partial class sifList : System.Web.UI.UserControl
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx","");
+            Navigator.goToPage("~/Error.aspx","ERROR:" + sif_CRUD.ErrorMessage);
         }
     }
     public void updateByID(object sender, CommandEventArgs e)

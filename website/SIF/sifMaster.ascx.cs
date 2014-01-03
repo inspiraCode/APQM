@@ -16,10 +16,11 @@ public partial class SifMaster : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
         btnNewMarketSector.OnClientClick = "return promptUser('New Market Sector', 'm~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
+        btnNewCustomer.OnClientClick = "return promptUser('New Customer', 'c~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
     }
     public void load()
     {
-        btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c~' + prompt('New Customer')";
+        //btnNewCustomer.OnClientClick = "document.getElementById('" + txtPrompt.ClientID + "').value = 'c~' + prompt('New Customer')";
         loadDropDowns();
         if (Session["SIFObject"] != null)
         {
@@ -146,9 +147,9 @@ public partial class SifMaster : System.Web.UI.UserControl
 
         if (lblMode.Text == "New") {
             string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif, ref DM);
-            if (idGenerated == "")
+            if (sif_CRUD.ErrorOccur)
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + sif_CRUD.ErrorMessage);
             }
             else
             {
@@ -157,14 +158,14 @@ public partial class SifMaster : System.Web.UI.UserControl
                 bomCRUD bomCrud = new bomCRUD();
                 if (!bomCrud.create(bom, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx","");
+                    Navigator.goToPage("~/Error.aspx","ERROR:" + bomCrud.ErrorMessage);
                 }
             }
         }else if(lblMode.Text == "Update"){
             sif.Id = long.Parse(lblID.Text);
             if (!sif_CRUD.update(sif, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx","ERROR:" + sif_CRUD.ErrorMessage);
             }
         }
 
@@ -173,7 +174,7 @@ public partial class SifMaster : System.Web.UI.UserControl
 
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return;
         }
 
@@ -203,9 +204,8 @@ public partial class SifMaster : System.Web.UI.UserControl
 
                         MarketSectorCRUD marketSector_CRUD = new MarketSectorCRUD();
 
-
                         string idGeneratedMarket = marketSector_CRUD.createAndReturnIdGenerated(marketSector);
-                        if (idGeneratedMarket != "")
+                        if (!marketSector_CRUD.ErrorOccur)
                         {
                             //SqlDataSource1.DataBind();
                             cboMarketSector.DataBind();
@@ -218,37 +218,59 @@ public partial class SifMaster : System.Web.UI.UserControl
                             uscNotifier.showAlert("Market Sector could not be saved.");
                         }
                         break;
+                    case "c":
+                        Customer customer = new Customer();
+                        customer.CustomerName = prompt[1];
+                        string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
+                        if (!customer_CRUD.ErrorOccur)
+                        {
+                            Session.Remove("allCustomers");
+                            cboCustomer.DataSource = null; //Forcing reload
+                            loadDropDowns();
+                            cboCustomer.SelectedValue = idGenerated;
+                            cboCustomer.Focus();
+                        }
+                        else
+                        {
+                            uscNotifier.showAlert("Customer could not be saved.");
+                        }
+                        break;
                 }
             }
             ((HiddenField)sender).Value = "";
         }
     }
-    protected void txtPrompt_ValueChanged(object sender, EventArgs e)
-    {
-        if (txtPrompt.Value.Trim() != "")
-        {
-            string[] prompt = txtPrompt.Value.Split('~');
-            if (prompt[1] != "null" && prompt[1].Trim() != "")
-            {
-                switch (prompt[0])
-                {
-                    case "c":
-                        Customer customer = new Customer();
-                        customer.CustomerName = prompt[1];
-                        string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
-                        if (idGenerated != "")
-                        {
-                            Session.Remove("allCustomers");
-                            loadDropDowns();
-                            cboCustomer.SelectedValue = idGenerated;
-                            cboCustomer.Focus();
-                        }
-                        break;
-                }
-            }
-            txtPrompt.Value = "";
-        }
-    }
+    //protected void txtPrompt_ValueChanged(object sender, EventArgs e)
+    //{
+    //    if (txtPrompt.Value.Trim() != "")
+    //    {
+    //        string[] prompt = txtPrompt.Value.Split('~');
+    //        if (prompt[1] != "null" && prompt[1].Trim() != "")
+    //        {
+    //            switch (prompt[0])
+    //            {
+    //                case "c":
+    //                    Customer customer = new Customer();
+    //                    customer.CustomerName = prompt[1];
+    //                    string idGenerated = customer_CRUD.createAndReturnIdGenerated(customer);
+    //                    if (!customer_CRUD.ErrorOccur)
+    //                    {
+    //                        Session.Remove("allCustomers");
+    //                        cboCustomer.DataSource = null; //Forcing reload
+    //                        loadDropDowns();
+    //                        cboCustomer.SelectedValue = idGenerated;
+    //                        cboCustomer.Focus();
+    //                    }
+    //                    else
+    //                    {
+    //                        uscNotifier.showAlert("Customer could not be saved.");
+    //                    }
+    //                    break;
+    //            }
+    //        }
+    //        txtPrompt.Value = "";
+    //    }
+    //}
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();

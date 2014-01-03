@@ -42,10 +42,10 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
         }
         return false;
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         ViewState.Remove("bomDetailKey"); 
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
     protected void btnSelect_Click(object sender, EventArgs e)
     {
@@ -79,7 +79,7 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                     string message = ex.Message;
                 }
                 break;

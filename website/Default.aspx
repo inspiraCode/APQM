@@ -80,15 +80,16 @@
             <asp:View ID="viewPopupSupplier" runat="server">
                 <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnAfterSave="on_add_supplier"
                     OnAfterCancel="on_cancelAdd_supplier" />
-                
+
                 <script type="text/javascript">
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 630, modal: false,
-                        dialogClass: "no-close", closeOnEscape:false
+                        dialogClass: "no-close", closeOnEscape: false
                     });                    
                 </script>
+
                 <div id="divButtons" align="center" runat="server">
                     <asp:Button ID="btnSaveSupplier" runat="server" Text="Save" Width="70px" OnClick="on_save_supplier" />
                     <asp:Button ID="btnCancelSupplier" runat="server" Text="Cancel" Width="70px" OnClick="on_cancel_supplier" />
@@ -107,6 +108,7 @@
                         });
                     });
                 </script>
+
             </asp:View>
             <asp:View ID="viewPopupRFQ" runat="server">
                 <uc7:rfqForm ID="uscRFQForm" runat="server" OnOk_Click="on_add_rfq" OnCancel_Click="on_cancelAdd_rfq" />
@@ -115,7 +117,7 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 950, modal: false,
-                        dialogClass: "no-close", closeOnEscape:false
+                        dialogClass: "no-close", closeOnEscape: false
                     });                    
                 </script>
 
@@ -133,7 +135,8 @@
         <asp:View ID="viewSIF" runat="server">
             <div runat="server" id="divSIF" class="Content">
                 SIFs
-                <br />                
+                <br />
+                <br />
                 <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
                     OnClick="btnAddSIF_Click" />
                 <br />

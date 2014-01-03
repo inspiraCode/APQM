@@ -62,7 +62,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                     rfqObj.Status = "DECLINED";
                 if (!rfqCRUD.update(rfqObj, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                     return;
                 }
             }
@@ -73,7 +73,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             rfq.Status = "SELECTED";
             if (!rfqCRUD.update(rfq, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                 return;
             }
             else
@@ -88,20 +88,20 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                     bomDetail.Status = "Processed";
                     if (!bomDetailCRUD.update(bomDetail, ref DM))
                     {
-                        Navigator.goToPage("~/Error.aspx", "");
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
                         return;
                     }
                 }
                 else
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:There was an error retrieving BOM Detail for rfqSummary.BomDetailKey = " + rfqSummary.BomDetailKey);
                     return;
                 }
             }
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve RFQ for rfqSummary.RfqHeaderKey = " + rfqSummary.RfqHeaderKey);
             return;
         }
 
@@ -110,7 +110,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
 
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return;
         }
 

@@ -47,7 +47,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
                 uscRfqForm.load();
                 return;
             }
-            exitByError();
+            exitByError("Could not load page, please try again.");
         }
     }
     public bool getPostedFiles()
@@ -128,7 +128,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         }
         return false;
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         Session.Remove("SECTION");
         Session.Remove("supplierObject");
@@ -136,7 +136,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         Session.Remove("token");
         token = null;
         supplier = null;
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
     protected void btnToSupplierForm_Click(object sender, EventArgs e)
     {
@@ -147,7 +147,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         }
         catch
         {
-            exitByError();
+            exitByError(@"An error has occurred when trying to navigate to /Vendor/Supplier.aspx.");
         }
     }
     protected void on_afterSave_rfq(object sender, EventArgs e)
@@ -182,7 +182,7 @@ public partial class Vendor_RFQ : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
 }

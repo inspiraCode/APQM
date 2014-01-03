@@ -42,7 +42,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
             supplier.ContactEmail = txtEmail.Text.Trim();
             if (!supplierCRUD.update(supplier))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);
                 return;
             }
         }
@@ -64,7 +64,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
         string idGenerated = surveyCRUD.createAndReturnIdGenerated(survey, ref DM);
 
-        if (idGenerated != "")
+        if (!surveyCRUD.ErrorOccur)
         {
             TokenCRUD token_CRUD = new TokenCRUD();
             Token token = new Token();
@@ -85,27 +85,30 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the Survey form:" + Environment.NewLine + "http://" + 
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the Survey form:" + Environment.NewLine + "http://" +
                     Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber);
                 Message.AlternateViews.Add(htmlView);
 
                 try
                 {
                     NewMail.SendMail(Message);
-
                 }
                 catch
                 {
                     DM.RollBack();
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:Could not send email to: " + supplier.ContactEmail.ToString());
                     return;
                 }
-                
+            }
+            else
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + token_CRUD.ErrorMessage);
+                return;
             }
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + surveyCRUD.ErrorMessage);
             return;
         }
 
@@ -114,7 +117,7 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return;
         }
 

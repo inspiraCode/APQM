@@ -36,7 +36,7 @@ public partial class supplierList : System.Web.UI.UserControl
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx", "");           
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);           
         }
     }
     public void updateByID(object sender, CommandEventArgs e)

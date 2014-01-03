@@ -70,7 +70,7 @@ public partial class VendorSurvey : System.Web.UI.Page
                 }
             }
         }
-        exitByError();
+        exitByError("Could not load page, please try again.");
     }
     private bool retrieveEntity(){
         token = (Token)Session["token"];
@@ -91,14 +91,14 @@ public partial class VendorSurvey : System.Web.UI.Page
         }
         return false;
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         Session.Remove("SECTION");
         Session.Remove("supplierObject");
         Session.Remove("token");
         token = null;
         supplier = null;
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
     protected void btnToSupplierForm_Click(object sender, EventArgs e)
     {
@@ -122,7 +122,7 @@ public partial class VendorSurvey : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
     protected void on_cancel_supplier(object sender, EventArgs e)
@@ -133,7 +133,7 @@ public partial class VendorSurvey : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
     protected void on_save_survey(object sender, EventArgs e)
@@ -145,7 +145,7 @@ public partial class VendorSurvey : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }        
     }
     protected void on_cancel_survey(object sender, EventArgs e)
@@ -156,7 +156,7 @@ public partial class VendorSurvey : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         } 
     }
 }

@@ -11,6 +11,9 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public SupplierSurveyCRUD()
 	{}
     
@@ -18,6 +21,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 
     public string createAndReturnIdGenerated(SupplierSurvey entity)
     {
+        ErrorOccur = false;
         string result = "";
         DM = connectionManager.getDataManager();
         try
@@ -45,9 +49,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure_Scalar("SupplierSurvey_NewSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -56,6 +65,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 
     public string createAndReturnIdGenerated(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string result = "";
         try
         {
@@ -82,9 +92,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure_Scalar_Open_Conn("SupplierSurvey_NewSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -93,6 +108,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 
     public bool create(SupplierSurvey entity)
     {
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -120,9 +136,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure("SupplierSurvey_NewSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }       
 
@@ -131,6 +152,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 
     public bool create(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -157,9 +179,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurvey_NewSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -307,6 +334,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
     }
     public bool update(SupplierSurvey entity)
     {
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -334,9 +362,14 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure("SupplierSurvey_EditSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
         return result;
@@ -344,6 +377,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
 
     public bool update(SupplierSurvey entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -370,15 +404,21 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@Notes", entity.Notes);
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurvey_EditSurvey", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
         return result;
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM SupplierSuvey WHERE SupplierSuveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -395,16 +435,28 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
-            }           
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -418,6 +470,9 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public SupplierSurveyIndustriesCRUD()
     { }
 
@@ -425,6 +480,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
 
     public bool create(SupplierSurveyIndustriesSupplied entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -433,9 +489,14 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyIndustriesSupplied_NewIndustry", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -444,6 +505,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
 
     public bool create(SupplierSurveyIndustriesSupplied entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -451,9 +513,14 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyIndustriesSupplied_NewIndustry", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -546,7 +613,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
 
     public bool update(SupplierSurveyIndustriesSupplied entity)
     {
-
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -556,9 +623,14 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyIndustriesSupplied_EditIndustry", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -567,6 +639,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
 
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierIndustriesSuppliedKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -583,9 +656,16 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Industries_Supplied.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -594,11 +674,17 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
 
     public bool deleteByParentId(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierSurveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -615,9 +701,16 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Industries_Supplied.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -626,17 +719,27 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     #endregion
 
     public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM SupplierSurveyIndustriesSupplied WHERE SupplierSurveyKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
-        }
+        } 
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
 }
@@ -647,6 +750,9 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public SupplierSurveyForecastSalesCRUD()
     { }
 
@@ -654,6 +760,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
 
     public bool create(SupplierSurveyForecastSales entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -663,9 +770,14 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_NewForecast", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -674,6 +786,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
 
     public bool create(SupplierSurveyForecastSales entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -682,9 +795,14 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             DM.Load_SP_Parameters("@SupplierSurveyKey", entity.SupplierSurveyKey.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyForecastSales_NewForecast", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -781,7 +899,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
 
     public bool update(SupplierSurveyForecastSales entity)
     {
-
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -792,9 +910,14 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
             DM.Load_SP_Parameters("@ForecastSales", entity.ForecastSales.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyForecastSales_EditForecast", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -802,6 +925,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyForecastSales WHERE SurveyForecastedSalesKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -818,9 +942,16 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Forecast_Sales.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -829,11 +960,17 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
 
     public bool deleteByParentId(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyForecastSales WHERE SupplierSurveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -850,9 +987,16 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Forecast_Sales.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -861,6 +1005,11 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
 
@@ -868,11 +1017,16 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
 
     public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM SupplierSurveyForecastSales WHERE SupplierSurveyKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
         }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
 }
@@ -883,6 +1037,9 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public SupplierSurveyContactsCRUD()
     { }
 
@@ -890,6 +1047,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
 
     public bool create(SupplierSurveyContacts entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -904,9 +1062,14 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
             DM.Load_SP_Parameters("@Email", entity.Email.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyContacts_NewContact", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -915,6 +1078,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
 
     public bool create(SupplierSurveyContacts entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -928,9 +1092,14 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
             DM.Load_SP_Parameters("@Email", entity.Email.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyContacts_NewContact", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1015,7 +1184,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
 
     public bool update(SupplierSurveyContacts entity)
     {
-
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1031,9 +1200,14 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
             DM.Load_SP_Parameters("@Email", entity.Email.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyContacts_EditContact", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1041,7 +1215,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
     }
     public bool update(SupplierSurveyContacts entity, ref Data_Base_MNG.SQL DM)
     {
-
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -1056,9 +1230,14 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
             DM.Load_SP_Parameters("@Email", entity.Email.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyContacts_EditContact", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1066,6 +1245,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyContacts WHERE SupplierSuveryContactsKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1082,9 +1262,16 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Contacts.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1092,6 +1279,11 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();
             }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -1105,6 +1297,9 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public SupplierSurveyCertificationCRUD()
     { }
 
@@ -1112,6 +1307,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
 
     public bool create(SupplierSurveyCertification entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1120,9 +1316,14 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyCertification_NewCertification", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1131,6 +1332,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
 
     public bool create(SupplierSurveyCertification entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -1138,9 +1340,14 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurveyCertification_NewCertification", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1233,7 +1440,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
 
     public bool update(SupplierSurveyCertification entity)
     {
-
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1243,9 +1450,14 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
             DM.Load_SP_Parameters("@Certifications", entity.Certification.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurveyCertification_EditCertification", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1253,6 +1465,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierCertificationKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1269,9 +1482,16 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Certification.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1280,10 +1500,16 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentId(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierSurveyKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1300,9 +1526,16 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey_Certification.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1311,15 +1544,25 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentId(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM SupplierSurveyCertification WHERE SupplierSurveyKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
         }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
 

@@ -11,6 +11,7 @@ public partial class Utils_Alertify_notifier : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
+        hide();
     }
     public void showAlert(String message)
     {

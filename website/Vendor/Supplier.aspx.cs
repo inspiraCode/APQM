@@ -44,7 +44,7 @@ public partial class Vendor_Supplier : System.Web.UI.Page
                 uscSupplierForm.load();
                 return;
             }
-            exitByError();
+            exitByError("Could not load page, please try again.");
         }
     }
     private bool retrieveEntity()
@@ -87,7 +87,7 @@ public partial class Vendor_Supplier : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
     protected void on_cancel_supplier(object sender, EventArgs e)
@@ -98,21 +98,21 @@ public partial class Vendor_Supplier : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
     protected void btnToRFQForm_Click(object sender, EventArgs e)
     {
         btnSave_Click(null, null);
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         Session.Remove("SECTION");
         Session.Remove("supplierObject");
         Session.Remove("rfqObject");
         Session.Remove("token");
         supplier = null;
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {

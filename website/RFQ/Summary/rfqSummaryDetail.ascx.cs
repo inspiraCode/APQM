@@ -113,7 +113,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
 
                                 if (!rfqSummaryCRUD.updateOrCreate(rfqS))
                                 {
-                                    Navigator.goToPage("~/Error.aspx", "");
+                                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqSummaryCRUD.ErrorMessage);
                                     return;
                                 }
                                 wasEdited = true;
@@ -257,7 +257,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         else
         {
             Session.Remove("rfqSummarySelected");
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve rfqSummary with id = " + id);
         }
     }
     

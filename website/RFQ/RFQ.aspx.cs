@@ -141,7 +141,7 @@ public partial class RFQDefault : System.Web.UI.Page
                 }
                 catch(Exception ex)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                 }                
                 break;
             case "sendNewRFQ":
@@ -160,7 +160,7 @@ public partial class RFQDefault : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                 }
                 break;
             case "rfqSummary":
@@ -173,7 +173,7 @@ public partial class RFQDefault : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                     string message = ex.Message;
                 }
                 break;

@@ -45,7 +45,7 @@ public partial class surveyList : System.Web.UI.UserControl
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx","");
+            Navigator.goToPage("~/Error.aspx","ERROR:" + surveyCRUD.ErrorMessage);
         }
     }
     public void updateByID(object sender, CommandEventArgs e)
@@ -64,7 +64,7 @@ public partial class surveyList : System.Web.UI.UserControl
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve survey with id = " + id);
         }
     }
 }

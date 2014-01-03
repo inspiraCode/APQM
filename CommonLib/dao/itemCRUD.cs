@@ -14,6 +14,9 @@ public class itemCRUD : ICRUD<Item>
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public itemCRUD()
 	{}
     
@@ -21,6 +24,7 @@ public class itemCRUD : ICRUD<Item>
 
     public bool create(Item entity)
     {
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();       
         try
@@ -38,9 +42,14 @@ public class itemCRUD : ICRUD<Item>
             //DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_NewItem", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }       
 
@@ -49,6 +58,7 @@ public class itemCRUD : ICRUD<Item>
 
     public string createAndReturnIdGenerated(Item entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -66,9 +76,14 @@ public class itemCRUD : ICRUD<Item>
             //DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("ItemMaster_NewItem", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -78,6 +93,7 @@ public class itemCRUD : ICRUD<Item>
 
     public string createAndReturnIdGenerated(Item entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -94,9 +110,14 @@ public class itemCRUD : ICRUD<Item>
             //DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("ItemMaster_NewItem", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -176,7 +197,7 @@ public class itemCRUD : ICRUD<Item>
 
     public bool update(Item entity)
     {
-
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -195,9 +216,14 @@ public class itemCRUD : ICRUD<Item>
             //DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure("ItemMaster_EditItem", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -205,7 +231,7 @@ public class itemCRUD : ICRUD<Item>
     }
     public bool update(Item entity, ref Data_Base_MNG.SQL DM)
     {
-
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -223,9 +249,14 @@ public class itemCRUD : ICRUD<Item>
             //DM.Load_SP_Parameters("@EAU", entity.EAU.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("ItemMaster_EditItem", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -233,6 +264,7 @@ public class itemCRUD : ICRUD<Item>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM ItemMaster WHERE ItemMasterKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -249,9 +281,16 @@ public class itemCRUD : ICRUD<Item>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Item.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -259,6 +298,11 @@ public class itemCRUD : ICRUD<Item>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
             }           
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }

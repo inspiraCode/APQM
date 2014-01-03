@@ -53,7 +53,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                         if (rfqNumber.RFQNumber == -1)
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:There was an error generating a new RFQ number.");
                             return;
                         }
 
@@ -66,9 +66,9 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
 
                         String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
-                        if (idGeneratedRFQNumber == "")
+                        if (rfqNumberCRUD.ErrorOccur)
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
                             return;
                         }
                         else
@@ -98,7 +98,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
 
-                            if (idGenerated != "")
+                            if (!rfqCRUD.ErrorOccur)
                             {
                                 rfq.Id = long.Parse(idGenerated);
                                 TokenCRUD token_CRUD = new TokenCRUD();
@@ -133,14 +133,19 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                                     catch
                                     {
                                         DM.RollBack();
-                                        Navigator.goToPage("~/Error.aspx", "");
+                                        Navigator.goToPage("~/Error.aspx", "ERROR:Could not send email to: " + supplier.ContactEmail.ToString());
                                         return;
                                     }
+                                }
+                                else
+                                {
+                                    Navigator.goToPage("~/Error.aspx", "ERROR:" + token_CRUD.ErrorMessage);
+                                    return;
                                 }
                             }
                             else
                             {
-                                Navigator.goToPage("~/Error.aspx", "");
+                                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                                 return;
                             }
                         }
@@ -150,7 +155,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                         if (DM.ErrorOccur)
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
                             return;
                         }
                     }
@@ -239,7 +244,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         supplier.SupplierName = prompt[1];
 
                         string idGenerated =supplierCRUD.createAndReturnIdGenerated(supplier);
-                        if (idGenerated != "")
+                        if (!supplierCRUD.ErrorOccur)
                         {
                             //SqlDataSource1.DataBind();
                             cboSupplier.DataBind();
@@ -250,7 +255,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         }
                         else
                         {
-                            uscNotifier.showAlert("Supplier could not be saved.");
+                            uscNotifier.showAlert("Supplier could not be saved. " + supplierCRUD.ErrorMessage);
                         }
                         break;
                     case "m":
@@ -261,7 +266,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
 
                         string idGeneratedMarket = marketSector_CRUD.createAndReturnIdGenerated(marketSector);
-                        if (idGeneratedMarket != "")
+                        if (!marketSector_CRUD.ErrorOccur)
                         {
                             //SqlDataSource1.DataBind();
                             cboMarketSector.DataBind();
@@ -271,7 +276,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         }
                         else
                         {
-                            uscNotifier.showAlert("Market Sector could not be saved.");
+                            uscNotifier.showAlert("Market Sector could not be saved. " + marketSector_CRUD.ErrorMessage);
                         }
                         break;
                 }
@@ -302,7 +307,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                 supplier.ContactEmail = txtEmail.Text.Trim();
                 if (!supplierCRUD.update(supplier))
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);
                     return;
                 }
             }

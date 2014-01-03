@@ -66,14 +66,14 @@ public partial class supplierMaster : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!supplierCRUD.create(supplier))
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx","ERROR:" + supplierCRUD.ErrorMessage);
                 return;
             }
         }else if(lblMode.Text == "Update"){
             supplier.Id = long.Parse(lblID.Text);
             if (!supplierCRUD.update(supplier))
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx","ERROR:" + supplierCRUD.ErrorMessage);
                 return;
             }
         }

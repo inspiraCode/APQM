@@ -13,6 +13,9 @@ public class bomCRUD : ICRUD<BOM>
    
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
+    
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
 
     public bomCRUD()
 	{}
@@ -21,7 +24,9 @@ public class bomCRUD : ICRUD<BOM>
 
     public bool create(BOM entity)
     {
-        bool result = false;        
+        ErrorOccur = false;
+        bool result = false;
+        
         DM = connectionManager.getDataManager();
         try
         {
@@ -32,18 +37,25 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
 
             result = DM.Execute_StoreProcedure("BOMHeader_NewBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
-        }       
+        }
 
         return result;
     }
 
     public bool create(BOM entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
+        
         try
         {
             DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifId.ToString());
@@ -53,9 +65,14 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMHeader_NewBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -64,6 +81,8 @@ public class bomCRUD : ICRUD<BOM>
 
     public string createAndReturnIdGenerated(BOM entity)
     {
+        ErrorOccur = false;
+        
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -75,9 +94,14 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("BOMHeader_NewBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -86,6 +110,7 @@ public class bomCRUD : ICRUD<BOM>
 
     public string createAndReturnIdGenerated(BOM entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -96,9 +121,14 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMHeader_NewBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -179,7 +209,7 @@ public class bomCRUD : ICRUD<BOM>
 
     public bool update(BOM entity)
     {
-
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -192,9 +222,14 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
             
             result = DM.Execute_StoreProcedure("BOMHeader_EditBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -202,7 +237,7 @@ public class bomCRUD : ICRUD<BOM>
     }
     public bool update(BOM entity, ref Data_Base_MNG.SQL DM)
     {
-
+        ErrorOccur = false;
         bool result = false;
         
         try
@@ -215,9 +250,14 @@ public class bomCRUD : ICRUD<BOM>
             DM.Load_SP_Parameters("@AnnualVolume", entity.AnnualVolume.ToString());
             
             result = DM.Execute_StoreProcedure_Open_Conn("BOMHeader_EditBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -225,6 +265,7 @@ public class bomCRUD : ICRUD<BOM>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM BOMHeader WHERE BOMHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -241,16 +282,28 @@ public class bomCRUD : ICRUD<BOM>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: BOM Header";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
-                sqlCommand.Dispose();               
-            }           
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -262,6 +315,9 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 {
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
+    
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
 
     public bomDetailCRUD()
     { }
@@ -270,6 +326,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 
     public bool create(BOMDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         
@@ -300,9 +357,14 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@EAU", entity.EAU);
             
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -310,6 +372,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     }
     public bool create(BOMDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         
         try
@@ -339,9 +402,14 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -349,6 +417,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     }
     public string createAndReturnIdGenerated(BOMDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -377,9 +446,14 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -567,6 +641,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     }
     public bool update(BOMDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -597,9 +672,14 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -608,6 +688,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
 
     public bool update(BOMDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -637,9 +718,14 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -647,6 +733,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM BOMDetail WHERE BOMDetailKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -663,9 +750,16 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: BOM Detail.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -674,19 +768,30 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool delete(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM BOMDetail WHERE BOMDetailKey=" + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
-        }           
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
     public bool deleteByParentID(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM BOMDetail WHERE BOMHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -698,11 +803,13 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 sqlCommand = new SqlCommand(query, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@key", id);
                 sqlConnection.Open();
-                rowsAffected = sqlCommand.ExecuteNonQuery();                
-                return true;                
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                return true;
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -710,6 +817,11 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();
             }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -722,6 +834,9 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public bomDetailVolumeCRUD()
     { }
 
@@ -729,6 +844,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
 
     public bool create(BOMDetailVolume entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
 
@@ -737,11 +853,15 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
-
             result = DM.Execute_StoreProcedure("BOMDetailVolume_NewVolume", true);
+            
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -749,6 +869,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
     }
     public bool create(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
 
         try
@@ -757,9 +878,14 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_NewVolume", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -867,6 +993,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
     }
     public bool update(BOMDetailVolume entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -876,9 +1003,14 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure("BOMDetailVolume_EditVolume", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -887,6 +1019,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
 
     public bool update(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -895,9 +1028,14 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_EditVolume", true);
+            
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -905,6 +1043,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -921,9 +1060,16 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: BOM Detail Volume.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -932,19 +1078,30 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Could not connect to database.";
+        }
         return false;
     }
     public bool delete(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
         }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
     public bool deleteByParentID(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -961,6 +1118,8 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -969,15 +1128,25 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connecto to database.";
+        }
         return false;
     }
     public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=" + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
         }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
    

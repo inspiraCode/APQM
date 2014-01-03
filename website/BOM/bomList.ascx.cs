@@ -52,7 +52,7 @@ public partial class bomList : System.Web.UI.UserControl
         }
         else
         {
-            Navigator.goToPage("~/Error.aspx","");
+            Navigator.goToPage("~/Error.aspx","ERROR:" + bom_CRUD.ErrorMessage);
         }
     }
     public void updateByID(object sender, CommandEventArgs e)

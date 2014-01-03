@@ -34,9 +34,9 @@ public partial class rfqSummaryPage : System.Web.UI.Page
         }
         return false;
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         ViewState.Remove("bomDetailKey");
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
 }

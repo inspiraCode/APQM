@@ -312,7 +312,6 @@
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
         TabIndex="29" />
 </div>
-<asp:HiddenField ID="txtPrompt" runat="server" OnValueChanged="txtPrompt_ValueChanged" />
 <asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server"  OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" 
     SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">

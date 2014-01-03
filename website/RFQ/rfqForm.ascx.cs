@@ -173,7 +173,7 @@ public partial class rfqForm : System.Web.UI.UserControl
             rfq.DateFilledOut = DateTime.Now;
             if (!rfqCRUD.update(rfq))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                 return false;
             }
         }
@@ -260,13 +260,13 @@ public partial class rfqForm : System.Web.UI.UserControl
             rfq.Status = "PENDING";
             rfq.SentToVendor = DateTime.Now;
             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
-            if (idGenerated != "")
+            if (!rfqCRUD.ErrorOccur)
             {
                 this.rfq.Id = long.Parse(idGenerated);
             }
             else
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                 return false;
             }
         }
@@ -276,17 +276,17 @@ public partial class rfqForm : System.Web.UI.UserControl
             rfq.Id = this.rfq.Id;
             if (!rfqCRUD.update(rfq, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                 return false;
             }
             if (!rfqDetailCRUD.deleteByParentID(rfq.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
                 return false;
             }
             if (!rfqACRCRUD.deleteByParentID(rfq.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqACRCRUD.ErrorMessage);
                 return false;
             }
         }
@@ -295,7 +295,7 @@ public partial class rfqForm : System.Web.UI.UserControl
             detail.RfqHeaderKey = this.rfq.Id;
             if (!rfqDetailCRUD.create(detail, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
                 return false;
             }
         }
@@ -304,7 +304,7 @@ public partial class rfqForm : System.Web.UI.UserControl
             detail.RfqHeaderKey = this.rfq.Id;
             if (!rfqACRCRUD.create(detail, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqACRCRUD.ErrorMessage);
                 return false;
             }
         }
@@ -314,7 +314,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return false;
         }
         return true;

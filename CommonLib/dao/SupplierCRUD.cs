@@ -13,8 +13,9 @@ public class SupplierCRUD : ICRUD<Supplier>
    
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
-    public string error = "";
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
 
     public SupplierCRUD()
 	{}
@@ -23,9 +24,9 @@ public class SupplierCRUD : ICRUD<Supplier>
 
     public bool create(Supplier entity)
     {
+        ErrorOccur = false;
         bool result = false;
 
-        //if (DM == null) 
         DM = connectionManager.getDataManager();
         
         try
@@ -45,13 +46,13 @@ public class SupplierCRUD : ICRUD<Supplier>
 
             result = DM.Execute_StoreProcedure("SupplierMaster_NewSupplier", true);
 
-            //if (DM.ErrorOccur) { 
-            //    this.error = DM.Error_Mjs;
-            //    return false;
-            //}
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }       
 
@@ -59,6 +60,7 @@ public class SupplierCRUD : ICRUD<Supplier>
     }
     public string createAndReturnIdGenerated(Supplier entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -77,9 +79,14 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SupplierMaster_NewSupplier", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -161,7 +168,7 @@ public class SupplierCRUD : ICRUD<Supplier>
 
     public bool update(Supplier entity)
     {
-
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -181,9 +188,14 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
 
             result = DM.Execute_StoreProcedure("SupplierMaster_EditSupplier", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -191,6 +203,7 @@ public class SupplierCRUD : ICRUD<Supplier>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM SupplierMaster WHERE SupplierMasterKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -207,16 +220,28 @@ public class SupplierCRUD : ICRUD<Supplier>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
-            }           
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }

@@ -13,6 +13,9 @@ public class sifCRUD : ICRUD<SIF>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public sifCRUD()
     {
     }
@@ -21,6 +24,7 @@ public class sifCRUD : ICRUD<SIF>
 
     public bool create(SIF entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -54,9 +58,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_NewSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -64,6 +73,7 @@ public class sifCRUD : ICRUD<SIF>
     }
     public bool create(SIF entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -96,9 +106,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SIFHeader_NewSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -106,6 +121,7 @@ public class sifCRUD : ICRUD<SIF>
     }
     public string createAndReturnIdGenerated(SIF entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -139,9 +155,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SIFHeader_NewSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -149,6 +170,7 @@ public class sifCRUD : ICRUD<SIF>
     }
     public string createAndReturnIdGenerated(SIF entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -181,9 +203,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("SIFHeader_NewSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -332,6 +359,7 @@ public class sifCRUD : ICRUD<SIF>
 
     public bool update(SIF entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -366,9 +394,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             result = DM.Execute_StoreProcedure("SIFHeader_EditSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -376,6 +409,7 @@ public class sifCRUD : ICRUD<SIF>
     }
     public bool update(SIF entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -409,9 +443,14 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SIFHeader_EditSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -419,6 +458,7 @@ public class sifCRUD : ICRUD<SIF>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SIFHeader WHERE SIFHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -435,9 +475,16 @@ public class sifCRUD : ICRUD<SIF>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: SIF_Header";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -446,6 +493,11 @@ public class sifCRUD : ICRUD<SIF>
                 sqlCommand.Dispose();
             }
 
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -459,6 +511,9 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public sifDetailCRUD()
     {
     }
@@ -467,6 +522,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
 
     public bool create(SIFDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -479,9 +535,14 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());            
 
             result = DM.Execute_StoreProcedure("SIFDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -489,6 +550,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     }
     public bool create(SIFDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -500,9 +562,14 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SIFDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -510,6 +577,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     }
     public string createAndReturnIdGenerated(SIFDetail entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -522,9 +590,14 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("SIFDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -532,6 +605,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     }
     public string createAndReturnIdGenerated(SIFDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -543,9 +617,14 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("SIFDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -654,6 +733,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     }
     public bool update(SIFDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -667,9 +747,14 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             DM.Load_SP_Parameters("@AnnualRevenue", entity.AnnualRevenue.ToString());
 
             result = DM.Execute_StoreProcedure("SIFDetail_EditDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -677,6 +762,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SIFDetail WHERE SIFHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -693,9 +779,16 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: SIF_DETAIL";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -705,10 +798,16 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
             }
 
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentID(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM SIFDetail WHERE SIFHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -721,10 +820,20 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
                 sqlCommand.Parameters.AddWithValue("@key", id);
                 sqlConnection.Open();
                 rowsAffected = sqlCommand.ExecuteNonQuery();
-                return true;
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: SIF_DETAIL";
+                }                
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -733,19 +842,21 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool saveSIFDetailInSIF(SIF entity, ref Data_Base_MNG.SQL DM)
-    {
-        
+    {   
         foreach(SIFDetail detail in entity.SifDetail){
             detail.SifHeaderKey = entity.Id;
             if (!this.create(detail, ref DM))
                 return false;
         }
-
         return true;
     }
     #endregion
-
 }

@@ -14,6 +14,9 @@ public class TokenCRUD : ICRUD<Token>
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public TokenCRUD()
 	{}
     
@@ -21,6 +24,7 @@ public class TokenCRUD : ICRUD<Token>
 
     public bool create(Token entity)
     {
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();       
         try
@@ -32,9 +36,14 @@ public class TokenCRUD : ICRUD<Token>
             DM.Load_SP_Parameters("@Acknowledgement", entity.Acnkowledgment);
 
             result = DM.Execute_StoreProcedure("TokenMaster_NewToken", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }       
 
@@ -42,6 +51,7 @@ public class TokenCRUD : ICRUD<Token>
     }
     public bool create(Token entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -52,9 +62,14 @@ public class TokenCRUD : ICRUD<Token>
             DM.Load_SP_Parameters("@Acknowledgement", entity.Acnkowledgment);
 
             result = DM.Execute_StoreProcedure_Open_Conn("TokenMaster_NewToken", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -62,6 +77,7 @@ public class TokenCRUD : ICRUD<Token>
     }
     public string createAndReturnIdGenerated(Token entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -73,9 +89,14 @@ public class TokenCRUD : ICRUD<Token>
             DM.Load_SP_Parameters("@Acknowledgement", entity.Acnkowledgment);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("TokenMaster_NewToken", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -171,7 +192,7 @@ public class TokenCRUD : ICRUD<Token>
 
     public bool update(Token entity)
     {
-
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -184,9 +205,14 @@ public class TokenCRUD : ICRUD<Token>
             DM.Load_SP_Parameters("@Acknowledgement", entity.Acnkowledgment);
 
             result = DM.Execute_StoreProcedure("TokenMaster_EditToken", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -194,6 +220,7 @@ public class TokenCRUD : ICRUD<Token>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM TokenMaster WHERE TokenKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -210,16 +237,28 @@ public class TokenCRUD : ICRUD<Token>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Token.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
-            }           
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }

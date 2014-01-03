@@ -96,13 +96,13 @@ public partial class bomForm : System.Web.UI.UserControl
         if (lblMode.Text == "New")
         {
             string idGenerated = bomCRUD.createAndReturnIdGenerated(bom, ref DM);
-            if (idGenerated != "")
+            if (!bomCRUD.ErrorOccur)
             {
                 this.bom.Id = long.Parse(idGenerated);
             }
             else
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomCRUD.ErrorMessage);
                 return;
             }
         }
@@ -111,7 +111,7 @@ public partial class bomForm : System.Web.UI.UserControl
             bom.Id = this.bom.Id;
             if (!bomCRUD.update(bom, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomCRUD.ErrorMessage);
                 return;
             }
         }
@@ -120,12 +120,12 @@ public partial class bomForm : System.Web.UI.UserControl
         {
             if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
                 return;
             }
             if (!bomDetailCRUD.delete(detail.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
                 return;
             }
         }
@@ -137,7 +137,7 @@ public partial class bomForm : System.Web.UI.UserControl
             {
                 if (!item_CRUD.update(item, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + item_CRUD.ErrorMessage);
                     return;
                 }
             }
@@ -146,9 +146,9 @@ public partial class bomForm : System.Web.UI.UserControl
                 detail.BomHeaderKey = this.bom.Id;
                 detail.Status = "Created";
                 string bomDetailIDGenerated = bomDetailCRUD.createAndReturnIdGenerated(detail, ref DM);
-                if (bomDetailIDGenerated == "")
+                if (bomDetailCRUD.ErrorOccur)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
                     return;
                 }
                 else
@@ -162,7 +162,7 @@ public partial class bomForm : System.Web.UI.UserControl
                 detail.BomHeaderKey = this.bom.Id;
                 if (!bomDetailCRUD.update(detail, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
                     return;
                 }
             }
@@ -171,7 +171,7 @@ public partial class bomForm : System.Web.UI.UserControl
             {
                 if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
                     return;
                 }
 
@@ -188,12 +188,12 @@ public partial class bomForm : System.Web.UI.UserControl
                         }
                         catch {
                             DM.RollBack();
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + "The field Volume did not pass the Numeric validation.");
                             return;
                         }
                         if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
                             return;
                         }
                     }
@@ -206,7 +206,7 @@ public partial class bomForm : System.Web.UI.UserControl
         
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return;
         }
         

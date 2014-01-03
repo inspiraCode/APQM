@@ -78,7 +78,7 @@ public partial class rfqList : System.Web.UI.UserControl
                                         rfqLocal.Status = "DECLINED";
                                     if (!rfqCRUD.update(rfqLocal))
                                     {
-                                        Navigator.goToPage("~/Error.aspx", "");
+                                        Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                                         return;
                                     }
                                 }
@@ -88,7 +88,7 @@ public partial class rfqList : System.Web.UI.UserControl
                         rfq.Status = "AWARDED";
                         if (!rfqCRUD.update(rfq))
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                         }
                         else
                         {
@@ -98,13 +98,13 @@ public partial class rfqList : System.Web.UI.UserControl
                                 bomDetail.Status = "Processed";
                                 if (!bomDetailCRUD.update(bomDetail))
                                 {
-                                    Navigator.goToPage("~/Error.aspx", "");
+                                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
                                     return;
                                 }
                             }
                             else
                             {
-                                Navigator.goToPage("~/Error.aspx", "");
+                                Navigator.goToPage("~/Error.aspx", "ERROR:There was an error when retrieving a BOM Detail for rfq.BomDetailId = " + rfq.BomDetailId);
                                 return;
                             }
                         }
@@ -114,7 +114,7 @@ public partial class rfqList : System.Web.UI.UserControl
 
                         if (DM.ErrorOccur)
                         {
-                            Navigator.goToPage("~/Error.aspx", "");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
                             return;
                         }
 
@@ -122,7 +122,7 @@ public partial class rfqList : System.Web.UI.UserControl
                     }
                     else
                     {
-                        Navigator.goToPage("~/Error.aspx", "");
+                        Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve RFQ with rfqHeaderKey = " + rfqHeaderKey);
                     }
 
                     //int iRfqCount = int.Parse(e.CommandArgument.ToString());
@@ -135,7 +135,7 @@ public partial class rfqList : System.Web.UI.UserControl
                 }
                 catch (Exception ex)
                 {
-                    Navigator.goToPage("~/Error.aspx", "");
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                 }
                 break;
         }     

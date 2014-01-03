@@ -1,17 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Error.aspx.cs" Inherits="Error" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Error.aspx.cs" Inherits="Error"
+    MasterPageFile="~/_Layouts/MasterBaseStatic.master" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div align="center">    
-        An error has occurred.</div>
-    </form>
-    <div id="divError">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
+    <br />
+    Error:
+    <br />
+    <div align="left" style="min-height: 200px;">
+        <asp:Label ID="lblErrorMessage" runat="server" Text="An error has occurred."></asp:Label>
     </div>
-</body>
-</html>
+</asp:Content>

@@ -17,6 +17,14 @@ public static class Navigator
     }
     public static void goToPage(string page, string section)
     {
+        HttpContext.Current.Session.Remove("ERROR");
+        int index = section.IndexOf("ERROR:", 0);
+        if (index > -1)
+        {
+            HttpContext.Current.Session["ERROR"] = section.Substring(index);
+            HttpContext.Current.Response.Redirect("~/Error.aspx", false);
+            return;
+        }
         clearSession();
         SessionObject so = new SessionObject();
         so.Content = section;
@@ -28,6 +36,5 @@ public static class Navigator
             string message = ex.Message;
 
         }
-       
     }
 }

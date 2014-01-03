@@ -124,7 +124,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                         item.PartNumber = prompt[1];
                         
                         string idGenerated = item_CRUD.createAndReturnIdGenerated(item);
-                        if (idGenerated != "")
+                        if (!item_CRUD.ErrorOccur)
                         {
                             allItems = null;
                             loadDropDowns();
@@ -142,7 +142,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
                         }
                         else
                         {
-                            uscNotifier.showAlert("This part number could not be saved, may be it already exists.");
+                            uscNotifier.showAlert(item_CRUD.ErrorMessage);
                         }
                         break;
                 }

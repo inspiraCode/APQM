@@ -34,7 +34,7 @@ public partial class rfqFormMain : System.Web.UI.Page
         }
         else
         {
-            exitByError();
+            exitByError("Could not retrieve entity.");
         }
     }
     protected void on_cancel_rfqForm(object sender, EventArgs e)
@@ -76,9 +76,9 @@ public partial class rfqFormMain : System.Web.UI.Page
         }
         return false;
     }
-    private void exitByError()
+    private void exitByError(string strError)
     {
         Session.Remove("rfqObject");
-        Navigator.goToPage("~/Error.aspx", "");
+        Navigator.goToPage("~/Error.aspx", "ERROR:" + strError);
     }
 }

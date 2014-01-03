@@ -271,7 +271,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
         if (lblMode.Text == "New") {
             if (!survey_CRUD.create(survey, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx","ERROR:" + survey_CRUD.ErrorMessage);
             }
             //else
             //{
@@ -287,7 +287,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
             survey.Id = long.Parse(lblID.Text);
             if (!survey_CRUD.update(survey, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx","");
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + survey_CRUD.ErrorMessage);
             }
         }
 
@@ -296,7 +296,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
 
         if (DM.ErrorOccur)
         {
-            Navigator.goToPage("~/Error.aspx", "");
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return;
         }
 

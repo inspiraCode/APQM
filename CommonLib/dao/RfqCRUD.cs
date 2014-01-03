@@ -14,6 +14,9 @@ public class RfqCRUD : ICRUD<RFQ>
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public RfqCRUD()
 	{}
     
@@ -21,6 +24,7 @@ public class RfqCRUD : ICRUD<RFQ>
 
     public bool create(RFQ entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -63,9 +67,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }       
 
@@ -73,6 +82,7 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     public string createAndReturnIdGenerated(RFQ entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -115,9 +125,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -125,6 +140,7 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     public string createAndReturnIdGenerated(RFQ entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -166,9 +182,15 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
+            
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -400,6 +422,7 @@ public class RfqCRUD : ICRUD<RFQ>
 
     public bool update(RFQ entity)
     {
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -442,9 +465,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -452,6 +480,7 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     public bool update(RFQ entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;        
         try
         {
@@ -493,9 +522,14 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -503,6 +537,7 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM RFQMaster WHERE RFQHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -519,16 +554,28 @@ public class RfqCRUD : ICRUD<RFQ>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ Header.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();               
-            }           
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }   
@@ -537,9 +584,11 @@ public class RfqCRUD : ICRUD<RFQ>
 
 public class RFQEAVCRUD : ICRUD<RFQEAV>
 {
-
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
+
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
 
     public RFQEAVCRUD()
     { }
@@ -548,6 +597,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
 
     public bool create(RFQEAV entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -557,9 +607,14 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure("RFQEAV_NewEAV", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -568,6 +623,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
 
     public string createAndReturnIdGenerated(RFQEAV entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -577,9 +633,14 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQEAV_NewEAV", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -588,6 +649,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
 
     public string createAndReturnIdGenerated(RFQEAV entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -596,9 +658,14 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQEAV_NewEAV", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -689,7 +756,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
 
     public bool update(RFQEAV entity)
     {
-
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -700,9 +767,14 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure("RFQEAV_EditEAV", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -710,7 +782,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     }
     public bool update(RFQEAV entity, ref Data_Base_MNG.SQL DM)
     {
-
+        ErrorOccur = false;
         bool result = false;
 
         try
@@ -721,9 +793,14 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQEAV_EditEAV", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -731,6 +808,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM RFQEAV WHERE EAVKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -747,9 +825,16 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ_EAV.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -757,6 +842,11 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 sqlConnection.Dispose();
                 sqlCommand.Dispose();
             }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
@@ -769,6 +859,9 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public RFQNumberCRUD()
     { }
 
@@ -776,6 +869,7 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 
     public bool create(RFQNumberEntity entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -785,9 +879,14 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
             DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
             
             result = DM.Execute_StoreProcedure("RFQNumber_NewNumber", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -795,6 +894,7 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
     }
     public string createAndReturnIdGenerated(RFQNumberEntity entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
@@ -804,9 +904,14 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
             DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQNumber_NewNumber", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -814,6 +919,7 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
     }
     public string createAndReturnIdGenerated(RFQNumberEntity entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
@@ -822,9 +928,14 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
             DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQNumber_NewNumber", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -913,11 +1024,13 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 
     public bool update(RFQNumberEntity entity)
     {
+        ErrorOccur = false;
         bool result = false;
         return result;
     }
     public bool delete(long id)
-    {        
+    {
+        ErrorOccur = false;
         return false;
     }
     #endregion
@@ -925,6 +1038,7 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 
     public long generateNewRFQNumber(long SIFHeaderID)
     {
+        ErrorOccur = false;
         RFQNumberEntity rfqNumber = new RFQNumberEntity();
         long RFQNumberGenerated = -1;
 
@@ -948,6 +1062,11 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
             }
             RFQNumberGenerated++;
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return RFQNumberGenerated;
     }
 }
@@ -958,6 +1077,9 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public RfqDetailCRUD()
     { }
 
@@ -965,6 +1087,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
 
     public bool create(RFQDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -982,9 +1105,14 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure("RFQDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -993,6 +1121,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
 
     public bool create(RFQDetail entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -1009,9 +1138,14 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQDetail_NewDetail", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1134,6 +1268,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
     }
     public bool update(RFQDetail entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1153,9 +1288,14 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
             DM.Load_SP_Parameters("@Burden", entity.Burden.ToString());
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1163,6 +1303,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM RFQDetail WHERE RFQDetailKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1179,9 +1320,16 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ Detail.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1190,10 +1338,17 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentID(long id)
-    {        
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
         string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
@@ -1204,11 +1359,21 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 sqlCommand = new SqlCommand(query, sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@key", id);
                 sqlConnection.Open();
-                sqlCommand.ExecuteNonQuery();
-                return true;
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ Detail.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1217,16 +1382,26 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
 
     public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
     {
-        string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey=" + id;
+        ErrorOccur = false;
+        string query = "DELETE FROM RFQDetail WHERE RFQHeaderKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
         }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
     #endregion
@@ -1238,6 +1413,9 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public RfqAcrCRUD()
     { }
 
@@ -1245,6 +1423,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
 
     public bool create(RFQACR entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1254,9 +1433,14 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
             DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
 
             result = DM.Execute_StoreProcedure("RFQACR_NewACR", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1265,6 +1449,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
 
     public bool create(RFQACR entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         bool result = false;
         try
         {
@@ -1273,9 +1458,14 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
             DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQACR_NewACR", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1372,6 +1562,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
     }
     public bool update(RFQACR entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1382,9 +1573,14 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
             DM.Load_SP_Parameters("@Porcentage", entity.Porcentage.ToString());
 
             result = DM.Execute_StoreProcedure("RFQACR_EditACR", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -1392,6 +1588,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected = 0;
         string query = "DELETE FROM RFQACR WHERE RFQACRKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -1408,9 +1605,16 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ_ACR.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1419,10 +1623,17 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentID(long id)
     {
+        ErrorOccur = false;
+        int rowsAffected = 0;
         string query = "DELETE FROM RFQACR WHERE RFQHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
@@ -1434,10 +1645,20 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 sqlCommand.Parameters.AddWithValue("@key", id);
                 sqlConnection.Open();
                 sqlCommand.ExecuteNonQuery();
-                return true;
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ_ACR.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
@@ -1446,15 +1667,25 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 sqlCommand.Dispose();
             }
         }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
         return false;
     }
     public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string query = "DELETE FROM RFQACR WHERE RFQHeaderKey=" + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
             return true;
-        }
+        } 
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
         return false;
     }
     #endregion
@@ -1466,6 +1697,8 @@ public class RfqSummaryCRUD
     ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
 
     public RFQSummary readById(long id)
     {
@@ -1621,6 +1854,7 @@ public class RfqSummaryCRUD
     }
     public bool updateOrCreate(RFQSummary entity)
     {
+        ErrorOccur = false;
         bool result = false;
         DM = connectionManager.getDataManager();
         try
@@ -1643,9 +1877,14 @@ public class RfqSummaryCRUD
             {
                 result = DM.Execute_StoreProcedure("RFQSummary_NewSummary", true);
             }
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
         return result;

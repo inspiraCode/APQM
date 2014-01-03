@@ -13,6 +13,9 @@ public class customerCRUD : ICRUD<Customer>
     ConnectionManager connectionManager = new ConnectionManager();    
     Data_Base_MNG.SQL DM;
 
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
     public customerCRUD()
 	{}
     
@@ -20,50 +23,66 @@ public class customerCRUD : ICRUD<Customer>
 
     public bool create(Customer entity)
     {
-        bool result = false;        
-        DM = connectionManager.getDataManager();       
+        ErrorOccur = false;
+        bool result = false;
+        DM = connectionManager.getDataManager();
         try
-        {            
-            DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);            
+        {
+            DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);
 
             result = DM.Execute_StoreProcedure("CustomerMaster_NewCustomer", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
-        }       
+        }
 
         return result;
     }
 
     public string createAndReturnIdGenerated(Customer entity)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         DM = connectionManager.getDataManager();
         try
         {
             DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);
             
-
             idGenerated = DM.Execute_StoreProcedure_Scalar("CustomerMaster_NewCustomer", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
-
         return idGenerated;
     }
     public string createAndReturnIdGenerated(Customer entity, ref Data_Base_MNG.SQL DM)
     {
+        ErrorOccur = false;
         string idGenerated = "";
         try
         {
             DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("CustomerMaster_NewCustomer", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return "";
         }
 
@@ -131,7 +150,7 @@ public class customerCRUD : ICRUD<Customer>
 
     public bool update(Customer entity)
     {
-
+        ErrorOccur = false;
         bool result = false;        
         DM = connectionManager.getDataManager();
         try
@@ -140,9 +159,14 @@ public class customerCRUD : ICRUD<Customer>
             DM.Load_SP_Parameters("@CustomerName", entity.CustomerName);            
 
             result = DM.Execute_StoreProcedure("CustomerMaster_EditCustomer", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
         }
         catch (Exception e)
         {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
             return false;
         }
 
@@ -150,6 +174,7 @@ public class customerCRUD : ICRUD<Customer>
     }
     public bool delete(long id)
     {
+        ErrorOccur = false;
         int rowsAffected=0;
         string query = "DELETE FROM CustomerMaster WHERE CustomerKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -166,16 +191,28 @@ public class customerCRUD : ICRUD<Customer>
                 {
                     return true;
                 }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "Error. There were no rows affected for table: Customer.";
+                }
             }
             catch (Exception e)
             {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
                 //using return false below
             }
             finally
             {
                 sqlConnection.Dispose();
-                sqlCommand.Dispose();               
-            }           
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
     }
