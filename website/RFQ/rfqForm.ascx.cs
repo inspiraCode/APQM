@@ -10,7 +10,6 @@ using System.Configuration;
 public partial class rfqForm : System.Web.UI.UserControl
 {
     public event EventHandler AfterSave;
-    public event EventHandler AfterCancel;
     public event EventHandler AfterFinalize;
 
     RfqCRUD rfqCRUD = new RfqCRUD();

@@ -1,114 +1,141 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
+<%@ Register src="bomStatusInfo.ascx" tagname="bomStatusInfo" tagprefix="uc2" %>
 <style type="text/css">
     .style1
     {
         width: 228px;
     }
+    .style4
+    {
+        width: 200px;
+    }
+    .style6
+    {
+        width: 140px;
+    }
+    .style7
+    {
+        width: 100px;
+    }
+    .style8
+    {
+        width: 109px;
+    }
 </style>
+
 <div align="center">
     <br />
-    <table cellspacing="1" align="left">
-        <tr style="display: none;">
-            <td align="right">
+    <table cellspacing="1" align="left" style="width: 1232px">
+        <tr style="display:none;">
+            <td align="right" class="style7">
                 Mode:
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblMode" runat="server" Text="New"></asp:Label>
             </td>
-            <td align="left">
+            <td align="left" class="style8">
             </td>
-            <td align="left">
+            <td align="left" class="style6">
             </td>
+            <td align="left" class="style6">
+                &nbsp;</td>
         </tr>
         <tr style="display: none;">
-            <td align="right">
+            <td align="right" class="style7">
                 ID:
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
-            <td align="left">
+            <td align="left" class="style8">
             </td>
-            <td align="left">
+            <td align="left" class="style6">
             </td>
+            <td align="left" class="style6">
+                &nbsp;</td>
         </tr>
         <tr style="display: none;">
-            <td align="right">
+            <td align="right" class="style7">
                 SIF ID:
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblSifID" runat="server"></asp:Label>
             </td>
-            <td align="left">
+            <td align="left" class="style8">
             </td>
-            <td align="left">
+            <td align="left" class="style6">
             </td>
+            <td align="left" class="style6">
+                &nbsp;</td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style7">
                 Inquiry Number
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblInquiryNumber" runat="server"></asp:Label>
             </td>
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style8">
                 Sales Rep
             </td>
-            <td align="left">
+            <td align="left" class="style6">
                 <asp:Label ID="lblSalesRep" runat="server"></asp:Label>
+            </td>
+            <td align="left" class="style6" rowspan="5">
+                <uc2:bomStatusInfo ID="uscBomStatusInfo" runat="server" />
             </td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style7">
                 Revision
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblRevision" runat="server"></asp:Label>
             </td>
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style8">
                 Customer
             </td>
-            <td align="left">
+            <td align="left" class="style6">
                 <asp:Label ID="lblCustomer" runat="server"></asp:Label>
             </td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style7">
                 Product
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:Label ID="lblProduct" runat="server"></asp:Label>
             </td>
-            <td align="left" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style8">
                 Market Sector
             </td>
-            <td align="left">
+            <td align="left" class="style6">
                 <asp:Label ID="lblMarketSector" runat="server"></asp:Label>
             </td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style7">
                 Finished Good PN
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:TextBox ID="txtPartNumber" runat="server" Width="120px"></asp:TextBox>
             </td>
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style8">
                 Status</td>
-            <td align="left">
+            <td align="left" class="style6">
                 <div id="progressBar" style="height:20px;width:100px;"><div id="progress-label"></div></div></td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold">
+            <td align="right" style="font-weight: bold" class="style7">
                 Annual Volume
             </td>
-            <td align="left" class="style1">
+            <td align="left" class="style4">
                 <asp:TextBox ID="txtAnnualVolume" style="text-align:right;" runat="server" Width="120px"></asp:TextBox>
             </td>
-            <td align="left">
+            <td align="left" class="style8">
             </td>
-            <td align="left">
+            <td align="left" class="style6">
             <a href="../HTMLReports/SalesReport.aspx?BOM=<%= lblID.Text %>"  target="_blank">Report to Sales
             </a>
             </td>
