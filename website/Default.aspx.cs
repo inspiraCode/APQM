@@ -22,8 +22,8 @@ public partial class _Default : System.Web.UI.Page
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
                 case "sif":
-                    MultiViewMain.SetActiveView(viewSIF);                    
-                    uscSIFList.load();
+                    MultiViewMain.SetActiveView(viewSIF);
+                    uscSIFList.setUserFilterWithCookie();
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
