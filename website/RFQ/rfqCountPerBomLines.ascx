@@ -45,7 +45,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#<%= this.GridViewRFQCountPerBOMDetail.ClientID %>').dataTable().show();
+        jQuery('#<%= this.GridViewRFQCountPerBOMDetail.ClientID %>').dataTable({"bStateSave":true}).show();
     });
 </script>
 

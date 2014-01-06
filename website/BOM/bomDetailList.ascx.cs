@@ -71,7 +71,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             if (bomDetail.User != "")
             {
                 ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Text = bomDetail.User;
-                ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Enabled = false;
+                //((LinkButton)e.Item.FindControl("linkAssignedToLine")).Enabled = false;
             }
             if(bomDetail.internalAction == "UPDATE"){
 

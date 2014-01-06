@@ -9,6 +9,7 @@ public partial class sifList : System.Web.UI.UserControl
 {
     private sifCRUD sif_CRUD = new sifCRUD();
     private bomCRUD bom_CRUD = new bomCRUD();
+    private bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -22,11 +23,12 @@ public partial class sifList : System.Web.UI.UserControl
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
-        
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
             SIF sif = (SIF)e.Item.DataItem;
             ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = sif.Id.ToString();
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = sif.Id.ToString();
+            ((LinkButton)e.Item.FindControl("linkAssignedTo")).CommandArgument = sif.Id.ToString();
             if (sif.BomId > -1)
             {
                 ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";" +
@@ -38,13 +40,18 @@ public partial class sifList : System.Web.UI.UserControl
                 else
                 {
                     ((LinkButton)e.Item.FindControl("updateBOM")).Text = "Edit BOM";
-                }                
+                }
             }
             else
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";                                                                                       
+                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";
                 ((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
-            }            
+            }
+            if (sif.AssignedTo != "")
+            {
+                ((LinkButton)e.Item.FindControl("linkAssignedTo")).Text = sif.AssignedTo;
+                //((LinkButton)e.Item.FindControl("linkAssignedTo")).Enabled = false;
+            }
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -107,5 +114,47 @@ public partial class sifList : System.Web.UI.UserControl
             Session["bomObject"] = so;
             Navigator.goToPage("~/SIF/SIF.aspx", "bom");    
         }        
+    }
+    public void takeSIF(object sender, CommandEventArgs e)
+    {
+        String authUser = HttpContext.Current.User.Identity.Name;
+        int SIF_ID = int.Parse((string)e.CommandArgument);
+
+
+        SIF sifLocal = sif_CRUD.readById(SIF_ID);
+        BOM localBOM = bom_CRUD.readBySIFId(SIF_ID);
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("SIF User Assignation");
+
+        sifLocal.AssignedTo = authUser;
+        sif_CRUD.update(sifLocal, ref DM);
+
+        if (localBOM != null)
+        {
+            List<BOMDetail> bomDetailList = bomDetail_CRUD.readByParentID(localBOM.Id);
+            foreach (BOMDetail detail in bomDetailList)
+            {
+                if (detail.User.Trim() == "")
+                {
+                    detail.User = authUser;
+                }
+                bomDetail_CRUD.update(detail, ref DM);
+            }
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+            return;
+        }
+
+        load();
     }
 }

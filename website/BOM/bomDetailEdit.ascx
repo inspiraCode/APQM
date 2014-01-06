@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomDetailEdit.ascx.cs"
     Inherits="BOM_bomDetailEdit" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <style type="text/css">
     .style1
     {
@@ -35,8 +35,8 @@
         </td>
         <td class="style3">
             <div style="width: 368px;">
-                <asp:DropDownList ID="cboPartNumberEdit" chosen = "true" runat="server" AutoPostBack="True" OnSelectedIndexChanged="cboPartNumberEdit_SelectedIndexChanged"
-                    Width="300px">
+                <asp:DropDownList ID="cboPartNumberEdit" chosen="true" runat="server" AutoPostBack="True"
+                    OnSelectedIndexChanged="cboPartNumberEdit_SelectedIndexChanged" Width="300px">
                 </asp:DropDownList>
                 <asp:Button ID="btnNewPartNumber" runat="server" Text="New" Width="45px" />
             </div>
@@ -98,18 +98,18 @@
         <td class="style3">
             <asp:DropDownList ID="cboUM" runat="server" Width="130px">
                 <asp:ListItem Selected="True"></asp:ListItem>
-                    <asp:ListItem Value="Each">Each</asp:ListItem>
-                    <asp:ListItem Value="in">in</asp:ListItem>
-                    <asp:ListItem Value="ft">ft</asp:ListItem>
-                    <asp:ListItem Value="yd">yd</asp:ListItem>
-                    <asp:ListItem Value="mm">mm</asp:ListItem>
-                    <asp:ListItem Value="cm">cm</asp:ListItem>
-                    <asp:ListItem Value="m">m</asp:ListItem>
-                    <asp:ListItem Value="g">g</asp:ListItem>
-                    <asp:ListItem Value="kg">kg</asp:ListItem>
-                    <asp:ListItem Value="lb">lb</asp:ListItem>
-                    <asp:ListItem Value="oz">oz</asp:ListItem>
-                    <asp:ListItem Value="lt">lt</asp:ListItem>    
+                <asp:ListItem Value="Each">Each</asp:ListItem>
+                <asp:ListItem Value="in">in</asp:ListItem>
+                <asp:ListItem Value="ft">ft</asp:ListItem>
+                <asp:ListItem Value="yd">yd</asp:ListItem>
+                <asp:ListItem Value="mm">mm</asp:ListItem>
+                <asp:ListItem Value="cm">cm</asp:ListItem>
+                <asp:ListItem Value="m">m</asp:ListItem>
+                <asp:ListItem Value="g">g</asp:ListItem>
+                <asp:ListItem Value="kg">kg</asp:ListItem>
+                <asp:ListItem Value="lb">lb</asp:ListItem>
+                <asp:ListItem Value="oz">oz</asp:ListItem>
+                <asp:ListItem Value="lt">lt</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>
@@ -123,12 +123,11 @@
     </tr>
     <tr class="itemFields">
         <td class="style6" align="right" style="font-weight: bold">
-                        EAU
+            EAU
         </td>
         <td class="style3">
             <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right" validate="required"
-                validationid="bomlineedit"
-                Width="150px">0</asp:TextBox>
+                validationid="bomlineedit" Width="150px">0</asp:TextBox>
         </td>
     </tr>
     <tr class="itemFields">
@@ -207,18 +206,18 @@
     </tr>
     <tr>
         <td class="style6" align="right" style="font-weight: bold">
-            System Status</td>
+            System Status
+        </td>
         <td class="style3">
-            <asp:DropDownList ID="cboSystemStatus" runat="server" 
-                Width="140px">
+            <asp:DropDownList ID="cboSystemStatus" runat="server" Width="140px">
                 <asp:ListItem></asp:ListItem>
+                <asp:ListItem>Imported</asp:ListItem>
+                <asp:ListItem>Created</asp:ListItem>
                 <asp:ListItem>For Add</asp:ListItem>
                 <asp:ListItem>For Edit</asp:ListItem>
-                <asp:ListItem>Created</asp:ListItem>
                 <asp:ListItem>In Progress</asp:ListItem>
-                <asp:ListItem>Processed</asp:ListItem>
                 <asp:ListItem>No Quote</asp:ListItem>
-                <asp:ListItem>Imported From Sales DB</asp:ListItem>
+                <asp:ListItem>Processed</asp:ListItem>
             </asp:DropDownList>
         </td>
     </tr>

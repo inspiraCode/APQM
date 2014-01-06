@@ -27,6 +27,9 @@
                             Customer
                         </th>
                         <th>
+                            Assigned To
+                        </th>
+                        <th>
                         </th>
                     </tr>
                 </thead>
@@ -62,6 +65,11 @@
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td>
+                    <asp:LinkButton ID="linkAssignedTo" runat="server" CommandArgument="" OnCommand="takeSIF" OnClientClick="return confirm('Do you really want to take this SIF?');">
+                        Take
+                    </asp:LinkButton>                    
+                </td>
+                <td>
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="sifID"
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')">
                     Delete
@@ -77,7 +85,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableSIF').dataTable().show();
+        jQuery('#tableSIF').dataTable({"bStateSave":true}).show();
     });
 </script>
 

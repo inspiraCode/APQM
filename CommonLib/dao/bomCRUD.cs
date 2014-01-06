@@ -175,7 +175,47 @@ public class bomCRUD : ICRUD<BOM>
         }
         return null;
     }
+    public BOM readBySIFId(long id)
+    {
+        BOM bom = new BOM();
 
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, " +
+                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector FROM viewBOMHeader_ReadAll WHERE (SIFHeaderKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                bom.Id = long.Parse(table.Rows[0][0].ToString());
+                if (table.Rows[0][1].ToString() != "")
+                {
+                    bom.SifId = long.Parse(table.Rows[0][1].ToString());
+                }
+                else
+                {
+                    bom.SifId = -1;
+                }
+                bom.TopPartNumber = table.Rows[0][2].ToString();
+                bom.PartDescription = table.Rows[0][3].ToString();
+                bom.Revision = table.Rows[0][4].ToString();
+                bom.InquiryNumber = table.Rows[0][5].ToString();
+                bom.AnnualVolume = int.Parse(table.Rows[0][6].ToString());
+                bom.SalesPerson = table.Rows[0][7].ToString();
+                bom.CustomerName = table.Rows[0][8].ToString();
+                bom.MarketSector = table.Rows[0][9].ToString();
+
+                sqlConnection.Dispose();
+                return bom;
+            }
+        }
+        return null;
+    }
     public IList<BOM> readAll()
     {
         List<BOM>  recordset = new List<BOM>();

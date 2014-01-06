@@ -74,6 +74,6 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableSupplier').dataTable().show();
+        jQuery('#tableSupplier').dataTable({"bStateSave":true}).show();
     });
 </script>

@@ -353,7 +353,7 @@ namespace SalesDB_To_APQM
                                                 bomDetail.VendorQuoteEst = bom.VendorQuoteEst;
                                                 bomDetail.CapComAssm = bom.CapComAssm;
                                                 bomDetail.CommCode = bom.CommCode;
-                                                bomDetail.Status = "Imported From Sales DB";
+                                                bomDetail.Status = "Imported";
 
                                                 bomDetail.BomHeaderKey = long.Parse(bomIDGenerated);
 

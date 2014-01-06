@@ -22,7 +22,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#<%= this.GridViewSif.ClientID %>').dataTable().show();
+        jQuery('#<%= this.GridViewSif.ClientID %>').dataTable({"bStateSave":true}).show();
     });
 </script>
 

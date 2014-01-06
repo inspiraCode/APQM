@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#<%= this.gridViewBOM.ClientID %>').dataTable().show();
+        jQuery('#<%= this.gridViewBOM.ClientID %>').dataTable({"bStateSave":true}).show();
     });
 </script>
 

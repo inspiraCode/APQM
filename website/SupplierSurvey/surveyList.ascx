@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableSurvey').dataTable().show();
+        jQuery('#tableSurvey').dataTable({"bStateSave":true}).show();
     });
 </script>
 

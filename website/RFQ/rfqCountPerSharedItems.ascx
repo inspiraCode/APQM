@@ -25,6 +25,6 @@
 </asp:SqlDataSource>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-    jQuery('#<%= this.gridRFQCountPerSharedItems.ClientID %>').dataTable().show();
+    jQuery('#<%= this.gridRFQCountPerSharedItems.ClientID %>').dataTable({"bStateSave":true}).show();
     });
 </script>

@@ -252,7 +252,7 @@
                 </td>
                 <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px;
                     border-left: 0px">
-                    <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine">
+                    <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine" OnClientClick="return confirm('Do you really want to take this BOM Line?');">
                         Take
                     </asp:LinkButton>
                 </td>

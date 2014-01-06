@@ -59,7 +59,7 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery('#tableBOM').dataTable().show();
+        jQuery('#tableBOM').dataTable({"bStateSave":true}).show();
     });
 </script>
 
