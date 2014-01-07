@@ -107,6 +107,6 @@
     }
 </script>
 
-<asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True"
+<asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS AssignedTo, 0 AS orderNumber UNION SELECT DISTINCT AssignedTo, 2 AS orderNumber FROM SIFHeader ORDER BY orderNumber">
 </asp:SqlDataSource>

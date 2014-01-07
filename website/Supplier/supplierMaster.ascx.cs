@@ -11,7 +11,6 @@ public partial class supplierMaster : System.Web.UI.UserControl
     public event EventHandler AfterCancel;
 
     SupplierCRUD supplierCRUD = new SupplierCRUD();
-    Supplier supplier;
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -84,5 +83,4 @@ public partial class supplierMaster : System.Web.UI.UserControl
         Session.Remove("supplierObject");
         AfterCancel(this, null);
     }
-
 }

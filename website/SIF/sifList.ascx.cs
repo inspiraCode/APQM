@@ -188,4 +188,9 @@ public partial class sifList : System.Web.UI.UserControl
         Response.Cookies.Add(sifCookie);
         load();
     }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
+    }
 }
