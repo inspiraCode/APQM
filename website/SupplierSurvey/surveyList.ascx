@@ -27,25 +27,25 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="SurveyID"
                         OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "LastSurvey")%>
                     </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "PrimaryBusiness")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "SecundaryBusiness")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "ContractExpiration")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "SentToVendor")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="SurveyID"
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this Survey?')">
                     Delete

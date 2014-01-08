@@ -4,16 +4,16 @@
         AllowSorting="False" AutoGenerateColumns="False" DataSourceID="SqlDataSource" RowStyle-Height="27px">
         <Columns>
             <asp:BoundField DataField="ItemMasterKey" HeaderText="ItemMasterKey" 
-                SortExpression="ItemMasterKey" Visible="false"/>
+                SortExpression="ItemMasterKey" Visible="false" ItemStyle-HorizontalAlign="Center"/>
             <asp:BoundField DataField="PartNumber" HeaderText="Part Number" 
-                SortExpression="PartNumber" />
+                SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Material" HeaderText="Material" 
-                SortExpression="Material" />
-            <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" />
+                SortExpression="Material" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="QtyRequired" HeaderText="Quantity Required" 
-                SortExpression="QtyRequired" />
+                SortExpression="QtyRequired" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="RFQSent" HeaderText="RFQ Sent" 
-                SortExpression="RFQSent" />
+                SortExpression="RFQSent" ItemStyle-HorizontalAlign="Center" />
         </Columns>
     </asp:GridView>
 </div>

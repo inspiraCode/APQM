@@ -10,10 +10,45 @@ public partial class rfqList : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
-    }    
+    }
+    public void setUserFilterWithCookie()
+    {
+        if (!IsPostBack)
+        {
+            if (cboFilterByUser.DataSource == null)
+                cboFilterByUser.DataBind();
+            HttpCookie sifCookie = Request.Cookies["RFQList_User_Filter"];
+            if (sifCookie != null)
+                cboFilterByUser.Text = sifCookie.Value;
+            load();
+        }
+    }
+    public void load()
+    {
+        if (cboFilterByUser.SelectedValue == "All")
+        {
+            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll]";
+            cboFilterByUser.Text = "All";
+        }
+        else
+        {
+            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE CreatedBy = '" + cboFilterByUser.SelectedValue + "'";
+        }
+
+        gridRFQList.DataBind();
+    }
+    protected void cboFilterByUser_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        HttpCookie sifCookie = new HttpCookie("RFQList_User_Filter");
+        sifCookie.Value = cboFilterByUser.SelectedValue;
+        sifCookie.Expires = DateTime.Now.AddYears(1);
+        Response.Cookies.Add(sifCookie);
+        load();
+    }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
     }
     public static void MakeAccessible(GridView grid)
@@ -33,10 +68,10 @@ public partial class rfqList : System.Web.UI.UserControl
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[4].Controls[0];
+            DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[5].Controls[0];
             if (hrefStatus.Text.IndexOf("AWARDED") > -1)
             {
-                e.Row.Cells[5].Controls[1].Visible = false;
+                e.Row.Cells[6].Controls[1].Visible = false;
             }            
         }
     }

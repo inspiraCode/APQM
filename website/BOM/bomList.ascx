@@ -25,25 +25,25 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="bomID"
                         OnCommand="updateByID">                    
                     <%# DataBinder.Eval(Container.DataItem, "TopPartNumber")%>
                     </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="updateSIF" runat="server" CommandArgument="" CommandName="sifID"
                         OnCommand="updateBySIFID">                    
                         None
                     </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "Revision")%>
                 </td>
-                <td>
+                <td style="text-align:left;">
                     <%# DataBinder.Eval(Container.DataItem, "PartDescription")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="bomID"
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this BOM?')">
                     Delete

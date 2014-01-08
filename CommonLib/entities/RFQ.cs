@@ -44,8 +44,6 @@ public class RFQ
     private long marketSectorID = -1;
     private string marketSectorName = "";
 
-    
-
     private string commentsToBuyer = "";
     private string commentsToVendor = "";
     
@@ -62,6 +60,8 @@ public class RFQ
 
     
     private string leadTimePPAP = "";
+
+    private string createdBy = "";
 
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
@@ -316,6 +316,11 @@ public class RFQ
     {
         get { return marketSectorName; }
         set { marketSectorName = value; }
+    }
+    public string CreatedBy
+    {
+        get { return createdBy; }
+        set { createdBy = value; }
     }
 }
 

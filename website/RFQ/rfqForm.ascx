@@ -106,6 +106,7 @@
             <uc5:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" />
         </div>
         <asp:HiddenField ID="hiddenSentAttachmentsFolder" runat="server" />
+        <asp:HiddenField ID="hiddenCreatedBy" runat="server" />
         <br />
     </div>
     <div align="center">

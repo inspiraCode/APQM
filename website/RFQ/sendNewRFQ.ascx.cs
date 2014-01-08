@@ -35,6 +35,8 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
         string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
 
+        string strAuthUser = HttpContext.Current.User.Identity.Name;
+
         string[] arrEAU = ((Label)frmBOMLine.FindControl("EAULabel")).Text.Split(',');
         
         if (supplierList.Count > 0)
@@ -95,6 +97,8 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                             {
                                 rfq.SentAttachmentsFolder = folderAttachments;
                             }
+
+                            rfq.CreatedBy = strAuthUser;
 
                             string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
 

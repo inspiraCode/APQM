@@ -53,34 +53,34 @@
         </HeaderTemplate>
         <ItemTemplate>
             <tr height='27px;'>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
                         OnCommand="updateByID"> <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%> </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
                         OnCommand="updateByBomID"> None </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "Revision")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "Priority")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "SalesPerson")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "CostModelLoc")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="linkAssignedTo" runat="server" CommandArgument="" OnCommand="takeSIF"
                         OnClientClick="return confirm('Do you really want to take this SIF?');"> Take </asp:LinkButton>
                 </td>
-                <td>
+                <td style="text-align:center;">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="sifID"
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')"> Delete </asp:LinkButton>
                 </td>

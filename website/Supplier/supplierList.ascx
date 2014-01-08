@@ -34,31 +34,31 @@
     </HeaderTemplate>
     <ItemTemplate>
         <tr height='27px;'>
-            <td>
+            <td style="text-align:center;">
                 <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="SupplierID" 
                 OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
                 </asp:LinkButton>                
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ManufacturingLocation")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ShipLocation")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "QuotedCurrency")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ContactName")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ContactPhone")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ContactEmail")%>
             </td>
-            <td>
+            <td style="text-align:center;">
                 <asp:LinkButton ID="deleteByID" runat="server" 
                     CommandArgument="" CommandName="SupplierID" OnCommand="deleteByID" 
                     OnClientClick="return  confirm('Do you wish to delete this Supplier?')">

@@ -12,23 +12,23 @@
     <RowStyle Height="27px"></RowStyle>
     <Columns>
         <asp:BoundField DataField="InquiryNumber" HeaderText="InquiryNumber" 
-            SortExpression="InquiryNumber" />
+            SortExpression="InquiryNumber" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="Revision" HeaderText="Revision" 
-            SortExpression="Revision" />
+            SortExpression="Revision" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="PartDescription" HeaderText="PartDescription" 
-            SortExpression="PartDescription" />
+            SortExpression="PartDescription" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" 
-            SortExpression="BOMDetailKey" />
+            SortExpression="BOMDetailKey" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="PartNumber" HeaderText="PartNumber" 
-            SortExpression="PartNumber" />
+            SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="Material" HeaderText="Material" 
-            SortExpression="Material" />
-        <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" />
+            SortExpression="Material" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="RFQ COMPLETED" HeaderText="RFQ COMPLETED" 
-            ReadOnly="True" SortExpression="RFQ COMPLETED" />
+            ReadOnly="True" SortExpression="RFQ COMPLETED" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="RFQ Sent" HeaderText="RFQ Sent" 
-            SortExpression="RFQ Sent" />
-        <asp:ButtonField CommandName="selectBOM" Text="Select" />
+            SortExpression="RFQ Sent" ItemStyle-HorizontalAlign="Center" />
+        <asp:ButtonField CommandName="selectBOM" Text="Select" ItemStyle-HorizontalAlign="Center" />
     </Columns>
 </asp:GridView>
 

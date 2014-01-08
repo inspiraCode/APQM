@@ -105,6 +105,8 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         chkIAgree.Checked = rfq.IAgree;
 
+        hiddenCreatedBy.Value = rfq.CreatedBy;
+
         uscRFQDetailList.reset();
         uscRFQDetailList.setEntity(rfq.RfqDetail);
         uscRFQDetailList.load();
@@ -230,6 +232,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.CommentsToBuyer = txtComments.Text;
 
         rfq.IAgree = chkIAgree.Checked;
+
+        rfq.CreatedBy = hiddenCreatedBy.Value;
 
         rfq.SentAttachmentsFolder = hiddenSentAttachmentsFolder.Value;
 
