@@ -18,6 +18,7 @@ public class BOM
     private string salesPerson = "";
     private string customerName = "";
     private string marketSector = ""; //Read from SIF table in view.
+    private string assignedTo = "";
 
     public string MarketSector
     {
@@ -25,7 +26,6 @@ public class BOM
         set { marketSector = value; }
     }
     
-
     private List<BOMDetail> bomDetail;
 
     public List<BOMDetail> BomDetail
@@ -77,6 +77,11 @@ public class BOM
     {
         get { return customerName; }
         set { customerName = value; }
+    }
+    public string AssignedTo
+    {
+        get { return assignedTo; }
+        set { assignedTo = value; }
     }
     public override string ToString()
     {

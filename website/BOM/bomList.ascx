@@ -1,4 +1,26 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomList.ascx.cs" Inherits="bomList" %>
+
+<br />
+<table cellspacing="0">
+    <tr>
+        <td align="right">
+            Filter Assigned To:
+        </td>
+        <td>
+            <asp:DropDownList ID="cboFilterByUser" runat="server" Width="180px" AutoPostBack="True"
+                DataSourceID="SqlDataSourceUsers" DataTextField="AssignedTo" DataValueField="AssignedTo"
+                OnSelectedIndexChanged="cboFilterByUser_SelectedIndexChanged">
+            </asp:DropDownList>
+        </td>
+    </tr>
+</table>
+<asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" OnInit="on_sqldatasource_Init"
+    ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS AssignedTo, 0 AS orderNumber UNION SELECT DISTINCT AssignedTo, 2 AS orderNumber FROM viewBOMHeader_ReadAll ORDER BY orderNumber">
+</asp:SqlDataSource>
+<br />
+<br />
+
+
 <div align="center">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
@@ -16,6 +38,9 @@
                         </th>
                         <th>
                             Part Description
+                        </th>
+                        <th>
+                            Assigned To
                         </th>
                         <th>
                         </th>
@@ -42,6 +67,9 @@
                 </td>
                 <td style="text-align:left;">
                     <%# DataBinder.Eval(Container.DataItem, "PartDescription")%>
+                </td>
+                <td style="text-align:center;">
+                    <%# DataBinder.Eval(Container.DataItem, "AssignedTo")%>
                 </td>
                 <td style="text-align:center;">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="bomID"

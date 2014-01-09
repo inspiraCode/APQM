@@ -140,7 +140,8 @@ public class bomCRUD : ICRUD<BOM>
         BOM bom = new BOM();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, " +
-                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
+                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector, AssignedTo " +
+                        "FROM viewBOMHeader_ReadAll WHERE (BOMHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -168,6 +169,7 @@ public class bomCRUD : ICRUD<BOM>
                 bom.SalesPerson = table.Rows[0][7].ToString();
                 bom.CustomerName= table.Rows[0][8].ToString();
                 bom.MarketSector = table.Rows[0][9].ToString();
+                bom.AssignedTo = table.Rows[0][10].ToString();
                 
                 sqlConnection.Dispose();
                 return bom;
@@ -180,7 +182,8 @@ public class bomCRUD : ICRUD<BOM>
         BOM bom = new BOM();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, Revision, " +
-                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector FROM viewBOMHeader_ReadAll WHERE (SIFHeaderKey = @key)";
+                        "InquiryNumber, AnnualVolume, SalesPerson, CustomerName, MarketSector, AssignedTo " +
+                        "FROM viewBOMHeader_ReadAll WHERE (SIFHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -209,6 +212,7 @@ public class bomCRUD : ICRUD<BOM>
                 bom.SalesPerson = table.Rows[0][7].ToString();
                 bom.CustomerName = table.Rows[0][8].ToString();
                 bom.MarketSector = table.Rows[0][9].ToString();
+                bom.AssignedTo = table.Rows[0][10].ToString();
 
                 sqlConnection.Dispose();
                 return bom;
@@ -223,7 +227,8 @@ public class bomCRUD : ICRUD<BOM>
         DM = connectionManager.getDataManager();
 
         string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, " +
-                        "Revision, InquiryNumber, AnnualVolume,  MarketSector, SalesPerson, CustomerName  FROM viewBOMHeader_ReadAll ORDER BY PartDescription";
+                        "Revision, InquiryNumber, AnnualVolume,  MarketSector, SalesPerson, CustomerName, AssignedTo " +
+                        "FROM viewBOMHeader_ReadAll ORDER BY PartDescription";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -240,10 +245,44 @@ public class bomCRUD : ICRUD<BOM>
             bom.MarketSector = table.Rows[0][7].ToString();
             bom.SalesPerson = table.Rows[0][8].ToString();
             bom.CustomerName = table.Rows[0][9].ToString();
+            bom.AssignedTo = table.Rows[0][10].ToString();
             
             recordset.Add(bom);
         }
        
+        return recordset;
+    }
+
+    public IList<BOM> readAll(string filter)
+    {
+        List<BOM> recordset = new List<BOM>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT BOMHeaderKey, SIFHeaderKey, TopPartNumber, PartDescription, " +
+                        "Revision, InquiryNumber, AnnualVolume,  MarketSector, SalesPerson, CustomerName, AssignedTo " +
+                        "FROM viewBOMHeader_ReadAll " + filter + " ORDER BY PartDescription";
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            BOM bom = new BOM();
+            bom.Id = long.Parse(table.Rows[i][0].ToString());
+            bom.SifId = long.Parse(table.Rows[i][1].ToString());
+            bom.TopPartNumber = table.Rows[i][2].ToString();
+            bom.PartDescription = table.Rows[i][3].ToString();
+            bom.Revision = table.Rows[i][4].ToString();
+            bom.InquiryNumber = table.Rows[i][5].ToString();
+            bom.AnnualVolume = int.Parse(table.Rows[i][6].ToString());
+            bom.MarketSector = table.Rows[0][7].ToString();
+            bom.SalesPerson = table.Rows[0][8].ToString();
+            bom.CustomerName = table.Rows[0][9].ToString();
+            bom.AssignedTo = table.Rows[0][10].ToString();
+
+            recordset.Add(bom);
+        }
+
         return recordset;
     }
 

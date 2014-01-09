@@ -12,11 +12,46 @@ public partial class bomList : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+    public void setUserFilterWithCookie()
+    {
+        if (!IsPostBack)
+        {
+            if (cboFilterByUser.DataSource == null)
+                cboFilterByUser.DataBind();
+            HttpCookie sifCookie = Request.Cookies["BOM_User_Filter"];
+            if (sifCookie != null)
+                cboFilterByUser.Text = sifCookie.Value;
+            load();
+        }
+    }
     public void load()
     {
-        List<BOM> recordset = (List<BOM>)bom_CRUD.readAll();
+        List<BOM> recordset;
+        if (cboFilterByUser.SelectedValue == "All")
+        {
+            recordset = (List<BOM>)bom_CRUD.readAll();
+            cboFilterByUser.Text = "All";
+        }
+        else
+        {
+            recordset = (List<BOM>)bom_CRUD.readAll("WHERE AssignedTo = '" + cboFilterByUser.SelectedValue + "'");
+        }
+        
         Repeater1.DataSource = recordset;
         Repeater1.DataBind();        
+    }
+    protected void cboFilterByUser_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        HttpCookie sifCookie = new HttpCookie("BOM_User_Filter");
+        sifCookie.Value = cboFilterByUser.SelectedValue;
+        sifCookie.Expires = DateTime.Now.AddYears(1);
+        Response.Cookies.Add(sifCookie);
+        load();
+    }
+    public void on_sqldatasource_Init(Object sender, EventArgs e)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
