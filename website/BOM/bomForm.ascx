@@ -131,7 +131,7 @@
                 Annual Volume
             </td>
             <td align="left" class="style4">
-                <asp:TextBox ID="txtAnnualVolume" style="text-align:right;" runat="server" Width="120px"></asp:TextBox>
+                <asp:TextBox ID="txtAnnualVolume" style="text-align:right;" validate="number" validationid="validatingBOMHeader" runat="server" Width="120px"></asp:TextBox>
             </td>
             <td align="left" class="style8">
             </td>
@@ -164,7 +164,7 @@
     </table>
 </div>
 <div align="center">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" />
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" OnClientClick="return validate();" validationid="validatingBOMHeader"/>
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
 <br />
