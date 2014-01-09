@@ -117,12 +117,23 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                                     Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
                                     Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                                    Message.Subject = "Test from APQM WEB - sending RFQ";
+                                    Message.Subject = "Request For Quote";
                                     Message.IsBodyHtml = true;
                                     Message.BodyEncoding = System.Text.Encoding.UTF8;
 
-                                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the RFQ form:" + Environment.NewLine + "http://" +
-                                        Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
+                                    string strEmailContent =    "Dear Supplier," + Environment.NewLine
+                                                                + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
+
+
+                                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strEmailContent);
                                     Message.AlternateViews.Add(htmlView);
 
 

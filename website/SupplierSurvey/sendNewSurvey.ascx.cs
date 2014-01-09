@@ -78,15 +78,23 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
 
                 Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
                 Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                Message.Subject = "Test from APQM WEB - sending Survey";
+                Message.Subject = "Survey";
                 Message.IsBodyHtml = true;
                 Message.BodyEncoding = System.Text.Encoding.UTF8;
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://localhost:29724/APQM/Vendor/RFQ.aspx?token=" + token.TokenNumber + "\">Link</a>";
                 //Message.Body = "Aqui va el link con el token= " + " <a href:\"http://www.google.com\">Google</a>";
 
+                string strEmailContent = "Dear Potential Supplier," + Environment.NewLine
+                                                                + "Please click the following link to fill out our supplier survey form.  Please fill out as completely as possible.  Once we have received your completed survey, a representative will contact you to discuss the next steps."
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "Thank you for your time. We look forward to hearing from you."
+                                                                + Environment.NewLine + Environment.NewLine
+                                                                + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
 
-                AlternateView htmlView = AlternateView.CreateAlternateViewFromString("Please click the following link to open the Survey form:" + Environment.NewLine + "http://" +
-                    Request.Url.Authority + Request.ApplicationPath + "/Vendor/Survey.aspx?token=" + token.TokenNumber);
+
+                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strEmailContent);
                 Message.AlternateViews.Add(htmlView);
 
                 try

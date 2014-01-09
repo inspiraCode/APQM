@@ -35,11 +35,6 @@
     {
         height: 24px;
     }
-    .style12
-    {
-        width: 110px;
-        height: 24px;
-    }
     .style13
     {
     }
@@ -193,7 +188,7 @@
             <td align="right" class="style15">
                                 Supplier</td>
             <td align="left" bgcolor="#666666">
-                <asp:Label ID="lblSupplier" runat="server" ForeColor="White">This is an example of Supplier</asp:Label>
+                <asp:Label ID="lblSupplier" runat="server" ForeColor="White"></asp:Label>
             </td>
             <td align="center" class="style23">
                 &nbsp;</td>
@@ -224,15 +219,14 @@
             <td align="right" class="style15">
                 Contact Person</td>
             <td align="left" bgcolor="#666666">
-                <asp:Label ID="lblContactPerson" runat="server" ForeColor="White">This is an example of Contact Person</asp:Label>
+                <asp:Label ID="lblContactPerson" runat="server" ForeColor="White"></asp:Label>
             </td>
             <td align="center" class="style23" >
                 &nbsp;</td>
         </tr>
         <tr>
             <td align="right" class="style36">
-                NDA Rec&#39;d
-            </td>
+                NDA signed</td>
             <td align="left" class="style6">
                 <asp:Label ID="lblNDARec" runat="server"></asp:Label>
             </td>
@@ -241,7 +235,7 @@
             <td align="right" class="style15">
                 Contact Phone</td>
             <td align="left" class="style16" bgcolor="#666666">
-                <asp:Label ID="lblContactPhone" runat="server" ForeColor="White">6563123456</asp:Label>
+                <asp:Label ID="lblContactPhone" runat="server" ForeColor="White"></asp:Label>
             </td>
             <td align="center" class="style23" >
                 &nbsp;</td>
