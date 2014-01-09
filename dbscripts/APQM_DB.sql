@@ -1,84 +1,84 @@
 USE [APQM_DB]
 GO
-/****** Object:  Role [aspnet_Membership_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Membership_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Membership_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Membership_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Membership_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Membership_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Membership_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Membership_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Membership_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Personalization_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Personalization_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Personalization_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Personalization_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Personalization_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Personalization_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Profile_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Profile_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Profile_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Profile_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Profile_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Profile_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Roles_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Roles_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Roles_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Roles_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_Roles_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
 CREATE ROLE [aspnet_Roles_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_WebEvent_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Role [aspnet_WebEvent_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE ROLE [aspnet_WebEvent_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [aspnet_Membership_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Membership_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Membership_BasicAccess] AUTHORIZATION [aspnet_Membership_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Membership_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Membership_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Membership_FullAccess] AUTHORIZATION [aspnet_Membership_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Membership_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Membership_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Membership_ReportingAccess] AUTHORIZATION [aspnet_Membership_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Personalization_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Personalization_BasicAccess] AUTHORIZATION [aspnet_Personalization_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Personalization_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Personalization_FullAccess] AUTHORIZATION [aspnet_Personalization_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Personalization_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Personalization_ReportingAccess] AUTHORIZATION [aspnet_Personalization_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Profile_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Profile_BasicAccess] AUTHORIZATION [aspnet_Profile_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Profile_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Profile_FullAccess] AUTHORIZATION [aspnet_Profile_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Profile_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Profile_ReportingAccess] AUTHORIZATION [aspnet_Profile_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_BasicAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Roles_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Roles_BasicAccess] AUTHORIZATION [aspnet_Roles_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_FullAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Roles_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Roles_FullAccess] AUTHORIZATION [aspnet_Roles_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_ReportingAccess]    Script Date: 01/02/2014 13:55:08 ******/
+/****** Object:  Schema [aspnet_Roles_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_Roles_ReportingAccess] AUTHORIZATION [aspnet_Roles_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_WebEvent_FullAccess]    Script Date: 01/02/2014 13:55:09 ******/
+/****** Object:  Schema [aspnet_WebEvent_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
 CREATE SCHEMA [aspnet_WebEvent_FullAccess] AUTHORIZATION [aspnet_WebEvent_FullAccess]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 01/02/2014 13:56:00 ******/
+/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 01/09/2014 14:37:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -117,7 +117,7 @@ WHERE (RFQSummaryKey = @RFQSummaryKey)
 
 END
 GO
-/****** Object:  Table [dbo].[aspnet_WebEvent_Events]    Script Date: 01/02/2014 13:56:57 ******/
+/****** Object:  Table [dbo].[aspnet_WebEvent_Events]    Script Date: 01/09/2014 14:38:53 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +148,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[RFQNumber]    Script Date: 01/02/2014 13:57:51 ******/
+/****** Object:  Table [dbo].[RFQNumber]    Script Date: 01/09/2014 14:39:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +170,7 @@ CREATE TABLE [dbo].[RFQNumber](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 01/02/2014 13:55:53 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 01/09/2014 14:37:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -202,7 +202,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 01/02/2014 13:55:53 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 01/09/2014 14:37:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -232,7 +232,7 @@ WHERE EAVKey=@EAVKey
 
 END
 GO
-/****** Object:  Table [dbo].[ItemMaster]    Script Date: 01/02/2014 13:57:21 ******/
+/****** Object:  Table [dbo].[ItemMaster]    Script Date: 01/09/2014 14:39:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,13 +255,7 @@ CREATE TABLE [dbo].[ItemMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [IX_PartNumber] ON [dbo].[ItemMaster] 
-(
-	[PartNumber] ASC,
-	[CommCode] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 01/02/2014 13:58:17 ******/
+/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 01/09/2014 14:40:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -286,7 +280,7 @@ CREATE TABLE [dbo].[SupplierMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 01/02/2014 13:55:49 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 01/09/2014 14:37:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -309,7 +303,7 @@ UPDATE [APQM_DB].[dbo].[MarketSector]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 01/02/2014 13:55:49 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 01/09/2014 14:37:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -334,7 +328,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  Table [dbo].[MarketSector]    Script Date: 01/02/2014 13:57:22 ******/
+/****** Object:  Table [dbo].[MarketSector]    Script Date: 01/09/2014 14:39:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -345,10 +339,14 @@ CREATE TABLE [dbo].[MarketSector](
  CONSTRAINT [PK_MarketSector] PRIMARY KEY CLUSTERED 
 (
 	[MarketSectorID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+ CONSTRAINT [IX_MarketSector] UNIQUE NONCLUSTERED 
+(
+	[Name] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RestorePermissions]    Script Date: 01/02/2014 13:55:33 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RestorePermissions]    Script Date: 01/09/2014 14:37:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -379,7 +377,7 @@ BEGIN
     DEALLOCATE c1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RemoveAllRoleMembers]    Script Date: 01/02/2014 13:55:33 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RemoveAllRoleMembers]    Script Date: 01/09/2014 14:37:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -418,7 +416,7 @@ BEGIN
     DEALLOCATE c1
 END
 GO
-/****** Object:  Table [dbo].[aspnet_Applications]    Script Date: 01/02/2014 13:56:17 ******/
+/****** Object:  Table [dbo].[aspnet_Applications]    Script Date: 01/09/2014 14:38:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -442,12 +440,7 @@ UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-CREATE CLUSTERED INDEX [aspnet_Applications_Index] ON [dbo].[aspnet_Applications] 
-(
-	[LoweredApplicationName] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_SchemaVersions]    Script Date: 01/02/2014 13:56:44 ******/
+/****** Object:  Table [dbo].[aspnet_SchemaVersions]    Script Date: 01/09/2014 14:38:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -463,7 +456,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 01/02/2014 13:56:13 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 01/09/2014 14:38:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -492,7 +485,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [IndustriesSuplied]=@Industrie
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 01/02/2014 13:56:12 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 01/09/2014 14:38:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -515,7 +508,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyIndustriesSupplied]
  WHERE SupplierIndustriesSuppliedKey=@SupplierIndustriesSuppliedKey
 END
 GO
-/****** Object:  Table [dbo].[TokenMaster]    Script Date: 01/02/2014 13:58:42 ******/
+/****** Object:  Table [dbo].[TokenMaster]    Script Date: 01/09/2014 14:40:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -533,7 +526,7 @@ CREATE TABLE [dbo].[TokenMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 01/02/2014 13:57:15 ******/
+/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 01/09/2014 14:39:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -544,10 +537,14 @@ CREATE TABLE [dbo].[CustomerMaster](
  CONSTRAINT [PK_CustomerMaster] PRIMARY KEY CLUSTERED 
 (
 	[CustomerKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY],
+ CONSTRAINT [IX_CustomerMaster] UNIQUE NONCLUSTERED 
+(
+	[CustomerName] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 01/02/2014 13:58:45 ******/
+/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 01/09/2014 14:40:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -669,7 +666,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQDetail_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 01/02/2014 13:58:44 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 01/09/2014 14:40:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -850,7 +847,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItemAux'
 GO
-/****** Object:  Table [dbo].[RFQHeader]    Script Date: 01/02/2014 13:57:48 ******/
+/****** Object:  Table [dbo].[RFQHeader]    Script Date: 01/09/2014 14:39:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -893,90 +890,14 @@ CREATE TABLE [dbo].[RFQHeader](
 	[AttachmentsFolder] [nvarchar](50) NOT NULL,
 	[LeadTimePPAP] [nvarchar](50) NOT NULL,
 	[AttachmentsFolderVendor] [nvarchar](50) NOT NULL,
+	[CreatedBy] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_RFQHeader] PRIMARY KEY CLUSTERED 
 (
 	[RFQHeaderKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQACR]    Script Date: 01/02/2014 13:57:24 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQACR](
-	[RFQACRKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[Year] [nvarchar](4) NOT NULL,
-	[Porcentage] [float] NOT NULL,
- CONSTRAINT [PK_RFQACR] PRIMARY KEY CLUSTERED 
-(
-	[RFQACRKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[RFQSummary]    Script Date: 01/02/2014 13:57:55 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQSummary](
-	[RFQSummaryKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[BCost] [float] NOT NULL,
-	[CCost] [float] NOT NULL,
-	[EAV] [float] NOT NULL,
-	[Tooling] [float] NOT NULL,
-	[Cavitation] [float] NOT NULL,
-	[Material] [nvarchar](100) NOT NULL,
-	[Sequence] [int] NOT NULL,
- CONSTRAINT [PK_RFQSummary] PRIMARY KEY CLUSTERED 
-(
-	[RFQSummaryKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[RFQEAV]    Script Date: 01/02/2014 13:57:32 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQEAV](
-	[EAVKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[Year] [nvarchar](50) NOT NULL,
-	[Volume] [float] NOT NULL,
- CONSTRAINT [PK_RFQEAV] PRIMARY KEY CLUSTERED 
-(
-	[EAVKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[RFQDetail]    Script Date: 01/02/2014 13:57:30 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQDetail](
-	[RFQDetailKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[ItemDescription] [nvarchar](150) NOT NULL,
-	[UM] [nvarchar](50) NOT NULL,
-	[RPCQty] [float] NOT NULL,
-	[RPCCostPerUnit] [float] NOT NULL,
-	[OSQty] [float] NOT NULL,
-	[OSCostPerUnit] [float] NOT NULL,
-	[ScrapValue] [float] NOT NULL,
-	[DirectHrlyLaborRate] [float] NOT NULL,
-	[StdHrs] [float] NOT NULL,
-	[Burden] [float] NOT NULL,
- CONSTRAINT [PK_RFQDetail] PRIMARY KEY CLUSTERED 
-(
-	[RFQDetailKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[BOMDetailVolume]    Script Date: 01/02/2014 13:57:11 ******/
+/****** Object:  Table [dbo].[BOMDetailVolume]    Script Date: 01/09/2014 14:39:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -991,7 +912,7 @@ CREATE TABLE [dbo].[BOMDetailVolume](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMDetail]    Script Date: 01/02/2014 13:57:08 ******/
+/****** Object:  Table [dbo].[BOMDetail]    Script Date: 01/09/2014 14:39:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1027,7 +948,7 @@ CREATE TABLE [dbo].[BOMDetail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 01/02/2014 13:58:38 ******/
+/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 01/09/2014 14:40:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1061,7 +982,7 @@ CREATE TABLE [dbo].[SupplierSuvey](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFHeader]    Script Date: 01/02/2014 13:58:11 ******/
+/****** Object:  Table [dbo].[SIFHeader]    Script Date: 01/09/2014 14:40:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1095,50 +1016,33 @@ CREATE TABLE [dbo].[SIFHeader](
 	[SOP] [datetime] NOT NULL,
 	[SalesDBID] [numeric](18, 0) NOT NULL,
 	[MarketSector] [numeric](18, 0) NOT NULL,
+	[AssignedTo] [nvarchar](256) NOT NULL,
  CONSTRAINT [PK_SIFHeader] PRIMARY KEY CLUSTERED 
 (
 	[SIFHeaderKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFDetail]    Script Date: 01/02/2014 13:57:59 ******/
+/****** Object:  Table [dbo].[aspnet_Users]    Script Date: 01/09/2014 14:38:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[SIFDetail](
-	[SIFDetailkey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[SIFHeaderKey] [numeric](18, 0) NOT NULL,
-	[ProgramYear] [nvarchar](50) NOT NULL,
-	[ProjectedAnnualVolume] [numeric](18, 0) NOT NULL,
-	[PercentVolumePerAward] [float] NOT NULL,
-	[ProjectedTargetPrice] [float] NOT NULL,
-	[AnnualRevenue] [float] NOT NULL,
- CONSTRAINT [PK_SIFDetail] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[aspnet_Users](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[UserId] [uniqueidentifier] NOT NULL DEFAULT (newid()),
+	[UserName] [nvarchar](256) NOT NULL,
+	[LoweredUserName] [nvarchar](256) NOT NULL,
+	[MobileAlias] [nvarchar](16) NULL DEFAULT (NULL),
+	[IsAnonymous] [bit] NOT NULL DEFAULT ((0)),
+	[LastActivityDate] [datetime] NOT NULL,
+PRIMARY KEY NONCLUSTERED 
 (
-	[SIFDetailkey] ASC
+	[UserId] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMHeader]    Script Date: 01/02/2014 13:57:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[BOMHeader](
-	[BOMHeaderKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[SIFHeaderKey] [numeric](18, 0) NOT NULL,
-	[TopPartNumber] [nvarchar](50) NOT NULL,
-	[PartDescription] [nvarchar](50) NOT NULL,
-	[Revision] [nvarchar](5) NOT NULL,
-	[AnnualVolume] [numeric](18, 0) NOT NULL,
- CONSTRAINT [PK_BOMHeader] PRIMARY KEY CLUSTERED 
-(
-	[BOMHeaderKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_Membership]    Script Date: 01/02/2014 13:56:27 ******/
+/****** Object:  Table [dbo].[aspnet_Membership]    Script Date: 01/09/2014 14:38:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1171,44 +1075,7 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-CREATE CLUSTERED INDEX [aspnet_Membership_index] ON [dbo].[aspnet_Membership] 
-(
-	[ApplicationId] ASC,
-	[LoweredEmail] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_Users]    Script Date: 01/02/2014 13:56:48 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[aspnet_Users](
-	[ApplicationId] [uniqueidentifier] NOT NULL,
-	[UserId] [uniqueidentifier] NOT NULL DEFAULT (newid()),
-	[UserName] [nvarchar](256) NOT NULL,
-	[LoweredUserName] [nvarchar](256) NOT NULL,
-	[MobileAlias] [nvarchar](16) NULL DEFAULT (NULL),
-	[IsAnonymous] [bit] NOT NULL DEFAULT ((0)),
-	[LastActivityDate] [datetime] NOT NULL,
-PRIMARY KEY NONCLUSTERED 
-(
-	[UserId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-CREATE UNIQUE CLUSTERED INDEX [aspnet_Users_Index] ON [dbo].[aspnet_Users] 
-(
-	[ApplicationId] ASC,
-	[LoweredUserName] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-CREATE NONCLUSTERED INDEX [aspnet_Users_Index2] ON [dbo].[aspnet_Users] 
-(
-	[ApplicationId] ASC,
-	[LastActivityDate] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_Paths]    Script Date: 01/02/2014 13:56:30 ******/
+/****** Object:  Table [dbo].[aspnet_Paths]    Script Date: 01/09/2014 14:38:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1224,13 +1091,7 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-CREATE UNIQUE CLUSTERED INDEX [aspnet_Paths_index] ON [dbo].[aspnet_Paths] 
-(
-	[ApplicationId] ASC,
-	[LoweredPath] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_Roles]    Script Date: 01/02/2014 13:56:42 ******/
+/****** Object:  Table [dbo].[aspnet_Roles]    Script Date: 01/09/2014 14:38:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1247,50 +1108,7 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-CREATE UNIQUE CLUSTERED INDEX [aspnet_Roles_index1] ON [dbo].[aspnet_Roles] 
-(
-	[ApplicationId] ASC,
-	[LoweredRoleName] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_UsersInRoles]    Script Date: 01/02/2014 13:56:50 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[aspnet_UsersInRoles](
-	[UserId] [uniqueidentifier] NOT NULL,
-	[RoleId] [uniqueidentifier] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[UserId] ASC,
-	[RoleId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-CREATE NONCLUSTERED INDEX [aspnet_UsersInRoles_index] ON [dbo].[aspnet_UsersInRoles] 
-(
-	[RoleId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_Profile]    Script Date: 01/02/2014 13:56:38 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[aspnet_Profile](
-	[UserId] [uniqueidentifier] NOT NULL,
-	[PropertyNames] [ntext] NOT NULL,
-	[PropertyValuesString] [ntext] NOT NULL,
-	[PropertyValuesBinary] [image] NOT NULL,
-	[LastUpdatedDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
-(
-	[UserId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[aspnet_PersonalizationPerUser]    Script Date: 01/02/2014 13:56:35 ******/
+/****** Object:  Table [dbo].[aspnet_PersonalizationPerUser]    Script Date: 01/09/2014 14:38:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1307,19 +1125,39 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-CREATE UNIQUE CLUSTERED INDEX [aspnet_PersonalizationPerUser_index1] ON [dbo].[aspnet_PersonalizationPerUser] 
-(
-	[PathId] ASC,
-	[UserId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+/****** Object:  Table [dbo].[aspnet_UsersInRoles]    Script Date: 01/09/2014 14:38:47 ******/
+SET ANSI_NULLS ON
 GO
-CREATE UNIQUE NONCLUSTERED INDEX [aspnet_PersonalizationPerUser_ncindex2] ON [dbo].[aspnet_PersonalizationPerUser] 
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_UsersInRoles](
+	[UserId] [uniqueidentifier] NOT NULL,
+	[RoleId] [uniqueidentifier] NOT NULL,
+PRIMARY KEY CLUSTERED 
 (
 	[UserId] ASC,
-	[PathId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+	[RoleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 01/02/2014 13:58:26 ******/
+/****** Object:  Table [dbo].[aspnet_Profile]    Script Date: 01/09/2014 14:38:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Profile](
+	[UserId] [uniqueidentifier] NOT NULL,
+	[PropertyNames] [ntext] NOT NULL,
+	[PropertyValuesString] [ntext] NOT NULL,
+	[PropertyValuesBinary] [image] NOT NULL,
+	[LastUpdatedDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 01/09/2014 14:40:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1335,7 +1173,7 @@ CREATE TABLE [dbo].[SupplierSurveyForecastSales](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 01/02/2014 13:58:23 ******/
+/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 01/09/2014 14:40:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1356,7 +1194,7 @@ CREATE TABLE [dbo].[SupplierSurveyContacts](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 01/02/2014 13:58:19 ******/
+/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 01/09/2014 14:40:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1371,7 +1209,7 @@ CREATE TABLE [dbo].[SupplierSurveyCertification](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 01/02/2014 13:58:28 ******/
+/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 01/09/2014 14:40:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1386,7 +1224,121 @@ CREATE TABLE [dbo].[SupplierSurveyIndustriesSupplied](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_PersonalizationAllUsers]    Script Date: 01/02/2014 13:56:32 ******/
+/****** Object:  Table [dbo].[BOMHeader]    Script Date: 01/09/2014 14:39:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[BOMHeader](
+	[BOMHeaderKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[SIFHeaderKey] [numeric](18, 0) NOT NULL,
+	[TopPartNumber] [nvarchar](50) NOT NULL,
+	[PartDescription] [nvarchar](50) NOT NULL,
+	[Revision] [nvarchar](5) NOT NULL,
+	[AnnualVolume] [numeric](18, 0) NOT NULL,
+ CONSTRAINT [PK_BOMHeader] PRIMARY KEY CLUSTERED 
+(
+	[BOMHeaderKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SIFDetail]    Script Date: 01/09/2014 14:39:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[SIFDetail](
+	[SIFDetailkey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[SIFHeaderKey] [numeric](18, 0) NOT NULL,
+	[ProgramYear] [nvarchar](50) NOT NULL,
+	[ProjectedAnnualVolume] [numeric](18, 0) NOT NULL,
+	[PercentVolumePerAward] [float] NOT NULL,
+	[ProjectedTargetPrice] [float] NOT NULL,
+	[AnnualRevenue] [float] NOT NULL,
+ CONSTRAINT [PK_SIFDetail] PRIMARY KEY CLUSTERED 
+(
+	[SIFDetailkey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQEAV]    Script Date: 01/09/2014 14:39:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQEAV](
+	[EAVKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[Year] [nvarchar](50) NOT NULL,
+	[Volume] [float] NOT NULL,
+ CONSTRAINT [PK_RFQEAV] PRIMARY KEY CLUSTERED 
+(
+	[EAVKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQACR]    Script Date: 01/09/2014 14:39:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQACR](
+	[RFQACRKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[Year] [nvarchar](4) NOT NULL,
+	[Porcentage] [float] NOT NULL,
+ CONSTRAINT [PK_RFQACR] PRIMARY KEY CLUSTERED 
+(
+	[RFQACRKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQSummary]    Script Date: 01/09/2014 14:39:49 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQSummary](
+	[RFQSummaryKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[BCost] [float] NOT NULL,
+	[CCost] [float] NOT NULL,
+	[EAV] [float] NOT NULL,
+	[Tooling] [float] NOT NULL,
+	[Cavitation] [float] NOT NULL,
+	[Material] [nvarchar](100) NOT NULL,
+	[Sequence] [int] NOT NULL,
+ CONSTRAINT [PK_RFQSummary] PRIMARY KEY CLUSTERED 
+(
+	[RFQSummaryKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQDetail]    Script Date: 01/09/2014 14:39:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQDetail](
+	[RFQDetailKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[ItemDescription] [nvarchar](150) NOT NULL,
+	[UM] [nvarchar](50) NOT NULL,
+	[RPCQty] [float] NOT NULL,
+	[RPCCostPerUnit] [float] NOT NULL,
+	[OSQty] [float] NOT NULL,
+	[OSCostPerUnit] [float] NOT NULL,
+	[ScrapValue] [float] NOT NULL,
+	[DirectHrlyLaborRate] [float] NOT NULL,
+	[StdHrs] [float] NOT NULL,
+	[Burden] [float] NOT NULL,
+ CONSTRAINT [PK_RFQDetail] PRIMARY KEY CLUSTERED 
+(
+	[RFQDetailKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_PersonalizationAllUsers]    Script Date: 01/09/2014 14:38:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1401,7 +1353,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 01/02/2014 13:56:03 ******/
+/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 01/09/2014 14:37:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1452,7 +1404,7 @@ AND [AnnualRevenue]=@AnnualRevenue
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 01/02/2014 13:56:02 ******/
+/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 01/09/2014 14:37:57 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1486,7 +1438,7 @@ UPDATE [APQM_DB].[dbo].[SIFDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_WebEvent_LogEvent]    Script Date: 01/02/2014 13:55:39 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_WebEvent_LogEvent]    Script Date: 01/09/2014 14:37:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1548,7 +1500,7 @@ BEGIN
     )
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 01/02/2014 13:55:50 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 01/09/2014 14:37:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1582,7 +1534,7 @@ WHERE     (RFQHeaderKey = @RFQHeaderKey) AND ([Year] = @Year) AND (Porcentage = 
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 01/02/2014 13:55:49 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 01/09/2014 14:37:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1610,7 +1562,7 @@ UPDATE [APQM_DB].[dbo].[RFQACR]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 01/02/2014 13:56:01 ******/
+/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 01/09/2014 14:37:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1657,7 +1609,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 01/02/2014 13:56:00 ******/
+/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 01/09/2014 14:37:55 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1689,7 +1641,7 @@ INSERT INTO [APQM_DB].[dbo].[RFQNumber]
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 01/02/2014 13:58:46 ******/
+/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 01/09/2014 14:40:36 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1834,49 +1786,38 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQNumber'
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 01/02/2014 13:55:59 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 01/09/2014 14:37:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[RFQHeader_NewRFQ]
+CREATE PROCEDURE [dbo].[BOMDetail_EditDetail]
 	-- Add the parameters for the stored procedure here
-	 @BOMDetailKey INT
-	,@SupplierMasterKey INT
-	,@RFQNumberKey INT
-	,@DrawingLevel NVARCHAR(50)
-	,@EstimatedAnnualVolume INT
-	,@ProductionLeadTime NVARCHAR(50)
-	,@ProductionToolingLeadTime NVARCHAR(50)
-	,@PrototypeToolingLeadTime NVARCHAR(50)	
-	,@PrototypePieceLeadTime NVARCHAR(50)
-	,@ToolingDetail NVARCHAR(MAX)
-	,@ProductionTooling FLOAT
-	,@PrototypeTooling FLOAT
-	,@PrototypePiece FLOAT
-	,@SG_A_Profit FLOAT
-	,@PackingPerUnit FLOAT
-	,@AssemblyCostPerUnit FLOAT
-	,@Status NVARCHAR(15)
-	,@DueDate datetime
-	,@SentToVendor datetime
-	,@FilledUp datetime
-	,@PreparedBy NVARCHAR(150)
-	,@MOQ nvarchar(50)
-	,@TargetPrice float
-	,@NoQuote bit
-	,@MarketSector numeric(18,0)
-	,@IAgree bit
-	,@DateFilledOut datetime
-	,@Make nvarchar(50)
-	,@ReasonNoQuote nvarchar(200)
-	,@Weight float
-	,@CommentsToBuyer nvarchar(MAX)
-	,@CommentsToVendor nvarchar(MAX)
-	,@UMWeight nvarchar(50)
-	,@AttachmentsFolder nvarchar(50)
-	,@LeadTimePPAP nvarchar(50)
-	,@AttachmentsFolderVendor nvarchar(50)
+	 @BOMHeaderKey INT
+	,@ItemMasterKey INT
+	,@Qty float 
+	,@Cost float 
+	,@Status nvarchar(25) 
+	,@Description nvarchar(150) 
+	,@BOMDetailKey INT
+	,@LinePosition nvarchar(15)
+	,@SalesStatus nvarchar(25)
+	,@User nvarchar(256)
+	,@PurchasingStatus nvarchar(25)
+	,@DirectedBuy bit
+	,@Material nvarchar(150)
+	,@Um nvarchar(20)
+	,@VendorQuoteEst nvarchar(20)
+	,@SalesComments nvarchar(50)
+	,@PurchasingComments nvarchar(50)
+	,@CapComAssm nvarchar(20)
+	,@CapsonicPN nvarchar(50)
+	,@CustomerPN nvarchar(50)
+	,@ManufacturePN nvarchar(50)
+	,@SupplierPN nvarchar(50)
+	,@CommCode nvarchar(50)
+	,@EAU nvarchar(50)
+
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -1885,177 +1826,130 @@ BEGIN
 
     -- Insert statements for procedure here
 
-INSERT INTO [APQM_DB].[dbo].[RFQHeader]
-           ([BOMDetailKey]
-           ,[SupplierMasterKey]
-           ,[RFQNumberKey]
-           ,[DrawingLevel]
-           ,[EstimatedAnnualVolume]
-           ,[ProductionLeadTime]
-           ,[ProductionToolingLeadTime]
-		   ,[PrototypeToolingLeadTime]
-           ,[PrototypePieceLeadTime]
-           ,[ToolingDetail]
-           ,[ProductionTooling]
-           ,[PrototypeTooling]
-           ,[PrototypePiece]
-           ,[SG_A_Profit]
-           ,[PackingPerUnit]
-           ,[AssemblyCostPerUnit]
-		   ,[Status]
-		   ,[DueDate]
-		   ,[SentToVendor]
-		   ,[FilledUp]
-		   ,[PreparedBy]
-		   ,[MOQ]
-		   ,[TargetPrice]
-		   ,[NoQuote]
-		   ,[MarketSector]
-		   ,[CommentsToBuyer]
-		   ,[CommentsToVendor]
-		   ,[IAgree]
-		   ,[DateFilledOut]
-		   ,[Make]
-		   ,[ReasonNoQuote]
-		   ,[Weight]
-		   ,[UMWeight]
-		   ,[AttachmentsFolder]
-		   ,[LeadTimePPAP]
-		   ,[AttachmentsFolderVendor])
+
+UPDATE [APQM_DB].[dbo].[BOMDetail]
+   SET [BOMHeaderKey] = @BOMHeaderKey
+      ,[ItemMasterKey] = @ItemMasterKey
+      ,[Qty] = @Qty
+      ,[Cost] = @Cost
+      ,[Status] = @Status
+	  ,[Description] = @Description
+	  ,[LinePosition] = @LinePosition
+	  ,[SalesStatus] = @SalesStatus
+	  ,[User] = @User
+	  ,[PurchasingStatus] = @PurchasingStatus
+	  ,[DirectedBuy] = @DirectedBuy
+	  ,[Material] = @Material
+	  ,[Um] = @Um
+	  ,[VendorQuoteEst] = @VendorQuoteEst
+	  ,[SalesComments] = @SalesComments
+	  ,[PurchasingComments] = @PurchasingComments
+	  ,[CapComAssm] = @CapComAssm
+	  ,[CapsonicPN] = @CapsonicPN
+	  ,[CustomerPN] = @CustomerPN
+	  ,[ManufacturePN] = @ManufacturePN
+	  ,[SupplierPN] = @SupplierPN
+	  ,[CommCode] = @CommCode
+	  ,[EAU] = @EAU
+ WHERE BOMDetailKey = @BOMDetailKey
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 01/09/2014 14:37:32 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[BOMDetail_NewDetail]
+	-- Add the parameters for the stored procedure here
+	 @BOMHeaderKey INT
+	,@ItemMasterKey INT
+	,@Qty float 
+	,@Cost float 
+	,@Status nvarchar(25) 
+	,@Description nvarchar(150)
+	,@LinePosition nvarchar (15)
+	,@SalesStatus nvarchar (25)
+	,@User nvarchar(256)
+	,@PurchasingStatus nvarchar(25)
+	,@DirectedBuy bit
+	,@Material nvarchar(150)
+	,@Um nvarchar(20)
+	,@VendorQuoteEst nvarchar(20)
+	,@SalesComments nvarchar(50)
+	,@PurchasingComments nvarchar(50)
+	,@CapComAssm nvarchar(20)
+	,@CapsonicPN nvarchar(50)
+	,@CustomerPN nvarchar(50)
+	,@ManufacturePN nvarchar(50)
+	,@SupplierPN nvarchar(50)
+	,@CommCode nvarchar(50)
+	,@EAU nvarchar(50)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+
+INSERT INTO [APQM_DB].[dbo].[BOMDetail]
+           ([BOMHeaderKey]
+           ,[ItemMasterKey]
+           ,[Qty]
+           ,[Cost]
+           ,[Status]
+		   ,[Description]
+		   ,[LinePosition]
+		   ,[SalesStatus]
+		   ,[User]
+		   ,[PurchasingStatus]
+		   ,[DirectedBuy]
+		   ,[Material]
+		   ,[Um]
+		   ,[VendorQuoteEst]
+		   ,[SalesComments]
+		   ,[PurchasingComments]
+		   ,[CapComAssm]
+		   ,[CapsonicPN]
+		   ,[CustomerPN]
+		   ,[ManufacturePN]
+		   ,[SupplierPN]
+		   ,[CommCode]
+		   ,[EAU])
      VALUES
-           (@BOMDetailKey
-           ,@SupplierMasterKey
-           ,@RFQNumberKey
-           ,@DrawingLevel
-           ,@EstimatedAnnualVolume
-           ,@ProductionLeadTime
-           ,@ProductionToolingLeadTime
-		   ,@PrototypeToolingLeadTime
-           ,@PrototypePieceLeadTime
-           ,@ToolingDetail
-           ,@ProductionTooling
-           ,@PrototypeTooling
-           ,@PrototypePiece
-           ,@SG_A_Profit
-           ,@PackingPerUnit
-           ,@AssemblyCostPerUnit
-		   ,@Status
-		   ,@DueDate
-		   ,@SentToVendor
-		   ,@FilledUp
-		   ,@PreparedBy
-           ,@MOQ
-           ,@TargetPrice
-           ,@NoQuote
-           ,@MarketSector
-           ,@CommentsToBuyer
-           ,@CommentsToVendor
-           ,@IAgree
-           ,@DateFilledOut
-           ,@Make
-           ,@ReasonNoQuote
-           ,@Weight
-           ,@UMWeight
-           ,@AttachmentsFolder
-		   ,@LeadTimePPAP
-           ,@AttachmentsFolderVendor)
+           (@BOMHeaderKey 
+			,@ItemMasterKey 
+			,@Qty  
+			,@Cost  
+			,@Status
+			,@Description
+			,@LinePosition
+			,@SalesStatus
+			,@User
+			,@PurchasingStatus
+			,@DirectedBuy 
+			,@Material
+			,@Um
+			,@VendorQuoteEst
+			,@SalesComments
+			,@PurchasingComments
+			,@CapComAssm
+			,@CapsonicPN
+			,@CustomerPN
+			,@ManufacturePN
+			,@SupplierPN
+			,@CommCode
+			,@EAU)
 
 Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 01/02/2014 13:55:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[RFQHeader_EditRFQ]
-	-- Add the parameters for the stored procedure here
-	 @BOMDetailKey INT
-	,@SupplierMasterKey INT
-	,@DrawingLevel NVARCHAR(50)
-	,@EstimatedAnnualVolume INT
-	,@ProductionLeadTime NVARCHAR(50)
-	,@ProductionToolingLeadTime NVARCHAR(50)
-	,@PrototypeToolingLeadTime NVARCHAR (50)
-	,@PrototypePieceLeadTime NVARCHAR(50)
-	,@ToolingDetail NVARCHAR(MAX)
-	,@ProductionTooling FLOAT
-	,@PrototypeTooling FLOAT
-	,@PrototypePiece FLOAT
-	,@SG_A_Profit FLOAT
-	,@PackingPerUnit FLOAT
-	,@AssemblyCostPerUnit FLOAT
-	,@RFQHeaderKey INT
-	,@Status NVARCHAR(15)
-	,@DueDate datetime	
-	,@FilledUp datetime
-	,@PreparedBy NVARCHAR(150)
-	,@MOQ nvarchar(50)
-	,@TargetPrice float
-	,@NoQuote bit
-	,@MarketSector numeric(18,0)
-	,@CommentsToBuyer nvarchar(MAX)
-	,@CommentsToVendor nvarchar(MAX)
-	,@IAgree bit
-	,@DateFilledOut datetime
-	,@Make nvarchar(50)
-	,@ReasonNoQuote nvarchar(200)
-	,@Weight float
-	,@UMWeight nvarchar(50)
-	,@AttachmentsFolder nvarchar(50)
-	,@LeadTimePPAP nvarchar(50)
-	,@AttachmentsFolderVendor nvarchar(50)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE    RFQHeader
-SET       BOMDetailKey = @BOMDetailKey
-, SupplierMasterKey = @SupplierMasterKey
-, DrawingLevel = @DrawingLevel
-, EstimatedAnnualVolume = @EstimatedAnnualVolume
-, ProductionLeadTime = @ProductionLeadTime
-, ProductionToolingLeadTime = @ProductionToolingLeadTime
-, PrototypeToolingLeadTime = @PrototypeToolingLeadTime
-, PrototypePieceLeadTime = @PrototypePieceLeadTime
-, ToolingDetail = @ToolingDetail
-, ProductionTooling = @ProductionTooling
-, PrototypeTooling = @PrototypeTooling
-, PrototypePiece = @PrototypePiece
-, SG_A_Profit = @SG_A_Profit
-, PackingPerUnit = @PackingPerUnit
-, AssemblyCostPerUnit = @AssemblyCostPerUnit
-, [Status] = @Status
-, DueDate = @DueDate
-, FilledUp = @FilledUp
-, PreparedBy = @PreparedBy
-, MOQ = @MOQ
-, TargetPrice = @TargetPrice
-, NoQuote = @NoQuote
-, MarketSector = @MarketSector
-, CommentsToBuyer = @CommentsToBuyer
-, CommentsToVendor = @CommentsToVendor
-, IAgree = @IAgree
-, DateFilledOut = @DateFilledOut
-, Make = @Make
-, ReasonNoQuote = @ReasonNoQuote
-, Weight = @Weight
-, UMWeight = @UMWeight 
-, AttachmentsFolder = @AttachmentsFolder
-, LeadTimePPAP = @LeadTimePPAP
-, AttachmentsFolderVendor = @AttachmentsFolderVendor
-
-WHERE     (RFQHeaderKey = @RFQHeaderKey)
-
-END
-GO
-/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 01/02/2014 13:58:45 ******/
+/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 01/09/2014 14:40:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2275,198 +2169,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountPerBOMDetail'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 01/02/2014 13:55:41 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[BOMDetail_EditDetail]
-	-- Add the parameters for the stored procedure here
-	 @BOMHeaderKey INT
-	,@ItemMasterKey INT
-	,@Qty float 
-	,@Cost float 
-	,@Status nvarchar(25) 
-	,@Description nvarchar(150) 
-	,@BOMDetailKey INT
-	,@LinePosition nvarchar(15)
-	,@SalesStatus nvarchar(25)
-	,@User nvarchar(256)
-	,@PurchasingStatus nvarchar(25)
-	,@DirectedBuy bit
-	,@Material nvarchar(150)
-	,@Um nvarchar(20)
-	,@VendorQuoteEst nvarchar(20)
-	,@SalesComments nvarchar(50)
-	,@PurchasingComments nvarchar(50)
-	,@CapComAssm nvarchar(20)
-	,@CapsonicPN nvarchar(50)
-	,@CustomerPN nvarchar(50)
-	,@ManufacturePN nvarchar(50)
-	,@SupplierPN nvarchar(50)
-	,@CommCode nvarchar(50)
-	,@EAU nvarchar(50)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-
-UPDATE [APQM_DB].[dbo].[BOMDetail]
-   SET [BOMHeaderKey] = @BOMHeaderKey
-      ,[ItemMasterKey] = @ItemMasterKey
-      ,[Qty] = @Qty
-      ,[Cost] = @Cost
-      ,[Status] = @Status
-	  ,[Description] = @Description
-	  ,[LinePosition] = @LinePosition
-	  ,[SalesStatus] = @SalesStatus
-	  ,[User] = @User
-	  ,[PurchasingStatus] = @PurchasingStatus
-	  ,[DirectedBuy] = @DirectedBuy
-	  ,[Material] = @Material
-	  ,[Um] = @Um
-	  ,[VendorQuoteEst] = @VendorQuoteEst
-	  ,[SalesComments] = @SalesComments
-	  ,[PurchasingComments] = @PurchasingComments
-	  ,[CapComAssm] = @CapComAssm
-	  ,[CapsonicPN] = @CapsonicPN
-	  ,[CustomerPN] = @CustomerPN
-	  ,[ManufacturePN] = @ManufacturePN
-	  ,[SupplierPN] = @SupplierPN
-	  ,[CommCode] = @CommCode
-	  ,[EAU] = @EAU
- WHERE BOMDetailKey = @BOMDetailKey
-
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 01/02/2014 13:55:43 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[BOMDetail_NewDetail]
-	-- Add the parameters for the stored procedure here
-	 @BOMHeaderKey INT
-	,@ItemMasterKey INT
-	,@Qty float 
-	,@Cost float 
-	,@Status nvarchar(25) 
-	,@Description nvarchar(150)
-	,@LinePosition nvarchar (15)
-	,@SalesStatus nvarchar (25)
-	,@User nvarchar(256)
-	,@PurchasingStatus nvarchar(25)
-	,@DirectedBuy bit
-	,@Material nvarchar(150)
-	,@Um nvarchar(20)
-	,@VendorQuoteEst nvarchar(20)
-	,@SalesComments nvarchar(50)
-	,@PurchasingComments nvarchar(50)
-	,@CapComAssm nvarchar(20)
-	,@CapsonicPN nvarchar(50)
-	,@CustomerPN nvarchar(50)
-	,@ManufacturePN nvarchar(50)
-	,@SupplierPN nvarchar(50)
-	,@CommCode nvarchar(50)
-	,@EAU nvarchar(50)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-
-INSERT INTO [APQM_DB].[dbo].[BOMDetail]
-           ([BOMHeaderKey]
-           ,[ItemMasterKey]
-           ,[Qty]
-           ,[Cost]
-           ,[Status]
-		   ,[Description]
-		   ,[LinePosition]
-		   ,[SalesStatus]
-		   ,[User]
-		   ,[PurchasingStatus]
-		   ,[DirectedBuy]
-		   ,[Material]
-		   ,[Um]
-		   ,[VendorQuoteEst]
-		   ,[SalesComments]
-		   ,[PurchasingComments]
-		   ,[CapComAssm]
-		   ,[CapsonicPN]
-		   ,[CustomerPN]
-		   ,[ManufacturePN]
-		   ,[SupplierPN]
-		   ,[CommCode]
-		   ,[EAU])
-     VALUES
-           (@BOMHeaderKey 
-			,@ItemMasterKey 
-			,@Qty  
-			,@Cost  
-			,@Status
-			,@Description
-			,@LinePosition
-			,@SalesStatus
-			,@User
-			,@PurchasingStatus
-			,@DirectedBuy 
-			,@Material
-			,@Um
-			,@VendorQuoteEst
-			,@SalesComments
-			,@PurchasingComments
-			,@CapComAssm
-			,@CapsonicPN
-			,@CustomerPN
-			,@ManufacturePN
-			,@SupplierPN
-			,@CommCode
-			,@EAU)
-
-Select @@Identity
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_EditVolume]    Script Date: 01/02/2014 13:55:44 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[BOMDetailVolume_EditVolume]
-	-- Add the parameters for the stored procedure here
-	 @BOMDetailVolumeKey numeric(18,0)
-	,@BOMDetailKey numeric(18,0)
-	,@Volume float 
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-
-UPDATE [APQM_DB].[dbo].[BOMDetailVolume]
-   SET [BOMDetailKey] = @BOMDetailKey
-      ,[Volume] = @Volume
- WHERE BOMDetailVolumeKey = @BOMDetailVolumeKey
-
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_NewVolume]    Script Date: 01/02/2014 13:55:44 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_NewVolume]    Script Date: 01/09/2014 14:37:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2496,25 +2199,17 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 01/02/2014 13:55:47 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_EditVolume]    Script Date: 01/09/2014 14:37:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[ItemMaster_EditItem]
+CREATE PROCEDURE [dbo].[BOMDetailVolume_EditVolume]
 	-- Add the parameters for the stored procedure here
-	@PartNumber NVARCHAR(50)
-	,@PartDescription NVARCHAR(150)
-	,@UM NVARCHAR(20)
-	,@PartMaterial NVARCHAR(150)
-	,@ItemMasterKey numeric(18,0)
-	,@Cost FLOAT
-	,@CapsonicPN nvarchar(50)
-	,@CustomerPN nvarchar(50)
-	,@ManufacturePN nvarchar(50)
-	,@SupplierPN nvarchar(50)
-	,@CommCode nvarchar(50)
-	
+	 @BOMDetailVolumeKey numeric(18,0)
+	,@BOMDetailKey numeric(18,0)
+	,@Volume float 
+
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -2523,23 +2218,16 @@ BEGIN
 
     -- Insert statements for procedure here
 
-UPDATE [APQM_DB].[dbo].[ItemMaster]
-   SET [Description] = @PartDescription
-      ,[UM] = @UM
-      ,[Material] = @PartMaterial
-	  ,[PartNumber] = @PartNumber
-	  ,[Cost] = @Cost
-	  ,[CapsonicPN] = @CapsonicPN
-	  ,[CustomerPN] = @CustomerPN
-	  ,[ManufacturePN] = @ManufacturePN
-	  ,[SupplierPN] = @SupplierPN
-	  ,[CommCode] = @CommCode
-	  
- WHERE [ItemMasterKey] = @ItemMasterKey
+
+UPDATE [APQM_DB].[dbo].[BOMDetailVolume]
+   SET [BOMDetailKey] = @BOMDetailKey
+      ,[Volume] = @Volume
+ WHERE BOMDetailVolumeKey = @BOMDetailVolumeKey
+
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 01/02/2014 13:55:48 ******/
+/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 01/09/2014 14:37:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2592,7 +2280,50 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 01/02/2014 13:58:46 ******/
+/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 01/09/2014 14:37:36 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ItemMaster_EditItem]
+	-- Add the parameters for the stored procedure here
+	@PartNumber NVARCHAR(50)
+	,@PartDescription NVARCHAR(150)
+	,@UM NVARCHAR(20)
+	,@PartMaterial NVARCHAR(150)
+	,@ItemMasterKey numeric(18,0)
+	,@Cost FLOAT
+	,@CapsonicPN nvarchar(50)
+	,@CustomerPN nvarchar(50)
+	,@ManufacturePN nvarchar(50)
+	,@SupplierPN nvarchar(50)
+	,@CommCode nvarchar(50)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE [APQM_DB].[dbo].[ItemMaster]
+   SET [Description] = @PartDescription
+      ,[UM] = @UM
+      ,[Material] = @PartMaterial
+	  ,[PartNumber] = @PartNumber
+	  ,[Cost] = @Cost
+	  ,[CapsonicPN] = @CapsonicPN
+	  ,[CustomerPN] = @CustomerPN
+	  ,[ManufacturePN] = @ManufacturePN
+	  ,[SupplierPN] = @SupplierPN
+	  ,[CommCode] = @CommCode
+	  
+ WHERE [ItemMasterKey] = @ItemMasterKey
+
+END
+GO
+/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 01/09/2014 14:40:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2792,7 +2523,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
 GO
-/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 01/02/2014 13:58:42 ******/
+/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 01/09/2014 14:40:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2940,7 +2671,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 01/02/2014 13:58:44 ******/
+/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 01/09/2014 14:40:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3147,7 +2878,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCompleted'
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 01/02/2014 13:56:03 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 01/09/2014 14:38:04 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3196,7 +2927,7 @@ WHERE     (SupplierMasterKey = @SupplierKey)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 01/02/2014 13:56:04 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 01/09/2014 14:38:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3256,7 +2987,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 01/02/2014 13:58:43 ******/
+/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 01/09/2014 14:40:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3265,7 +2996,7 @@ CREATE VIEW [dbo].[viewBOMHeader_ReadAll]
 AS
 SELECT     dbo.BOMHeader.BOMHeaderKey, dbo.BOMHeader.SIFHeaderKey, dbo.BOMHeader.TopPartNumber, dbo.BOMHeader.PartDescription, dbo.SIFHeader.InquiryNumber, 
                       dbo.SIFHeader.Revision, dbo.BOMHeader.AnnualVolume, dbo.SIFHeader.SalesPerson, dbo.CustomerMaster.CustomerName, 
-                      dbo.MarketSector.Name AS MarketSector
+                      dbo.MarketSector.Name AS MarketSector, dbo.SIFHeader.AssignedTo
 FROM         dbo.BOMHeader INNER JOIN
                       dbo.SIFHeader ON dbo.BOMHeader.SIFHeaderKey = dbo.SIFHeader.SIFHeaderKey LEFT OUTER JOIN
                       dbo.MarketSector ON dbo.SIFHeader.MarketSector = dbo.MarketSector.MarketSectorID LEFT OUTER JOIN
@@ -3360,17 +3091,7 @@ Begin DesignProperties =
                Right = 476
             End
             DisplayFlags = 280
-            TopColumn = 15
-         End
-         Begin Table = "CustomerMaster"
-            Begin Extent = 
-               Top = 21
-               Left = 574
-               Bottom = 110
-               Right = 736
-            End
-            DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 16
          End
          Begin Table = "MarketSector"
             Begin Extent = 
@@ -3378,6 +3099,16 @@ Begin DesignProperties =
                Left = 559
                Bottom = 242
                Right = 723
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "CustomerMaster"
+            Begin Extent = 
+               Top = 21
+               Left = 574
+               Bottom = 110
+               Right = 736
             End
             DisplayFlags = 280
             TopColumn = 0
@@ -3414,7 +3145,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMHeader_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 01/02/2014 13:55:45 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 01/09/2014 14:37:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3454,7 +3185,7 @@ SELECT  @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 01/02/2014 13:55:45 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 01/09/2014 14:37:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3486,7 +3217,7 @@ WHERE     (BOMHeaderKey = @BOMHeaderKey)
 
 END
 GO
-/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 01/02/2014 13:58:47 ******/
+/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 01/09/2014 14:40:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3498,7 +3229,8 @@ SELECT     dbo.SIFHeader.SIFHeaderKey, dbo.SIFHeader.CustomerKey, dbo.BOMHeader.
                       dbo.SIFHeader.DivLoc, dbo.SIFHeader.Department, dbo.SIFHeader.Reason4Quote, dbo.SIFHeader.Application, dbo.SIFHeader.Specification, 
                       dbo.SIFHeader.DrawingLevel, dbo.SIFHeader.TaskDescription, dbo.SIFHeader.PartPrint, dbo.SIFHeader.Sample, dbo.SIFHeader.ToolingTarget, 
                       dbo.SIFHeader.PrimaryCompetitors, dbo.SIFHeader.SpecificResourceRequirements, dbo.SIFHeader.Technical, dbo.BOMHeader.TopPartNumber, 
-                      dbo.CustomerMaster.CustomerName, dbo.SIFHeader.QuoteDue, dbo.SIFHeader.SOP, dbo.SIFHeader.SalesDBID, dbo.SIFHeader.MarketSector
+                      dbo.CustomerMaster.CustomerName, dbo.SIFHeader.QuoteDue, dbo.SIFHeader.SOP, dbo.SIFHeader.SalesDBID, dbo.SIFHeader.MarketSector, 
+                      dbo.SIFHeader.AssignedTo
 FROM         dbo.CustomerMaster RIGHT OUTER JOIN
                       dbo.SIFHeader ON dbo.CustomerMaster.CustomerKey = dbo.SIFHeader.CustomerKey LEFT OUTER JOIN
                       dbo.BOMHeader ON dbo.SIFHeader.SIFHeaderKey = dbo.BOMHeader.SIFHeaderKey
@@ -3592,7 +3324,7 @@ Begin DesignProperties =
                Right = 302
             End
             DisplayFlags = 280
-            TopColumn = 2
+            TopColumn = 3
          End
          Begin Table = "BOMHeader"
             Begin Extent = 
@@ -3648,810 +3380,335 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSIF_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 01/02/2014 13:56:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[SIFHeader_EditSIF]
-	-- Add the parameters for the stored procedure here
-	 @CustomerKey INT 
-	,@BOMHeaderKey INT 
-	,@InquiryNumber nvarchar(50) 
-	,@Priority nvarchar(50) 
-	,@Revision nvarchar(50) 
-	,@SalesPerson nvarchar(50) 
-	,@CostModelLoc nvarchar(50) 
-	,@Contact nvarchar(50) 
-	,@BussinesClass nvarchar(50) 
-	,@Product nvarchar(50) 
-	,@DivLoc nvarchar(50) 
-	,@Department nvarchar(50) 
-	,@Reason4Quote nvarchar(50) 
-	,@Application nvarchar(50) 
-	,@Specification nvarchar(50) 
-	,@DrawingLevel nvarchar(50) 
-	,@TaskDescription nvarchar(50) 
-	,@PartPrint nvarchar(50) 
-	,@Sample nvarchar(50) 
-	,@ToolingTarget nvarchar(50) 
-	,@PrimaryCompetitors nvarchar(50) 
-	,@SpecificResourceRequirements nvarchar(50) 
-	,@Technical nvarchar(50) 
-	,@SIFHeaderKey INT
-	,@QuoteDue datetime
-	,@Sop datetime
-	,@SalesDBID BIGINT
-	,@MarketSector  numeric(18,0)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE [APQM_DB].[dbo].[SIFHeader]
-   SET [CustomerKey] = @CustomerKey 
-	  ,[BOMHeaderKey] = @BOMHeaderKey 
-      ,[InquiryNumber] = @InquiryNumber 
-      ,[Priority] = @Priority 
-      ,[Revision] = @Revision 
-      ,[SalesPerson] = @SalesPerson 
-      ,[CostModelLoc] = @CostModelLoc 
-      ,[Contact] = @Contact 
-      ,[BussinesClass] = @BussinesClass 
-      ,[Product] = @Product 
-      ,[DivLoc] = @DivLoc 
-      ,[Department] = @Department 
-      ,[Reason4Quote] = @Reason4Quote 
-      ,[Application] = @Application 
-      ,[Specification] = @Specification 
-      ,[DrawingLevel] = @DrawingLevel 
-      ,[TaskDescription] = @TaskDescription 
-      ,[PartPrint] = @PartPrint 
-      ,[Sample] = @Sample 
-      ,[ToolingTarget] = @ToolingTarget 
-      ,[PrimaryCompetitors] = @PrimaryCompetitors 
-      ,[SpecificResourceRequirements] = @SpecificResourceRequirements 
-      ,[Technical] = @Technical 
-	  ,[QuoteDue] = @QuoteDue 
-	  ,[SOP] = @Sop 
-	  ,[SalesDBID] = @SalesDBID
-	  , MarketSector = @MarketSector
-
-WHERE SIFHeaderKey=@SIFHeaderKey
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 01/02/2014 13:56:03 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[SIFHeader_NewSIF]
-	-- Add the parameters for the stored procedure here
-	 @CustomerKey INT 
-	,@BOMHeaderKey INT 
-	,@InquiryNumber nvarchar(50) 
-	,@Priority nvarchar(50) 
-	,@Revision nvarchar(50) 
-	,@SalesPerson nvarchar(50) 
-	,@CostModelLoc nvarchar(50) 
-	,@Contact nvarchar(50) 
-	,@BussinesClass nvarchar(50) 
-	,@Product nvarchar(50) 
-	,@DivLoc nvarchar(50) 
-	,@Department nvarchar(50) 
-	,@Reason4Quote nvarchar(50) 
-	,@Application nvarchar(50) 
-	,@Specification nvarchar(50) 
-	,@DrawingLevel nvarchar(50) 
-	,@TaskDescription nvarchar(50) 
-	,@PartPrint nvarchar(50) 
-	,@Sample nvarchar(50) 
-	,@ToolingTarget nvarchar(50) 
-	,@PrimaryCompetitors nvarchar(50) 
-	,@SpecificResourceRequirements nvarchar(50) 
-	,@Technical nvarchar(50) 
-	,@QuoteDue datetime
-	,@Sop datetime
-	,@SalesDBID BIGINT
-	,@MarketSector  numeric(18,0)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-INSERT INTO [APQM_DB].[dbo].[SIFHeader]
-           ([CustomerKey]
-           ,[BOMHeaderKey]
-		   ,[InquiryNumber]
-           ,[Priority]
-           ,[Revision]
-           ,[SalesPerson]
-           ,[CostModelLoc]
-           ,[Contact]
-           ,[BussinesClass]
-           ,[Product]
-           ,[DivLoc]
-           ,[Department]
-           ,[Reason4Quote]
-           ,[Application]
-           ,[Specification]
-           ,[DrawingLevel]
-           ,[TaskDescription]
-           ,[PartPrint]
-           ,[Sample]
-           ,[ToolingTarget]
-           ,[PrimaryCompetitors]
-           ,[SpecificResourceRequirements]
-           ,[Technical]
-		   ,[QuoteDue]
-		   ,[SOP]
-		   ,[SalesDBID]
-           ,[MarketSector])
-     VALUES
-           (@CustomerKey 
-		   ,@BOMHeaderKey
-           ,@InquiryNumber 
-           ,@Priority 
-           ,@Revision 
-           ,@SalesPerson 
-           ,@CostModelLoc 
-           ,@Contact 
-           ,@BussinesClass 
-           ,@Product 
-           ,@DivLoc 
-           ,@Department 
-           ,@Reason4Quote 
-           ,@Application 
-           ,@Specification 
-           ,@DrawingLevel 
-           ,@TaskDescription 
-           ,@PartPrint 
-           ,@Sample 
-           ,@ToolingTarget 
-           ,@PrimaryCompetitors 
-           ,@SpecificResourceRequirements 
-           ,@Technical
-		   ,@QuoteDue
-		   ,@Sop
-		   ,@SalesDBID
-           ,@MarketSector)
-
-	Select @@Identity
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteInactiveProfiles]    Script Date: 01/02/2014 13:55:28 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByName]    Script Date: 01/09/2014 14:37:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteInactiveProfiles]
-    @ApplicationName        nvarchar(256),
-    @ProfileAuthOptions     int,
-    @InactiveSinceDate      datetime
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByName]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @CurrentTimeUtc       datetime,
+    @UpdateLastActivity   bit = 0
 AS
 BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
+    DECLARE @UserId uniqueidentifier
+
+    IF (@UpdateLastActivity = 1)
     BEGIN
-        SELECT  0
-        RETURN
+        -- select user ID from aspnet_users table
+        SELECT TOP 1 @UserId = u.UserId
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
+
+        IF (@@ROWCOUNT = 0) -- Username not found
+            RETURN -1
+
+        UPDATE   dbo.aspnet_Users
+        SET      LastActivityDate = @CurrentTimeUtc
+        WHERE    @UserId = UserId
+
+        SELECT m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
+                u.UserId, m.IsLockedOut, m.LastLockoutDate
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE  @UserId = u.UserId AND u.UserId = m.UserId 
+    END
+    ELSE
+    BEGIN
+        SELECT TOP 1 m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
+                u.UserId, m.IsLockedOut,m.LastLockoutDate
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
+
+        IF (@@ROWCOUNT = 0) -- Username not found
+            RETURN -1
     END
 
-    DELETE
-    FROM    dbo.aspnet_Profile
-    WHERE   UserId IN
-            (   SELECT  UserId
-                FROM    dbo.aspnet_Users u
-                WHERE   ApplicationId = @ApplicationId
-                        AND (LastActivityDate <= @InactiveSinceDate)
-                        AND (
-                                (@ProfileAuthOptions = 2)
-                             OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
-                             OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
-                            )
-            )
-
-    SELECT  @@ROWCOUNT
+    RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_IsUserInRole]    Script Date: 01/02/2014 13:55:37 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByEmail]    Script Date: 01/09/2014 14:37:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_IsUserInRole]
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByEmail]
+    @ApplicationName  nvarchar(256),
+    @Email            nvarchar(256)
+AS
+BEGIN
+    IF( @Email IS NULL )
+        SELECT  u.UserName
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                u.UserId = m.UserId AND
+                m.LoweredEmail IS NULL
+    ELSE
+        SELECT  u.UserName
+        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
+                u.ApplicationId = a.ApplicationId    AND
+                u.UserId = m.UserId AND
+                LOWER(@Email) = m.LoweredEmail
+
+    IF (@@rowcount = 0)
+        RETURN(1)
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Users_DeleteUser]    Script Date: 01/09/2014 14:37:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Users_DeleteUser]
     @ApplicationName  nvarchar(256),
     @UserName         nvarchar(256),
-    @RoleName         nvarchar(256)
+    @TablesToDeleteFrom int,
+    @NumTablesDeletedFrom int OUTPUT
 AS
 BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(2)
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
-    DECLARE @RoleId uniqueidentifier
-    SELECT  @RoleId = NULL
-
-    SELECT  @UserId = UserId
-    FROM    dbo.aspnet_Users
-    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
-
-    IF (@UserId IS NULL)
-        RETURN(2)
-
-    SELECT  @RoleId = RoleId
-    FROM    dbo.aspnet_Roles
-    WHERE   LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
-
-    IF (@RoleId IS NULL)
-        RETURN(3)
-
-    IF (EXISTS( SELECT * FROM dbo.aspnet_UsersInRoles WHERE  UserId = @UserId AND RoleId = @RoleId))
-        RETURN(1)
-    ELSE
-        RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByEmail]    Script Date: 01/02/2014 13:55:12 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByEmail]
-    @ApplicationName       nvarchar(256),
-    @EmailToMatch          nvarchar(256),
-    @PageIndex             int,
-    @PageSize              int
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN 0
-
-    -- Set the page bounds
-    DECLARE @PageLowerBound int
-    DECLARE @PageUpperBound int
-    DECLARE @TotalRecords   int
-    SET @PageLowerBound = @PageSize * @PageIndex
-    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
-
-    -- Create a temp table TO store the select results
-    CREATE TABLE #PageIndexForUsers
-    (
-        IndexId int IDENTITY (0, 1) NOT NULL,
-        UserId uniqueidentifier
-    )
-
-    -- Insert into our temp table
-    IF( @EmailToMatch IS NULL )
-        INSERT INTO #PageIndexForUsers (UserId)
-            SELECT u.UserId
-            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
-            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.Email IS NULL
-            ORDER BY m.LoweredEmail
-    ELSE
-        INSERT INTO #PageIndexForUsers (UserId)
-            SELECT u.UserId
-            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
-            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.LoweredEmail LIKE LOWER(@EmailToMatch)
-            ORDER BY m.LoweredEmail
-
-    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-            m.CreateDate,
-            m.LastLoginDate,
-            u.LastActivityDate,
-            m.LastPasswordChangedDate,
-            u.UserId, m.IsLockedOut,
-            m.LastLockoutDate
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
-    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
-           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
-    ORDER BY m.LoweredEmail
-
-    SELECT  @TotalRecords = COUNT(*)
-    FROM    #PageIndexForUsers
-    RETURN @TotalRecords
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]    Script Date: 01/02/2014 13:55:29 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]
-    @ApplicationName        nvarchar(256),
-    @ProfileAuthOptions     int,
-    @InactiveSinceDate      datetime
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        SELECT 0
-        RETURN
-    END
-
-    SELECT  COUNT(*)
-    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
-    WHERE   ApplicationId = @ApplicationId
-        AND u.UserId = p.UserId
-        AND (LastActivityDate <= @InactiveSinceDate)
-        AND (
-                (@ProfileAuthOptions = 2)
-                OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
-                OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
-            )
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetRolesForUser]    Script Date: 01/02/2014 13:55:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetRolesForUser]
-    @ApplicationName  nvarchar(256),
-    @UserName         nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
-
-    SELECT  @UserId = UserId
-    FROM    dbo.aspnet_Users
-    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
-
-    IF (@UserId IS NULL)
-        RETURN(1)
-
-    SELECT r.RoleName
-    FROM   dbo.aspnet_Roles r, dbo.aspnet_UsersInRoles ur
-    WHERE  r.RoleId = ur.RoleId AND r.ApplicationId = @ApplicationId AND ur.UserId = @UserId
-    ORDER BY r.RoleName
-    RETURN (0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProfiles]    Script Date: 01/02/2014 13:55:29 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_GetProfiles]
-    @ApplicationName        nvarchar(256),
-    @ProfileAuthOptions     int,
-    @PageIndex              int,
-    @PageSize               int,
-    @UserNameToMatch        nvarchar(256) = NULL,
-    @InactiveSinceDate      datetime      = NULL
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN
-
-    -- Set the page bounds
-    DECLARE @PageLowerBound int
-    DECLARE @PageUpperBound int
-    DECLARE @TotalRecords   int
-    SET @PageLowerBound = @PageSize * @PageIndex
-    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
-
-    -- Create a temp table TO store the select results
-    CREATE TABLE #PageIndexForUsers
-    (
-        IndexId int IDENTITY (0, 1) NOT NULL,
-        UserId uniqueidentifier
-    )
-
-    -- Insert into our temp table
-    INSERT INTO #PageIndexForUsers (UserId)
-        SELECT  u.UserId
-        FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
-        WHERE   ApplicationId = @ApplicationId
-            AND u.UserId = p.UserId
-            AND (@InactiveSinceDate IS NULL OR LastActivityDate <= @InactiveSinceDate)
-            AND (     (@ProfileAuthOptions = 2)
-                   OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
-                   OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
-                 )
-            AND (@UserNameToMatch IS NULL OR LoweredUserName LIKE LOWER(@UserNameToMatch))
-        ORDER BY UserName
-
-    SELECT  u.UserName, u.IsAnonymous, u.LastActivityDate, p.LastUpdatedDate,
-            DATALENGTH(p.PropertyNames) + DATALENGTH(p.PropertyValuesString) + DATALENGTH(p.PropertyValuesBinary)
-    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p, #PageIndexForUsers i
-    WHERE   u.UserId = p.UserId AND p.UserId = i.UserId AND i.IndexId >= @PageLowerBound AND i.IndexId <= @PageUpperBound
-
-    SELECT COUNT(*)
-    FROM   #PageIndexForUsers
-
-    DROP TABLE #PageIndexForUsers
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_DeleteRole]    Script Date: 01/02/2014 13:55:32 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Roles_DeleteRole]
-    @ApplicationName            nvarchar(256),
-    @RoleName                   nvarchar(256),
-    @DeleteOnlyIfRoleIsEmpty    bit
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-
-    DECLARE @ErrorCode     int
-    SET @ErrorCode = 0
+    DECLARE @UserId               uniqueidentifier
+    SELECT  @UserId               = NULL
+    SELECT  @NumTablesDeletedFrom = 0
 
     DECLARE @TranStarted   bit
     SET @TranStarted = 0
 
     IF( @@TRANCOUNT = 0 )
     BEGIN
-        BEGIN TRANSACTION
-        SET @TranStarted = 1
+	    BEGIN TRANSACTION
+	    SET @TranStarted = 1
     END
     ELSE
-        SET @TranStarted = 0
+	SET @TranStarted = 0
 
-    DECLARE @RoleId   uniqueidentifier
-    SELECT  @RoleId = NULL
-    SELECT  @RoleId = RoleId FROM dbo.aspnet_Roles WHERE LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
+    DECLARE @ErrorCode   int
+    DECLARE @RowCount    int
 
-    IF (@RoleId IS NULL)
+    SET @ErrorCode = 0
+    SET @RowCount  = 0
+
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a
+    WHERE   u.LoweredUserName       = LOWER(@UserName)
+        AND u.ApplicationId         = a.ApplicationId
+        AND LOWER(@ApplicationName) = a.LoweredApplicationName
+
+    IF (@UserId IS NULL)
     BEGIN
-        SELECT @ErrorCode = 1
         GOTO Cleanup
     END
-    IF (@DeleteOnlyIfRoleIsEmpty <> 0)
+
+    -- Delete from Membership table if (@TablesToDeleteFrom & 1) is set
+    IF ((@TablesToDeleteFrom & 1) <> 0 AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
     BEGIN
-        IF (EXISTS (SELECT RoleId FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId))
-        BEGIN
-            SELECT @ErrorCode = 2
+        DELETE FROM dbo.aspnet_Membership WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+               @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
             GOTO Cleanup
-        END
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
     END
 
-
-    DELETE FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId
-
-    IF( @@ERROR <> 0 )
+    -- Delete from aspnet_UsersInRoles table if (@TablesToDeleteFrom & 2) is set
+    IF ((@TablesToDeleteFrom & 2) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_UsersInRoles') AND (type = 'V'))) )
     BEGIN
-        SET @ErrorCode = -1
-        GOTO Cleanup
+        DELETE FROM dbo.aspnet_UsersInRoles WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
     END
 
-    DELETE FROM dbo.aspnet_Roles WHERE @RoleId = RoleId  AND ApplicationId = @ApplicationId
-
-    IF( @@ERROR <> 0 )
+    -- Delete from aspnet_Profile table if (@TablesToDeleteFrom & 4) is set
+    IF ((@TablesToDeleteFrom & 4) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
     BEGIN
-        SET @ErrorCode = -1
-        GOTO Cleanup
+        DELETE FROM dbo.aspnet_Profile WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_PersonalizationPerUser table if (@TablesToDeleteFrom & 8) is set
+    IF ((@TablesToDeleteFrom & 8) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
+    BEGIN
+        DELETE FROM dbo.aspnet_PersonalizationPerUser WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+    END
+
+    -- Delete from aspnet_Users table if (@TablesToDeleteFrom & 1,2,4 & 8) are all set
+    IF ((@TablesToDeleteFrom & 1) <> 0 AND
+        (@TablesToDeleteFrom & 2) <> 0 AND
+        (@TablesToDeleteFrom & 4) <> 0 AND
+        (@TablesToDeleteFrom & 8) <> 0 AND
+        (EXISTS (SELECT UserId FROM dbo.aspnet_Users WHERE @UserId = UserId)))
+    BEGIN
+        DELETE FROM dbo.aspnet_Users WHERE @UserId = UserId
+
+        SELECT @ErrorCode = @@ERROR,
+                @RowCount = @@ROWCOUNT
+
+        IF( @ErrorCode <> 0 )
+            GOTO Cleanup
+
+        IF (@RowCount <> 0)
+            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
     END
 
     IF( @TranStarted = 1 )
     BEGIN
-        SET @TranStarted = 0
-        COMMIT TRANSACTION
+	    SET @TranStarted = 0
+	    COMMIT TRANSACTION
     END
 
-    RETURN(0)
+    RETURN 0
 
 Cleanup:
+    SET @NumTablesDeletedFrom = 0
 
     IF( @TranStarted = 1 )
     BEGIN
         SET @TranStarted = 0
-        ROLLBACK TRANSACTION
+	    ROLLBACK TRANSACTION
     END
 
     RETURN @ErrorCode
+
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_AddUsersToRoles]    Script Date: 01/02/2014 13:55:35 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_AnyDataInTables]    Script Date: 01/09/2014 14:37:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_AddUsersToRoles]
-	@ApplicationName  nvarchar(256),
-	@UserNames		  nvarchar(4000),
-	@RoleNames		  nvarchar(4000),
-	@CurrentTimeUtc   datetime
+CREATE PROCEDURE [dbo].[aspnet_AnyDataInTables]
+    @TablesToCheck int
 AS
 BEGIN
-	DECLARE @AppId uniqueidentifier
-	SELECT  @AppId = NULL
-	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-	IF (@AppId IS NULL)
-		RETURN(2)
-	DECLARE @TranStarted   bit
-	SET @TranStarted = 0
+    -- Check Membership table if (@TablesToCheck & 1) is set
+    IF ((@TablesToCheck & 1) <> 0 AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Membership))
+        BEGIN
+            SELECT N'aspnet_Membership'
+            RETURN
+        END
+    END
 
-	IF( @@TRANCOUNT = 0 )
-	BEGIN
-		BEGIN TRANSACTION
-		SET @TranStarted = 1
-	END
+    -- Check aspnet_Roles table if (@TablesToCheck & 2) is set
+    IF ((@TablesToCheck & 2) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Roles') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 RoleId FROM dbo.aspnet_Roles))
+        BEGIN
+            SELECT N'aspnet_Roles'
+            RETURN
+        END
+    END
 
-	DECLARE @tbNames	table(Name nvarchar(256) NOT NULL PRIMARY KEY)
-	DECLARE @tbRoles	table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
-	DECLARE @tbUsers	table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
-	DECLARE @Num		int
-	DECLARE @Pos		int
-	DECLARE @NextPos	int
-	DECLARE @Name		nvarchar(256)
+    -- Check aspnet_Profile table if (@TablesToCheck & 4) is set
+    IF ((@TablesToCheck & 4) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Profile))
+        BEGIN
+            SELECT N'aspnet_Profile'
+            RETURN
+        END
+    END
 
-	SET @Num = 0
-	SET @Pos = 1
-	WHILE(@Pos <= LEN(@RoleNames))
-	BEGIN
-		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
-		IF (@NextPos = 0 OR @NextPos IS NULL)
-			SELECT @NextPos = LEN(@RoleNames) + 1
-		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
-		SELECT @Pos = @NextPos+1
+    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 8) is set
+    IF ((@TablesToCheck & 8) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_PersonalizationPerUser))
+        BEGIN
+            SELECT N'aspnet_PersonalizationPerUser'
+            RETURN
+        END
+    END
 
-		INSERT INTO @tbNames VALUES (@Name)
-		SET @Num = @Num + 1
-	END
+    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 16) is set
+    IF ((@TablesToCheck & 16) <> 0  AND
+        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'aspnet_WebEvent_LogEvent') AND (type = 'P'))) )
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 * FROM dbo.aspnet_WebEvent_Events))
+        BEGIN
+            SELECT N'aspnet_WebEvent_Events'
+            RETURN
+        END
+    END
 
-	INSERT INTO @tbRoles
-	  SELECT RoleId
-	  FROM   dbo.aspnet_Roles ar, @tbNames t
-	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
-
-	IF (@@ROWCOUNT <> @Num)
-	BEGIN
-		SELECT TOP 1 Name
-		FROM   @tbNames
-		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
-		IF( @TranStarted = 1 )
-			ROLLBACK TRANSACTION
-		RETURN(2)
-	END
-
-	DELETE FROM @tbNames WHERE 1=1
-	SET @Num = 0
-	SET @Pos = 1
-
-	WHILE(@Pos <= LEN(@UserNames))
-	BEGIN
-		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
-		IF (@NextPos = 0 OR @NextPos IS NULL)
-			SELECT @NextPos = LEN(@UserNames) + 1
-		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
-		SELECT @Pos = @NextPos+1
-
-		INSERT INTO @tbNames VALUES (@Name)
-		SET @Num = @Num + 1
-	END
-
-	INSERT INTO @tbUsers
-	  SELECT UserId
-	  FROM   dbo.aspnet_Users ar, @tbNames t
-	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
-
-	IF (@@ROWCOUNT <> @Num)
-	BEGIN
-		DELETE FROM @tbNames
-		WHERE LOWER(Name) IN (SELECT LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE au.UserId = u.UserId)
-
-		INSERT dbo.aspnet_Users (ApplicationId, UserId, UserName, LoweredUserName, IsAnonymous, LastActivityDate)
-		  SELECT @AppId, NEWID(), Name, LOWER(Name), 0, @CurrentTimeUtc
-		  FROM   @tbNames
-
-		INSERT INTO @tbUsers
-		  SELECT  UserId
-		  FROM	dbo.aspnet_Users au, @tbNames t
-		  WHERE   LOWER(t.Name) = au.LoweredUserName AND au.ApplicationId = @AppId
-	END
-
-	IF (EXISTS (SELECT * FROM dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr WHERE tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId))
-	BEGIN
-		SELECT TOP 1 UserName, RoleName
-		FROM		 dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr, aspnet_Users u, aspnet_Roles r
-		WHERE		u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId
-
-		IF( @TranStarted = 1 )
-			ROLLBACK TRANSACTION
-		RETURN(3)
-	END
-
-	INSERT INTO dbo.aspnet_UsersInRoles (UserId, RoleId)
-	SELECT UserId, RoleId
-	FROM @tbUsers, @tbRoles
-
-	IF( @TranStarted = 1 )
-		COMMIT TRANSACTION
-	RETURN(0)
+    -- Check aspnet_Users table if (@TablesToCheck & 1,2,4 & 8) are all set
+    IF ((@TablesToCheck & 1) <> 0 AND
+        (@TablesToCheck & 2) <> 0 AND
+        (@TablesToCheck & 4) <> 0 AND
+        (@TablesToCheck & 8) <> 0 AND
+        (@TablesToCheck & 32) <> 0 AND
+        (@TablesToCheck & 128) <> 0 AND
+        (@TablesToCheck & 256) <> 0 AND
+        (@TablesToCheck & 512) <> 0 AND
+        (@TablesToCheck & 1024) <> 0)
+    BEGIN
+        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Users))
+        BEGIN
+            SELECT N'aspnet_Users'
+            RETURN
+        END
+        IF (EXISTS(SELECT TOP 1 ApplicationId FROM dbo.aspnet_Applications))
+        BEGIN
+            SELECT N'aspnet_Applications'
+            RETURN
+        END
+    END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]    Script Date: 01/02/2014 13:55:38 ******/
+/****** Object:  View [dbo].[vw_aspnet_Applications]    Script Date: 01/09/2014 14:40:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]
-	@ApplicationName  nvarchar(256),
-	@UserNames		  nvarchar(4000),
-	@RoleNames		  nvarchar(4000)
-AS
-BEGIN
-	DECLARE @AppId uniqueidentifier
-	SELECT  @AppId = NULL
-	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-	IF (@AppId IS NULL)
-		RETURN(2)
-
-
-	DECLARE @TranStarted   bit
-	SET @TranStarted = 0
-
-	IF( @@TRANCOUNT = 0 )
-	BEGIN
-		BEGIN TRANSACTION
-		SET @TranStarted = 1
-	END
-
-	DECLARE @tbNames  table(Name nvarchar(256) NOT NULL PRIMARY KEY)
-	DECLARE @tbRoles  table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
-	DECLARE @tbUsers  table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
-	DECLARE @Num	  int
-	DECLARE @Pos	  int
-	DECLARE @NextPos  int
-	DECLARE @Name	  nvarchar(256)
-	DECLARE @CountAll int
-	DECLARE @CountU	  int
-	DECLARE @CountR	  int
-
-
-	SET @Num = 0
-	SET @Pos = 1
-	WHILE(@Pos <= LEN(@RoleNames))
-	BEGIN
-		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
-		IF (@NextPos = 0 OR @NextPos IS NULL)
-			SELECT @NextPos = LEN(@RoleNames) + 1
-		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
-		SELECT @Pos = @NextPos+1
-
-		INSERT INTO @tbNames VALUES (@Name)
-		SET @Num = @Num + 1
-	END
-
-	INSERT INTO @tbRoles
-	  SELECT RoleId
-	  FROM   dbo.aspnet_Roles ar, @tbNames t
-	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
-	SELECT @CountR = @@ROWCOUNT
-
-	IF (@CountR <> @Num)
-	BEGIN
-		SELECT TOP 1 N'', Name
-		FROM   @tbNames
-		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
-		IF( @TranStarted = 1 )
-			ROLLBACK TRANSACTION
-		RETURN(2)
-	END
-
-
-	DELETE FROM @tbNames WHERE 1=1
-	SET @Num = 0
-	SET @Pos = 1
-
-
-	WHILE(@Pos <= LEN(@UserNames))
-	BEGIN
-		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
-		IF (@NextPos = 0 OR @NextPos IS NULL)
-			SELECT @NextPos = LEN(@UserNames) + 1
-		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
-		SELECT @Pos = @NextPos+1
-
-		INSERT INTO @tbNames VALUES (@Name)
-		SET @Num = @Num + 1
-	END
-
-	INSERT INTO @tbUsers
-	  SELECT UserId
-	  FROM   dbo.aspnet_Users ar, @tbNames t
-	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
-
-	SELECT @CountU = @@ROWCOUNT
-	IF (@CountU <> @Num)
-	BEGIN
-		SELECT TOP 1 Name, N''
-		FROM   @tbNames
-		WHERE  LOWER(Name) NOT IN (SELECT au.LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE u.UserId = au.UserId)
-
-		IF( @TranStarted = 1 )
-			ROLLBACK TRANSACTION
-		RETURN(1)
-	END
-
-	SELECT  @CountAll = COUNT(*)
-	FROM	dbo.aspnet_UsersInRoles ur, @tbUsers u, @tbRoles r
-	WHERE   ur.UserId = u.UserId AND ur.RoleId = r.RoleId
-
-	IF (@CountAll <> @CountU * @CountR)
-	BEGIN
-		SELECT TOP 1 UserName, RoleName
-		FROM		 @tbUsers tu, @tbRoles tr, dbo.aspnet_Users u, dbo.aspnet_Roles r
-		WHERE		 u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND
-					 tu.UserId NOT IN (SELECT ur.UserId FROM dbo.aspnet_UsersInRoles ur WHERE ur.RoleId = tr.RoleId) AND
-					 tr.RoleId NOT IN (SELECT ur.RoleId FROM dbo.aspnet_UsersInRoles ur WHERE ur.UserId = tu.UserId)
-		IF( @TranStarted = 1 )
-			ROLLBACK TRANSACTION
-		RETURN(3)
-	END
-
-	DELETE FROM dbo.aspnet_UsersInRoles
-	WHERE UserId IN (SELECT UserId FROM @tbUsers)
-	  AND RoleId IN (SELECT RoleId FROM @tbRoles)
-	IF( @TranStarted = 1 )
-		COMMIT TRANSACTION
-	RETURN(0)
-END
+CREATE VIEW [dbo].[vw_aspnet_Applications]
+  AS SELECT [dbo].[aspnet_Applications].[ApplicationName], [dbo].[aspnet_Applications].[LoweredApplicationName], [dbo].[aspnet_Applications].[ApplicationId], [dbo].[aspnet_Applications].[Description]
+  FROM [dbo].[aspnet_Applications]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetNumberOfUsersOnline]    Script Date: 01/02/2014 13:55:14 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_GetNumberOfUsersOnline]
-    @ApplicationName            nvarchar(256),
-    @MinutesSinceLastInActive   int,
-    @CurrentTimeUtc             datetime
-AS
-BEGIN
-    DECLARE @DateActive datetime
-    SELECT  @DateActive = DATEADD(minute,  -(@MinutesSinceLastInActive), @CurrentTimeUtc)
-
-    DECLARE @NumOnline int
-    SELECT  @NumOnline = COUNT(*)
-    FROM    dbo.aspnet_Users u(NOLOCK),
-            dbo.aspnet_Applications a(NOLOCK),
-            dbo.aspnet_Membership m(NOLOCK)
-    WHERE   u.ApplicationId = a.ApplicationId                  AND
-            LastActivityDate > @DateActive                     AND
-            a.LoweredApplicationName = LOWER(@ApplicationName) AND
-            u.UserId = m.UserId
-    RETURN(@NumOnline)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UnlockUser]    Script Date: 01/02/2014 13:55:18 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UnlockUser]    Script Date: 01/09/2014 14:37:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4485,359 +3742,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]    Script Date: 01/02/2014 13:55:10 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]
-    @ApplicationName       nvarchar(256),
-    @UserName              nvarchar(256),
-    @NewPasswordQuestion   nvarchar(256),
-    @NewPasswordAnswer     nvarchar(128)
-AS
-BEGIN
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
-    SELECT  @UserId = u.UserId
-    FROM    dbo.aspnet_Membership m, dbo.aspnet_Users u, dbo.aspnet_Applications a
-    WHERE   LoweredUserName = LOWER(@UserName) AND
-            u.ApplicationId = a.ApplicationId  AND
-            LOWER(@ApplicationName) = a.LoweredApplicationName AND
-            u.UserId = m.UserId
-    IF (@UserId IS NULL)
-    BEGIN
-        RETURN(1)
-    END
-
-    UPDATE dbo.aspnet_Membership
-    SET    PasswordQuestion = @NewPasswordQuestion, PasswordAnswer = @NewPasswordAnswer
-    WHERE  UserId=@UserId
-    RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Applications_CreateApplication]    Script Date: 01/02/2014 13:55:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Applications_CreateApplication]
-    @ApplicationName      nvarchar(256),
-    @ApplicationId        uniqueidentifier OUTPUT
-AS
-BEGIN
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-
-    IF(@ApplicationId IS NULL)
-    BEGIN
-        DECLARE @TranStarted   bit
-        SET @TranStarted = 0
-
-        IF( @@TRANCOUNT = 0 )
-        BEGIN
-	        BEGIN TRANSACTION
-	        SET @TranStarted = 1
-        END
-        ELSE
-    	    SET @TranStarted = 0
-
-        SELECT  @ApplicationId = ApplicationId
-        FROM dbo.aspnet_Applications WITH (UPDLOCK, HOLDLOCK)
-        WHERE LOWER(@ApplicationName) = LoweredApplicationName
-
-        IF(@ApplicationId IS NULL)
-        BEGIN
-            SELECT  @ApplicationId = NEWID()
-            INSERT  dbo.aspnet_Applications (ApplicationId, ApplicationName, LoweredApplicationName)
-            VALUES  (@ApplicationId, @ApplicationName, LOWER(@ApplicationName))
-        END
-
-
-        IF( @TranStarted = 1 )
-        BEGIN
-            IF(@@ERROR = 0)
-            BEGIN
-	        SET @TranStarted = 0
-	        COMMIT TRANSACTION
-            END
-            ELSE
-            BEGIN
-                SET @TranStarted = 0
-                ROLLBACK TRANSACTION
-            END
-        END
-    END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetAllUsers]    Script Date: 01/02/2014 13:55:13 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_GetAllUsers]
-    @ApplicationName       nvarchar(256),
-    @PageIndex             int,
-    @PageSize              int
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN 0
-
-
-    -- Set the page bounds
-    DECLARE @PageLowerBound int
-    DECLARE @PageUpperBound int
-    DECLARE @TotalRecords   int
-    SET @PageLowerBound = @PageSize * @PageIndex
-    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
-
-    -- Create a temp table TO store the select results
-    CREATE TABLE #PageIndexForUsers
-    (
-        IndexId int IDENTITY (0, 1) NOT NULL,
-        UserId uniqueidentifier
-    )
-
-    -- Insert into our temp table
-    INSERT INTO #PageIndexForUsers (UserId)
-    SELECT u.UserId
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u
-    WHERE  u.ApplicationId = @ApplicationId AND u.UserId = m.UserId
-    ORDER BY u.UserName
-
-    SELECT @TotalRecords = @@ROWCOUNT
-
-    SELECT u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-            m.CreateDate,
-            m.LastLoginDate,
-            u.LastActivityDate,
-            m.LastPasswordChangedDate,
-            u.UserId, m.IsLockedOut,
-            m.LastLockoutDate
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
-    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
-           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
-    ORDER BY u.UserName
-    RETURN @TotalRecords
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProperties]    Script Date: 01/02/2014 13:55:30 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_GetProperties]
-    @ApplicationName      nvarchar(256),
-    @UserName             nvarchar(256),
-    @CurrentTimeUtc       datetime
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN
-
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
-
-    SELECT @UserId = UserId
-    FROM   dbo.aspnet_Users
-    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
-
-    IF (@UserId IS NULL)
-        RETURN
-    SELECT TOP 1 PropertyNames, PropertyValuesString, PropertyValuesBinary
-    FROM         dbo.aspnet_Profile
-    WHERE        UserId = @UserId
-
-    IF (@@ROWCOUNT > 0)
-    BEGIN
-        UPDATE dbo.aspnet_Users
-        SET    LastActivityDate=@CurrentTimeUtc
-        WHERE  UserId = @UserId
-    END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByName]    Script Date: 01/02/2014 13:55:13 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByName]
-    @ApplicationName       nvarchar(256),
-    @UserNameToMatch       nvarchar(256),
-    @PageIndex             int,
-    @PageSize              int
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN 0
-
-    -- Set the page bounds
-    DECLARE @PageLowerBound int
-    DECLARE @PageUpperBound int
-    DECLARE @TotalRecords   int
-    SET @PageLowerBound = @PageSize * @PageIndex
-    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
-
-    -- Create a temp table TO store the select results
-    CREATE TABLE #PageIndexForUsers
-    (
-        IndexId int IDENTITY (0, 1) NOT NULL,
-        UserId uniqueidentifier
-    )
-
-    -- Insert into our temp table
-    INSERT INTO #PageIndexForUsers (UserId)
-        SELECT u.UserId
-        FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND u.LoweredUserName LIKE LOWER(@UserNameToMatch)
-        ORDER BY u.UserName
-
-
-    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-            m.CreateDate,
-            m.LastLoginDate,
-            u.LastActivityDate,
-            m.LastPasswordChangedDate,
-            u.UserId, m.IsLockedOut,
-            m.LastLockoutDate
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
-    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
-           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
-    ORDER BY u.UserName
-
-    SELECT  @TotalRecords = COUNT(*)
-    FROM    #PageIndexForUsers
-    RETURN @TotalRecords
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Personalization_GetApplicationId]    Script Date: 01/02/2014 13:55:21 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Personalization_GetApplicationId] (
-    @ApplicationName NVARCHAR(256),
-    @ApplicationId UNIQUEIDENTIFIER OUT)
-AS
-BEGIN
-    SELECT @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_RoleExists]    Script Date: 01/02/2014 13:55:33 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Roles_RoleExists]
-    @ApplicationName  nvarchar(256),
-    @RoleName         nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(0)
-    IF (EXISTS (SELECT RoleName FROM dbo.aspnet_Roles WHERE LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId ))
-        RETURN(1)
-    ELSE
-        RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_GetAllRoles]    Script Date: 01/02/2014 13:55:32 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Roles_GetAllRoles] (
-    @ApplicationName           nvarchar(256))
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN
-    SELECT RoleName
-    FROM   dbo.aspnet_Roles WHERE ApplicationId = @ApplicationId
-    ORDER BY RoleName
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetUsersInRoles]    Script Date: 01/02/2014 13:55:37 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetUsersInRoles]
-    @ApplicationName  nvarchar(256),
-    @RoleName         nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-     DECLARE @RoleId uniqueidentifier
-     SELECT  @RoleId = NULL
-
-     SELECT  @RoleId = RoleId
-     FROM    dbo.aspnet_Roles
-     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
-
-     IF (@RoleId IS NULL)
-         RETURN(1)
-
-    SELECT u.UserName
-    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
-    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId
-    ORDER BY u.UserName
-    RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_FindUsersInRole]    Script Date: 01/02/2014 13:55:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_FindUsersInRole]
-    @ApplicationName  nvarchar(256),
-    @RoleName         nvarchar(256),
-    @UserNameToMatch  nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-     DECLARE @RoleId uniqueidentifier
-     SELECT  @RoleId = NULL
-
-     SELECT  @RoleId = RoleId
-     FROM    dbo.aspnet_Roles
-     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
-
-     IF (@RoleId IS NULL)
-         RETURN(1)
-
-    SELECT u.UserName
-    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
-    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId AND LoweredUserName LIKE LOWER(@UserNameToMatch)
-    ORDER BY u.UserName
-    RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ResetPassword]    Script Date: 01/02/2014 13:55:17 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ResetPassword]    Script Date: 01/09/2014 14:37:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4983,40 +3888,38 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_SetPassword]    Script Date: 01/02/2014 13:55:18 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]    Script Date: 01/09/2014 14:37:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_SetPassword]
-    @ApplicationName  nvarchar(256),
-    @UserName         nvarchar(256),
-    @NewPassword      nvarchar(128),
-    @PasswordSalt     nvarchar(128),
-    @CurrentTimeUtc   datetime,
-    @PasswordFormat   int = 0
+CREATE PROCEDURE [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]
+    @ApplicationName       nvarchar(256),
+    @UserName              nvarchar(256),
+    @NewPasswordQuestion   nvarchar(256),
+    @NewPasswordAnswer     nvarchar(128)
 AS
 BEGIN
     DECLARE @UserId uniqueidentifier
     SELECT  @UserId = NULL
     SELECT  @UserId = u.UserId
-    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    FROM    dbo.aspnet_Membership m, dbo.aspnet_Users u, dbo.aspnet_Applications a
     WHERE   LoweredUserName = LOWER(@UserName) AND
             u.ApplicationId = a.ApplicationId  AND
             LOWER(@ApplicationName) = a.LoweredApplicationName AND
             u.UserId = m.UserId
-
     IF (@UserId IS NULL)
+    BEGIN
         RETURN(1)
+    END
 
     UPDATE dbo.aspnet_Membership
-    SET Password = @NewPassword, PasswordFormat = @PasswordFormat, PasswordSalt = @PasswordSalt,
-        LastPasswordChangedDate = @CurrentTimeUtc
-    WHERE @UserId = UserId
+    SET    PasswordQuestion = @NewPasswordQuestion, PasswordAnswer = @NewPasswordAnswer
+    WHERE  UserId=@UserId
     RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUser]    Script Date: 01/02/2014 13:55:19 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUser]    Script Date: 01/09/2014 14:37:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5108,7 +4011,7 @@ Cleanup:
     RETURN -1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPasswordWithFormat]    Script Date: 01/02/2014 13:55:15 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPasswordWithFormat]    Script Date: 01/09/2014 14:37:06 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5167,37 +4070,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByEmail]    Script Date: 01/02/2014 13:55:15 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByEmail]
-    @ApplicationName  nvarchar(256),
-    @Email            nvarchar(256)
-AS
-BEGIN
-    IF( @Email IS NULL )
-        SELECT  u.UserName
-        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
-                u.ApplicationId = a.ApplicationId    AND
-                u.UserId = m.UserId AND
-                m.LoweredEmail IS NULL
-    ELSE
-        SELECT  u.UserName
-        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE   LOWER(@ApplicationName) = a.LoweredApplicationName AND
-                u.ApplicationId = a.ApplicationId    AND
-                u.UserId = m.UserId AND
-                LOWER(@Email) = m.LoweredEmail
-
-    IF (@@rowcount = 0)
-        RETURN(1)
-    RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUserInfo]    Script Date: 01/02/2014 13:55:20 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUserInfo]    Script Date: 01/09/2014 14:37:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5353,7 +4226,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPassword]    Script Date: 01/02/2014 13:55:14 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPassword]    Script Date: 01/09/2014 14:37:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5492,330 +4365,983 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_AnyDataInTables]    Script Date: 01/02/2014 13:55:09 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_SetPassword]    Script Date: 01/09/2014 14:37:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_AnyDataInTables]
-    @TablesToCheck int
-AS
-BEGIN
-    -- Check Membership table if (@TablesToCheck & 1) is set
-    IF ((@TablesToCheck & 1) <> 0 AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Membership))
-        BEGIN
-            SELECT N'aspnet_Membership'
-            RETURN
-        END
-    END
-
-    -- Check aspnet_Roles table if (@TablesToCheck & 2) is set
-    IF ((@TablesToCheck & 2) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Roles') AND (type = 'V'))) )
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 RoleId FROM dbo.aspnet_Roles))
-        BEGIN
-            SELECT N'aspnet_Roles'
-            RETURN
-        END
-    END
-
-    -- Check aspnet_Profile table if (@TablesToCheck & 4) is set
-    IF ((@TablesToCheck & 4) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Profile))
-        BEGIN
-            SELECT N'aspnet_Profile'
-            RETURN
-        END
-    END
-
-    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 8) is set
-    IF ((@TablesToCheck & 8) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_PersonalizationPerUser))
-        BEGIN
-            SELECT N'aspnet_PersonalizationPerUser'
-            RETURN
-        END
-    END
-
-    -- Check aspnet_PersonalizationPerUser table if (@TablesToCheck & 16) is set
-    IF ((@TablesToCheck & 16) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'aspnet_WebEvent_LogEvent') AND (type = 'P'))) )
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 * FROM dbo.aspnet_WebEvent_Events))
-        BEGIN
-            SELECT N'aspnet_WebEvent_Events'
-            RETURN
-        END
-    END
-
-    -- Check aspnet_Users table if (@TablesToCheck & 1,2,4 & 8) are all set
-    IF ((@TablesToCheck & 1) <> 0 AND
-        (@TablesToCheck & 2) <> 0 AND
-        (@TablesToCheck & 4) <> 0 AND
-        (@TablesToCheck & 8) <> 0 AND
-        (@TablesToCheck & 32) <> 0 AND
-        (@TablesToCheck & 128) <> 0 AND
-        (@TablesToCheck & 256) <> 0 AND
-        (@TablesToCheck & 512) <> 0 AND
-        (@TablesToCheck & 1024) <> 0)
-    BEGIN
-        IF (EXISTS(SELECT TOP 1 UserId FROM dbo.aspnet_Users))
-        BEGIN
-            SELECT N'aspnet_Users'
-            RETURN
-        END
-        IF (EXISTS(SELECT TOP 1 ApplicationId FROM dbo.aspnet_Applications))
-        BEGIN
-            SELECT N'aspnet_Applications'
-            RETURN
-        END
-    END
-END
-GO
-/****** Object:  View [dbo].[vw_aspnet_Applications]    Script Date: 01/02/2014 13:58:47 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE VIEW [dbo].[vw_aspnet_Applications]
-  AS SELECT [dbo].[aspnet_Applications].[ApplicationName], [dbo].[aspnet_Applications].[LoweredApplicationName], [dbo].[aspnet_Applications].[ApplicationId], [dbo].[aspnet_Applications].[Description]
-  FROM [dbo].[aspnet_Applications]
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByName]    Script Date: 01/02/2014 13:55:16 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_GetUserByName]
-    @ApplicationName      nvarchar(256),
-    @UserName             nvarchar(256),
-    @CurrentTimeUtc       datetime,
-    @UpdateLastActivity   bit = 0
+CREATE PROCEDURE [dbo].[aspnet_Membership_SetPassword]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256),
+    @NewPassword      nvarchar(128),
+    @PasswordSalt     nvarchar(128),
+    @CurrentTimeUtc   datetime,
+    @PasswordFormat   int = 0
 AS
 BEGIN
     DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    SELECT  @UserId = u.UserId
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a, dbo.aspnet_Membership m
+    WHERE   LoweredUserName = LOWER(@UserName) AND
+            u.ApplicationId = a.ApplicationId  AND
+            LOWER(@ApplicationName) = a.LoweredApplicationName AND
+            u.UserId = m.UserId
 
-    IF (@UpdateLastActivity = 1)
-    BEGIN
-        -- select user ID from aspnet_users table
-        SELECT TOP 1 @UserId = u.UserId
-        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
-                u.ApplicationId = a.ApplicationId    AND
-                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
+    IF (@UserId IS NULL)
+        RETURN(1)
 
-        IF (@@ROWCOUNT = 0) -- Username not found
-            RETURN -1
-
-        UPDATE   dbo.aspnet_Users
-        SET      LastActivityDate = @CurrentTimeUtc
-        WHERE    @UserId = UserId
-
-        SELECT m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
-                u.UserId, m.IsLockedOut, m.LastLockoutDate
-        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE  @UserId = u.UserId AND u.UserId = m.UserId 
-    END
-    ELSE
-    BEGIN
-        SELECT TOP 1 m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-                m.CreateDate, m.LastLoginDate, u.LastActivityDate, m.LastPasswordChangedDate,
-                u.UserId, m.IsLockedOut,m.LastLockoutDate
-        FROM    dbo.aspnet_Applications a, dbo.aspnet_Users u, dbo.aspnet_Membership m
-        WHERE    LOWER(@ApplicationName) = a.LoweredApplicationName AND
-                u.ApplicationId = a.ApplicationId    AND
-                LOWER(@UserName) = u.LoweredUserName AND u.UserId = m.UserId
-
-        IF (@@ROWCOUNT = 0) -- Username not found
-            RETURN -1
-    END
-
-    RETURN 0
+    UPDATE dbo.aspnet_Membership
+    SET Password = @NewPassword, PasswordFormat = @PasswordFormat, PasswordSalt = @PasswordSalt,
+        LastPasswordChangedDate = @CurrentTimeUtc
+    WHERE @UserId = UserId
+    RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Users_DeleteUser]    Script Date: 01/02/2014 13:55:35 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Personalization_GetApplicationId]    Script Date: 01/09/2014 14:37:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_Users_DeleteUser]
-    @ApplicationName  nvarchar(256),
-    @UserName         nvarchar(256),
-    @TablesToDeleteFrom int,
-    @NumTablesDeletedFrom int OUTPUT
+CREATE PROCEDURE [dbo].[aspnet_Personalization_GetApplicationId] (
+    @ApplicationName NVARCHAR(256),
+    @ApplicationId UNIQUEIDENTIFIER OUT)
 AS
 BEGIN
-    DECLARE @UserId               uniqueidentifier
-    SELECT  @UserId               = NULL
-    SELECT  @NumTablesDeletedFrom = 0
+    SELECT @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_RoleExists]    Script Date: 01/09/2014 14:37:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_RoleExists]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(0)
+    IF (EXISTS (SELECT RoleName FROM dbo.aspnet_Roles WHERE LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId ))
+        RETURN(1)
+    ELSE
+        RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_FindUsersInRole]    Script Date: 01/09/2014 14:37:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_FindUsersInRole]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256),
+    @UserNameToMatch  nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+     DECLARE @RoleId uniqueidentifier
+     SELECT  @RoleId = NULL
+
+     SELECT  @RoleId = RoleId
+     FROM    dbo.aspnet_Roles
+     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
+
+     IF (@RoleId IS NULL)
+         RETURN(1)
+
+    SELECT u.UserName
+    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
+    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId AND LoweredUserName LIKE LOWER(@UserNameToMatch)
+    ORDER BY u.UserName
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_GetAllRoles]    Script Date: 01/09/2014 14:37:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_GetAllRoles] (
+    @ApplicationName           nvarchar(256))
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+    SELECT RoleName
+    FROM   dbo.aspnet_Roles WHERE ApplicationId = @ApplicationId
+    ORDER BY RoleName
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetNumberOfUsersOnline]    Script Date: 01/09/2014 14:37:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetNumberOfUsersOnline]
+    @ApplicationName            nvarchar(256),
+    @MinutesSinceLastInActive   int,
+    @CurrentTimeUtc             datetime
+AS
+BEGIN
+    DECLARE @DateActive datetime
+    SELECT  @DateActive = DATEADD(minute,  -(@MinutesSinceLastInActive), @CurrentTimeUtc)
+
+    DECLARE @NumOnline int
+    SELECT  @NumOnline = COUNT(*)
+    FROM    dbo.aspnet_Users u(NOLOCK),
+            dbo.aspnet_Applications a(NOLOCK),
+            dbo.aspnet_Membership m(NOLOCK)
+    WHERE   u.ApplicationId = a.ApplicationId                  AND
+            LastActivityDate > @DateActive                     AND
+            a.LoweredApplicationName = LOWER(@ApplicationName) AND
+            u.UserId = m.UserId
+    RETURN(@NumOnline)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Applications_CreateApplication]    Script Date: 01/09/2014 14:37:01 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Applications_CreateApplication]
+    @ApplicationName      nvarchar(256),
+    @ApplicationId        uniqueidentifier OUTPUT
+AS
+BEGIN
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+    IF(@ApplicationId IS NULL)
+    BEGIN
+        DECLARE @TranStarted   bit
+        SET @TranStarted = 0
+
+        IF( @@TRANCOUNT = 0 )
+        BEGIN
+	        BEGIN TRANSACTION
+	        SET @TranStarted = 1
+        END
+        ELSE
+    	    SET @TranStarted = 0
+
+        SELECT  @ApplicationId = ApplicationId
+        FROM dbo.aspnet_Applications WITH (UPDLOCK, HOLDLOCK)
+        WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+        IF(@ApplicationId IS NULL)
+        BEGIN
+            SELECT  @ApplicationId = NEWID()
+            INSERT  dbo.aspnet_Applications (ApplicationId, ApplicationName, LoweredApplicationName)
+            VALUES  (@ApplicationId, @ApplicationName, LOWER(@ApplicationName))
+        END
+
+
+        IF( @TranStarted = 1 )
+        BEGIN
+            IF(@@ERROR = 0)
+            BEGIN
+	        SET @TranStarted = 0
+	        COMMIT TRANSACTION
+            END
+            ELSE
+            BEGIN
+                SET @TranStarted = 0
+                ROLLBACK TRANSACTION
+            END
+        END
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetAllUsers]    Script Date: 01/09/2014 14:37:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetAllUsers]
+    @ApplicationName       nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+    SELECT u.UserId
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u
+    WHERE  u.ApplicationId = @ApplicationId AND u.UserId = m.UserId
+    ORDER BY u.UserName
+
+    SELECT @TotalRecords = @@ROWCOUNT
+
+    SELECT u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY u.UserName
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByName]    Script Date: 01/09/2014 14:37:04 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByName]
+    @ApplicationName       nvarchar(256),
+    @UserNameToMatch       nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+        SELECT u.UserId
+        FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+        WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND u.LoweredUserName LIKE LOWER(@UserNameToMatch)
+        ORDER BY u.UserName
+
+
+    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY u.UserName
+
+    SELECT  @TotalRecords = COUNT(*)
+    FROM    #PageIndexForUsers
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProperties]    Script Date: 01/09/2014 14:37:20 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetProperties]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @CurrentTimeUtc       datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT @UserId = UserId
+    FROM   dbo.aspnet_Users
+    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
+
+    IF (@UserId IS NULL)
+        RETURN
+    SELECT TOP 1 PropertyNames, PropertyValuesString, PropertyValuesBinary
+    FROM         dbo.aspnet_Profile
+    WHERE        UserId = @UserId
+
+    IF (@@ROWCOUNT > 0)
+    BEGIN
+        UPDATE dbo.aspnet_Users
+        SET    LastActivityDate=@CurrentTimeUtc
+        WHERE  UserId = @UserId
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteInactiveProfiles]    Script Date: 01/09/2014 14:37:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT  0
+        RETURN
+    END
+
+    DELETE
+    FROM    dbo.aspnet_Profile
+    WHERE   UserId IN
+            (   SELECT  UserId
+                FROM    dbo.aspnet_Users u
+                WHERE   ApplicationId = @ApplicationId
+                        AND (LastActivityDate <= @InactiveSinceDate)
+                        AND (
+                                (@ProfileAuthOptions = 2)
+                             OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                             OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+                            )
+            )
+
+    SELECT  @@ROWCOUNT
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByEmail]    Script Date: 01/09/2014 14:37:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Membership_FindUsersByEmail]
+    @ApplicationName       nvarchar(256),
+    @EmailToMatch          nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN 0
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    IF( @EmailToMatch IS NULL )
+        INSERT INTO #PageIndexForUsers (UserId)
+            SELECT u.UserId
+            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.Email IS NULL
+            ORDER BY m.LoweredEmail
+    ELSE
+        INSERT INTO #PageIndexForUsers (UserId)
+            SELECT u.UserId
+            FROM   dbo.aspnet_Users u, dbo.aspnet_Membership m
+            WHERE  u.ApplicationId = @ApplicationId AND m.UserId = u.UserId AND m.LoweredEmail LIKE LOWER(@EmailToMatch)
+            ORDER BY m.LoweredEmail
+
+    SELECT  u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY m.LoweredEmail
+
+    SELECT  @TotalRecords = COUNT(*)
+    FROM    #PageIndexForUsers
+    RETURN @TotalRecords
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_IsUserInRole]    Script Date: 01/09/2014 14:37:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_IsUserInRole]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(2)
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+    DECLARE @RoleId uniqueidentifier
+    SELECT  @RoleId = NULL
+
+    SELECT  @UserId = UserId
+    FROM    dbo.aspnet_Users
+    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
+
+    IF (@UserId IS NULL)
+        RETURN(2)
+
+    SELECT  @RoleId = RoleId
+    FROM    dbo.aspnet_Roles
+    WHERE   LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
+
+    IF (@RoleId IS NULL)
+        RETURN(3)
+
+    IF (EXISTS( SELECT * FROM dbo.aspnet_UsersInRoles WHERE  UserId = @UserId AND RoleId = @RoleId))
+        RETURN(1)
+    ELSE
+        RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]    Script Date: 01/09/2014 14:37:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT 0
+        RETURN
+    END
+
+    SELECT  COUNT(*)
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
+    WHERE   ApplicationId = @ApplicationId
+        AND u.UserId = p.UserId
+        AND (LastActivityDate <= @InactiveSinceDate)
+        AND (
+                (@ProfileAuthOptions = 2)
+                OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+            )
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProfiles]    Script Date: 01/09/2014 14:37:19 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @PageIndex              int,
+    @PageSize               int,
+    @UserNameToMatch        nvarchar(256) = NULL,
+    @InactiveSinceDate      datetime      = NULL
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
+
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
+
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+        SELECT  u.UserId
+        FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
+        WHERE   ApplicationId = @ApplicationId
+            AND u.UserId = p.UserId
+            AND (@InactiveSinceDate IS NULL OR LastActivityDate <= @InactiveSinceDate)
+            AND (     (@ProfileAuthOptions = 2)
+                   OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                   OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+                 )
+            AND (@UserNameToMatch IS NULL OR LoweredUserName LIKE LOWER(@UserNameToMatch))
+        ORDER BY UserName
+
+    SELECT  u.UserName, u.IsAnonymous, u.LastActivityDate, p.LastUpdatedDate,
+            DATALENGTH(p.PropertyNames) + DATALENGTH(p.PropertyValuesString) + DATALENGTH(p.PropertyValuesBinary)
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p, #PageIndexForUsers i
+    WHERE   u.UserId = p.UserId AND p.UserId = i.UserId AND i.IndexId >= @PageLowerBound AND i.IndexId <= @PageUpperBound
+
+    SELECT COUNT(*)
+    FROM   #PageIndexForUsers
+
+    DROP TABLE #PageIndexForUsers
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetRolesForUser]    Script Date: 01/09/2014 14:37:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetRolesForUser]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT  @UserId = UserId
+    FROM    dbo.aspnet_Users
+    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
+
+    IF (@UserId IS NULL)
+        RETURN(1)
+
+    SELECT r.RoleName
+    FROM   dbo.aspnet_Roles r, dbo.aspnet_UsersInRoles ur
+    WHERE  r.RoleId = ur.RoleId AND r.ApplicationId = @ApplicationId AND ur.UserId = @UserId
+    ORDER BY r.RoleName
+    RETURN (0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_DeleteRole]    Script Date: 01/09/2014 14:37:22 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Roles_DeleteRole]
+    @ApplicationName            nvarchar(256),
+    @RoleName                   nvarchar(256),
+    @DeleteOnlyIfRoleIsEmpty    bit
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+
+    DECLARE @ErrorCode     int
+    SET @ErrorCode = 0
 
     DECLARE @TranStarted   bit
     SET @TranStarted = 0
 
     IF( @@TRANCOUNT = 0 )
     BEGIN
-	    BEGIN TRANSACTION
-	    SET @TranStarted = 1
+        BEGIN TRANSACTION
+        SET @TranStarted = 1
     END
     ELSE
-	SET @TranStarted = 0
+        SET @TranStarted = 0
 
-    DECLARE @ErrorCode   int
-    DECLARE @RowCount    int
+    DECLARE @RoleId   uniqueidentifier
+    SELECT  @RoleId = NULL
+    SELECT  @RoleId = RoleId FROM dbo.aspnet_Roles WHERE LoweredRoleName = LOWER(@RoleName) AND ApplicationId = @ApplicationId
 
-    SET @ErrorCode = 0
-    SET @RowCount  = 0
-
-    SELECT  @UserId = u.UserId
-    FROM    dbo.aspnet_Users u, dbo.aspnet_Applications a
-    WHERE   u.LoweredUserName       = LOWER(@UserName)
-        AND u.ApplicationId         = a.ApplicationId
-        AND LOWER(@ApplicationName) = a.LoweredApplicationName
-
-    IF (@UserId IS NULL)
+    IF (@RoleId IS NULL)
     BEGIN
+        SELECT @ErrorCode = 1
+        GOTO Cleanup
+    END
+    IF (@DeleteOnlyIfRoleIsEmpty <> 0)
+    BEGIN
+        IF (EXISTS (SELECT RoleId FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId))
+        BEGIN
+            SELECT @ErrorCode = 2
+            GOTO Cleanup
+        END
+    END
+
+
+    DELETE FROM dbo.aspnet_UsersInRoles  WHERE @RoleId = RoleId
+
+    IF( @@ERROR <> 0 )
+    BEGIN
+        SET @ErrorCode = -1
         GOTO Cleanup
     END
 
-    -- Delete from Membership table if (@TablesToDeleteFrom & 1) is set
-    IF ((@TablesToDeleteFrom & 1) <> 0 AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_MembershipUsers') AND (type = 'V'))))
+    DELETE FROM dbo.aspnet_Roles WHERE @RoleId = RoleId  AND ApplicationId = @ApplicationId
+
+    IF( @@ERROR <> 0 )
     BEGIN
-        DELETE FROM dbo.aspnet_Membership WHERE @UserId = UserId
-
-        SELECT @ErrorCode = @@ERROR,
-               @RowCount = @@ROWCOUNT
-
-        IF( @ErrorCode <> 0 )
-            GOTO Cleanup
-
-        IF (@RowCount <> 0)
-            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
+        SET @ErrorCode = -1
+        GOTO Cleanup
     END
-
-    -- Delete from aspnet_UsersInRoles table if (@TablesToDeleteFrom & 2) is set
-    IF ((@TablesToDeleteFrom & 2) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_UsersInRoles') AND (type = 'V'))) )
-    BEGIN
-        DELETE FROM dbo.aspnet_UsersInRoles WHERE @UserId = UserId
-
-        SELECT @ErrorCode = @@ERROR,
-                @RowCount = @@ROWCOUNT
-
-        IF( @ErrorCode <> 0 )
-            GOTO Cleanup
-
-        IF (@RowCount <> 0)
-            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
-    END
-
-    -- Delete from aspnet_Profile table if (@TablesToDeleteFrom & 4) is set
-    IF ((@TablesToDeleteFrom & 4) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_Profiles') AND (type = 'V'))) )
-    BEGIN
-        DELETE FROM dbo.aspnet_Profile WHERE @UserId = UserId
-
-        SELECT @ErrorCode = @@ERROR,
-                @RowCount = @@ROWCOUNT
-
-        IF( @ErrorCode <> 0 )
-            GOTO Cleanup
-
-        IF (@RowCount <> 0)
-            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
-    END
-
-    -- Delete from aspnet_PersonalizationPerUser table if (@TablesToDeleteFrom & 8) is set
-    IF ((@TablesToDeleteFrom & 8) <> 0  AND
-        (EXISTS (SELECT name FROM sysobjects WHERE (name = N'vw_aspnet_WebPartState_User') AND (type = 'V'))) )
-    BEGIN
-        DELETE FROM dbo.aspnet_PersonalizationPerUser WHERE @UserId = UserId
-
-        SELECT @ErrorCode = @@ERROR,
-                @RowCount = @@ROWCOUNT
-
-        IF( @ErrorCode <> 0 )
-            GOTO Cleanup
-
-        IF (@RowCount <> 0)
-            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
-    END
-
-    -- Delete from aspnet_Users table if (@TablesToDeleteFrom & 1,2,4 & 8) are all set
-    IF ((@TablesToDeleteFrom & 1) <> 0 AND
-        (@TablesToDeleteFrom & 2) <> 0 AND
-        (@TablesToDeleteFrom & 4) <> 0 AND
-        (@TablesToDeleteFrom & 8) <> 0 AND
-        (EXISTS (SELECT UserId FROM dbo.aspnet_Users WHERE @UserId = UserId)))
-    BEGIN
-        DELETE FROM dbo.aspnet_Users WHERE @UserId = UserId
-
-        SELECT @ErrorCode = @@ERROR,
-                @RowCount = @@ROWCOUNT
-
-        IF( @ErrorCode <> 0 )
-            GOTO Cleanup
-
-        IF (@RowCount <> 0)
-            SELECT  @NumTablesDeletedFrom = @NumTablesDeletedFrom + 1
-    END
-
-    IF( @TranStarted = 1 )
-    BEGIN
-	    SET @TranStarted = 0
-	    COMMIT TRANSACTION
-    END
-
-    RETURN 0
-
-Cleanup:
-    SET @NumTablesDeletedFrom = 0
 
     IF( @TranStarted = 1 )
     BEGIN
         SET @TranStarted = 0
-	    ROLLBACK TRANSACTION
+        COMMIT TRANSACTION
+    END
+
+    RETURN(0)
+
+Cleanup:
+
+    IF( @TranStarted = 1 )
+    BEGIN
+        SET @TranStarted = 0
+        ROLLBACK TRANSACTION
     END
 
     RETURN @ErrorCode
-
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 01/02/2014 13:56:08 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_AddUsersToRoles]    Script Date: 01/09/2014 14:37:25 ******/
 SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER ON
+SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[SupplierSurveyCertification_EditCertification]
-	-- Add the parameters for the stored procedure here
-	 @SupplierCertificationKey INT
-	,@SupplierSurveyKey INT
-    ,@Certifications nvarchar(max)
-
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_AddUsersToRoles]
+	@ApplicationName  nvarchar(256),
+	@UserNames		  nvarchar(4000),
+	@RoleNames		  nvarchar(4000),
+	@CurrentTimeUtc   datetime
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
+	DECLARE @AppId uniqueidentifier
+	SELECT  @AppId = NULL
+	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+	IF (@AppId IS NULL)
+		RETURN(2)
+	DECLARE @TranStarted   bit
+	SET @TranStarted = 0
 
-    -- Insert statements for procedure here
-UPDATE [APQM_DB].[dbo].[SupplierSurveyCertification]
-   SET [SupplierSurveyKey] = @SupplierSurveyKey
-      ,[Certifications] = @SupplierSurveyKey
- WHERE SupplierCertificationKey=@SupplierCertificationKey
+	IF( @@TRANCOUNT = 0 )
+	BEGIN
+		BEGIN TRANSACTION
+		SET @TranStarted = 1
+	END
 
+	DECLARE @tbNames	table(Name nvarchar(256) NOT NULL PRIMARY KEY)
+	DECLARE @tbRoles	table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @tbUsers	table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @Num		int
+	DECLARE @Pos		int
+	DECLARE @NextPos	int
+	DECLARE @Name		nvarchar(256)
+
+	SET @Num = 0
+	SET @Pos = 1
+	WHILE(@Pos <= LEN(@RoleNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@RoleNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbRoles
+	  SELECT RoleId
+	  FROM   dbo.aspnet_Roles ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
+
+	IF (@@ROWCOUNT <> @Num)
+	BEGIN
+		SELECT TOP 1 Name
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(2)
+	END
+
+	DELETE FROM @tbNames WHERE 1=1
+	SET @Num = 0
+	SET @Pos = 1
+
+	WHILE(@Pos <= LEN(@UserNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@UserNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbUsers
+	  SELECT UserId
+	  FROM   dbo.aspnet_Users ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
+
+	IF (@@ROWCOUNT <> @Num)
+	BEGIN
+		DELETE FROM @tbNames
+		WHERE LOWER(Name) IN (SELECT LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE au.UserId = u.UserId)
+
+		INSERT dbo.aspnet_Users (ApplicationId, UserId, UserName, LoweredUserName, IsAnonymous, LastActivityDate)
+		  SELECT @AppId, NEWID(), Name, LOWER(Name), 0, @CurrentTimeUtc
+		  FROM   @tbNames
+
+		INSERT INTO @tbUsers
+		  SELECT  UserId
+		  FROM	dbo.aspnet_Users au, @tbNames t
+		  WHERE   LOWER(t.Name) = au.LoweredUserName AND au.ApplicationId = @AppId
+	END
+
+	IF (EXISTS (SELECT * FROM dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr WHERE tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId))
+	BEGIN
+		SELECT TOP 1 UserName, RoleName
+		FROM		 dbo.aspnet_UsersInRoles ur, @tbUsers tu, @tbRoles tr, aspnet_Users u, aspnet_Roles r
+		WHERE		u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND tu.UserId = ur.UserId AND tr.RoleId = ur.RoleId
+
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(3)
+	END
+
+	INSERT INTO dbo.aspnet_UsersInRoles (UserId, RoleId)
+	SELECT UserId, RoleId
+	FROM @tbUsers, @tbRoles
+
+	IF( @TranStarted = 1 )
+		COMMIT TRANSACTION
+	RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 01/02/2014 13:56:09 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]    Script Date: 01/09/2014 14:37:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]
+	@ApplicationName  nvarchar(256),
+	@UserNames		  nvarchar(4000),
+	@RoleNames		  nvarchar(4000)
+AS
+BEGIN
+	DECLARE @AppId uniqueidentifier
+	SELECT  @AppId = NULL
+	SELECT  @AppId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+	IF (@AppId IS NULL)
+		RETURN(2)
+
+
+	DECLARE @TranStarted   bit
+	SET @TranStarted = 0
+
+	IF( @@TRANCOUNT = 0 )
+	BEGIN
+		BEGIN TRANSACTION
+		SET @TranStarted = 1
+	END
+
+	DECLARE @tbNames  table(Name nvarchar(256) NOT NULL PRIMARY KEY)
+	DECLARE @tbRoles  table(RoleId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @tbUsers  table(UserId uniqueidentifier NOT NULL PRIMARY KEY)
+	DECLARE @Num	  int
+	DECLARE @Pos	  int
+	DECLARE @NextPos  int
+	DECLARE @Name	  nvarchar(256)
+	DECLARE @CountAll int
+	DECLARE @CountU	  int
+	DECLARE @CountR	  int
+
+
+	SET @Num = 0
+	SET @Pos = 1
+	WHILE(@Pos <= LEN(@RoleNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @RoleNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@RoleNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@RoleNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbRoles
+	  SELECT RoleId
+	  FROM   dbo.aspnet_Roles ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredRoleName AND ar.ApplicationId = @AppId
+	SELECT @CountR = @@ROWCOUNT
+
+	IF (@CountR <> @Num)
+	BEGIN
+		SELECT TOP 1 N'', Name
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT ar.LoweredRoleName FROM dbo.aspnet_Roles ar,  @tbRoles r WHERE r.RoleId = ar.RoleId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(2)
+	END
+
+
+	DELETE FROM @tbNames WHERE 1=1
+	SET @Num = 0
+	SET @Pos = 1
+
+
+	WHILE(@Pos <= LEN(@UserNames))
+	BEGIN
+		SELECT @NextPos = CHARINDEX(N',', @UserNames,  @Pos)
+		IF (@NextPos = 0 OR @NextPos IS NULL)
+			SELECT @NextPos = LEN(@UserNames) + 1
+		SELECT @Name = RTRIM(LTRIM(SUBSTRING(@UserNames, @Pos, @NextPos - @Pos)))
+		SELECT @Pos = @NextPos+1
+
+		INSERT INTO @tbNames VALUES (@Name)
+		SET @Num = @Num + 1
+	END
+
+	INSERT INTO @tbUsers
+	  SELECT UserId
+	  FROM   dbo.aspnet_Users ar, @tbNames t
+	  WHERE  LOWER(t.Name) = ar.LoweredUserName AND ar.ApplicationId = @AppId
+
+	SELECT @CountU = @@ROWCOUNT
+	IF (@CountU <> @Num)
+	BEGIN
+		SELECT TOP 1 Name, N''
+		FROM   @tbNames
+		WHERE  LOWER(Name) NOT IN (SELECT au.LoweredUserName FROM dbo.aspnet_Users au,  @tbUsers u WHERE u.UserId = au.UserId)
+
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(1)
+	END
+
+	SELECT  @CountAll = COUNT(*)
+	FROM	dbo.aspnet_UsersInRoles ur, @tbUsers u, @tbRoles r
+	WHERE   ur.UserId = u.UserId AND ur.RoleId = r.RoleId
+
+	IF (@CountAll <> @CountU * @CountR)
+	BEGIN
+		SELECT TOP 1 UserName, RoleName
+		FROM		 @tbUsers tu, @tbRoles tr, dbo.aspnet_Users u, dbo.aspnet_Roles r
+		WHERE		 u.UserId = tu.UserId AND r.RoleId = tr.RoleId AND
+					 tu.UserId NOT IN (SELECT ur.UserId FROM dbo.aspnet_UsersInRoles ur WHERE ur.RoleId = tr.RoleId) AND
+					 tr.RoleId NOT IN (SELECT ur.RoleId FROM dbo.aspnet_UsersInRoles ur WHERE ur.UserId = tu.UserId)
+		IF( @TranStarted = 1 )
+			ROLLBACK TRANSACTION
+		RETURN(3)
+	END
+
+	DELETE FROM dbo.aspnet_UsersInRoles
+	WHERE UserId IN (SELECT UserId FROM @tbUsers)
+	  AND RoleId IN (SELECT RoleId FROM @tbRoles)
+	IF( @TranStarted = 1 )
+		COMMIT TRANSACTION
+	RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetUsersInRoles]    Script Date: 01/09/2014 14:37:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetUsersInRoles]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+     DECLARE @RoleId uniqueidentifier
+     SELECT  @RoleId = NULL
+
+     SELECT  @RoleId = RoleId
+     FROM    dbo.aspnet_Roles
+     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
+
+     IF (@RoleId IS NULL)
+         RETURN(1)
+
+    SELECT u.UserName
+    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
+    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId
+    ORDER BY u.UserName
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 01/09/2014 14:38:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5847,7 +5373,32 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Users_CreateUser]    Script Date: 01/02/2014 13:55:34 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 01/09/2014 14:38:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierSurveyCertification_EditCertification]
+	-- Add the parameters for the stored procedure here
+	 @SupplierCertificationKey INT
+	,@SupplierSurveyKey INT
+    ,@Certifications nvarchar(max)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+UPDATE [APQM_DB].[dbo].[SupplierSurveyCertification]
+   SET [SupplierSurveyKey] = @SupplierSurveyKey
+      ,[Certifications] = @SupplierSurveyKey
+ WHERE SupplierCertificationKey=@SupplierCertificationKey
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Users_CreateUser]    Script Date: 01/09/2014 14:37:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5875,7 +5426,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_Users]    Script Date: 01/02/2014 13:58:48 ******/
+/****** Object:  View [dbo].[vw_aspnet_Users]    Script Date: 01/09/2014 14:40:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5884,7 +5435,7 @@ CREATE VIEW [dbo].[vw_aspnet_Users]
   AS SELECT [dbo].[aspnet_Users].[ApplicationId], [dbo].[aspnet_Users].[UserId], [dbo].[aspnet_Users].[UserName], [dbo].[aspnet_Users].[LoweredUserName], [dbo].[aspnet_Users].[MobileAlias], [dbo].[aspnet_Users].[IsAnonymous], [dbo].[aspnet_Users].[LastActivityDate]
   FROM [dbo].[aspnet_Users]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByUserId]    Script Date: 01/02/2014 13:55:16 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByUserId]    Script Date: 01/09/2014 14:37:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5919,7 +5470,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_MembershipUsers]    Script Date: 01/02/2014 13:58:47 ******/
+/****** Object:  View [dbo].[vw_aspnet_MembershipUsers]    Script Date: 01/09/2014 14:40:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5951,7 +5502,34 @@ CREATE VIEW [dbo].[vw_aspnet_MembershipUsers]
   FROM [dbo].[aspnet_Membership] INNER JOIN [dbo].[aspnet_Users]
       ON [dbo].[aspnet_Membership].[UserId] = [dbo].[aspnet_Users].[UserId]
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 01/02/2014 13:56:12 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 01/09/2014 14:38:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierSurveyForecastSales_EditForecast]
+	-- Add the parameters for the stored procedure here
+	@SurveyForecastedSalesKey INT
+	,@SupplierSurveyKey INT
+    ,@ForecastSalesYear nvarchar(4)
+    ,@ForecastSales nvarchar(50)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+UPDATE [APQM_DB].[dbo].[SupplierSurveyForecastSales]
+   SET [SupplierSurveyKey] = @SupplierSurveyKey
+      ,[ForecastSalesYear] = @ForecastSalesYear
+      ,[ForecastSales] = @ForecastSales
+ WHERE [SurveyForecastedSalesKey]=@SurveyForecastedSalesKey
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 01/09/2014 14:38:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5984,17 +5562,22 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [ForecastSalesYear]=@ForecastS
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 01/02/2014 13:56:11 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 01/09/2014 14:38:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SupplierSurveyForecastSales_EditForecast]
+CREATE PROCEDURE [dbo].[SupplierSurveyContacts_EditContact]
 	-- Add the parameters for the stored procedure here
-	@SurveyForecastedSalesKey INT
-	,@SupplierSurveyKey INT
-    ,@ForecastSalesYear nvarchar(4)
-    ,@ForecastSales nvarchar(50)
+		@SupplierSuveryContactsKey INT
+		,@SupplierSurveyKey  INT 
+		,@Position  nvarchar(50) 
+		,@Name  nvarchar(50) 
+		,@Title  nvarchar(50) 
+		,@Address  nvarchar(50) 
+		,@Phone  nvarchar(50) 
+		,@Cell  nvarchar(50) 
+		,@Email  nvarchar(50) 
 
 AS
 BEGIN
@@ -6003,15 +5586,19 @@ BEGIN
 	SET NOCOUNT ON;
 
     -- Insert statements for procedure here
-UPDATE [APQM_DB].[dbo].[SupplierSurveyForecastSales]
-   SET [SupplierSurveyKey] = @SupplierSurveyKey
-      ,[ForecastSalesYear] = @ForecastSalesYear
-      ,[ForecastSales] = @ForecastSales
- WHERE [SurveyForecastedSalesKey]=@SurveyForecastedSalesKey
-
+UPDATE [APQM_DB].[dbo].[SupplierSurveyContacts]
+   SET [SupplierSurveyKey] = @SupplierSurveyKey 
+      ,[Position] = @Position 
+      ,[Name] = @Name 
+      ,[Title] = @Title 
+      ,[Address] = @Address 
+      ,[Phone] = @Phone 
+      ,[Cell] = @Cell 
+      ,[Email] = @Email 
+ WHERE [SupplierSuveryContactsKey]=@SupplierSuveryContactsKey
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 01/02/2014 13:56:11 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 01/09/2014 14:38:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6067,43 +5654,21 @@ WHERE [SupplierSurveyKey] = @SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 01/02/2014 13:56:10 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UnRegisterSchemaVersion]    Script Date: 01/09/2014 14:37:23 ******/
 SET ANSI_NULLS ON
 GO
-SET QUOTED_IDENTIFIER ON
+SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[SupplierSurveyContacts_EditContact]
-	-- Add the parameters for the stored procedure here
-		@SupplierSuveryContactsKey INT
-		,@SupplierSurveyKey  INT 
-		,@Position  nvarchar(50) 
-		,@Name  nvarchar(50) 
-		,@Title  nvarchar(50) 
-		,@Address  nvarchar(50) 
-		,@Phone  nvarchar(50) 
-		,@Cell  nvarchar(50) 
-		,@Email  nvarchar(50) 
-
+CREATE PROCEDURE [dbo].[aspnet_UnRegisterSchemaVersion]
+    @Feature                   nvarchar(128),
+    @CompatibleSchemaVersion   nvarchar(128)
 AS
 BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-UPDATE [APQM_DB].[dbo].[SupplierSurveyContacts]
-   SET [SupplierSurveyKey] = @SupplierSurveyKey 
-      ,[Position] = @Position 
-      ,[Name] = @Name 
-      ,[Title] = @Title 
-      ,[Address] = @Address 
-      ,[Phone] = @Phone 
-      ,[Cell] = @Cell 
-      ,[Email] = @Email 
- WHERE [SupplierSuveryContactsKey]=@SupplierSuveryContactsKey
+    DELETE FROM dbo.aspnet_SchemaVersions
+        WHERE   Feature = LOWER(@Feature) AND @CompatibleSchemaVersion = CompatibleSchemaVersion
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_CheckSchemaVersion]    Script Date: 01/02/2014 13:55:10 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_CheckSchemaVersion]    Script Date: 01/09/2014 14:37:01 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6122,21 +5687,7 @@ BEGIN
     RETURN 1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UnRegisterSchemaVersion]    Script Date: 01/02/2014 13:55:34 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UnRegisterSchemaVersion]
-    @Feature                   nvarchar(128),
-    @CompatibleSchemaVersion   nvarchar(128)
-AS
-BEGIN
-    DELETE FROM dbo.aspnet_SchemaVersions
-        WHERE   Feature = LOWER(@Feature) AND @CompatibleSchemaVersion = CompatibleSchemaVersion
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_RegisterSchemaVersion]    Script Date: 01/02/2014 13:55:31 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_RegisterSchemaVersion]    Script Date: 01/09/2014 14:37:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6166,7 +5717,7 @@ BEGIN
     VALUES( LOWER( @Feature ), @CompatibleSchemaVersion, @IsCurrentVersion )
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 01/02/2014 13:56:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 01/09/2014 14:38:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6274,7 +5825,7 @@ SELECT [SupplierSuveyKey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 01/02/2014 13:56:05 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 01/09/2014 14:38:07 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6335,7 +5886,39 @@ UPDATE [APQM_DB].[dbo].[SupplierSuvey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 01/02/2014 13:56:14 ******/
+/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 01/09/2014 14:38:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[TokenMaster_EditToken]
+	-- Add the parameters for the stored procedure here
+@TokenKey INT		
+,@Token nvarchar(50)
+,@Subject nvarchar(50)
+,@SubjectKey INT
+,@DeadDate datetime
+,@Acknowledgement nvarchar(50)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+UPDATE [APQM_DB].[dbo].[TokenMaster]
+   SET [Token] = @Token
+      ,[Subject] = @Subject
+      ,[SubjectKey] = @SubjectKey
+      ,[DeadDate] = @DeadDate
+      ,[Acknowledgement] = @Acknowledgement
+WHERE [TokenKey]=@TokenKey
+
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 01/09/2014 14:38:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6378,39 +5961,7 @@ WHERE ([Token]=@Token
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 01/02/2014 13:56:13 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[TokenMaster_EditToken]
-	-- Add the parameters for the stored procedure here
-@TokenKey INT		
-,@Token nvarchar(50)
-,@Subject nvarchar(50)
-,@SubjectKey INT
-,@DeadDate datetime
-,@Acknowledgement nvarchar(50)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-UPDATE [APQM_DB].[dbo].[TokenMaster]
-   SET [Token] = @Token
-      ,[Subject] = @Subject
-      ,[SubjectKey] = @SubjectKey
-      ,[DeadDate] = @DeadDate
-      ,[Acknowledgement] = @Acknowledgement
-WHERE [TokenKey]=@TokenKey
-
-
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 01/02/2014 13:55:46 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 01/09/2014 14:37:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6434,7 +5985,7 @@ WHERE     (CustomerKey = @CustomerKey)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 01/02/2014 13:55:46 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 01/09/2014 14:37:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6461,7 +6012,7 @@ WHERE     (CustomerName = @CustomerName)
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 01/02/2014 13:58:44 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 01/09/2014 14:40:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6623,7 +6174,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItems'
 GO
-/****** Object:  View [dbo].[vw_aspnet_Profiles]    Script Date: 01/02/2014 13:58:48 ******/
+/****** Object:  View [dbo].[vw_aspnet_Profiles]    Script Date: 01/09/2014 14:40:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6635,7 +6186,7 @@ CREATE VIEW [dbo].[vw_aspnet_Profiles]
                  + DATALENGTH([dbo].[aspnet_Profile].[PropertyValuesBinary])
   FROM [dbo].[aspnet_Profile]
 GO
-/****** Object:  View [dbo].[vw_aspnet_Roles]    Script Date: 01/02/2014 13:58:48 ******/
+/****** Object:  View [dbo].[vw_aspnet_Roles]    Script Date: 01/09/2014 14:40:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6644,7 +6195,193 @@ CREATE VIEW [dbo].[vw_aspnet_Roles]
   AS SELECT [dbo].[aspnet_Roles].[ApplicationId], [dbo].[aspnet_Roles].[RoleId], [dbo].[aspnet_Roles].[RoleName], [dbo].[aspnet_Roles].[LoweredRoleName], [dbo].[aspnet_Roles].[Description]
   FROM [dbo].[aspnet_Roles]
 GO
-/****** Object:  View [dbo].[vw_aspnet_UsersInRoles]    Script Date: 01/02/2014 13:58:48 ******/
+/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 01/09/2014 14:38:00 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SIFHeader_EditSIF]
+	-- Add the parameters for the stored procedure here
+	 @CustomerKey INT 
+	,@BOMHeaderKey INT 
+	,@InquiryNumber nvarchar(50) 
+	,@Priority nvarchar(50) 
+	,@Revision nvarchar(50) 
+	,@SalesPerson nvarchar(50) 
+	,@CostModelLoc nvarchar(50) 
+	,@Contact nvarchar(50) 
+	,@BussinesClass nvarchar(50) 
+	,@Product nvarchar(50) 
+	,@DivLoc nvarchar(50) 
+	,@Department nvarchar(50) 
+	,@Reason4Quote nvarchar(50) 
+	,@Application nvarchar(50) 
+	,@Specification nvarchar(50) 
+	,@DrawingLevel nvarchar(50) 
+	,@TaskDescription nvarchar(50) 
+	,@PartPrint nvarchar(50) 
+	,@Sample nvarchar(50) 
+	,@ToolingTarget nvarchar(50) 
+	,@PrimaryCompetitors nvarchar(50) 
+	,@SpecificResourceRequirements nvarchar(50) 
+	,@Technical nvarchar(50) 
+	,@SIFHeaderKey INT
+	,@QuoteDue datetime
+	,@Sop datetime
+	,@SalesDBID BIGINT
+	,@MarketSector  numeric(18,0)
+	,@AssignedTo  nvarchar(256)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE [APQM_DB].[dbo].[SIFHeader]
+   SET [CustomerKey] = @CustomerKey 
+	  ,[BOMHeaderKey] = @BOMHeaderKey 
+      ,[InquiryNumber] = @InquiryNumber 
+      ,[Priority] = @Priority 
+      ,[Revision] = @Revision 
+      ,[SalesPerson] = @SalesPerson 
+      ,[CostModelLoc] = @CostModelLoc 
+      ,[Contact] = @Contact 
+      ,[BussinesClass] = @BussinesClass 
+      ,[Product] = @Product 
+      ,[DivLoc] = @DivLoc 
+      ,[Department] = @Department 
+      ,[Reason4Quote] = @Reason4Quote 
+      ,[Application] = @Application 
+      ,[Specification] = @Specification 
+      ,[DrawingLevel] = @DrawingLevel 
+      ,[TaskDescription] = @TaskDescription 
+      ,[PartPrint] = @PartPrint 
+      ,[Sample] = @Sample 
+      ,[ToolingTarget] = @ToolingTarget 
+      ,[PrimaryCompetitors] = @PrimaryCompetitors 
+      ,[SpecificResourceRequirements] = @SpecificResourceRequirements 
+      ,[Technical] = @Technical 
+	  ,[QuoteDue] = @QuoteDue 
+	  ,[SOP] = @Sop 
+	  ,[SalesDBID] = @SalesDBID
+	  ,[MarketSector] = @MarketSector
+	  ,[AssignedTo] = @AssignedTo
+
+WHERE SIFHeaderKey=@SIFHeaderKey
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 01/09/2014 14:38:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SIFHeader_NewSIF]
+	-- Add the parameters for the stored procedure here
+	 @CustomerKey INT 
+	,@BOMHeaderKey INT 
+	,@InquiryNumber nvarchar(50) 
+	,@Priority nvarchar(50) 
+	,@Revision nvarchar(50) 
+	,@SalesPerson nvarchar(50) 
+	,@CostModelLoc nvarchar(50) 
+	,@Contact nvarchar(50) 
+	,@BussinesClass nvarchar(50) 
+	,@Product nvarchar(50) 
+	,@DivLoc nvarchar(50) 
+	,@Department nvarchar(50) 
+	,@Reason4Quote nvarchar(50) 
+	,@Application nvarchar(50) 
+	,@Specification nvarchar(50) 
+	,@DrawingLevel nvarchar(50) 
+	,@TaskDescription nvarchar(50) 
+	,@PartPrint nvarchar(50) 
+	,@Sample nvarchar(50) 
+	,@ToolingTarget nvarchar(50) 
+	,@PrimaryCompetitors nvarchar(50) 
+	,@SpecificResourceRequirements nvarchar(50) 
+	,@Technical nvarchar(50) 
+	,@QuoteDue datetime
+	,@Sop datetime
+	,@SalesDBID BIGINT
+	,@MarketSector  numeric(18,0)
+	,@AssignedTo nvarchar(256)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+INSERT INTO [APQM_DB].[dbo].[SIFHeader]
+           ([CustomerKey]
+           ,[BOMHeaderKey]
+		   ,[InquiryNumber]
+           ,[Priority]
+           ,[Revision]
+           ,[SalesPerson]
+           ,[CostModelLoc]
+           ,[Contact]
+           ,[BussinesClass]
+           ,[Product]
+           ,[DivLoc]
+           ,[Department]
+           ,[Reason4Quote]
+           ,[Application]
+           ,[Specification]
+           ,[DrawingLevel]
+           ,[TaskDescription]
+           ,[PartPrint]
+           ,[Sample]
+           ,[ToolingTarget]
+           ,[PrimaryCompetitors]
+           ,[SpecificResourceRequirements]
+           ,[Technical]
+		   ,[QuoteDue]
+		   ,[SOP]
+		   ,[SalesDBID]
+           ,[MarketSector]
+           ,[AssignedTo])
+     VALUES
+           (@CustomerKey 
+		   ,@BOMHeaderKey
+           ,@InquiryNumber 
+           ,@Priority 
+           ,@Revision 
+           ,@SalesPerson 
+           ,@CostModelLoc 
+           ,@Contact 
+           ,@BussinesClass 
+           ,@Product 
+           ,@DivLoc 
+           ,@Department 
+           ,@Reason4Quote 
+           ,@Application 
+           ,@Specification 
+           ,@DrawingLevel 
+           ,@TaskDescription 
+           ,@PartPrint 
+           ,@Sample 
+           ,@ToolingTarget 
+           ,@PrimaryCompetitors 
+           ,@SpecificResourceRequirements 
+           ,@Technical
+		   ,@QuoteDue
+		   ,@Sop
+		   ,@SalesDBID
+           ,@MarketSector
+           ,@AssignedTo)
+
+	Select @@Identity
+
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_UsersInRoles]    Script Date: 01/09/2014 14:40:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6653,7 +6390,242 @@ CREATE VIEW [dbo].[vw_aspnet_UsersInRoles]
   AS SELECT [dbo].[aspnet_UsersInRoles].[UserId], [dbo].[aspnet_UsersInRoles].[RoleId]
   FROM [dbo].[aspnet_UsersInRoles]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Paths_CreatePath]    Script Date: 01/02/2014 13:55:21 ******/
+/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 01/09/2014 14:37:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RFQHeader_NewRFQ]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailKey INT
+	,@SupplierMasterKey INT
+	,@RFQNumberKey INT
+	,@DrawingLevel NVARCHAR(50)
+	,@EstimatedAnnualVolume INT
+	,@ProductionLeadTime NVARCHAR(50)
+	,@ProductionToolingLeadTime NVARCHAR(50)
+	,@PrototypeToolingLeadTime NVARCHAR(50)	
+	,@PrototypePieceLeadTime NVARCHAR(50)
+	,@ToolingDetail NVARCHAR(MAX)
+	,@ProductionTooling FLOAT
+	,@PrototypeTooling FLOAT
+	,@PrototypePiece FLOAT
+	,@SG_A_Profit FLOAT
+	,@PackingPerUnit FLOAT
+	,@AssemblyCostPerUnit FLOAT
+	,@Status NVARCHAR(15)
+	,@DueDate datetime
+	,@SentToVendor datetime
+	,@FilledUp datetime
+	,@PreparedBy NVARCHAR(150)
+	,@MOQ nvarchar(50)
+	,@TargetPrice float
+	,@NoQuote bit
+	,@MarketSector numeric(18,0)
+	,@IAgree bit
+	,@DateFilledOut datetime
+	,@Make nvarchar(50)
+	,@ReasonNoQuote nvarchar(200)
+	,@Weight float
+	,@CommentsToBuyer nvarchar(MAX)
+	,@CommentsToVendor nvarchar(MAX)
+	,@UMWeight nvarchar(50)
+	,@AttachmentsFolder nvarchar(50)
+	,@LeadTimePPAP nvarchar(50)
+	,@AttachmentsFolderVendor nvarchar(50)
+	,@CreatedBy nvarchar(256)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+INSERT INTO [APQM_DB].[dbo].[RFQHeader]
+           ([BOMDetailKey]
+           ,[SupplierMasterKey]
+           ,[RFQNumberKey]
+           ,[DrawingLevel]
+           ,[EstimatedAnnualVolume]
+           ,[ProductionLeadTime]
+           ,[ProductionToolingLeadTime]
+		   ,[PrototypeToolingLeadTime]
+           ,[PrototypePieceLeadTime]
+           ,[ToolingDetail]
+           ,[ProductionTooling]
+           ,[PrototypeTooling]
+           ,[PrototypePiece]
+           ,[SG_A_Profit]
+           ,[PackingPerUnit]
+           ,[AssemblyCostPerUnit]
+		   ,[Status]
+		   ,[DueDate]
+		   ,[SentToVendor]
+		   ,[FilledUp]
+		   ,[PreparedBy]
+		   ,[MOQ]
+		   ,[TargetPrice]
+		   ,[NoQuote]
+		   ,[MarketSector]
+		   ,[CommentsToBuyer]
+		   ,[CommentsToVendor]
+		   ,[IAgree]
+		   ,[DateFilledOut]
+		   ,[Make]
+		   ,[ReasonNoQuote]
+		   ,[Weight]
+		   ,[UMWeight]
+		   ,[AttachmentsFolder]
+		   ,[LeadTimePPAP]
+		   ,[AttachmentsFolderVendor]
+		   ,[CreatedBy])
+     VALUES
+           (@BOMDetailKey
+           ,@SupplierMasterKey
+           ,@RFQNumberKey
+           ,@DrawingLevel
+           ,@EstimatedAnnualVolume
+           ,@ProductionLeadTime
+           ,@ProductionToolingLeadTime
+		   ,@PrototypeToolingLeadTime
+           ,@PrototypePieceLeadTime
+           ,@ToolingDetail
+           ,@ProductionTooling
+           ,@PrototypeTooling
+           ,@PrototypePiece
+           ,@SG_A_Profit
+           ,@PackingPerUnit
+           ,@AssemblyCostPerUnit
+		   ,@Status
+		   ,@DueDate
+		   ,@SentToVendor
+		   ,@FilledUp
+		   ,@PreparedBy
+           ,@MOQ
+           ,@TargetPrice
+           ,@NoQuote
+           ,@MarketSector
+           ,@CommentsToBuyer
+           ,@CommentsToVendor
+           ,@IAgree
+           ,@DateFilledOut
+           ,@Make
+           ,@ReasonNoQuote
+           ,@Weight
+           ,@UMWeight
+           ,@AttachmentsFolder
+		   ,@LeadTimePPAP
+           ,@AttachmentsFolderVendor
+           ,@CreatedBy)
+
+Select @@Identity
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 01/09/2014 14:37:51 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RFQHeader_EditRFQ]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailKey INT
+	,@SupplierMasterKey INT
+	,@DrawingLevel NVARCHAR(50)
+	,@EstimatedAnnualVolume INT
+	,@ProductionLeadTime NVARCHAR(50)
+	,@ProductionToolingLeadTime NVARCHAR(50)
+	,@PrototypeToolingLeadTime NVARCHAR (50)
+	,@PrototypePieceLeadTime NVARCHAR(50)
+	,@ToolingDetail NVARCHAR(MAX)
+	,@ProductionTooling FLOAT
+	,@PrototypeTooling FLOAT
+	,@PrototypePiece FLOAT
+	,@SG_A_Profit FLOAT
+	,@PackingPerUnit FLOAT
+	,@AssemblyCostPerUnit FLOAT
+	,@RFQHeaderKey INT
+	,@Status NVARCHAR(15)
+	,@DueDate datetime	
+	,@FilledUp datetime
+	,@PreparedBy NVARCHAR(150)
+	,@MOQ nvarchar(50)
+	,@TargetPrice float
+	,@NoQuote bit
+	,@MarketSector numeric(18,0)
+	,@CommentsToBuyer nvarchar(MAX)
+	,@CommentsToVendor nvarchar(MAX)
+	,@IAgree bit
+	,@DateFilledOut datetime
+	,@Make nvarchar(50)
+	,@ReasonNoQuote nvarchar(200)
+	,@Weight float
+	,@UMWeight nvarchar(50)
+	,@AttachmentsFolder nvarchar(50)
+	,@LeadTimePPAP nvarchar(50)
+	,@AttachmentsFolderVendor nvarchar(50)
+	,@CreatedBy nvarchar(256)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE    RFQHeader
+SET       BOMDetailKey = @BOMDetailKey
+, SupplierMasterKey = @SupplierMasterKey
+, DrawingLevel = @DrawingLevel
+, EstimatedAnnualVolume = @EstimatedAnnualVolume
+, ProductionLeadTime = @ProductionLeadTime
+, ProductionToolingLeadTime = @ProductionToolingLeadTime
+, PrototypeToolingLeadTime = @PrototypeToolingLeadTime
+, PrototypePieceLeadTime = @PrototypePieceLeadTime
+, ToolingDetail = @ToolingDetail
+, ProductionTooling = @ProductionTooling
+, PrototypeTooling = @PrototypeTooling
+, PrototypePiece = @PrototypePiece
+, SG_A_Profit = @SG_A_Profit
+, PackingPerUnit = @PackingPerUnit
+, AssemblyCostPerUnit = @AssemblyCostPerUnit
+, [Status] = @Status
+, DueDate = @DueDate
+, FilledUp = @FilledUp
+, PreparedBy = @PreparedBy
+, MOQ = @MOQ
+, TargetPrice = @TargetPrice
+, NoQuote = @NoQuote
+, MarketSector = @MarketSector
+, CommentsToBuyer = @CommentsToBuyer
+, CommentsToVendor = @CommentsToVendor
+, IAgree = @IAgree
+, DateFilledOut = @DateFilledOut
+, Make = @Make
+, ReasonNoQuote = @ReasonNoQuote
+, Weight = @Weight
+, UMWeight = @UMWeight 
+, AttachmentsFolder = @AttachmentsFolder
+, LeadTimePPAP = @LeadTimePPAP
+, AttachmentsFolderVendor = @AttachmentsFolderVendor
+, CreatedBy = @CreatedBy
+
+WHERE     (RFQHeaderKey = @RFQHeaderKey)
+
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Paths]    Script Date: 01/09/2014 14:40:39 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_WebPartState_Paths]
+  AS SELECT [dbo].[aspnet_Paths].[ApplicationId], [dbo].[aspnet_Paths].[PathId], [dbo].[aspnet_Paths].[Path], [dbo].[aspnet_Paths].[LoweredPath]
+  FROM [dbo].[aspnet_Paths]
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Paths_CreatePath]    Script Date: 01/09/2014 14:37:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6673,16 +6645,7 @@ BEGIN
     SELECT @PathId = PathId FROM dbo.aspnet_Paths WHERE LOWER(@Path) = LoweredPath AND ApplicationId = @ApplicationId
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_Paths]    Script Date: 01/02/2014 13:58:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE VIEW [dbo].[vw_aspnet_WebPartState_Paths]
-  AS SELECT [dbo].[aspnet_Paths].[ApplicationId], [dbo].[aspnet_Paths].[PathId], [dbo].[aspnet_Paths].[Path], [dbo].[aspnet_Paths].[LoweredPath]
-  FROM [dbo].[aspnet_Paths]
-GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_Shared]    Script Date: 01/02/2014 13:58:49 ******/
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Shared]    Script Date: 01/09/2014 14:40:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6691,7 +6654,7 @@ CREATE VIEW [dbo].[vw_aspnet_WebPartState_Shared]
   AS SELECT [dbo].[aspnet_PersonalizationAllUsers].[PathId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationAllUsers].[PageSettings]), [dbo].[aspnet_PersonalizationAllUsers].[LastUpdatedDate]
   FROM [dbo].[aspnet_PersonalizationAllUsers]
 GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_User]    Script Date: 01/02/2014 13:58:49 ******/
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_User]    Script Date: 01/09/2014 14:40:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6700,7 +6663,7 @@ CREATE VIEW [dbo].[vw_aspnet_WebPartState_User]
   AS SELECT [dbo].[aspnet_PersonalizationPerUser].[PathId], [dbo].[aspnet_PersonalizationPerUser].[UserId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationPerUser].[PageSettings]), [dbo].[aspnet_PersonalizationPerUser].[LastUpdatedDate]
   FROM [dbo].[aspnet_PersonalizationPerUser]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 01/02/2014 13:55:52 ******/
+/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 01/09/2014 14:37:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6768,7 +6731,7 @@ WHERE ([RFQHeaderKey] = @RFQHeaderKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 01/02/2014 13:55:51 ******/
+/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 01/09/2014 14:37:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6813,7 +6776,7 @@ UPDATE [APQM_DB].[dbo].[RFQDetail]
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 01/02/2014 13:58:46 ******/
+/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 01/09/2014 14:40:36 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6830,7 +6793,7 @@ SELECT     dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.RFQHeader
                       dbo.RFQHeader.MOQ, dbo.RFQHeader.TargetPrice, dbo.RFQHeader.NoQuote, dbo.RFQHeader.MarketSector, dbo.RFQHeader.IAgree, dbo.RFQHeader.DateFilledOut, 
                       dbo.RFQHeader.Make, dbo.RFQHeader.ReasonNoQuote, dbo.RFQHeader.Weight, dbo.RFQHeader.CommentsToBuyer, dbo.RFQHeader.CommentsToVendor, 
                       dbo.RFQHeader.UMWeight, dbo.BOMDetail.Material, dbo.viewRFQNumber.SIFHeaderKey, dbo.RFQHeader.AttachmentsFolder, dbo.RFQHeader.LeadTimePPAP, 
-                      dbo.BOMDetail.[User], dbo.RFQHeader.AttachmentsFolderVendor, dbo.MarketSector.Name AS MarketSectorName
+                      dbo.BOMDetail.[User], dbo.RFQHeader.AttachmentsFolderVendor, dbo.MarketSector.Name AS MarketSectorName, dbo.RFQHeader.CreatedBy
 FROM         dbo.ItemMaster INNER JOIN
                       dbo.BOMDetail ON dbo.ItemMaster.ItemMasterKey = dbo.BOMDetail.ItemMasterKey INNER JOIN
                       dbo.RFQHeader ON dbo.BOMDetail.BOMDetailKey = dbo.RFQHeader.BOMDetailKey INNER JOIN
@@ -6881,7 +6844,7 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 9
          NumPanes = 2
-         Configuration = "(H (1[26] 4) )"
+         Configuration = "(H (1[34] 4) )"
       End
       Begin PaneConfiguration = 10
          NumPanes = 2
@@ -6961,22 +6924,22 @@ Begin DesignProperties =
             DisplayFlags = 280
             TopColumn = 0
          End
-         Begin Table = "TokenMaster"
-            Begin Extent = 
-               Top = 0
-               Left = 869
-               Bottom = 148
-               Right = 1027
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
          Begin Table = "MarketSector"
             Begin Extent = 
                Top = 454
                Left = 527
                Bottom = 543
                Right = 691
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "TokenMaster"
+            Begin Extent = 
+               Top = 0
+               Left = 869
+               Bottom = 148
+               Right = 1027
             End
 ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQHeader_ReadAll'
 GO
@@ -7047,7 +7010,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQHeader_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 01/02/2014 13:58:43 ******/
+/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 01/09/2014 14:40:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7061,7 +7024,8 @@ SELECT     dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.viewRFQNu
                       SUM(ISNULL(dbo.RFQDetail.DirectHrlyLaborRate, 0) * ISNULL(dbo.RFQDetail.StdHrs, 0)) AS LaborTotal, SUM(ISNULL(dbo.RFQDetail.Burden, 0)) AS BurdenTotal, 
                       dbo.RFQHeader.SG_A_Profit, dbo.RFQHeader.PackingPerUnit, dbo.RFQHeader.AssemblyCostPerUnit, dbo.RFQHeader.EstimatedAnnualVolume, 
                       dbo.SupplierMaster.SupplierName, dbo.RFQSummary.RFQSummaryKey, dbo.RFQSummary.BCost, dbo.RFQSummary.CCost, dbo.RFQSummary.EAV, 
-                      dbo.RFQSummary.Tooling, dbo.RFQSummary.Cavitation, dbo.RFQSummary.Material, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence
+                      dbo.RFQSummary.Tooling, dbo.RFQSummary.Cavitation, dbo.RFQSummary.Material, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence, 
+                      dbo.RFQHeader.CreatedBy
 FROM         dbo.RFQHeader INNER JOIN
                       dbo.SupplierMaster ON dbo.RFQHeader.SupplierMasterKey = dbo.SupplierMaster.SupplierMasterKey INNER JOIN
                       dbo.viewRFQNumber ON dbo.RFQHeader.RFQNumberKey = dbo.viewRFQNumber.RFQNumberKey LEFT OUTER JOIN
@@ -7070,7 +7034,7 @@ FROM         dbo.RFQHeader INNER JOIN
 GROUP BY dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.RFQHeader.SupplierMasterKey, dbo.RFQHeader.SG_A_Profit, dbo.RFQHeader.PackingPerUnit, 
                       dbo.RFQHeader.AssemblyCostPerUnit, dbo.RFQHeader.EstimatedAnnualVolume, dbo.SupplierMaster.SupplierName, dbo.RFQSummary.RFQSummaryKey, 
                       dbo.RFQSummary.BCost, dbo.RFQSummary.CCost, dbo.RFQSummary.EAV, dbo.RFQSummary.Tooling, dbo.RFQSummary.Cavitation, dbo.RFQSummary.Material, 
-                      dbo.viewRFQNumber.RFQGenerated, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence
+                      dbo.viewRFQNumber.RFQGenerated, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence, dbo.RFQHeader.CreatedBy
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
@@ -7085,7 +7049,7 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 2
          NumPanes = 3
-         Configuration = "(H (1[17] 2[61] 3) )"
+         Configuration = "(H (1[64] 2[15] 3) )"
       End
       Begin PaneConfiguration = 3
          NumPanes = 3
@@ -7139,7 +7103,7 @@ Begin DesignProperties =
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = -384
+         Top = -165
          Left = 0
       End
       Begin Tables = 
@@ -7151,7 +7115,7 @@ Begin DesignProperties =
                Right = 724
             End
             DisplayFlags = 280
-            TopColumn = 0
+            TopColumn = 3
          End
          Begin Table = "SupplierMaster"
             Begin Extent = 
@@ -7250,7 +7214,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQ_Summary'
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_CreateUser]    Script Date: 01/02/2014 13:55:11 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_CreateUser]    Script Date: 01/09/2014 14:37:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7451,7 +7415,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetUserState]    Script Date: 01/02/2014 13:55:24 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetUserState]    Script Date: 01/09/2014 14:37:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7484,7 +7448,7 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_GetCountOfState]    Script Date: 01/02/2014 13:55:23 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_GetCountOfState]    Script Date: 01/09/2014 14:37:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7521,7 +7485,7 @@ BEGIN
                   AND (@InactiveSinceDate IS NULL OR Users.LastActivityDate <= @InactiveSinceDate)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_SetProperties]    Script Date: 01/02/2014 13:55:31 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_SetProperties]    Script Date: 01/09/2014 14:37:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7625,7 +7589,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_GetPageSettings]    Script Date: 01/02/2014 13:55:26 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_GetPageSettings]    Script Date: 01/09/2014 14:37:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7672,7 +7636,7 @@ BEGIN
     SELECT p.PageSettings FROM dbo.aspnet_PersonalizationPerUser p WHERE p.PathId = @PathId AND p.UserId = @UserId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings]    Script Date: 01/02/2014 13:55:27 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings]    Script Date: 01/09/2014 14:37:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7720,7 +7684,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_SetPageSettings]    Script Date: 01/02/2014 13:55:27 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_SetPageSettings]    Script Date: 01/09/2014 14:37:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7768,7 +7732,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings]    Script Date: 01/02/2014 13:55:26 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings]    Script Date: 01/09/2014 14:37:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7801,7 +7765,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_CreateRole]    Script Date: 01/02/2014 13:55:32 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_CreateRole]    Script Date: 01/09/2014 14:37:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7872,7 +7836,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 01/02/2014 13:55:28 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 01/09/2014 14:37:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7944,70 +7908,7 @@ Cleanup:
     RETURN @ErrorCode
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings]    Script Date: 01/02/2014 13:55:25 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings] (
-    @ApplicationName  NVARCHAR(256),
-    @Path              NVARCHAR(256))
-AS
-BEGIN
-    DECLARE @ApplicationId UNIQUEIDENTIFIER
-    DECLARE @PathId UNIQUEIDENTIFIER
-
-    SELECT @ApplicationId = NULL
-    SELECT @PathId = NULL
-
-    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
-    IF (@PathId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    DELETE FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId
-    RETURN 0
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings]    Script Date: 01/02/2014 13:55:25 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings] (
-    @ApplicationName  NVARCHAR(256),
-    @Path              NVARCHAR(256))
-AS
-BEGIN
-    DECLARE @ApplicationId UNIQUEIDENTIFIER
-    DECLARE @PathId UNIQUEIDENTIFIER
-
-    SELECT @ApplicationId = NULL
-    SELECT @PathId = NULL
-
-    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
-    IF (@PathId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationAllUsers p WHERE p.PathId = @PathId
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetSharedState]    Script Date: 01/02/2014 13:55:24 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetSharedState]    Script Date: 01/09/2014 14:37:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -8036,7 +7937,7 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_DeleteAllState]    Script Date: 01/02/2014 13:55:22 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_DeleteAllState]    Script Date: 01/09/2014 14:37:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -8070,7 +7971,70 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_FindState]    Script Date: 01/02/2014 13:55:22 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings]    Script Date: 01/09/2014 14:37:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    DELETE FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId
+    RETURN 0
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings]    Script Date: 01/09/2014 14:37:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationAllUsers p WHERE p.PathId = @PathId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_FindState]    Script Date: 01/09/2014 14:37:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -8184,174 +8148,174 @@ BEGIN
     RETURN @TotalRecords
 END
 GO
-/****** Object:  ForeignKey [FK__aspnet_Me__Appli__3E1D39E1]    Script Date: 01/02/2014 13:56:27 ******/
+/****** Object:  ForeignKey [FK__aspnet_Me__Appli__3E1D39E1]    Script Date: 01/09/2014 14:38:26 ******/
 ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Me__UserI__3F115E1A]    Script Date: 01/02/2014 13:56:27 ******/
+/****** Object:  ForeignKey [FK__aspnet_Me__UserI__3F115E1A]    Script Date: 01/09/2014 14:38:26 ******/
 ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pa__Appli__6FB49575]    Script Date: 01/02/2014 13:56:30 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pa__Appli__6FB49575]    Script Date: 01/09/2014 14:38:29 ******/
 ALTER TABLE [dbo].[aspnet_Paths]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__756D6ECB]    Script Date: 01/02/2014 13:56:32 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__756D6ECB]    Script Date: 01/09/2014 14:38:31 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationAllUsers]  WITH CHECK ADD FOREIGN KEY([PathId])
 REFERENCES [dbo].[aspnet_Paths] ([PathId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__793DFFAF]    Script Date: 01/02/2014 13:56:36 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__793DFFAF]    Script Date: 01/09/2014 14:38:34 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([PathId])
 REFERENCES [dbo].[aspnet_Paths] ([PathId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__UserI__7A3223E8]    Script Date: 01/02/2014 13:56:36 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__UserI__7A3223E8]    Script Date: 01/09/2014 14:38:34 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pr__UserI__531856C7]    Script Date: 01/02/2014 13:56:39 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pr__UserI__531856C7]    Script Date: 01/09/2014 14:38:37 ******/
 ALTER TABLE [dbo].[aspnet_Profile]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Ro__Appli__5CA1C101]    Script Date: 01/02/2014 13:56:42 ******/
+/****** Object:  ForeignKey [FK__aspnet_Ro__Appli__5CA1C101]    Script Date: 01/09/2014 14:38:39 ******/
 ALTER TABLE [dbo].[aspnet_Roles]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__Appli__2DE6D218]    Script Date: 01/02/2014 13:56:49 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__Appli__2DE6D218]    Script Date: 01/09/2014 14:38:45 ******/
 ALTER TABLE [dbo].[aspnet_Users]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__RoleI__6166761E]    Script Date: 01/02/2014 13:56:51 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__RoleI__6166761E]    Script Date: 01/09/2014 14:38:47 ******/
 ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([RoleId])
 REFERENCES [dbo].[aspnet_Roles] ([RoleId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__UserI__607251E5]    Script Date: 01/02/2014 13:56:51 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__UserI__607251E5]    Script Date: 01/09/2014 14:38:47 ******/
 ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK_BOMDetail_BOMHeader]    Script Date: 01/02/2014 13:57:09 ******/
+/****** Object:  ForeignKey [FK_BOMDetail_BOMHeader]    Script Date: 01/09/2014 14:39:03 ******/
 ALTER TABLE [dbo].[BOMDetail]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetail_BOMHeader] FOREIGN KEY([BOMHeaderKey])
 REFERENCES [dbo].[BOMHeader] ([BOMHeaderKey])
 GO
 ALTER TABLE [dbo].[BOMDetail] CHECK CONSTRAINT [FK_BOMDetail_BOMHeader]
 GO
-/****** Object:  ForeignKey [FK_BOMDetail_ItemMaster]    Script Date: 01/02/2014 13:57:09 ******/
+/****** Object:  ForeignKey [FK_BOMDetail_ItemMaster]    Script Date: 01/09/2014 14:39:04 ******/
 ALTER TABLE [dbo].[BOMDetail]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetail_ItemMaster] FOREIGN KEY([ItemMasterKey])
 REFERENCES [dbo].[ItemMaster] ([ItemMasterKey])
 GO
 ALTER TABLE [dbo].[BOMDetail] CHECK CONSTRAINT [FK_BOMDetail_ItemMaster]
 GO
-/****** Object:  ForeignKey [FK_BOMDetailVolume_BOMDetail]    Script Date: 01/02/2014 13:57:11 ******/
+/****** Object:  ForeignKey [FK_BOMDetailVolume_BOMDetail]    Script Date: 01/09/2014 14:39:05 ******/
 ALTER TABLE [dbo].[BOMDetailVolume]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetailVolume_BOMDetail] FOREIGN KEY([BOMDetailKey])
 REFERENCES [dbo].[BOMDetail] ([BOMDetailKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[BOMDetailVolume] CHECK CONSTRAINT [FK_BOMDetailVolume_BOMDetail]
 GO
-/****** Object:  ForeignKey [FK_BOMHeader_SIFHeader]    Script Date: 01/02/2014 13:57:14 ******/
+/****** Object:  ForeignKey [FK_BOMHeader_SIFHeader]    Script Date: 01/09/2014 14:39:08 ******/
 ALTER TABLE [dbo].[BOMHeader]  WITH CHECK ADD  CONSTRAINT [FK_BOMHeader_SIFHeader] FOREIGN KEY([SIFHeaderKey])
 REFERENCES [dbo].[SIFHeader] ([SIFHeaderKey])
 GO
 ALTER TABLE [dbo].[BOMHeader] CHECK CONSTRAINT [FK_BOMHeader_SIFHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQACR_RFQHeader]    Script Date: 01/02/2014 13:57:25 ******/
+/****** Object:  ForeignKey [FK_RFQACR_RFQHeader]    Script Date: 01/09/2014 14:39:19 ******/
 ALTER TABLE [dbo].[RFQACR]  WITH CHECK ADD  CONSTRAINT [FK_RFQACR_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQACR] CHECK CONSTRAINT [FK_RFQACR_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQDetail_RFQHeader]    Script Date: 01/02/2014 13:57:30 ******/
+/****** Object:  ForeignKey [FK_RFQDetail_RFQHeader]    Script Date: 01/09/2014 14:39:24 ******/
 ALTER TABLE [dbo].[RFQDetail]  WITH CHECK ADD  CONSTRAINT [FK_RFQDetail_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQDetail] CHECK CONSTRAINT [FK_RFQDetail_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQEAV_RFQHeader]    Script Date: 01/02/2014 13:57:33 ******/
+/****** Object:  ForeignKey [FK_RFQEAV_RFQHeader]    Script Date: 01/09/2014 14:39:26 ******/
 ALTER TABLE [dbo].[RFQEAV]  WITH CHECK ADD  CONSTRAINT [FK_RFQEAV_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQEAV] CHECK CONSTRAINT [FK_RFQEAV_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_BOMDetail]    Script Date: 01/02/2014 13:57:48 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_BOMDetail]    Script Date: 01/09/2014 14:39:42 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_BOMDetail] FOREIGN KEY([BOMDetailKey])
 REFERENCES [dbo].[BOMDetail] ([BOMDetailKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_BOMDetail]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_MarketSector]    Script Date: 01/02/2014 13:57:48 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_MarketSector]    Script Date: 01/09/2014 14:39:42 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_MarketSector] FOREIGN KEY([MarketSector])
 REFERENCES [dbo].[MarketSector] ([MarketSectorID])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_MarketSector]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_RFQNumber]    Script Date: 01/02/2014 13:57:49 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_RFQNumber]    Script Date: 01/09/2014 14:39:42 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_RFQNumber] FOREIGN KEY([RFQNumberKey])
 REFERENCES [dbo].[RFQNumber] ([RFQNumberKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_RFQNumber]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_SupplierMaster]    Script Date: 01/02/2014 13:57:49 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_SupplierMaster]    Script Date: 01/09/2014 14:39:42 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_SupplierMaster] FOREIGN KEY([SupplierMasterKey])
 REFERENCES [dbo].[SupplierMaster] ([SupplierMasterKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_SupplierMaster]
 GO
-/****** Object:  ForeignKey [FK_RFQSummary_RFQHeader]    Script Date: 01/02/2014 13:57:56 ******/
+/****** Object:  ForeignKey [FK_RFQSummary_RFQHeader]    Script Date: 01/09/2014 14:39:49 ******/
 ALTER TABLE [dbo].[RFQSummary]  WITH CHECK ADD  CONSTRAINT [FK_RFQSummary_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 GO
 ALTER TABLE [dbo].[RFQSummary] CHECK CONSTRAINT [FK_RFQSummary_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_SIFDetail_SIFHeader]    Script Date: 01/02/2014 13:57:59 ******/
+/****** Object:  ForeignKey [FK_SIFDetail_SIFHeader]    Script Date: 01/09/2014 14:39:52 ******/
 ALTER TABLE [dbo].[SIFDetail]  WITH CHECK ADD  CONSTRAINT [FK_SIFDetail_SIFHeader] FOREIGN KEY([SIFHeaderKey])
 REFERENCES [dbo].[SIFHeader] ([SIFHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SIFDetail] CHECK CONSTRAINT [FK_SIFDetail_SIFHeader]
 GO
-/****** Object:  ForeignKey [FK_SIFHeader_CustomerMaster]    Script Date: 01/02/2014 13:58:11 ******/
+/****** Object:  ForeignKey [FK_SIFHeader_CustomerMaster]    Script Date: 01/09/2014 14:40:04 ******/
 ALTER TABLE [dbo].[SIFHeader]  WITH CHECK ADD  CONSTRAINT [FK_SIFHeader_CustomerMaster] FOREIGN KEY([CustomerKey])
 REFERENCES [dbo].[CustomerMaster] ([CustomerKey])
 GO
 ALTER TABLE [dbo].[SIFHeader] CHECK CONSTRAINT [FK_SIFHeader_CustomerMaster]
 GO
-/****** Object:  ForeignKey [FK_SIFHeader_MarketSector]    Script Date: 01/02/2014 13:58:11 ******/
+/****** Object:  ForeignKey [FK_SIFHeader_MarketSector]    Script Date: 01/09/2014 14:40:05 ******/
 ALTER TABLE [dbo].[SIFHeader]  WITH CHECK ADD  CONSTRAINT [FK_SIFHeader_MarketSector] FOREIGN KEY([MarketSector])
 REFERENCES [dbo].[MarketSector] ([MarketSectorID])
 GO
 ALTER TABLE [dbo].[SIFHeader] CHECK CONSTRAINT [FK_SIFHeader_MarketSector]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyCertification_SupplierSuvey]    Script Date: 01/02/2014 13:58:19 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyCertification_SupplierSuvey]    Script Date: 01/09/2014 14:40:12 ******/
 ALTER TABLE [dbo].[SupplierSurveyCertification]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyCertification_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyCertification] CHECK CONSTRAINT [FK_SupplierSurveyCertification_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyContacts_SupplierSuvey]    Script Date: 01/02/2014 13:58:23 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyContacts_SupplierSuvey]    Script Date: 01/09/2014 14:40:16 ******/
 ALTER TABLE [dbo].[SupplierSurveyContacts]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyContacts_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyContacts] CHECK CONSTRAINT [FK_SupplierSurveyContacts_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyForecastSales_SupplierSuvey]    Script Date: 01/02/2014 13:58:26 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyForecastSales_SupplierSuvey]    Script Date: 01/09/2014 14:40:19 ******/
 ALTER TABLE [dbo].[SupplierSurveyForecastSales]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyForecastSales_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyForecastSales] CHECK CONSTRAINT [FK_SupplierSurveyForecastSales_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]    Script Date: 01/02/2014 13:58:28 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]    Script Date: 01/09/2014 14:40:20 ******/
 ALTER TABLE [dbo].[SupplierSurveyIndustriesSupplied]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyIndustriesSupplied] CHECK CONSTRAINT [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSuvey_SupplierMaster]    Script Date: 01/02/2014 13:58:39 ******/
+/****** Object:  ForeignKey [FK_SupplierSuvey_SupplierMaster]    Script Date: 01/09/2014 14:40:30 ******/
 ALTER TABLE [dbo].[SupplierSuvey]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSuvey_SupplierMaster] FOREIGN KEY([SupplierMasterKey])
 REFERENCES [dbo].[SupplierMaster] ([SupplierMasterKey])
 GO
