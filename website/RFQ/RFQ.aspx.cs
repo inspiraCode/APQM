@@ -57,6 +57,7 @@ public partial class RFQDefault : System.Web.UI.Page
                 case "RFQ":
                     MultiViewMain.SetActiveView(viewRFQList);
                     ViewState["actualSection"] = "RFQ";
+                    uscRfqList.setUserFilterWithCookie();
                     break;
                 case "RFQPerBOMDetail":
                     MultiViewMain.SetActiveView(viewRFQCountPerBOMDetail);

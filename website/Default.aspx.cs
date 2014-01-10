@@ -12,7 +12,7 @@ using System.Xml.Linq;
 using System.Reflection;
 
 public partial class _Default : System.Web.UI.Page
-{   
+{
     protected void Page_Load(object sender, EventArgs e)
     {
 
@@ -27,14 +27,15 @@ public partial class _Default : System.Web.UI.Page
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
-                    uscBOMList.load();
+                    uscBOMList.setUserFilterWithCookie();
                     break;
                 case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);                    
+                    MultiViewMain.SetActiveView(viewRFQ);
+                    uscRFQList.setUserFilterWithCookie();
                     break;
                 case "supplier":
                     MultiViewMain.SetActiveView(viewSupplier);
-                    uscSupplierList.load();                   
+                    uscSupplierList.load();
                     break;
                 case "popupSupplier":
                     Session.Remove("supplierObject");
@@ -60,7 +61,7 @@ public partial class _Default : System.Web.UI.Page
                     uscSIFForm.load();
                     //disablePageForModalPopup();
                     break;
-                case "popupRFQ":                    
+                case "popupRFQ":
                     MultiViewMain.SetActiveView(viewRFQ);
                     multiViewPopup.SetActiveView(viewPopupRFQ);
                     openpopupContainer();
@@ -75,7 +76,7 @@ public partial class _Default : System.Web.UI.Page
                     //btnSuppliers_Click(null, null);
                     break;
             }
-        }     
+        }
     }
 
     protected void btnLogin_Click(object sender, EventArgs e)
