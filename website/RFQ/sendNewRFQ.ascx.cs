@@ -123,6 +123,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
                                     string strEmailContent =    "Dear Supplier," + Environment.NewLine
                                                                 + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
+                                                                + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
                                                                 + Environment.NewLine + Environment.NewLine
                                                                 + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
                                                                 + Environment.NewLine + Environment.NewLine
