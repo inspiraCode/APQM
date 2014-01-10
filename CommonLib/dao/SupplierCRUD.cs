@@ -248,3 +248,195 @@ public class SupplierCRUD : ICRUD<Supplier>
 
     #endregion
 }
+
+public class SupplierCommodityCRUD : ICRUD<Supplier_Commodity>
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
+    public SupplierCommodityCRUD()
+    { }
+
+    #region ICRUD<Supplier_Commodity> Members
+
+    public bool create(Supplier_Commodity entity)
+    {
+        ErrorOccur = false;
+        bool result = false;
+
+        DM = connectionManager.getDataManager();
+
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierKey", entity.SupplierKey.ToString());
+            DM.Load_SP_Parameters("@CommodityKey", entity.CommodityKey.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierCommodity_New", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+
+        return result;
+    }
+    public string createAndReturnIdGenerated(Supplier_Commodity entity)
+    {
+        ErrorOccur = false;
+        string idGenerated = "";
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierKey", entity.SupplierKey.ToString());
+            DM.Load_SP_Parameters("@CommodityKey", entity.CommodityKey.ToString());
+
+            idGenerated = DM.Execute_StoreProcedure_Scalar("SupplierCommodity_New", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return "";
+        }
+
+        return idGenerated;
+    }
+    public Supplier_Commodity readById(long id)
+    {
+        Supplier_Commodity supplier_Commodity = new Supplier_Commodity();
+
+        string query =  "SELECT     SupplierCommodityKey, SupplierKey, CommodityKey " +
+                        "FROM       Supplier_Commodity " +
+                        "WHERE      (SupplierCommodityKey = @key)";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                supplier_Commodity.Id = long.Parse(table.Rows[0][0].ToString());
+                supplier_Commodity.SupplierKey = long.Parse( table.Rows[0][1].ToString());
+                supplier_Commodity.CommodityKey = long.Parse(table.Rows[0][2].ToString());
+
+                sqlConnection.Dispose();
+                return supplier_Commodity;
+            }
+        }
+        return null;
+    }
+
+    public IList<Supplier_Commodity> readAll()
+    {
+        List<Supplier_Commodity> recordset = new List<Supplier_Commodity>();
+        recordset.Clear();
+        DM = connectionManager.getDataManager();
+
+        string query = "SELECT     SupplierCommodityKey, SupplierKey, CommodityKey " +
+                        "FROM         Supplier_Commodity " +
+                        "ORDER BY SupplierKey";
+        
+        DataTable table = new DataTable();
+        table = DM.Execute_Query(query);
+
+        for (int i = 0; i < table.Rows.Count; i++)
+        {
+            Supplier_Commodity supplier_Commodity = new Supplier_Commodity();
+            supplier_Commodity.Id = long.Parse(table.Rows[i][0].ToString());
+            supplier_Commodity.SupplierKey = long.Parse(table.Rows[i][1].ToString());
+            supplier_Commodity.CommodityKey = long.Parse(table.Rows[i][2].ToString());
+
+            recordset.Add(supplier_Commodity);
+        }
+
+        return recordset;
+    }
+
+    public bool update(Supplier_Commodity entity)
+    {
+        ErrorOccur = false;
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierCommodityKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierKey", entity.SupplierKey.ToString());
+            DM.Load_SP_Parameters("@CommodityKey", entity.CommodityKey.ToString());
+
+            result = DM.Execute_StoreProcedure("SupplierCommodity_Edit", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+
+        return result;
+    }
+    public bool delete(long id)
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
+        string query = "DELETE FROM Supplier_Commodity WHERE SupplierCommodityKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Commodity.";
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
+        return false;
+    }
+
+    #endregion
+}

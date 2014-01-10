@@ -98,3 +98,26 @@ public class Supplier
         set { contactCellPhone = value; }
     }
 }
+
+public class Supplier_Commodity
+{
+    private long id;
+    private long supplierKey = -1;
+    private long commodityKey = -1;
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long SupplierKey
+    {
+        get { return supplierKey; }
+        set { supplierKey = value; }
+    }
+    public long CommodityKey
+    {
+        get { return commodityKey; }
+        set { commodityKey = value; }
+    }
+}

@@ -10,7 +10,7 @@ public class ConnectionManager
     private static string user = "APQMAPP";
     private static string server = "capsp";
     private static string pass = "capsonic";
-    private static string database = "APQM_DB";
+    private static string database = "APQM_DB_DEV";
 
    // private Data_Mng.SQL_DTMG DMG;
     private Data_Base_MNG.SQL DMG;
