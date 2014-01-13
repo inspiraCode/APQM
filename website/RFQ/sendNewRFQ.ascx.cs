@@ -11,6 +11,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
+    private SupplierCommodityCRUD supplierCommodityCRUD = new SupplierCommodityCRUD();
     private List<Supplier> supplierList = null;
     
     protected void Page_Load(object sender, EventArgs e)
@@ -239,7 +240,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
-        SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSourceSuppliers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceMarketSector.ConnectionString = connection.getConnection().ConnectionString;
     }
@@ -351,5 +352,30 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         catch
         {
         }
+    }
+    protected void cboCommodities_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        loadSupplierDropDown();
+    }
+    private void loadSupplierDropDown()
+    {
+        if (cboCommodities.SelectedItem.Text == "ALL")
+        {
+            SqlDataSourceSuppliers.SelectCommand = "SELECT      SupplierMaster.SupplierMasterKey, SupplierMaster.SupplierName, SupplierMaster.ContactEmail " +
+                                                    "FROM       SupplierMaster";
+        }
+        else
+        {
+            SqlDataSourceSuppliers.SelectCommand = "SELECT      SupplierMaster.SupplierMasterKey, SupplierMaster.SupplierName, SupplierMaster.ContactEmail " +
+                                                    "FROM       SupplierMaster INNER JOIN " +
+                                                    "Supplier_Commodity ON SupplierMaster.SupplierMasterKey = Supplier_Commodity.SupplierKey " +
+                                                    "WHERE Supplier_Commodity.CommodityKey = " + cboCommodities.SelectedValue;
+        }
+        
+        cboSupplier.DataBind();
+    }
+    protected void cboCommodities_DataBound(object sender, EventArgs e)
+    {
+        loadSupplierDropDown();
     }
 }

@@ -13,7 +13,7 @@
 </asp:SqlDataSource>
 <uc3:Validator ID="Validator1" runat="server" />
 <asp:Label ID="lblBomDetailID" runat="server" Text="1" Visible="False"></asp:Label>
-<asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSource1" runat="server"
+<asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceSuppliers" runat="server"
     SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
 </asp:SqlDataSource>
 <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceRFQCountPerBOMDetail"
@@ -104,21 +104,36 @@
                             <ContentTemplate>
                                 <table>
                                     <tr>
+                                        <td align="right">
+                                            Filter by Commodity</td>
                                         <td>
+                                            <asp:DropDownList ID="cboCommodities" runat="server" AutoPostBack="True" 
+                                                chosen="true" DataSourceID="SqlDataSourceCommodities" DataTextField="Commodity" 
+                                                DataValueField="CommodityKey" Height="16px"
+                                                TabIndex="1" 
+                                                Width="285px" onselectedindexchanged="cboCommodities_SelectedIndexChanged" 
+                                                ondatabound="cboCommodities_DataBound">
+                                            </asp:DropDownList>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right">
                                             Vendor
                                         </td>
                                         <td>
-                                            <asp:DropDownList ID="cboSupplier" runat="server" AutoPostBack="True" chosen="true"
-                                                DataSourceID="SqlDataSource1" DataTextField="SupplierName" DataValueField="SupplierMasterKey"
-                                                Height="16px" OnDataBound="on_dataBound_supplier" OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged"
-                                                Width="285px" TabIndex="1">
+                                            <asp:DropDownList ID="cboSupplier" runat="server" AutoPostBack="True" 
+                                                chosen="true" DataSourceID="SqlDataSourceSuppliers" DataTextField="SupplierName" 
+                                                DataValueField="SupplierMasterKey" Height="16px" 
+                                                OnDataBound="on_dataBound_supplier" 
+                                                OnSelectedIndexChanged="cboSupplier_SelectedIndexChanged" TabIndex="1" 
+                                                Width="285px">
                                             </asp:DropDownList>
                                             <asp:Button ID="btnNewSupplier" runat="server" TabIndex="2" Text="New" 
                                                 Width="60px" />
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                        <td align="right">
                                             Email
                                         </td>
                                         <td>
@@ -276,6 +291,13 @@
             OnClick="btnCancelSelectMaterial_Click" TabIndex="-1" />
     </div>
 </asp:Panel>
+
+<asp:SqlDataSource ID="SqlDataSourceCommodities" runat="server" 
+    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
+    ProviderName="System.Data.SqlClient" 
+    SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
+</asp:SqlDataSource>
+
 
 <script type="text/javascript">
     function toggleTargetPrice() {
