@@ -243,6 +243,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         SqlDataSourceSuppliers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceRFQCountPerBOMDetail.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSourceMarketSector.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSourceCommodities.ConnectionString = connection.getConnection().ConnectionString;
     }
     protected void on_prompt(object sender, EventArgs e)
     {

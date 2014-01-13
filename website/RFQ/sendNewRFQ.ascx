@@ -293,8 +293,7 @@
 </asp:Panel>
 
 <asp:SqlDataSource ID="SqlDataSourceCommodities" runat="server" 
-    ConnectionString="Data Source=CAPSP;Initial Catalog=APQM_DB;Integrated Security=True" 
-    ProviderName="System.Data.SqlClient" 
+    ProviderName="System.Data.SqlClient" OnInit="on_sqldatasource_Init"
     SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
 </asp:SqlDataSource>
 
