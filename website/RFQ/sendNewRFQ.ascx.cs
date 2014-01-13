@@ -15,7 +15,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        btnNewSupplier.OnClientClick = "return promptUser('New supplierList', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
+        btnNewSupplier.OnClientClick = "return promptUser('New Supplier', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         btnNewMarketSector.OnClientClick = "return promptUser('New Market Sector', 'm~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         
         supplierList = (List<Supplier>)Session["SupplierList"];
@@ -24,7 +24,6 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
             supplierList = new List<Supplier>();
             Session["SupplierList"] = supplierList;
         }
-        
         if (txtDueDate.Text.Trim() == "")
         {
             txtDueDate.Text = DateTime.Now.ToShortDateString();

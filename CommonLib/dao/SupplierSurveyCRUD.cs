@@ -439,6 +439,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -660,6 +661,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Industries_Supplied.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -705,6 +707,7 @@ public class SupplierSurveyIndustriesCRUD : ICRUD<SupplierSurveyIndustriesSuppli
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Industries_Supplied.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -946,6 +949,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Forecast_Sales.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -991,6 +995,7 @@ public class SupplierSurveyForecastSalesCRUD : ICRUD<SupplierSurveyForecastSales
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Forecast_Sales.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1266,6 +1271,7 @@ public class SupplierSurveyContactsCRUD : ICRUD<SupplierSurveyContacts>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Contacts.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1486,6 +1492,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Certification.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1530,6 +1537,7 @@ public class SupplierSurveyCertificationCRUD : ICRUD<SupplierSurveyCertification
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Survey_Certification.";
+                    return true;
                 }
             }
             catch (Exception e)

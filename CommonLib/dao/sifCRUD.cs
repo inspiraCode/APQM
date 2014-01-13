@@ -553,6 +553,7 @@ public class sifCRUD : ICRUD<SIF>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: SIF_Header";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -857,6 +858,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: SIF_DETAIL";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -902,6 +904,7 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: SIF_DETAIL";
+                    return true;
                 }                
             }
             catch (Exception e)

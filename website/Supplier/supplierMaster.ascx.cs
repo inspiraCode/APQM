@@ -11,6 +11,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
     public event EventHandler AfterCancel;
 
     SupplierCRUD supplierCRUD = new SupplierCRUD();
+    SupplierCommodityCRUD supplierCommodityCRUD = new SupplierCommodityCRUD();
     
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -44,6 +45,8 @@ public partial class supplierMaster : System.Web.UI.UserControl
         chkVisible.Checked = supplier.Visible;
         txtContactCellPhone.Text = supplier.ContactCellPhone;
 
+        uscCommodity.setSupplierID(supplier.Id);
+
         lblMode.Text = "Update";
     }
     public void save()
@@ -62,21 +65,49 @@ public partial class supplierMaster : System.Web.UI.UserControl
         supplier.Visible = chkVisible.Checked;
         supplier.ContactCellPhone = txtContactCellPhone.Text;
 
-        if (lblMode.Text == "New") {
-            if (!supplierCRUD.create(supplier))
+        if (lblMode.Text == "New")
+        {
+            String idGenerated = supplierCRUD.createAndReturnIdGenerated(supplier);
+            if (supplierCRUD.ErrorOccur)
             {
-                Navigator.goToPage("~/Error.aspx","ERROR:" + supplierCRUD.ErrorMessage);
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);
                 return;
             }
-        }else if(lblMode.Text == "Update"){
+            supplier.Id = long.Parse(idGenerated);
+        }
+        else if (lblMode.Text == "Update")
+        {
             supplier.Id = long.Parse(lblID.Text);
             if (!supplierCRUD.update(supplier))
             {
-                Navigator.goToPage("~/Error.aspx","ERROR:" + supplierCRUD.ErrorMessage);
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);
+                return;
+            }
+
+            SupplierCommodityCRUD supplierCommodity_CRUD = new SupplierCommodityCRUD();
+            if (!supplierCommodity_CRUD.deleteByParentID(supplier.Id))
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCommodity_CRUD.ErrorMessage);
                 return;
             }
         }
-        AfterSave(this,null);
+
+        List<Commodity> commoditiesList = uscCommodity.getEntity();
+
+        foreach (Commodity commodityLocal in commoditiesList)
+        {
+            Supplier_Commodity supplierCommodity = new Supplier_Commodity();
+            supplierCommodity.CommodityKey = commodityLocal.Id;
+            supplierCommodity.SupplierKey = supplier.Id;
+
+            if (!supplierCommodityCRUD.create(supplierCommodity))
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCommodityCRUD.ErrorMessage);
+                return;
+            }
+        }
+
+        AfterSave(this, null);
     }
     public void cancel()
     {

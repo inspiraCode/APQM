@@ -365,6 +365,7 @@ public class bomCRUD : ICRUD<BOM>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: BOM Header";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1143,6 +1144,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: BOM Detail Volume.";
+                    return true;
                 }
             }
             catch (Exception e)

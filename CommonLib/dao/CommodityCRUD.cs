@@ -19,7 +19,7 @@ public class CommodityCRUD : ICRUD<Commodity>
 
     public CommodityCRUD()
 	{}
-    
+
     #region ICRUD<Commodity> Members
 
     public bool create(Commodity entity)
@@ -221,6 +221,7 @@ public class CommodityCRUD : ICRUD<Commodity>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Commodity.";
+                    return true;
                 }
             }
             catch (Exception e)

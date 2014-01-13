@@ -241,6 +241,7 @@ public class TokenCRUD : ICRUD<Token>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Token.";
+                    return true;
                 }
             }
             catch (Exception e)

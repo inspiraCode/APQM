@@ -285,6 +285,7 @@ public class itemCRUD : ICRUD<Item>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Item.";
+                    return true;
                 }
             }
             catch (Exception e)

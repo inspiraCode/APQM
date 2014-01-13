@@ -1,9 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierMaster.ascx.cs"
     Inherits="supplierMaster" %>
+<%@ Register src="Commodity.ascx" tagname="Commodity" tagprefix="uc1" %>
+<style type="text/css">
+    .style4
+    {
+        width: 163px;
+    }
+</style>
 <div align="center">
     <table cellspacing="1" style="width: 590px">
         <tr style="display: none;">
-            <td align="right">
+            <td align="right" class="style4">
                 Mode:
             </td>
             <td align="left">
@@ -11,7 +18,7 @@
             </td>
         </tr>
         <tr style="display: none;">
-            <td align="right">
+            <td align="right" class="style4">
                 ID:
             </td>
             <td align="left">
@@ -19,7 +26,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Supplier Name
             </td>
             <td align="left">
@@ -28,7 +35,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Manufacturing Location
             </td>
             <td align="left">
@@ -37,7 +44,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Ship Location
             </td>
             <td align="left">
@@ -46,7 +53,7 @@
             </td>
         </tr>
         <tr align="left">
-            <td align="right">
+            <td align="right" class="style4">
                 Quoted Currency
             </td>
             <td align="left">
@@ -55,7 +62,7 @@
             </td>
         </tr>
         <tr>
-            <td>
+            <td class="style4">
                 &nbsp;
             </td>
             <td align="left">
@@ -63,7 +70,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Contact Name
             </td>
             <td align="left">
@@ -72,7 +79,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Contact Phone Number
             </td>
             <td align="left">
@@ -81,7 +88,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Contact Cell Phone
             </td>
             <td align="left">
@@ -90,7 +97,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 Contact Email
             </td>
             <td align="left">
@@ -99,7 +106,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" class="style4">
                 &nbsp;
             </td>
             <td align="left">
@@ -108,9 +115,9 @@
         </tr>
     </table>
     <div id="fieldsToHideForVendor" runat="server">
-        <table>
+        <table cellspacing="1" style="width: 590px">
             <tr>
-                <td align="right">
+                <td align="right" class="style4">
                     Capabilities
                 </td>
                 <td align="left">
@@ -119,7 +126,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" class="style4">
                     Comments
                 </td>
                 <td align="left">
@@ -128,7 +135,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" class="style4">
                     Commodity
                 </td>
                 <td align="left">
@@ -136,7 +143,20 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" class="style4">
+                    &nbsp;</td>
+                <td align="left">
+                    &nbsp;</td>
+            </tr>
+            <tr>
+                <td align="right" class="style4">
+                    Commodity</td>
+                <td align="left">
+                    <uc1:Commodity ID="uscCommodity" runat="server" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style4">
                     Visible
                 </td>
                 <td align="left">
@@ -144,7 +164,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">
+                <td align="right" class="style4">
                     &nbsp;
                 </td>
                 <td align="left">

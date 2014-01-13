@@ -71,9 +71,11 @@
                 <asp:Button ID="btnSaveSupplier" runat="server" Text="Save" Width="70px" OnClick="on_save_supplier" />
                 <asp:Button ID="btnCancelSupplier" runat="server" Text="Cancel" Width="70px" OnClick="on_cancel_supplier" />
             </div>
+            <br />
+            <br />
         </asp:View>
         <asp:View ID="viewSurvey" runat="server">
-            <%--Tab update supplier--%>
+            <%--Tab survey --%>
             <div>
                 <br />
                 <asp:Button ID="btnSendSurvey" Style="margin-bottom: 10px;" runat="server" Text="Send new survey"

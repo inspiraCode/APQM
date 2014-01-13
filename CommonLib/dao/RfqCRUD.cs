@@ -566,6 +566,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ Header.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -837,6 +838,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ_EAV.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1332,6 +1334,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ Detail.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1376,6 +1379,7 @@ public class RfqDetailCRUD : ICRUD<RFQDetail>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ Detail.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1617,6 +1621,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ_ACR.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -1661,6 +1666,7 @@ public class RfqAcrCRUD : ICRUD<RFQACR>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: RFQ_ACR.";
+                    return true;
                 }
             }
             catch (Exception e)

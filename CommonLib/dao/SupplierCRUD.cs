@@ -224,6 +224,7 @@ public class SupplierCRUD : ICRUD<Supplier>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier.";
+                    return true;
                 }
             }
             catch (Exception e)
@@ -341,7 +342,35 @@ public class SupplierCommodityCRUD : ICRUD<Supplier_Commodity>
         }
         return null;
     }
+    public List<Supplier_Commodity> readByParentID(long id)
+    {
+        List<Supplier_Commodity> recordset = new List<Supplier_Commodity>();
 
+        string query = "SELECT     SupplierCommodityKey, SupplierKey, CommodityKey " +
+                        "FROM      Supplier_Commodity " +
+                        "WHERE     (SupplierKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                Supplier_Commodity supplier_Commodity = new Supplier_Commodity();
+                supplier_Commodity.Id = long.Parse(table.Rows[i][0].ToString());
+                supplier_Commodity.SupplierKey = long.Parse(table.Rows[i][1].ToString());
+                supplier_Commodity.CommodityKey = long.Parse(table.Rows[i][2].ToString());
+
+                recordset.Add(supplier_Commodity);
+            }
+        }
+        return recordset;
+    }
     public IList<Supplier_Commodity> readAll()
     {
         List<Supplier_Commodity> recordset = new List<Supplier_Commodity>();
@@ -416,6 +445,52 @@ public class SupplierCommodityCRUD : ICRUD<Supplier_Commodity>
                 {
                     ErrorOccur = true;
                     ErrorMessage = "There were no rows affected for table: Supplier_Commodity.";
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
+        return false;
+    }
+    public bool deleteByParentID(long id)
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
+        string query = "DELETE FROM Supplier_Commodity WHERE SupplierKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Commodity.";
+                    return true;
                 }
             }
             catch (Exception e)
