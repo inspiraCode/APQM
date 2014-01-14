@@ -10,10 +10,6 @@
     {
         width: 191px;
     }
-    .style27
-    {
-        width: 163px;
-    }
     .style29
     {
         width: 226px;
@@ -39,21 +35,9 @@
     {
         width: 147px;
     }
-    .style66
-    {
-        width: 165px;
-    }
     .style70
     {
         width: 157px;
-    }
-    .style71
-    {
-        width: 159px;
-    }
-    .style72
-    {
-        width: 57px;
     }
     .style73
     {
@@ -67,6 +51,18 @@
     {
         background-color: #4682B4;
         color: white;
+    }
+    .style75
+    {
+        width: 198px;
+    }
+    .style77
+    {
+        width: 270px;
+    }
+    .style78
+    {
+        width: 245px;
     }
 </style>
 <br />
@@ -110,12 +106,14 @@
         <br />
     </div>
     <div align="center">
-        <table cellspacing="0" style="min-width: 995px; max-width: 995px; width: 1053px;">
+        <table cellspacing="0" 
+            style="min-width: 995px; max-width: 995px; width: 1294px;">
             <tr>
-                <td align="right" class="style66">
+                <td align="right" class="style78">
                     Due Date
                 </td>
-                <td align="left" class="style27" data-step='4' data-intro='Please complete this RFQ  before this date.'>
+                <td align="left" class="style77" data-step='4' 
+                    data-intro='Please complete this RFQ  before this date.'>
                     <asp:Label ID="lblDueDate" runat="server" BackColor="#D3D3D3" Style="text-align: center"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
@@ -125,192 +123,9 @@
                 <td align="left" class="style29">
                     <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
                 </td>
-                <td align="left" class="style71" colspan="2">
-                    <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    RFQ #
-                </td>
-                <td align="left" class="style27" data-step='5' data-intro='This is our RFQ number.'>
-                    <asp:Label ID="lblRFQNumber" runat="server" Style="text-align: center" Width="145px"
-                        BackColor="#D3D3D3" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    Supplier Name
-                </td>
-                <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblSupplierName" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style71" style="border-top: solid gray; border-left: solid gray;">
-                    Total Manufacturing Cost
-                </td>
-                <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
-                    data-step='16' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
-                    <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right;"
-                        runat="server" Width="104px" Height="20px">0</asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    Market Sector
-                </td>
-                <td align="left" class="style27" data-step='6' data-intro='This is the Part Number to quote.'>
-                    <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    Manufacturing Location
-                </td>
-                <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style71" style="border-left: solid gray;">
-                    SG&amp;A Profit
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='17'
-                    data-intro='Enter cost for SG&A/Profit'>
-                    <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
-                        onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    Part #
-                </td>
-                <td align="left" class="style27" data-step='7' data-intro='Market Sector of this piece.'>
-                    <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    Ship From Location
-                </td>
-                <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblShipFromLocation" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style71" style="border-left: solid gray;">
-                    Packing Cost/Unit
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='18'
-                    data-intro='Enter packaging cost per unit.'>
-                    <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                        runat="server" Width="100px" TabIndex="3"></asp:TextBox>
-                </td>
-            </tr>
-            <tr align="left">
-                <td align="right" class="style66" rowspan="2">
-                    Part Description
-                </td>
-                <td align="left" class="style27" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
-                    <asp:Label ID="lblPartName" Style="text-align: left" runat="server" BackColor="LightGray"
-                        Width="200px" Height="48px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    Prepared By
-                </td>
-                <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
-                    <asp:TextBox ID="txtPreparedBy" validate="required" validationid="validatingRFQForm"
-                        runat="server" Style="width: 216px" TabIndex="1"></asp:TextBox>
-                </td>
-                <td align="right" class="style71" style="border-left: solid gray;">
-                    Assembly Cost/Unit
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='19'
-                    data-intro='Enter cost for assembly, if applicable.'>
-                    <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                        runat="server" Width="100px" TabIndex="4"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style70">
-                </td>
-                <td align="left" class="style29">
-                </td>
-                <td align="right" class="style71" style="border-left: solid gray; border-bottom: solid gray;">
-                    Total Piece Cost
-                </td>
-                <td align="left" class="style31" data-step='20' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
-                    style="border-right: solid gray; border-bottom: solid gray;">
-                    <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
-                        Width="104px" Height="20px">0</asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    Drawing Level
-                </td>
-                <td align="left" class="style27" data-step='9' data-intro='Drawing Level.'>
-                    <asp:Label ID="lblDrawingLevel" Style="text-align: center" runat="server" BackColor="LightGray"
-                        Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    &nbsp;
-                </td>
-                <td align="left" class="style29">
-                    &nbsp;
-                </td>
-                <td align="right" class="style71">
-                    &nbsp;
-                </td>
-                <td align="left" class="style72">
-                    &nbsp;
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    Estimated Annual Volume&nbsp;
-                </td>
-                <td align="left" class="style27" data-step='10' data-intro='EAV for the current year.'>
-                    <asp:Label ID="lblEAV" runat="server" BackColor="LightGray" Style="text-align: center"
-                        Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                </td>
-                <td align="left" class="style29">
-                </td>
-                <td align="right" class="style71">
-                </td>
-                <td align="left" class="style72">
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style66">
-                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right" Width="145px"
-                        Height="20px">Target Price</asp:Label>
-                </td>
-                <td align="left" class="style27" data-step='11' data-intro='Target Price. If specified by Purchasing Department.'>
-                    <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                    &nbsp;</td>
-                <td align="left" class="style29">
-                    &nbsp;</td>
-                <td align="right" class="style71">
-                    &nbsp;</td>
-                <td align="left" class="style72">
-                    &nbsp;</td>
-            </tr>
-        </table>
-        <br />
-        <table style="min-width:200px;">
-            <tr>
-                <td align="center">
-                    Estimated Annual Volume<br />
-                    <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;height:80px;min-width:160px;
-                        display: inline-block;" data-step='21' data-intro='This is FYI. This shows annual volume for the first 3 years of program.'>
-                        <uc4:sifDetail ID="uscSifDetail" runat="server" />
-                    </div>
-                </td>
-                <td align="center">
-                    <table data-step='22' data-intro='Please complete these fields as applicable.'>
+                <td align="left" class="style29" rowspan="9">
+                    <table cellspacing="0" data-step='22' data-intro='Please complete these fields as applicable.' 
+                        style="width: 449px">
                         <tr>
                             <td align="right">
                                 Production Lead Time
@@ -367,13 +182,204 @@
                     </table>
                 </td>
             </tr>
+            <tr>
+                <td align="right" class="style78">
+                    RFQ #
+                </td>
+                <td align="left" class="style77" data-step='5' 
+                    data-intro='This is our RFQ number.'>
+                    <asp:Label ID="lblRFQNumber" runat="server" Style="text-align: center" Width="145px"
+                        BackColor="#D3D3D3" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    Supplier Name
+                </td>
+                <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                    <asp:Label ID="lblSupplierName" runat="server" BackColor="#D3D3D3" Width="220px"
+                        Height="20px"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style78">
+                    Market Sector
+                </td>
+                <td align="left" class="style77" data-step='6' 
+                    data-intro='This is the Part Number to quote.'>
+                    <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="#D3D3D3"
+                        Width="145px" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    Manufacturing Location
+                </td>
+                <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                    <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="#D3D3D3" Width="220px"
+                        Height="20px"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style78">
+                    Component Part Number
+                </td>
+                <td align="left" class="style77" data-step='7' 
+                    data-intro='Market Sector of this piece.'>
+                    <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="#D3D3D3"
+                        Width="145px" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    Ship From Location
+                </td>
+                <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                    <asp:Label ID="lblShipFromLocation" runat="server" BackColor="#D3D3D3" Width="220px"
+                        Height="20px"></asp:Label>
+                </td>
+            </tr>
+            <tr align="left">
+                <td align="right" class="style78" rowspan="2">
+                    Part Description
+                </td>
+                <td align="left" class="style77" rowspan="2" data-step='8' 
+                    data-intro='This is the material or name of the piece to quote.'>
+                    <asp:Label ID="lblPartName" Style="text-align: left" runat="server" BackColor="LightGray"
+                        Width="200px" Height="48px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    Prepared By
+                </td>
+                <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
+                    <asp:TextBox ID="txtPreparedBy" validate="required" validationid="validatingRFQForm"
+                        runat="server" Style="width: 216px" TabIndex="1"></asp:TextBox>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style70">
+                    <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
+                </td>
+                <td align="left" class="style29">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style78">
+                    Drawing Level
+                </td>
+                <td align="left" class="style77" data-step='9' data-intro='Drawing Level.'>
+                    <asp:Label ID="lblDrawingLevel" Style="text-align: center" runat="server" BackColor="LightGray"
+                        Width="145px" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    &nbsp;
+                </td>
+                <td align="left" class="style29">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style78">
+                    Estimated Annual Usage
+                </td>
+                <td align="left" class="style77" data-step='10' 
+                    data-intro='EAU for the current year.'>
+                    <asp:Label ID="lblEAV" runat="server" BackColor="LightGray" Style="text-align: center"
+                        Width="145px" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                </td>
+                <td align="left" class="style29">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" class="style78">
+                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right" Width="145px"
+                        Height="20px">Target Price</asp:Label>
+                </td>
+                <td align="left" class="style77" data-step='11' 
+                    data-intro='Target Price. If specified by Purchasing Department.'>
+                    <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="#D3D3D3"
+                        Width="145px" Height="20px"></asp:Label>
+                </td>
+                <td align="right" class="style70">
+                    &nbsp;
+                </td>
+                <td align="left" class="style29">
+                    &nbsp;
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table style="min-width: 200px;">
+            <tr>
+                <td align="center">
+                    &nbsp;</td>
+            </tr>
         </table>
         <br />
         <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
         </div>
         <br />
         <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
+    
     </div>
+    <div style="width:100%;height: 160px;">
+    <table cellspacing="0" align="right" 
+        style="width:300px;">
+        <tr>
+            <td align="right" class="style75" 
+                style="border-top: solid gray; border-left: solid gray;">
+                Total Manufacturing Cost&nbsp;&nbsp;
+            </td>
+            <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
+                data-step='16' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
+                <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right; margin-left: 0px;"
+                    runat="server" Width="104px" Height="20px">0</asp:Label>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="style75" style="border-left: solid gray;">
+                SG&amp;A Profit&nbsp;&nbsp;
+            </td>
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='17'
+                data-intro='Enter cost for SG&A/Profit'>
+                <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
+                    Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
+                    onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="style75" style="border-left: solid gray;">
+                Packing Cost/Unit&nbsp;&nbsp;
+            </td>
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='18'
+                data-intro='Enter packaging cost per unit.'>
+                <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
+                    Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                    runat="server" Width="100px" TabIndex="3"></asp:TextBox>
+            </td>
+        </tr>
+        <tr align="left">
+            <td align="right" class="style75" style="border-left: solid gray;">
+                Assembly Cost/Unit&nbsp;&nbsp;
+            </td>
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='19'
+                data-intro='Enter cost for assembly, if applicable.'>
+                <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
+                    Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                    runat="server" Width="100px" TabIndex="4"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td align="right" class="style75" 
+                style="border-left: solid gray; border-bottom: solid gray;">
+                Total Piece Cost&nbsp;&nbsp;
+            </td>
+            <td align="left" class="style31" data-step='20' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
+                style="border-right: solid gray; border-bottom: solid gray;">
+                <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
+                    Width="104px" Height="20px">0</asp:Label>
+            </td>
+        </tr>
+    </table>
+    </div>
+    
+   
     <div align="center">
         <table cellspacing="0" class="style55">
             <tr align="center">
@@ -391,11 +397,10 @@
                     <table>
                         <tr>
                             <td align="right">
-                                <div style="width: 226px; display: inline;" align="right" data-step='44' 
-                                    data-intro='Please enter the weight of the part to be shipped.'>
+                                <div style="width: 226px; display: inline;" align="right" data-step='44' data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
-                                    <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm"
-                                        runat="server" Style="text-align: right" Width="94px" TabIndex="31"></asp:TextBox>
+                                    <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm" runat="server"
+                                        Style="text-align: right" Width="94px" TabIndex="31"></asp:TextBox>
                                 </div>
                             </td>
                         </tr>
@@ -473,7 +478,8 @@
                             <td style="vertical-align: top;">
                                 Attachments (less than 4MB per file):<br />
                                 <div id="uploadContainer" data-step='47' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
-                                    style="height: 200px; overflow-y: auto; width: 444px;background-color: #D3D3D3;" align="center">
+                                    style="height: 200px; overflow-y: auto; width: 444px; background-color: #D3D3D3;"
+                                    align="center">
                                     <div id="uploadZone">
                                         Upload
                                     </div>

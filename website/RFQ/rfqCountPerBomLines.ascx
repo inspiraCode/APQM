@@ -14,11 +14,11 @@
             <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" Visible="False" />
             <asp:BoundField DataField="InquiryNumber" HeaderText="Inquiry Number" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Revision" HeaderText="Revision" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="TopPartNumber" HeaderText="Top Part Number" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="TopPartNumber" HeaderText="Finished Good Part Number" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="PartDescription" HeaderText="Product" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="AnnualVolume" HeaderText="Annual Volume" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="MarketSector" HeaderText="Market Sector" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="PartNumber" HeaderText="Line Part Number" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="PartNumber" HeaderText="Component Part Number" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Material" HeaderText="Part Name" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="ManufacturePN" HeaderText="Manufacture PN" ItemStyle-HorizontalAlign="Center" />

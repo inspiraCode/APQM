@@ -10,7 +10,7 @@
             <asp:BoundField DataField="Material" HeaderText="Material" 
                 SortExpression="Material" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Cost" HeaderText="Cost" SortExpression="Cost" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="QtyRequired" HeaderText="Quantity Required" 
+            <asp:BoundField DataField="QtyRequired" HeaderText="Qty Required" 
                 SortExpression="QtyRequired" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="RFQSent" HeaderText="RFQ Sent" 
                 SortExpression="RFQSent" ItemStyle-HorizontalAlign="Center" />

@@ -115,11 +115,6 @@ public partial class rfqForm : System.Web.UI.UserControl
         uscRfqACR.setEntity(rfq.RfqAcr);
         uscRfqACR.load();
 
-        sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
-        List<SIFDetail> sifDetailList = sifDetailCRUD.readByParentID(rfq.SifHeaderKey);
-
-        uscSifDetail.setEntity(sifDetailList);
-
         hiddenSentAttachmentsFolder.Value = rfq.SentAttachmentsFolder;
 
         string baseSentAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];

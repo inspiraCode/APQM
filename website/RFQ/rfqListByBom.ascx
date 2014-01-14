@@ -29,19 +29,19 @@
     <asp:FormView ID="frmBOMLine" runat="server" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
         Width="480px">
         <ItemTemplate>
-            InquiryNumber:
+            Inquiry Number:
             <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
             <br />
-            TopPartNumber:
+            Finished Good Part Number:
             <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("TopPartNumber") %>' />
             <br />
-            PartDescription:
+            Part Description:
             <asp:Label ID="PartDescriptionLabel" runat="server" Text='<%# Bind("PartDescription") %>' />
             <br />
-            PartNumber:
+            Component Part Number:
             <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
             <br />
-            Qty:
+            Qty Required:
             <asp:Label ID="QtyLabel" runat="server" Text='<%# Bind("Qty") %>' />
             <br />
             Cost:

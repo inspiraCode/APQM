@@ -30,7 +30,7 @@
         <Columns>
             <asp:BoundField DataField="CreatedBy" HeaderText="Created By" SortExpression="CreatedBy"   ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="RfqGenerated" HeaderText="RFQ Number" SortExpression="RFQGenerated" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="PartNumber" HeaderText="Part Number" SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="PartNumber" HeaderText="Component Part Number" SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="SupplierName" HeaderText="Vendor" SortExpression="SupplierName" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate" ItemStyle-HorizontalAlign="Center"
                 DataFormatString="{0:d}" />

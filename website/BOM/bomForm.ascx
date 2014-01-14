@@ -195,7 +195,7 @@
                 <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
 
             <script type="text/javascript">
-                document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Estimated Annual Volume (Pulled from SIF)");
+                document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Projected Annual Volume");
                 jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                     appendTo: jQuery('form:first'),
                     width: 520, modal: true,

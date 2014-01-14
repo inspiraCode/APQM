@@ -68,7 +68,7 @@
                                     </tr>
                                     <tr>
                                         <td align="right" style="font-weight: bold;">
-                                            Material
+                                            Part Description
                                         </td>
                                         <td align="left">
                                             <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
@@ -91,7 +91,7 @@
                     <td>
                         <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                             display: inline-block;">
-                            EAV pulled from SIF
+                            Proyected Annual Volume
                             <uc4:sifDetail ID="uscSifDetail" runat="server" />
                         </div>
                         <br />

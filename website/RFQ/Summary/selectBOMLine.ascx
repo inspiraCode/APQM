@@ -11,19 +11,19 @@
     RowStyle-Height="27px" DataKeyNames="BOMDetailKey">
     <RowStyle Height="27px"></RowStyle>
     <Columns>
-        <asp:BoundField DataField="InquiryNumber" HeaderText="InquiryNumber" 
+        <asp:BoundField DataField="InquiryNumber" HeaderText="Inquiry Number" 
             SortExpression="InquiryNumber" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="Revision" HeaderText="Revision" 
             SortExpression="Revision" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundField DataField="PartDescription" HeaderText="PartDescription" 
+        <asp:BoundField DataField="PartDescription" HeaderText="Finished Good Description" 
             SortExpression="PartDescription" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" 
             SortExpression="BOMDetailKey" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundField DataField="PartNumber" HeaderText="PartNumber" 
+        <asp:BoundField DataField="PartNumber" HeaderText="Component Part Number" 
             SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundField DataField="Material" HeaderText="Material" 
+        <asp:BoundField DataField="Material" HeaderText="Component Part Description" 
             SortExpression="Material" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundField DataField="Qty" HeaderText="Qty" SortExpression="Qty" ItemStyle-HorizontalAlign="Center" />
+        <asp:BoundField DataField="Qty" HeaderText="Qty Required" SortExpression="Qty" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="RFQ COMPLETED" HeaderText="RFQ COMPLETED" 
             ReadOnly="True" SortExpression="RFQ COMPLETED" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="RFQ Sent" HeaderText="RFQ Sent" 
