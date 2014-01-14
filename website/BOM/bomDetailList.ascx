@@ -144,11 +144,11 @@
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtQuantity" validate="number" validationid="validatingBOMDetail"
-                runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
+                runat="server" Width="56px" Style="text-align: right" onchange="calculateEAU()" onkeyup="calculateEAU()" >0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtEAU" runat="server" validate="numbers" validationid="validatingBOMDetail"
-                Width="60px" Style="text-align: right">0</asp:TextBox>
+                Width="60px" Style="text-align: right" onchange="calculateQtyRequired()" onkeyup="calculateQtyRequired()">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtCapComAssm" validationid="validatingBOMDetail" runat="server"

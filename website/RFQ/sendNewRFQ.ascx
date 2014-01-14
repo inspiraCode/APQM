@@ -108,7 +108,7 @@
                                             Filter by Commodity</td>
                                         <td>
                                             <asp:DropDownList ID="cboCommodities" runat="server" AutoPostBack="True" 
-                                                chosen="true" DataSourceID="SqlDataSourceCommodities" DataTextField="Commodity" 
+                                                DataSourceID="SqlDataSourceCommodities" DataTextField="Commodity" 
                                                 DataValueField="CommodityKey" Height="16px"
                                                 TabIndex="1" 
                                                 Width="285px" onselectedindexchanged="cboCommodities_SelectedIndexChanged" 

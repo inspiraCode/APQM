@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
-<%@ Register src="bomStatusInfo.ascx" tagname="bomStatusInfo" tagprefix="uc2" %>
+<%@ Register Src="bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
+<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
 <style type="text/css">
     .style1
     {
@@ -23,11 +24,10 @@
         width: 109px;
     }
 </style>
-
 <div align="center">
     <br />
     <table cellspacing="1" align="left" style="width: 1232px">
-        <tr style="display:none;">
+        <tr style="display: none;">
             <td align="right" class="style7">
                 Mode:
             </td>
@@ -39,7 +39,8 @@
             <td align="left" class="style6">
             </td>
             <td align="left" class="style6">
-                &nbsp;</td>
+                &nbsp;
+            </td>
         </tr>
         <tr style="display: none;">
             <td align="right" class="style7">
@@ -53,7 +54,8 @@
             <td align="left" class="style6">
             </td>
             <td align="left" class="style6">
-                &nbsp;</td>
+                &nbsp;
+            </td>
         </tr>
         <tr style="display: none;">
             <td align="right" class="style7">
@@ -67,7 +69,8 @@
             <td align="left" class="style6">
             </td>
             <td align="left" class="style6">
-                &nbsp;</td>
+                &nbsp;
+            </td>
         </tr>
         <tr style="height: 25px;">
             <td align="right" style="font-weight: bold" class="style7">
@@ -122,22 +125,31 @@
                 <asp:TextBox ID="txtPartNumber" runat="server" Width="120px"></asp:TextBox>
             </td>
             <td align="right" style="font-weight: bold" class="style8">
-                Status</td>
+                Status
+            </td>
             <td align="left" class="style6">
-                <div id="progressBar" style="height:20px;width:100px;"><div id="progress-label"></div></div></td>
+                <div id="progressBar" style="height: 20px; width: 100px;">
+                    <div id="progress-label">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr style="height: 25px;">
             <td align="right" style="font-weight: bold" class="style7">
                 Annual Volume
             </td>
             <td align="left" class="style4">
-                <asp:TextBox ID="txtAnnualVolume" style="text-align:right;" validate="number" validationid="validatingBOMHeader" runat="server" Width="120px"></asp:TextBox>
+                <asp:TextBox ID="txtAnnualVolume" Style="text-align: right;" validate="number" validationid="validatingBOMHeader"
+                    runat="server" Width="120px"></asp:TextBox>
+                <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click" />
+                <asp:Button ID="btnApplyAnnualVolume" runat="server" Text="Apply to all lines" 
+                    onclick="btnApplyAnnualVolume_Click" />
             </td>
             <td align="left" class="style8">
             </td>
             <td align="left" class="style6">
-            <a href="../HTMLReports/SalesReport.aspx?BOM=<%= lblID.Text %>"  target="_blank">Report to Sales
-            </a>
+                <a href="../HTMLReports/SalesReport.aspx?BOM=<%= lblID.Text %>" target="_blank">Report
+                    to Sales </a>
             </td>
         </tr>
     </table>
@@ -164,17 +176,47 @@
     </table>
 </div>
 <div align="center">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click" OnClientClick="return validate();" validationid="validatingBOMHeader"/>
+    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
+        OnClientClick="return validate();" validationid="validatingBOMHeader" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
 </div>
 <br />
 <asp:HiddenField ID="hiddenProgressBar" runat="server" Value="0" />
+<asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
+        <asp:View ID="viewSIFDetail" runat="server">
+            <div align="center">
+                <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+                    height: 100px; min-width: 160px; display: inline-block;">
+                    <uc3:sifDetail ID="uscSifDetail" runat="server" />
+                </div>
+            </div>
+            <div align="right">
+                <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
 
-
-
+            <script type="text/javascript">
+                document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Estimated Annual Volume (Pulled from SIF)");
+                jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                    appendTo: jQuery('form:first'),
+                    width: 520, modal: true,
+                    dialogClass: "no-close", closeOnEscape: false
+                });
+            </script>
+            
+        </asp:View>
+    </asp:MultiView>
+</asp:Panel>
 
 <script type="text/javascript">
+    var txtAnnualVolume;
+    var txtQtyRequired;
+    var txtEAU;
     jQuery(document).ready(function() {
+        txtAnnualVolume = jQuery('#<%= txtAnnualVolume.ClientID %>');
+        txtQtyRequired = jQuery('#<%= uscBOMDetailList.FindControl("txtQuantity").ClientID %>');
+        txtEAU = jQuery('#<%= uscBOMDetailList.FindControl("txtEAU").ClientID %>');
+    });
+    function makeProgresBar() {
         var progressBar = jQuery('#progressBar');
         var progressLabel = jQuery('#progress-label');
         progressBar.css("position", "relative");
@@ -191,5 +233,43 @@
             }
         });
         progressBar.progressbar({ value: Number("<%= hiddenProgressBar.Value  %>") });
-    });
+    }
+    function calculateEAU() {
+        var nAnnualVolume;
+        var nQtyRequired;
+        var nEAU;
+        
+        if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
+            nAnnualVolume = Number(txtAnnualVolume.val());
+            if (nAnnualVolume > 0) {
+                nQtyRequired = Number(txtQtyRequired.val());
+                nEAU = Number(txtEAU.val());
+
+                if (nQtyRequired > 0) {
+                    txtEAU.val((nAnnualVolume * nQtyRequired).toFixed(2));
+                }
+                else {
+                    txtEAU.val("0");
+                }
+            }
+        }
+    }
+    function calculateQtyRequired() {
+        var nAnnualVolume;
+        var nQtyRequired;
+        var nEAU;
+
+        if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
+            nAnnualVolume = Number(txtAnnualVolume.val());
+            if (nAnnualVolume > 0) {
+                nQtyRequired = Number(txtQtyRequired.val());
+                nEAU = Number(txtEAU.val());
+                if (nEAU > 0) {
+                    txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(2));
+                } else {
+                    txtQtyRequired.val("0.00");
+                }
+            }
+        }
+    }
 </script>

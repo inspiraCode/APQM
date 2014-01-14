@@ -32,7 +32,8 @@ public partial class bomDetailList : System.Web.UI.UserControl
         Session.Remove("bomDetailObject");
         Session.Remove("bomDetailObjectToDelete");
     }
-    private void loadDetail(){
+    public void loadDetail()
+    {
         repeaterBOMDetail.DataSource = bomDetail;
         repeaterBOMDetail.DataBind();
         if (bomDetail != null) divBOMDetailList.InnerHtml = bomDetail.Count.ToString() + " records.";
@@ -59,7 +60,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         return (List<BOMDetail>)Session["bomDetailObjectToDelete"];
     }
-    public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
+    public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
     {
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
@@ -73,7 +74,8 @@ public partial class bomDetailList : System.Web.UI.UserControl
                 ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Text = bomDetail.User;
                 //((LinkButton)e.Item.FindControl("linkAssignedToLine")).Enabled = false;
             }
-            if(bomDetail.internalAction == "UPDATE"){
+            if (bomDetail.internalAction == "UPDATE")
+            {
 
                 ((Label)e.Item.FindControl("lblStatus")).Text = "For Edit";
             }
@@ -91,7 +93,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             if (detail.Sequence == sequence)
             {
                 detail.User = authUser;
-                detail.internalAction= "UPDATE";
+                detail.internalAction = "UPDATE";
                 loadDetail();
                 break;
             }
@@ -118,12 +120,12 @@ public partial class bomDetailList : System.Web.UI.UserControl
         foreach (BOMDetail detail in bomDetail)
         {
             if (detail.Sequence == sequence)
-            {               
+            {
                 uscBomDetailEdit.setEntity(detail);
                 panelPopup.Visible = true;
                 break;
             }
-        }        
+        }
     }
     public void add_Click(object sender, EventArgs e)
     {
@@ -151,7 +153,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.PurchasingStatus = cboPurchasingStatus.SelectedValue;
         bomDetailLine.User = authUser;
         bomDetailLine.Status = "For Add"; //TODO handle system status
-        
+
         if (bomDetail == null) bomDetail = new List<BOMDetail>();
 
         if (bomDetail.Count > 0)
@@ -313,7 +315,8 @@ public partial class bomDetailList : System.Web.UI.UserControl
     public int getProgress()
     {
         int countProcessed = 0;
-        foreach(BOMDetail bom in bomDetail){
+        foreach (BOMDetail bom in bomDetail)
+        {
             if (bom.Status == "Processed" || bom.Status == "No Quote")
             {
                 countProcessed++;

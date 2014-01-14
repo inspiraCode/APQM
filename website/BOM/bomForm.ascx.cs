@@ -219,4 +219,29 @@ public partial class bomForm : System.Web.UI.UserControl
         Session.Remove("bomObject");
         Cancel_Click(this, e);
     }
+    protected void btnOpenSIFDetail_Click(object sender, EventArgs e)
+    {
+        panelPopup.Visible = true;
+        sifDetailCRUD sifDetail_CRUD = new sifDetailCRUD();
+        List<SIFDetail> sifDetailList = sifDetail_CRUD.readByParentID(long.Parse(lblSifID.Text));
+        uscSifDetail.setEntity(sifDetailList);
+    }
+    protected void btnClosePopup_Click(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false; 
+    }
+    protected void btnApplyAnnualVolume_Click(object sender, EventArgs e)
+    {
+        List<BOMDetail> bomDetailList = uscBOMDetailList.getEntity();
+        foreach (BOMDetail detail in bomDetailList)
+        {
+            detail.EAU = (Math.Round(detail.Qty * long.Parse(txtAnnualVolume.Text),0)).ToString();
+            if (detail.internalAction == "")
+                detail.internalAction = "UPDATE";
+
+            
+        }
+        Session["bomDetailObject"] = bomDetailList;
+        uscBOMDetailList.loadDetail();
+    }
 }
