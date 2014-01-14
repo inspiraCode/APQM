@@ -184,11 +184,11 @@ public partial class bomForm : System.Web.UI.UserControl
                         bomDetailVolume.BomDetailKey = detail.Id;
                         try
                         {
-                            bomDetailVolume.Volume = float.Parse(arrEAU[i].Trim());
+                            bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
                         }
                         catch {
                             DM.RollBack();
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + "The field Volume did not pass the Numeric validation.");
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + "The Volume field did not pass the Numeric validation.");
                             return;
                         }
                         if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))

@@ -246,7 +246,7 @@
                 nEAU = Number(txtEAU.val());
 
                 if (nQtyRequired > 0) {
-                    txtEAU.val((nAnnualVolume * nQtyRequired).toFixed(2));
+                    txtEAU.val((nAnnualVolume * nQtyRequired).toFixed(0));
                 }
                 else {
                     txtEAU.val("0");
@@ -259,15 +259,17 @@
         var nQtyRequired;
         var nEAU;
 
-        if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
-            nAnnualVolume = Number(txtAnnualVolume.val());
-            if (nAnnualVolume > 0) {
-                nQtyRequired = Number(txtQtyRequired.val());
-                nEAU = Number(txtEAU.val());
-                if (nEAU > 0) {
-                    txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(2));
-                } else {
-                    txtQtyRequired.val("0.00");
+        if(txtEAU.val().indexOf(",") < 0){
+            if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
+                nAnnualVolume = Number(txtAnnualVolume.val());
+                if (nAnnualVolume > 0) {
+                    nQtyRequired = Number(txtQtyRequired.val());
+                    nEAU = Number(txtEAU.val());
+                    if (nEAU > 0) {
+                        txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(2));
+                    } else {
+                        txtQtyRequired.val("0.00");
+                    }
                 }
             }
         }

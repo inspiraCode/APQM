@@ -293,7 +293,7 @@ public class BOMDetailVolume
 {
     private long id;
     private long bomDetailKey = -1;
-    private float volume;
+    private long volume;
 
 
     public long Id
@@ -306,7 +306,7 @@ public class BOMDetailVolume
         get { return bomDetailKey; }
         set { bomDetailKey = value; }
     }
-    public float Volume
+    public long Volume
     {
         get { return volume; }
         set { volume = value; }

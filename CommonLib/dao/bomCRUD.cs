@@ -994,7 +994,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             {
                 bomDetailVolume.Id = long.Parse(table.Rows[0][0].ToString());
                 bomDetailVolume.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
-                bomDetailVolume.Volume = float.Parse(table.Rows[0][2].ToString());
+                bomDetailVolume.Volume = long.Parse(table.Rows[0][2].ToString());
 
                 sqlConnection.Dispose();
                 return bomDetailVolume;
@@ -1025,7 +1025,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
                 BOMDetailVolume bomDetail = new BOMDetailVolume();
                 bomDetail.Id = long.Parse(table.Rows[i][0].ToString());
                 bomDetail.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
-                bomDetail.Volume = float.Parse(table.Rows[i][2].ToString());
+                bomDetail.Volume = long.Parse(table.Rows[i][2].ToString());
                 
                 recordset.Add(bomDetail);
             }
@@ -1059,7 +1059,7 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
             }
             if (table.Rows[i][2].ToString() != "")
             {
-                bomDetailVolume.Volume = float.Parse(table.Rows[i][2].ToString());
+                bomDetailVolume.Volume = long.Parse(table.Rows[i][2].ToString());
             }
             else
             {

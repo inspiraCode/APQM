@@ -144,7 +144,18 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.Um = cboUM.SelectedValue;
         //vendorQuote imported from sales db
         bomDetailLine.Qty = float.Parse(txtQuantity.Text);
-        bomDetailLine.EAU = txtEAU.Text;
+
+        string[] arrEAU = txtEAU.Text.Split(',');
+        for (var i = 0; i < arrEAU.Length; i++)
+        {
+            if (arrEAU[i].Trim() != "")
+            {
+                arrEAU[i] = Math.Round(float.Parse(arrEAU[i].Trim()), 0).ToString();
+            }
+        }
+
+        bomDetailLine.EAU = string.Join(",", arrEAU);
+
         bomDetailLine.Cost = float.Parse(txtCost.Text);
         bomDetailLine.CapComAssm = txtCapComAssm.Text;
         bomDetailLine.PurchasingComments = txtPurchasingComments.Text;

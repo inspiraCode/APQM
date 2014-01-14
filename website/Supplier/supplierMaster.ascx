@@ -92,7 +92,7 @@
                 Contact Cell Phone
             </td>
             <td align="left">
-                <asp:TextBox ID="txtContactCellPhone" runat="server" validate="required" validationid="validatingSupplierForm"
+                <asp:TextBox ID="txtContactCellPhone" runat="server"
                     Width="380px"></asp:TextBox>
             </td>
         </tr>
