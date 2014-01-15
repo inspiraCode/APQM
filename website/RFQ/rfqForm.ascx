@@ -124,7 +124,7 @@
                     <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
                 </td>
                 <td align="left" class="style29" rowspan="9">
-                    <table cellspacing="0" data-step='22' data-intro='Please complete these fields as applicable.' 
+                    <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.' 
                         style="width: 449px">
                         <tr>
                             <td align="right">
@@ -327,7 +327,7 @@
                 Total Manufacturing Cost&nbsp;&nbsp;
             </td>
             <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
-                data-step='16' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
+                data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
                 <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right; margin-left: 0px;"
                     runat="server" Width="104px" Height="20px">0</asp:Label>
             </td>
@@ -336,7 +336,7 @@
             <td align="right" class="style75" style="border-left: solid gray;">
                 SG&amp;A Profit&nbsp;&nbsp;
             </td>
-            <td align="left" class="style31" style="border-right: solid gray;" data-step='17'
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='34'
                 data-intro='Enter cost for SG&A/Profit'>
                 <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
@@ -347,7 +347,7 @@
             <td align="right" class="style75" style="border-left: solid gray;">
                 Packing Cost/Unit&nbsp;&nbsp;
             </td>
-            <td align="left" class="style31" style="border-right: solid gray;" data-step='18'
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='35'
                 data-intro='Enter packaging cost per unit.'>
                 <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
@@ -358,7 +358,7 @@
             <td align="right" class="style75" style="border-left: solid gray;">
                 Assembly Cost/Unit&nbsp;&nbsp;
             </td>
-            <td align="left" class="style31" style="border-right: solid gray;" data-step='19'
+            <td align="left" class="style31" style="border-right: solid gray;" data-step='36'
                 data-intro='Enter cost for assembly, if applicable.'>
                 <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
@@ -370,7 +370,7 @@
                 style="border-left: solid gray; border-bottom: solid gray;">
                 Total Piece Cost&nbsp;&nbsp;
             </td>
-            <td align="left" class="style31" data-step='20' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
+            <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
                 style="border-right: solid gray; border-bottom: solid gray;">
                 <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
                     Width="104px" Height="20px">0</asp:Label>
@@ -397,7 +397,7 @@
                     <table>
                         <tr>
                             <td align="right">
-                                <div style="width: 226px; display: inline;" align="right" data-step='44' data-intro='Please enter the weight of the part to be shipped.'>
+                                <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
                                     <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm" runat="server"
                                         Style="text-align: right" Width="94px" TabIndex="31"></asp:TextBox>
@@ -405,13 +405,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='45' data-intro='Enter the MOQ if applicable.'>
+                            <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.'>
                                 MOQ
                                 <asp:TextBox ID="txtMOQ" runat="server" Style="text-align: right" Width="130px" TabIndex="33"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='46' data-intro='Enter the Brand if applicable.'>
+                            <td align="right" data-step='45' data-intro='Enter the Brand if applicable.'>
                                 Brand
                                 <asp:TextBox ID="txtMake" runat="server" Style="text-align: right" Width="130px"
                                     TabIndex="34"></asp:TextBox>
@@ -431,11 +431,11 @@
                 </td>
             </tr>
             <tr>
-                <td class="style56" colspan="2" align="right" data-step='39' data-intro='Please provide tooling information.'>
+                <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
                     <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" TabIndex="22"
                         TextMode="MultiLine"></asp:TextBox>
                 </td>
-                <td align="center" rowspan="4" data-step='43' data-intro='Outline your annual cost reduction commitment.'>
+                <td align="center" rowspan="4" data-step='42' data-intro='Outline your annual cost reduction commitment.'>
                     <uc2:rfqACR ID="uscRfqACR" runat="server" />
                 </td>
             </tr>
@@ -443,7 +443,7 @@
                 <td align="right" class="style61">
                     Production Tooling
                 </td>
-                <td class="style62" align="right" data-step='40' data-intro='Enter Production Tooling Cost.'>
+                <td class="style62" align="right" data-step='39' data-intro='Enter Production Tooling Cost.'>
                     <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" runat="server" TabIndex="23"></asp:TextBox>
                 </td>
@@ -452,7 +452,7 @@
                 <td align="right" class="style61">
                     Prototype Tooling
                 </td>
-                <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Tooling Cost.'>
+                <td class="style62" align="right" data-step='40' data-intro='Enter Prototype Tooling Cost.'>
                     <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
                 </td>
@@ -461,7 +461,7 @@
                 <td align="right" class="style61">
                     Prototype Piece
                 </td>
-                <td class="style62" align="right" data-step='42' data-intro='Enter Prototype Piece Cost.'>
+                <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Piece Cost.'>
                     <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
                         Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
                 </td>
@@ -477,7 +477,7 @@
                         <tr>
                             <td style="vertical-align: top;">
                                 Attachments (less than 4MB per file):<br />
-                                <div id="uploadContainer" data-step='47' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
+                                <div id="uploadContainer" data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
                                     style="height: 200px; overflow-y: auto; width: 444px; background-color: #D3D3D3;"
                                     align="center">
                                     <div id="uploadZone">
@@ -486,7 +486,7 @@
                                 </div>
                             </td>
                             <td style="vertical-align: top;">
-                                <div style="background-color: #D3D3D3; width: 444px; min-height: 216px;" data-step='48'
+                                <div style="background-color: #D3D3D3; width: 444px; min-height: 216px;" data-step='47'
                                     data-intro='Here are the attachments that you sent to Purchasing Department.'>
                                     Attachments Sent:
                                     <br />
@@ -504,7 +504,7 @@
             </tr>
             <tr>
                 <td colspan="6" align="left">
-                    <div data-step='49' data-intro='If you have any comments to share with us, please use this field.'
+                    <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
                         data-position='right' style="width: 305px;">
                         <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="300px"
                             TabIndex="35" Height="62px" TextMode="MultiLine"></asp:TextBox>

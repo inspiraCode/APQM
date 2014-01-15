@@ -27,7 +27,7 @@
             #
         </th>
         <th class="camposSinBordes itemFields" style="width: 120px; max-width: 120px;">
-            Part Number / Code ID
+            Component Part Number
         </th>
         <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
             Capsonic PN
@@ -45,7 +45,7 @@
             Comm Code
         </th>
         <th class="camposSinBordes itemFields" style="width: 145px; max-width: 145px;">
-            Material / Assembly Description
+            Component Part Description/Material
         </th>
         <th class="camposSinBordes itemFields" style="width: 68px; max-width: 68px;">
             UM

@@ -141,9 +141,13 @@
 
     function ieCompatibilityViewCheck() {
         var val = "IE" + ieUserAgent.version;
-        if (ieUserAgent.compatibilityMode)
+        if (ieUserAgent.compatibilityMode) {
             val += " Compatibility Mode (IE" + ieUserAgent.renderVersion + " emulation)";
-        alert("We have detected the following IE browser: " + val);
+            alert(val + "\nWe have detected that Internet Explorer is running in Compatibility View,\n" +
+                  "In order to open this webpage, Compatibility View must be removed from this page.\n" +
+                  "Or, you can upgrade Internet Explorer to Version 11.\n" + 
+                  "If you need assistance to do it, you can contact us by emaililng here: apacheco@capsonic.com");
+        }
     }
 </script>
 

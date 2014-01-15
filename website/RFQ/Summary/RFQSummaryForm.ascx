@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td align="right" class="style5">
-                    SIF Product:
+                    Finished Good Description:
                 </td>
                 <td class="style4" style="background-color: #C0C0C0">
                     <asp:Label ID="PartDescriptionLabel" Width="100%" runat="server" Text='<%# Bind("Product") %>' />
@@ -61,17 +61,17 @@
                     <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
                 </td>
             </tr>
-            <tr>
+            <%--<tr>
                 <td align="right" class="style5">
                     Component Description:
                 </td>
                 <td class="style4" style="background-color: #C0C0C0">
                     <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' />
                 </td>
-            </tr>
+            </tr>--%>
             <tr>
                 <td align="right" class="style5">
-                    Estimated Annual Volume
+                    EAU
                 </td>
                 <td class="style4" style="background-color: #C0C0C0">
                     <asp:TextBox ID="txtEAV" Width="100px" runat="server" mainEAV="" onchange="setEAVValues()"
