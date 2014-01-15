@@ -42,7 +42,7 @@
                         <td align="right" class="style1">
                             Total Material Cost:
                         </td>
-                        <td align="left">
+                        <td align="right">
                             <asp:Label ID="lblTotalMaterialCost" runat="server" Text='' />
                         </td>
                     </tr>
@@ -56,7 +56,7 @@
                         <td align="right" class="style1">
                             Total Cost Reduction:
                         </td>
-                        <td align="left">
+                        <td align="right">
                             <asp:Label ID="lblTotalCostReduction" runat="server" Text='' />
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
                         </td>
                         <td align="right" class="style1">
                             Total Material Cost with Reduction:</td>
-                        <td align="left">
+                        <td align="right">
                             <asp:Label ID="lblTotalMaterialCostWithReduction" runat="server" />
                         </td>
                     </tr>
@@ -127,7 +127,7 @@
         
         <br />
         <br />
-        <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" >
             <Columns>
                 <asp:BoundField DataField="RFQStatus" ItemStyle-HorizontalAlign="Center" HeaderText="RFQ Status"
                     SortExpression="RFQStatus">
@@ -204,12 +204,19 @@
     <br />
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
         ProviderName="System.Data.SqlClient" SelectCommand="
-        SELECT DISTINCT  PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, 
+        SELECT distinct  PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, 
 			        VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail,
-			        ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], ISNULL(RFQStatus,'IN PROCESS') AS RFQStatus,
-			        TotalACost, LeadTimePPAP, ProductionTooling, [User]
+			        ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], 
+					CASE RFQStatus
+						WHEN 'PENDING' THEN 'IN PROCESS'
+						WHEN 'IN PROGRESS' THEN 'IN PROCESS'
+						WHEN 'COMPLETED' THEN 'IN PROCESS'
+						WHEN 'DECLINED' THEN 'IN PROCESS'
+						WHEN NULL THEN 'IN PROCESS'		
+					END AS RFQStatus,
+			        TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey
         FROM        viewSalesReportDetail
-        WHERE       ([BOMHeaderKey] = @BOMHeaderKey) AND (RFQStatus = 'SELECTED' OR RFQStatus = 'DISMISSED' OR RFQStatus = 'AWARDED' OR RFQStatus IS NULL OR [Status] = 'No Quote' )
+        WHERE       ([BOMHeaderKey] = @BOMHeaderKey) OR [Status] = 'No Quote'
         ORDER BY    PartNumber
         ">
         <SelectParameters>

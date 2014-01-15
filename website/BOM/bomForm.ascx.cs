@@ -235,11 +235,9 @@ public partial class bomForm : System.Web.UI.UserControl
         List<BOMDetail> bomDetailList = uscBOMDetailList.getEntity();
         foreach (BOMDetail detail in bomDetailList)
         {
-            detail.EAU = (Math.Round(detail.Qty * long.Parse(txtAnnualVolume.Text),0)).ToString();
+            detail.EAU = Math.Round(detail.Qty * float.Parse(txtAnnualVolume.Text),0).ToString();
             if (detail.internalAction == "")
                 detail.internalAction = "UPDATE";
-
-            
         }
         Session["bomDetailObject"] = bomDetailList;
         uscBOMDetailList.loadDetail();
