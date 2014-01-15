@@ -202,28 +202,6 @@
     </asp:Panel>
     <br />
     <br />
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" OnInit="on_sqldatasource_Init"
-        ProviderName="System.Data.SqlClient" SelectCommand="
-        SELECT distinct  PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, 
-			        VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail,
-			        ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], 
-					CASE RFQStatus
-						WHEN 'PENDING' THEN 'IN PROCESS'
-						WHEN 'IN PROGRESS' THEN 'IN PROCESS'
-						WHEN 'COMPLETED' THEN 'IN PROCESS'
-						WHEN 'DECLINED' THEN 'IN PROCESS'
-						WHEN NULL THEN 'IN PROCESS'		
-					END AS RFQStatus,
-			        TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey
-        FROM        viewSalesReportDetail
-        WHERE       ([BOMHeaderKey] = @BOMHeaderKey) OR [Status] = 'No Quote'
-        ORDER BY    PartNumber
-        ">
-        <SelectParameters>
-            <asp:ControlParameter ControlID="lblBOMHeader" Name="BOMHeaderKey" PropertyName="Text"
-                Type="Decimal" />
-        </SelectParameters>
-    </asp:SqlDataSource>
     <asp:Button ID="btnExportToExcel" runat="server" OnClick="btnExportToExcel_Click"
         Text="Export" />
     <br />

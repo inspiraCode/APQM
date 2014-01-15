@@ -39,7 +39,7 @@
     </tr>
     <tr>
         <td class="style2" align="right">
-            DECLINED
+            NO QUOTE
         </td>
         <td align="left">
             Vendor is not able to quote.

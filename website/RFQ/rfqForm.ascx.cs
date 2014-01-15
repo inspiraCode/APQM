@@ -164,7 +164,7 @@ public partial class rfqForm : System.Web.UI.UserControl
             rfq.Status = "COMPLETED";
             if (rfq.NoQuote)
             {
-                rfq.Status = "DECLINED";
+                rfq.Status = "NO QUOTE";
             }
             rfq.DateFilledOut = DateTime.Now;
             if (!rfqCRUD.update(rfq))

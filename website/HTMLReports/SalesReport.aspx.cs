@@ -21,7 +21,6 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
         {
             lblBOMHeader.Text = "";
         }
-        SqlDataSource1.DataBind();
         SqlDataSourceForm.DataBind();
 
         //Calculating TotalCostMaterial and TotalCostReduction:
@@ -83,7 +82,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                     case "PENDING":
                     case "IN PROGRESS":
                     case "COMPLETED":
-                    case "DECLINED":
+                    case "NO QUOTE":
                     case "IN PROCESS":
                         srd.RFQStatus = "IN PROCESS";
                         srd.TotalACost = null;
@@ -111,7 +110,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                     case "PENDING":
                     case "IN PROGRESS":
                     case "COMPLETED":
-                    case "DECLINED":
+                    case "NO QUOTE":
                     case "IN PROCESS":
                         break;
                     case "AWARDED":
@@ -155,7 +154,6 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
     {
         ConnectionManager connection = new ConnectionManager();
         SqlDataSourceForm.ConnectionString = connection.getConnection().ConnectionString;
-        SqlDataSource1.ConnectionString = connection.getConnection().ConnectionString;
     }
 
     private class SalesReportDetail

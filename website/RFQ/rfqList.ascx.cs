@@ -110,7 +110,7 @@ public partial class rfqList : System.Web.UI.UserControl
                                 {
                                     rfqLocal.Status = "DISMISSED";
                                     if (rfqLocal.NoQuote == true)
-                                        rfqLocal.Status = "DECLINED";
+                                        rfqLocal.Status = "NO QUOTE";
                                     if (!rfqCRUD.update(rfqLocal))
                                     {
                                         Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);

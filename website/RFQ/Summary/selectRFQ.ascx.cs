@@ -59,7 +59,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             {
                 rfqObj.Status = "DISMISSED";
                 if (rfqObj.NoQuote == true)
-                    rfqObj.Status = "DECLINED";
+                    rfqObj.Status = "NO QUOTE";
                 if (!rfqCRUD.update(rfqObj, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
