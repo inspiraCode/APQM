@@ -81,6 +81,46 @@ public partial class rfqList : System.Web.UI.UserControl
         long rfqHeaderKey;
         switch (e.CommandName)
         {
+            case "deleteRFQ":
+                try
+                {
+                    index = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
+                    rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
+
+                    RfqCRUD rfqCRUD = new RfqCRUD();
+                    RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
+
+                    ConnectionManager CM = new ConnectionManager();
+                        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+                        /*Begin Transaction*/
+                        DM.Open_Connection("RFQ Delete");
+
+                        if (rfqSummaryCRUD.deleteByParentID(rfqHeaderKey, ref DM))
+                        {
+                            if (rfqCRUD.delete(rfqHeaderKey))
+                            {
+
+                            }
+                        }
+                    
+                        DM.CommitTransaction();
+                        DM.Close_Open_Connection();
+
+                        if (DM.ErrorOccur)
+                        {
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+                            return;
+                        }
+
+                        gridRFQList.DataBind();
+                   
+                }
+                catch (Exception ex)
+                {
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
+                }
+                break;
             case "setAwarded":
                 try
                 {

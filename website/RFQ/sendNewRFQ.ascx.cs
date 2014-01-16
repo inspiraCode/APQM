@@ -13,12 +13,12 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
     private SupplierCommodityCRUD supplierCommodityCRUD = new SupplierCommodityCRUD();
     private List<Supplier> supplierList = null;
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
         btnNewSupplier.OnClientClick = "return promptUser('New Supplier', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
         btnNewMarketSector.OnClientClick = "return promptUser('New Market Sector', 'm~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
-        
+
         supplierList = (List<Supplier>)Session["SupplierList"];
         if (supplierList == null)
         {
@@ -37,8 +37,73 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string[] arrEAU = ((Label)frmBOMLine.FindControl("EAULabel")).Text.Split(',');
-        
+        string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
+        string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
+
+
+        string[] arrEAU = strEAUTextBox.Split(',');
+
+        if (!strEAULabel.Equals(strEAUTextBox))
+        {
+            ConnectionManager CM = new ConnectionManager();
+            Data_Base_MNG.SQL DM = CM.getDataManager();
+
+            /*Begin Transaction*/
+            DM.Open_Connection("Updating BOM Line EAU");
+
+            bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+            bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
+            
+            if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+                return;
+            }
+
+            for (var i = 0; i < arrEAU.Length; i++)
+            {
+                if (arrEAU[i].Trim() != "")
+                {
+                    BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+                    bomDetailVolume.BomDetailKey = (long)ViewState["bomDetailID"];
+                    try
+                    {
+                        bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
+                    }
+                    catch
+                    {
+                        DM.RollBack();
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + "The EAU field did not pass the Numeric validation.");
+                        return;
+                    }
+                    if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+                        return;
+                    }
+                }
+            }
+
+            BOMDetail bomDetail = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
+            bomDetail.EAU = strEAUTextBox;
+            if (!bomDetail_CRUD.update(bomDetail, ref DM))
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+                return;
+            }
+
+
+            DM.CommitTransaction();
+            DM.Close_Open_Connection();
+
+            if (DM.ErrorOccur)
+            {
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+                return;
+            }
+
+        }
+            
         if (supplierList.Count > 0)
         {
             foreach (Supplier supplier in supplierList)
@@ -187,6 +252,15 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        //Test for compare EAU with its original value in BOM Line
+        //string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
+        //string strEAULabel = ((Label)frmBOMLine.FindControl("EAUHidden")).Text;
+        //if(strEAULabel.Equals(strEAUTextBox))
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "Son iguales");
+        //else
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "son distintos");
+        
+        //return;
         supplierList = null;
         Cancel_Click(this, e);
     }
@@ -315,7 +389,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     }
     protected void btnAddEmail_Click(object sender, EventArgs e)
     {
-        if (txtEmail.Text.Trim() != "")
+        if (txtEmail.Text.Trim() != "" && cboSupplier.SelectedValue != "")
         {
             Supplier supplier = supplierCRUD.readById(long.Parse(cboSupplier.SelectedValue));
 

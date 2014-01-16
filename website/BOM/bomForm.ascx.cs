@@ -13,8 +13,8 @@ public partial class bomForm : System.Web.UI.UserControl
     bomCRUD bomCRUD = new bomCRUD();
     public BOM bom;
 
-    private bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-    private bomDetailVolumeCRUD bomDetailVolumeCRUD = new bomDetailVolumeCRUD();
+    private bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+    private bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
     private itemCRUD item_CRUD = new itemCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -28,7 +28,7 @@ public partial class bomForm : System.Web.UI.UserControl
             if (Session["bomObject"] != null)
             {
                 bom = (BOM)((SessionObject)Session["bomObject"]).Content;
-                bom.BomDetail = bomDetailCRUD.readByParentID(bom.Id);
+                bom.BomDetail = bomDetail_CRUD.readByParentID(bom.Id);
                 Session["bom"] = bom;
                 if (((SessionObject)Session["bomObject"]).Status == "forUpdate")
                 {
@@ -59,7 +59,7 @@ public partial class bomForm : System.Web.UI.UserControl
 
         foreach(BOMDetail detail in bom.BomDetail){
             string strVolume = "";
-            detail.VolumeList = bomDetailVolumeCRUD.readByParentID(detail.Id);
+            detail.VolumeList = bomDetailVolume_CRUD.readByParentID(detail.Id);
             if (detail.VolumeList.Count > 0)
             {
                 
@@ -118,14 +118,14 @@ public partial class bomForm : System.Web.UI.UserControl
         List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
         foreach (BOMDetail detail in bomDetailListToDelete)
         {
-            if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
+            if (!bomDetailVolume_CRUD.deleteByParentID(detail.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
                 return;
             }
-            if (!bomDetailCRUD.delete(detail.Id, ref DM))
+            if (!bomDetail_CRUD.delete(detail.Id, ref DM))
             {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
+                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
                 return;
             }
         }
@@ -145,10 +145,10 @@ public partial class bomForm : System.Web.UI.UserControl
             {
                 detail.BomHeaderKey = this.bom.Id;
                 detail.Status = "Created";
-                string bomDetailIDGenerated = bomDetailCRUD.createAndReturnIdGenerated(detail, ref DM);
-                if (bomDetailCRUD.ErrorOccur)
+                string bomDetailIDGenerated = bomDetail_CRUD.createAndReturnIdGenerated(detail, ref DM);
+                if (bomDetail_CRUD.ErrorOccur)
                 {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
                     return;
                 }
                 else
@@ -160,18 +160,18 @@ public partial class bomForm : System.Web.UI.UserControl
             if (detail.internalAction == "UPDATE")
             {
                 detail.BomHeaderKey = this.bom.Id;
-                if (!bomDetailCRUD.update(detail, ref DM))
+                if (!bomDetail_CRUD.update(detail, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailCRUD.ErrorMessage);
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
                     return;
                 }
             }
 
             if (detail.internalAction != "")
             {
-                if (!bomDetailVolumeCRUD.deleteByParentID(detail.Id, ref DM))
+                if (!bomDetailVolume_CRUD.deleteByParentID(detail.Id, ref DM))
                 {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
                     return;
                 }
 
@@ -191,9 +191,9 @@ public partial class bomForm : System.Web.UI.UserControl
                             Navigator.goToPage("~/Error.aspx", "ERROR:" + "The Volume field did not pass the Numeric validation.");
                             return;
                         }
-                        if (!bomDetailVolumeCRUD.create(bomDetailVolume, ref DM))
+                        if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
                         {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolumeCRUD.ErrorMessage);
+                            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
                             return;
                         }
                     }

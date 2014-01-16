@@ -547,7 +547,7 @@ public class RfqCRUD : ICRUD<RFQ>
     {
         ErrorOccur = false;
         int rowsAffected=0;
-        string query = "DELETE FROM RFQMaster WHERE RFQHeaderKey=@key";
+        string query = "DELETE FROM RFQHeader WHERE RFQHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
         if (sqlConnection != null)
@@ -589,6 +589,21 @@ public class RfqCRUD : ICRUD<RFQ>
         return false;
     }   
     #endregion
+
+    public bool delete(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM RFQHeader WHERE RFQHeaderKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
 }
 
 public class RFQEAVCRUD : ICRUD<RFQEAV>
@@ -1902,5 +1917,20 @@ public class RfqSummaryCRUD
             return false;
         }
         return result;
+    }
+
+    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM RFQSummary WHERE RFQHeaderKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
     }
 }
