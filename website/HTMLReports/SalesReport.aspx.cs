@@ -82,9 +82,19 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                     case "PENDING":
                     case "IN PROGRESS":
                     case "COMPLETED":
-                    case "NO QUOTE":
                     case "IN PROCESS":
                         srd.RFQStatus = "IN PROCESS";
+                        srd.TotalACost = null;
+                        srd.LeadTimePPAP = null;
+                        srd.ProductionTooling = null;
+                        srd.ToolingDetail = null;
+                        srd.ProductionToolingLeadTime = null;
+                        srd.ProductionLeadTime = null;
+                        srd.SupplierName = "";
+                        salesReportDetailList.Add(srd);
+                        break;
+                    case "NO QUOTE":
+                        srd.RFQStatus = "NO QUOTE";
                         srd.TotalACost = null;
                         srd.LeadTimePPAP = null;
                         srd.ProductionTooling = null;

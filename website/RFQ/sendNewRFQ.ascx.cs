@@ -91,14 +91,16 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                 }
             }
 
-            BOMDetail bomDetail = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
-            bomDetail.EAU = strEAUTextBox;
-            if (!bomDetail_CRUD.update(bomDetail, ref DM))
+            bomDetailObject.EAU = strEAUTextBox;
+            if (bomDetailObject.Status != "Processed")
+            {
+                bomDetailObject.Status = "In Progress";
+            }
+            if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
                 return;
             }
-
 
             DM.CommitTransaction();
             DM.Close_Open_Connection();
@@ -137,16 +139,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         /*Begin Transaction*/
                         DM.Open_Connection("Send New RFQ Save");
 
-                        if (bomDetailObject.Status != "Processed")
-                        {
-                            bomDetailObject.Status = "In Progress";
-                            if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
-                            {
-                                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
-                                return;
-                            }
-                        }
-
+                        
                         String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
                         if (rfqNumberCRUD.ErrorOccur)
                         {
