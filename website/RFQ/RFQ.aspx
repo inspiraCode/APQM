@@ -67,6 +67,8 @@
                     <uc7:rfqList ID="uscRfqList" runat="server" />
                 </div>
             </div>
+            <br />
+            <br />
         </asp:View>
         <asp:View ID="viewRFQCountPerBOMDetail" runat="server">
             <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
@@ -75,6 +77,8 @@
                         runat="server" />
                 </div>
             </div>
+            <br />
+            <br />
         </asp:View>
         <asp:View ID="viewRFQCountPerSharedItems" runat="server">
             <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
@@ -82,6 +86,8 @@
                     <uc6:rfqCountPerSharedItems ID="uscRfqCountPerSharedItems" runat="server" />
                 </div>
             </div>
+            <br />
+            <br />
         </asp:View>
     </asp:MultiView>
 </asp:Content>

@@ -77,7 +77,7 @@
         onchange="on_change_option_quote()" TabIndex="1" />
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" Text="No Quote"
-        onchange="on_change_option_quote()" TabIndex="1" />
+        onchange="on_change_option_quote()" TabIndex="2" />
 </div>
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
@@ -89,7 +89,8 @@
             style="width: 555px;">
             Comments to vendor:<br />
             <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
-                ReadOnly="True" TextMode="MultiLine" Width="550px" TabIndex="1" Style="border: 0;"></asp:TextBox>
+                ReadOnly="True" TextMode="MultiLine" Width="550px" Style="border: 0;" 
+                TabIndex="1"></asp:TextBox>
         </div>
         <br />
         <br />
@@ -132,7 +133,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="4"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -141,7 +142,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -150,7 +151,7 @@
                             </td>
                             <td align="left"'">
                                 <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -159,7 +160,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -176,7 +177,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtLeadTimePPAP" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="9"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -247,7 +248,7 @@
                 </td>
                 <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
                     <asp:TextBox ID="txtPreparedBy" validate="required" validationid="validatingRFQForm"
-                        runat="server" Style="width: 216px" TabIndex="1"></asp:TextBox>
+                        runat="server" Style="width: 216px" TabIndex="3"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -340,7 +341,7 @@
                 data-intro='Enter cost for SG&A/Profit'>
                 <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
-                    onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="2"></asp:TextBox>
+                    onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="20"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -351,7 +352,7 @@
                 data-intro='Enter packaging cost per unit.'>
                 <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                    runat="server" Width="100px" TabIndex="3"></asp:TextBox>
+                    runat="server" Width="100px" TabIndex="21"></asp:TextBox>
             </td>
         </tr>
         <tr align="left">
@@ -362,7 +363,7 @@
                 data-intro='Enter cost for assembly, if applicable.'>
                 <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
                     Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                    runat="server" Width="100px" TabIndex="4"></asp:TextBox>
+                    runat="server" Width="100px" TabIndex="22"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -400,7 +401,7 @@
                                 <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
                                     <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm" runat="server"
-                                        Style="text-align: right" Width="94px" TabIndex="31"></asp:TextBox>
+                                        Style="text-align: right" Width="94px" TabIndex="32"></asp:TextBox>
                                 </div>
                             </td>
                         </tr>
@@ -432,7 +433,7 @@
             </tr>
             <tr>
                 <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
-                    <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" TabIndex="22"
+                    <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" TabIndex="23"
                         TextMode="MultiLine"></asp:TextBox>
                 </td>
                 <td align="center" rowspan="4" data-step='42' data-intro='Outline your annual cost reduction commitment.'>
@@ -445,7 +446,7 @@
                 </td>
                 <td class="style62" align="right" data-step='39' data-intro='Enter Production Tooling Cost.'>
                     <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="23"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -454,7 +455,7 @@
                 </td>
                 <td class="style62" align="right" data-step='40' data-intro='Enter Prototype Tooling Cost.'>
                     <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -463,7 +464,7 @@
                 </td>
                 <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Piece Cost.'>
                     <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
+                        Style="text-align: right" runat="server" TabIndex="26"></asp:TextBox>
                 </td>
             </tr>
             <tr>
@@ -536,7 +537,7 @@
     <br />
     Reason
     <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
-        Width="400px" TabIndex="37"></asp:TextBox>
+        Width="400px" TabIndex="36"></asp:TextBox>
 </div>
 <br />
 <br />

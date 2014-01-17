@@ -107,7 +107,7 @@ public class TokenCRUD : ICRUD<Token>
     {
         Token token = new Token();
 
-        string query = "SELECT TokenKey, Token, Subject, SubjectKey, DeadDate, Acknowledgement FROM TokenMaster WHERE (TokenKey = @key)";
+        string query = "SELECT TokenKey, Token, [Subject], SubjectKey, DeadDate, Acknowledgement FROM TokenMaster WHERE (TokenKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -136,7 +136,7 @@ public class TokenCRUD : ICRUD<Token>
     {
         Token token = new Token();
 
-        string query = "SELECT TokenKey, Token, Subject, SubjectKey, DeadDate, Acknowledgement FROM TokenMaster WHERE (Token = @key)";
+        string query = "SELECT TokenKey, Token, [Subject], SubjectKey, DeadDate, Acknowledgement FROM TokenMaster WHERE (Token = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -168,7 +168,7 @@ public class TokenCRUD : ICRUD<Token>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT TokenKey, Token, Subject, SubjectKey, DeadDate, Acknowledgement FROM TokenMaster " +
+        string query = "SELECT TokenKey, Token, [Subject], SubjectKey, DeadDate, Acknowledgement FROM TokenMaster " +
                         "ORDER BY TokenKey DESC";
 
         DataTable table = new DataTable();
@@ -265,4 +265,34 @@ public class TokenCRUD : ICRUD<Token>
     }
 
     #endregion
+
+    public bool deleteByRFQID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM TokenMaster WHERE [Subject] = 'RFQ' AND SubjectKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
+
+    public bool deleteBySurveyID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM TokenMaster WHERE [Subject] = 'SURVEY' AND SubjectKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
 }

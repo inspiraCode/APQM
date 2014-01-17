@@ -33,6 +33,9 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
     protected void btnSendRFQ_Click(object sender, EventArgs e)
     {
         RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
+        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
+
         string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
 
         string strAuthUser = HttpContext.Current.User.Identity.Name;
@@ -40,19 +43,23 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
         string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
         string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
 
+        BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
+        if (bomDetailObject == null)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
+            return;
+        }
 
         string[] arrEAU = strEAUTextBox.Split(',');
 
         if (!strEAULabel.Equals(strEAUTextBox))
         {
+
             ConnectionManager CM = new ConnectionManager();
             Data_Base_MNG.SQL DM = CM.getDataManager();
 
             /*Begin Transaction*/
             DM.Open_Connection("Updating BOM Line EAU");
-
-            bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-            bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
             
             if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
             {
@@ -130,7 +137,15 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                         /*Begin Transaction*/
                         DM.Open_Connection("Send New RFQ Save");
 
-
+                        if (bomDetailObject.Status != "Processed")
+                        {
+                            bomDetailObject.Status = "In Progress";
+                            if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
+                            {
+                                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+                                return;
+                            }
+                        }
 
                         String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
                         if (rfqNumberCRUD.ErrorOccur)

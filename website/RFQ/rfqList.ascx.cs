@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class rfqList : System.Web.UI.UserControl
 {
-    
+
     protected void Page_Load(object sender, EventArgs e)
     {
     }
@@ -72,7 +72,7 @@ public partial class rfqList : System.Web.UI.UserControl
             if (hrefStatus.Text.IndexOf("AWARDED") > -1)
             {
                 e.Row.Cells[6].Controls[1].Visible = false;
-            }            
+            }
         }
     }
     protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -91,30 +91,39 @@ public partial class rfqList : System.Web.UI.UserControl
                     RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
 
                     ConnectionManager CM = new ConnectionManager();
-                        Data_Base_MNG.SQL DM = CM.getDataManager();
+                    Data_Base_MNG.SQL DM = CM.getDataManager();
 
-                        /*Begin Transaction*/
-                        DM.Open_Connection("RFQ Delete");
+                    /*Begin Transaction*/
+                    DM.Open_Connection("RFQ Delete");
 
-                        if (rfqSummaryCRUD.deleteByParentID(rfqHeaderKey, ref DM))
-                        {
-                            if (rfqCRUD.delete(rfqHeaderKey))
-                            {
+                    TokenCRUD token_CRUD = new TokenCRUD();
+                    if (!token_CRUD.deleteByRFQID(rfqHeaderKey, ref DM))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + token_CRUD.ErrorMessage);
+                        return;
+                    }
+                    if (!rfqSummaryCRUD.deleteByParentID(rfqHeaderKey, ref DM))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqSummaryCRUD.ErrorMessage);
+                        return;
+                    }
+                    if (!rfqCRUD.delete(rfqHeaderKey, ref DM))
+                    {
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
+                        return;
+                    }
 
-                            }
-                        }
-                    
-                        DM.CommitTransaction();
-                        DM.Close_Open_Connection();
+                    DM.CommitTransaction();
+                    DM.Close_Open_Connection();
 
-                        if (DM.ErrorOccur)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-                            return;
-                        }
+                    if (DM.ErrorOccur)
+                    {
+                        Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+                        return;
+                    }
 
-                        gridRFQList.DataBind();
-                   
+                    gridRFQList.DataBind();
+
                 }
                 catch (Exception ex)
                 {
@@ -126,7 +135,7 @@ public partial class rfqList : System.Web.UI.UserControl
                 {
                     index = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
                     rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
-                    
+
                     RfqCRUD rfqCRUD = new RfqCRUD();
                     RFQ rfq = rfqCRUD.readById(rfqHeaderKey);
 
@@ -167,7 +176,7 @@ public partial class rfqList : System.Web.UI.UserControl
                         }
                         else
                         {
-                            
+
                             if (bomDetail != null)
                             {
                                 bomDetail.Status = "Processed";
@@ -213,6 +222,6 @@ public partial class rfqList : System.Web.UI.UserControl
                     Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
                 }
                 break;
-        }     
+        }
     }
 }
