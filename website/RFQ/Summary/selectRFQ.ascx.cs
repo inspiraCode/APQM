@@ -28,7 +28,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
             frmSelectRFQ.DataBind();
             if (frmSelectRFQ.DataItemCount > 0)
             {
-                lblNewCost.Text = rfqSummary.NewCost.ToString();
+                lblNewCost.Text = string.Format("{0:C}", rfqSummary.TotalACost);
             }
         }
     }
@@ -83,7 +83,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                 {
                     if (chkUpdateBOMLineCost.Checked)
                     {
-                        bomDetail.Cost = float.Parse(lblNewCost.Text);
+                        bomDetail.Cost = float.Parse(lblNewCost.Text.Replace('$',' '));
                     }
                     bomDetail.Status = "Processed";
                     if (!bomDetailCRUD.update(bomDetail, ref DM))

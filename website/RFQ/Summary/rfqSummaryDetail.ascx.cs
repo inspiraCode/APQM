@@ -245,7 +245,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         if (rfqSummary != null)
         {
             SessionObject so = new SessionObject();
-            rfqSummary.NewCost = 100;
             so.Content = rfqSummary;
             so.Status = "forUpdate";
 

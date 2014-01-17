@@ -588,7 +588,6 @@ public class RFQSummary
     private float cavitation;
     private string materialTooling;
     
-    private float newCost;
     private float eav;
 
     private string status;
@@ -673,11 +672,6 @@ public class RFQSummary
     {
         get { return estimatedAnnualVolume; }
         set { estimatedAnnualVolume = value; }
-    }
-    public float NewCost
-    {
-        get { return newCost; }
-        set { newCost = value; }
     }
     public float TotalBCost
     {
