@@ -24,7 +24,9 @@
         <%--<asp:Button ID="tabSurvey" runat="server" Text="Surveys" OnClick="tabSurvey_Click" />--%>
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">
+    
         <asp:View ID="viewSIF" runat="server">
+        <span class="mainTitle">SIFs > SIF</span>
             <%--Tab update SIF--%>
             <div>
                 <div runat="server" id="divSIF">
@@ -33,6 +35,7 @@
             </div>
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
+        <span class="mainTitle">SIFs > BOM</span>
             <div>
                 <div runat="server" id="divBOM">
                     <uc4:bomForm ID="uscBomForm" OnOk_Click="on_save_bom" OnCancel_Click="on_cancel_bom"

@@ -50,6 +50,7 @@
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
+    <span class="mainTitle">RFQs</span>
     <div id="Tabs" class="tabDiv" class="Content" style="min-width: 600px;">
         <asp:Button ID="tabRFQ" runat="server" Text="RFQ" OnClick="tabRFQ_Click" class="tabSelected" />
         <asp:Button ID="tabRFQCountPerBOMDetail" runat="server" class="tabUnselected" OnClick="tabRFQPerBOMDetail_Click"
@@ -59,11 +60,14 @@
     </div>
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
         <asp:View ID="viewRFQList" runat="server">
+        <br />
             <div style="border-left: solid 1px; padding: 0px 10px 0 10px; width: 97%; min-width: 450px;">
-                <div align="right" style="top: 20px; position: relative;">
+                <div align="right" style="top: 20px; float:right;">
+                <br />
                     <uc8:rfqStatusInfo ID="uscRfqStatusInfo" runat="server" />
+                    <br />
                 </div>
-                <div style="position: relative; margin-top: 40px;">
+                <div style="position: relative;">
                     <uc7:rfqList ID="uscRfqList" runat="server" />
                 </div>
             </div>
@@ -71,6 +75,7 @@
             <br />
         </asp:View>
         <asp:View ID="viewRFQCountPerBOMDetail" runat="server">
+        <br />
             <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
                 <div runat="server" id="divRFQCountPerBOMDetail">
                     <uc4:rfqCountPerBomLines ID="uscRfqCountPerBomLines" OnRow_Command="on_rfqCountPerBomLines_rowCommand"
@@ -81,6 +86,7 @@
             <br />
         </asp:View>
         <asp:View ID="viewRFQCountPerSharedItems" runat="server">
+        <br />
             <div style="border-left: solid 1px; padding: 50px 10px 0 10px; position: relative;">
                 <div runat="server" id="divRFQCountPerSharedItems">
                     <uc6:rfqCountPerSharedItems ID="uscRfqCountPerSharedItems" runat="server" />

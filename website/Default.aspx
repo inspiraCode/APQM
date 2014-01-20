@@ -85,7 +85,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 630, modal: false,
+                        width: 1100, modal: true,
                         dialogClass: "no-close", closeOnEscape: false
                     });                    
                 </script>
@@ -133,22 +133,22 @@
             </div>
         </asp:View>
         <asp:View ID="viewSIF" runat="server">
+            <span class="mainTitle">SIFs</span>
+            <asp:Button ID="btnAddSIF" class="btnInTitle" runat="server" Text="New SIF" OnClick="btnAddSIF_Click" />
             <div runat="server" id="divSIF" class="Content">
-                SIFs
-                <br />
-                <br />
-                <asp:Button ID="btnAddSIF" Style="margin-bottom: 10px;" runat="server" Text="New SIF"
-                    OnClick="btnAddSIF_Click" />
                 <br />
                 <uc4:sifList ID="uscSIFList" runat="server" />
             </div>
+            <br />
+            <br />
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
             <div runat="server" id="divBOM" class="Content">
-                BOM
-                <br />
+                <span class="mainTitle">BOMs</span>
                 <br />
                 <uc8:bomList ID="uscBOMList" runat="server" />
+                <br />
+                <br />
             </div>
         </asp:View>
         <asp:View ID="viewRFQ" runat="server">
@@ -156,17 +156,20 @@
                 RFQ
                 <asp:Button ID="btnAddRFQ" runat="server" Text="New RFQ" OnClick="btnAddRFQ_Click" />
                 <uc6:rfqList ID="uscRFQList" runat="server" />
+                <br />
+                <br />
+                <br />
             </div>
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
+            <span class="mainTitle">Suppliers</span>
+            <asp:Button ID="btnAddSupplier" class="btnInTitle" runat="server" Text="New Supplier"
+                OnClick="btnAddSupplier_Click" />
             <div runat="server" id="divSupplier" class="Content">
-                Suppliers
-                <br />
-                <br />
-                <asp:Button ID="btnAddSupplier" Style="margin-bottom: 10px;" runat="server" Text="New Supplier"
-                    OnClick="btnAddSupplier_Click" />
                 <br />
                 <uc3:supplierList ID="uscSupplierList" runat="server" />
+                <br />
+                <br />
             </div>
         </asp:View>
         <asp:View ID="viewPopup" runat="server">

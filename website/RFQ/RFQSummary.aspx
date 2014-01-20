@@ -39,9 +39,11 @@
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" runat="Server">    
-    <br />
-    <asp:Button ID="btnSelect" runat="server" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
+    <span class="mainTitle">RFQ Summary</span>
+    <asp:Button ID="btnSelect" runat="server" class="btnInTitle" style="right:10px;" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
+   
     <asp:HyperLink ID="hlnkOpenPage" runat="server" NavigateUrl="~/RFQ/Summary/rfqSummaryPage.aspx"
             Target="_blank" Visible="False">Open in a separate page</asp:HyperLink>
     <uc2:RFQSummaryForm ID="uscRFQSummaryForm" runat="server"  />
+    
 </asp:Content>

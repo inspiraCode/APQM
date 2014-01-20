@@ -22,7 +22,8 @@ public partial class _Default : System.Web.UI.Page
             if (Session["supplierObject"] != null)
             {
                 supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
-                lblName.Text = supplier.SupplierName;
+                lblTitle.InnerText = "Suppliers > " + supplier.SupplierName;
+                //lblName.Text = supplier.SupplierName;
                 switch (((SessionObject)Session["SECTION"]).Content.ToString())
                 {
                     case "supplier":                        

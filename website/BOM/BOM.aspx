@@ -33,6 +33,7 @@
     
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0">
         <asp:View ID="viewBOM" runat="server"> <%--Tab update supplier--%>
+        <span class="mainTitle">BOMs > BOM</span>
             <div>
                 <div runat="server" id="divBOM">                 
                     <uc1:bomForm ID="uscBOMMasterForm" runat="server" OnOk_Click="on_ok_bom" OnCancel_Click="on_cancel_bom" />                   
@@ -40,6 +41,7 @@
             </div>
         </asp:View> 
         <asp:View ID="viewSIF" runat="server"> 
+        <span class="mainTitle">BOMs > SIF</span>
             <div>
                 <div runat="server" id="divSIF">
                     <uc3:SifMaster ID="uscSifForm" runat="server" OnOk_Click="on_ok_sif" OnCancel_Click="on_cancel_sif" />

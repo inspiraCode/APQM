@@ -48,9 +48,7 @@
     </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <div style="background-color: #A4A4A4; height: 30px;">
-        <asp:Label ID="lblName" runat="server" Text="" Style="top: 10px; position: relative;"></asp:Label>
-    </div>
+    <span class="mainTitle" runat="server" id="lblTitle"></span>
     <div id="Tabs" class="tabDiv">
         <asp:Button ID="tabSupplier" runat="server" Text="Supplier" OnClick="tabSupplier_Click"
             class="tabSelected" />
@@ -60,6 +58,7 @@
     <br />
     <asp:MultiView ID="MultiViewMain" runat="server" ActiveViewIndex="0" OnActiveViewChanged="on_activeView_changed">
         <asp:View ID="viewSupplier" runat="server">
+        <br />
             <%--Tab update supplier--%>
             <div>
                 <div runat="server" id="divSupplier">
