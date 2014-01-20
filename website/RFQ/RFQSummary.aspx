@@ -16,9 +16,8 @@
             <asp:View ID="viewBOM" runat="server">
                 <div class="mainSection">
                     <uc4:selectBOMLine ID="uscSelectBOM" runat="server" OnRow_Command="on_rowCommand" />
-                    <br />
-                    <br />
                 </div>
+                <br />
                 <div align="right">
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" /></div>
 
@@ -26,11 +25,10 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Please select a BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 1150, modal: false,
-                        height: 460,
+                        width: 1150, modal: true,
                         dialogClass: "no-close",
                         closeOnEscape: false,
-                        draggable: false
+                        draggable: true
                     });
                 </script>
 

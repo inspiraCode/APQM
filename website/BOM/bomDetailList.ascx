@@ -134,8 +134,8 @@
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCost" validate="number" validationid="validatingBOMDetail" runat="server"
-                Width="50px" Style="text-align: right">0</asp:TextBox>
+            <asp:TextBox ID="txtCost" runat="server"
+                Width="50px" Style="text-align: right; visibility:hidden;">0</asp:TextBox>
         </th>
         <th class="camposSinBordes">
             <!-- Vendor Quote Est -->

@@ -17,8 +17,6 @@
             SortExpression="Revision" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="PartDescription" HeaderText="Finished Good Description" 
             SortExpression="PartDescription" ItemStyle-HorizontalAlign="Center" />
-        <asp:BoundField DataField="BOMDetailKey" HeaderText="BOMDetailKey" 
-            SortExpression="BOMDetailKey" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="PartNumber" HeaderText="Component Part Number" 
             SortExpression="PartNumber" ItemStyle-HorizontalAlign="Center" />
         <asp:BoundField DataField="Material" HeaderText="Component Part Description" 
