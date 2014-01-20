@@ -100,6 +100,9 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     protected void btnSave_Click(object sender, EventArgs e)
     {
+
+        string strAuthUser = HttpContext.Current.User.Identity.Name;
+
         SIF sif= new SIF();
 
 
@@ -136,6 +139,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
         sif.Technical = txtTechnical.Text;
         sif.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+        
 
 
         ConnectionManager CM = new ConnectionManager();
@@ -146,6 +150,7 @@ public partial class SifMaster : System.Web.UI.UserControl
 
 
         if (lblMode.Text == "New") {
+            sif.AssignedTo = strAuthUser;
             string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif, ref DM);
             if (sif_CRUD.ErrorOccur)
             {

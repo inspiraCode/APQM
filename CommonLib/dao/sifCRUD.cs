@@ -227,7 +227,7 @@ public class sifCRUD : ICRUD<SIF>
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
                         "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, QuoteDue, SOP, SalesDBID, " +
-                        "MarketSector, AssignedTo FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
+                        "MarketSector, AssignedTo, CreatedDate FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -277,6 +277,8 @@ public class sifCRUD : ICRUD<SIF>
                 sif.SalesDBID = long.Parse(table.Rows[0][26].ToString());
                 sif.MarketSectorID = long.Parse(table.Rows[0][27].ToString());
                 sif.AssignedTo = table.Rows[0][28].ToString();
+                if (table.Rows[0][29].ToString() != "")
+                    sif.CreatedDate = DateTime.Parse( table.Rows[0][29].ToString());
 
                 sqlConnection.Dispose();
                 return sif;
@@ -305,7 +307,7 @@ public class sifCRUD : ICRUD<SIF>
                         "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
                         "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
                         "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
-                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate " +
                         "FROM viewSIF_ReadAll ORDER BY SIFHeaderKey ASC";
 
         DataTable table = new DataTable();
@@ -356,6 +358,10 @@ public class sifCRUD : ICRUD<SIF>
             sif.SalesDBID = long.Parse(table.Rows[i][28].ToString());
             sif.MarketSectorID = long.Parse(table.Rows[i][29].ToString());
             sif.AssignedTo = table.Rows[i][30].ToString();
+            
+            if(table.Rows[i][31].ToString() != "")
+                sif.CreatedDate = DateTime.Parse(table.Rows[i][31].ToString());
+
 
             recordset.Add(sif);
         }
@@ -372,7 +378,7 @@ public class sifCRUD : ICRUD<SIF>
                         "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
                         "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
                         "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
-                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate " +
                         "FROM viewSIF_ReadAll " + filter + " ORDER BY SIFHeaderKey ASC";
 
         DataTable table = new DataTable();
@@ -423,6 +429,9 @@ public class sifCRUD : ICRUD<SIF>
             sif.SalesDBID = long.Parse(table.Rows[i][28].ToString());
             sif.MarketSectorID = long.Parse(table.Rows[i][29].ToString());
             sif.AssignedTo = table.Rows[i][30].ToString();
+            if (table.Rows[i][31].ToString() != "")
+                sif.CreatedDate = DateTime.Parse(table.Rows[i][31].ToString());
+
 
             recordset.Add(sif);
         }

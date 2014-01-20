@@ -39,6 +39,8 @@ public class SIF
     private string marketSector = ""; //Auxiliar when importing from sales db
     private long marketSectorID = -1;
     private string assignedTo = "";
+    private DateTime createdDate = new DateTime(1985, 2, 10);
+    private string createdIn = "";
 
     public List<SIFDetail> SifDetail
     {
@@ -211,6 +213,16 @@ public class SIF
     {
         get { return assignedTo; }
         set { assignedTo = value; }
+    }
+    public DateTime CreatedDate
+    {
+        get { return createdDate; }
+        set { createdDate = value; }
+    }
+    public string CreatedIn
+    {
+        get { return createdIn; }
+        set { createdIn = value; }
     }
     public override string ToString()
     {

@@ -73,6 +73,20 @@ public partial class sifList : System.Web.UI.UserControl
                 ((LinkButton)e.Item.FindControl("linkAssignedTo")).Text = sif.AssignedTo;
                 //((LinkButton)e.Item.FindControl("linkAssignedTo")).Enabled = false;
             }
+            if (sif.SalesDBID > -1)
+            {
+                ((Label)e.Item.FindControl("lblCreatedIn")).Text =  "Sales DB";
+            }
+            else
+            {
+                ((Label)e.Item.FindControl("lblCreatedIn")).Text = "APQM";
+            }
+            if (sif.CreatedDate.Year == 1985 &&
+                sif.CreatedDate.Month == 2 &&
+                sif.CreatedDate.Day == 10)
+            {
+                ((Label)e.Item.FindControl("lblCreatedDate")).Text = "";
+            }
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
