@@ -249,9 +249,18 @@
             <td>
                 <input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
                     value="Send New RFQ" tabindex="14" />
-                <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="15"
+                    <input id="btnSendFiles0" 
+                    onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
+                    value="Create RFQ without email" tabindex="14" />
+                
+                
+                &nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="15"
                     Text="Cancel" Width="136px" />
-                <asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
+                
+                
+                <asp:Button ID="btnCreateRFQ" runat="server" TabIndex="15" Style="display: none;"
+                    Text="Create RFQ without email" Width="160px" 
+                    onclick="btnCreateRFQ_Click" /><asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
                     TabIndex="35" Text="Send New RFQ" Width="136px" />
             </td>
         </tr>
@@ -306,7 +315,10 @@
             autoSubmit: false,
             uploadButtonClass: "ajax-file-upload-green",
             afterUploadAll: function() {
-                setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                if(b_SendEmails)
+                    setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                else
+                    setTimeout(jQuery("#<%= btnCreateRFQ.ClientID %>").click(), 5);
                 jQuery("#divImgEmail").css("visibility", "visible");
             }
         });
@@ -316,17 +328,23 @@
             makeDropDownsChosen();
         }
     }
-    function uploadFiles() {
-        
+    var b_SendEmails = false;
+    function uploadFiles(bSendEmails) {
+        b_SendEmails = bSendEmails;
         if (validate()) {
             var items = jQuery("#<%= lstEmail.ClientID %> option");
             if (items.length > 0) {
                 if (uploadObj != null) {
                     jQuery("#btnSendFiles").prop("disabled", true);
+                    jQuery("#btnSendFiles0").prop("disabled", true);
+                    
                     if (uploadObj.fileCounter > 1) {
                         uploadObj.startUpload();
                     } else {
-                        setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                        if(bSendEmails)
+                            setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
+                        else
+                            setTimeout(jQuery("#<%= btnCreateRFQ.ClientID %>").click(), 5);
                         jQuery("#divImgEmail").css("visibility", "visible");
                     }
                 }

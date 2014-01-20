@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 public partial class rfqFormMain : System.Web.UI.Page
 {
-    private long rfqHeaderKey=-1;
+    private long rfqHeaderKey = -1;
     private RFQ rfq;
     private RfqCRUD rfqCRUD = new RfqCRUD();
 
@@ -22,7 +22,7 @@ public partial class rfqFormMain : System.Web.UI.Page
         if (ViewState["rfqHeaderKey"] == null)
         {
             load();
-        }        
+        }
     }
     public void load()
     {
@@ -64,7 +64,7 @@ public partial class rfqFormMain : System.Web.UI.Page
             soRFQ.Content = rfq;
             soRFQ.Status = "forUpdate";
             Session["rfqObject"] = soRFQ;
-            return true;            
+            return true;
         }
         return false;
     }

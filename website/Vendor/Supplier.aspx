@@ -18,11 +18,20 @@
     <br />
     <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnAfterSave="on_save_supplier"
         OnAfterCancel="on_cancel_supplier" />
-    <div id="divButtons" align="center" runat="server">
+    <div id="divButtons" align="center" runat="server" style="clear: both;">
         <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClientClick="return validate();"
             validationid="validatingSupplierForm" OnClick="btnSave_Click" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
     </div>
     <br />
     <br />
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            try {
+                jQuery('#tableSupplierMaster').css("float", "none");
+            } catch (e) { }
+        });
+    </script>
+
 </asp:Content>

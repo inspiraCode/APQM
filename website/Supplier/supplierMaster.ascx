@@ -4,11 +4,11 @@
 <style type="text/css">
     .style4
     {
-        width: 163px;
+        
     }
 </style>
 <div align="center">
-    <table cellspacing="1" style="width: 590px">
+    <table id="tableSupplierMaster" cellspacing="1" style="width: 590px; float:left;" >
         <tr style="display: none;">
             <td align="right" class="style4">
                 Mode:
@@ -115,7 +115,7 @@
         </tr>
     </table>
     <div id="fieldsToHideForVendor" runat="server">
-        <table cellspacing="1" style="width: 590px">
+        <table cellspacing="1">
             <tr>
                 <td align="right" class="style4">
                     Capabilities
