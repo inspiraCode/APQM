@@ -35,7 +35,7 @@
                             <ItemTemplate>
                                 <table cellspacing="0" class="style5">
                                     <tr>
-                                        <td align="right" style="font-weight: bold;width:125px;">
+                                        <td align="right" style="font-weight: bold; width: 125px;">
                                             Inquiry Number:
                                         </td>
                                         <td align="left">
@@ -80,24 +80,16 @@
                                         </td>
                                         <td align="left">
                                             <asp:HiddenField ID="EAUHidden" runat="server" Value='<%# Bind("EAU") %>' />
-                                            <asp:TextBox onkeyup="on_txtEAU_change();" onchange="on_txtEAU_change();" ID="txtEAU" runat="server" Text='<%# Bind("EAU") %>' validate="numbers" validationid="validatingNewRFQ" ></asp:TextBox>
+                                            <asp:TextBox onkeyup="on_txtEAU_change();" onchange="on_txtEAU_change();" ID="txtEAU"
+                                                runat="server" Text='<%# Bind("EAU") %>' validate="numbers" validationid="validatingNewRFQ"></asp:TextBox>
                                         </td>
                                     </tr>
                                 </table>
                             </ItemTemplate>
                         </asp:FormView>
-                        <div id="divWarningEAU" style="font-size:11px;color:Red;display: none;">EAU different than original. Component within BOM will be updated if this RFQ is sent.</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
-                            display: inline-block;">
-                            Proyected Annual Volume
-                            <uc4:sifDetail ID="uscSifDetail" runat="server" />
-                        </div>
-                        <br />
-                        <br />
+                        <div id="divWarningEAU" style="font-size: 11px; color: Red; display: none;">
+                            EAU different than original. Component within BOM will be updated if this RFQ is
+                            sent.</div>
                     </td>
                 </tr>
                 <tr>
@@ -106,7 +98,7 @@
                             <ContentTemplate>
                                 <table>
                                     <tr>
-                                        <td align="right" style="width:125px;">
+                                        <td align="right" style="width: 125px;">
                                             Filter by Commodity
                                         </td>
                                         <td>
@@ -156,13 +148,24 @@
                         </asp:UpdatePanel>
                     </td>
                 </tr>
-                <tr>
+                
+                <tr style="height:120px;">
                     <td>
                         <div align="right">
                             <asp:Button ID="btnSelectMaterial" runat="server" Text="Select Material" OnClick="btnSelectMaterial_Click"
                                 TabIndex="5" Visible="false" />
                         </div>
                         <uc5:SendNewRFQDetail ID="SendNewRFQDetail1" runat="server" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+                            display: inline-block;">
+                            <uc4:sifDetail ID="uscSifDetail" runat="server" />
+                        </div>
+                        <br />
+                        <br />
                     </td>
                 </tr>
             </table>
@@ -249,19 +252,14 @@
             <td>
                 <input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
                     value="Send New RFQ" tabindex="14" />
-                    <input id="btnSendFiles0" 
-                    onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
+                <input id="btnSendFiles0" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
                     value="Create RFQ without email" tabindex="14" />
-                
-                
                 &nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" TabIndex="15"
                     Text="Cancel" Width="136px" />
-                
-                
                 <asp:Button ID="btnCreateRFQ" runat="server" TabIndex="15" Style="display: none;"
-                    Text="Create RFQ without email" Width="160px" 
-                    onclick="btnCreateRFQ_Click" /><asp:Button ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
-                    TabIndex="35" Text="Send New RFQ" Width="136px" />
+                    Text="Create RFQ without email" Width="160px" OnClick="btnCreateRFQ_Click" /><asp:Button
+                        ID="btnSendRFQ" runat="server" OnClick="btnSendRFQ_Click" Style="display: none;"
+                        TabIndex="35" Text="Send New RFQ" Width="136px" />
             </td>
         </tr>
     </table>
@@ -315,7 +313,7 @@
             autoSubmit: false,
             uploadButtonClass: "ajax-file-upload-green",
             afterUploadAll: function() {
-                if(b_SendEmails)
+                if (b_SendEmails)
                     setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
                 else
                     setTimeout(jQuery("#<%= btnCreateRFQ.ClientID %>").click(), 5);
@@ -337,11 +335,11 @@
                 if (uploadObj != null) {
                     jQuery("#btnSendFiles").prop("disabled", true);
                     jQuery("#btnSendFiles0").prop("disabled", true);
-                    
+
                     if (uploadObj.fileCounter > 1) {
                         uploadObj.startUpload();
                     } else {
-                        if(bSendEmails)
+                        if (bSendEmails)
                             setTimeout(jQuery("#<%= btnSendRFQ.ClientID %>").click(), 5);
                         else
                             setTimeout(jQuery("#<%= btnCreateRFQ.ClientID %>").click(), 5);
@@ -356,7 +354,7 @@
     }
     function on_txtEAU_change() {
         var divWarningEAU = jQuery('#divWarningEAU');
-        var txtEAU = jQuery('#<%= ((TextBox)frmBOMLine.FindControl("txtEAU")).ClientID %>'); 
+        var txtEAU = jQuery('#<%= ((TextBox)frmBOMLine.FindControl("txtEAU")).ClientID %>');
         var lblEAU = jQuery('#<%= ((HiddenField)frmBOMLine.FindControl("EAUHidden")).ClientID %>');
         if (txtEAU.val().trim() != lblEAU.val().trim())
             divWarningEAU.show();

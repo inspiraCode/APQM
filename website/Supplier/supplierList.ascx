@@ -9,15 +9,6 @@
                 Supplier Name
             </th>
             <th>
-                Manufacturing Location
-            </th>
-            <th>
-                Ship Location
-            </th>
-            <th>
-                Quoted Currency
-            </th>
-            <th>
                 Contact Name
             </th>
             <th>
@@ -39,15 +30,6 @@
                 OnCommand="updateByID">
                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
                 </asp:LinkButton>                
-            </td>
-            <td style="text-align:center;">
-                <%# DataBinder.Eval(Container.DataItem, "ManufacturingLocation")%>
-            </td>
-            <td style="text-align:center;">
-                <%# DataBinder.Eval(Container.DataItem, "ShipLocation")%>
-            </td>
-            <td style="text-align:center;">
-                <%# DataBinder.Eval(Container.DataItem, "QuotedCurrency")%>
             </td>
             <td style="text-align:center;">
                 <%# DataBinder.Eval(Container.DataItem, "ContactName")%>

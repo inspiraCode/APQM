@@ -237,7 +237,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        LMD: 1/17/2014
+                        LMD: 1/20/2014
                     </td>
                 </tr>
             </table>
@@ -248,9 +248,9 @@
 </html>
 
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 250).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 253).toString());
     jQuery(window).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 250).toString());
+        jQuery('#divContent').css('height', (jQuery(window).height() - 253).toString());
     });
 
     function makeDropDownsChosen() {
