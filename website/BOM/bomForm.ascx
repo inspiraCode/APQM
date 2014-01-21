@@ -215,6 +215,7 @@
         txtAnnualVolume = jQuery('#<%= txtAnnualVolume.ClientID %>');
         txtQtyRequired = jQuery('#<%= uscBOMDetailList.FindControl("txtQuantity").ClientID %>');
         txtEAU = jQuery('#<%= uscBOMDetailList.FindControl("txtEAU").ClientID %>');
+        makeProgresBar();
     });
     function makeProgresBar() {
         var progressBar = jQuery('#progressBar');

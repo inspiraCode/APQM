@@ -33,7 +33,7 @@
             <td align="left">
                 <asp:Label ID="lblID" runat="server"></asp:Label>
             </td>
-            <td align="left">
+            <td align="right">
                 BOM:
             </td>
             <td align="left" class="style1">

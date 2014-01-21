@@ -33,6 +33,8 @@
                     <uc1:sifMaster ID="uscSIFMasterForm" runat="server" OnOk_Click="on_update_SIF" OnCancel_Click="on_cancel_SIF" />
                 </div>
             </div>
+            <br />
+            <br />
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
         <span class="mainTitle">SIFs > BOM</span>
@@ -42,6 +44,8 @@
                         runat="server" />
                 </div>
             </div>
+            <br />
+            <br />
         </asp:View>
     </asp:MultiView>
 </asp:Content>
