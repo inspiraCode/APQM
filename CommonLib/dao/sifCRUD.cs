@@ -935,6 +935,20 @@ public class sifDetailCRUD : ICRUD<SIFDetail>
         }
         return false;
     }
+    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM SIFDetail WHERE SIFHeaderKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
     public bool saveSIFDetailInSIF(SIF entity, ref Data_Base_MNG.SQL DM)
     {   
         foreach(SIFDetail detail in entity.SifDetail){

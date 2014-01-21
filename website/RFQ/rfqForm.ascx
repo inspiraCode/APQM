@@ -299,74 +299,69 @@
         <br />
         <br />
     </div>
-    <div style="border: solid; height: 0px; border-color: rgb(122, 53, 53); border-width: 2px;">
+    <div style="border: solid; height: 0px; border-color: #FE0000; border-width: 1px;">
     </div>
-    
-    
-    
     <div style="background-color: rgba(185, 198, 219, 0.28);">
-    <br />
-    <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
-    <div style="width: 100%; height: 140px;">
-        <table cellspacing="0" align="right" style="width: 300px;">
-            <tr>
-                <td align="right" class="style75" style="border-top: solid gray; border-left: solid gray;">
-                    Total Manufacturing Cost&nbsp;&nbsp;
-                </td>
-                <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
-                    data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
-                    <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right;
-                        margin-left: 0px;" runat="server" Width="104px" Height="20px">0</asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style75" style="border-left: solid gray;">
-                    SG&amp;A Profit&nbsp;&nbsp;
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='34'
-                    data-intro='Enter cost for SG&A/Profit'>
-                    <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
-                        onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="20"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style75" style="border-left: solid gray;">
-                    Packing Cost/Unit&nbsp;&nbsp;
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='35'
-                    data-intro='Enter packaging cost per unit.'>
-                    <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                        runat="server" Width="100px" TabIndex="21"></asp:TextBox>
-                </td>
-            </tr>
-            <tr align="left">
-                <td align="right" class="style75" style="border-left: solid gray;">
-                    Assembly Cost/Unit&nbsp;&nbsp;
-                </td>
-                <td align="left" class="style31" style="border-right: solid gray;" data-step='36'
-                    data-intro='Enter cost for assembly, if applicable.'>
-                    <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                        runat="server" Width="100px" TabIndex="22"></asp:TextBox>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style75" style="border-left: solid gray; border-bottom: solid gray;">
-                    Total Piece Cost&nbsp;&nbsp;
-                </td>
-                <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
-                    style="border-right: solid gray; border-bottom: solid gray;">
-                    <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
-                        Width="104px" Height="20px">0</asp:Label>
-                </td>
-            </tr>
-        </table>
+        <br />
+        <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
+        <div style="width: 100%; height: 140px;">
+            <table cellspacing="0" align="right" style="width: 300px;">
+                <tr>
+                    <td align="right" class="style75" style="border-top: solid gray; border-left: solid gray;">
+                        Total Manufacturing Cost&nbsp;&nbsp;
+                    </td>
+                    <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
+                        data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
+                        <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right;
+                            margin-left: 0px;" runat="server" Width="104px" Height="20px">0</asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="style75" style="border-left: solid gray;">
+                        SG&amp;A Profit&nbsp;&nbsp;
+                    </td>
+                    <td align="left" class="style31" style="border-right: solid gray;" data-step='34'
+                        data-intro='Enter cost for SG&A/Profit'>
+                        <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
+                            Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
+                            onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="20"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="style75" style="border-left: solid gray;">
+                        Packing Cost/Unit&nbsp;&nbsp;
+                    </td>
+                    <td align="left" class="style31" style="border-right: solid gray;" data-step='35'
+                        data-intro='Enter packaging cost per unit.'>
+                        <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
+                            Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                            runat="server" Width="100px" TabIndex="21"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr align="left">
+                    <td align="right" class="style75" style="border-left: solid gray;">
+                        Assembly Cost/Unit&nbsp;&nbsp;
+                    </td>
+                    <td align="left" class="style31" style="border-right: solid gray;" data-step='36'
+                        data-intro='Enter cost for assembly, if applicable.'>
+                        <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
+                            Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
+                            runat="server" Width="100px" TabIndex="22"></asp:TextBox>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="style75" style="border-left: solid gray; border-bottom: solid gray;">
+                        Total Piece Cost&nbsp;&nbsp;
+                    </td>
+                    <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
+                        style="border-right: solid gray; border-bottom: solid gray;">
+                        <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
+                            Width="104px" Height="20px">0</asp:Label>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
-    
-    </div>
-    
     <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
     </div>
     <br />

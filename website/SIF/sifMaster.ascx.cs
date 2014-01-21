@@ -139,8 +139,6 @@ public partial class SifMaster : System.Web.UI.UserControl
         sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
         sif.Technical = txtTechnical.Text;
         sif.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
-        
-
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
@@ -280,5 +278,26 @@ public partial class SifMaster : System.Web.UI.UserControl
     {
         ConnectionManager connection = new ConnectionManager();
         SqlDataSourceMarketSector.ConnectionString = connection.getConnection().ConnectionString;
+    }
+    protected void btnEditSIFDetail_Click(object sender, EventArgs e)
+    {
+        List<SIFDetail> sifDetailList = new List<SIFDetail>(uscSifDetail.getEntity());
+        uscSIFListAdd.setEntity(sifDetailList);
+        uscSIFListAdd.setParentID(long.Parse(lblID.Text));
+        panelPopup.Visible = true;
+    }
+    protected void on_save_sifDetail(object sender, EventArgs e)
+    {
+        uscSIFListAdd.save();
+    }
+    protected void on_cancel_sifDetail(object sender, EventArgs e)
+    {
+        panelPopup.Visible = false;
+    }
+    
+    protected void on_after_save_sifDetail(object sender, EventArgs e)
+    {
+        uscSifDetail.setEntity(new List<SIFDetail> (uscSIFListAdd.getEntity()));
+        panelPopup.Visible = false;
     }
 }

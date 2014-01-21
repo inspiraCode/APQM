@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SifMaster.ascx.cs" Inherits="SifMaster" %>
 <%@ Register Src="sifDetail.ascx" TagName="sifDetail" TagPrefix="uc1" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc2" %>
+<%@ Register Src="sifListAdd.ascx" TagName="sifListAdd" TagPrefix="uc3" %>
 <style type="text/css">
     .style1
     {
@@ -86,14 +87,13 @@
                 <asp:TextBox ID="txtRevision" runat="server" Width="100px" TabIndex="2"></asp:TextBox>
             </td>
             <td align="left">
-                Market Sector</td>
+                Market Sector
+            </td>
             <td align="left" class="style1">
-                <asp:DropDownList ID="cboMarketSector" runat="server" 
-                    Width="124px" DataSourceID="SqlDataSourceMarketSector" DataTextField="Name" 
-                    DataValueField="MarketSectorID" TabIndex="4">
+                <asp:DropDownList ID="cboMarketSector" runat="server" Width="124px" DataSourceID="SqlDataSourceMarketSector"
+                    DataTextField="Name" DataValueField="MarketSectorID" TabIndex="4">
                 </asp:DropDownList>
-                <asp:Button ID="btnNewMarketSector" runat="server" Text="New" Width="60px" 
-                    TabIndex="5" />
+                <asp:Button ID="btnNewMarketSector" runat="server" Text="New" Width="60px" TabIndex="5" />
             </td>
             <td align="right">
                 Cost Model Location
@@ -113,11 +113,9 @@
                 Customer
             </td>
             <td align="left" colspan="2">
-                <asp:DropDownList ID="cboCustomer" runat="server" Height="22px" Width="195px" 
-                    TabIndex="8">
+                <asp:DropDownList ID="cboCustomer" runat="server" Height="22px" Width="195px" TabIndex="8">
                 </asp:DropDownList>
-                <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" 
-                    TabIndex="9" />
+                <asp:Button ID="btnNewCustomer" runat="server" Text="New" Width="45px" TabIndex="9" />
             </td>
             <td align="right" class="style1">
                 Division/Location
@@ -230,7 +228,11 @@
         </tr>
         <tr align="center">
             <td align="center" colspan="6">
-                <div style="border-radius: 10px;border: solid #D3D3D3;background-color: #D3D3D3;min-height:20px;">
+                <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+                    min-height: 20px;">
+                    <span style="left: -428px; position: relative;">
+                        <asp:Button ID="btnEditSIFDetail" runat="server" Text="Edit" OnClick="btnEditSIFDetail_Click"
+                            Style="border-radius: 8px; border: solid gray 1px;" /></span>
                     <uc1:sifDetail ID="uscSifDetail" runat="server" />
                 </div>
             </td>
@@ -240,9 +242,10 @@
                 Tooling Target
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtToolingTarget" runat="server"  Width="180px" TabIndex="22" style="text-align:right;" ></asp:TextBox>
+                <asp:TextBox ID="txtToolingTarget" runat="server" Width="180px" TabIndex="22" Style="text-align: right;"></asp:TextBox>
             </td>
             <td align="left">
+                &nbsp;
             </td>
         </tr>
         <tr>
@@ -250,8 +253,7 @@
                 Primary Competitors
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtPrimaryCompetitors" runat="server" Width="320px" 
-                    TabIndex="23"></asp:TextBox>
+                <asp:TextBox ID="txtPrimaryCompetitors" runat="server" Width="320px" TabIndex="23"></asp:TextBox>
             </td>
             <td align="left">
             </td>
@@ -261,8 +263,7 @@
                 Specific Resource Requirements
             </td>
             <td align="left" colspan="2">
-                <asp:TextBox ID="txtSpecificResourceRequirements" runat="server" Width="320px" 
-                    TabIndex="24"></asp:TextBox>
+                <asp:TextBox ID="txtSpecificResourceRequirements" runat="server" Width="320px" TabIndex="24"></asp:TextBox>
             </td>
             <td align="left">
             </td>
@@ -312,8 +313,27 @@
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
         TabIndex="29" />
 </div>
-<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server"  OnInit="on_sqldatasource_Init"
-    ProviderName="System.Data.SqlClient" 
-    SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
+<asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
+    ProviderName="System.Data.SqlClient" SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
 </asp:SqlDataSource>
 <uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
+<asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <div class="mainSection">
+        <uc3:sifListAdd ID="uscSIFListAdd" runat="server" OnAfterSave="on_after_save_sifDetail" />
+
+        <script type="text/javascript">
+            document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Edit SIF Detail");
+            jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 700, modal: true,
+                dialogClass: "no-close", closeOnEscape: false
+            });
+        </script>
+
+    </div>
+    <br />
+    <div id="divButtons" align="center" runat="server">
+        <asp:Button ID="btnSaveSIFDetail" runat="server" Text="Save" Width="70px" OnClick="on_save_sifDetail" />
+        <asp:Button ID="btnCancelSIFDetail" runat="server" Text="Cancel" Width="70px" OnClick="on_cancel_sifDetail" />
+    </div>
+</asp:Panel>
