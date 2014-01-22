@@ -86,8 +86,11 @@
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td style="text-align: center;">
-                    <asp:LinkButton ID="updateBOM" runat="server" CommandArgument="" CommandName="bomID"
-                        OnCommand="updateByBomID"> None </asp:LinkButton>
+                
+                
+                    <a id="aLinkBOM" runat="server" target="_blank" href='#'>
+                        Edit BOM</a>
+                    
                 </td>
                 <td style="text-align: center;">
                     <asp:LinkButton ID="linkAssignedTo" runat="server" CommandArgument="" OnCommand="takeSIF"

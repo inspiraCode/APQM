@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 public partial class sifList : System.Web.UI.UserControl
 {
@@ -52,21 +53,27 @@ public partial class sifList : System.Web.UI.UserControl
             ((LinkButton)e.Item.FindControl("linkAssignedTo")).CommandArgument = sif.Id.ToString();
             if (sif.BomId > -1)
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";" +
-                                                                                   sif.BomId.ToString();
+
+                ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).HRef = "../BOM/BOM_Form.aspx?bom=" + sif.BomId;
+                
+                //((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";" +
+                 //                                                                  sif.BomId.ToString();
                 if (sif.TopPartNumber.ToString().Trim() != "")
                 {
-                    ((LinkButton)e.Item.FindControl("updateBOM")).Text = sif.TopPartNumber.ToString();
+                    ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = sif.TopPartNumber.ToString();
+                    //((LinkButton)e.Item.FindControl("updateBOM")).Text = sif.TopPartNumber.ToString();
                 }
                 else
                 {
-                    ((LinkButton)e.Item.FindControl("updateBOM")).Text = "Edit BOM";
+                    ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "Edit BOM";
+                    //((LinkButton)e.Item.FindControl("updateBOM")).Text = "Edit BOM";
                 }
             }
             else
             {
-                ((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";
-                ((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
+                //((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";
+                ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "None";
+                //((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
             }
             if (sif.AssignedTo != "")
             {

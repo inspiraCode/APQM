@@ -35,7 +35,7 @@
                                             Text="SIF" Width="110px" />
                                     </td>
                                 </tr>
-                                 <tr>
+                                 <tr style="display:none;">
                                     <td>
                                         <asp:Button ID="btnBOM" runat="server" OnClick="btnBOM_Click" Style="height: 26px;"
                                             Text="BOM" Width="110px" />

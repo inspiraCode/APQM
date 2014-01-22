@@ -18,9 +18,27 @@ public partial class Utils_Alertify_notifier : System.Web.UI.UserControl
         this.txtAlertify.Text = message;
         this.alertify.Visible = true;
     }
+    public void showLog(String message)
+    {
+        this.txtLog.Text = message;
+        this.panelLog.Visible = true;
+    }
+    public void showError(String message)
+    {
+        this.txtError.Text = message;
+        this.panelError.Visible = true;
+    }
+    public void showSuccess(String message)
+    {
+        this.txtSuccess.Text = message;
+        this.panelSuccess.Visible = true;
+    }
     public void hide()
     {
         this.alertify.Visible = false;
+        this.panelSuccess.Visible = false;
+        this.panelLog.Visible = false;
+        this.panelError.Visible = false;
     }
     protected void txtPrompt_ValueChanged(object sender, EventArgs e)
     {

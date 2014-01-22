@@ -2,6 +2,7 @@
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
 <%@ Register Src="bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc4" %>
 <style type="text/css">
     .style1
     {
@@ -144,7 +145,7 @@
                 <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click" style="margin-bottom:5px;" />
                 <asp:Button ID="btnApplyAnnualVolume" runat="server" 
                     Text="Apply to lines not Processed" OnClick="btnApplyAnnualVolume_Click" 
-                    Width="184px" />
+                    Width="184px" OnClientClick="return validate();" validationid="validatingBOMHeader" />
             </td>
             <td align="left" class="style8">
             </td>
@@ -207,6 +208,9 @@
         </asp:View>
     </asp:MultiView>
 </asp:Panel>
+
+<uc4:notifier ID="uscNotifier" runat="server" />
+
 
 <script type="text/javascript">
     var txtAnnualVolume;
