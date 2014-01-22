@@ -19,29 +19,28 @@ public partial class bomForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        bom = (BOM)Session["bom"];
+        if (Session["bomObject"] != null)
+        {
+            bom = (BOM)((SessionObject)Session["bomObject"]).Content;
+        }
     }
     public void load()
     {
-        if (bom == null)
+        if (Session["bomObject"] != null)
         {
-            if (Session["bomObject"] != null)
+            bom = (BOM)((SessionObject)Session["bomObject"]).Content;
+            //bom.BomDetail = bomDetail_CRUD.readByParentID(bom.Id);
+            if (((SessionObject)Session["bomObject"]).Status == "forUpdate")
             {
-                bom = (BOM)((SessionObject)Session["bomObject"]).Content;
-                bom.BomDetail = bomDetail_CRUD.readByParentID(bom.Id);
-                Session["bom"] = bom;
-                if (((SessionObject)Session["bomObject"]).Status == "forUpdate")
-                {
-                    fillWithEntity(bom);
-                    lblMode.Text = "Update";
-                    ((SessionObject)Session["bomObject"]).Status = "Retrieved";
-                }
-                else if (((SessionObject)Session["bomObject"]).Status == "forNew")
-                {
-                    fillWithEntity(bom);
-                    lblMode.Text = "New";
-                    ((SessionObject)Session["bomObject"]).Status = "Retrieved";
-                }
+                fillWithEntity(bom);
+                lblMode.Text = "Update";
+                ((SessionObject)Session["bomObject"]).Status = "Retrieved";
+            }
+            else if (((SessionObject)Session["bomObject"]).Status == "forNew")
+            {
+                fillWithEntity(bom);
+                lblMode.Text = "New";
+                ((SessionObject)Session["bomObject"]).Status = "Retrieved";
             }
         }
     }
@@ -210,13 +209,16 @@ public partial class bomForm : System.Web.UI.UserControl
             return;
         }
         
-        Session.Remove("bom");
+        //Session.Remove("bom");
+        //Session.Remove("bomObject");
+        uscNotifier.showSuccess("This information has been saved successfully");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("bom");
-        Session.Remove("bomObject");
+        //Session.Remove("bom");
+        //Session.Remove("bomObject");
+        uscNotifier.showLog("Values have been re-established.");
         Cancel_Click(this, e);
     }
     protected void btnOpenSIFDetail_Click(object sender, EventArgs e)

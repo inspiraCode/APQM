@@ -64,11 +64,15 @@ public partial class _Default : System.Web.UI.Page
         Navigator.goToPage("~/SIF/SIF.aspx", "SIF");               
     }
     protected void on_save_bom(object sender, EventArgs e)
-    {       
-        Navigator.goToPage("~/default.aspx", "sif");
+    {
+        ((SessionObject)Session["bomObject"]).Status = "forUpdate";
+        uscBomForm.load();
+        //Navigator.goToPage("~/default.aspx", "sif");
     }
     protected void on_cancel_bom(object sender, EventArgs e)
-    {        
-        Navigator.goToPage("~/default.aspx", "sif");
+    {
+        ((SessionObject)Session["bomObject"]).Status = "forUpdate";
+        uscBomForm.load();
+        //Navigator.goToPage("~/default.aspx", "sif");
     }
 }

@@ -178,8 +178,10 @@
                         <tr height='11px;'>
                             <td>
                                 <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
-                                    validationid="rfqsummarydetail" OnClientClick="return validate();" OnCommand="selectRFQ" title='<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>'
-                                    Style="text-align: center;display:block;text-overflow: ellipsis; overflow: hidden;white-space: nowrap; width: 70px;" >
+                                    validationid="rfqsummarydetail" OnClientClick="return validate();" OnCommand="selectRFQ"
+                                    title='<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>' Style="text-align: center;
+                                    display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+                                    width: 70px;">
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
                                 </asp:LinkButton>
                             </td>
@@ -285,9 +287,9 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtTooling" validate="number" validationid="rfqsummarydetail" runat="server"
-                                    class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
+                            <td>
+                                <asp:Label ID="txtTooling" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'>                            
+                                </asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
@@ -414,4 +416,3 @@
     }
     
 </script>
-

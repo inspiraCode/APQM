@@ -43,7 +43,7 @@ public partial class _Default : System.Web.UI.Page
     //}
     protected void on_ok_bom(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/default.aspx","bom");
+        //Navigator.goToPage("~/default.aspx","bom");
     }
     protected void on_cancel_bom(object sender, EventArgs e) 
     {
