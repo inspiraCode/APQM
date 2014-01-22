@@ -167,8 +167,8 @@ public partial class RFQDefault : System.Web.UI.Page
             case "rfqSummary":
                 try
                 {
-                    index = Convert.ToInt32(e.CommandArgument);
-                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
+                    index = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
+                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index]["BOMDetailKey"].ToString());
                     Session["rfqSummary"] = bomDetailId;
                     Response.Redirect("~/RFQ/RFQSummary.aspx", false);
                 }

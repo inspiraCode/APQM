@@ -157,7 +157,7 @@
                                     </td>
                                 </tr>
                                 <tr height='12px;'>
-                                    <td>                                        
+                                    <td>
                                     </td>
                                 </tr>
                             </table>
@@ -177,8 +177,9 @@
                         </tr>
                         <tr height='11px;'>
                             <td>
-                                <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand" validationid="rfqsummarydetail" OnClientClick="return validate();"
-                                    OnCommand="selectRFQ" style="text-align:center;">
+                                <asp:LinkButton ID="lnkSupplier" runat="server" CommandArgument="" CommandName="selectRFQCommand"
+                                    validationid="rfqsummarydetail" OnClientClick="return validate();" OnCommand="selectRFQ" title='<%# DataBinder.Eval(Container.DataItem, "SupplierName")%>'
+                                    Style="text-align: center;display:block;text-overflow: ellipsis; overflow: hidden;white-space: nowrap; width: 70px;" >
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierName")%>
                                 </asp:LinkButton>
                             </td>
@@ -253,12 +254,14 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtTotalBCost" validate="number" validationid="rfqsummarydetail" runat="server" Width="100%" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTotalBCost" validate="number" validationid="rfqsummarydetail"
+                                    runat="server" Width="100%" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalBCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtTotalCCost" validate="number" validationid="rfqsummarydetail" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTotalCCost" validate="number" validationid="rfqsummarydetail"
+                                    runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "TotalCCost")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
@@ -270,7 +273,8 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtEAV" validate="number" validationid="rfqsummarydetail" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtEAV" validate="number" validationid="rfqsummarydetail" runat="server"
+                                    class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "EAV")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
@@ -282,12 +286,14 @@
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtTooling" validate="number" validationid="rfqsummarydetail" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtTooling" validate="number" validationid="rfqsummarydetail" runat="server"
+                                    class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Tooling")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
                             <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtCavitation" validate="number" validationid="rfqsummarydetail" runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtCavitation" validate="number" validationid="rfqsummarydetail"
+                                    runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
                             </td>
                         </tr>
                         <tr height='11px;'>
@@ -296,12 +302,10 @@
                                     Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
                             </td>
                         </tr>
-                        <tr height='11px;' style="display:none;">
+                        <tr height='11px;' style="display: none;">
                             <td>
-                            <asp:TextBox ID="txtSeq" runat="server" class="Sequence" Width="20px"
-                                    Text='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>'></asp:TextBox>
-                                    <asp:TextBox ID="txtKey" runat="server" Width="20px"
-                                    Text='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtSeq" runat="server" class="Sequence" Width="20px" Text='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtKey" runat="server" Width="20px" Text='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>'></asp:TextBox>
                                 <asp:HiddenField ID="txtHiddenRFQKey" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>' />
                                 <asp:HiddenField ID="txtHiddenSeq" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>' />
                             </td>
@@ -316,7 +320,7 @@
     </div>
 </div>
 <asp:ScriptManager ID="ScriptManager1" runat="server">
-    </asp:ScriptManager>
+</asp:ScriptManager>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <asp:Panel ID="panelPopup" runat="server" Visible="False" title="RFQ Selection">
@@ -386,21 +390,21 @@
             closeOnEscape: false,
             draggable: true
         }
-        
-        
-        
-        
-//        )
-//        .find('#<%= ((Button) uscSelectRFQ.FindControl("btnCancel")).ClientID %>').click(function() {
-//            jQuery(this).closest(".ui-dialog-content").dialog("close").dialog("destroy").remove();
-//        }
-        );  
+
+
+
+
+        //        )
+        //        .find('#<%= ((Button) uscSelectRFQ.FindControl("btnCancel")).ClientID %>').click(function() {
+        //            jQuery(this).closest(".ui-dialog-content").dialog("close").dialog("destroy").remove();
+        //        }
+        );
     }
-//    function pageLoad(sender, args) {
-//        if (args.get_isPartialLoad()) {
-//            setTimeout(openPopup(), 100);
-//        }
-//    }
+    //    function pageLoad(sender, args) {
+    //        if (args.get_isPartialLoad()) {
+    //            setTimeout(openPopup(), 100);
+    //        }
+    //    }
     function setSort() {
         var sort = 0;
         jQuery('.movible').each(function() {
@@ -410,3 +414,4 @@
     }
     
 </script>
+

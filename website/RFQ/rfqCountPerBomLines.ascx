@@ -37,8 +37,12 @@
                 <asp:LinkButton runat="server" Text='<%# Eval("RFQCount") %>' CommandArgument='<%# Eval("RFQCount") %>' CommandName="seeRFQ" OnClientClick='<%# "return (" + Eval("RFQCount") + "> 0);" %>' />
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:ButtonField CommandName="sendNewRFQ" Text="Send New" ItemStyle-HorizontalAlign="Center" />
-            <asp:ButtonField CommandName="rfqSummary" Text="Summary" ItemStyle-HorizontalAlign="Center" />
+            <asp:ButtonField CommandName="sendNewRFQ" Text="New" ItemStyle-HorizontalAlign="Center" />
+            <asp:TemplateField HeaderText="" ShowHeader="true" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                <asp:LinkButton runat="server" Text='Summary' CommandName="rfqSummary" OnClientClick='<%# "return (" + Eval("RFQCount") + "> 0);" %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
     </asp:GridView>
 </div>

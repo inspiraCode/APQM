@@ -311,7 +311,8 @@
                         Total Manufacturing Cost&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
-                        data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'>
+                        data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'
+                        data-position='left'>
                         <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right;
                             margin-left: 0px;" runat="server" Width="104px" Height="20px">0</asp:Label>
                     </td>
@@ -321,7 +322,7 @@
                         SG&amp;A Profit&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" style="border-right: solid gray;" data-step='34'
-                        data-intro='Enter cost for SG&A/Profit'>
+                        data-intro='Enter cost for SG&A/Profit' data-position='left'>
                         <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
                             Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
                             onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="20"></asp:TextBox>
@@ -332,7 +333,7 @@
                         Packing Cost/Unit&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" style="border-right: solid gray;" data-step='35'
-                        data-intro='Enter packaging cost per unit.'>
+                        data-intro='Enter packaging cost per unit.' data-position='left'>
                         <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
                             Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
                             runat="server" Width="100px" TabIndex="21"></asp:TextBox>
@@ -343,7 +344,7 @@
                         Assembly Cost/Unit&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" style="border-right: solid gray;" data-step='36'
-                        data-intro='Enter cost for assembly, if applicable.'>
+                        data-intro='Enter cost for assembly, if applicable.' data-position='left'>
                         <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
                             Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
                             runat="server" Width="100px" TabIndex="22"></asp:TextBox>
@@ -354,7 +355,7 @@
                         Total Piece Cost&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
-                        style="border-right: solid gray; border-bottom: solid gray;">
+                         data-position='left' style="border-right: solid gray; border-bottom: solid gray;">
                         <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
                             Width="104px" Height="20px">0</asp:Label>
                     </td>
@@ -462,7 +463,7 @@
                         <tr>
                             <td style="vertical-align: top;">
                                 Attachments (less than 4MB per file):<br />
-                                <div id="uploadContainer" data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
+                                <div id="uploadContainer" data-position='right' data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
                                     style="height: 200px; overflow-y: auto; width: 444px; background-color: #D3D3D3;"
                                     align="center">
                                     <div id="uploadZone">
@@ -472,7 +473,7 @@
                             </td>
                             <td style="vertical-align: top;">
                                 <div style="background-color: #D3D3D3; width: 444px; min-height: 216px;" data-step='47'
-                                    data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                                     data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
                                     Attachments Sent:
                                     <br />
                                     <uc6:rfqVendorAttachments ID="uscRfqInboxAttachments" runat="server" OnAfterDeleteVendorAttachment="on_after_delete_vendorAttachment" />
@@ -490,9 +491,9 @@
             <tr>
                 <td colspan="6" align="left">
                     <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
-                        data-position='right' style="width: 305px;">
-                        <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="300px"
-                            TabIndex="35" Height="62px" TextMode="MultiLine"></asp:TextBox>
+                        data-position='top' style="width: 100%;">
+                        <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="100%"
+                            TabIndex="35" Height="120px" TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </td>
             </tr>
