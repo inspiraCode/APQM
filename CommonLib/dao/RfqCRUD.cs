@@ -242,7 +242,10 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.SentToVendor = DateTime.Parse(table.Rows[0][19].ToString());
                 rfq.FilledUp = DateTime.Parse(table.Rows[0][20].ToString());
                 rfq.PartNumber = table.Rows[0][21].ToString();
-                rfq.DeadDate = DateTime.Parse(table.Rows[0][22].ToString());
+                string strDate = table.Rows[0][22].ToString();
+                if(strDate != ""){
+                    rfq.DeadDate = DateTime.Parse(table.Rows[0][22].ToString());
+                }
                 rfq.Acknowledgement = table.Rows[0][23].ToString();
                 rfq.SupplierName = table.Rows[0][24].ToString();
                 rfq.ManufacturingLocation = table.Rows[0][25].ToString();
@@ -321,7 +324,11 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
                 rfq.FilledUp = DateTime.Parse(table.Rows[i][20].ToString());
                 rfq.PartNumber = table.Rows[i][21].ToString();
-                rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+                string strDate = table.Rows[i][22].ToString();
+                if (strDate != "")
+                {
+                    rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+                }
                 rfq.Acknowledgement = table.Rows[i][23].ToString();
                 rfq.SupplierName = table.Rows[i][24].ToString();
                 rfq.ManufacturingLocation = table.Rows[i][25].ToString();
@@ -395,7 +402,11 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.SentToVendor = DateTime.Parse(table.Rows[i][19].ToString());
             rfq.FilledUp = DateTime.Parse(table.Rows[i][20].ToString());
             rfq.PartNumber = table.Rows[i][21].ToString();
-            rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+            string strDate = table.Rows[i][22].ToString();
+            if (strDate != "")
+            {
+                rfq.DeadDate = DateTime.Parse(table.Rows[i][22].ToString());
+            }
             rfq.Acknowledgement = table.Rows[i][23].ToString();
             rfq.SupplierName = table.Rows[i][24].ToString();
             rfq.ManufacturingLocation = table.Rows[i][25].ToString();

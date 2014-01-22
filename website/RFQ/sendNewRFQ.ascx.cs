@@ -52,15 +52,15 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
         string[] arrEAU = strEAUTextBox.Split(',');
 
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("Updating BOM Line EAU");
+
+
         if (!strEAULabel.Equals(strEAUTextBox))
         {
-
-            ConnectionManager CM = new ConnectionManager();
-            Data_Base_MNG.SQL DM = CM.getDataManager();
-
-            /*Begin Transaction*/
-            DM.Open_Connection("Updating BOM Line EAU");
-            
             if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
@@ -90,29 +90,27 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                     }
                 }
             }
-
-            bomDetailObject.EAU = strEAUTextBox;
-            if (bomDetailObject.Status != "Processed")
-            {
-                bomDetailObject.Status = "In Progress";
-            }
-            if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
-                return;
-            }
-
-            DM.CommitTransaction();
-            DM.Close_Open_Connection();
-
-            if (DM.ErrorOccur)
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-                return;
-            }
-
         }
-            
+        bomDetailObject.EAU = strEAUTextBox;
+        if (bomDetailObject.Status != "Processed")
+        {
+            bomDetailObject.Status = "In Progress";
+        }
+        if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+            return;
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+            return;
+        }
+
         if (supplierList.Count > 0)
         {
             foreach (Supplier supplier in supplierList)
@@ -133,13 +131,13 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                             return;
                         }
 
-                        ConnectionManager CM = new ConnectionManager();
-                        Data_Base_MNG.SQL DM = CM.getDataManager();
+                        CM = new ConnectionManager();
+                        DM = CM.getDataManager();
 
                         /*Begin Transaction*/
                         DM.Open_Connection("Send New RFQ Save");
 
-                        
+
                         String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
                         if (rfqNumberCRUD.ErrorOccur)
                         {
@@ -194,7 +192,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                                     Message.IsBodyHtml = true;
                                     Message.BodyEncoding = System.Text.Encoding.UTF8;
 
-                                    string strEmailContent =    "Dear Supplier," + Environment.NewLine
+                                    string strEmailContent = "Dear Supplier," + Environment.NewLine
                                                                 + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
                                                                 + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
                                                                 + Environment.NewLine + Environment.NewLine
@@ -483,15 +481,15 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
 
         string[] arrEAU = strEAUTextBox.Split(',');
 
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("Updating BOM Line EAU");
+
         if (!strEAULabel.Equals(strEAUTextBox))
         {
-
-            ConnectionManager CM = new ConnectionManager();
-            Data_Base_MNG.SQL DM = CM.getDataManager();
-
-            /*Begin Transaction*/
-            DM.Open_Connection("Updating BOM Line EAU");
-
             if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
@@ -521,27 +519,26 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                     }
                 }
             }
+        }
+        
+        bomDetailObject.EAU = strEAUTextBox;
+        if (bomDetailObject.Status != "Processed")
+        {
+            bomDetailObject.Status = "In Progress";
+        }
+        if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+            return;
+        }
 
-            bomDetailObject.EAU = strEAUTextBox;
-            if (bomDetailObject.Status != "Processed")
-            {
-                bomDetailObject.Status = "In Progress";
-            }
-            if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
-                return;
-            }
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
 
-            DM.CommitTransaction();
-            DM.Close_Open_Connection();
-
-            if (DM.ErrorOccur)
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-                return;
-            }
-
+        if (DM.ErrorOccur)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+            return;
         }
 
         if (supplierList.Count > 0)
@@ -564,8 +561,8 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                             return;
                         }
 
-                        ConnectionManager CM = new ConnectionManager();
-                        Data_Base_MNG.SQL DM = CM.getDataManager();
+                        CM = new ConnectionManager();
+                        DM = CM.getDataManager();
 
                         /*Begin Transaction*/
                         DM.Open_Connection("Send New RFQ Save");

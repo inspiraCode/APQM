@@ -135,15 +135,16 @@
             </td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold" class="style7">
+            <td align="right" style="font-weight: bold;border: solid 1px;border-style: dotted;border-right: 0px;" class="style7">
                 Annual Volume
             </td>
-            <td align="left" class="style4">
+            <td align="left" class="style4" style="border: solid 1px;border-style: dotted;border-left: 0px;">
                 <asp:TextBox ID="txtAnnualVolume" Style="text-align: right;" validate="number" validationid="validatingBOMHeader"
                     runat="server" Width="120px"></asp:TextBox>
-                <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click" />
-                <asp:Button ID="btnApplyAnnualVolume" runat="server" Text="Apply to all lines" 
-                    onclick="btnApplyAnnualVolume_Click" />
+                <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click" style="margin-bottom:5px;" />
+                <asp:Button ID="btnApplyAnnualVolume" runat="server" 
+                    Text="Apply to lines not Processed" OnClick="btnApplyAnnualVolume_Click" 
+                    Width="184px" />
             </td>
             <td align="left" class="style8">
             </td>
@@ -202,7 +203,7 @@
                     dialogClass: "no-close", closeOnEscape: false
                 });
             </script>
-            
+
         </asp:View>
     </asp:MultiView>
 </asp:Panel>
@@ -239,7 +240,7 @@
         var nAnnualVolume;
         var nQtyRequired;
         var nEAU;
-        
+
         if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
             nAnnualVolume = Number(txtAnnualVolume.val());
             if (nAnnualVolume > 0) {
@@ -260,7 +261,7 @@
         var nQtyRequired;
         var nEAU;
 
-        if(txtEAU.val().indexOf(",") < 0){
+        if (txtEAU.val().indexOf(",") < 0) {
             if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
                 nAnnualVolume = Number(txtAnnualVolume.val());
                 if (nAnnualVolume > 0) {

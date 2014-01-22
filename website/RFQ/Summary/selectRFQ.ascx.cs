@@ -84,6 +84,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
                     if (chkUpdateBOMLineCost.Checked)
                     {
                         bomDetail.Cost = float.Parse(lblNewCost.Text.Replace('$',' '));
+                        bomDetail.EAU = rfq.EstimatedAnnualVolume;
                     }
                     bomDetail.Status = "Processed";
                     if (!bomDetailCRUD.update(bomDetail, ref DM))
