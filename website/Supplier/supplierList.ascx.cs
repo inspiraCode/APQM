@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
 
 public partial class supplierList : System.Web.UI.UserControl
 {
@@ -23,8 +24,10 @@ public partial class supplierList : System.Web.UI.UserControl
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem) {                       
             //((LinkButton)e.Item.FindControl("supplierID")).PostBackUrl += ((Supplier)e.Item.DataItem).Id;
             //((LinkButton)e.Item.FindControl("deleteByID")).PostBackUrl += ((Supplier)e.Item.DataItem).Id;
+            Supplier supplier = (Supplier)e.Item.DataItem;
+            ((HtmlAnchor)e.Item.FindControl("aLinkSupplier")).HRef = "../Supplier/Supplier_Form.aspx?supplier=" + supplier.Id;
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = ((Supplier)e.Item.DataItem).Id.ToString();            
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((Supplier)e.Item.DataItem).Id.ToString();            
+            //((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = ((Supplier)e.Item.DataItem).Id.ToString();            
         }
     }
     public void deleteByID(object sender, CommandEventArgs e)
@@ -32,26 +35,26 @@ public partial class supplierList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (supplierCRUD.delete(id))
         {
-            Navigator.goToPage("~/Default.aspx","supplier");
+            load();
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + supplierCRUD.ErrorMessage);           
         }
     }
-    public void updateByID(object sender, CommandEventArgs e)
-    {
-        long id = long.Parse((string)e.CommandArgument);
-        Supplier supplier = new Supplier();
-        supplier = supplierCRUD.readById(id);
-        if (supplier != null)
-        {
-            SessionObject so = new SessionObject();
-            so.Content = supplier;
-            so.Status = "forUpdate";
+    //public void updateByID(object sender, CommandEventArgs e)
+    //{
+    //    long id = long.Parse((string)e.CommandArgument);
+    //    Supplier supplier = new Supplier();
+    //    supplier = supplierCRUD.readById(id);
+    //    if (supplier != null)
+    //    {
+    //        SessionObject so = new SessionObject();
+    //        so.Content = supplier;
+    //        so.Status = "forUpdate";
 
-            Session["supplierObject"] = so;
-        }
-        Navigator.goToPage("~/Supplier/supplier.aspx","supplier");
-    }   
+    //        Session["supplierObject"] = so;
+    //    }
+    //    Navigator.goToPage("~/Supplier/supplier.aspx","supplier");
+    //}   
 }

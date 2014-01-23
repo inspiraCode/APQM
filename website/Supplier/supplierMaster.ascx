@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierMaster.ascx.cs"
     Inherits="supplierMaster" %>
 <%@ Register src="Commodity.ascx" tagname="Commodity" tagprefix="uc1" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
 <style type="text/css">
     .style4
     {
@@ -174,3 +175,5 @@
         </table>
     </div>
 </div>
+<uc2:notifier ID="uscNotifier" runat="server" />
+

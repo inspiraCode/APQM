@@ -78,8 +78,7 @@
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
             <asp:View ID="viewPopupSupplier" runat="server">
-                <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnAfterSave="on_add_supplier"
-                    OnAfterCancel="on_cancelAdd_supplier" />
+                <uc1:supplierMaster ID="uscSupplierForm" runat="server" />
 
                 <script type="text/javascript">
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
@@ -96,7 +95,7 @@
                 </div>
             </asp:View>
             <asp:View ID="viewPopupSIF" runat="server">
-                <uc5:SifMaster ID="uscSIFForm" runat="server" OnOk_Click="on_add_sif" OnCancel_Click="on_cancelAdd_sif" />
+                <uc5:SifMaster ID="uscSIFForm" runat="server"/>
 
                 <script type="text/javascript">
                     jQuery(document).ready(function() {
@@ -134,7 +133,6 @@
         </asp:View>
         <asp:View ID="viewSIF" runat="server">
             <span class="mainTitle">SIFs</span>
-            <asp:Button ID="btnAddSIF" class="btnInTitle" runat="server" Text="New SIF" OnClick="btnAddSIF_Click" />
             <div runat="server" id="divSIF" class="Content">
                 <br />
                 <uc4:sifList ID="uscSIFList" runat="server" />
@@ -162,15 +160,7 @@
             </div>
         </asp:View>
         <asp:View ID="viewSupplier" runat="server">
-            <span class="mainTitle">Suppliers</span>
-            <asp:Button ID="btnAddSupplier" class="btnInTitle" runat="server" Text="New Supplier"
-                OnClick="btnAddSupplier_Click" />
-            <div runat="server" id="divSupplier" class="Content">
-                <br />
-                <uc3:supplierList ID="uscSupplierList" runat="server" />
-                <br />
-                <br />
-            </div>
+            
         </asp:View>
         <asp:View ID="viewPopup" runat="server">
         </asp:View>

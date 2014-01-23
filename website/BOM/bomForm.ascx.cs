@@ -211,7 +211,7 @@ public partial class bomForm : System.Web.UI.UserControl
         
         //Session.Remove("bom");
         //Session.Remove("bomObject");
-        uscNotifier.showSuccess("This information has been saved successfully");
+        uscNotifier.showSuccess("This information has been saved successfully.");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)

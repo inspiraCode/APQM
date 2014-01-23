@@ -15,7 +15,6 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
         if (Session["SECTION"] != null)
         {
             Left_Col.ActiveViewIndex = 1;
@@ -23,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
             {
                 case "sif":
                     MultiViewMain.SetActiveView(viewSIF);
-                    uscSIFList.setUserFilterWithCookie();
+                    
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
@@ -33,22 +32,22 @@ public partial class _Default : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewRFQ);
                     uscRFQList.setUserFilterWithCookie();
                     break;
-                case "supplier":
-                    MultiViewMain.SetActiveView(viewSupplier);
-                    uscSupplierList.load();
-                    break;
-                case "popupSupplier":
-                    Session.Remove("supplierObject");
-                    MultiViewMain.SetActiveView(viewSupplier);
-                    uscSupplierList.load();
-                    openpopupContainer();
-                    //popupContainer.Style.Add("height", "300px");
-                    //popupContainer.Style.Add("width", "570px");
-                    //popupContainer.Style.Add("left", "54%");
-                    //popupContainer.Style.Add("top", "57%");
-                    uscSupplierForm.load();
-                    //disablePageForModalPopup();
-                    break;
+                //case "supplier":
+                //    MultiViewMain.SetActiveView(viewSupplier);
+                //    uscSupplierList.load();
+                //    break;
+                //case "popupSupplier":
+                //    Session.Remove("supplierObject");
+                //    MultiViewMain.SetActiveView(viewSupplier);
+                //    uscSupplierList.load();
+                //    openpopupContainer();
+                //    //popupContainer.Style.Add("height", "300px");
+                //    //popupContainer.Style.Add("width", "570px");
+                //    //popupContainer.Style.Add("left", "54%");
+                //    //popupContainer.Style.Add("top", "57%");
+                //    uscSupplierForm.load();
+                //    //disablePageForModalPopup();
+                //    break;
                 case "popupSIF":
                     Session.Remove("sifObject");
                     MultiViewMain.SetActiveView(viewSIF);
@@ -78,7 +77,6 @@ public partial class _Default : System.Web.UI.Page
             }
         }
     }
-
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         goHome();
@@ -92,30 +90,11 @@ public partial class _Default : System.Web.UI.Page
     private void disablePageForModalPopup()
     {
         uscMenu.disableButtons();
-        btnAddRFQ.Enabled = false;
-        //btnAddSIF.Enabled = false;
-        btnAddSupplier.Enabled = false;        
+        btnAddRFQ.Enabled = false;      
     }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;
-    }
-
-    protected void on_add_supplier(object sender, EventArgs e)
-    {        
-        Navigator.goToPage("~/default.aspx","supplier");
-    }
-    protected void on_cancelAdd_supplier(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","supplier");
-    }
-    protected void on_add_sif(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","sif");
-    }
-    protected void on_cancelAdd_sif(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","sif");
     }
     protected void on_add_rfq(object sender, EventArgs e)
     {
@@ -125,14 +104,9 @@ public partial class _Default : System.Web.UI.Page
     {
         Navigator.goToPage("~/default.aspx","rfq");
     }
-
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
         Navigator.goToPage("~/default.aspx","popupSupplier");        
-    }
-    protected void btnAddSIF_Click(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","popupSIF");
     }
     protected void btnAddRFQ_Click(object sender, EventArgs e)
     {

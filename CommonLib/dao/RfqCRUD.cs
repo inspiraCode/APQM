@@ -1823,13 +1823,13 @@ public class RfqSummaryCRUD
                 rfqSummary.EstimatedAnnualVolume = float.Parse(table.Rows[0][12].ToString());
                 rfqSummary.SupplierName = table.Rows[0][13].ToString();
                 rfqSummary.Status = table.Rows[0][14].ToString();
+                rfqSummary.Tooling = float.Parse(table.Rows[0][19].ToString());
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
                     rfqSummary.TotalBCost = float.Parse(table.Rows[0][16].ToString());
                     rfqSummary.TotalCCost = float.Parse(table.Rows[0][17].ToString());
                     rfqSummary.EAV = float.Parse(table.Rows[0][18].ToString());
-                    rfqSummary.Tooling = float.Parse(table.Rows[0][19].ToString());
                     rfqSummary.Cavitation = float.Parse(table.Rows[0][20].ToString());
                     rfqSummary.MaterialTooling = table.Rows[0][21].ToString();
                     rfqSummary.Sequence = int.Parse(table.Rows[0][22].ToString());
@@ -1875,13 +1875,13 @@ public class RfqSummaryCRUD
                 rfq.EstimatedAnnualVolume = float.Parse(table.Rows[i][12].ToString());
                 rfq.SupplierName = table.Rows[i][13].ToString();
                 rfq.Status = table.Rows[i][14].ToString();
+                rfq.Tooling = float.Parse(table.Rows[i][19].ToString());
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfq.Id = long.Parse(table.Rows[i][15].ToString());
                     rfq.TotalBCost = float.Parse(table.Rows[i][16].ToString());
                     rfq.TotalCCost = float.Parse(table.Rows[i][17].ToString());
                     rfq.EAV = float.Parse(table.Rows[i][18].ToString());
-                    rfq.Tooling = float.Parse(table.Rows[i][19].ToString());
                     rfq.Cavitation = float.Parse(table.Rows[i][20].ToString());
                     rfq.MaterialTooling = table.Rows[i][21].ToString();
                     rfq.Sequence = int.Parse(table.Rows[i][22].ToString());

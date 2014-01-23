@@ -94,6 +94,8 @@ public partial class SifMaster : System.Web.UI.UserControl
 
         cboMarketSector.SelectedValue = sif.MarketSectorID.ToString();
 
+        ViewState["userSIF"] = sif.AssignedTo;
+
         uscSifDetail.setEntity(sif.SifDetail);
 
         lblMode.Text = "Update";
@@ -139,6 +141,10 @@ public partial class SifMaster : System.Web.UI.UserControl
         sif.SpecificResourceRequirements = txtSpecificResourceRequirements.Text;
         sif.Technical = txtTechnical.Text;
         sif.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+        if (ViewState["userSIF"] != null)
+        {
+            sif.AssignedTo = ViewState["userSIF"].ToString();
+        }
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
@@ -153,6 +159,7 @@ public partial class SifMaster : System.Web.UI.UserControl
             if (sif_CRUD.ErrorOccur)
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + sif_CRUD.ErrorMessage);
+                return;
             }
             else
             {
@@ -162,6 +169,7 @@ public partial class SifMaster : System.Web.UI.UserControl
                 if (!bomCrud.create(bom, ref DM))
                 {
                     Navigator.goToPage("~/Error.aspx","ERROR:" + bomCrud.ErrorMessage);
+                    return;
                 }
             }
         }else if(lblMode.Text == "Update"){
@@ -169,6 +177,7 @@ public partial class SifMaster : System.Web.UI.UserControl
             if (!sif_CRUD.update(sif, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx","ERROR:" + sif_CRUD.ErrorMessage);
+                return;
             }
         }
 
@@ -181,13 +190,15 @@ public partial class SifMaster : System.Web.UI.UserControl
             return;
         }
 
-        Session.Remove("allCustomers");
+        //Session.Remove("allCustomers");
+        uscNotifier.showSuccess("This information has been saved successfully.");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Session.Remove("allCustomers");
-        Session.Remove("SIFObject");
+        //Session.Remove("allCustomers");
+        //Session.Remove("SIFObject");
+        uscNotifier.showLog("Values have been re-established.");
         Cancel_Click(this, e);
     }
     protected void on_prompt(object sender, EventArgs e)
@@ -294,7 +305,6 @@ public partial class SifMaster : System.Web.UI.UserControl
     {
         panelPopup.Visible = false;
     }
-    
     protected void on_after_save_sifDetail(object sender, EventArgs e)
     {
         uscSifDetail.setEntity(new List<SIFDetail> (uscSIFListAdd.getEntity()));

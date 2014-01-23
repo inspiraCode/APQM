@@ -107,11 +107,13 @@ public partial class supplierMaster : System.Web.UI.UserControl
             }
         }
 
+        uscNotifier.showSuccess("This information has been saved successfully.");
         AfterSave(this, null);
     }
     public void cancel()
     {
-        Session.Remove("supplierObject");
+        //Session.Remove("supplierObject");
+        uscNotifier.showLog("Values have been re-established.");
         AfterCancel(this, null);
     }
 }

@@ -77,11 +77,18 @@ public partial class SIF_sifListAdd : System.Web.UI.UserControl
         SIFDetail sifDetailLine = new SIFDetail();
 
         sifDetailLine.ProgramYear = txtProgramYear.Text;
-        sifDetailLine.ProjectedAnnualVolume = long.Parse(txtProjectedAnnualVolume.Text);
-        sifDetailLine.PercentVolumePerAward = float.Parse(txtPorcentageVolumePerAward.Text);
-        sifDetailLine.ProjectedTargetPrice = float.Parse(txtProjectedTargetPrice.Text);
-        sifDetailLine.AnnualRevenue = float.Parse(txtAnnualRevenue.Text);
-
+        try
+        {
+            sifDetailLine.ProjectedAnnualVolume = long.Parse(txtProjectedAnnualVolume.Text);
+            sifDetailLine.PercentVolumePerAward = float.Parse(txtPorcentageVolumePerAward.Text);
+            sifDetailLine.ProjectedTargetPrice = float.Parse(txtProjectedTargetPrice.Text);
+            sifDetailLine.AnnualRevenue = float.Parse(txtAnnualRevenue.Text);
+        }
+        catch (Exception ex)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
+            return;
+        }
 
         if (sifDetail == null) sifDetail = new List<SIFDetail>();
         if (sifDetail.Count > 0)

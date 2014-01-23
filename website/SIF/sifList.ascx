@@ -67,8 +67,8 @@
                     <asp:Label ID="lblCreatedDate" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "CreatedDate")%>'></asp:Label>
                 </td>
                 <td style="text-align: center;">
-                    <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="sifID"
-                        OnCommand="updateByID"> <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%> </asp:LinkButton>
+                <a id="aLinkSIF" runat="server" href='#'>
+                        <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%></a>
                 </td>
                 <td style="text-align: center;">
                     <%# DataBinder.Eval(Container.DataItem, "Revision")%>
@@ -86,11 +86,8 @@
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td style="text-align: center;">
-                
-                
                     <a id="aLinkBOM" runat="server" target="_blank" href='#'>
                         Edit BOM</a>
-                    
                 </td>
                 <td style="text-align: center;">
                     <asp:LinkButton ID="linkAssignedTo" runat="server" CommandArgument="" OnCommand="takeSIF"

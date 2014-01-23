@@ -48,37 +48,30 @@ public partial class sifList : System.Web.UI.UserControl
         if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
         {
             SIF sif = (SIF)e.Item.DataItem;
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = sif.Id.ToString();
             ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = sif.Id.ToString();
             ((LinkButton)e.Item.FindControl("linkAssignedTo")).CommandArgument = sif.Id.ToString();
+            ((HtmlAnchor)e.Item.FindControl("aLinkSIF")).HRef = "../SIF/SIF_Form.aspx?sif=" + sif.Id;
             if (sif.BomId > -1)
             {
 
                 ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).HRef = "../BOM/BOM_Form.aspx?bom=" + sif.BomId;
                 
-                //((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";" +
-                 //                                                                  sif.BomId.ToString();
                 if (sif.TopPartNumber.ToString().Trim() != "")
                 {
                     ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = sif.TopPartNumber.ToString();
-                    //((LinkButton)e.Item.FindControl("updateBOM")).Text = sif.TopPartNumber.ToString();
                 }
                 else
                 {
                     ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "Edit BOM";
-                    //((LinkButton)e.Item.FindControl("updateBOM")).Text = "Edit BOM";
                 }
             }
             else
             {
-                //((LinkButton)e.Item.FindControl("updateBOM")).CommandArgument = sif.Id.ToString() + ";";
-                ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "None";
-                //((LinkButton)e.Item.FindControl("updateBOM")).Text = "None";
+               ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "None";
             }
             if (sif.AssignedTo != "")
             {
                 ((LinkButton)e.Item.FindControl("linkAssignedTo")).Text = sif.AssignedTo;
-                //((LinkButton)e.Item.FindControl("linkAssignedTo")).Enabled = false;
             }
             if (sif.SalesDBID > -1)
             {
@@ -101,63 +94,11 @@ public partial class sifList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (sif_CRUD.delete(id))
         {
-            Navigator.goToPage("~/Default.aspx", "sif");
+            load();
         }
         else
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + sif_CRUD.ErrorMessage);
-        }
-    }
-    public void updateByID(object sender, CommandEventArgs e)
-    {
-        long id = long.Parse((string)e.CommandArgument);
-        SIF sif = new SIF();
-        sif = sif_CRUD.readById(id);
-        if (sif != null)
-        {
-            sifDetailCRUD sifDetailCRUD = new sifDetailCRUD();
-            sif.SifDetail = sifDetailCRUD.readByParentID(sif.Id);
-
-            SessionObject so = new SessionObject();
-            so.Content = sif;
-            so.Status = "forUpdate";
-
-            Session["SIFObject"] = so;
-        }
-        Navigator.goToPage("~/SIF/SIF.aspx", "SIF");
-    }
-    public void updateByBomID(object sender, CommandEventArgs e)
-    {
-        SessionObject so;
-        BOM bom = null;
-        string[] values = e.CommandArgument.ToString().Split(';');
-        if (values[1] != "")
-        {
-            long id = long.Parse(values[1]);
-            bom = bom_CRUD.readById(id);
-            if (bom == null)
-            {
-                Navigator.goToPage("~/Error.aspx", "");
-                return;
-            }
-            else
-            {
-                so = new SessionObject();
-                so.Content = bom;
-                so.Status = "forUpdate";
-                Session["bomObject"] = so;
-                Navigator.goToPage("~/SIF/SIF.aspx", "bom");
-            }
-        }
-        else
-        {
-            bom = new BOM();
-            bom.SifId = long.Parse(values[0]);
-            so = new SessionObject();
-            so.Content = bom;
-            so.Status = "forNew";
-            Session["bomObject"] = so;
-            Navigator.goToPage("~/SIF/SIF.aspx", "bom");
         }
     }
     public void takeSIF(object sender, CommandEventArgs e)

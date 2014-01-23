@@ -1,0 +1,12 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/_Layouts/MasterP.master" AutoEventWireup="true" CodeFile="MasterMenu.master.cs" Inherits="_Layouts_MasterMenu" %>
+
+<%@ Register src="../Menu.ascx" tagname="Menu" tagprefix="uc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderLeft" Runat="Server">
+    <uc1:Menu ID="uscMenu" runat="server" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" Runat="Server">
+    <asp:ContentPlaceHolder ID="PlaceHolderMain" runat="server">
+        </asp:ContentPlaceHolder>
+</asp:Content>
+
