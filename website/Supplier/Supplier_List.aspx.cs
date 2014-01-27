@@ -14,6 +14,7 @@ public partial class Supplier_Supplier_List : System.Web.UI.Page
     protected void btnAddSupplier_Click(object sender, EventArgs e)
     {
         Session.Remove("SupplierObject");
+        Session.Remove("CommodityList");
         uscSupplierForm.load();
         panelPopup.Visible = true;
     }

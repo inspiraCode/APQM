@@ -46,7 +46,8 @@ public partial class surveyList : System.Web.UI.UserControl
         long id = long.Parse((string)e.CommandArgument);
         if (surveyCRUD.delete(id))
         {
-            Navigator.goToPage("~/Supplier/Supplier.aspx", "survey");
+            load();
+            uscNotifier.showSuccess("Survey deleted successfully.");
         }
         else
         {

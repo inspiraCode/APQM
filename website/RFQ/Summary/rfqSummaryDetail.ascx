@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqSummaryDetail.ascx.cs"
     Inherits="rfqSummaryDetail" %>
 <%@ Register Src="selectRFQ.ascx" TagName="selectRFQ" TagPrefix="uc1" %>
+<%@ Register src="../../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
 <style type="text/css">
     .textManual
     {
@@ -330,6 +331,8 @@
         </asp:Panel>
     </ContentTemplate>
 </asp:UpdatePanel>
+
+<uc2:notifier ID="uscNotifier" runat="server" />
 
 <script type="text/javascript">
     var arrColumns = {};

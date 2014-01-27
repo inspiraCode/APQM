@@ -76,6 +76,7 @@ public partial class rfqFormMain : System.Web.UI.Page
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         load();
+        uscRfqForm.showCancelMessage();
     }
     protected void on_afterSave_rfq(object sender, EventArgs e)
     {

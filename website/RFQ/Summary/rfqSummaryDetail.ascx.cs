@@ -124,8 +124,15 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                 }
             }
         }
+        else
+        {
+            uscNotifier.showLog("Need to open a program first.");
+        }
         if (wasEdited)
+        {
             load();
+            uscNotifier.showSuccess("Information saved successfully");
+        }
     }
     public void load()
     {
@@ -142,7 +149,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
     {
         repeaterRFQSummary.DataSource = rfqSummary.OrderBy(C => C.Sequence).ToList<RFQSummary>();
         repeaterRFQSummary.DataBind();
-        summarizeTotals();
         if (rfqSummary.Count > 0)
         {
             repeaterRFQSummary.Visible = true;
@@ -153,32 +159,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
             repeaterRFQSummary.Visible = false;
             //divHeader.Visible = false;
         }
-    }
-    public void summarizeTotals()
-    {
-        //float totalMaterial = 0;
-        //float totalService = 0;
-        //float totalScrap = 0;
-        //float totalLabor = 0;
-        //float totalBurden = 0;
-
-        //foreach (RFQSummary rfqDetailLine in rfqSummary)
-        //{
-        //    totalMaterial += rfqDetailLine.MaterialTotal;
-        //    totalService += rfqDetailLine.ServiceTotal;
-        //    totalScrap += rfqDetailLine.ScrapCost;
-        //    totalLabor += rfqDetailLine.LaborCost;
-        //    totalBurden += rfqDetailLine.BurdenTotal;
-        //}
-        //lblTotalMaterial.Text = totalMaterial.ToString();
-        //lblTotalService.Text = totalService.ToString();
-        //lblTotalScrap.Text = totalScrap.ToString();
-        //lblTotalLabor.Text = totalLabor.ToString();
-        //lblTotalBurden.Text = totalBurden.ToString();
-
-        //float total = totalMaterial + totalService + totalScrap + totalLabor + totalBurden;
-        //Label lblTotal = (Label)Parent.FindControl("lblTotalManufacturingCost");
-        //lblTotal.Text = total.ToString();
     }
     public void setEntity(long bomDetailKey )
     {
@@ -252,6 +232,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
             panelPopup.Visible = true;
             uscSelectRFQ.load();
             updateRepeater();
+            uscNotifier.hide();
         }
         else
         {
@@ -259,7 +240,10 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve rfqSummary with id = " + id);
         }
     }
-    
+    public void save()
+    {
+        updateRepeater();
+    }
     protected void on_confirm_rfq(Object sender, EventArgs e)
     {
         panelPopup.Visible = false;

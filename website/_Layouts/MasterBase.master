@@ -226,7 +226,7 @@
             </div>
         </div>
         <div id="divFooter" style="font-size: 12px;">
-            <table width="101%" cellspacing="0" style="position: fixed; bottom: 0; left: -1px; z-index:100;
+            <table width="101%" cellspacing="0" style="position: fixed; bottom: 0; left: -1px; z-index:1;
                 background-color: white;">
                 <tr>
                     <td colspan="0">

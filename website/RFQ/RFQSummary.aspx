@@ -38,7 +38,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderMain" runat="Server">    
     <span class="mainTitle">RFQ Summary</span>
-    <asp:Button ID="btnSelect" runat="server" class="btnInTitle" style="right:10px;" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
+    <asp:Button ID="btnSelect" runat="server" class="btnInTitle" style="right:10px;width:110px;" Text="Open Program" TabIndex="1" OnClick="btnSelect_Click" />
    
     <asp:HyperLink ID="hlnkOpenPage" runat="server" NavigateUrl="~/RFQ/Summary/rfqSummaryPage.aspx"
             Target="_blank" Visible="False">Open in a separate page</asp:HyperLink>

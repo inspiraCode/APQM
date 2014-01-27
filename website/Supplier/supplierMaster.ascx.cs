@@ -107,7 +107,7 @@ public partial class supplierMaster : System.Web.UI.UserControl
             }
         }
 
-        uscNotifier.showSuccess("This information has been saved successfully.");
+        uscNotifier.showSuccess("Information saved successfully");
         AfterSave(this, null);
     }
     public void cancel()

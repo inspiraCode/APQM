@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="surveyList.ascx.cs" Inherits="surveyList" %>
 <%@ Register Src="surveyForm.ascx" TagName="surveyForm" TagPrefix="uc1" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc2" %>
 <div align="center" style="padding-right: 20px">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
@@ -79,6 +80,9 @@
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
             TabIndex="65" /></div>
 </asp:Panel>
+
+<uc2:notifier ID="uscNotifier" runat="server" />
+
 
 <script type="text/javascript">
     jQuery(document).ready(function() {

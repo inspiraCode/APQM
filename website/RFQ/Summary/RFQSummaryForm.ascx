@@ -97,8 +97,10 @@
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
 
-<uc2:Validator ID="uscValidator" runat="server" />
 
+<asp:Button ID="btnSave" runat="server" Text="Save" class="btnInTitle" style="right:125px;width:110px;" onclick="btnSave_Click" />
+
+<uc2:Validator ID="uscValidator" runat="server" />
 
 <script type="text/javascript">
     var mainEAV = jQuery('[mainEAV]');

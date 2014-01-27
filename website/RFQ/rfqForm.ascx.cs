@@ -158,6 +158,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         }
     }
     public bool finalize() {
+        uscNotifier.hide();
         if (saveRFQ())
         {
             RFQ rfq = rfqCRUD.readById(this.rfq.Id);
@@ -175,8 +176,10 @@ public partial class rfqForm : System.Web.UI.UserControl
         }
         else
         {
+            
             return false;
         }
+        uscNotifier.showSuccess("Information saved successfully.");
         return true;
     }
     public bool saveRFQ()
@@ -315,6 +318,8 @@ public partial class rfqForm : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
             return false;
         }
+
+        uscNotifier.showSuccess("Information saved successfully.");
         return true;
     }
     public void setEnabled(bool enabled)
@@ -338,5 +343,8 @@ public partial class rfqForm : System.Web.UI.UserControl
     protected void on_after_delete_vendorAttachment(object sender, EventArgs e)
     {
         updateListAttachmentsVendor(rfq);
+    }
+    public void showCancelMessage(){
+        uscNotifier.showLog("Values have been re-established.");
     }
 }

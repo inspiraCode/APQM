@@ -5,6 +5,7 @@
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc5" %>
 <%@ Register Src="rfqVendorAttachments.ascx" TagName="rfqVendorAttachments" TagPrefix="uc6" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc7" %>
 <style type="text/css">
     .style2
     {
@@ -382,7 +383,7 @@
                 <td rowspan="5">
                     <table>
                         <tr>
-                            <td align="right">
+                            <td align="right" class="style78">
                                 <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
                                     <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm" runat="server"
@@ -391,25 +392,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.'>
+                            <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.' 
+                                class="style78">
                                 MOQ
                                 <asp:TextBox ID="txtMOQ" runat="server" Style="text-align: right" Width="130px" TabIndex="33"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='45' data-intro='Enter the Brand if applicable.'>
+                            <td align="right" data-step='45' data-intro='Enter the Brand if applicable.' 
+                                class="style78">
                                 Brand
                                 <asp:TextBox ID="txtMake" runat="server" Style="text-align: right" Width="130px"
                                     TabIndex="34"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">
+                            <td align="left" class="style78">
                                 &nbsp;
                             </td>
                         </tr>
                         <tr>
-                            <td align="left">
+                            <td align="left" class="style78">
                                 &nbsp;
                             </td>
                         </tr>
@@ -530,6 +533,8 @@
 <asp:HiddenField ID="hiddenSaveButtonClickedID" runat="server" />
 <br />
 <br />
+<uc7:notifier ID="uscNotifier" runat="server" />
+
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -636,3 +641,4 @@
         }
     }
 </script>
+

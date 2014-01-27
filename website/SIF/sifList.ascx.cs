@@ -95,6 +95,7 @@ public partial class sifList : System.Web.UI.UserControl
         if (sif_CRUD.delete(id))
         {
             load();
+            uscNotifier.showSuccess("SIF deleted successfully.");
         }
         else
         {
@@ -141,6 +142,7 @@ public partial class sifList : System.Web.UI.UserControl
         }
 
         load();
+        uscNotifier.showSuccess("You have taken this SIF, including its unassigned BOM's components.");
     }
     protected void cboFilterByUser_SelectedIndexChanged(object sender, EventArgs e)
     {

@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="supplierList.ascx.cs"
     Inherits="supplierList" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <div align="center">
     <asp:Repeater ID="Repeater1" runat="server" OnItemDataBound="R1_ItemDataBound">
         <HeaderTemplate>
@@ -51,10 +52,10 @@
         </FooterTemplate>
     </asp:Repeater>
 </div>
+<uc1:notifier ID="uscNotifier" runat="server" />
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery('#tableSupplier').dataTable({ "bStateSave": true }).show();
     });
 </script>
-

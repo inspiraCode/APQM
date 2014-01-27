@@ -191,7 +191,7 @@ public partial class SifMaster : System.Web.UI.UserControl
         }
 
         //Session.Remove("allCustomers");
-        uscNotifier.showSuccess("This information has been saved successfully.");
+        uscNotifier.showSuccess("Information saved successfully");
         Ok_Click(this, e);
     }
     protected void btnCancel_Click(object sender, EventArgs e)
@@ -292,10 +292,13 @@ public partial class SifMaster : System.Web.UI.UserControl
     }
     protected void btnEditSIFDetail_Click(object sender, EventArgs e)
     {
-        List<SIFDetail> sifDetailList = new List<SIFDetail>(uscSifDetail.getEntity());
-        uscSIFListAdd.setEntity(sifDetailList);
-        uscSIFListAdd.setParentID(long.Parse(lblID.Text));
-        panelPopup.Visible = true;
+        if (lblID.Text.Trim() != "")
+        {
+            List<SIFDetail> sifDetailList = new List<SIFDetail>(uscSifDetail.getEntity());
+            uscSIFListAdd.setEntity(sifDetailList);
+            uscSIFListAdd.setParentID(long.Parse(lblID.Text));
+            panelPopup.Visible = true;
+        }
     }
     protected void on_save_sifDetail(object sender, EventArgs e)
     {
