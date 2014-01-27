@@ -7,8 +7,8 @@ using System.Web.UI.WebControls;
 
 public partial class SurveyForm : System.Web.UI.UserControl
 {
-    public event EventHandler Ok_Click;
-    public event EventHandler Cancel_Click;   
+    public event EventHandler AfterSave;
+    public event EventHandler AfterFinalize;
 
     Supplier supplier;
 
@@ -25,6 +25,10 @@ public partial class SurveyForm : System.Web.UI.UserControl
     {
         allCertifications = (List<SupplierSurveyCertification>)Session["allCertifications"];
         allIndustriesSupplied = (List<SupplierSurveyIndustriesSupplied>)Session["allIndustriesSupplied"];
+        if (Session["supplierObject"] != null)
+        {
+            supplier = (Supplier)((SessionObject)Session["supplierObject"]).Content;
+        }
     }
 
     public void load()
@@ -169,7 +173,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
         lstForecastSales.DataTextField = "ForecastYearSale";
         lstForecastSales.DataBind();
     }
-    protected void btnSave_Click(object sender, EventArgs e)
+    public bool save()
     {
         SupplierSurvey survey = new SupplierSurvey();
                 
@@ -272,6 +276,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
             if (!survey_CRUD.create(survey, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx","ERROR:" + survey_CRUD.ErrorMessage);
+                return false;
             }
             //else
             //{
@@ -288,6 +293,7 @@ public partial class SurveyForm : System.Web.UI.UserControl
             if (!survey_CRUD.update(survey, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + survey_CRUD.ErrorMessage);
+                return false;
             }
         }
 
@@ -297,14 +303,14 @@ public partial class SurveyForm : System.Web.UI.UserControl
         if (DM.ErrorOccur)
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-            return;
+            return false;
         }
 
-        Ok_Click(this, e);
+        return true;
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Cancel_Click(this, e);
+        
     }   
     public SupplierSurveyCertification getCertificationSelectedFromDropDown(){        
         long id = long.Parse(cboCertification.SelectedValue);

@@ -21,13 +21,10 @@ public partial class SupplierSurvey_sendNewSurvey : System.Web.UI.UserControl
     }
     public void load()
     {
-        if (supplier == null)
+        if (Session["supplierObject"] != null)
         {
-            if (Session["supplierObject"] != null)
-            {
-                supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
-                fillFields(supplier);
-            }
+            supplier = (Supplier)(((SessionObject)Session["supplierObject"]).Content);
+            fillFields(supplier);
         }
     }
     private void fillFields(Supplier supplier){

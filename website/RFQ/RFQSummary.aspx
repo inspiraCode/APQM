@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterP.master" AutoEventWireup="true"
-    CodeFile="RFQSummary.aspx.cs" Inherits="RFQSummaryDefault" %>
+    CodeFile="RFQSummary.aspx.cs" Inherits="RFQSummaryDefault" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc1" %>
 <%@ Register Src="Summary/RFQSummaryForm.ascx" TagName="RFQSummaryForm" TagPrefix="uc2" %>

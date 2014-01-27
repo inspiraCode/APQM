@@ -12,40 +12,7 @@
             <uc2:Menu ID="uscMenu" runat="server" />
         </asp:View>
     </asp:MultiView>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-            <asp:View ID="viewPopupSupplier" runat="server">
-                <uc4:sendNewSurvey ID="uscSendNewSurvey" runat="server" OnOk_Click="on_send_survey"
-                    OnCancel_Click="on_cancel_send_survey" />
-
-                <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New Supplier Survey");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 440, modal: false,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });
-                </script>
-
-            </asp:View>
-            <asp:View ID="viewPopupSurvey" runat="server">
-                <div align="center" style="height: 525px; overflow-y: auto;">
-                    <uc5:surveyForm ID="uscSurveyForm" runat="server" OnOk_Click="on_save_survey" OnCancel_Click="on_cancel_survey" />
-
-                    <script type="text/javascript">
-                        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Supplier Survey");
-                        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                            appendTo: jQuery('form:first'),
-                            width: 1090, modal: false,
-                            dialogClass: "no-close", closeOnEscape: false
-                        });
-                        
-                    </script>
-
-                </div>
-            </asp:View>
-        </asp:MultiView>
-    </asp:Panel>
+    
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <span class="mainTitle" runat="server" id="lblTitle"></span>
@@ -72,17 +39,6 @@
             </div>
             <br />
             <br />
-        </asp:View>
-        <asp:View ID="viewSurvey" runat="server">
-            <%--Tab survey --%>
-            <div>
-                <br />
-                <asp:Button ID="btnSendSurvey" Style="margin-bottom: 10px;" runat="server" Text="Send new survey"
-                    OnClick="btnSendSurvey_Click" />
-                <div runat="server" id="divSurvey">
-                    <uc3:surveyList ID="uscSurveyList" runat="server" />
-                </div>
-            </div>
         </asp:View>
     </asp:MultiView>
 </asp:Content>

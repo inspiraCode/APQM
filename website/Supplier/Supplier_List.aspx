@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="Supplier_List.aspx.cs" Inherits="Supplier_Supplier_List" %>
+    CodeFile="Supplier_List.aspx.cs" Inherits="Supplier_Supplier_List" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="supplierList.ascx" TagName="supplierList" TagPrefix="uc1" %>
 <%@ Register Src="supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc2" %>

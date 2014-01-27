@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="SIF_List.aspx.cs" Inherits="SIF_SIF_List" %>
+    CodeFile="SIF_List.aspx.cs" Inherits="SIF_SIF_List" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="sifList.ascx" TagName="sifList" TagPrefix="uc1" %>
 <%@ Register src="sifMaster.ascx" tagname="sifMaster" tagprefix="uc2" %>

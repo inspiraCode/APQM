@@ -1,4 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewSurvey.ascx.cs" Inherits="SupplierSurvey_sendNewSurvey" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewSurvey.ascx.cs"
+    Inherits="SupplierSurvey_sendNewSurvey" %>
 <style type="text/css">
     .style1
     {
@@ -12,40 +13,74 @@
     {
         width: 278px;
     }
+    .style4
+    {
+        width: 81px;
+        height: 48px;
+    }
+    .style5
+    {
+        width: 278px;
+        height: 48px;
+    }
+    .style6
+    {
+        height: 48px;
+    }
 </style>
 <table cellspacing="0" class="style1">
     <tr>
         <td align="right" class="style2">
-            Supplier</td>
+            Supplier
+        </td>
         <td class="style3">
             <asp:Label ID="lblSupplier" runat="server" Text="Label" Width="350px"></asp:Label>
         </td>
         <td>
-            &nbsp;</td>
+            &nbsp;
+        </td>
     </tr>
     <tr>
         <td align="right" class="style2">
-            Email</td>
+            Email
+        </td>
         <td class="style3">
             <asp:TextBox ID="txtEmail" runat="server" Width="350px"></asp:TextBox>
         </td>
         <td>
-            &nbsp;</td>
+            &nbsp;
+        </td>
     </tr>
     <tr>
-        <td class="style2">
-            &nbsp;</td>
-        <td class="style3">
-            &nbsp;</td>
-        <td>
-            &nbsp;</td>
+        <td class="style4">
+        </td>
+        <td class="style5">
+            <div id="divImgEmail" style="visibility: hidden;">
+                <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
+                <span style="position: relative; top: -10px;">Sending Email, Please wait..</span>
+            </div>
+        </td>
+        <td class="style6">
+        </td>
     </tr>
     <tr>
         <td align="center" colspan="3">
-            <asp:Button ID="btnSendSurvey" runat="server" OnClick="btnSendSurvey_Click" 
+            <asp:Button ID="btnSendSurvey" runat="server" OnClick="btnSendSurvey_Click" Style="display:none;"
                 Text="Send" Width="80px" />
-&nbsp;<asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel" 
+            <input id="btnSendSurvey_ClientSide" type="button" value="Send" onclick="showScrim();" />
+            <asp:Button ID="btnCancel" runat="server" OnClick="btnCancel_Click" Text="Cancel"
                 Width="80px" />
         </td>
     </tr>
 </table>
+
+<script type="text/javascript">
+    function showScrim() {
+        
+        jQuery("#btnSendSurvey_ClientSide").prop("disabled", true);
+        jQuery("#<%= btnCancel.ClientID %>").prop("disabled", true);
+        setTimeout(jQuery("#<%= btnSendSurvey.ClientID %>").click(), 5);
+        jQuery("#divImgEmail").css("visibility", "visible");
+        return true;
+    }
+</script>

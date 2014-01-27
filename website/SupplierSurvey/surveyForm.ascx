@@ -765,9 +765,4 @@
         </tr>        
     </table>
 </div>
-<div align="center" style="border-top: solid #666666;padding-top: 5px;">
-    <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" 
-        OnClick="btnSave_Click" TabIndex="64" />
-    <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" 
-        OnClick="btnCancel_Click" TabIndex="65" />
-</div>
+

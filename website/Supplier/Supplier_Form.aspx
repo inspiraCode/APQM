@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="Supplier_Form.aspx.cs" Inherits="Supplier_Supplier_Form" %>
+    CodeFile="Supplier_Form.aspx.cs" Inherits="Supplier_Supplier_Form" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderMain" runat="Server">

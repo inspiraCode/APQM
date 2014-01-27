@@ -74,7 +74,15 @@ public partial class Supplier_Supplier_Form : System.Web.UI.Page
     }
     protected void tabSurvey_Click(object sender, EventArgs e)
     {
-        Navigator.goToPage("~/Supplier/supplier.aspx", "survey");
+        if (Session["SupplierObject"] != null)
+        {
+            ((SessionObject)Session["SupplierObject"]).Status = "forUpdate";
+            Response.Redirect("~/SupplierSurvey/Survey_List.aspx?supplier=" + ((Supplier)((SessionObject)Session["SupplierObject"]).Content).Id);
+        }
+        else
+        {
+            exitByError("Session has expired.");
+        }
     }
     protected void on_afterSave_supplier(object sender, EventArgs e)
     {

@@ -2,7 +2,7 @@
     Inherits="bomDetailList" %>
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
-<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc1" %>
+<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -17,7 +17,6 @@
         border: solid #D3D3D3 2px;
     }
 </style>
-
 <table cellspacing="0" align="left">
     <tr>
         <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
@@ -84,9 +83,9 @@
         </th>
     </tr>
     <tr>
-        <th class="camposSinBordes" style="vertical-align: top;">            
+        <th class="camposSinBordes" style="vertical-align: top;">
         </th>
-        <th class="camposSinBordes" style="vertical-align: top;">            
+        <th class="camposSinBordes" style="vertical-align: top;">
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <div style="width: 125px;">
@@ -99,19 +98,19 @@
             </div>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCapsonicPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCapsonicPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCustomerPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCustomerPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtManufacturePN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtManufacturePN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtSupplierPN" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtSupplierPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCommCode" style="text-align:center;" runat="server" Width="60px"></asp:TextBox>
+            <asp:TextBox ID="txtCommCode" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:TextBox ID="txtMaterial" runat="server" Width="140px" Height="40px" Rows="2"
@@ -119,23 +118,22 @@
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:DropDownList ID="cboUM" runat="server" Width="70px">
-                    <asp:ListItem Value="Each">Each</asp:ListItem>
-                    <asp:ListItem Value="in">in</asp:ListItem>
-                    <asp:ListItem Value="ft">ft</asp:ListItem>
-                    <asp:ListItem Value="yd">yd</asp:ListItem>
-                    <asp:ListItem Value="mm">mm</asp:ListItem>
-                    <asp:ListItem Value="cm">cm</asp:ListItem>
-                    <asp:ListItem Value="m">m</asp:ListItem>
-                    <asp:ListItem Value="g">g</asp:ListItem>
-                    <asp:ListItem Value="kg">kg</asp:ListItem>
-                    <asp:ListItem Value="lb">lb</asp:ListItem>
-                    <asp:ListItem Value="oz">oz</asp:ListItem>
-                    <asp:ListItem Value="lt">lt</asp:ListItem>
+                <asp:ListItem Value="Each">Each</asp:ListItem>
+                <asp:ListItem Value="in">in</asp:ListItem>
+                <asp:ListItem Value="ft">ft</asp:ListItem>
+                <asp:ListItem Value="yd">yd</asp:ListItem>
+                <asp:ListItem Value="mm">mm</asp:ListItem>
+                <asp:ListItem Value="cm">cm</asp:ListItem>
+                <asp:ListItem Value="m">m</asp:ListItem>
+                <asp:ListItem Value="g">g</asp:ListItem>
+                <asp:ListItem Value="kg">kg</asp:ListItem>
+                <asp:ListItem Value="lb">lb</asp:ListItem>
+                <asp:ListItem Value="oz">oz</asp:ListItem>
+                <asp:ListItem Value="lt">lt</asp:ListItem>
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
-            <asp:TextBox ID="txtCost" runat="server"
-                Width="50px" Style="text-align: right; visibility:hidden;">0</asp:TextBox>
+            <asp:TextBox ID="txtCost" runat="server" Width="50px" Style="text-align: right; visibility: hidden;">0</asp:TextBox>
         </th>
         <th class="camposSinBordes">
             <!-- Vendor Quote Est -->
@@ -144,7 +142,8 @@
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtQuantity" validate="number" validationid="validatingBOMDetail"
-                runat="server" Width="56px" Style="text-align: right" onchange="calculateEAU()" onkeyup="calculateEAU()" >0</asp:TextBox>
+                runat="server" Width="56px" Style="text-align: right" onchange="calculateEAU()"
+                onkeyup="calculateEAU()">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtEAU" runat="server" validate="numbers" validationid="validatingBOMDetail"
@@ -192,12 +191,12 @@
         <ItemTemplate>
             <tr height='27px;'>
                 <td align="center" style="overflow: hidden; border: solid 1px;">
-                    <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>    
+                    <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
                 </td>
-                <td align="center" style="overflow: hidden; border: solid 1px;border-left: 0px;">
+                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px;">
                     <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
                 </td>
-                <td style="overflow: hidden; border: solid 1px;border-left: 0px;">
+                <td style="overflow: hidden; border: solid 1px; border-left: 0px;">
                     <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
                     </asp:LinkButton>
@@ -252,7 +251,8 @@
                 </td>
                 <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px;
                     border-left: 0px">
-                    <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine" OnClientClick="return confirm('Do you really want to take this BOM Line?');">
+                    <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine"
+                        OnClientClick="return confirm('Do you really want to take this BOM Line?');">
                         Take
                     </asp:LinkButton>
                 </td>
@@ -263,27 +263,24 @@
                 </td>
             </tr>
         </ItemTemplate>
-        <FooterTemplate>
-            </table>
-        </FooterTemplate>
     </asp:Repeater>
-    <div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
-    
-    </div>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
-            OnCancel_Click="on_cancelEdit_line" />
-
-        <script type="text/javascript">
-            document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
-            jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                appendTo: jQuery('form:first'),
-                width: 560, modal: false,
-                dialogClass: "no-close", closeOnEscape: false
-            });
-        </script>
-
-    </asp:Panel>
 </table>
+<div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
+</div>
+
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
+<asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
+        OnCancel_Click="on_cancelEdit_line" />
+
+    <script type="text/javascript">
+        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
+        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 560, modal: true,
+            dialogClass: "no-close", closeOnEscape: false
+        });
+    </script>
+
+</asp:Panel>

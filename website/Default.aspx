@@ -115,7 +115,7 @@
                 <script type="text/javascript">
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 950, modal: false,
+                        width: 950, modal: true,
                         dialogClass: "no-close", closeOnEscape: false
                     });                    
                 </script>

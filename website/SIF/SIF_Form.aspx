@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true" CodeFile="SIF_Form.aspx.cs" Inherits="SIF_SIF_Form" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true" CodeFile="SIF_Form.aspx.cs" Inherits="SIF_SIF_Form" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register src="sifMaster.ascx" tagname="sifMaster" tagprefix="uc1" %>
 

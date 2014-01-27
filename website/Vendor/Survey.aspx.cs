@@ -111,8 +111,11 @@ public partial class VendorSurvey : System.Web.UI.Page
         Navigator.goToPage("~/Vendor/Survey.aspx", "survey");
     }
     protected void btnFinalize_Click(object sender, EventArgs e)
-    {        
-        Navigator.goToPage("~/Vendor/Survey.aspx", "finalize");
+    {
+        if (uscSurveyForm.save())
+        {
+            Navigator.goToPage("~/Vendor/Survey.aspx", "finalize");
+        }
     }
     protected void on_save_supplier(object sender, EventArgs e)
     {

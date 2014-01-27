@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master"
-    AutoEventWireup="true" CodeFile="SalesReport.aspx.cs" Inherits="HTMLReports_SalesReport" %>
+    AutoEventWireup="true" CodeFile="SalesReport.aspx.cs" Inherits="HTMLReports_SalesReport" MaintainScrollPositionOnPostback="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
     <style type="text/css">

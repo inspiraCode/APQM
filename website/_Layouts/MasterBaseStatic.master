@@ -81,7 +81,7 @@
     </noscript>
     <div id="javascriptEnabled" style="visibility: hidden;">
         <form id="form1" runat="server">
-        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed;">
+        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed;z-index: 101;">
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
@@ -122,7 +122,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        LMD: 1/20/2014
+                        LMD: 1/24/2014
                     </td>
                 </tr>
             </table>
@@ -135,14 +135,11 @@
     ieCompatibilityViewCheck();
 
     jQuery('.-ms-clear').css('display', 'none');
-    jQuery('#divBase').css('height', (jQuery(window).height() - 253).toString());
     jQuery(document).ready(function() {
         jQuery("#javascriptEnabled").css("visibility", "visible");
     });
 
-    jQuery(window).resize(function() {
-        jQuery('#divBase').css('height', (jQuery(window).height() - 253).toString());
-    });
+    
 
     function ieCompatibilityViewCheck() {
         var val = "IE" + ieUserAgent.version;
