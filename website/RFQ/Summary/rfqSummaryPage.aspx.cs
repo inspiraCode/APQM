@@ -9,7 +9,7 @@ public partial class rfqSummaryPage : System.Web.UI.Page
 {
     private long bomDetailKey = -1;
     protected void Page_Load(object sender, EventArgs e)
-    {
+    {   
         if (retrieveEntity())
         {
             //Session["rfqSummary"] = bomDetailKey;

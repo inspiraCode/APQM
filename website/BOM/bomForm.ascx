@@ -2,7 +2,7 @@
 <%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
 <%@ Register Src="bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc4" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc4" %>
 <style type="text/css">
     .style1
     {
@@ -25,9 +25,9 @@
         width: 109px;
     }
 </style>
-<div align="center">
+<div align="left" style="margin-left: 40px;">
     <br />
-    <table cellspacing="1" align="left" style="width: 1232px">
+    <table cellspacing="1" align="left" style="width: 1232px;">
         <tr style="display: none;">
             <td align="right" class="style7">
                 Mode:
@@ -136,16 +136,18 @@
             </td>
         </tr>
         <tr style="height: 25px;">
-            <td align="right" style="font-weight: bold;border: solid 1px;border-style: dotted;border-right: 0px;" class="style7">
+            <td align="right" style="font-weight: bold; border: solid 1px; border-style: dotted;
+                border-right: 0px;" class="style7">
                 Annual Volume
             </td>
-            <td align="left" class="style4" style="border: solid 1px;border-style: dotted;border-left: 0px;">
+            <td align="left" class="style4" style="border: solid 1px; border-style: dotted; border-left: 0px;">
                 <asp:TextBox ID="txtAnnualVolume" Style="text-align: right;" validate="number" validationid="validatingBOMHeader"
                     runat="server" Width="120px"></asp:TextBox>
-                <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click" style="margin-bottom:5px;" />
-                <asp:Button ID="btnApplyAnnualVolume" runat="server" 
-                    Text="Apply to lines not Processed" OnClick="btnApplyAnnualVolume_Click" 
-                    Width="184px" OnClientClick="return validate();" validationid="validatingBOMHeader" />
+                <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click"
+                    Style="margin-bottom: 5px;" />
+                <asp:Button ID="btnApplyAnnualVolume" runat="server" Text="Apply to lines not Processed"
+                    OnClick="btnApplyAnnualVolume_Click" Width="184px" OnClientClick="return validate();"
+                    validationid="validatingBOMHeader" />
             </td>
             <td align="left" class="style8">
             </td>
@@ -155,33 +157,22 @@
             </td>
         </tr>
     </table>
-    <table cellspacing="1" align="center">
-        <tr align="left">
-            <td align="right" height="25px" colspan="2">
-                <div style="border: solid; border-color: gray; border-width: 2px;">
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div id="divDetail" runat="server">
-                    <uc1:bomDetailList ID="uscBOMDetailList" runat="server" />
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td align="right">
-            </td>
-            <td align="left">
-            </td>
-        </tr>
-    </table>
 </div>
-<div align="center">
+<div align="center" style="clear: both;width: 1630px;">
+<br />
+    <div style="border: solid; border-color: gray; border-width: 2px;">
+    </div>
+    <br />
+    <uc1:bomDetailList ID="uscBOMDetailList" runat="server" />
+</div>
+    <br />
+    <div align="center">
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
         OnClientClick="return validate();" validationid="validatingBOMHeader" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
-</div>
+    </div>
+    
+
 <br />
 <asp:HiddenField ID="hiddenProgressBar" runat="server" Value="0" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -208,9 +199,7 @@
         </asp:View>
     </asp:MultiView>
 </asp:Panel>
-
 <uc4:notifier ID="uscNotifier" runat="server" />
-
 
 <script type="text/javascript">
     var txtAnnualVolume;
