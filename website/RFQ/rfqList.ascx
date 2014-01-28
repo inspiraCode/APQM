@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
 <br />
 <table cellspacing="0">
     <tr>
@@ -49,7 +50,14 @@
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="deleteByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?\nEvery information related to this RFQ will be deleted as well.')"
+                    <asp:LinkButton ID="resendRFQByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure you want to re-send this RFQ to Vendor\'s email?');"
+                        CommandName="resendRFQ" Text="Re-send">
+                    </asp:LinkButton>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
+                <ItemTemplate>
+                    <asp:LinkButton ID="deleteByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?\nEvery information related to this RFQ will be deleted as well.');"
                         CommandName="deleteRFQ" Text="Delete">
                     </asp:LinkButton>
                 </ItemTemplate>
@@ -65,3 +73,4 @@
         jQuery('#<%= this.gridRFQList.ClientID %>').dataTable({ "bStateSave": true }).show();
     });
 </script>
+<uc1:notifier ID="uscNotifier" runat="server" />

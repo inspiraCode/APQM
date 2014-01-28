@@ -250,7 +250,7 @@
                 </div>
             </td>
             <td>
-                <input id="btnSendFiles" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
+                <input id="btnSendFiles" onclick="uploadFiles(true);" type="button" validationid="validatingNewRFQ"
                     value="Send New RFQ" tabindex="14" />
                 <input id="btnSendFiles0" onclick="uploadFiles();" type="button" validationid="validatingNewRFQ"
                     value="Create RFQ without email" tabindex="14" />

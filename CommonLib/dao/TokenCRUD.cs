@@ -131,7 +131,36 @@ public class TokenCRUD : ICRUD<Token>
         }
         return null;
     }
+    public Token readByRFQ(RFQ rfq)
+    {
+        Token token = new Token();
 
+        string query = "SELECT TokenKey, Token, [Subject], SubjectKey, DeadDate, Acknowledgement FROM TokenMaster " +
+            "WHERE [Subject] = 'RFQ' AND Subjectkey = @key";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", rfq.Id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                token.Id = long.Parse(table.Rows[0][0].ToString());
+                token.TokenNumber = table.Rows[0][1].ToString();
+                token.Subject = table.Rows[0][2].ToString();
+                token.SubjectKey = long.Parse(table.Rows[0][3].ToString());
+                token.DeadDate = DateTime.Parse(table.Rows[0][4].ToString());
+                token.Acnkowledgment = table.Rows[0][5].ToString();
+
+                sqlConnection.Dispose();
+                return token;
+            }
+        }
+        return null;
+    }
     public Token readByToken(string sToken)
     {
         Token token = new Token();
