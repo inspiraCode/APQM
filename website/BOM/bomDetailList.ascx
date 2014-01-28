@@ -16,8 +16,15 @@
         background-color: #D3D3D3;
         border: solid #D3D3D3 2px;
     }
+    .tableCell
+    {
+        overflow: hidden;
+        border: solid 1px;
+        border-left: 0px;
+        font-size: 10px;
+    }
 </style>
-<table cellspacing="0" align="left">
+<table cellspacing="0" align="left" style="margin-left: 40px;">
     <tr>
         <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
             Status
@@ -187,87 +194,102 @@
         <th class="camposSinBordes">
         </th>
     </tr>
-    <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
-        <ItemTemplate>
-            <tr height='27px;'>
-                <td align="center" style="overflow: hidden; border: solid 1px;">
-                    <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px;">
-                    <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
-                </td>
-                <td style="overflow: hidden; border: solid 1px; border-left: 0px;">
-                    <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID">
-                <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
-                    </asp:LinkButton>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "CommCode")%>
-                </td>
-                <td style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "Material")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "Um")%>
-                </td>
-                <td align="right" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "Cost")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
-                </td>
-                <td align="right" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "Qty")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "EAU")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px">
-                    <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
-                </td>
-                <td align="center" style="overflow: hidden; border: solid 1px; border-left: 0px;
-                    border-left: 0px">
-                    <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine"
-                        OnClientClick="return confirm('Do you really want to take this BOM Line?');">
-                        Take
-                    </asp:LinkButton>
-                </td>
-                <td align="center">
-                    <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID">
-                    Delete
-                    </asp:LinkButton>
-                </td>
-            </tr>
-        </ItemTemplate>
-    </asp:Repeater>
 </table>
+<div style="clear: both; top: 30px;">
+    <div id="accordionBOM">
+        <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
+            <ItemTemplate>
+                <h3>
+                    <table cellspacing="0">
+                        <tr>
+                            <td align="center" class="tableCell" style="border: solid 1px; width: 60px; max-width: 60px;">
+                                <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 30px; max-width: 30px;">
+                                <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
+                            </td>
+                            <td class="tableCell" style="width: 120px; max-width: 120px;">
+                                <asp:LinkButton ID="updateByID" runat="server" class="SetOnClick" CommandArgument=""
+                                    OnCommand="updateByID">
+                <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
+                                </asp:LinkButton>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
+                                <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
+                                <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
+                                <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
+                                <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
+                                <%# DataBinder.Eval(Container.DataItem, "CommCode")%>
+                            </td>
+                            <td class="tableCell" style="width: 145px; max-width: 145px;">
+                                <%# DataBinder.Eval(Container.DataItem, "Material")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 68px; max-width: 68px;">
+                                <%# DataBinder.Eval(Container.DataItem, "Um")%>
+                            </td>
+                            <td align="right" class="tableCell" style="width: 52px; max-width: 52px;">
+                                <%# DataBinder.Eval(Container.DataItem, "Cost")%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
+                                <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
+                            </td>
+                            <td align="right" class="tableCell" style="width: 60px; max-width: 60px;">
+                                <%# DataBinder.Eval(Container.DataItem, "Qty")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
+                                <%# DataBinder.Eval(Container.DataItem, "EAU")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 50px; max-width: 50px;">
+                                <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 80px; max-width: 80px;">
+                                <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
+                                <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 50px; max-width: 50px;">
+                                <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
+                            </td>
+                            <td align="center" class="tableCell" style="width: 120px; max-width: 120px;">
+                                <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
+                            </td>
+                            <td align="center" class="tableCell" style="border-left: 0px; width: 73px; max-width: 73px;">
+                                <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine"
+                                    class="SetOnClick">
+                        Take
+                                </asp:LinkButton>
+                            </td>
+                            <td align="center">
+                                <asp:LinkButton ID="deleteByID" class="SetOnClick" runat="server" CommandArgument=""
+                                    OnCommand="deleteByID">
+                    Delete
+                                </asp:LinkButton>
+                            </td>
+                        </tr>
+                    </table>
+                </h3>
+                <div>
+                    <p>
+                        Un ejemplo
+                    </p>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+</div>
 <div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
 </div>
-
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -284,3 +306,15 @@
     </script>
 
 </asp:Panel>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery("#accordionBOM").accordion({ collapsible: true, heightStyle: "content" });
+        setOnClicks();
+    });
+    function setOnClicks() {
+        jQuery(".SetOnClick").each(function() {
+            jQuery(this).attr("onclick", jQuery(this).attr("href"));
+        });
+    }
+</script>

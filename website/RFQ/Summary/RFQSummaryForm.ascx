@@ -97,8 +97,7 @@
 </asp:SqlDataSource>
 <asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
 
-
-<asp:Button ID="btnSave" runat="server" Text="Save" class="btnInTitle" style="right:125px;width:110px;" onclick="btnSave_Click" />
+<asp:Button ID="btnSave" runat="server" Text="Save" class="btnInTitle dontprint" style="right:125px;width:110px;" onclick="btnSave_Click" />
 
 <uc2:Validator ID="uscValidator" runat="server" />
 
