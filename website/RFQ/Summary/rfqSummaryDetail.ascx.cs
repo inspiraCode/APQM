@@ -39,7 +39,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         float fTotalBCost = 0;
         float fTotalCCost = 0;
         float fEAV = 0;
-        float fTooling = 0;
         float fCavitation = 0;
         string sMaterialTooling = "";
 
@@ -74,10 +73,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                         if (Request.Form[value] != "")
                             fEAV = float.Parse(Request.Form[value]);
                     }
-                    if (value.IndexOf("txtTooling") != -1)
-                    {
-                        fTooling = float.Parse(Request.Form[value]);
-                    }
                     if (value.IndexOf("txtCavitation") != -1)
                     {
                         fCavitation = float.Parse(Request.Form[value]);
@@ -96,7 +91,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                                 rfqS.TotalBCost = fTotalBCost;
                                 rfqS.TotalCCost = fTotalCCost;
                                 rfqS.EAV = fEAV;
-                                rfqS.Tooling = fTooling;
                                 rfqS.Cavitation = fCavitation;
                                 rfqS.MaterialTooling = sMaterialTooling;
                                 var adios = rfqS.RfqHeaderKey;
@@ -107,7 +101,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                                 fTotalBCost = 0;
                                 fTotalCCost = 0;
                                 fEAV = 0;
-                                fTooling = 0;
                                 fCavitation = 0;
                                 sMaterialTooling = "";
 
