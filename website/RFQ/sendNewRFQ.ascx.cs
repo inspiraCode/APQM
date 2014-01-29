@@ -582,7 +582,7 @@ public partial class SendNewRFQ : System.Web.UI.UserControl
                             RfqCRUD rfqCRUD = new RfqCRUD();
 
                             rfq.SupplierId = supplier.Id;
-                            rfq.SentToVendor = DateTime.Now;
+                            //rfq.SentToVendor = DateTime.Now;
                             rfq.Status = "PENDING";
                             rfq.BomDetailId = (long)ViewState["bomDetailID"];
                             rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);

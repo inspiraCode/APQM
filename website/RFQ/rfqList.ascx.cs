@@ -69,11 +69,23 @@ public partial class rfqList : System.Web.UI.UserControl
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[5].Controls[0];
+            DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[4].Controls[0];
             if (hrefStatus.Text.IndexOf("AWARDED") > -1)
             {
-                e.Row.Cells[6].Controls[1].Visible = false;
+                e.Row.Cells[5].Controls[1].Visible = false;
             }
+
+            DateTime dateSentToVendor = DateTime.Parse(e.Row.Cells[7].Text);
+
+
+            if (dateSentToVendor.Year == 1985 &&
+                dateSentToVendor.Month == 2 &&
+                dateSentToVendor.Day == 10)
+            {
+                e.Row.Cells[7].Text = "Not sent, just created.";
+            }
+
+
         }
     }
     protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)

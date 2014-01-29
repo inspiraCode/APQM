@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <br />
 <table cellspacing="0">
     <tr>
@@ -34,8 +34,6 @@
                 ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="SupplierName" HeaderText="Vendor" SortExpression="SupplierName"
                 ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate"
-                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
             <asp:TemplateField HeaderText="Status" SortExpression="Status" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <a target="_blank" href='<%# "rfqFormMain.aspx?rfq=" + Eval("RFQHeaderKey")%>'>
@@ -44,7 +42,7 @@
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?');"
+                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure you want to set its status to Award?');"
                         CommandName="setAwarded" Text="Set Awarded"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -55,6 +53,10 @@
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
+            <asp:BoundField DataField="SentToVendor" HeaderText="Last Sent To Vendor" SortExpression="SentToVendor"
+                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:g}" />
+            <asp:BoundField DataField="DueDate" HeaderText="Due Date" SortExpression="DueDate"
+                ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
                     <asp:LinkButton ID="deleteByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?\nEvery information related to this RFQ will be deleted as well.');"
@@ -73,4 +75,5 @@
         jQuery('#<%= this.gridRFQList.ClientID %>').dataTable({ "bStateSave": true }).show();
     });
 </script>
+
 <uc1:notifier ID="uscNotifier" runat="server" />
