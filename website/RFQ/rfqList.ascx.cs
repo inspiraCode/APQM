@@ -291,6 +291,8 @@ public partial class rfqList : System.Web.UI.UserControl
                                                 + Environment.NewLine + Environment.NewLine
                                                 + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
                                                 + Environment.NewLine + Environment.NewLine
+                                                + "In order to open the hyperlink, it is necessary to have javascript enabled in your browser and Internet Explorer 11 or any other browser like Chrome or Firefox."
+                                                + Environment.NewLine + Environment.NewLine
                                                 + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
 
 

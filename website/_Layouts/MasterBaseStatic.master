@@ -96,7 +96,7 @@
     </noscript>
     <div id="javascriptEnabled" style="visibility: hidden;">
         <form id="form1" runat="server">
-        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed;z-index: 101;">
+        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed;z-index: 99;">
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
@@ -163,7 +163,7 @@
             alert(val + "\nWe have detected that Internet Explorer is running in Compatibility View,\n" +
                   "In order to open this webpage, Compatibility View must be removed from this page.\n" +
                   "Or, you can upgrade Internet Explorer to Version 11.\n" +
-                  "If you need assistance to do it, you can contact us by emaililng here: apacheco@capsonic.com");
+                  "If you need assistance to do it, you can contact us by emailing here: apacheco@capsonic.com");
         }
     }
 </script>

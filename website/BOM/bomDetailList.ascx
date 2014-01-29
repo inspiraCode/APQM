@@ -199,29 +199,24 @@
     <div id="accordionBOM">
         <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
-
-                <h3>
-                    <table cellspacing="0">
+                <h3 style="height:30px;">
+                    <table cellspacing="0" align="left">
                         <tr>
                             <td align="center" class="tableCell" style="border: solid 1px; width: 60px; max-width: 60px;">
                                 <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
                             </td>
-
                             <td align="center" class="tableCell" style="width: 30px; max-width: 30px;">
                                 <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
                             </td>
-
                             <td class="tableCell" style="width: 120px; max-width: 120px;">
                                 <asp:LinkButton ID="updateByID" runat="server" class="SetOnClick" CommandArgument=""
                                     OnCommand="updateByID">
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
                                 </asp:LinkButton>
                             </td>
-
                             <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
                                 <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
                             </td>
-
                             <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
                                 <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
                             </td>
@@ -249,7 +244,6 @@
                             <td align="right" class="tableCell" style="width: 52px; max-width: 52px;">
                                 <%# DataBinder.Eval(Container.DataItem, "Cost")%>
                             </td>
-
                         </tr>
                         <tr>
                             <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
@@ -279,12 +273,10 @@
                             <td align="center" class="tableCell" style="width: 50px; max-width: 50px;">
                                 <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
                             </td>
-
                             <td align="center" class="tableCell" style="width: 120px; max-width: 120px;">
                                 <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
                             </td>
                             <td align="center" class="tableCell" style="border-left: 0px; width: 73px; max-width: 73px;">
-
                                 <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine"
 
                                     class="SetOnClick">
@@ -300,18 +292,12 @@
                         </tr>
                     </table>
                 </h3>
-                <div>
-                    <p>
-                        Un ejemplo
-                    </p>
-                </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
 </div>
 <div id="divBOMDetailList" style="clear: both;" runat="server" align="center">
 </div>
-
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -331,8 +317,8 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery("#accordionBOM").accordion({ collapsible: true, heightStyle: "content" });
-        setOnClicks();
+//        jQuery("#accordionBOM").accordion({ collapsible: true, heightStyle: "content" });
+//        setOnClicks();
     });
     function setOnClicks() {
         jQuery(".SetOnClick").each(function() {
