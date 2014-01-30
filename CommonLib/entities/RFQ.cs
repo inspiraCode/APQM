@@ -62,6 +62,8 @@ public class RFQ
     private string leadTimePPAP = "";
 
     private string createdBy = "";
+    private string cavitation = "";
+    private string material = "";   
 
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
@@ -322,6 +324,16 @@ public class RFQ
         get { return createdBy; }
         set { createdBy = value; }
     }
+    public string Cavitation
+    {
+        get { return cavitation; }
+        set { cavitation = value; }
+    }
+    public string Material
+    {
+        get { return material; }
+        set { material = value; }
+    }
 }
 
 public class RFQEAV
@@ -558,7 +570,10 @@ public class RFQSummary
     private float laborTotal;
     private float burdenTotal;
     private int sequence;
-    
+    private float tooling;
+    private string cavitation;
+    private string materialTooling;
+   
     public float ManufacturingCost
     {
         get { return MaterialTotal + ServiceTotal + ScrapTotal + LaborTotal + BurdenTotal; }       
@@ -583,11 +598,7 @@ public class RFQSummary
     public float AnnualPurchaseCost
     {
         get { return TotalAcquisitionCost * EstimatedAnnualVolume; }
-    }
-    private float tooling;
-    private float cavitation;
-    private string materialTooling;
-    
+    }    
     private float eav;
 
     private string status;
@@ -683,22 +694,7 @@ public class RFQSummary
         get { return totalCCost; }
         set { totalCCost = value; }
     }
-    public float Tooling
-    {
-        get { return tooling; }
-        set { tooling = value; }
-    }
-    public float Cavitation
-    {
-        get { return cavitation; }
-        set { cavitation = value; }
-    }
-    public string MaterialTooling
-    {
-        get { return materialTooling; }
-        set { materialTooling = value; }
-    }
-    public string Status
+   public string Status
     {
         get { return status; }
         set { status = value; }
@@ -707,6 +703,21 @@ public class RFQSummary
     {
         get { return sequence; }
         set { sequence = value; }
+    }
+    public float Tooling
+    {
+        get { return tooling; }
+        set { tooling = value; }
+    }
+    public string Cavitation
+    {
+        get { return cavitation; }
+        set { cavitation = value; }
+    }
+    public string MaterialTooling
+    {
+        get { return materialTooling; }
+        set { materialTooling = value; }
     }
 }
 

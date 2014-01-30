@@ -294,15 +294,14 @@
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtCavitation" validate="number" validationid="rfqsummarydetail"
-                                    runat="server" class="textManual" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:TextBox>
+                            <td>
+                                <asp:Label ID="txtCavitation" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Cavitation")%>'></asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;'>
-                            <td style="background-color: lightgray;">
-                                <asp:TextBox ID="txtMaterial" runat="server" class="textManual" Style="text-align: right;"
-                                    Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:TextBox>
+                            <td>
+                                <asp:Label ID="txtMaterial" runat="server" Style="text-align: right;"
+                                    Text='<%# DataBinder.Eval(Container.DataItem, "MaterialTooling")%>'></asp:Label>
                             </td>
                         </tr>
                         <tr height='11px;' style="display: none;">

@@ -39,9 +39,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         float fTotalBCost = 0;
         float fTotalCCost = 0;
         float fEAV = 0;
-        float fCavitation = 0;
-        string sMaterialTooling = "";
-
+        
         bool wasEdited = false;
         if (rfqSummary != null)
         {
@@ -73,14 +71,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                         if (Request.Form[value] != "")
                             fEAV = float.Parse(Request.Form[value]);
                     }
-                    if (value.IndexOf("txtCavitation") != -1)
-                    {
-                        fCavitation = float.Parse(Request.Form[value]);
-                    }
-                    if (value.IndexOf("txtMaterial") != -1)
-                    {
-                        sMaterialTooling = Request.Form[value];
-                    }
                     if (rfqHeaderKeyLocal != -1 && seqLocal != -1)
                     {
                         foreach (RFQSummary rfqS in rfqSummary)
@@ -91,19 +81,14 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                                 rfqS.TotalBCost = fTotalBCost;
                                 rfqS.TotalCCost = fTotalCCost;
                                 rfqS.EAV = fEAV;
-                                rfqS.Cavitation = fCavitation;
-                                rfqS.MaterialTooling = sMaterialTooling;
-                                var adios = rfqS.RfqHeaderKey;
-
+                                
                                 seqLocal = -1;
                                 rfqHeaderKeyLocal = -1;
 
                                 fTotalBCost = 0;
                                 fTotalCCost = 0;
                                 fEAV = 0;
-                                fCavitation = 0;
-                                sMaterialTooling = "";
-
+                                
                                 if (!rfqSummaryCRUD.updateOrCreate(rfqS))
                                 {
                                     Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqSummaryCRUD.ErrorMessage);

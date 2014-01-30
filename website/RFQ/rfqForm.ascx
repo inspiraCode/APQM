@@ -407,13 +407,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" class="style78">
-                                &nbsp;
+                            <td align="right" class="style78">
+                                Cavitation
+                                <asp:TextBox ID="txtCavitation" runat="server" Style="text-align: right" Width="130px"
+                                    TabIndex="35"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td align="left" class="style78">
-                                &nbsp;
+                            <td align="right" class="style78">
+                                Material
+                                <asp:TextBox ID="txtMaterial" runat="server" Style="text-align: right" Width="130px"
+                                    TabIndex="36"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -496,7 +500,7 @@
                     <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
                         data-position='top' style="width: 100%;">
                         <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="100%"
-                            TabIndex="35" Height="120px" TextMode="MultiLine"></asp:TextBox>
+                            TabIndex="37" Height="120px" TextMode="MultiLine"></asp:TextBox>
                     </div>
                 </td>
             </tr>
@@ -512,7 +516,7 @@
         <div align="center" style="visibility: hidden;">
             <br />
             <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail."
-                TabIndex="36" />
+                TabIndex="-1" />
         </div>
     </div>
     <asp:Button ID="btnFinalize" runat="server" Text="Finalize and submit" Width="132px"
@@ -525,7 +529,7 @@
     <br />
     Reason
     <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
-        Width="400px" TabIndex="36"></asp:TextBox>
+        Width="400px" TabIndex="38"></asp:TextBox>
 </div>
 <br />
 <br />

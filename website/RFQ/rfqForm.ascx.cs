@@ -107,6 +107,9 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         hiddenCreatedBy.Value = rfq.CreatedBy;
 
+        txtCavitation.Text = rfq.Cavitation;
+        txtMaterial.Text = rfq.Material;
+
         uscRFQDetailList.reset();
         uscRFQDetailList.setEntity(rfq.RfqDetail);
         uscRFQDetailList.load();
@@ -232,6 +235,9 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.IAgree = chkIAgree.Checked;
 
         rfq.CreatedBy = hiddenCreatedBy.Value;
+
+        rfq.Cavitation = txtCavitation.Text;
+        rfq.Material = txtMaterial.Text;
 
         rfq.SentAttachmentsFolder = hiddenSentAttachmentsFolder.Value;
 

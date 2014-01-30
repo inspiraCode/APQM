@@ -66,6 +66,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
+            DM.Load_SP_Parameters("@Material", entity.Material);
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
 
@@ -125,6 +127,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
+            DM.Load_SP_Parameters("@Material", entity.Material);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
 
@@ -183,6 +187,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
+            DM.Load_SP_Parameters("@Material", entity.Material);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
             
@@ -208,7 +214,8 @@ public class RfqCRUD : ICRUD<RFQ>
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
-            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy FROM viewRFQHeader_ReadAll " + 
+            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ " +
+            "FROM viewRFQHeader_ReadAll " + 
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -271,6 +278,8 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.InboxAttachmentsFolder = table.Rows[0][45].ToString();
                 rfq.MarketSectorName = table.Rows[0][46].ToString();
                 rfq.CreatedBy = table.Rows[0][47].ToString();
+                rfq.Cavitation = table.Rows[0][48].ToString();
+                rfq.Material = table.Rows[0][49].ToString();
                     
                 sqlConnection.Dispose();
                 return rfq;
@@ -288,8 +297,8 @@ public class RfqCRUD : ICRUD<RFQ>
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
-            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy FROM viewRFQHeader_ReadAll " +
-            "WHERE (BOMDetailKey = @key)";
+            "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ " +
+            "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -354,6 +363,8 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.InboxAttachmentsFolder = table.Rows[i][45].ToString();
                 rfq.MarketSectorName = table.Rows[i][46].ToString();
                 rfq.CreatedBy = table.Rows[i][47].ToString();
+                rfq.Cavitation = table.Rows[i][48].ToString();
+                rfq.Material = table.Rows[i][49].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -373,7 +384,7 @@ public class RfqCRUD : ICRUD<RFQ>
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
                       "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, " +
-                      "AttachmentsFolderVendor, MarketSectorName, CreatedBy FROM viewRFQHeader_ReadAll";
+                      "AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
        
@@ -432,6 +443,8 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.InboxAttachmentsFolder = table.Rows[i][45].ToString();
             rfq.MarketSectorName = table.Rows[i][46].ToString();
             rfq.CreatedBy = table.Rows[i][47].ToString();
+            rfq.Cavitation = table.Rows[i][48].ToString();
+            rfq.Material = table.Rows[i][49].ToString();
             recordset.Add(rfq);
         }       
         return recordset;
@@ -481,6 +494,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
+            DM.Load_SP_Parameters("@Material", entity.Material);
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
 
@@ -539,6 +554,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimePPAP", entity.LeadTimePPAP);
             DM.Load_SP_Parameters("@AttachmentsFolderVendor", entity.InboxAttachmentsFolder);
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
+            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
+            DM.Load_SP_Parameters("@Material", entity.Material);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 
@@ -1778,7 +1795,7 @@ public class RfqSummaryCRUD
                 rfqSummary.TotalCCost = float.Parse(table.Rows[0][16].ToString());
                 rfqSummary.EAV = float.Parse(table.Rows[0][17].ToString());
                 rfqSummary.Tooling = float.Parse(table.Rows[0][18].ToString());
-                rfqSummary.Cavitation = float.Parse(table.Rows[0][19].ToString());
+                rfqSummary.Cavitation = table.Rows[0][19].ToString();
                 rfqSummary.MaterialTooling = table.Rows[0][20].ToString();
                 rfqSummary.Status = table.Rows[0][21].ToString();
                 rfqSummary.Sequence = int.Parse(table.Rows[0][22].ToString());
@@ -1824,14 +1841,14 @@ public class RfqSummaryCRUD
                 rfqSummary.SupplierName = table.Rows[0][13].ToString();
                 rfqSummary.Status = table.Rows[0][14].ToString();
                 rfqSummary.Tooling = float.Parse(table.Rows[0][19].ToString());
+                rfqSummary.Cavitation = table.Rows[0][20].ToString();
+                rfqSummary.MaterialTooling = table.Rows[0][21].ToString();
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
                     rfqSummary.TotalBCost = float.Parse(table.Rows[0][16].ToString());
                     rfqSummary.TotalCCost = float.Parse(table.Rows[0][17].ToString());
                     rfqSummary.EAV = float.Parse(table.Rows[0][18].ToString());
-                    rfqSummary.Cavitation = float.Parse(table.Rows[0][20].ToString());
-                    rfqSummary.MaterialTooling = table.Rows[0][21].ToString();
                     rfqSummary.Sequence = int.Parse(table.Rows[0][22].ToString());
                 }
                 sqlConnection.Dispose();
@@ -1876,14 +1893,14 @@ public class RfqSummaryCRUD
                 rfq.SupplierName = table.Rows[i][13].ToString();
                 rfq.Status = table.Rows[i][14].ToString();
                 rfq.Tooling = float.Parse(table.Rows[i][19].ToString());
+                rfq.Cavitation = table.Rows[i][20].ToString();
+                rfq.MaterialTooling = table.Rows[i][21].ToString();
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfq.Id = long.Parse(table.Rows[i][15].ToString());
                     rfq.TotalBCost = float.Parse(table.Rows[i][16].ToString());
                     rfq.TotalCCost = float.Parse(table.Rows[i][17].ToString());
                     rfq.EAV = float.Parse(table.Rows[i][18].ToString());
-                    rfq.Cavitation = float.Parse(table.Rows[i][20].ToString());
-                    rfq.MaterialTooling = table.Rows[i][21].ToString();
                     rfq.Sequence = int.Parse(table.Rows[i][22].ToString());
                 }
 
@@ -1903,9 +1920,6 @@ public class RfqSummaryCRUD
             DM.Load_SP_Parameters("@BCost", entity.TotalBCost.ToString());
             DM.Load_SP_Parameters("@CCost", entity.TotalCCost.ToString());
             DM.Load_SP_Parameters("@EAV", entity.EAV.ToString());
-            DM.Load_SP_Parameters("@Tooling", entity.Tooling.ToString());
-            DM.Load_SP_Parameters("@Cavitation", entity.Cavitation.ToString());
-            DM.Load_SP_Parameters("@Material", entity.MaterialTooling);
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
 
             if (entity.Id > -1)
