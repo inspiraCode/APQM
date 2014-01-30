@@ -110,6 +110,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtCavitation.Text = rfq.Cavitation;
         txtMaterial.Text = rfq.Material;
 
+        ViewState["SentToVendor"] = rfq.SentToVendor;
+
         uscRFQDetailList.reset();
         uscRFQDetailList.setEntity(rfq.RfqDetail);
         uscRFQDetailList.load();
@@ -240,6 +242,8 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.Material = txtMaterial.Text;
 
         rfq.SentAttachmentsFolder = hiddenSentAttachmentsFolder.Value;
+
+        rfq.SentToVendor = (DateTime)ViewState["SentToVendor"];
 
         string folderVendorAttachments = (string)Session["RFQATTACHMENTSFOLDERINBOX"];
         if (folderVendorAttachments != null)

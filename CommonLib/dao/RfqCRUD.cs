@@ -496,6 +496,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
 
@@ -556,6 +558,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 

@@ -35,7 +35,5 @@
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>
-
-        </asp:MultiView>
     </asp:Panel>
 </asp:Content>

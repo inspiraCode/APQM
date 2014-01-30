@@ -1,5 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
+<%@ Register Src="resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc2" %>
 <br />
 <table cellspacing="0">
     <tr>
@@ -48,8 +49,7 @@
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="resendRFQByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure you want to re-send this RFQ to Vendor\'s email?');"
-                        CommandName="resendRFQ" Text="Re-send">
+                    <asp:LinkButton ID="resendRFQByID" runat="server" CausesValidation="false" CommandName="resendRFQ" Text="Re-send">
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -77,3 +77,14 @@
 </script>
 
 <uc1:notifier ID="uscNotifier" runat="server" />
+<asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <uc2:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
+    <script type="text/javascript">
+        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Re-send RFQ");
+        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 440, modal: true,
+            dialogClass: "no-close", closeOnEscape: false
+        });
+    </script>
+</asp:Panel>
