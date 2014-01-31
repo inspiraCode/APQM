@@ -24,72 +24,91 @@
         font-size: 10px;
     }
 </style>
-<table cellspacing="0" align="left" style="margin-left: 40px;">
+<asp:Panel ID="panelPopup" runat="server" Visible="false">
+    <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
+        OnCancel_Click="on_cancelEdit_line" />
+
+    <script type="text/javascript">
+        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
+        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 560, modal: true,
+            dialogClass: "no-close", closeOnEscape: false
+        });
+    </script>
+
+</asp:Panel>
+<table cellspacing="0" align="left" style="margin-left: 60px;">
     <tr>
-        <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
+        <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
+            Assigned To
+        </th>
+        <th class="camposSinBordes" style="width: 55px; min-width: 55px; max-width: 55px;">
             Status
         </th>
-        <th class="camposSinBordes" style="width: 30px; max-width: 30px;">
+        <th class="camposSinBordes" style="width: 30px; min-width: 30px; max-width: 30px;">
             #
         </th>
-        <th class="camposSinBordes itemFields" style="width: 120px; max-width: 120px;">
+        <th class="camposSinBordes itemFields" style="width: 120px; min-width: 120px; max-width: 120px;">
             Component Part Number
         </th>
-        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
             Capsonic PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
             Customer PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 90px; min-width: 90px; max-width: 90px;">
             Manufacture PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
             Supplier PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 97px; max-width: 97px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
             Comm Code
         </th>
-        <th class="camposSinBordes itemFields" style="width: 145px; max-width: 145px;">
+        <th class="camposSinBordes itemFields" style="width: 145px; min-width: 145px; max-width: 145px;">
             Component Part Description/Material
         </th>
-        <th class="camposSinBordes itemFields" style="width: 68px; max-width: 68px;">
+        <th class="camposSinBordes itemFields" style="width: 68px; min-width: 68px; max-width: 68px;">
             UM
         </th>
-        <th class="camposSinBordes itemFields" style="width: 52px; max-width: 52px;">
+        <th class="camposSinBordes itemFields" style="width: 52px; min-width: 52px; max-width: 52px;">
             Cost
         </th>
-        <th class="camposSinBordes" style="width: 70px; max-width: 70px;">
+        <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
             Vendor Quote Est
         </th>
-        <th class="camposSinBordes" style="width: 60px; max-width: 60px;">
+        <th class="camposSinBordes" style="width: 60px; min-width: 60px; max-width: 60px;">
             Qty Required
         </th>
-        <th class="camposSinBordes" style="width: 70px; max-width: 70px;">
+        <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
             EAU
         </th>
-        <th class="camposSinBordes" style="width: 50px; max-width: 50px;">
+        <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
             Cap Com Assm
         </th>
-        <th class="camposSinBordes" style="width: 80px; max-width: 80px;">
+        <th class="camposSinBordes" style="width: 80px; min-width: 80px; max-width: 80px;">
             Purchasing Comments
         </th>
-        <th class="camposSinBordes" style="width: 70px; max-width: 70px;">
+        <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
             Sales Status
         </th>
-        <th class="camposSinBordes" style="width: 50px; max-width: 50px;">
+        <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
             Directed Buy
         </th>
-        <th class="camposSinBordes" style="width: 120px; max-width: 120px;">
+        <th class="camposSinBordes" style="width: 110px; min-width: 110px; max-width: 110px;">
             Purchasing Status
-        </th>
-        <th class="camposSinBordes" style="width: 73px; max-width: 73px;">
-            Assigned To
         </th>
         <th style="border-color: Gray;" class="camposSinBordes">
         </th>
     </tr>
     <tr>
+        <th class="camposSinBordes">
+            <!-- Assigned To -->
+            <div style="width: 70px;">
+            </div>
+        </th>
         <th class="camposSinBordes" style="vertical-align: top;">
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
@@ -182,11 +201,6 @@
                 <asp:ListItem Value="Firm Requirement">Firm Requirement</asp:ListItem>
             </asp:DropDownList>
         </th>
-        <th class="camposSinBordes">
-            <!-- Assigned To -->
-            <div style="width: 70px;">
-            </div>
-        </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:Button ID="btnAdd" validationid="validatingBOMDetail" runat="server" Text="Add"
                 OnClick="add_Click" />
@@ -196,102 +210,91 @@
     </tr>
 </table>
 <div style="clear: both; top: 30px;">
-    <div id="accordionBOM">
+    <div id="accordionBOM" style="position: relative; width: 1770px;">
         <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
-                <h3 style="height:30px;">
-                    <table cellspacing="0" align="left">
-                        <tr>
-                            <td align="center" class="tableCell" style="border: solid 1px; width: 60px; max-width: 60px;">
-                                <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
-                            </td>
-                            <td align="center" class="tableCell" style="width: 30px; max-width: 30px;">
-                                <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
-                            </td>
-                            <td class="tableCell" style="width: 120px; max-width: 120px;">
-                                <asp:LinkButton ID="updateByID" runat="server" class="SetOnClick" CommandArgument=""
-                                    OnCommand="updateByID">
-                <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
-                                </asp:LinkButton>
-                            </td>
-                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
-                                <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
-                            </td>
-                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
-                                <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
-                                <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
-                                <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 97px; max-width: 97px;">
-                                <%# DataBinder.Eval(Container.DataItem, "CommCode")%>
-                            </td>
-
-                            <td class="tableCell" style="width: 145px; max-width: 145px;">
-                                <%# DataBinder.Eval(Container.DataItem, "Material")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 68px; max-width: 68px;">
-                                <%# DataBinder.Eval(Container.DataItem, "Um")%>
-                            </td>
-
-                            <td align="right" class="tableCell" style="width: 52px; max-width: 52px;">
-                                <%# DataBinder.Eval(Container.DataItem, "Cost")%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
-                                <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
-                            </td>
-
-                            <td align="right" class="tableCell" style="width: 60px; max-width: 60px;">
-                                <%# DataBinder.Eval(Container.DataItem, "Qty")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
-                                <%# DataBinder.Eval(Container.DataItem, "EAU")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 50px; max-width: 50px;">
-                                <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 80px; max-width: 80px;">
-                                <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 70px; max-width: 70px;">
-                                <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
-                            </td>
-
-                            <td align="center" class="tableCell" style="width: 50px; max-width: 50px;">
-                                <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
-                            </td>
-                            <td align="center" class="tableCell" style="width: 120px; max-width: 120px;">
-                                <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
-                            </td>
-                            <td align="center" class="tableCell" style="border-left: 0px; width: 73px; max-width: 73px;">
-                                <asp:LinkButton ID="linkAssignedToLine" runat="server" CommandArgument="" OnCommand="takeBOMLine"
-
-                                    class="SetOnClick">
+                <h3 style="height: 20px;">
+                    <div>
+                        <asp:ImageButton ImageUrl="~/pics/delete-icon.png" Height="20px" ID="deleteByID"
+                            OnCommand="deleteByID" clickeableInHeader="true" runat="server" Text="Edit" Style="float: left;
+                            position: absolute; left: 10px;" />
+                        <asp:ImageButton ImageUrl="~/pics/edit-icon.png" Height="20px" ID="updateByID" clickeableInHeader="true"
+                            OnCommand="updateByID" runat="server" Text="Delete" Style="float: left; position: absolute;
+                            left: 40px;" />
+                        <asp:LinkButton ID="linkAssignedToLine" runat="server" clickeableInHeader="true"
+                            CommandArgument="" OnCommand="takeBOMLine" Style="float: left; position: absolute;
+                            left: 70px;">
                         Take
-                                </asp:LinkButton>
-                            </td>
-                            <td align="center">
-                                <asp:LinkButton ID="deleteByID" class="SetOnClick" runat="server" CommandArgument=""
-                                    OnCommand="deleteByID">
-                    Delete
-                                </asp:LinkButton>
-                            </td>
-                        </tr>
-                    </table>
+                        </asp:LinkButton>
+                        <table cellspacing="0" align="left" style="left: 120px; position: relative;">
+                            <tr>
+                                <td align="center" class="tableCell" style="border: solid 1px; width: 60px; min-width: 60px;
+                                    max-width: 650px;">
+                                    <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 30px; min-width: 30px; max-width: 30px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
+                                </td>
+                                <td class="tableCell" style="width: 130px; min-width: 130px; max-width: 130px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "CommCode")%>
+                                </td>
+                                <td class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "Material")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "Um")%>
+                                </td>
+                                <td align="right" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "Cost")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
+                                </td>
+                                <td align="right" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "Qty")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "EAU")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 140px; min-width: 140px; max-width: 140px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
+                                </td>
+                                <td align="center" class="tableCell" style="width: 120px; min-width: 120px; max-width: 120px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </h3>
+                <div id="accordionContainer">
+                    <asp:Panel ID="panelRFQContainer" runat="server">
+                        There are no RFQs sent for this component.
+                    </asp:Panel>
+                </div>
             </ItemTemplate>
         </asp:Repeater>
     </div>
@@ -300,29 +303,20 @@
 </div>
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
-<asp:Panel ID="panelPopup" runat="server" Visible="false">
-    <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
-        OnCancel_Click="on_cancelEdit_line" />
-
-    <script type="text/javascript">
-        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
-        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-            appendTo: jQuery('form:first'),
-            width: 560, modal: true,
-            dialogClass: "no-close", closeOnEscape: false
-        });
-    </script>
-
-</asp:Panel>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
-//        jQuery("#accordionBOM").accordion({ collapsible: true, heightStyle: "content" });
-//        setOnClicks();
+    jQuery("#accordionBOM").accordion({ collapsible: true,
+    heightStyle: "content",
+    active: false,
+        icons:null });
+        clickeableInHeader();
     });
-    function setOnClicks() {
-        jQuery(".SetOnClick").each(function() {
-            jQuery(this).attr("onclick", jQuery(this).attr("href"));
+    function clickeableInHeader() {
+        jQuery('[clickeableInHeader="true"]').click(function(e) {
+            e.stopPropagation();
+            //Your Code here(For example a call to your function)
         });
     }
 </script>
+

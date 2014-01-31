@@ -158,7 +158,7 @@
         </tr>
     </table>
 </div>
-<div align="center" style="clear: both;width: 1630px;">
+<div align="center" style="clear: both;">
 <br />
     <div style="border: solid; border-color: gray; border-width: 2px;">
     </div>

@@ -79,9 +79,11 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
                 ((Label)e.Item.FindControl("lblStatus")).Text = "For Edit";
             }
-            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Sequence.ToString();
-            ((LinkButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
+            ((ImageButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Sequence.ToString();
+            ((ImageButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
             ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
+
+
         }
     }
     public void takeBOMLine(object sender, CommandEventArgs e)
