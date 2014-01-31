@@ -53,21 +53,25 @@ public partial class sifList : System.Web.UI.UserControl
             ((HtmlAnchor)e.Item.FindControl("aLinkSIF")).HRef = "../SIF/SIF_Form.aspx?sif=" + sif.Id;
             if (sif.BomId > -1)
             {
-
-                ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).HRef = "../BOM/BOM_Form.aspx?bom=" + sif.BomId;
-                
+                ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).HRef = "../BOM/BOM_Form.aspx?bom=" + sif.BomId;
+                ((LinkButton)e.Item.FindControl("linkDeleteBOM")).CommandArgument = sif.BomId.ToString();
+                ((LinkButton)e.Item.FindControl("linkCreateBOM")).Visible = false; 
+                //((LinkButton)e.Item.FindControl("linkCreateBOM")).CommandArgument = sif.Id.ToString(); 
+                //((LinkButton)e.Item.FindControl("deleteBOMByID")).Visible = true;
                 if (sif.TopPartNumber.ToString().Trim() != "")
                 {
-                    ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = sif.TopPartNumber.ToString();
+                    ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).InnerText = sif.TopPartNumber.ToString();
                 }
                 else
                 {
-                    ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "Edit BOM";
+                    ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).InnerText = "Edit BOM";
                 }
             }
             else
             {
-               ((HtmlAnchor)e.Item.FindControl("aLinkBOM")).InnerText = "None";
+                ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).Visible = false;
+                ((LinkButton)e.Item.FindControl("linkDeleteBOM")).Visible = false;
+                ((LinkButton)e.Item.FindControl("linkCreateBOM")).CommandArgument = sif.Id.ToString();
             }
             if (sif.AssignedTo != "")
             {
@@ -100,6 +104,46 @@ public partial class sifList : System.Web.UI.UserControl
         else
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + sif_CRUD.ErrorMessage);
+        }
+    }
+    public void deleteBOMByID(object sender, CommandEventArgs e)
+    {
+        long id = long.Parse((string)e.CommandArgument);
+        if (bom_CRUD.delete(id))
+        {
+            load();
+            uscNotifier.showSuccess("BOM deleted successfully.");
+        }
+        else
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + bom_CRUD.ErrorMessage);
+        }
+    }
+    public void createByBomID(object sender, CommandEventArgs e)
+    {
+        long sifID = long.Parse((string)e.CommandArgument);
+
+
+        SessionObject so;
+        BOM bom = null;
+        
+        bom = new BOM();
+        bom.SifId = sifID;
+        string idGenerated = bom_CRUD.createAndReturnIdGenerated(bom);
+        if (!bom_CRUD.ErrorOccur)
+        {
+            bom.Id = long.Parse(idGenerated);
+            so = new SessionObject();
+            so.Content = bom;
+            so.Status = "forUpdate";
+            Session["bomObject"] = so;
+            load();
+            uscNotifier.showSuccess("BOM created successfully.");
+        }
+        else
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + bom_CRUD.ErrorMessage);
+            return;
         }
     }
     public void takeSIF(object sender, CommandEventArgs e)

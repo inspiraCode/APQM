@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sifList.ascx.cs" Inherits="sifList" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <br />
 <table cellspacing="0">
     <tr>
@@ -34,7 +34,6 @@
                         <th>
                             Revision
                         </th>
-                        
                         <th>
                             Priority
                         </th>
@@ -68,7 +67,7 @@
                     <asp:Label ID="lblCreatedDate" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "CreatedDate")%>'></asp:Label>
                 </td>
                 <td style="text-align: center;">
-                <a id="aLinkSIF" runat="server" href='#'>
+                    <a id="aLinkSIF" runat="server" href='#'>
                         <%# DataBinder.Eval(Container.DataItem, "InquiryNumber")%></a>
                 </td>
                 <td style="text-align: center;">
@@ -87,8 +86,12 @@
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td style="text-align: center;">
-                    <a id="aLinkBOM" runat="server" target="_blank" href='#'>
+                    <a id="aLinkEditBOM" runat="server" target="_blank" href=''>
                         Edit BOM</a>
+                    <asp:LinkButton ID="linkCreateBOM" runat="server" CommandArgument="" CommandName="bomID"
+                        OnCommand="createByBomID"> Create </asp:LinkButton>
+                    <asp:LinkButton ID="linkDeleteBOM" runat="server" CommandArgument="" CommandName="bomID"
+                        OnCommand="deleteBOMByID" OnClientClick="return confirm('Do you wish to delete this BOM?')"> Delete BOM </asp:LinkButton>
                 </td>
                 <td style="text-align: center;">
                     <asp:LinkButton ID="linkAssignedTo" runat="server" CommandArgument="" OnCommand="takeSIF"
@@ -96,7 +99,7 @@
                 </td>
                 <td style="text-align: center;">
                     <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="sifID"
-                        OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')"> Delete </asp:LinkButton>
+                        OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')"> Delete SIF </asp:LinkButton>
                 </td>
             </tr>
         </ItemTemplate>
@@ -125,4 +128,3 @@
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS AssignedTo, 0 AS orderNumber UNION SELECT DISTINCT AssignedTo, 2 AS orderNumber FROM SIFHeader ORDER BY orderNumber">
 </asp:SqlDataSource>
 <uc1:notifier ID="uscNotifier" runat="server" />
-
