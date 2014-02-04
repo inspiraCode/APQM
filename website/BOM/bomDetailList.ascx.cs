@@ -79,11 +79,20 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
                 ((Label)e.Item.FindControl("lblStatus")).Text = "For Edit";
             }
+
             ((ImageButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Sequence.ToString();
             ((ImageButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
             ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
 
+            //rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
 
+            //if (ucRFQListByBOMID != null)
+            //{
+            //    ucRFQListByBOMID.filterByBOMDetailKey(bomDetail.Id);
+            //    ((Panel)e.Item.FindControl("panelRFQContainer")).Controls.Add(ucRFQListByBOMID);
+            //}
+
+            ((rfqList)((Panel)e.Item.FindControl("panelRFQContainer")).Controls[1]).filterByBOMDetailKey(bomDetail.Id);
         }
     }
     public void takeBOMLine(object sender, CommandEventArgs e)
@@ -340,5 +349,22 @@ public partial class bomDetailList : System.Web.UI.UserControl
             return countProcessed * 100 / bomDetail.Count;
 
         return -1;
+    }
+    protected void repeaterBOMDetail_ItemCreated(object sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
+
+            if (ucRFQListByBOMID != null)
+            {   
+                ((Panel)e.Item.FindControl("panelRFQContainer")).Controls.Add(ucRFQListByBOMID);
+                ucRFQListByBOMID.getGridView().RowCommand += new GridViewCommandEventHandler(bomDetailList_RowCommand);
+            }
+        }
+    }
+    protected void bomDetailList_RowCommand(Object sender, GridViewCommandEventArgs e)
+    {
+        loadDetail();
     }
 }

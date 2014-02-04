@@ -3,6 +3,7 @@
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
+<%@ Reference Control="~/RFQ/rfqList.ascx" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -18,10 +19,26 @@
     }
     .tableCell
     {
-        overflow: hidden;
-        border: solid 1px;
-        border-left: 0px;
+        overflow: hidden; /*border: solid 1px;
+        border-left: 0px;*/
         font-size: 10px;
+    }
+    .BOMLine
+    {
+        left: 120px;
+        position: relative;
+        border-radius: 4px;
+        border: solid 1px dimgray;
+        color: black;
+        background-color: darkgray;
+    }
+    #accordion .ui-accordion-content
+    {
+        width: 100%;
+        background-color: #f3f3f3;
+        color: #777;
+        font-size: 10pt;
+        line-height: 16pt;
     }
 </style>
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -211,7 +228,8 @@
 </table>
 <div style="clear: both; top: 30px;">
     <div id="accordionBOM" style="position: relative; width: 1770px;">
-        <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
+        <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound"
+            OnItemCreated="repeaterBOMDetail_ItemCreated">
             <ItemTemplate>
                 <h3 style="height: 20px;">
                     <div>
@@ -226,28 +244,27 @@
                             left: 70px;">
                         Take
                         </asp:LinkButton>
-                        <table cellspacing="0" align="left" style="left: 120px; position: relative;">
-                            <tr>
-                                <td align="center" class="tableCell" style="border: solid 1px; width: 60px; min-width: 60px;
-                                    max-width: 650px;">
+                        <table cellspacing="0" align="left" class="BOMLine">
+                            <tr style="height: 19px;white-space: nowrap;">
+                                <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 650px;">
                                     <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 30px; min-width: 30px; max-width: 30px;">
                                     <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
                                 </td>
-                                <td class="tableCell" style="width: 130px; min-width: 130px; max-width: 130px;">
+                                <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;">
                                     <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
                                     <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;">
                                     <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 80px; min-width: 80px; max-width: 80px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;">
@@ -265,16 +282,16 @@
                                 <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
                                     <%# DataBinder.Eval(Container.DataItem, "VendorQuoteEst")%>
                                 </td>
-                                <td align="right" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
+                                <td align="right" class="tableCell" style="width: 63px; min-width: 63px; max-width: 63px;">
                                     <%# DataBinder.Eval(Container.DataItem, "Qty")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                <td align="right" class="tableCell" style="width: 71px; min-width: 71px; max-width: 71px;">
                                     <%# DataBinder.Eval(Container.DataItem, "EAU")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 140px; min-width: 140px; max-width: 140px;">
+                                <td align="center" class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;">
                                     <%# DataBinder.Eval(Container.DataItem, "PurchasingComments")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
@@ -283,7 +300,7 @@
                                 <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
                                     <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 120px; min-width: 120px; max-width: 120px;">
+                                <td align="center" class="tableCell" style="width: 125px; min-width: 125px; max-width: 125px;">
                                     <%# DataBinder.Eval(Container.DataItem, "PurchasingStatus")%>
                                 </td>
                             </tr>
@@ -292,7 +309,6 @@
                 </h3>
                 <div id="accordionContainer">
                     <asp:Panel ID="panelRFQContainer" runat="server">
-                        There are no RFQs sent for this component.
                     </asp:Panel>
                 </div>
             </ItemTemplate>
@@ -305,11 +321,32 @@
 <uc1:Validator ID="Validator1" runat="server" />
 
 <script type="text/javascript">
+    var act = 0; //active accordion pane
     jQuery(document).ready(function() {
-    jQuery("#accordionBOM").accordion({ collapsible: true,
-    heightStyle: "content",
-    active: false,
-        icons:null });
+        jQuery('.dataTable').dataTable({
+            "bStateSave": true,
+            "bFilter": false,
+            "bLengthChange": false,
+            "bInfo": false,
+            "bPaginate": false
+        }).show();
+
+        jQuery("#accordionBOM").accordion({
+            create: function(event, ui) {
+                if (jQuery.cookie('accordion_index') != null) {
+                    act = parseInt(jQuery.cookie('accordion_index'));
+                }
+            },
+            change: function(event, ui) {
+                jQuery.cookie('accordion_index', null);
+                jQuery.cookie('accordion_index', ui.options.active);
+            },
+            active: parseInt(jQuery.cookie('accordion_index')),
+            collapsible: true,
+            heightStyle: "content",
+            icons: null,
+            clearStyle:true
+        });
         clickeableInHeader();
     });
     function clickeableInHeader() {

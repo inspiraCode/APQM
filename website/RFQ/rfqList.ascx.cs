@@ -12,6 +12,7 @@ public partial class rfqList : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+
     public void setUserFilterWithCookie()
     {
         if (!IsPostBack)
@@ -35,6 +36,18 @@ public partial class rfqList : System.Web.UI.UserControl
         {
             SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE CreatedBy = '" + cboFilterByUser.SelectedValue + "'";
         }
+
+        gridRFQList.DataBind();
+    }
+    public void filterByBOMDetailKey(long bomID)
+    {
+        ConnectionManager connection = new ConnectionManager();
+        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
+        SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE BOMDetailKey = " + bomID;
+        cboFilterByUser.Text = "All";
+        divFilterByUser.Visible = false;
+        
 
         gridRFQList.DataBind();
     }
@@ -253,5 +266,9 @@ public partial class rfqList : System.Web.UI.UserControl
     protected void on_cancel_resendRFQ(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
+    }
+
+    public GridView getGridView(){
+        return gridRFQList;
     }
 }

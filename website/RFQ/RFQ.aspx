@@ -73,6 +73,17 @@
             </div>
             <br />
             <br />
+            <script type="text/javascript">
+                jQuery(document).ready(function() {
+                    jQuery('.dataTable').dataTable({
+                        "bStateSave": true,
+                        "bFilter": true,
+                        "bLengthChange": true,
+                        "bInfo": true,
+                        "bPaginate": true
+                    }).show();
+                });
+            </script>
         </asp:View>
         <asp:View ID="viewRFQCountPerBOMDetail" runat="server">
         <br />

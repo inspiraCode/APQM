@@ -25,6 +25,7 @@
         }
     </style>
     <style type="text/css" title="currentStyle">
+        @import '<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/css/jquery.dataTables_themeroller.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/css/jquery-ui.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/css/jquery.ui.core.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/css/jquery.ui.all.css") %>';
@@ -81,11 +82,17 @@
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/ProgressBar/jquery.ui.progressbar.js") %>'
         type="text/javascript"></script>
-    
+
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Accordion/jquery.ui.accordion.js") %>'
         type="text/javascript"></script>
-        
-        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.jquery.js") %>'
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.jquery.js") %>'
+        type="text/javascript"></script>
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/js/jquery.dataTables.js") %>'
+        type="text/javascript"></script>
+
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Cookie/jquery.cookie.js") %>'
         type="text/javascript"></script>
 
 </head>
@@ -100,7 +107,7 @@
     </noscript>
     <div id="javascriptEnabled" style="visibility: hidden;">
         <form id="form1" runat="server">
-        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed;z-index: 99;">
+        <div id="divHeader" style="top: 0; left: 0; width: 100%; position: fixed; z-index: 99;">
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
@@ -132,7 +139,7 @@
             </asp:ContentPlaceHolder>
         </div>
         </form>
-        <div id="divFooter" style="font-size: 12px;width: 100%;">
+        <div id="divFooter" style="font-size: 12px; width: 100%;">
             <table width="100%" cellspacing="0" style="bottom: 0; left: 0; background-color: white;">
                 <tr>
                     <td colspan="2" align="center" style="background-color: #424242; height: 12px;">
@@ -159,7 +166,7 @@
         makeDropDownsChosen();
     });
 
-    
+
 
     function ieCompatibilityViewCheck() {
         var val = "IE" + ieUserAgent.version;

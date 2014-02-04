@@ -1,8 +1,9 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqList.ascx.cs" Inherits="rfqList" ClassName="RFQList" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <%@ Register Src="resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc2" %>
 <br />
-<table cellspacing="0">
+<div id="divFilterByUser" runat="server">
+<table cellspacing="0" align="left">
     <tr>
         <td align="right">
             Filter Created By:
@@ -17,11 +18,13 @@
 </table>
 <br />
 <br />
+</div>
+
 <asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS CreatedBy, 0 AS orderNumber UNION SELECT DISTINCT CreatedBy, 2 AS orderNumber FROM [viewRFQHeader_ReadAll] ORDER BY orderNumber">
 </asp:SqlDataSource>
 <div align="center">
-    <asp:GridView ID="gridRFQList" runat="server" AutoGenerateColumns="False" class="display"
+    <asp:GridView ID="gridRFQList" convertToDataTable="true" runat="server" AutoGenerateColumns="False" class="display dataTable"
         Style="display: none;" DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey"
         OnPreRender="preRenderGridView" RowStyle-Height="27px" OnRowCommand="gridView_RowCommand"
         OnRowDataBound="gridRFQList_RowDataBound">
@@ -37,19 +40,19 @@
                 ItemStyle-HorizontalAlign="Center" />
             <asp:TemplateField HeaderText="Status" SortExpression="Status" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <a target="_blank" href='<%# "rfqFormMain.aspx?rfq=" + Eval("RFQHeaderKey")%>'>
+                    <a target="_blank" clickeableInHeader="true" href='<%# ResolveUrl("~/RFQ/rfqFormMain.aspx") + "?rfq=" + Eval("RFQHeaderKey")%>'>
                         <%# Eval("Status")%></a>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure you want to set its status to Award?');"
+                    <asp:LinkButton ID="LinkButton1" clickeableInHeader="true" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure you want to set its status to Award?');"
                         CommandName="setAwarded" Text="Set Awarded"></asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="resendRFQByID" runat="server" CausesValidation="false" CommandName="resendRFQ" Text="Re-send">
+                    <asp:LinkButton ID="resendRFQByID" clickeableInHeader="true" runat="server" CausesValidation="false" CommandName="resendRFQ" Text="Re-send">
                     </asp:LinkButton>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -59,7 +62,7 @@
                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="deleteByID" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?\nEvery information related to this RFQ will be deleted as well.');"
+                    <asp:LinkButton ID="deleteByID" clickeableInHeader="true" runat="server" CausesValidation="false" OnClientClick="javascript:return confirm('Are you sure?\nEvery information related to this RFQ will be deleted as well.');"
                         CommandName="deleteRFQ" Text="Delete">
                     </asp:LinkButton>
                 </ItemTemplate>
@@ -69,12 +72,7 @@
     <asp:SqlDataSource ID="SqlDataSource" runat="server" OnInit="on_sqldatasource_Init"
         SelectCommand="SELECT * FROM [viewRFQHeader_ReadAll]"></asp:SqlDataSource>
 </div>
-
-<script type="text/javascript">
-    jQuery(document).ready(function() {
-        jQuery('#<%= this.gridRFQList.ClientID %>').dataTable({ "bStateSave": true }).show();
-    });
-</script>
+<br />
 
 <uc1:notifier ID="uscNotifier" runat="server" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
