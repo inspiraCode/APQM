@@ -228,8 +228,7 @@
 </table>
 <div style="clear: both; top: 30px;">
     <div id="accordionBOM" style="position: relative; width: 1770px;">
-        <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound"
-            OnItemCreated="repeaterBOMDetail_ItemCreated">
+        <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
                 <h3 style="height: 20px;">
                     <div>
@@ -244,8 +243,9 @@
                             left: 70px;">
                         Take
                         </asp:LinkButton>
+                        <asp:HiddenField ID="hiddenBOMDetailKey" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />
                         <table cellspacing="0" align="left" class="BOMLine">
-                            <tr style="height: 19px;white-space: nowrap;">
+                            <tr style="height: 19px; white-space: nowrap;">
                                 <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 650px;">
                                     <asp:Label ID="lblStatus" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Status")%>'></asp:Label>
                                 </td>
@@ -253,7 +253,7 @@
                                     <%# DataBinder.Eval(Container.DataItem, "LinePosition")%>
                                 </td>
                                 <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;">
-                                    <%# DataBinder.Eval(Container.DataItem, "PartNumber") %>
+                                    <asp:Label ID="lblPartNumber" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PartNumber") %>'></asp:Label>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
@@ -308,8 +308,6 @@
                     </div>
                 </h3>
                 <div id="accordionContainer">
-                    <asp:Panel ID="panelRFQContainer" runat="server">
-                    </asp:Panel>
                 </div>
             </ItemTemplate>
         </asp:Repeater>
@@ -321,31 +319,41 @@
 <uc1:Validator ID="Validator1" runat="server" />
 
 <script type="text/javascript">
-    var act = 0; //active accordion pane
     jQuery(document).ready(function() {
-        jQuery('.dataTable').dataTable({
-            "bStateSave": true,
-            "bFilter": false,
-            "bLengthChange": false,
-            "bInfo": false,
-            "bPaginate": false
-        }).show();
-
         jQuery("#accordionBOM").accordion({
-            create: function(event, ui) {
-                if (jQuery.cookie('accordion_index') != null) {
-                    act = parseInt(jQuery.cookie('accordion_index'));
+//            beforeActivate: function(event, ui) {
+//                ui.oldPanel.hide();
+//                ui.newPanel.hide();
+//            },
+            activate: function(event, ui) {
+                var vActive = jQuery(this).accordion("option", "active");
+                if (vActive.toString() !== "false") {
+                    //jQuery('.dataTable').hide();
+                    var bomDetailKey;
+                    bomDetailKey = ui.newHeader.children().children()[3].value;
+                    ui.newPanel.load("http://localhost:7246/APQM/RFQ/RFQList.aspx?bomComponent=" + bomDetailKey + " #clientID_GridRFQList",
+                function(responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success")
+                    //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
+                        jQuery('.dataTable').dataTable({
+                            "bDestroy": true,
+                            "bStateSave": true,
+                            "bFilter": false,
+                            "bLengthChange": false,
+                            "bInfo": false,
+                            "bPaginate": false
+                        }).show();
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+                    ui.newPanel.show();
                 }
             },
-            change: function(event, ui) {
-                jQuery.cookie('accordion_index', null);
-                jQuery.cookie('accordion_index', ui.options.active);
-            },
-            active: parseInt(jQuery.cookie('accordion_index')),
+            active: false,
             collapsible: true,
             heightStyle: "content",
             icons: null,
-            clearStyle:true
+            clearStyle: true
         });
         clickeableInHeader();
     });

@@ -64,9 +64,8 @@ public class bomAccessCRUD
                 bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
             }
             catch (Exception ex)
-            { 
-                bom.ImportComment = "BOM Line with incorrect field formatted: 'PartCost', " 
-                    + "please review it and export it agian if necessary. Error: " + ex.Message; 
+            {
+                bom.PartCost = 0;
             }
             try
             {

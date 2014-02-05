@@ -67,7 +67,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             BOMDetail bomDetail = (BOMDetail)e.Item.DataItem;
             if (bomDetail.PartNumber.Trim() == "")
             {
-                ((LinkButton)e.Item.FindControl("updateByID")).Text = "(Empty)";
+                ((Label)e.Item.FindControl("lblPartNumber")).Text = "(Empty)";
             }
             if (bomDetail.User != "")
             {
@@ -91,8 +91,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
             //    ucRFQListByBOMID.filterByBOMDetailKey(bomDetail.Id);
             //    ((Panel)e.Item.FindControl("panelRFQContainer")).Controls.Add(ucRFQListByBOMID);
             //}
-
-            ((rfqList)((Panel)e.Item.FindControl("panelRFQContainer")).Controls[1]).filterByBOMDetailKey(bomDetail.Id);
         }
     }
     public void takeBOMLine(object sender, CommandEventArgs e)
@@ -350,21 +348,21 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
         return -1;
     }
-    protected void repeaterBOMDetail_ItemCreated(object sender, RepeaterItemEventArgs e)
-    {
-        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-        {
-            rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
+    //protected void repeaterBOMDetail_ItemCreated(object sender, RepeaterItemEventArgs e)
+    //{
+    //    if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+    //    {
+    //        rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
 
-            if (ucRFQListByBOMID != null)
-            {   
-                ((Panel)e.Item.FindControl("panelRFQContainer")).Controls.Add(ucRFQListByBOMID);
-                ucRFQListByBOMID.getGridView().RowCommand += new GridViewCommandEventHandler(bomDetailList_RowCommand);
-            }
-        }
-    }
-    protected void bomDetailList_RowCommand(Object sender, GridViewCommandEventArgs e)
-    {
-        loadDetail();
-    }
+    //        if (ucRFQListByBOMID != null)
+    //        {   
+    //            ((Panel)e.Item.FindControl("panelRFQContainer")).Controls.Add(ucRFQListByBOMID);
+    //            ucRFQListByBOMID.getGridView().RowCommand += new GridViewCommandEventHandler(bomDetailList_RowCommand);
+    //        }
+    //    }
+    //}
+    //protected void bomDetailList_RowCommand(Object sender, GridViewCommandEventArgs e)
+    //{
+    //    loadDetail();
+    //}
 }

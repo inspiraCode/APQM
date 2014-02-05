@@ -23,7 +23,7 @@
 <asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS CreatedBy, 0 AS orderNumber UNION SELECT DISTINCT CreatedBy, 2 AS orderNumber FROM [viewRFQHeader_ReadAll] ORDER BY orderNumber">
 </asp:SqlDataSource>
-<div align="center">
+<div id="clientID_GridRFQList" align="center">
     <asp:GridView ID="gridRFQList" convertToDataTable="true" runat="server" AutoGenerateColumns="False" class="display dataTable"
         Style="display: none;" DataSourceID="SqlDataSource" DataKeyNames="RFQHeaderKey"
         OnPreRender="preRenderGridView" RowStyle-Height="27px" OnRowCommand="gridView_RowCommand"
