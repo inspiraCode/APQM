@@ -1,123 +1,84 @@
 USE [APQM_DB]
 GO
-/****** Object:  Role [aspnet_Membership_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Membership_BasicAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Membership_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Membership_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Membership_FullAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Membership_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Membership_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Membership_ReportingAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Membership_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Personalization_BasicAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Personalization_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Personalization_FullAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Personalization_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Personalization_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Personalization_ReportingAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Personalization_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Profile_BasicAccess]    Script Date: 02/07/2014 16:42:07 ******/
 CREATE ROLE [aspnet_Profile_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Profile_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_Profile_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Profile_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Profile_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_Profile_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_BasicAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Roles_BasicAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_Roles_BasicAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_FullAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Roles_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_Roles_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_Roles_ReportingAccess]    Script Date: 01/09/2014 14:36:59 ******/
+/****** Object:  Role [aspnet_Roles_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_Roles_ReportingAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Role [aspnet_WebEvent_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Role [aspnet_WebEvent_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE ROLE [aspnet_WebEvent_FullAccess] AUTHORIZATION [dbo]
 GO
-/****** Object:  Schema [aspnet_Membership_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Membership_BasicAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Membership_BasicAccess] AUTHORIZATION [aspnet_Membership_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Membership_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Membership_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Membership_FullAccess] AUTHORIZATION [aspnet_Membership_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Membership_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Membership_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Membership_ReportingAccess] AUTHORIZATION [aspnet_Membership_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Personalization_BasicAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Personalization_BasicAccess] AUTHORIZATION [aspnet_Personalization_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Personalization_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Personalization_FullAccess] AUTHORIZATION [aspnet_Personalization_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Personalization_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Personalization_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Personalization_ReportingAccess] AUTHORIZATION [aspnet_Personalization_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Profile_BasicAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Profile_BasicAccess] AUTHORIZATION [aspnet_Profile_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Profile_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Profile_FullAccess] AUTHORIZATION [aspnet_Profile_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Profile_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Profile_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Profile_ReportingAccess] AUTHORIZATION [aspnet_Profile_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_BasicAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Roles_BasicAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Roles_BasicAccess] AUTHORIZATION [aspnet_Roles_BasicAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Roles_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Roles_FullAccess] AUTHORIZATION [aspnet_Roles_FullAccess]
 GO
-/****** Object:  Schema [aspnet_Roles_ReportingAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_Roles_ReportingAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_Roles_ReportingAccess] AUTHORIZATION [aspnet_Roles_ReportingAccess]
 GO
-/****** Object:  Schema [aspnet_WebEvent_FullAccess]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  Schema [aspnet_WebEvent_FullAccess]    Script Date: 02/07/2014 16:42:08 ******/
 CREATE SCHEMA [aspnet_WebEvent_FullAccess] AUTHORIZATION [aspnet_WebEvent_FullAccess]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 01/09/2014 14:37:56 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[RFQSummary_EditSummary]
-	-- Add the parameters for the stored procedure here
-	 @RFQSummaryKey INT
-	,@RFQHeaderKey INT
-	,@BCost FLOAT
-	,@CCost FLOAT
-	,@EAV FLOAT
-	,@Tooling FLOAT
-	,@Cavitation FLOAT
-	,@Material NVARCHAR(100)
-	,@Sequence INT
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE RFQSummary
-SET RFQHeaderKey = @RFQHeaderKey
-, BCost = @BCost
-, CCost = @CCost
-, EAV = @EAV
-, Tooling = @Tooling
-, Cavitation = @Cavitation
-, Material = @Material
-, Sequence = @Sequence
-
-WHERE (RFQSummaryKey = @RFQSummaryKey)
-
-END
-GO
-/****** Object:  Table [dbo].[aspnet_WebEvent_Events]    Script Date: 01/09/2014 14:38:53 ******/
+/****** Object:  Table [dbo].[aspnet_WebEvent_Events]    Script Date: 02/07/2014 16:43:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +109,7 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-/****** Object:  Table [dbo].[RFQNumber]    Script Date: 01/09/2014 14:39:45 ******/
+/****** Object:  Table [dbo].[RFQNumber]    Script Date: 02/07/2014 16:44:52 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -170,7 +131,7 @@ CREATE TABLE [dbo].[RFQNumber](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 01/09/2014 14:37:48 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_NewEAV]    Script Date: 02/07/2014 16:42:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -202,7 +163,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 01/09/2014 14:37:48 ******/
+/****** Object:  StoredProcedure [dbo].[RFQEAV_EditEAV]    Script Date: 02/07/2014 16:42:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -232,7 +193,7 @@ WHERE EAVKey=@EAVKey
 
 END
 GO
-/****** Object:  Table [dbo].[ItemMaster]    Script Date: 01/09/2014 14:39:15 ******/
+/****** Object:  Table [dbo].[ItemMaster]    Script Date: 02/07/2014 16:44:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -255,7 +216,13 @@ CREATE TABLE [dbo].[ItemMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 01/09/2014 14:40:10 ******/
+CREATE UNIQUE NONCLUSTERED INDEX [IX_PartNumber] ON [dbo].[ItemMaster] 
+(
+	[PartNumber] ASC,
+	[CommCode] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SupplierMaster]    Script Date: 02/07/2014 16:45:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -280,7 +247,7 @@ CREATE TABLE [dbo].[SupplierMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 01/09/2014 14:37:37 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_EditMarket]    Script Date: 02/07/2014 16:42:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -303,7 +270,7 @@ UPDATE [APQM_DB].[dbo].[MarketSector]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 01/09/2014 14:37:38 ******/
+/****** Object:  StoredProcedure [dbo].[MarketSector_NewMarket]    Script Date: 02/07/2014 16:42:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -328,7 +295,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  Table [dbo].[MarketSector]    Script Date: 01/09/2014 14:39:16 ******/
+/****** Object:  Table [dbo].[MarketSector]    Script Date: 02/07/2014 16:44:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -346,7 +313,7 @@ CREATE TABLE [dbo].[MarketSector](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RestorePermissions]    Script Date: 01/09/2014 14:37:23 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RestorePermissions]    Script Date: 02/07/2014 16:42:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -377,7 +344,7 @@ BEGIN
     DEALLOCATE c1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RemoveAllRoleMembers]    Script Date: 01/09/2014 14:37:23 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Setup_RemoveAllRoleMembers]    Script Date: 02/07/2014 16:42:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -416,7 +383,7 @@ BEGIN
     DEALLOCATE c1
 END
 GO
-/****** Object:  Table [dbo].[aspnet_Applications]    Script Date: 01/09/2014 14:38:17 ******/
+/****** Object:  Table [dbo].[aspnet_Applications]    Script Date: 02/07/2014 16:43:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -440,7 +407,12 @@ UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_SchemaVersions]    Script Date: 01/09/2014 14:38:41 ******/
+CREATE CLUSTERED INDEX [aspnet_Applications_Index] ON [dbo].[aspnet_Applications] 
+(
+	[LoweredApplicationName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_SchemaVersions]    Script Date: 02/07/2014 16:43:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -456,7 +428,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 01/09/2014 14:38:13 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_NewIndustry]    Script Date: 02/07/2014 16:43:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -485,7 +457,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [IndustriesSuplied]=@Industrie
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 01/09/2014 14:38:12 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyIndustriesSupplied_EditIndustry]    Script Date: 02/07/2014 16:43:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -508,7 +480,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyIndustriesSupplied]
  WHERE SupplierIndustriesSuppliedKey=@SupplierIndustriesSuppliedKey
 END
 GO
-/****** Object:  Table [dbo].[TokenMaster]    Script Date: 01/09/2014 14:40:32 ******/
+/****** Object:  Table [dbo].[TokenMaster]    Script Date: 02/07/2014 16:45:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -526,7 +498,7 @@ CREATE TABLE [dbo].[TokenMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 01/09/2014 14:39:10 ******/
+/****** Object:  Table [dbo].[CustomerMaster]    Script Date: 02/07/2014 16:44:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -544,7 +516,7 @@ CREATE TABLE [dbo].[CustomerMaster](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 01/09/2014 14:40:35 ******/
+/****** Object:  View [dbo].[viewRFQDetail_ReadAll]    Script Date: 02/07/2014 16:45:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -666,7 +638,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQDetail_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 01/09/2014 14:40:34 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItemAux]    Script Date: 02/07/2014 16:45:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -847,7 +819,22 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItemAux'
 GO
-/****** Object:  Table [dbo].[RFQHeader]    Script Date: 01/09/2014 14:39:41 ******/
+/****** Object:  Table [dbo].[CommodityMaster]    Script Date: 02/07/2014 16:44:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[CommodityMaster](
+	[CommodityKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[CommodityCode] [nvarchar](50) NOT NULL,
+	[Commodity] [nvarchar](70) NOT NULL,
+ CONSTRAINT [PK_Commodity] PRIMARY KEY CLUSTERED 
+(
+	[CommodityKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQHeader]    Script Date: 02/07/2014 16:44:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -891,13 +878,15 @@ CREATE TABLE [dbo].[RFQHeader](
 	[LeadTimePPAP] [nvarchar](50) NOT NULL,
 	[AttachmentsFolderVendor] [nvarchar](50) NOT NULL,
 	[CreatedBy] [nvarchar](256) NOT NULL,
+	[Cavitation] [nvarchar](50) NOT NULL,
+	[Material] [nvarchar](150) NOT NULL,
  CONSTRAINT [PK_RFQHeader] PRIMARY KEY CLUSTERED 
 (
 	[RFQHeaderKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMDetailVolume]    Script Date: 01/09/2014 14:39:05 ******/
+/****** Object:  Table [dbo].[BOMDetailVolume]    Script Date: 02/07/2014 16:44:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -905,14 +894,14 @@ GO
 CREATE TABLE [dbo].[BOMDetailVolume](
 	[BOMDetailVolumeKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
 	[BOMDetailKey] [numeric](18, 0) NOT NULL,
-	[Volume] [float] NOT NULL,
+	[Volume] [numeric](18, 0) NOT NULL,
  CONSTRAINT [PK_BOMDetailVolume] PRIMARY KEY CLUSTERED 
 (
 	[BOMDetailVolumeKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMDetail]    Script Date: 01/09/2014 14:39:03 ******/
+/****** Object:  Table [dbo].[BOMDetail]    Script Date: 02/07/2014 16:44:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -948,7 +937,7 @@ CREATE TABLE [dbo].[BOMDetail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 01/09/2014 14:40:29 ******/
+/****** Object:  Table [dbo].[SupplierSuvey]    Script Date: 02/07/2014 16:45:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -982,7 +971,22 @@ CREATE TABLE [dbo].[SupplierSuvey](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFHeader]    Script Date: 01/09/2014 14:40:04 ******/
+/****** Object:  Table [dbo].[Supplier_Commodity]    Script Date: 02/07/2014 16:45:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Supplier_Commodity](
+	[SupplierCommodityKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[SupplierKey] [numeric](18, 0) NOT NULL,
+	[CommodityKey] [numeric](18, 0) NOT NULL,
+ CONSTRAINT [PK_Supplier_Commodity] PRIMARY KEY CLUSTERED 
+(
+	[SupplierCommodityKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[SIFHeader]    Script Date: 02/07/2014 16:45:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1017,13 +1021,14 @@ CREATE TABLE [dbo].[SIFHeader](
 	[SalesDBID] [numeric](18, 0) NOT NULL,
 	[MarketSector] [numeric](18, 0) NOT NULL,
 	[AssignedTo] [nvarchar](256) NOT NULL,
+	[CreatedDate] [datetime] NULL CONSTRAINT [DF_SIFHeader_CreatedDate]  DEFAULT (getdate()),
  CONSTRAINT [PK_SIFHeader] PRIMARY KEY CLUSTERED 
 (
 	[SIFHeaderKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_Users]    Script Date: 01/09/2014 14:38:45 ******/
+/****** Object:  Table [dbo].[aspnet_Users]    Script Date: 02/07/2014 16:43:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1042,7 +1047,19 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_Membership]    Script Date: 01/09/2014 14:38:26 ******/
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Users_Index] ON [dbo].[aspnet_Users] 
+(
+	[ApplicationId] ASC,
+	[LoweredUserName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE NONCLUSTERED INDEX [aspnet_Users_Index2] ON [dbo].[aspnet_Users] 
+(
+	[ApplicationId] ASC,
+	[LastActivityDate] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_Membership]    Script Date: 02/07/2014 16:43:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1075,23 +1092,13 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_Paths]    Script Date: 01/09/2014 14:38:29 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[aspnet_Paths](
-	[ApplicationId] [uniqueidentifier] NOT NULL,
-	[PathId] [uniqueidentifier] NOT NULL DEFAULT (newid()),
-	[Path] [nvarchar](256) NOT NULL,
-	[LoweredPath] [nvarchar](256) NOT NULL,
-PRIMARY KEY NONCLUSTERED 
+CREATE CLUSTERED INDEX [aspnet_Membership_index] ON [dbo].[aspnet_Membership] 
 (
-	[PathId] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+	[ApplicationId] ASC,
+	[LoweredEmail] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_Roles]    Script Date: 01/09/2014 14:38:39 ******/
+/****** Object:  Table [dbo].[aspnet_Roles]    Script Date: 02/07/2014 16:43:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1108,7 +1115,35 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_PersonalizationPerUser]    Script Date: 01/09/2014 14:38:33 ******/
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Roles_index1] ON [dbo].[aspnet_Roles] 
+(
+	[ApplicationId] ASC,
+	[LoweredRoleName] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_Paths]    Script Date: 02/07/2014 16:43:32 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[aspnet_Paths](
+	[ApplicationId] [uniqueidentifier] NOT NULL,
+	[PathId] [uniqueidentifier] NOT NULL DEFAULT (newid()),
+	[Path] [nvarchar](256) NOT NULL,
+	[LoweredPath] [nvarchar](256) NOT NULL,
+PRIMARY KEY NONCLUSTERED 
+(
+	[PathId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+CREATE UNIQUE CLUSTERED INDEX [aspnet_Paths_index] ON [dbo].[aspnet_Paths] 
+(
+	[ApplicationId] ASC,
+	[LoweredPath] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_PersonalizationPerUser]    Script Date: 02/07/2014 16:43:38 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1125,7 +1160,19 @@ PRIMARY KEY NONCLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_UsersInRoles]    Script Date: 01/09/2014 14:38:47 ******/
+CREATE UNIQUE CLUSTERED INDEX [aspnet_PersonalizationPerUser_index1] ON [dbo].[aspnet_PersonalizationPerUser] 
+(
+	[PathId] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [aspnet_PersonalizationPerUser_ncindex2] ON [dbo].[aspnet_PersonalizationPerUser] 
+(
+	[UserId] ASC,
+	[PathId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_UsersInRoles]    Script Date: 02/07/2014 16:43:51 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1140,7 +1187,12 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_Profile]    Script Date: 01/09/2014 14:38:36 ******/
+CREATE NONCLUSTERED INDEX [aspnet_UsersInRoles_index] ON [dbo].[aspnet_UsersInRoles] 
+(
+	[RoleId] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[aspnet_Profile]    Script Date: 02/07/2014 16:43:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1157,7 +1209,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 01/09/2014 14:40:18 ******/
+/****** Object:  Table [dbo].[SupplierSurveyForecastSales]    Script Date: 02/07/2014 16:45:27 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1173,7 +1225,7 @@ CREATE TABLE [dbo].[SupplierSurveyForecastSales](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 01/09/2014 14:40:16 ******/
+/****** Object:  Table [dbo].[SupplierSurveyContacts]    Script Date: 02/07/2014 16:45:25 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1194,7 +1246,7 @@ CREATE TABLE [dbo].[SupplierSurveyContacts](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 01/09/2014 14:40:12 ******/
+/****** Object:  Table [dbo].[SupplierSurveyCertification]    Script Date: 02/07/2014 16:45:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1209,7 +1261,7 @@ CREATE TABLE [dbo].[SupplierSurveyCertification](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 01/09/2014 14:40:20 ******/
+/****** Object:  Table [dbo].[SupplierSurveyIndustriesSupplied]    Script Date: 02/07/2014 16:45:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1224,7 +1276,7 @@ CREATE TABLE [dbo].[SupplierSurveyIndustriesSupplied](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[BOMHeader]    Script Date: 01/09/2014 14:39:08 ******/
+/****** Object:  Table [dbo].[BOMHeader]    Script Date: 02/07/2014 16:44:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1242,7 +1294,7 @@ CREATE TABLE [dbo].[BOMHeader](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[SIFDetail]    Script Date: 01/09/2014 14:39:52 ******/
+/****** Object:  Table [dbo].[SIFDetail]    Script Date: 02/07/2014 16:44:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1261,60 +1313,22 @@ CREATE TABLE [dbo].[SIFDetail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQEAV]    Script Date: 01/09/2014 14:39:26 ******/
+/****** Object:  Table [dbo].[aspnet_PersonalizationAllUsers]    Script Date: 02/07/2014 16:43:34 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[RFQEAV](
-	[EAVKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[Year] [nvarchar](50) NOT NULL,
-	[Volume] [float] NOT NULL,
- CONSTRAINT [PK_RFQEAV] PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[aspnet_PersonalizationAllUsers](
+	[PathId] [uniqueidentifier] NOT NULL,
+	[PageSettings] [image] NOT NULL,
+	[LastUpdatedDate] [datetime] NOT NULL,
+PRIMARY KEY CLUSTERED 
 (
-	[EAVKey] ASC
+	[PathId] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[RFQACR]    Script Date: 01/09/2014 14:39:18 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQACR](
-	[RFQACRKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[Year] [nvarchar](4) NOT NULL,
-	[Porcentage] [float] NOT NULL,
- CONSTRAINT [PK_RFQACR] PRIMARY KEY CLUSTERED 
-(
-	[RFQACRKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[RFQSummary]    Script Date: 01/09/2014 14:39:49 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[RFQSummary](
-	[RFQSummaryKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
-	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
-	[BCost] [float] NOT NULL,
-	[CCost] [float] NOT NULL,
-	[EAV] [float] NOT NULL,
-	[Tooling] [float] NOT NULL,
-	[Cavitation] [float] NOT NULL,
-	[Material] [nvarchar](100) NOT NULL,
-	[Sequence] [int] NOT NULL,
- CONSTRAINT [PK_RFQSummary] PRIMARY KEY CLUSTERED 
-(
-	[RFQSummaryKey] ASC
-)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[RFQDetail]    Script Date: 01/09/2014 14:39:24 ******/
+/****** Object:  Table [dbo].[RFQDetail]    Script Date: 02/07/2014 16:44:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1338,22 +1352,57 @@ CREATE TABLE [dbo].[RFQDetail](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[aspnet_PersonalizationAllUsers]    Script Date: 01/09/2014 14:38:30 ******/
+/****** Object:  Table [dbo].[RFQEAV]    Script Date: 02/07/2014 16:44:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[aspnet_PersonalizationAllUsers](
-	[PathId] [uniqueidentifier] NOT NULL,
-	[PageSettings] [image] NOT NULL,
-	[LastUpdatedDate] [datetime] NOT NULL,
-PRIMARY KEY CLUSTERED 
+CREATE TABLE [dbo].[RFQEAV](
+	[EAVKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[Year] [nvarchar](50) NOT NULL,
+	[Volume] [float] NOT NULL,
+ CONSTRAINT [PK_RFQEAV] PRIMARY KEY CLUSTERED 
 (
-	[PathId] ASC
+	[EAVKey] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
-) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+) ON [PRIMARY]
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 01/09/2014 14:37:58 ******/
+/****** Object:  Table [dbo].[RFQACR]    Script Date: 02/07/2014 16:44:25 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQACR](
+	[RFQACRKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[Year] [nvarchar](4) NOT NULL,
+	[Porcentage] [float] NOT NULL,
+ CONSTRAINT [PK_RFQACR] PRIMARY KEY CLUSTERED 
+(
+	[RFQACRKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[RFQSummary]    Script Date: 02/07/2014 16:44:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[RFQSummary](
+	[RFQSummaryKey] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[RFQHeaderKey] [numeric](18, 0) NOT NULL,
+	[BCost] [float] NOT NULL,
+	[CCost] [float] NOT NULL,
+	[EAV] [float] NOT NULL,
+	[Sequence] [int] NOT NULL,
+ CONSTRAINT [PK_RFQSummary] PRIMARY KEY CLUSTERED 
+(
+	[RFQSummaryKey] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  StoredProcedure [dbo].[SIFDetail_NewDetail]    Script Date: 02/07/2014 16:43:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1404,7 +1453,7 @@ AND [AnnualRevenue]=@AnnualRevenue
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 01/09/2014 14:37:57 ******/
+/****** Object:  StoredProcedure [dbo].[SIFDetail_EditDetail]    Script Date: 02/07/2014 16:43:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1438,7 +1487,7 @@ UPDATE [APQM_DB].[dbo].[SIFDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_WebEvent_LogEvent]    Script Date: 01/09/2014 14:37:28 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_WebEvent_LogEvent]    Script Date: 02/07/2014 16:42:37 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -1500,7 +1549,7 @@ BEGIN
     )
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 01/09/2014 14:37:39 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_NewACR]    Script Date: 02/07/2014 16:42:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1534,7 +1583,7 @@ WHERE     (RFQHeaderKey = @RFQHeaderKey) AND ([Year] = @Year) AND (Porcentage = 
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 01/09/2014 14:37:38 ******/
+/****** Object:  StoredProcedure [dbo].[RFQACR_EditACR]    Script Date: 02/07/2014 16:42:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1562,7 +1611,40 @@ UPDATE [APQM_DB].[dbo].[RFQACR]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 01/09/2014 14:37:56 ******/
+/****** Object:  StoredProcedure [dbo].[RFQSummary_EditSummary]    Script Date: 02/07/2014 16:42:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RFQSummary_EditSummary]
+	-- Add the parameters for the stored procedure here
+	 @RFQSummaryKey INT
+	,@RFQHeaderKey INT
+	,@BCost FLOAT
+	,@CCost FLOAT
+	,@EAV FLOAT
+	,@Sequence INT
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE RFQSummary
+SET RFQHeaderKey = @RFQHeaderKey
+, BCost = @BCost
+, CCost = @CCost
+, EAV = @EAV
+, Sequence = @Sequence
+
+WHERE (RFQSummaryKey = @RFQSummaryKey)
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[RFQSummary_NewSummary]    Script Date: 02/07/2014 16:42:59 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1573,9 +1655,6 @@ CREATE PROCEDURE [dbo].[RFQSummary_NewSummary]
 	,@BCost FLOAT
 	,@CCost FLOAT
 	,@EAV FLOAT
-	,@Tooling FLOAT
-	,@Cavitation FLOAT
-	,@Material NVARCHAR(100)
 	,@Sequence INT
 
 AS
@@ -1591,25 +1670,19 @@ INSERT INTO [APQM_DB].[dbo].[RFQSummary]
            ,[BCost]
            ,[CCost]
            ,[EAV]
-           ,[Tooling]
-           ,[Cavitation]
-		   ,[Material]
-		   ,[Sequence])
+           ,[Sequence])
      VALUES
            (@RFQHeaderKey
            ,@BCost
            ,@CCost
            ,@EAV
-           ,@Tooling
-           ,@Cavitation
-		   ,@Material
-		   ,@Sequence)
+           ,@Sequence)
 
 Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 01/09/2014 14:37:55 ******/
+/****** Object:  StoredProcedure [dbo].[RFQNumber_NewNumber]    Script Date: 02/07/2014 16:42:58 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1641,7 +1714,7 @@ INSERT INTO [APQM_DB].[dbo].[RFQNumber]
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 01/09/2014 14:40:36 ******/
+/****** Object:  View [dbo].[viewRFQNumber]    Script Date: 02/07/2014 16:45:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1786,7 +1859,211 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQNumber'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 01/09/2014 14:37:30 ******/
+/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 02/07/2014 16:45:45 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewSalesReportDetail]
+AS
+SELECT     dbo.ItemMaster.PartNumber, dbo.BOMDetail.CapsonicPN, dbo.BOMDetail.CustomerPN, dbo.BOMDetail.ManufacturePN, dbo.BOMDetail.SupplierPN, 
+                      dbo.BOMDetail.CommCode, dbo.BOMDetail.Material, dbo.BOMDetail.VendorQuoteEst, dbo.BOMDetail.Qty, dbo.RFQHeader.EstimatedAnnualVolume AS EAU, 
+                      dbo.RFQHeader.MOQ, dbo.SupplierMaster.SupplierName, dbo.BOMDetail.CapComAssm, dbo.BOMDetail.PurchasingComments, dbo.RFQHeader.ToolingDetail, 
+                      dbo.RFQHeader.ProductionToolingLeadTime, dbo.RFQHeader.ProductionLeadTime, dbo.BOMDetail.BOMHeaderKey, dbo.BOMDetail.LinePosition, 
+                      dbo.BOMDetail.Status, CASE WHEN dbo.BOMDetail.Status = 'No Quote' THEN 'NO QUOTE' ELSE dbo.RFQHeader.Status END AS RFQStatus, 
+                      dbo.viewRFQ_Summary.MaterialTotal + dbo.viewRFQ_Summary.ServiceTotal + dbo.viewRFQ_Summary.ScrapTotal + dbo.viewRFQ_Summary.LaborTotal + dbo.viewRFQ_Summary.BurdenTotal
+                       + dbo.viewRFQ_Summary.SG_A_Profit + dbo.viewRFQ_Summary.PackingPerUnit + dbo.viewRFQ_Summary.AssemblyCostPerUnit AS TotalACost, 
+                      dbo.RFQHeader.LeadTimePPAP, dbo.RFQHeader.ProductionTooling, dbo.BOMDetail.[User], dbo.BOMDetail.BOMDetailKey
+FROM         dbo.SupplierMaster INNER JOIN
+                      dbo.RFQHeader ON dbo.SupplierMaster.SupplierMasterKey = dbo.RFQHeader.SupplierMasterKey INNER JOIN
+                      dbo.viewRFQ_Summary ON dbo.RFQHeader.RFQHeaderKey = dbo.viewRFQ_Summary.RFQHeaderKey RIGHT OUTER JOIN
+                      dbo.BOMDetail INNER JOIN
+                      dbo.ItemMaster ON dbo.BOMDetail.ItemMasterKey = dbo.ItemMaster.ItemMasterKey ON dbo.RFQHeader.BOMDetailKey = dbo.BOMDetail.BOMDetailKey
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[41] 4[11] 2[36] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1[79] 4[16] 3) )"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1[52] 2[21] 3) )"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1[32] 3) )"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[12] 4[44] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1[44] 4) )"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[53] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 8
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "SupplierMaster"
+            Begin Extent = 
+               Top = 0
+               Left = 1094
+               Bottom = 219
+               Right = 1292
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "RFQHeader"
+            Begin Extent = 
+               Top = 0
+               Left = 453
+               Bottom = 567
+               Right = 672
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "viewRFQ_Summary"
+            Begin Extent = 
+               Top = 89
+               Left = 794
+               Bottom = 499
+               Right = 997
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "BOMDetail"
+            Begin Extent = 
+               Top = 16
+               Left = 0
+               Bottom = 442
+               Right = 191
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+         Begin Table = "ItemMaster"
+            Begin Extent = 
+               Top = 221
+               Left = 222
+               Bottom = 466
+               Right = 385
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      PaneHidden = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 27
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 15' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'00
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 2445
+         Alias = 720
+         Table = 1260
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
+GO
+/****** Object:  StoredProcedure [dbo].[BOMDetail_EditDetail]    Script Date: 02/07/2014 16:42:39 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1856,7 +2133,7 @@ UPDATE [APQM_DB].[dbo].[BOMDetail]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 01/09/2014 14:37:32 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetail_NewDetail]    Script Date: 02/07/2014 16:42:41 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1949,7 +2226,7 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 01/09/2014 14:40:35 ******/
+/****** Object:  View [dbo].[viewRFQCountPerBOMDetail]    Script Date: 02/07/2014 16:45:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2169,509 +2446,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountPerBOMDetail'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_NewVolume]    Script Date: 01/09/2014 14:37:33 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[BOMDetailVolume_NewVolume]
-	-- Add the parameters for the stored procedure here
-	 @BOMDetailKey numeric(18,0)
-	,@Volume float 
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-
-INSERT INTO [APQM_DB].[dbo].[BOMDetailVolume]
-           ([BOMDetailKey]
-           ,[Volume])
-     VALUES
-           (@BOMDetailKey
-			,@Volume)
-
-Select @@Identity
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_EditVolume]    Script Date: 01/09/2014 14:37:33 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[BOMDetailVolume_EditVolume]
-	-- Add the parameters for the stored procedure here
-	 @BOMDetailVolumeKey numeric(18,0)
-	,@BOMDetailKey numeric(18,0)
-	,@Volume float 
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-
-UPDATE [APQM_DB].[dbo].[BOMDetailVolume]
-   SET [BOMDetailKey] = @BOMDetailKey
-      ,[Volume] = @Volume
- WHERE BOMDetailVolumeKey = @BOMDetailVolumeKey
-
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 01/09/2014 14:37:37 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[ItemMaster_NewItem]
-	-- Add the parameters for the stored procedure here
-	@PartNumber NVARCHAR(50)
-	,@PartDescription NVARCHAR(150)
-	,@UM NVARCHAR(20)
-	,@PartMaterial NVARCHAR(150)
-	,@Cost FLOAT
-	,@CapsonicPN nvarchar(50)
-	,@CustomerPN nvarchar(50)
-	,@ManufacturePN nvarchar(50)
-	,@SupplierPN nvarchar(50)
-	,@CommCode nvarchar(50)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-	INSERT INTO [APQM_DB].[dbo].[ItemMaster]
-           ([PartNumber]
-           ,[Description]
-           ,[UM]
-           ,[Material]
-		   ,[Cost]
-		   ,[CapsonicPN]
-		   ,[CustomerPN]
-		   ,[ManufacturePN]
-		   ,[SupplierPN]
-		   ,[CommCode])
-     VALUES
-           (@PartNumber
-           ,@PartDescription
-           ,@UM
-           ,@PartMaterial
-           ,@Cost
-           ,@CapsonicPN
-           ,@CustomerPN
-           ,@ManufacturePN
-           ,@SupplierPN
-           ,@CommCode)
-
-
-Select @@Identity
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 01/09/2014 14:37:36 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[ItemMaster_EditItem]
-	-- Add the parameters for the stored procedure here
-	@PartNumber NVARCHAR(50)
-	,@PartDescription NVARCHAR(150)
-	,@UM NVARCHAR(20)
-	,@PartMaterial NVARCHAR(150)
-	,@ItemMasterKey numeric(18,0)
-	,@Cost FLOAT
-	,@CapsonicPN nvarchar(50)
-	,@CustomerPN nvarchar(50)
-	,@ManufacturePN nvarchar(50)
-	,@SupplierPN nvarchar(50)
-	,@CommCode nvarchar(50)
-	
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE [APQM_DB].[dbo].[ItemMaster]
-   SET [Description] = @PartDescription
-      ,[UM] = @UM
-      ,[Material] = @PartMaterial
-	  ,[PartNumber] = @PartNumber
-	  ,[Cost] = @Cost
-	  ,[CapsonicPN] = @CapsonicPN
-	  ,[CustomerPN] = @CustomerPN
-	  ,[ManufacturePN] = @ManufacturePN
-	  ,[SupplierPN] = @SupplierPN
-	  ,[CommCode] = @CommCode
-	  
- WHERE [ItemMasterKey] = @ItemMasterKey
-
-END
-GO
-/****** Object:  View [dbo].[viewSalesReportDetail]    Script Date: 01/09/2014 14:40:37 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewSalesReportDetail]
-AS
-SELECT     dbo.ItemMaster.PartNumber, dbo.BOMDetail.CapsonicPN, dbo.BOMDetail.CustomerPN, dbo.BOMDetail.ManufacturePN, dbo.BOMDetail.SupplierPN, 
-                      dbo.BOMDetail.CommCode, dbo.BOMDetail.Material, dbo.BOMDetail.VendorQuoteEst, dbo.BOMDetail.Qty, dbo.BOMDetail.EAU, dbo.RFQHeader.MOQ, 
-                      dbo.SupplierMaster.SupplierName, dbo.BOMDetail.CapComAssm, dbo.BOMDetail.PurchasingComments, dbo.RFQHeader.ToolingDetail, 
-                      dbo.RFQHeader.ProductionToolingLeadTime, dbo.RFQHeader.ProductionLeadTime, dbo.BOMDetail.BOMHeaderKey, dbo.BOMDetail.LinePosition, 
-                      dbo.BOMDetail.Status, CASE WHEN dbo.BOMDetail.Status = 'No Quote' THEN 'NO QUOTE' ELSE dbo.RFQHeader.Status END AS RFQStatus, 
-                      dbo.viewRFQ_Summary.MaterialTotal + dbo.viewRFQ_Summary.ServiceTotal + dbo.viewRFQ_Summary.ScrapTotal + dbo.viewRFQ_Summary.LaborTotal + dbo.viewRFQ_Summary.BurdenTotal
-                       + dbo.viewRFQ_Summary.SG_A_Profit + dbo.viewRFQ_Summary.PackingPerUnit + dbo.viewRFQ_Summary.AssemblyCostPerUnit AS TotalACost, 
-                      dbo.RFQHeader.LeadTimePPAP, dbo.RFQHeader.ProductionTooling, dbo.BOMDetail.[User]
-FROM         dbo.SupplierMaster INNER JOIN
-                      dbo.RFQHeader ON dbo.SupplierMaster.SupplierMasterKey = dbo.RFQHeader.SupplierMasterKey INNER JOIN
-                      dbo.viewRFQ_Summary ON dbo.RFQHeader.RFQHeaderKey = dbo.viewRFQ_Summary.RFQHeaderKey RIGHT OUTER JOIN
-                      dbo.BOMDetail INNER JOIN
-                      dbo.ItemMaster ON dbo.BOMDetail.ItemMasterKey = dbo.ItemMaster.ItemMasterKey ON dbo.RFQHeader.BOMDetailKey = dbo.BOMDetail.BOMDetailKey
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[41] 4[11] 2[36] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1[79] 4[16] 3) )"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1[52] 2[21] 3) )"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1[32] 3) )"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[26] 4[68] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1[44] 4) )"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[91] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 10
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = 0
-      End
-      Begin Tables = 
-         Begin Table = "SupplierMaster"
-            Begin Extent = 
-               Top = 0
-               Left = 1094
-               Bottom = 219
-               Right = 1292
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "RFQHeader"
-            Begin Extent = 
-               Top = 0
-               Left = 453
-               Bottom = 567
-               Right = 672
-            End
-            DisplayFlags = 280
-            TopColumn = 2
-         End
-         Begin Table = "viewRFQ_Summary"
-            Begin Extent = 
-               Top = 89
-               Left = 794
-               Bottom = 499
-               Right = 997
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "BOMDetail"
-            Begin Extent = 
-               Top = 16
-               Left = 0
-               Bottom = 442
-               Right = 191
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-         Begin Table = "ItemMaster"
-            Begin Extent = 
-               Top = 221
-               Left = 222
-               Bottom = 466
-               Right = 385
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-   End
-   Begin DataPane = 
-      PaneHidden = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 22
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      PaneHidden = 
-      Begin ColumnWidths = 11
-         Column = 2445
-         Alias = 720
-         Table = 1260
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSalesReportDetail'
-GO
-/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 01/09/2014 14:40:33 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE VIEW [dbo].[viewBOMDetail_ReadAll]
-AS
-SELECT     dbo.BOMDetail.BOMDetailKey, dbo.BOMDetail.BOMHeaderKey, dbo.BOMDetail.ItemMasterKey, dbo.BOMDetail.Qty, dbo.BOMDetail.Cost, dbo.BOMDetail.Status, 
-                      dbo.BOMDetail.Description, dbo.ItemMaster.PartNumber, dbo.BOMDetail.LinePosition, dbo.BOMDetail.SalesStatus, dbo.BOMDetail.[User], 
-                      dbo.BOMDetail.PurchasingStatus, dbo.BOMDetail.DirectedBuy, dbo.BOMDetail.Material, dbo.BOMDetail.Um, dbo.BOMDetail.VendorQuoteEst, 
-                      dbo.BOMDetail.SalesComments, dbo.BOMDetail.PurchasingComments, dbo.BOMDetail.CapComAssm, dbo.BOMDetail.CapsonicPN, dbo.BOMDetail.CustomerPN, 
-                      dbo.BOMDetail.ManufacturePN, dbo.BOMDetail.SupplierPN, dbo.BOMDetail.CommCode, dbo.BOMDetail.EAU
-FROM         dbo.BOMDetail LEFT OUTER JOIN
-                      dbo.ItemMaster ON dbo.BOMDetail.ItemMasterKey = dbo.ItemMaster.ItemMasterKey
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
-Begin DesignProperties = 
-   Begin PaneConfigurations = 
-      Begin PaneConfiguration = 0
-         NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
-      End
-      Begin PaneConfiguration = 1
-         NumPanes = 3
-         Configuration = "(H (1[34] 4[49] 3) )"
-      End
-      Begin PaneConfiguration = 2
-         NumPanes = 3
-         Configuration = "(H (1 [50] 2 [25] 3))"
-      End
-      Begin PaneConfiguration = 3
-         NumPanes = 3
-         Configuration = "(H (4 [30] 2 [40] 3))"
-      End
-      Begin PaneConfiguration = 4
-         NumPanes = 2
-         Configuration = "(H (1 [56] 3))"
-      End
-      Begin PaneConfiguration = 5
-         NumPanes = 2
-         Configuration = "(H (2 [66] 3))"
-      End
-      Begin PaneConfiguration = 6
-         NumPanes = 2
-         Configuration = "(H (4 [50] 3))"
-      End
-      Begin PaneConfiguration = 7
-         NumPanes = 1
-         Configuration = "(V (3))"
-      End
-      Begin PaneConfiguration = 8
-         NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
-      End
-      Begin PaneConfiguration = 9
-         NumPanes = 2
-         Configuration = "(H (1[57] 4) )"
-      End
-      Begin PaneConfiguration = 10
-         NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
-      End
-      Begin PaneConfiguration = 11
-         NumPanes = 2
-         Configuration = "(H (4 [60] 2))"
-      End
-      Begin PaneConfiguration = 12
-         NumPanes = 1
-         Configuration = "(H (1) )"
-      End
-      Begin PaneConfiguration = 13
-         NumPanes = 1
-         Configuration = "(V (4))"
-      End
-      Begin PaneConfiguration = 14
-         NumPanes = 1
-         Configuration = "(V (2))"
-      End
-      ActivePaneConfig = 1
-   End
-   Begin DiagramPane = 
-      Begin Origin = 
-         Top = 0
-         Left = -179
-      End
-      Begin Tables = 
-         Begin Table = "BOMDetail"
-            Begin Extent = 
-               Top = 7
-               Left = 228
-               Bottom = 315
-               Right = 397
-            End
-            DisplayFlags = 280
-            TopColumn = 9
-         End
-         Begin Table = "ItemMaster"
-            Begin Extent = 
-               Top = 37
-               Left = 515
-               Bottom = 261
-               Right = 662
-            End
-            DisplayFlags = 280
-            TopColumn = 0
-         End
-      End
-   End
-   Begin SQLPane = 
-      PaneHidden = 
-   End
-   Begin DataPane = 
-      Begin ParameterDefaults = ""
-      End
-      Begin ColumnWidths = 9
-         Width = 284
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-         Width = 1500
-      End
-   End
-   Begin CriteriaPane = 
-      Begin ColumnWidths = 11
-         Column = 2460
-         Alias = 1395
-         Table = 1170
-         Output = 720
-         Append = 1400
-         NewValue = 1170
-         SortType = 1350
-         SortOrder = 1410
-         GroupBy = 1350
-         Filter = 1350
-         Or = 1350
-         Or = 1350
-         Or = 1350
-      End
-   End
-End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
-GO
-/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 01/09/2014 14:40:34 ******/
+/****** Object:  View [dbo].[viewRFQCompleted]    Script Date: 02/07/2014 16:45:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2878,27 +2653,66 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCompleted'
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 01/09/2014 14:38:04 ******/
+/****** Object:  StoredProcedure [dbo].[ItemMaster_EditItem]    Script Date: 02/07/2014 16:42:45 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[SupplierMaster_EditSupplier]
+CREATE PROCEDURE [dbo].[ItemMaster_EditItem]
 	-- Add the parameters for the stored procedure here
+	@PartNumber NVARCHAR(50)
+	,@PartDescription NVARCHAR(150)
+	,@UM NVARCHAR(20)
+	,@PartMaterial NVARCHAR(150)
+	,@ItemMasterKey numeric(18,0)
+	,@Cost FLOAT
+	,@CapsonicPN nvarchar(50)
+	,@CustomerPN nvarchar(50)
+	,@ManufacturePN nvarchar(50)
+	,@SupplierPN nvarchar(50)
+	,@CommCode nvarchar(50)
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
 
-			@SupplierName nvarchar(80)
-           ,@ContactName nvarchar(150) 
-           ,@ContactPhoneNumber nvarchar(150) 
-		   ,@ContactCellPhoneNumber nvarchar(150) 
-           ,@ContactEmail nvarchar(200) 
-           ,@ManufacturingLocation nvarchar(max) 
-           ,@ShipLocation nvarchar(max) 
-           ,@QuotedCurrency nvarchar(50) 
-		   ,@SupplierKey INT
-		   ,@Capabilities nvarchar(200)
-           ,@Comments nvarchar(200)
-           ,@Visible bit
-           ,@Commodity nvarchar(150)
+    -- Insert statements for procedure here
+
+UPDATE [APQM_DB].[dbo].[ItemMaster]
+   SET [Description] = @PartDescription
+      ,[UM] = @UM
+      ,[Material] = @PartMaterial
+	  ,[PartNumber] = @PartNumber
+	  ,[Cost] = @Cost
+	  ,[CapsonicPN] = @CapsonicPN
+	  ,[CustomerPN] = @CustomerPN
+	  ,[ManufacturePN] = @ManufacturePN
+	  ,[SupplierPN] = @SupplierPN
+	  ,[CommCode] = @CommCode
+	  
+ WHERE [ItemMasterKey] = @ItemMasterKey
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[ItemMaster_NewItem]    Script Date: 02/07/2014 16:42:46 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[ItemMaster_NewItem]
+	-- Add the parameters for the stored procedure here
+	@PartNumber NVARCHAR(50)
+	,@PartDescription NVARCHAR(150)
+	,@UM NVARCHAR(20)
+	,@PartMaterial NVARCHAR(150)
+	,@Cost FLOAT
+	,@CapsonicPN nvarchar(50)
+	,@CustomerPN nvarchar(50)
+	,@ManufacturePN nvarchar(50)
+	,@SupplierPN nvarchar(50)
+	,@CommCode nvarchar(50)
 
 AS
 BEGIN
@@ -2906,28 +2720,184 @@ BEGIN
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
+    -- Insert statements for procedure here
+	INSERT INTO [APQM_DB].[dbo].[ItemMaster]
+           ([PartNumber]
+           ,[Description]
+           ,[UM]
+           ,[Material]
+		   ,[Cost]
+		   ,[CapsonicPN]
+		   ,[CustomerPN]
+		   ,[ManufacturePN]
+		   ,[SupplierPN]
+		   ,[CommCode])
+     VALUES
+           (@PartNumber
+           ,@PartDescription
+           ,@UM
+           ,@PartMaterial
+           ,@Cost
+           ,@CapsonicPN
+           ,@CustomerPN
+           ,@ManufacturePN
+           ,@SupplierPN
+           ,@CommCode)
 
 
-
-UPDATE    SupplierMaster
-SET       SupplierName = @SupplierName
-		, ContactName = @ContactName
-		, ContactPhoneNumber = @ContactPhoneNumber
-		, ContactCellPhoneNumber = @ContactCellPhoneNumber
-		, ContactEmail = @ContactEmail
-		, ManufacturingLocation = @ManufacturingLocation
-		, ShipLocation = @ShipLocation
-		, QuotedCurrency = @QuotedCurrency
-		, Capabilities = @Capabilities
-		, Comments = @Comments
-		, Visible = @Visible
-		, Commodity = @Commodity
-WHERE     (SupplierMasterKey = @SupplierKey)
-
+Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 01/09/2014 14:38:05 ******/
+/****** Object:  View [dbo].[viewBOMDetail_ReadAll]    Script Date: 02/07/2014 16:45:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[viewBOMDetail_ReadAll]
+AS
+SELECT     dbo.BOMDetail.BOMDetailKey, dbo.BOMDetail.BOMHeaderKey, dbo.BOMDetail.ItemMasterKey, dbo.BOMDetail.Qty, dbo.BOMDetail.Cost, dbo.BOMDetail.Status, 
+                      dbo.BOMDetail.Description, dbo.ItemMaster.PartNumber, dbo.BOMDetail.LinePosition, dbo.BOMDetail.SalesStatus, dbo.BOMDetail.[User], 
+                      dbo.BOMDetail.PurchasingStatus, dbo.BOMDetail.DirectedBuy, dbo.BOMDetail.Material, dbo.BOMDetail.Um, dbo.BOMDetail.VendorQuoteEst, 
+                      dbo.BOMDetail.SalesComments, dbo.BOMDetail.PurchasingComments, dbo.BOMDetail.CapComAssm, dbo.BOMDetail.CapsonicPN, dbo.BOMDetail.CustomerPN, 
+                      dbo.BOMDetail.ManufacturePN, dbo.BOMDetail.SupplierPN, dbo.BOMDetail.CommCode, dbo.BOMDetail.EAU
+FROM         dbo.BOMDetail LEFT OUTER JOIN
+                      dbo.ItemMaster ON dbo.BOMDetail.ItemMasterKey = dbo.ItemMaster.ItemMasterKey
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1[34] 4[49] 3) )"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1[57] 4) )"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 1
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = -179
+      End
+      Begin Tables = 
+         Begin Table = "BOMDetail"
+            Begin Extent = 
+               Top = 7
+               Left = 228
+               Bottom = 315
+               Right = 397
+            End
+            DisplayFlags = 280
+            TopColumn = 9
+         End
+         Begin Table = "ItemMaster"
+            Begin Extent = 
+               Top = 37
+               Left = 515
+               Bottom = 261
+               Right = 662
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+      PaneHidden = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 2460
+         Alias = 1395
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMDetail_ReadAll'
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_NewSupplier]    Script Date: 02/07/2014 16:43:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -2987,7 +2957,56 @@ Select @@Identity
 
 END
 GO
-/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 01/09/2014 14:40:33 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierMaster_EditSupplier]    Script Date: 02/07/2014 16:43:07 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierMaster_EditSupplier]
+	-- Add the parameters for the stored procedure here
+
+			@SupplierName nvarchar(80)
+           ,@ContactName nvarchar(150) 
+           ,@ContactPhoneNumber nvarchar(150) 
+		   ,@ContactCellPhoneNumber nvarchar(150) 
+           ,@ContactEmail nvarchar(200) 
+           ,@ManufacturingLocation nvarchar(max) 
+           ,@ShipLocation nvarchar(max) 
+           ,@QuotedCurrency nvarchar(50) 
+		   ,@SupplierKey INT
+		   ,@Capabilities nvarchar(200)
+           ,@Comments nvarchar(200)
+           ,@Visible bit
+           ,@Commodity nvarchar(150)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+
+
+UPDATE    SupplierMaster
+SET       SupplierName = @SupplierName
+		, ContactName = @ContactName
+		, ContactPhoneNumber = @ContactPhoneNumber
+		, ContactCellPhoneNumber = @ContactCellPhoneNumber
+		, ContactEmail = @ContactEmail
+		, ManufacturingLocation = @ManufacturingLocation
+		, ShipLocation = @ShipLocation
+		, QuotedCurrency = @QuotedCurrency
+		, Capabilities = @Capabilities
+		, Comments = @Comments
+		, Visible = @Visible
+		, Commodity = @Commodity
+WHERE     (SupplierMasterKey = @SupplierKey)
+
+
+END
+GO
+/****** Object:  View [dbo].[viewBOMHeader_ReadAll]    Script Date: 02/07/2014 16:45:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3145,7 +3164,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewBOMHeader_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 01/09/2014 14:37:34 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_NewBOM]    Script Date: 02/07/2014 16:42:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3185,7 +3204,7 @@ SELECT  @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 01/09/2014 14:37:34 ******/
+/****** Object:  StoredProcedure [dbo].[BOMHeader_EditBOM]    Script Date: 02/07/2014 16:42:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3217,7 +3236,7 @@ WHERE     (BOMHeaderKey = @BOMHeaderKey)
 
 END
 GO
-/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 01/09/2014 14:40:37 ******/
+/****** Object:  View [dbo].[viewSIF_ReadAll]    Script Date: 02/07/2014 16:45:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -3230,7 +3249,7 @@ SELECT     dbo.SIFHeader.SIFHeaderKey, dbo.SIFHeader.CustomerKey, dbo.BOMHeader.
                       dbo.SIFHeader.DrawingLevel, dbo.SIFHeader.TaskDescription, dbo.SIFHeader.PartPrint, dbo.SIFHeader.Sample, dbo.SIFHeader.ToolingTarget, 
                       dbo.SIFHeader.PrimaryCompetitors, dbo.SIFHeader.SpecificResourceRequirements, dbo.SIFHeader.Technical, dbo.BOMHeader.TopPartNumber, 
                       dbo.CustomerMaster.CustomerName, dbo.SIFHeader.QuoteDue, dbo.SIFHeader.SOP, dbo.SIFHeader.SalesDBID, dbo.SIFHeader.MarketSector, 
-                      dbo.SIFHeader.AssignedTo
+                      dbo.SIFHeader.AssignedTo, dbo.SIFHeader.CreatedDate
 FROM         dbo.CustomerMaster RIGHT OUTER JOIN
                       dbo.SIFHeader ON dbo.CustomerMaster.CustomerKey = dbo.SIFHeader.CustomerKey LEFT OUTER JOIN
                       dbo.BOMHeader ON dbo.SIFHeader.SIFHeaderKey = dbo.BOMHeader.SIFHeaderKey
@@ -3324,7 +3343,7 @@ Begin DesignProperties =
                Right = 302
             End
             DisplayFlags = 280
-            TopColumn = 3
+            TopColumn = 4
          End
          Begin Table = "BOMHeader"
             Begin Extent = 
@@ -3380,7 +3399,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewSIF_ReadAll'
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByName]    Script Date: 01/09/2014 14:37:07 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByName]    Script Date: 02/07/2014 16:42:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3433,7 +3452,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByEmail]    Script Date: 01/09/2014 14:37:06 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByEmail]    Script Date: 02/07/2014 16:42:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3463,7 +3482,60 @@ BEGIN
     RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Users_DeleteUser]    Script Date: 01/09/2014 14:37:24 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Applications_CreateApplication]    Script Date: 02/07/2014 16:42:09 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Applications_CreateApplication]
+    @ApplicationName      nvarchar(256),
+    @ApplicationId        uniqueidentifier OUTPUT
+AS
+BEGIN
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+    IF(@ApplicationId IS NULL)
+    BEGIN
+        DECLARE @TranStarted   bit
+        SET @TranStarted = 0
+
+        IF( @@TRANCOUNT = 0 )
+        BEGIN
+	        BEGIN TRANSACTION
+	        SET @TranStarted = 1
+        END
+        ELSE
+    	    SET @TranStarted = 0
+
+        SELECT  @ApplicationId = ApplicationId
+        FROM dbo.aspnet_Applications WITH (UPDLOCK, HOLDLOCK)
+        WHERE LOWER(@ApplicationName) = LoweredApplicationName
+
+        IF(@ApplicationId IS NULL)
+        BEGIN
+            SELECT  @ApplicationId = NEWID()
+            INSERT  dbo.aspnet_Applications (ApplicationId, ApplicationName, LoweredApplicationName)
+            VALUES  (@ApplicationId, @ApplicationName, LOWER(@ApplicationName))
+        END
+
+
+        IF( @TranStarted = 1 )
+        BEGIN
+            IF(@@ERROR = 0)
+            BEGIN
+	        SET @TranStarted = 0
+	        COMMIT TRANSACTION
+            END
+            ELSE
+            BEGIN
+                SET @TranStarted = 0
+                ROLLBACK TRANSACTION
+            END
+        END
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Users_DeleteUser]    Script Date: 02/07/2014 16:42:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3611,7 +3683,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_AnyDataInTables]    Script Date: 01/09/2014 14:37:00 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_AnyDataInTables]    Script Date: 02/07/2014 16:42:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3699,7 +3771,7 @@ BEGIN
     END
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_Applications]    Script Date: 01/09/2014 14:40:37 ******/
+/****** Object:  View [dbo].[vw_aspnet_Applications]    Script Date: 02/07/2014 16:45:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3708,7 +3780,7 @@ CREATE VIEW [dbo].[vw_aspnet_Applications]
   AS SELECT [dbo].[aspnet_Applications].[ApplicationName], [dbo].[aspnet_Applications].[LoweredApplicationName], [dbo].[aspnet_Applications].[ApplicationId], [dbo].[aspnet_Applications].[Description]
   FROM [dbo].[aspnet_Applications]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UnlockUser]    Script Date: 01/09/2014 14:37:09 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UnlockUser]    Script Date: 02/07/2014 16:42:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3742,7 +3814,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ResetPassword]    Script Date: 01/09/2014 14:37:08 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ResetPassword]    Script Date: 02/07/2014 16:42:16 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3888,7 +3960,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]    Script Date: 01/09/2014 14:37:02 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_ChangePasswordQuestionAndAnswer]    Script Date: 02/07/2014 16:42:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -3919,7 +3991,7 @@ BEGIN
     RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUser]    Script Date: 01/09/2014 14:37:10 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUser]    Script Date: 02/07/2014 16:42:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4011,7 +4083,7 @@ Cleanup:
     RETURN -1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPasswordWithFormat]    Script Date: 01/09/2014 14:37:06 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPasswordWithFormat]    Script Date: 02/07/2014 16:42:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4070,7 +4142,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUserInfo]    Script Date: 01/09/2014 14:37:11 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_UpdateUserInfo]    Script Date: 02/07/2014 16:42:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4226,7 +4298,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPassword]    Script Date: 01/09/2014 14:37:05 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetPassword]    Script Date: 02/07/2014 16:42:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4365,7 +4437,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_SetPassword]    Script Date: 01/09/2014 14:37:09 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_SetPassword]    Script Date: 02/07/2014 16:42:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4398,7 +4470,7 @@ BEGIN
     RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Personalization_GetApplicationId]    Script Date: 01/09/2014 14:37:12 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Personalization_GetApplicationId]    Script Date: 02/07/2014 16:42:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4411,7 +4483,7 @@ BEGIN
     SELECT @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_RoleExists]    Script Date: 01/09/2014 14:37:22 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_RoleExists]    Script Date: 02/07/2014 16:42:31 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4432,40 +4504,7 @@ BEGIN
         RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_FindUsersInRole]    Script Date: 01/09/2014 14:37:25 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_FindUsersInRole]
-    @ApplicationName  nvarchar(256),
-    @RoleName         nvarchar(256),
-    @UserNameToMatch  nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-     DECLARE @RoleId uniqueidentifier
-     SELECT  @RoleId = NULL
-
-     SELECT  @RoleId = RoleId
-     FROM    dbo.aspnet_Roles
-     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
-
-     IF (@RoleId IS NULL)
-         RETURN(1)
-
-    SELECT u.UserName
-    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
-    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId AND LoweredUserName LIKE LOWER(@UserNameToMatch)
-    ORDER BY u.UserName
-    RETURN(0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_GetAllRoles]    Script Date: 01/09/2014 14:37:22 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_GetAllRoles]    Script Date: 02/07/2014 16:42:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4484,7 +4523,7 @@ BEGIN
     ORDER BY RoleName
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetNumberOfUsersOnline]    Script Date: 01/09/2014 14:37:05 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetNumberOfUsersOnline]    Script Date: 02/07/2014 16:42:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4510,115 +4549,7 @@ BEGIN
     RETURN(@NumOnline)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Applications_CreateApplication]    Script Date: 01/09/2014 14:37:01 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Applications_CreateApplication]
-    @ApplicationName      nvarchar(256),
-    @ApplicationId        uniqueidentifier OUTPUT
-AS
-BEGIN
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-
-    IF(@ApplicationId IS NULL)
-    BEGIN
-        DECLARE @TranStarted   bit
-        SET @TranStarted = 0
-
-        IF( @@TRANCOUNT = 0 )
-        BEGIN
-	        BEGIN TRANSACTION
-	        SET @TranStarted = 1
-        END
-        ELSE
-    	    SET @TranStarted = 0
-
-        SELECT  @ApplicationId = ApplicationId
-        FROM dbo.aspnet_Applications WITH (UPDLOCK, HOLDLOCK)
-        WHERE LOWER(@ApplicationName) = LoweredApplicationName
-
-        IF(@ApplicationId IS NULL)
-        BEGIN
-            SELECT  @ApplicationId = NEWID()
-            INSERT  dbo.aspnet_Applications (ApplicationId, ApplicationName, LoweredApplicationName)
-            VALUES  (@ApplicationId, @ApplicationName, LOWER(@ApplicationName))
-        END
-
-
-        IF( @TranStarted = 1 )
-        BEGIN
-            IF(@@ERROR = 0)
-            BEGIN
-	        SET @TranStarted = 0
-	        COMMIT TRANSACTION
-            END
-            ELSE
-            BEGIN
-                SET @TranStarted = 0
-                ROLLBACK TRANSACTION
-            END
-        END
-    END
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetAllUsers]    Script Date: 01/09/2014 14:37:04 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Membership_GetAllUsers]
-    @ApplicationName       nvarchar(256),
-    @PageIndex             int,
-    @PageSize              int
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN 0
-
-
-    -- Set the page bounds
-    DECLARE @PageLowerBound int
-    DECLARE @PageUpperBound int
-    DECLARE @TotalRecords   int
-    SET @PageLowerBound = @PageSize * @PageIndex
-    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
-
-    -- Create a temp table TO store the select results
-    CREATE TABLE #PageIndexForUsers
-    (
-        IndexId int IDENTITY (0, 1) NOT NULL,
-        UserId uniqueidentifier
-    )
-
-    -- Insert into our temp table
-    INSERT INTO #PageIndexForUsers (UserId)
-    SELECT u.UserId
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u
-    WHERE  u.ApplicationId = @ApplicationId AND u.UserId = m.UserId
-    ORDER BY u.UserName
-
-    SELECT @TotalRecords = @@ROWCOUNT
-
-    SELECT u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
-            m.CreateDate,
-            m.LastLoginDate,
-            u.LastActivityDate,
-            m.LastPasswordChangedDate,
-            u.UserId, m.IsLockedOut,
-            m.LastLockoutDate
-    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
-    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
-           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
-    ORDER BY u.UserName
-    RETURN @TotalRecords
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByName]    Script Date: 01/09/2014 14:37:04 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByName]    Script Date: 02/07/2014 16:42:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4675,82 +4606,62 @@ BEGIN
     RETURN @TotalRecords
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProperties]    Script Date: 01/09/2014 14:37:20 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetAllUsers]    Script Date: 02/07/2014 16:42:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_GetProperties]
-    @ApplicationName      nvarchar(256),
-    @UserName             nvarchar(256),
-    @CurrentTimeUtc       datetime
+CREATE PROCEDURE [dbo].[aspnet_Membership_GetAllUsers]
+    @ApplicationName       nvarchar(256),
+    @PageIndex             int,
+    @PageSize              int
 AS
 BEGIN
     DECLARE @ApplicationId uniqueidentifier
     SELECT  @ApplicationId = NULL
     SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
     IF (@ApplicationId IS NULL)
-        RETURN
+        RETURN 0
 
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
 
-    SELECT @UserId = UserId
-    FROM   dbo.aspnet_Users
-    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
+    -- Set the page bounds
+    DECLARE @PageLowerBound int
+    DECLARE @PageUpperBound int
+    DECLARE @TotalRecords   int
+    SET @PageLowerBound = @PageSize * @PageIndex
+    SET @PageUpperBound = @PageSize - 1 + @PageLowerBound
 
-    IF (@UserId IS NULL)
-        RETURN
-    SELECT TOP 1 PropertyNames, PropertyValuesString, PropertyValuesBinary
-    FROM         dbo.aspnet_Profile
-    WHERE        UserId = @UserId
+    -- Create a temp table TO store the select results
+    CREATE TABLE #PageIndexForUsers
+    (
+        IndexId int IDENTITY (0, 1) NOT NULL,
+        UserId uniqueidentifier
+    )
 
-    IF (@@ROWCOUNT > 0)
-    BEGIN
-        UPDATE dbo.aspnet_Users
-        SET    LastActivityDate=@CurrentTimeUtc
-        WHERE  UserId = @UserId
-    END
+    -- Insert into our temp table
+    INSERT INTO #PageIndexForUsers (UserId)
+    SELECT u.UserId
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u
+    WHERE  u.ApplicationId = @ApplicationId AND u.UserId = m.UserId
+    ORDER BY u.UserName
+
+    SELECT @TotalRecords = @@ROWCOUNT
+
+    SELECT u.UserName, m.Email, m.PasswordQuestion, m.Comment, m.IsApproved,
+            m.CreateDate,
+            m.LastLoginDate,
+            u.LastActivityDate,
+            m.LastPasswordChangedDate,
+            u.UserId, m.IsLockedOut,
+            m.LastLockoutDate
+    FROM   dbo.aspnet_Membership m, dbo.aspnet_Users u, #PageIndexForUsers p
+    WHERE  u.UserId = p.UserId AND u.UserId = m.UserId AND
+           p.IndexId >= @PageLowerBound AND p.IndexId <= @PageUpperBound
+    ORDER BY u.UserName
+    RETURN @TotalRecords
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteInactiveProfiles]    Script Date: 01/09/2014 14:37:18 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteInactiveProfiles]
-    @ApplicationName        nvarchar(256),
-    @ProfileAuthOptions     int,
-    @InactiveSinceDate      datetime
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        SELECT  0
-        RETURN
-    END
-
-    DELETE
-    FROM    dbo.aspnet_Profile
-    WHERE   UserId IN
-            (   SELECT  UserId
-                FROM    dbo.aspnet_Users u
-                WHERE   ApplicationId = @ApplicationId
-                        AND (LastActivityDate <= @InactiveSinceDate)
-                        AND (
-                                (@ProfileAuthOptions = 2)
-                             OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
-                             OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
-                            )
-            )
-
-    SELECT  @@ROWCOUNT
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByEmail]    Script Date: 01/09/2014 14:37:03 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_FindUsersByEmail]    Script Date: 02/07/2014 16:42:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4813,7 +4724,114 @@ BEGIN
     RETURN @TotalRecords
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_IsUserInRole]    Script Date: 01/09/2014 14:37:27 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProperties]    Script Date: 02/07/2014 16:42:28 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetProperties]
+    @ApplicationName      nvarchar(256),
+    @UserName             nvarchar(256),
+    @CurrentTimeUtc       datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM dbo.aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN
+
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT @UserId = UserId
+    FROM   dbo.aspnet_Users
+    WHERE  ApplicationId = @ApplicationId AND LoweredUserName = LOWER(@UserName)
+
+    IF (@UserId IS NULL)
+        RETURN
+    SELECT TOP 1 PropertyNames, PropertyValuesString, PropertyValuesBinary
+    FROM         dbo.aspnet_Profile
+    WHERE        UserId = @UserId
+
+    IF (@@ROWCOUNT > 0)
+    BEGIN
+        UPDATE dbo.aspnet_Users
+        SET    LastActivityDate=@CurrentTimeUtc
+        WHERE  UserId = @UserId
+    END
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteInactiveProfiles]    Script Date: 02/07/2014 16:42:26 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_DeleteInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT  0
+        RETURN
+    END
+
+    DELETE
+    FROM    dbo.aspnet_Profile
+    WHERE   UserId IN
+            (   SELECT  UserId
+                FROM    dbo.aspnet_Users u
+                WHERE   ApplicationId = @ApplicationId
+                        AND (LastActivityDate <= @InactiveSinceDate)
+                        AND (
+                                (@ProfileAuthOptions = 2)
+                             OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                             OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+                            )
+            )
+
+    SELECT  @@ROWCOUNT
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]    Script Date: 02/07/2014 16:42:27 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]
+    @ApplicationName        nvarchar(256),
+    @ProfileAuthOptions     int,
+    @InactiveSinceDate      datetime
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        SELECT 0
+        RETURN
+    END
+
+    SELECT  COUNT(*)
+    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
+    WHERE   ApplicationId = @ApplicationId
+        AND u.UserId = p.UserId
+        AND (LastActivityDate <= @InactiveSinceDate)
+        AND (
+                (@ProfileAuthOptions = 2)
+                OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
+                OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
+            )
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_IsUserInRole]    Script Date: 02/07/2014 16:42:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4854,39 +4872,7 @@ BEGIN
         RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]    Script Date: 01/09/2014 14:37:19 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_Profile_GetNumberOfInactiveProfiles]
-    @ApplicationName        nvarchar(256),
-    @ProfileAuthOptions     int,
-    @InactiveSinceDate      datetime
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        SELECT 0
-        RETURN
-    END
-
-    SELECT  COUNT(*)
-    FROM    dbo.aspnet_Users u, dbo.aspnet_Profile p
-    WHERE   ApplicationId = @ApplicationId
-        AND u.UserId = p.UserId
-        AND (LastActivityDate <= @InactiveSinceDate)
-        AND (
-                (@ProfileAuthOptions = 2)
-                OR (@ProfileAuthOptions = 0 AND IsAnonymous = 1)
-                OR (@ProfileAuthOptions = 1 AND IsAnonymous = 0)
-            )
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProfiles]    Script Date: 01/09/2014 14:37:19 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_GetProfiles]    Script Date: 02/07/2014 16:42:28 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -4945,39 +4931,7 @@ BEGIN
     DROP TABLE #PageIndexForUsers
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetRolesForUser]    Script Date: 01/09/2014 14:37:26 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetRolesForUser]
-    @ApplicationName  nvarchar(256),
-    @UserName         nvarchar(256)
-AS
-BEGIN
-    DECLARE @ApplicationId uniqueidentifier
-    SELECT  @ApplicationId = NULL
-    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
-    IF (@ApplicationId IS NULL)
-        RETURN(1)
-    DECLARE @UserId uniqueidentifier
-    SELECT  @UserId = NULL
-
-    SELECT  @UserId = UserId
-    FROM    dbo.aspnet_Users
-    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
-
-    IF (@UserId IS NULL)
-        RETURN(1)
-
-    SELECT r.RoleName
-    FROM   dbo.aspnet_Roles r, dbo.aspnet_UsersInRoles ur
-    WHERE  r.RoleId = ur.RoleId AND r.ApplicationId = @ApplicationId AND ur.UserId = @UserId
-    ORDER BY r.RoleName
-    RETURN (0)
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_DeleteRole]    Script Date: 01/09/2014 14:37:22 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_DeleteRole]    Script Date: 02/07/2014 16:42:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5062,7 +5016,39 @@ Cleanup:
     RETURN @ErrorCode
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_AddUsersToRoles]    Script Date: 01/09/2014 14:37:25 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetRolesForUser]    Script Date: 02/07/2014 16:42:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_GetRolesForUser]
+    @ApplicationName  nvarchar(256),
+    @UserName         nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+    DECLARE @UserId uniqueidentifier
+    SELECT  @UserId = NULL
+
+    SELECT  @UserId = UserId
+    FROM    dbo.aspnet_Users
+    WHERE   LoweredUserName = LOWER(@UserName) AND ApplicationId = @ApplicationId
+
+    IF (@UserId IS NULL)
+        RETURN(1)
+
+    SELECT r.RoleName
+    FROM   dbo.aspnet_Roles r, dbo.aspnet_UsersInRoles ur
+    WHERE  r.RoleId = ur.RoleId AND r.ApplicationId = @ApplicationId AND ur.UserId = @UserId
+    ORDER BY r.RoleName
+    RETURN (0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_AddUsersToRoles]    Script Date: 02/07/2014 16:42:33 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5181,7 +5167,7 @@ BEGIN
 	RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]    Script Date: 01/09/2014 14:37:27 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_RemoveUsersFromRoles]    Script Date: 02/07/2014 16:42:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5309,7 +5295,7 @@ BEGIN
 	RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetUsersInRoles]    Script Date: 01/09/2014 14:37:26 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_GetUsersInRoles]    Script Date: 02/07/2014 16:42:35 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5341,7 +5327,65 @@ BEGIN
     RETURN(0)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 01/09/2014 14:38:09 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UsersInRoles_FindUsersInRole]    Script Date: 02/07/2014 16:42:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_UsersInRoles_FindUsersInRole]
+    @ApplicationName  nvarchar(256),
+    @RoleName         nvarchar(256),
+    @UserNameToMatch  nvarchar(256)
+AS
+BEGIN
+    DECLARE @ApplicationId uniqueidentifier
+    SELECT  @ApplicationId = NULL
+    SELECT  @ApplicationId = ApplicationId FROM aspnet_Applications WHERE LOWER(@ApplicationName) = LoweredApplicationName
+    IF (@ApplicationId IS NULL)
+        RETURN(1)
+     DECLARE @RoleId uniqueidentifier
+     SELECT  @RoleId = NULL
+
+     SELECT  @RoleId = RoleId
+     FROM    dbo.aspnet_Roles
+     WHERE   LOWER(@RoleName) = LoweredRoleName AND ApplicationId = @ApplicationId
+
+     IF (@RoleId IS NULL)
+         RETURN(1)
+
+    SELECT u.UserName
+    FROM   dbo.aspnet_Users u, dbo.aspnet_UsersInRoles ur
+    WHERE  u.UserId = ur.UserId AND @RoleId = ur.RoleId AND u.ApplicationId = @ApplicationId AND LoweredUserName LIKE LOWER(@UserNameToMatch)
+    ORDER BY u.UserName
+    RETURN(0)
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 02/07/2014 16:43:12 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierSurveyCertification_EditCertification]
+	-- Add the parameters for the stored procedure here
+	 @SupplierCertificationKey INT
+	,@SupplierSurveyKey INT
+    ,@Certifications nvarchar(max)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+UPDATE [APQM_DB].[dbo].[SupplierSurveyCertification]
+   SET [SupplierSurveyKey] = @SupplierSurveyKey
+      ,[Certifications] = @SupplierSurveyKey
+ WHERE SupplierCertificationKey=@SupplierCertificationKey
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_NewCertification]    Script Date: 02/07/2014 16:43:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5373,32 +5417,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyCertification_EditCertification]    Script Date: 01/09/2014 14:38:09 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[SupplierSurveyCertification_EditCertification]
-	-- Add the parameters for the stored procedure here
-	 @SupplierCertificationKey INT
-	,@SupplierSurveyKey INT
-    ,@Certifications nvarchar(max)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-UPDATE [APQM_DB].[dbo].[SupplierSurveyCertification]
-   SET [SupplierSurveyKey] = @SupplierSurveyKey
-      ,[Certifications] = @SupplierSurveyKey
- WHERE SupplierCertificationKey=@SupplierCertificationKey
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Users_CreateUser]    Script Date: 01/09/2014 14:37:24 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Users_CreateUser]    Script Date: 02/07/2014 16:42:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5426,7 +5445,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_Users]    Script Date: 01/09/2014 14:40:38 ******/
+/****** Object:  View [dbo].[vw_aspnet_Users]    Script Date: 02/07/2014 16:45:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5435,7 +5454,7 @@ CREATE VIEW [dbo].[vw_aspnet_Users]
   AS SELECT [dbo].[aspnet_Users].[ApplicationId], [dbo].[aspnet_Users].[UserId], [dbo].[aspnet_Users].[UserName], [dbo].[aspnet_Users].[LoweredUserName], [dbo].[aspnet_Users].[MobileAlias], [dbo].[aspnet_Users].[IsAnonymous], [dbo].[aspnet_Users].[LastActivityDate]
   FROM [dbo].[aspnet_Users]
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByUserId]    Script Date: 01/09/2014 14:37:07 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_GetUserByUserId]    Script Date: 02/07/2014 16:42:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5470,7 +5489,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_MembershipUsers]    Script Date: 01/09/2014 14:40:38 ******/
+/****** Object:  View [dbo].[vw_aspnet_MembershipUsers]    Script Date: 02/07/2014 16:45:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5502,7 +5521,7 @@ CREATE VIEW [dbo].[vw_aspnet_MembershipUsers]
   FROM [dbo].[aspnet_Membership] INNER JOIN [dbo].[aspnet_Users]
       ON [dbo].[aspnet_Membership].[UserId] = [dbo].[aspnet_Users].[UserId]
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 01/09/2014 14:38:11 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_EditForecast]    Script Date: 02/07/2014 16:43:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5529,7 +5548,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyForecastSales]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 01/09/2014 14:38:12 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyForecastSales_NewForecast]    Script Date: 02/07/2014 16:43:15 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5562,7 +5581,7 @@ WHERE ([SupplierSurveyKey]=@SupplierSurveyKey AND [ForecastSalesYear]=@ForecastS
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 01/09/2014 14:38:10 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_EditContact]    Script Date: 02/07/2014 16:43:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5598,7 +5617,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSurveyContacts]
  WHERE [SupplierSuveryContactsKey]=@SupplierSuveryContactsKey
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 01/09/2014 14:38:11 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurveyContacts_NewContact]    Script Date: 02/07/2014 16:43:14 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5654,7 +5673,7 @@ WHERE [SupplierSurveyKey] = @SupplierSurveyKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_UnRegisterSchemaVersion]    Script Date: 01/09/2014 14:37:23 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_UnRegisterSchemaVersion]    Script Date: 02/07/2014 16:42:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5668,7 +5687,7 @@ BEGIN
         WHERE   Feature = LOWER(@Feature) AND @CompatibleSchemaVersion = CompatibleSchemaVersion
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_CheckSchemaVersion]    Script Date: 01/09/2014 14:37:01 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_CheckSchemaVersion]    Script Date: 02/07/2014 16:42:09 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5687,7 +5706,7 @@ BEGIN
     RETURN 1
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_RegisterSchemaVersion]    Script Date: 01/09/2014 14:37:21 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_RegisterSchemaVersion]    Script Date: 02/07/2014 16:42:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -5717,7 +5736,7 @@ BEGIN
     VALUES( LOWER( @Feature ), @CompatibleSchemaVersion, @IsCurrentVersion )
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 01/09/2014 14:38:08 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_NewSurvey]    Script Date: 02/07/2014 16:43:12 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5825,7 +5844,7 @@ SELECT [SupplierSuveyKey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 01/09/2014 14:38:07 ******/
+/****** Object:  StoredProcedure [dbo].[SupplierSurvey_EditSurvey]    Script Date: 02/07/2014 16:43:10 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5886,7 +5905,7 @@ UPDATE [APQM_DB].[dbo].[SupplierSuvey]
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 01/09/2014 14:38:13 ******/
+/****** Object:  StoredProcedure [dbo].[TokenMaster_EditToken]    Script Date: 02/07/2014 16:43:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5918,7 +5937,7 @@ WHERE [TokenKey]=@TokenKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 01/09/2014 14:38:14 ******/
+/****** Object:  StoredProcedure [dbo].[TokenMaster_NewToken]    Script Date: 02/07/2014 16:43:17 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5961,7 +5980,7 @@ WHERE ([Token]=@Token
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 01/09/2014 14:37:35 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_EditCustomer]    Script Date: 02/07/2014 16:42:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -5985,7 +6004,7 @@ WHERE     (CustomerKey = @CustomerKey)
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 01/09/2014 14:37:35 ******/
+/****** Object:  StoredProcedure [dbo].[CustomerMaster_NewCustomer]    Script Date: 02/07/2014 16:42:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6012,7 +6031,7 @@ WHERE     (CustomerName = @CustomerName)
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 01/09/2014 14:40:35 ******/
+/****** Object:  View [dbo].[viewRFQCountBySharedItems]    Script Date: 02/07/2014 16:45:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6174,7 +6193,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQCountBySharedItems'
 GO
-/****** Object:  View [dbo].[vw_aspnet_Profiles]    Script Date: 01/09/2014 14:40:38 ******/
+/****** Object:  View [dbo].[vw_aspnet_Profiles]    Script Date: 02/07/2014 16:45:46 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6186,7 +6205,7 @@ CREATE VIEW [dbo].[vw_aspnet_Profiles]
                  + DATALENGTH([dbo].[aspnet_Profile].[PropertyValuesBinary])
   FROM [dbo].[aspnet_Profile]
 GO
-/****** Object:  View [dbo].[vw_aspnet_Roles]    Script Date: 01/09/2014 14:40:38 ******/
+/****** Object:  View [dbo].[vw_aspnet_Roles]    Script Date: 02/07/2014 16:45:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6195,86 +6214,7 @@ CREATE VIEW [dbo].[vw_aspnet_Roles]
   AS SELECT [dbo].[aspnet_Roles].[ApplicationId], [dbo].[aspnet_Roles].[RoleId], [dbo].[aspnet_Roles].[RoleName], [dbo].[aspnet_Roles].[LoweredRoleName], [dbo].[aspnet_Roles].[Description]
   FROM [dbo].[aspnet_Roles]
 GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 01/09/2014 14:38:00 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[SIFHeader_EditSIF]
-	-- Add the parameters for the stored procedure here
-	 @CustomerKey INT 
-	,@BOMHeaderKey INT 
-	,@InquiryNumber nvarchar(50) 
-	,@Priority nvarchar(50) 
-	,@Revision nvarchar(50) 
-	,@SalesPerson nvarchar(50) 
-	,@CostModelLoc nvarchar(50) 
-	,@Contact nvarchar(50) 
-	,@BussinesClass nvarchar(50) 
-	,@Product nvarchar(50) 
-	,@DivLoc nvarchar(50) 
-	,@Department nvarchar(50) 
-	,@Reason4Quote nvarchar(50) 
-	,@Application nvarchar(50) 
-	,@Specification nvarchar(50) 
-	,@DrawingLevel nvarchar(50) 
-	,@TaskDescription nvarchar(50) 
-	,@PartPrint nvarchar(50) 
-	,@Sample nvarchar(50) 
-	,@ToolingTarget nvarchar(50) 
-	,@PrimaryCompetitors nvarchar(50) 
-	,@SpecificResourceRequirements nvarchar(50) 
-	,@Technical nvarchar(50) 
-	,@SIFHeaderKey INT
-	,@QuoteDue datetime
-	,@Sop datetime
-	,@SalesDBID BIGINT
-	,@MarketSector  numeric(18,0)
-	,@AssignedTo  nvarchar(256)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE [APQM_DB].[dbo].[SIFHeader]
-   SET [CustomerKey] = @CustomerKey 
-	  ,[BOMHeaderKey] = @BOMHeaderKey 
-      ,[InquiryNumber] = @InquiryNumber 
-      ,[Priority] = @Priority 
-      ,[Revision] = @Revision 
-      ,[SalesPerson] = @SalesPerson 
-      ,[CostModelLoc] = @CostModelLoc 
-      ,[Contact] = @Contact 
-      ,[BussinesClass] = @BussinesClass 
-      ,[Product] = @Product 
-      ,[DivLoc] = @DivLoc 
-      ,[Department] = @Department 
-      ,[Reason4Quote] = @Reason4Quote 
-      ,[Application] = @Application 
-      ,[Specification] = @Specification 
-      ,[DrawingLevel] = @DrawingLevel 
-      ,[TaskDescription] = @TaskDescription 
-      ,[PartPrint] = @PartPrint 
-      ,[Sample] = @Sample 
-      ,[ToolingTarget] = @ToolingTarget 
-      ,[PrimaryCompetitors] = @PrimaryCompetitors 
-      ,[SpecificResourceRequirements] = @SpecificResourceRequirements 
-      ,[Technical] = @Technical 
-	  ,[QuoteDue] = @QuoteDue 
-	  ,[SOP] = @Sop 
-	  ,[SalesDBID] = @SalesDBID
-	  ,[MarketSector] = @MarketSector
-	  ,[AssignedTo] = @AssignedTo
-
-WHERE SIFHeaderKey=@SIFHeaderKey
-
-END
-GO
-/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 01/09/2014 14:38:03 ******/
+/****** Object:  StoredProcedure [dbo].[SIFHeader_NewSIF]    Script Date: 02/07/2014 16:43:05 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6381,7 +6321,86 @@ INSERT INTO [APQM_DB].[dbo].[SIFHeader]
 
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_UsersInRoles]    Script Date: 01/09/2014 14:40:39 ******/
+/****** Object:  StoredProcedure [dbo].[SIFHeader_EditSIF]    Script Date: 02/07/2014 16:43:03 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SIFHeader_EditSIF]
+	-- Add the parameters for the stored procedure here
+	 @CustomerKey INT 
+	,@BOMHeaderKey INT 
+	,@InquiryNumber nvarchar(50) 
+	,@Priority nvarchar(50) 
+	,@Revision nvarchar(50) 
+	,@SalesPerson nvarchar(50) 
+	,@CostModelLoc nvarchar(50) 
+	,@Contact nvarchar(50) 
+	,@BussinesClass nvarchar(50) 
+	,@Product nvarchar(50) 
+	,@DivLoc nvarchar(50) 
+	,@Department nvarchar(50) 
+	,@Reason4Quote nvarchar(50) 
+	,@Application nvarchar(50) 
+	,@Specification nvarchar(50) 
+	,@DrawingLevel nvarchar(50) 
+	,@TaskDescription nvarchar(50) 
+	,@PartPrint nvarchar(50) 
+	,@Sample nvarchar(50) 
+	,@ToolingTarget nvarchar(50) 
+	,@PrimaryCompetitors nvarchar(50) 
+	,@SpecificResourceRequirements nvarchar(50) 
+	,@Technical nvarchar(50) 
+	,@SIFHeaderKey INT
+	,@QuoteDue datetime
+	,@Sop datetime
+	,@SalesDBID BIGINT
+	,@MarketSector  numeric(18,0)
+	,@AssignedTo  nvarchar(256)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE [APQM_DB].[dbo].[SIFHeader]
+   SET [CustomerKey] = @CustomerKey 
+	  ,[BOMHeaderKey] = @BOMHeaderKey 
+      ,[InquiryNumber] = @InquiryNumber 
+      ,[Priority] = @Priority 
+      ,[Revision] = @Revision 
+      ,[SalesPerson] = @SalesPerson 
+      ,[CostModelLoc] = @CostModelLoc 
+      ,[Contact] = @Contact 
+      ,[BussinesClass] = @BussinesClass 
+      ,[Product] = @Product 
+      ,[DivLoc] = @DivLoc 
+      ,[Department] = @Department 
+      ,[Reason4Quote] = @Reason4Quote 
+      ,[Application] = @Application 
+      ,[Specification] = @Specification 
+      ,[DrawingLevel] = @DrawingLevel 
+      ,[TaskDescription] = @TaskDescription 
+      ,[PartPrint] = @PartPrint 
+      ,[Sample] = @Sample 
+      ,[ToolingTarget] = @ToolingTarget 
+      ,[PrimaryCompetitors] = @PrimaryCompetitors 
+      ,[SpecificResourceRequirements] = @SpecificResourceRequirements 
+      ,[Technical] = @Technical 
+	  ,[QuoteDue] = @QuoteDue 
+	  ,[SOP] = @Sop 
+	  ,[SalesDBID] = @SalesDBID
+	  ,[MarketSector] = @MarketSector
+	  ,[AssignedTo] = @AssignedTo
+
+WHERE SIFHeaderKey=@SIFHeaderKey
+
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_UsersInRoles]    Script Date: 02/07/2014 16:45:47 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6390,242 +6409,64 @@ CREATE VIEW [dbo].[vw_aspnet_UsersInRoles]
   AS SELECT [dbo].[aspnet_UsersInRoles].[UserId], [dbo].[aspnet_UsersInRoles].[RoleId]
   FROM [dbo].[aspnet_UsersInRoles]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 01/09/2014 14:37:54 ******/
+/****** Object:  StoredProcedure [dbo].[CommodityMaster_EditCommodity]    Script Date: 02/07/2014 16:42:43 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE PROCEDURE [dbo].[RFQHeader_NewRFQ]
+CREATE PROCEDURE [dbo].[CommodityMaster_EditCommodity]
 	-- Add the parameters for the stored procedure here
-	 @BOMDetailKey INT
-	,@SupplierMasterKey INT
-	,@RFQNumberKey INT
-	,@DrawingLevel NVARCHAR(50)
-	,@EstimatedAnnualVolume INT
-	,@ProductionLeadTime NVARCHAR(50)
-	,@ProductionToolingLeadTime NVARCHAR(50)
-	,@PrototypeToolingLeadTime NVARCHAR(50)	
-	,@PrototypePieceLeadTime NVARCHAR(50)
-	,@ToolingDetail NVARCHAR(MAX)
-	,@ProductionTooling FLOAT
-	,@PrototypeTooling FLOAT
-	,@PrototypePiece FLOAT
-	,@SG_A_Profit FLOAT
-	,@PackingPerUnit FLOAT
-	,@AssemblyCostPerUnit FLOAT
-	,@Status NVARCHAR(15)
-	,@DueDate datetime
-	,@SentToVendor datetime
-	,@FilledUp datetime
-	,@PreparedBy NVARCHAR(150)
-	,@MOQ nvarchar(50)
-	,@TargetPrice float
-	,@NoQuote bit
-	,@MarketSector numeric(18,0)
-	,@IAgree bit
-	,@DateFilledOut datetime
-	,@Make nvarchar(50)
-	,@ReasonNoQuote nvarchar(200)
-	,@Weight float
-	,@CommentsToBuyer nvarchar(MAX)
-	,@CommentsToVendor nvarchar(MAX)
-	,@UMWeight nvarchar(50)
-	,@AttachmentsFolder nvarchar(50)
-	,@LeadTimePPAP nvarchar(50)
-	,@AttachmentsFolderVendor nvarchar(50)
-	,@CreatedBy nvarchar(256)
+			 @CommodityKey numeric(18,0)
+			,@CommodityCode nvarchar(50)
+			,@Commodity nvarchar(70)
+
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-    -- Insert statements for procedure here
 
-INSERT INTO [APQM_DB].[dbo].[RFQHeader]
-           ([BOMDetailKey]
-           ,[SupplierMasterKey]
-           ,[RFQNumberKey]
-           ,[DrawingLevel]
-           ,[EstimatedAnnualVolume]
-           ,[ProductionLeadTime]
-           ,[ProductionToolingLeadTime]
-		   ,[PrototypeToolingLeadTime]
-           ,[PrototypePieceLeadTime]
-           ,[ToolingDetail]
-           ,[ProductionTooling]
-           ,[PrototypeTooling]
-           ,[PrototypePiece]
-           ,[SG_A_Profit]
-           ,[PackingPerUnit]
-           ,[AssemblyCostPerUnit]
-		   ,[Status]
-		   ,[DueDate]
-		   ,[SentToVendor]
-		   ,[FilledUp]
-		   ,[PreparedBy]
-		   ,[MOQ]
-		   ,[TargetPrice]
-		   ,[NoQuote]
-		   ,[MarketSector]
-		   ,[CommentsToBuyer]
-		   ,[CommentsToVendor]
-		   ,[IAgree]
-		   ,[DateFilledOut]
-		   ,[Make]
-		   ,[ReasonNoQuote]
-		   ,[Weight]
-		   ,[UMWeight]
-		   ,[AttachmentsFolder]
-		   ,[LeadTimePPAP]
-		   ,[AttachmentsFolderVendor]
-		   ,[CreatedBy])
+
+
+UPDATE    CommodityMaster
+SET       CommodityCode = @CommodityCode
+		, Commodity = @Commodity
+WHERE     (CommodityKey = @CommodityKey)
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[CommodityMaster_NewCommodity]    Script Date: 02/07/2014 16:42:44 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[CommodityMaster_NewCommodity]
+	-- Add the parameters for the stored procedure here
+
+			@CommodityCode nvarchar(50)
+           ,@Commodity nvarchar(70)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+INSERT INTO [APQM_DB].[dbo].[CommodityMaster]
+           ([CommodityCode]
+           ,[Commodity])
      VALUES
-           (@BOMDetailKey
-           ,@SupplierMasterKey
-           ,@RFQNumberKey
-           ,@DrawingLevel
-           ,@EstimatedAnnualVolume
-           ,@ProductionLeadTime
-           ,@ProductionToolingLeadTime
-		   ,@PrototypeToolingLeadTime
-           ,@PrototypePieceLeadTime
-           ,@ToolingDetail
-           ,@ProductionTooling
-           ,@PrototypeTooling
-           ,@PrototypePiece
-           ,@SG_A_Profit
-           ,@PackingPerUnit
-           ,@AssemblyCostPerUnit
-		   ,@Status
-		   ,@DueDate
-		   ,@SentToVendor
-		   ,@FilledUp
-		   ,@PreparedBy
-           ,@MOQ
-           ,@TargetPrice
-           ,@NoQuote
-           ,@MarketSector
-           ,@CommentsToBuyer
-           ,@CommentsToVendor
-           ,@IAgree
-           ,@DateFilledOut
-           ,@Make
-           ,@ReasonNoQuote
-           ,@Weight
-           ,@UMWeight
-           ,@AttachmentsFolder
-		   ,@LeadTimePPAP
-           ,@AttachmentsFolderVendor
-           ,@CreatedBy)
+           (@CommodityCode
+           ,@Commodity)
+
 
 Select @@Identity
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 01/09/2014 14:37:51 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE PROCEDURE [dbo].[RFQHeader_EditRFQ]
-	-- Add the parameters for the stored procedure here
-	 @BOMDetailKey INT
-	,@SupplierMasterKey INT
-	,@DrawingLevel NVARCHAR(50)
-	,@EstimatedAnnualVolume INT
-	,@ProductionLeadTime NVARCHAR(50)
-	,@ProductionToolingLeadTime NVARCHAR(50)
-	,@PrototypeToolingLeadTime NVARCHAR (50)
-	,@PrototypePieceLeadTime NVARCHAR(50)
-	,@ToolingDetail NVARCHAR(MAX)
-	,@ProductionTooling FLOAT
-	,@PrototypeTooling FLOAT
-	,@PrototypePiece FLOAT
-	,@SG_A_Profit FLOAT
-	,@PackingPerUnit FLOAT
-	,@AssemblyCostPerUnit FLOAT
-	,@RFQHeaderKey INT
-	,@Status NVARCHAR(15)
-	,@DueDate datetime	
-	,@FilledUp datetime
-	,@PreparedBy NVARCHAR(150)
-	,@MOQ nvarchar(50)
-	,@TargetPrice float
-	,@NoQuote bit
-	,@MarketSector numeric(18,0)
-	,@CommentsToBuyer nvarchar(MAX)
-	,@CommentsToVendor nvarchar(MAX)
-	,@IAgree bit
-	,@DateFilledOut datetime
-	,@Make nvarchar(50)
-	,@ReasonNoQuote nvarchar(200)
-	,@Weight float
-	,@UMWeight nvarchar(50)
-	,@AttachmentsFolder nvarchar(50)
-	,@LeadTimePPAP nvarchar(50)
-	,@AttachmentsFolderVendor nvarchar(50)
-	,@CreatedBy nvarchar(256)
-
-AS
-BEGIN
-	-- SET NOCOUNT ON added to prevent extra result sets from
-	-- interfering with SELECT statements.
-	SET NOCOUNT ON;
-
-    -- Insert statements for procedure here
-
-UPDATE    RFQHeader
-SET       BOMDetailKey = @BOMDetailKey
-, SupplierMasterKey = @SupplierMasterKey
-, DrawingLevel = @DrawingLevel
-, EstimatedAnnualVolume = @EstimatedAnnualVolume
-, ProductionLeadTime = @ProductionLeadTime
-, ProductionToolingLeadTime = @ProductionToolingLeadTime
-, PrototypeToolingLeadTime = @PrototypeToolingLeadTime
-, PrototypePieceLeadTime = @PrototypePieceLeadTime
-, ToolingDetail = @ToolingDetail
-, ProductionTooling = @ProductionTooling
-, PrototypeTooling = @PrototypeTooling
-, PrototypePiece = @PrototypePiece
-, SG_A_Profit = @SG_A_Profit
-, PackingPerUnit = @PackingPerUnit
-, AssemblyCostPerUnit = @AssemblyCostPerUnit
-, [Status] = @Status
-, DueDate = @DueDate
-, FilledUp = @FilledUp
-, PreparedBy = @PreparedBy
-, MOQ = @MOQ
-, TargetPrice = @TargetPrice
-, NoQuote = @NoQuote
-, MarketSector = @MarketSector
-, CommentsToBuyer = @CommentsToBuyer
-, CommentsToVendor = @CommentsToVendor
-, IAgree = @IAgree
-, DateFilledOut = @DateFilledOut
-, Make = @Make
-, ReasonNoQuote = @ReasonNoQuote
-, Weight = @Weight
-, UMWeight = @UMWeight 
-, AttachmentsFolder = @AttachmentsFolder
-, LeadTimePPAP = @LeadTimePPAP
-, AttachmentsFolderVendor = @AttachmentsFolderVendor
-, CreatedBy = @CreatedBy
-
-WHERE     (RFQHeaderKey = @RFQHeaderKey)
-
-END
-GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_Paths]    Script Date: 01/09/2014 14:40:39 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE VIEW [dbo].[vw_aspnet_WebPartState_Paths]
-  AS SELECT [dbo].[aspnet_Paths].[ApplicationId], [dbo].[aspnet_Paths].[PathId], [dbo].[aspnet_Paths].[Path], [dbo].[aspnet_Paths].[LoweredPath]
-  FROM [dbo].[aspnet_Paths]
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Paths_CreatePath]    Script Date: 01/09/2014 14:37:11 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Paths_CreatePath]    Script Date: 02/07/2014 16:42:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6645,7 +6486,71 @@ BEGIN
     SELECT @PathId = PathId FROM dbo.aspnet_Paths WHERE LOWER(@Path) = LoweredPath AND ApplicationId = @ApplicationId
 END
 GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_Shared]    Script Date: 01/09/2014 14:40:39 ******/
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Paths]    Script Date: 02/07/2014 16:45:47 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE VIEW [dbo].[vw_aspnet_WebPartState_Paths]
+  AS SELECT [dbo].[aspnet_Paths].[ApplicationId], [dbo].[aspnet_Paths].[PathId], [dbo].[aspnet_Paths].[Path], [dbo].[aspnet_Paths].[LoweredPath]
+  FROM [dbo].[aspnet_Paths]
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierCommodity_Edit]    Script Date: 02/07/2014 16:43:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierCommodity_Edit]
+	-- Add the parameters for the stored procedure here
+			 @SupplierCommodityKey numeric(18,0)
+			,@SupplierKey numeric(18,0)
+			,@CommodityKey numeric(18,0)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+
+UPDATE    Supplier_Commodity
+SET       SupplierKey = @SupplierKey
+		, CommodityKey = @CommodityKey
+WHERE     (SupplierCommodityKey = @SupplierCommodityKey)
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[SupplierCommodity_New]    Script Date: 02/07/2014 16:43:06 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[SupplierCommodity_New]
+	-- Add the parameters for the stored procedure here
+
+			@SupplierKey numeric(18,0)
+           ,@CommodityKey numeric(18,0)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+INSERT INTO [APQM_DB].[dbo].[Supplier_Commodity]
+           ([SupplierKey]
+           ,[CommodityKey])
+     VALUES
+           (@SupplierKey
+           ,@CommodityKey)
+
+
+Select @@Identity
+
+END
+GO
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_Shared]    Script Date: 02/07/2014 16:45:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6654,7 +6559,7 @@ CREATE VIEW [dbo].[vw_aspnet_WebPartState_Shared]
   AS SELECT [dbo].[aspnet_PersonalizationAllUsers].[PathId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationAllUsers].[PageSettings]), [dbo].[aspnet_PersonalizationAllUsers].[LastUpdatedDate]
   FROM [dbo].[aspnet_PersonalizationAllUsers]
 GO
-/****** Object:  View [dbo].[vw_aspnet_WebPartState_User]    Script Date: 01/09/2014 14:40:39 ******/
+/****** Object:  View [dbo].[vw_aspnet_WebPartState_User]    Script Date: 02/07/2014 16:45:48 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -6663,7 +6568,65 @@ CREATE VIEW [dbo].[vw_aspnet_WebPartState_User]
   AS SELECT [dbo].[aspnet_PersonalizationPerUser].[PathId], [dbo].[aspnet_PersonalizationPerUser].[UserId], [DataSize]=DATALENGTH([dbo].[aspnet_PersonalizationPerUser].[PageSettings]), [dbo].[aspnet_PersonalizationPerUser].[LastUpdatedDate]
   FROM [dbo].[aspnet_PersonalizationPerUser]
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 01/09/2014 14:37:47 ******/
+/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_NewVolume]    Script Date: 02/07/2014 16:42:42 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[BOMDetailVolume_NewVolume]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailKey numeric(18,0)
+	,@Volume numeric(18,0)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+
+INSERT INTO [APQM_DB].[dbo].[BOMDetailVolume]
+           ([BOMDetailKey]
+           ,[Volume])
+     VALUES
+           (@BOMDetailKey
+			,@Volume)
+
+Select @@Identity
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[BOMDetailVolume_EditVolume]    Script Date: 02/07/2014 16:42:41 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[BOMDetailVolume_EditVolume]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailVolumeKey numeric(18,0)
+	,@BOMDetailKey numeric(18,0)
+	,@Volume numeric(18,0)
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+
+UPDATE [APQM_DB].[dbo].[BOMDetailVolume]
+   SET [BOMDetailKey] = @BOMDetailKey
+      ,[Volume] = @Volume
+ WHERE BOMDetailVolumeKey = @BOMDetailVolumeKey
+
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[RFQDetail_NewDetail]    Script Date: 02/07/2014 16:42:50 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6731,7 +6694,7 @@ WHERE ([RFQHeaderKey] = @RFQHeaderKey
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 01/09/2014 14:37:46 ******/
+/****** Object:  StoredProcedure [dbo].[RFQDetail_EditDetail]    Script Date: 02/07/2014 16:42:49 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6776,7 +6739,246 @@ UPDATE [APQM_DB].[dbo].[RFQDetail]
 
 END
 GO
-/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 01/09/2014 14:40:36 ******/
+/****** Object:  StoredProcedure [dbo].[RFQHeader_NewRFQ]    Script Date: 02/07/2014 16:42:57 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RFQHeader_NewRFQ]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailKey INT
+	,@SupplierMasterKey INT
+	,@RFQNumberKey INT
+	,@DrawingLevel NVARCHAR(50)
+	,@EstimatedAnnualVolume INT
+	,@ProductionLeadTime NVARCHAR(50)
+	,@ProductionToolingLeadTime NVARCHAR(50)
+	,@PrototypeToolingLeadTime NVARCHAR(50)	
+	,@PrototypePieceLeadTime NVARCHAR(50)
+	,@ToolingDetail NVARCHAR(MAX)
+	,@ProductionTooling FLOAT
+	,@PrototypeTooling FLOAT
+	,@PrototypePiece FLOAT
+	,@SG_A_Profit FLOAT
+	,@PackingPerUnit FLOAT
+	,@AssemblyCostPerUnit FLOAT
+	,@Status NVARCHAR(15)
+	,@DueDate datetime
+	,@SentToVendor datetime
+	,@FilledUp datetime
+	,@PreparedBy NVARCHAR(150)
+	,@MOQ nvarchar(50)
+	,@TargetPrice float
+	,@NoQuote bit
+	,@MarketSector numeric(18,0)
+	,@IAgree bit
+	,@DateFilledOut datetime
+	,@Make nvarchar(50)
+	,@ReasonNoQuote nvarchar(200)
+	,@Weight float
+	,@CommentsToBuyer nvarchar(MAX)
+	,@CommentsToVendor nvarchar(MAX)
+	,@UMWeight nvarchar(50)
+	,@AttachmentsFolder nvarchar(50)
+	,@LeadTimePPAP nvarchar(50)
+	,@AttachmentsFolderVendor nvarchar(50)
+	,@CreatedBy nvarchar(256)
+	,@Cavitation nvarchar(50)
+	,@Material nvarchar(150)
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+INSERT INTO [APQM_DB].[dbo].[RFQHeader]
+           ([BOMDetailKey]
+           ,[SupplierMasterKey]
+           ,[RFQNumberKey]
+           ,[DrawingLevel]
+           ,[EstimatedAnnualVolume]
+           ,[ProductionLeadTime]
+           ,[ProductionToolingLeadTime]
+		   ,[PrototypeToolingLeadTime]
+           ,[PrototypePieceLeadTime]
+           ,[ToolingDetail]
+           ,[ProductionTooling]
+           ,[PrototypeTooling]
+           ,[PrototypePiece]
+           ,[SG_A_Profit]
+           ,[PackingPerUnit]
+           ,[AssemblyCostPerUnit]
+		   ,[Status]
+		   ,[DueDate]
+		   ,[SentToVendor]
+		   ,[FilledUp]
+		   ,[PreparedBy]
+		   ,[MOQ]
+		   ,[TargetPrice]
+		   ,[NoQuote]
+		   ,[MarketSector]
+		   ,[CommentsToBuyer]
+		   ,[CommentsToVendor]
+		   ,[IAgree]
+		   ,[DateFilledOut]
+		   ,[Make]
+		   ,[ReasonNoQuote]
+		   ,[Weight]
+		   ,[UMWeight]
+		   ,[AttachmentsFolder]
+		   ,[LeadTimePPAP]
+		   ,[AttachmentsFolderVendor]
+		   ,[CreatedBy]
+		   ,[Cavitation]
+		   ,[Material])
+     VALUES
+           (@BOMDetailKey
+           ,@SupplierMasterKey
+           ,@RFQNumberKey
+           ,@DrawingLevel
+           ,@EstimatedAnnualVolume
+           ,@ProductionLeadTime
+           ,@ProductionToolingLeadTime
+		   ,@PrototypeToolingLeadTime
+           ,@PrototypePieceLeadTime
+           ,@ToolingDetail
+           ,@ProductionTooling
+           ,@PrototypeTooling
+           ,@PrototypePiece
+           ,@SG_A_Profit
+           ,@PackingPerUnit
+           ,@AssemblyCostPerUnit
+		   ,@Status
+		   ,@DueDate
+		   ,@SentToVendor
+		   ,@FilledUp
+		   ,@PreparedBy
+           ,@MOQ
+           ,@TargetPrice
+           ,@NoQuote
+           ,@MarketSector
+           ,@CommentsToBuyer
+           ,@CommentsToVendor
+           ,@IAgree
+           ,@DateFilledOut
+           ,@Make
+           ,@ReasonNoQuote
+           ,@Weight
+           ,@UMWeight
+           ,@AttachmentsFolder
+		   ,@LeadTimePPAP
+           ,@AttachmentsFolderVendor
+           ,@CreatedBy
+           ,@Cavitation
+           ,@Material)
+
+Select @@Identity
+
+END
+GO
+/****** Object:  StoredProcedure [dbo].[RFQHeader_EditRFQ]    Script Date: 02/07/2014 16:42:54 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[RFQHeader_EditRFQ]
+	-- Add the parameters for the stored procedure here
+	 @BOMDetailKey INT
+	,@SupplierMasterKey INT
+	,@DrawingLevel NVARCHAR(50)
+	,@EstimatedAnnualVolume INT
+	,@ProductionLeadTime NVARCHAR(50)
+	,@ProductionToolingLeadTime NVARCHAR(50)
+	,@PrototypeToolingLeadTime NVARCHAR (50)
+	,@PrototypePieceLeadTime NVARCHAR(50)
+	,@ToolingDetail NVARCHAR(MAX)
+	,@ProductionTooling FLOAT
+	,@PrototypeTooling FLOAT
+	,@PrototypePiece FLOAT
+	,@SG_A_Profit FLOAT
+	,@PackingPerUnit FLOAT
+	,@AssemblyCostPerUnit FLOAT
+	,@RFQHeaderKey INT
+	,@Status NVARCHAR(15)
+	,@DueDate datetime	
+	,@FilledUp datetime
+	,@PreparedBy NVARCHAR(150)
+	,@MOQ nvarchar(50)
+	,@TargetPrice float
+	,@NoQuote bit
+	,@MarketSector numeric(18,0)
+	,@CommentsToBuyer nvarchar(MAX)
+	,@CommentsToVendor nvarchar(MAX)
+	,@IAgree bit
+	,@DateFilledOut datetime
+	,@Make nvarchar(50)
+	,@ReasonNoQuote nvarchar(200)
+	,@Weight float
+	,@UMWeight nvarchar(50)
+	,@AttachmentsFolder nvarchar(50)
+	,@LeadTimePPAP nvarchar(50)
+	,@AttachmentsFolderVendor nvarchar(50)
+	,@CreatedBy nvarchar(256)
+	,@Cavitation nvarchar(50)
+	,@Material nvarchar(150)
+	,@SentToVendor datetime
+	
+
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+
+UPDATE    RFQHeader
+SET       BOMDetailKey = @BOMDetailKey
+, SupplierMasterKey = @SupplierMasterKey
+, DrawingLevel = @DrawingLevel
+, EstimatedAnnualVolume = @EstimatedAnnualVolume
+, ProductionLeadTime = @ProductionLeadTime
+, ProductionToolingLeadTime = @ProductionToolingLeadTime
+, PrototypeToolingLeadTime = @PrototypeToolingLeadTime
+, PrototypePieceLeadTime = @PrototypePieceLeadTime
+, ToolingDetail = @ToolingDetail
+, ProductionTooling = @ProductionTooling
+, PrototypeTooling = @PrototypeTooling
+, PrototypePiece = @PrototypePiece
+, SG_A_Profit = @SG_A_Profit
+, PackingPerUnit = @PackingPerUnit
+, AssemblyCostPerUnit = @AssemblyCostPerUnit
+, [Status] = @Status
+, DueDate = @DueDate
+, FilledUp = @FilledUp
+, PreparedBy = @PreparedBy
+, MOQ = @MOQ
+, TargetPrice = @TargetPrice
+, NoQuote = @NoQuote
+, MarketSector = @MarketSector
+, CommentsToBuyer = @CommentsToBuyer
+, CommentsToVendor = @CommentsToVendor
+, IAgree = @IAgree
+, DateFilledOut = @DateFilledOut
+, Make = @Make
+, ReasonNoQuote = @ReasonNoQuote
+, Weight = @Weight
+, UMWeight = @UMWeight 
+, AttachmentsFolder = @AttachmentsFolder
+, LeadTimePPAP = @LeadTimePPAP
+, AttachmentsFolderVendor = @AttachmentsFolderVendor
+, CreatedBy = @CreatedBy
+, Cavitation = @Cavitation
+, Material = @Material
+, SentToVendor = @SentToVendor
+
+WHERE     (RFQHeaderKey = @RFQHeaderKey)
+
+END
+GO
+/****** Object:  View [dbo].[viewRFQHeader_ReadAll]    Script Date: 02/07/2014 16:45:44 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -6788,12 +6990,13 @@ SELECT     dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.RFQHeader
                       dbo.RFQHeader.PrototypeToolingLeadTime, dbo.RFQHeader.PrototypePieceLeadTime, dbo.RFQHeader.ToolingDetail, dbo.RFQHeader.ProductionTooling, 
                       dbo.RFQHeader.PrototypeTooling, dbo.RFQHeader.PrototypePiece, dbo.RFQHeader.SG_A_Profit, dbo.RFQHeader.PackingPerUnit, 
                       dbo.RFQHeader.AssemblyCostPerUnit, dbo.RFQHeader.Status, dbo.RFQHeader.DueDate, dbo.RFQHeader.SentToVendor, dbo.RFQHeader.FilledUp, 
-                      dbo.ItemMaster.PartNumber, dbo.TokenMaster.DeadDate, dbo.TokenMaster.Acknowledgement, dbo.SupplierMaster.SupplierName, 
-                      dbo.SupplierMaster.ManufacturingLocation, dbo.SupplierMaster.ShipLocation, dbo.RFQHeader.PreparedBy, dbo.viewRFQNumber.RFQGenerated, 
-                      dbo.RFQHeader.MOQ, dbo.RFQHeader.TargetPrice, dbo.RFQHeader.NoQuote, dbo.RFQHeader.MarketSector, dbo.RFQHeader.IAgree, dbo.RFQHeader.DateFilledOut, 
-                      dbo.RFQHeader.Make, dbo.RFQHeader.ReasonNoQuote, dbo.RFQHeader.Weight, dbo.RFQHeader.CommentsToBuyer, dbo.RFQHeader.CommentsToVendor, 
-                      dbo.RFQHeader.UMWeight, dbo.BOMDetail.Material, dbo.viewRFQNumber.SIFHeaderKey, dbo.RFQHeader.AttachmentsFolder, dbo.RFQHeader.LeadTimePPAP, 
-                      dbo.BOMDetail.[User], dbo.RFQHeader.AttachmentsFolderVendor, dbo.MarketSector.Name AS MarketSectorName, dbo.RFQHeader.CreatedBy
+                      dbo.ItemMaster.PartNumber, dbo.TokenMaster.Acknowledgement, dbo.SupplierMaster.SupplierName, dbo.SupplierMaster.ManufacturingLocation, 
+                      dbo.SupplierMaster.ShipLocation, dbo.RFQHeader.PreparedBy, dbo.viewRFQNumber.RFQGenerated, dbo.RFQHeader.MOQ, dbo.RFQHeader.TargetPrice, 
+                      dbo.RFQHeader.NoQuote, dbo.RFQHeader.MarketSector, dbo.RFQHeader.IAgree, dbo.RFQHeader.DateFilledOut, dbo.RFQHeader.Make, 
+                      dbo.RFQHeader.ReasonNoQuote, dbo.RFQHeader.Weight, dbo.RFQHeader.CommentsToBuyer, dbo.RFQHeader.CommentsToVendor, dbo.RFQHeader.UMWeight, 
+                      dbo.BOMDetail.Material, dbo.viewRFQNumber.SIFHeaderKey, dbo.RFQHeader.AttachmentsFolder, dbo.RFQHeader.LeadTimePPAP, dbo.BOMDetail.[User], 
+                      dbo.RFQHeader.AttachmentsFolderVendor, dbo.MarketSector.Name AS MarketSectorName, dbo.RFQHeader.CreatedBy, dbo.TokenMaster.DeadDate, 
+                      dbo.RFQHeader.Cavitation, dbo.RFQHeader.Material AS MaterialRFQ
 FROM         dbo.ItemMaster INNER JOIN
                       dbo.BOMDetail ON dbo.ItemMaster.ItemMasterKey = dbo.BOMDetail.ItemMasterKey INNER JOIN
                       dbo.RFQHeader ON dbo.BOMDetail.BOMDetailKey = dbo.RFQHeader.BOMDetailKey INNER JOIN
@@ -6801,14 +7004,15 @@ FROM         dbo.ItemMaster INNER JOIN
                       dbo.viewRFQNumber ON dbo.RFQHeader.RFQNumberKey = dbo.viewRFQNumber.RFQNumberKey INNER JOIN
                       dbo.MarketSector ON dbo.RFQHeader.MarketSector = dbo.MarketSector.MarketSectorID LEFT OUTER JOIN
                       dbo.TokenMaster ON dbo.RFQHeader.RFQHeaderKey = dbo.TokenMaster.SubjectKey
-WHERE     (dbo.TokenMaster.Subject = N'RFQ')
+WHERE     (dbo.TokenMaster.Subject = N'RFQ') OR
+                      (dbo.TokenMaster.Subject IS NULL)
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
    Begin PaneConfigurations = 
       Begin PaneConfiguration = 0
          NumPanes = 4
-         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+         Configuration = "(H (1[11] 4[17] 2[52] 3) )"
       End
       Begin PaneConfiguration = 1
          NumPanes = 3
@@ -6824,7 +7028,7 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 4
          NumPanes = 2
-         Configuration = "(H (1[56] 3) )"
+         Configuration = "(H (1[33] 3) )"
       End
       Begin PaneConfiguration = 5
          NumPanes = 2
@@ -6840,11 +7044,11 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 8
          NumPanes = 3
-         Configuration = "(H (1[56] 4[18] 2) )"
+         Configuration = "(H (1[56] 4[11] 2) )"
       End
       Begin PaneConfiguration = 9
          NumPanes = 2
-         Configuration = "(H (1[34] 4) )"
+         Configuration = "(H (1[29] 4) )"
       End
       Begin PaneConfiguration = 10
          NumPanes = 2
@@ -6870,7 +7074,7 @@ Begin DesignProperties =
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = 0
+         Top = -480
          Left = 0
       End
       Begin Tables = 
@@ -6938,12 +7142,12 @@ Begin DesignProperties =
             Begin Extent = 
                Top = 0
                Left = 869
-               Bottom = 148
+               Bottom = 152
                Right = 1027
-            End
-' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQHeader_ReadAll'
+            En' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQHeader_ReadAll'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'            DisplayFlags = 280
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'd
+            DisplayFlags = 280
             TopColumn = 0
          End
       End
@@ -6955,8 +7159,9 @@ EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'            D
       PaneHidden = 
       Begin ParameterDefaults = ""
       End
-      Begin ColumnWidths = 30
+      Begin ColumnWidths = 31
          Width = 284
+         Width = 1500
          Width = 1500
          Width = 1500
          Width = 1500
@@ -7010,7 +7215,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQHeader_ReadAll'
 GO
-/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 01/09/2014 14:40:34 ******/
+/****** Object:  View [dbo].[viewRFQ_Summary]    Script Date: 02/07/2014 16:45:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -7024,8 +7229,8 @@ SELECT     dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.viewRFQNu
                       SUM(ISNULL(dbo.RFQDetail.DirectHrlyLaborRate, 0) * ISNULL(dbo.RFQDetail.StdHrs, 0)) AS LaborTotal, SUM(ISNULL(dbo.RFQDetail.Burden, 0)) AS BurdenTotal, 
                       dbo.RFQHeader.SG_A_Profit, dbo.RFQHeader.PackingPerUnit, dbo.RFQHeader.AssemblyCostPerUnit, dbo.RFQHeader.EstimatedAnnualVolume, 
                       dbo.SupplierMaster.SupplierName, dbo.RFQSummary.RFQSummaryKey, dbo.RFQSummary.BCost, dbo.RFQSummary.CCost, dbo.RFQSummary.EAV, 
-                      dbo.RFQSummary.Tooling, dbo.RFQSummary.Cavitation, dbo.RFQSummary.Material, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence, 
-                      dbo.RFQHeader.CreatedBy
+                      dbo.RFQHeader.ProductionTooling AS Tooling, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence, dbo.RFQHeader.CreatedBy, dbo.RFQHeader.Cavitation, 
+                      dbo.RFQHeader.Material
 FROM         dbo.RFQHeader INNER JOIN
                       dbo.SupplierMaster ON dbo.RFQHeader.SupplierMasterKey = dbo.SupplierMaster.SupplierMasterKey INNER JOIN
                       dbo.viewRFQNumber ON dbo.RFQHeader.RFQNumberKey = dbo.viewRFQNumber.RFQNumberKey LEFT OUTER JOIN
@@ -7033,8 +7238,8 @@ FROM         dbo.RFQHeader INNER JOIN
                       dbo.RFQSummary ON dbo.RFQHeader.RFQHeaderKey = dbo.RFQSummary.RFQHeaderKey
 GROUP BY dbo.RFQHeader.RFQHeaderKey, dbo.RFQHeader.BOMDetailKey, dbo.RFQHeader.SupplierMasterKey, dbo.RFQHeader.SG_A_Profit, dbo.RFQHeader.PackingPerUnit, 
                       dbo.RFQHeader.AssemblyCostPerUnit, dbo.RFQHeader.EstimatedAnnualVolume, dbo.SupplierMaster.SupplierName, dbo.RFQSummary.RFQSummaryKey, 
-                      dbo.RFQSummary.BCost, dbo.RFQSummary.CCost, dbo.RFQSummary.EAV, dbo.RFQSummary.Tooling, dbo.RFQSummary.Cavitation, dbo.RFQSummary.Material, 
-                      dbo.viewRFQNumber.RFQGenerated, dbo.RFQHeader.Status, dbo.RFQSummary.Sequence, dbo.RFQHeader.CreatedBy
+                      dbo.RFQSummary.BCost, dbo.RFQSummary.CCost, dbo.RFQSummary.EAV, dbo.viewRFQNumber.RFQGenerated, dbo.RFQHeader.Status, 
+                      dbo.RFQSummary.Sequence, dbo.RFQHeader.CreatedBy, dbo.RFQHeader.ProductionTooling, dbo.RFQHeader.Cavitation, dbo.RFQHeader.Material
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
 Begin DesignProperties = 
@@ -7073,15 +7278,15 @@ Begin DesignProperties =
       End
       Begin PaneConfiguration = 8
          NumPanes = 3
-         Configuration = "(H (1[19] 4[38] 2) )"
+         Configuration = "(H (1[48] 4[33] 2) )"
       End
       Begin PaneConfiguration = 9
          NumPanes = 2
-         Configuration = "(H (1[65] 4) )"
+         Configuration = "(H (1[29] 4) )"
       End
       Begin PaneConfiguration = 10
          NumPanes = 2
-         Configuration = "(H (1[66] 2) )"
+         Configuration = "(H (1[28] 2) )"
       End
       Begin PaneConfiguration = 11
          NumPanes = 2
@@ -7099,11 +7304,11 @@ Begin DesignProperties =
          NumPanes = 1
          Configuration = "(V (2))"
       End
-      ActivePaneConfig = 2
+      ActivePaneConfig = 9
    End
    Begin DiagramPane = 
       Begin Origin = 
-         Top = -165
+         Top = 0
          Left = 0
       End
       Begin Tables = 
@@ -7112,10 +7317,10 @@ Begin DesignProperties =
                Top = 15
                Left = 522
                Bottom = 604
-               Right = 724
+               Right = 758
             End
             DisplayFlags = 280
-            TopColumn = 3
+            TopColumn = 5
          End
          Begin Table = "SupplierMaster"
             Begin Extent = 
@@ -7160,8 +7365,10 @@ Begin DesignProperties =
       End
    End
    Begin SQLPane = 
+      PaneHidden = 
    End
    Begin DataPane = 
+      PaneHidden = 
       Begin ParameterDefaults = ""
       End
       Begin ColumnWidths = 22
@@ -7177,10 +7384,10 @@ Begin DesignProperties =
          Width = 1065
          Width = 1065
          Width = 1260
-         Width = 1725
-         Width = 190' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQ_Summary'
+    ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQ_Summary'
 GO
-EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'5
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'     Width = 1725
+         Width = 1905
          Width = 1500
          Width = 1500
          Width = 1500
@@ -7192,7 +7399,6 @@ EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'5
       End
    End
    Begin CriteriaPane = 
-      PaneHidden = 
       Begin ColumnWidths = 12
          Column = 3405
          Alias = 1485
@@ -7214,7 +7420,7 @@ End
 GO
 EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'viewRFQ_Summary'
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Membership_CreateUser]    Script Date: 01/09/2014 14:37:03 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Membership_CreateUser]    Script Date: 02/07/2014 16:42:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7415,7 +7621,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetUserState]    Script Date: 01/09/2014 14:37:14 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetUserState]    Script Date: 02/07/2014 16:42:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7448,7 +7654,7 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_GetCountOfState]    Script Date: 01/09/2014 14:37:13 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_GetCountOfState]    Script Date: 02/07/2014 16:42:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7485,7 +7691,7 @@ BEGIN
                   AND (@InactiveSinceDate IS NULL OR Users.LastActivityDate <= @InactiveSinceDate)
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_SetProperties]    Script Date: 01/09/2014 14:37:20 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_SetProperties]    Script Date: 02/07/2014 16:42:29 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7589,7 +7795,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_GetPageSettings]    Script Date: 01/09/2014 14:37:16 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_GetPageSettings]    Script Date: 02/07/2014 16:42:25 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7636,7 +7842,7 @@ BEGIN
     SELECT p.PageSettings FROM dbo.aspnet_PersonalizationPerUser p WHERE p.PathId = @PathId AND p.UserId = @UserId
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings]    Script Date: 01/09/2014 14:37:17 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_ResetPageSettings]    Script Date: 02/07/2014 16:42:25 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7684,7 +7890,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_SetPageSettings]    Script Date: 01/09/2014 14:37:17 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationPerUser_SetPageSettings]    Script Date: 02/07/2014 16:42:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7732,7 +7938,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings]    Script Date: 01/09/2014 14:37:16 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_SetPageSettings]    Script Date: 02/07/2014 16:42:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7765,7 +7971,7 @@ BEGIN
     RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Roles_CreateRole]    Script Date: 01/09/2014 14:37:21 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Roles_CreateRole]    Script Date: 02/07/2014 16:42:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7836,7 +8042,7 @@ Cleanup:
 
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 01/09/2014 14:37:18 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_Profile_DeleteProfiles]    Script Date: 02/07/2014 16:42:26 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7908,36 +8114,70 @@ Cleanup:
     RETURN @ErrorCode
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetSharedState]    Script Date: 01/09/2014 14:37:14 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings]    Script Date: 02/07/2014 16:42:23 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_ResetSharedState] (
-    @Count int OUT,
-    @ApplicationName NVARCHAR(256),
-    @Path NVARCHAR(256))
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
 AS
 BEGIN
     DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
     EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
     IF (@ApplicationId IS NULL)
-        SELECT @Count = 0
-    ELSE
     BEGIN
-        DELETE FROM dbo.aspnet_PersonalizationAllUsers
-        WHERE PathId IN
-            (SELECT AllUsers.PathId
-             FROM dbo.aspnet_PersonalizationAllUsers AllUsers, dbo.aspnet_Paths Paths
-             WHERE Paths.ApplicationId = @ApplicationId
-                   AND AllUsers.PathId = Paths.PathId
-                   AND Paths.LoweredPath = LOWER(@Path))
-
-        SELECT @Count = @@ROWCOUNT
+        RETURN
     END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    DELETE FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId
+    RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_DeleteAllState]    Script Date: 01/09/2014 14:37:12 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings]    Script Date: 02/07/2014 16:42:23 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER OFF
+GO
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings] (
+    @ApplicationName  NVARCHAR(256),
+    @Path              NVARCHAR(256))
+AS
+BEGIN
+    DECLARE @ApplicationId UNIQUEIDENTIFIER
+    DECLARE @PathId UNIQUEIDENTIFIER
+
+    SELECT @ApplicationId = NULL
+    SELECT @PathId = NULL
+
+    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
+    IF (@ApplicationId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
+    IF (@PathId IS NULL)
+    BEGIN
+        RETURN
+    END
+
+    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationAllUsers p WHERE p.PathId = @PathId
+END
+GO
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_DeleteAllState]    Script Date: 02/07/2014 16:42:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -7971,70 +8211,36 @@ BEGIN
     END
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings]    Script Date: 01/09/2014 14:37:15 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_ResetSharedState]    Script Date: 02/07/2014 16:42:22 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
 GO
-CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_ResetPageSettings] (
-    @ApplicationName  NVARCHAR(256),
-    @Path              NVARCHAR(256))
+CREATE PROCEDURE [dbo].[aspnet_PersonalizationAdministration_ResetSharedState] (
+    @Count int OUT,
+    @ApplicationName NVARCHAR(256),
+    @Path NVARCHAR(256))
 AS
 BEGIN
     DECLARE @ApplicationId UNIQUEIDENTIFIER
-    DECLARE @PathId UNIQUEIDENTIFIER
-
-    SELECT @ApplicationId = NULL
-    SELECT @PathId = NULL
-
     EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
     IF (@ApplicationId IS NULL)
+        SELECT @Count = 0
+    ELSE
     BEGIN
-        RETURN
-    END
+        DELETE FROM dbo.aspnet_PersonalizationAllUsers
+        WHERE PathId IN
+            (SELECT AllUsers.PathId
+             FROM dbo.aspnet_PersonalizationAllUsers AllUsers, dbo.aspnet_Paths Paths
+             WHERE Paths.ApplicationId = @ApplicationId
+                   AND AllUsers.PathId = Paths.PathId
+                   AND Paths.LoweredPath = LOWER(@Path))
 
-    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
-    IF (@PathId IS NULL)
-    BEGIN
-        RETURN
+        SELECT @Count = @@ROWCOUNT
     END
-
-    DELETE FROM dbo.aspnet_PersonalizationAllUsers WHERE PathId = @PathId
-    RETURN 0
 END
 GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings]    Script Date: 01/09/2014 14:37:15 ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER OFF
-GO
-CREATE PROCEDURE [dbo].[aspnet_PersonalizationAllUsers_GetPageSettings] (
-    @ApplicationName  NVARCHAR(256),
-    @Path              NVARCHAR(256))
-AS
-BEGIN
-    DECLARE @ApplicationId UNIQUEIDENTIFIER
-    DECLARE @PathId UNIQUEIDENTIFIER
-
-    SELECT @ApplicationId = NULL
-    SELECT @PathId = NULL
-
-    EXEC dbo.aspnet_Personalization_GetApplicationId @ApplicationName, @ApplicationId OUTPUT
-    IF (@ApplicationId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    SELECT @PathId = u.PathId FROM dbo.aspnet_Paths u WHERE u.ApplicationId = @ApplicationId AND u.LoweredPath = LOWER(@Path)
-    IF (@PathId IS NULL)
-    BEGIN
-        RETURN
-    END
-
-    SELECT p.PageSettings FROM dbo.aspnet_PersonalizationAllUsers p WHERE p.PathId = @PathId
-END
-GO
-/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_FindState]    Script Date: 01/09/2014 14:37:13 ******/
+/****** Object:  StoredProcedure [dbo].[aspnet_PersonalizationAdministration_FindState]    Script Date: 02/07/2014 16:42:21 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER OFF
@@ -8148,174 +8354,186 @@ BEGIN
     RETURN @TotalRecords
 END
 GO
-/****** Object:  ForeignKey [FK__aspnet_Me__Appli__3E1D39E1]    Script Date: 01/09/2014 14:38:26 ******/
+/****** Object:  ForeignKey [FK__aspnet_Me__Appli__3E1D39E1]    Script Date: 02/07/2014 16:43:30 ******/
 ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Me__UserI__3F115E1A]    Script Date: 01/09/2014 14:38:26 ******/
+/****** Object:  ForeignKey [FK__aspnet_Me__UserI__3F115E1A]    Script Date: 02/07/2014 16:43:30 ******/
 ALTER TABLE [dbo].[aspnet_Membership]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pa__Appli__6FB49575]    Script Date: 01/09/2014 14:38:29 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pa__Appli__6FB49575]    Script Date: 02/07/2014 16:43:33 ******/
 ALTER TABLE [dbo].[aspnet_Paths]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__756D6ECB]    Script Date: 01/09/2014 14:38:31 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__756D6ECB]    Script Date: 02/07/2014 16:43:35 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationAllUsers]  WITH CHECK ADD FOREIGN KEY([PathId])
 REFERENCES [dbo].[aspnet_Paths] ([PathId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__793DFFAF]    Script Date: 01/09/2014 14:38:34 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__PathI__793DFFAF]    Script Date: 02/07/2014 16:43:38 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([PathId])
 REFERENCES [dbo].[aspnet_Paths] ([PathId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pe__UserI__7A3223E8]    Script Date: 01/09/2014 14:38:34 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pe__UserI__7A3223E8]    Script Date: 02/07/2014 16:43:38 ******/
 ALTER TABLE [dbo].[aspnet_PersonalizationPerUser]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Pr__UserI__531856C7]    Script Date: 01/09/2014 14:38:37 ******/
+/****** Object:  ForeignKey [FK__aspnet_Pr__UserI__531856C7]    Script Date: 02/07/2014 16:43:41 ******/
 ALTER TABLE [dbo].[aspnet_Profile]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Ro__Appli__5CA1C101]    Script Date: 01/09/2014 14:38:39 ******/
+/****** Object:  ForeignKey [FK__aspnet_Ro__Appli__5CA1C101]    Script Date: 02/07/2014 16:43:44 ******/
 ALTER TABLE [dbo].[aspnet_Roles]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__Appli__2DE6D218]    Script Date: 01/09/2014 14:38:45 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__Appli__2DE6D218]    Script Date: 02/07/2014 16:43:50 ******/
 ALTER TABLE [dbo].[aspnet_Users]  WITH CHECK ADD FOREIGN KEY([ApplicationId])
 REFERENCES [dbo].[aspnet_Applications] ([ApplicationId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__RoleI__6166761E]    Script Date: 01/09/2014 14:38:47 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__RoleI__6166761E]    Script Date: 02/07/2014 16:43:52 ******/
 ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([RoleId])
 REFERENCES [dbo].[aspnet_Roles] ([RoleId])
 GO
-/****** Object:  ForeignKey [FK__aspnet_Us__UserI__607251E5]    Script Date: 01/09/2014 14:38:47 ******/
+/****** Object:  ForeignKey [FK__aspnet_Us__UserI__607251E5]    Script Date: 02/07/2014 16:43:52 ******/
 ALTER TABLE [dbo].[aspnet_UsersInRoles]  WITH CHECK ADD FOREIGN KEY([UserId])
 REFERENCES [dbo].[aspnet_Users] ([UserId])
 GO
-/****** Object:  ForeignKey [FK_BOMDetail_BOMHeader]    Script Date: 01/09/2014 14:39:03 ******/
+/****** Object:  ForeignKey [FK_BOMDetail_BOMHeader]    Script Date: 02/07/2014 16:44:08 ******/
 ALTER TABLE [dbo].[BOMDetail]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetail_BOMHeader] FOREIGN KEY([BOMHeaderKey])
 REFERENCES [dbo].[BOMHeader] ([BOMHeaderKey])
 GO
 ALTER TABLE [dbo].[BOMDetail] CHECK CONSTRAINT [FK_BOMDetail_BOMHeader]
 GO
-/****** Object:  ForeignKey [FK_BOMDetail_ItemMaster]    Script Date: 01/09/2014 14:39:04 ******/
+/****** Object:  ForeignKey [FK_BOMDetail_ItemMaster]    Script Date: 02/07/2014 16:44:08 ******/
 ALTER TABLE [dbo].[BOMDetail]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetail_ItemMaster] FOREIGN KEY([ItemMasterKey])
 REFERENCES [dbo].[ItemMaster] ([ItemMasterKey])
 GO
 ALTER TABLE [dbo].[BOMDetail] CHECK CONSTRAINT [FK_BOMDetail_ItemMaster]
 GO
-/****** Object:  ForeignKey [FK_BOMDetailVolume_BOMDetail]    Script Date: 01/09/2014 14:39:05 ******/
+/****** Object:  ForeignKey [FK_BOMDetailVolume_BOMDetail]    Script Date: 02/07/2014 16:44:10 ******/
 ALTER TABLE [dbo].[BOMDetailVolume]  WITH CHECK ADD  CONSTRAINT [FK_BOMDetailVolume_BOMDetail] FOREIGN KEY([BOMDetailKey])
 REFERENCES [dbo].[BOMDetail] ([BOMDetailKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[BOMDetailVolume] CHECK CONSTRAINT [FK_BOMDetailVolume_BOMDetail]
 GO
-/****** Object:  ForeignKey [FK_BOMHeader_SIFHeader]    Script Date: 01/09/2014 14:39:08 ******/
+/****** Object:  ForeignKey [FK_BOMHeader_SIFHeader]    Script Date: 02/07/2014 16:44:13 ******/
 ALTER TABLE [dbo].[BOMHeader]  WITH CHECK ADD  CONSTRAINT [FK_BOMHeader_SIFHeader] FOREIGN KEY([SIFHeaderKey])
 REFERENCES [dbo].[SIFHeader] ([SIFHeaderKey])
 GO
 ALTER TABLE [dbo].[BOMHeader] CHECK CONSTRAINT [FK_BOMHeader_SIFHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQACR_RFQHeader]    Script Date: 01/09/2014 14:39:19 ******/
+/****** Object:  ForeignKey [FK_RFQACR_RFQHeader]    Script Date: 02/07/2014 16:44:25 ******/
 ALTER TABLE [dbo].[RFQACR]  WITH CHECK ADD  CONSTRAINT [FK_RFQACR_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQACR] CHECK CONSTRAINT [FK_RFQACR_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQDetail_RFQHeader]    Script Date: 01/09/2014 14:39:24 ******/
+/****** Object:  ForeignKey [FK_RFQDetail_RFQHeader]    Script Date: 02/07/2014 16:44:30 ******/
 ALTER TABLE [dbo].[RFQDetail]  WITH CHECK ADD  CONSTRAINT [FK_RFQDetail_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQDetail] CHECK CONSTRAINT [FK_RFQDetail_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQEAV_RFQHeader]    Script Date: 01/09/2014 14:39:26 ******/
+/****** Object:  ForeignKey [FK_RFQEAV_RFQHeader]    Script Date: 02/07/2014 16:44:33 ******/
 ALTER TABLE [dbo].[RFQEAV]  WITH CHECK ADD  CONSTRAINT [FK_RFQEAV_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[RFQEAV] CHECK CONSTRAINT [FK_RFQEAV_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_BOMDetail]    Script Date: 01/09/2014 14:39:42 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_BOMDetail]    Script Date: 02/07/2014 16:44:49 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_BOMDetail] FOREIGN KEY([BOMDetailKey])
 REFERENCES [dbo].[BOMDetail] ([BOMDetailKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_BOMDetail]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_MarketSector]    Script Date: 01/09/2014 14:39:42 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_MarketSector]    Script Date: 02/07/2014 16:44:49 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_MarketSector] FOREIGN KEY([MarketSector])
 REFERENCES [dbo].[MarketSector] ([MarketSectorID])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_MarketSector]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_RFQNumber]    Script Date: 01/09/2014 14:39:42 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_RFQNumber]    Script Date: 02/07/2014 16:44:49 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_RFQNumber] FOREIGN KEY([RFQNumberKey])
 REFERENCES [dbo].[RFQNumber] ([RFQNumberKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_RFQNumber]
 GO
-/****** Object:  ForeignKey [FK_RFQHeader_SupplierMaster]    Script Date: 01/09/2014 14:39:42 ******/
+/****** Object:  ForeignKey [FK_RFQHeader_SupplierMaster]    Script Date: 02/07/2014 16:44:50 ******/
 ALTER TABLE [dbo].[RFQHeader]  WITH CHECK ADD  CONSTRAINT [FK_RFQHeader_SupplierMaster] FOREIGN KEY([SupplierMasterKey])
 REFERENCES [dbo].[SupplierMaster] ([SupplierMasterKey])
 GO
 ALTER TABLE [dbo].[RFQHeader] CHECK CONSTRAINT [FK_RFQHeader_SupplierMaster]
 GO
-/****** Object:  ForeignKey [FK_RFQSummary_RFQHeader]    Script Date: 01/09/2014 14:39:49 ******/
+/****** Object:  ForeignKey [FK_RFQSummary_RFQHeader]    Script Date: 02/07/2014 16:44:55 ******/
 ALTER TABLE [dbo].[RFQSummary]  WITH CHECK ADD  CONSTRAINT [FK_RFQSummary_RFQHeader] FOREIGN KEY([RFQHeaderKey])
 REFERENCES [dbo].[RFQHeader] ([RFQHeaderKey])
 GO
 ALTER TABLE [dbo].[RFQSummary] CHECK CONSTRAINT [FK_RFQSummary_RFQHeader]
 GO
-/****** Object:  ForeignKey [FK_SIFDetail_SIFHeader]    Script Date: 01/09/2014 14:39:52 ******/
+/****** Object:  ForeignKey [FK_SIFDetail_SIFHeader]    Script Date: 02/07/2014 16:44:58 ******/
 ALTER TABLE [dbo].[SIFDetail]  WITH CHECK ADD  CONSTRAINT [FK_SIFDetail_SIFHeader] FOREIGN KEY([SIFHeaderKey])
 REFERENCES [dbo].[SIFHeader] ([SIFHeaderKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SIFDetail] CHECK CONSTRAINT [FK_SIFDetail_SIFHeader]
 GO
-/****** Object:  ForeignKey [FK_SIFHeader_CustomerMaster]    Script Date: 01/09/2014 14:40:04 ******/
+/****** Object:  ForeignKey [FK_SIFHeader_CustomerMaster]    Script Date: 02/07/2014 16:45:11 ******/
 ALTER TABLE [dbo].[SIFHeader]  WITH CHECK ADD  CONSTRAINT [FK_SIFHeader_CustomerMaster] FOREIGN KEY([CustomerKey])
 REFERENCES [dbo].[CustomerMaster] ([CustomerKey])
 GO
 ALTER TABLE [dbo].[SIFHeader] CHECK CONSTRAINT [FK_SIFHeader_CustomerMaster]
 GO
-/****** Object:  ForeignKey [FK_SIFHeader_MarketSector]    Script Date: 01/09/2014 14:40:05 ******/
+/****** Object:  ForeignKey [FK_SIFHeader_MarketSector]    Script Date: 02/07/2014 16:45:11 ******/
 ALTER TABLE [dbo].[SIFHeader]  WITH CHECK ADD  CONSTRAINT [FK_SIFHeader_MarketSector] FOREIGN KEY([MarketSector])
 REFERENCES [dbo].[MarketSector] ([MarketSectorID])
 GO
 ALTER TABLE [dbo].[SIFHeader] CHECK CONSTRAINT [FK_SIFHeader_MarketSector]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyCertification_SupplierSuvey]    Script Date: 01/09/2014 14:40:12 ******/
+/****** Object:  ForeignKey [FK_Supplier_Commodity_CommodityMaster]    Script Date: 02/07/2014 16:45:13 ******/
+ALTER TABLE [dbo].[Supplier_Commodity]  WITH CHECK ADD  CONSTRAINT [FK_Supplier_Commodity_CommodityMaster] FOREIGN KEY([CommodityKey])
+REFERENCES [dbo].[CommodityMaster] ([CommodityKey])
+GO
+ALTER TABLE [dbo].[Supplier_Commodity] CHECK CONSTRAINT [FK_Supplier_Commodity_CommodityMaster]
+GO
+/****** Object:  ForeignKey [FK_Supplier_Commodity_SupplierMaster]    Script Date: 02/07/2014 16:45:13 ******/
+ALTER TABLE [dbo].[Supplier_Commodity]  WITH CHECK ADD  CONSTRAINT [FK_Supplier_Commodity_SupplierMaster] FOREIGN KEY([SupplierKey])
+REFERENCES [dbo].[SupplierMaster] ([SupplierMasterKey])
+GO
+ALTER TABLE [dbo].[Supplier_Commodity] CHECK CONSTRAINT [FK_Supplier_Commodity_SupplierMaster]
+GO
+/****** Object:  ForeignKey [FK_SupplierSurveyCertification_SupplierSuvey]    Script Date: 02/07/2014 16:45:21 ******/
 ALTER TABLE [dbo].[SupplierSurveyCertification]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyCertification_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyCertification] CHECK CONSTRAINT [FK_SupplierSurveyCertification_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyContacts_SupplierSuvey]    Script Date: 01/09/2014 14:40:16 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyContacts_SupplierSuvey]    Script Date: 02/07/2014 16:45:25 ******/
 ALTER TABLE [dbo].[SupplierSurveyContacts]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyContacts_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyContacts] CHECK CONSTRAINT [FK_SupplierSurveyContacts_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyForecastSales_SupplierSuvey]    Script Date: 01/09/2014 14:40:19 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyForecastSales_SupplierSuvey]    Script Date: 02/07/2014 16:45:27 ******/
 ALTER TABLE [dbo].[SupplierSurveyForecastSales]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyForecastSales_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyForecastSales] CHECK CONSTRAINT [FK_SupplierSurveyForecastSales_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]    Script Date: 01/09/2014 14:40:20 ******/
+/****** Object:  ForeignKey [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]    Script Date: 02/07/2014 16:45:29 ******/
 ALTER TABLE [dbo].[SupplierSurveyIndustriesSupplied]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey] FOREIGN KEY([SupplierSurveyKey])
 REFERENCES [dbo].[SupplierSuvey] ([SupplierSuveyKey])
 ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[SupplierSurveyIndustriesSupplied] CHECK CONSTRAINT [FK_SupplierSurveyIndustriesSupplied_SupplierSuvey]
 GO
-/****** Object:  ForeignKey [FK_SupplierSuvey_SupplierMaster]    Script Date: 01/09/2014 14:40:30 ******/
+/****** Object:  ForeignKey [FK_SupplierSuvey_SupplierMaster]    Script Date: 02/07/2014 16:45:38 ******/
 ALTER TABLE [dbo].[SupplierSuvey]  WITH CHECK ADD  CONSTRAINT [FK_SupplierSuvey_SupplierMaster] FOREIGN KEY([SupplierMasterKey])
 REFERENCES [dbo].[SupplierMaster] ([SupplierMasterKey])
 GO

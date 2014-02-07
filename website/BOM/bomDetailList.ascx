@@ -3,7 +3,7 @@
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
-<%@ Reference Control="~/RFQ/rfqList.ascx" %>
+<%@ Register src="../RFQ/resendRFQ.ascx" tagname="resendRFQ" tagprefix="uc4" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -318,6 +318,31 @@
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
 
+
+<asp:Panel ID="panelResendRFQ" runat="server" Visible="false">
+    <uc4:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
+    <script type="text/javascript">
+        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Re-send RFQ");
+        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 440, modal: true,
+            dialogClass: "no-close", closeOnEscape: false
+        });
+    </script>
+
+</asp:Panel>
+
+
+
+
+<asp:Button ID="btnResendRFQ" runat="server" Text="Resend RFQ" 
+    onclick="btnResendRFQ_Click" />
+
+
+<asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
+
+
+
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery("#accordionBOM").accordion({
@@ -362,6 +387,56 @@
             e.stopPropagation();
             //Your Code here(For example a call to your function)
         });
+    }
+    function deleteRFQByID(sRFQ_ID) {
+        if (confirm('Every information related to this RFQ will be deleted as well.')) {
+            jQuery.ajax({
+                type: "POST",
+                url: '<%= ResolveUrl("~/RFQ/RFQList.aspx/deleteByID") %>',
+                data: "{sRFQHeaderKey:'" + sRFQ_ID + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(msg) {
+                    // Replace the div's content with the page method's return.
+                    //$("#Result").text(msg.d);
+                    if (msg.d != "")
+                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                    else
+                        alert("An error has occurred.");
+                },
+                error: function(a, b, c) {
+                    alert("An error has occurred.");
+                }
+            });
+        }
+        return false;
+    }
+    function setAwardByRFQ_ID(sRFQ_ID) {
+        if (confirm('Are you sure you want to set its status to Award?')) {
+            jQuery.ajax({
+                type: "POST",
+                url: '<%= ResolveUrl("~/RFQ/RFQList.aspx/awardByRFQID") %>',
+                data: "{sRFQHeaderKey:'" + sRFQ_ID + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(msg) {
+                    // Replace the div's content with the page method's return.
+                    //$("#Result").text(msg.d);
+                    if (msg.d != "")
+                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                    else
+                        alert("An error has occurred.");
+                },
+                error: function(a, b, c) {
+                    alert("An error has occurred.");
+                }
+            });
+        }
+        return false;
+    }
+    function resendRFQbyID(sRFQ_ID) {
+        jQuery("#<%= HiddenFieldResendRFQ.ClientID %>").val("264");
+        return false;
     }
 </script>
 

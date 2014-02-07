@@ -10,16 +10,16 @@ using System.Data.SqlClient;
 /// </summary>
 public class RfqCRUD : ICRUD<RFQ>
 {
-   
-    ConnectionManager connectionManager = new ConnectionManager();    
+
+    ConnectionManager connectionManager = new ConnectionManager();
     Data_Base_MNG.SQL DM;
 
     public bool ErrorOccur = false;
     public string ErrorMessage = "";
 
     public RfqCRUD()
-	{}
-    
+    { }
+
     #region ICRUD<RFQ> Members
 
     public bool create(RFQ entity)
@@ -68,7 +68,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
-            
+
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
 
             ErrorOccur = DM.ErrorOccur;
@@ -79,7 +79,7 @@ public class RfqCRUD : ICRUD<RFQ>
             ErrorOccur = true;
             ErrorMessage = e.Message;
             return false;
-        }       
+        }
 
         return result;
     }
@@ -191,7 +191,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Material", entity.Material);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
-            
+
             ErrorOccur = DM.ErrorOccur;
             ErrorMessage = DM.Error_Mjs;
 
@@ -208,25 +208,26 @@ public class RfqCRUD : ICRUD<RFQ>
     public RFQ readById(long id)
     {
         RFQ rfq = new RFQ();
-        
+
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, " +
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
-            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " + 
+            "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ " +
-            "FROM viewRFQHeader_ReadAll " + 
+            "FROM viewRFQHeader_ReadAll " +
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
         {
             SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key",id);
+            sqlCommand.Parameters.AddWithValue("@key", id);
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             sqlDataAdapter.Fill(table);
 
-            if(table.Rows.Count > 0){
+            if (table.Rows.Count > 0)
+            {
                 rfq.Id = long.Parse(table.Rows[0][0].ToString());
                 rfq.BomDetailId = long.Parse(table.Rows[0][1].ToString());
                 rfq.SupplierId = long.Parse(table.Rows[0][2].ToString());
@@ -250,7 +251,8 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.FilledUp = DateTime.Parse(table.Rows[0][20].ToString());
                 rfq.PartNumber = table.Rows[0][21].ToString();
                 string strDate = table.Rows[0][22].ToString();
-                if(strDate != ""){
+                if (strDate != "")
+                {
                     rfq.DeadDate = DateTime.Parse(table.Rows[0][22].ToString());
                 }
                 rfq.Acknowledgement = table.Rows[0][23].ToString();
@@ -265,7 +267,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.MarketSectorID = long.Parse(table.Rows[0][32].ToString());
                 rfq.CommentsToBuyer = table.Rows[0][33].ToString();
                 rfq.CommentsToVendor = table.Rows[0][34].ToString();
-                rfq.IAgree = bool.Parse( table.Rows[0][35].ToString());
+                rfq.IAgree = bool.Parse(table.Rows[0][35].ToString());
                 rfq.DateFilledOut = DateTime.Parse(table.Rows[0][36].ToString());
                 rfq.Make = table.Rows[0][37].ToString();
                 rfq.ReasonNoQuote = table.Rows[0][38].ToString();
@@ -280,7 +282,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.CreatedBy = table.Rows[0][47].ToString();
                 rfq.Cavitation = table.Rows[0][48].ToString();
                 rfq.Material = table.Rows[0][49].ToString();
-                    
+
                 sqlConnection.Dispose();
                 return rfq;
             }
@@ -291,7 +293,7 @@ public class RfqCRUD : ICRUD<RFQ>
     {
         List<RFQ> recordset = new List<RFQ>();
         recordset.Clear();
-        
+
         string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, EstimatedAnnualVolume, " +
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit,Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
@@ -308,7 +310,7 @@ public class RfqCRUD : ICRUD<RFQ>
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             sqlDataAdapter.Fill(table);
 
-            for (int i = 0; i < table.Rows.Count; i++)        
+            for (int i = 0; i < table.Rows.Count; i++)
             {
                 RFQ rfq = new RFQ();
                 rfq.Id = long.Parse(table.Rows[i][0].ToString());
@@ -372,22 +374,22 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     public IList<RFQ> readAll()
     {
-        List<RFQ>  recordset = new List<RFQ>();
+        List<RFQ> recordset = new List<RFQ>();
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, " 
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, "
                     + "EstimatedAnnualVolume, ProductionLeadTime, ProductionToolingLeadTime, " +
                       "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, "
-                    + "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, " 
-                    + "AssemblyCostPerUnit, [Status], DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, " 
+                    + "PrototypeTooling, PrototypePiece, SG_A_Profit, PackingPerUnit, "
+                    + "AssemblyCostPerUnit, [Status], DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, "
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
                       "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, " +
                       "AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
-       
+
         for (int i = 0; i < table.Rows.Count; i++)
         {
             RFQ rfq = new RFQ();
@@ -446,14 +448,14 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.Cavitation = table.Rows[i][48].ToString();
             rfq.Material = table.Rows[i][49].ToString();
             recordset.Add(rfq);
-        }       
+        }
         return recordset;
     }
 
     public bool update(RFQ entity)
     {
         ErrorOccur = false;
-        bool result = false;        
+        bool result = false;
         DM = connectionManager.getDataManager();
         try
         {
@@ -497,7 +499,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
-            
+
 
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
 
@@ -516,7 +518,7 @@ public class RfqCRUD : ICRUD<RFQ>
     public bool update(RFQ entity, ref Data_Base_MNG.SQL DM)
     {
         ErrorOccur = false;
-        bool result = false;        
+        bool result = false;
         try
         {
             DM.Load_SP_Parameters("@RFQHeaderKey", entity.Id.ToString());
@@ -559,7 +561,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
             DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
-            
+
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 
@@ -578,7 +580,7 @@ public class RfqCRUD : ICRUD<RFQ>
     public bool delete(long id)
     {
         ErrorOccur = false;
-        int rowsAffected=0;
+        int rowsAffected = 0;
         string query = "DELETE FROM RFQHeader WHERE RFQHeaderKey=@key";
         SqlConnection sqlConnection = connectionManager.getConnection();
         SqlCommand sqlCommand = null;
@@ -610,7 +612,7 @@ public class RfqCRUD : ICRUD<RFQ>
             finally
             {
                 sqlConnection.Dispose();
-                sqlCommand.Dispose();               
+                sqlCommand.Dispose();
             }
         }
         else
@@ -619,7 +621,7 @@ public class RfqCRUD : ICRUD<RFQ>
             ErrorMessage = "Error. Could not connect to database.";
         }
         return false;
-    }   
+    }
     #endregion
 
     public bool delete(long id, ref Data_Base_MNG.SQL DM)
@@ -635,6 +637,49 @@ public class RfqCRUD : ICRUD<RFQ>
         ErrorOccur = DM.ErrorOccur;
         ErrorMessage = DM.Error_Mjs;
         return false;
+    }
+    public bool deleteByID(long ID)
+    {
+        ErrorOccur = false;
+
+        RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("RFQ Delete");
+
+        TokenCRUD token_CRUD = new TokenCRUD();
+        if (!token_CRUD.deleteByRFQID(ID, ref DM))
+        {
+            ErrorOccur = true;
+            ErrorMessage = token_CRUD.ErrorMessage;
+            return false;
+        }
+        if (!rfqSummaryCRUD.deleteByParentID(ID, ref DM))
+        {
+            ErrorOccur = true;
+            ErrorMessage = rfqSummaryCRUD.ErrorMessage;
+            return false;
+        }
+        if (!delete(ID, ref DM))
+        {
+            return false;
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+        /* End transaction */
+
+
+        if (DM.ErrorOccur)
+        {
+            ErrorOccur = true;
+            ErrorMessage = DM.Error_Mjs;
+            return false;
+        }
+        return true;
     }
 }
 

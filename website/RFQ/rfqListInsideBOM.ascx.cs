@@ -5,65 +5,23 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
-using System.Web.Services;
 
-public partial class rfqList : System.Web.UI.UserControl
+public partial class rfqListInsideBOM : System.Web.UI.UserControl
 {
 
     protected void Page_Load(object sender, EventArgs e)
     {
     }
-
-    public void setUserFilterWithCookie()
-    {
-        if (!IsPostBack)
-        {
-            if (cboFilterByUser.DataSource == null)
-                cboFilterByUser.DataBind();
-            HttpCookie sifCookie = Request.Cookies["RFQList_User_Filter"];
-            if (sifCookie != null)
-                cboFilterByUser.Text = sifCookie.Value;
-            load();
-        }
-    }
-    public void load()
-    {
-        if (cboFilterByUser.SelectedValue == "All")
-        {
-            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll]";
-            cboFilterByUser.Text = "All";
-        }
-        else
-        {
-            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE CreatedBy = '" + cboFilterByUser.SelectedValue + "'";
-        }
-
-        gridRFQList.DataBind();
-    }
     public void filterByBOMDetailKey(long bomID)
     {
         ConnectionManager connection = new ConnectionManager();
-        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE BOMDetailKey = " + bomID;
-        cboFilterByUser.Text = "All";
-        divFilterByUser.Visible = false;
-        
-
         gridRFQList.DataBind();
-    }
-    protected void cboFilterByUser_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        HttpCookie sifCookie = new HttpCookie("RFQList_User_Filter");
-        sifCookie.Value = cboFilterByUser.SelectedValue;
-        sifCookie.Expires = DateTime.Now.AddYears(1);
-        Response.Cookies.Add(sifCookie);
-        load();
     }
     public void on_sqldatasource_Init(Object sender, EventArgs e)
     {
         ConnectionManager connection = new ConnectionManager();
-        SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
     }
     public static void MakeAccessible(GridView grid)
@@ -83,10 +41,6 @@ public partial class rfqList : System.Web.UI.UserControl
     {
         if (e.Row.RowType == DataControlRowType.DataRow)
         {
-            DataKey keys = gridRFQList.DataKeys[e.Row.RowIndex];
-            long rfqHeaderKey = long.Parse(keys.Value.ToString());
-
-
             DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[4].Controls[0];
             if (hrefStatus.Text.IndexOf("AWARDED") > -1)
             {
@@ -95,25 +49,12 @@ public partial class rfqList : System.Web.UI.UserControl
 
             DateTime dateSentToVendor = DateTime.Parse(e.Row.Cells[7].Text);
 
-
             if (dateSentToVendor.Year == 1985 &&
                 dateSentToVendor.Month == 2 &&
                 dateSentToVendor.Day == 10)
             {
                 e.Row.Cells[7].Text = "Not sent, just created.";
             }
-            
-            LinkButton linkDeleteByID = (LinkButton)e.Row.FindControl("linkDeleteByID");
-            linkDeleteByID.OnClientClick = "javascript:return deleteRFQByID(" + rfqHeaderKey + ");";
-
-
-            LinkButton linkSetAwardByID = (LinkButton)e.Row.FindControl("linkSetAward");
-            linkSetAwardByID.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
-
-            LinkButton linkResendRFQ = (LinkButton)e.Row.FindControl("resendRFQByID");
-            linkResendRFQ.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
-
-
         }
     }
     protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -254,26 +195,8 @@ public partial class rfqList : System.Web.UI.UserControl
         panelPopup.Visible = false;
     }
 
-    public GridView getGridView(){
+    public GridView getGridView()
+    {
         return gridRFQList;
-    }
-
-    protected void btnRefreshGrid_Click(object sender, EventArgs e)
-    {
-        load();
-    }
-    protected void btnResendRFQ_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            long rfqHeaderKey = long.Parse(HiddenFieldResendRFQ.Value);
-
-            uscResendRFQ.setEntity(rfqHeaderKey);
-            panelPopup.Visible = true;
-        }
-        catch (Exception ex)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
-        }
     }
 }
