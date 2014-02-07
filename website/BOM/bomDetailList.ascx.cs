@@ -365,4 +365,17 @@ public partial class bomDetailList : System.Web.UI.UserControl
     //{
     //    loadDetail();
     //}
+    protected void btnResendRFQ_Click(object sender, EventArgs e)
+    {   
+        try
+        {
+            long rfqHeaderKey = long.Parse(HiddenFieldResendRFQ.Value);
+            uscResendRFQ.setEntity(rfqHeaderKey);
+            panelResendRFQ.Visible = true;
+        }
+        catch (Exception ex)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
+        }
+    }
 }
