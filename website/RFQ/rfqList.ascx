@@ -24,8 +24,6 @@
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS CreatedBy, 0 AS orderNumber UNION SELECT DISTINCT CreatedBy, 2 AS orderNumber FROM [viewRFQHeader_ReadAll] ORDER BY orderNumber">
 </asp:SqlDataSource>
 <div id="clientID_GridRFQList" align="center">
-    <asp:Button ID="btnRefreshGrid" runat="server" Text="RefreshGrid" OnClick="btnRefreshGrid_Click"
-        Style="display: none;" />
     <asp:GridView ID="gridRFQList" convertToDataTable="true" runat="server" AutoGenerateColumns="False"
         class="display dataTable" Style="display: none;" DataSourceID="SqlDataSource"
         DataKeyNames="RFQHeaderKey" OnPreRender="preRenderGridView" RowStyle-Height="27px"
@@ -92,10 +90,12 @@
 </asp:Panel>
 
 <asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
-
-<asp:Button ID="btnResendRFQ" runat="server" Text="ResendRFQ" 
+<asp:Button ID="btnAfterDeleteRFQ" runat="server" Text="After Delete RFQ" OnClick="btnAfterDeleteRFQ_Click"
+        Style="display: none;" />
+<asp:Button ID="btnResendRFQ" runat="server" Text="ResendRFQ"  style="display:none;"
     onclick="btnResendRFQ_Click" />
-
+<asp:Button ID="btnAfterAward" runat="server" Text="After Award" 
+    onclick="btnAfterAward_Click" style="display:none;" />
 <script type="text/javascript">
     function deleteRFQByID(sRFQ_ID) {
         if (confirm('Every information related to this RFQ will be deleted as well.')) {
@@ -109,7 +109,7 @@
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
                     if (msg.d != "")
-                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                        jQuery("#<%= btnAfterDeleteRFQ.ClientID %>").click();
                     else
                         alert("An error has occurred.");
                 },
@@ -132,7 +132,7 @@
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
                     if (msg.d != "")
-                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                        jQuery("#<%= btnAfterAward.ClientID %>").click();
                     else
                         alert("An error has occurred.");
                 },

@@ -30,12 +30,12 @@ public partial class rfqList : System.Web.UI.UserControl
     {
         if (cboFilterByUser.SelectedValue == "All")
         {
-            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll]";
+            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] ORDER BY RFQHeaderKey ASC";
             cboFilterByUser.Text = "All";
         }
         else
         {
-            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE CreatedBy = '" + cboFilterByUser.SelectedValue + "'";
+            SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE CreatedBy = '" + cboFilterByUser.SelectedValue + "' ORDER BY RFQHeaderKey ASC";
         }
 
         gridRFQList.DataBind();
@@ -45,10 +45,9 @@ public partial class rfqList : System.Web.UI.UserControl
         ConnectionManager connection = new ConnectionManager();
         SqlDataSourceUsers.ConnectionString = connection.getConnection().ConnectionString;
         SqlDataSource.ConnectionString = connection.getConnection().ConnectionString;
-        SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE BOMDetailKey = " + bomID;
+        SqlDataSource.SelectCommand = "SELECT * FROM [viewRFQHeader_ReadAll] WHERE BOMDetailKey = " + bomID + " ORDER BY RFQHeaderKey ASC";
         cboFilterByUser.Text = "All";
         divFilterByUser.Visible = false;
-        
 
         gridRFQList.DataBind();
     }
@@ -111,8 +110,7 @@ public partial class rfqList : System.Web.UI.UserControl
             linkSetAwardByID.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
 
             LinkButton linkResendRFQ = (LinkButton)e.Row.FindControl("resendRFQByID");
-            linkResendRFQ.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
-
+            linkResendRFQ.OnClientClick = "javascript:return resendRFQbyID(" + rfqHeaderKey + ");";
 
         }
     }
@@ -258,9 +256,10 @@ public partial class rfqList : System.Web.UI.UserControl
         return gridRFQList;
     }
 
-    protected void btnRefreshGrid_Click(object sender, EventArgs e)
+    protected void btnAfterDeleteRFQ_Click(object sender, EventArgs e)
     {
         load();
+        uscNotifier.showSuccess("RFQ deleted successfully.");
     }
     protected void btnResendRFQ_Click(object sender, EventArgs e)
     {
@@ -275,5 +274,10 @@ public partial class rfqList : System.Web.UI.UserControl
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
         }
+    }
+    protected void btnAfterAward_Click(object sender, EventArgs e)
+    {
+        load();
+        uscNotifier.showSuccess("RFQ set Awarded successfully.");
     }
 }

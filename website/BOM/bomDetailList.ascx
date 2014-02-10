@@ -3,7 +3,7 @@
 <%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
-<%@ Register src="../RFQ/resendRFQ.ascx" tagname="resendRFQ" tagprefix="uc4" %>
+<%@ Register Src="../RFQ/resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc4" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -317,13 +317,12 @@
 </div>
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
-
-
 <asp:Panel ID="panelResendRFQ" runat="server" Visible="false">
     <uc4:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
+
     <script type="text/javascript">
-        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Re-send RFQ");
-        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
+        document.getElementById("<%= this.panelResendRFQ.ClientID %>").setAttribute("title", "Re-send RFQ");
+        jQuery("#<%= this.panelResendRFQ.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
             width: 440, modal: true,
             dialogClass: "no-close", closeOnEscape: false
@@ -331,32 +330,24 @@
     </script>
 
 </asp:Panel>
-
-
-
-
-<asp:Button ID="btnResendRFQ" runat="server" Text="Resend RFQ" 
-    onclick="btnResendRFQ_Click" />
-
-
+<asp:Button ID="btnResendRFQ" runat="server" Text="Resend RFQ" OnClick="btnResendRFQ_Click"
+    Style="display: none;" />
 <asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
-
-
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery("#accordionBOM").accordion({
-//            beforeActivate: function(event, ui) {
-//                ui.oldPanel.hide();
-//                ui.newPanel.hide();
-//            },
+            //            beforeActivate: function(event, ui) {
+            //                ui.oldPanel.hide();
+            //                ui.newPanel.hide();
+            //            },
             activate: function(event, ui) {
                 var vActive = jQuery(this).accordion("option", "active");
                 if (vActive.toString() !== "false") {
                     //jQuery('.dataTable').hide();
                     var bomDetailKey;
                     bomDetailKey = ui.newHeader.children().children()[3].value;
-                    ui.newPanel.load("http://localhost:7246/APQM/RFQ/RFQList.aspx?bomComponent=" + bomDetailKey + " #clientID_GridRFQList",
+                    ui.newPanel.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
                 function(responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success")
                     //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
@@ -390,6 +381,10 @@
     }
     function deleteRFQByID(sRFQ_ID) {
         if (confirm('Every information related to this RFQ will be deleted as well.')) {
+            var activePaneNumber = jQuery("#accordionBOM").accordion('option', 'active');
+            activeHeader = jQuery("#accordionBOM h3").eq(activePaneNumber);
+            var activePaneContent = jQuery(event.srcElement).parent().parent().parent().parent().parent().parent().parent();
+            
             jQuery.ajax({
                 type: "POST",
                 url: '<%= ResolveUrl("~/RFQ/RFQList.aspx/deleteByID") %>',
@@ -399,8 +394,30 @@
                 success: function(msg) {
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
-                    if (msg.d != "")
-                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                    if (msg.d != "") {
+                        var vActive = jQuery("#accordionBOM").accordion("option", "active");
+                        if (vActive.toString() !== "false") {
+                            var bomDetailKey;
+                            bomDetailKey = activeHeader.children().children()[3].value;
+                            activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
+                function(responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
+                        jQuery('.dataTable').dataTable({
+                            "bDestroy": true,
+                            "bStateSave": true,
+                            "bFilter": false,
+                            "bLengthChange": false,
+                            "bInfo": false,
+                            "bPaginate": false
+                        }).show();
+                        alertify.success("RFQ deleted successfully;");
+                    }
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+                        }
+                    }
                     else
                         alert("An error has occurred.");
                 },
@@ -413,6 +430,9 @@
     }
     function setAwardByRFQ_ID(sRFQ_ID) {
         if (confirm('Are you sure you want to set its status to Award?')) {
+            var activePaneNumber = jQuery("#accordionBOM").accordion('option', 'active');
+            activeHeader = jQuery("#accordionBOM h3").eq(activePaneNumber);
+            var activePaneContent = jQuery(event.srcElement).parent().parent().parent().parent().parent().parent().parent();
             jQuery.ajax({
                 type: "POST",
                 url: '<%= ResolveUrl("~/RFQ/RFQList.aspx/awardByRFQID") %>',
@@ -422,8 +442,30 @@
                 success: function(msg) {
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
-                    if (msg.d != "")
-                        jQuery("#<%= btnRefreshGrid.ClientID %>").click();
+                    if (msg.d != "") {
+                        var vActive = jQuery("#accordionBOM").accordion("option", "active");
+                        if (vActive.toString() !== "false") {
+                            var bomDetailKey;
+                            bomDetailKey = activeHeader.children().children()[3].value;
+                            activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
+                function(responseTxt, statusTxt, xhr) {
+                    if (statusTxt == "success") {
+                        //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
+                        jQuery('.dataTable').dataTable({
+                            "bDestroy": true,
+                            "bStateSave": true,
+                            "bFilter": false,
+                            "bLengthChange": false,
+                            "bInfo": false,
+                            "bPaginate": false
+                        }).show();
+                        alertify.success("RFQ set awarded successfully;");
+                    }
+                    if (statusTxt == "error")
+                        alert("Error: " + xhr.status + ": " + xhr.statusText);
+                });
+                        }
+                    }
                     else
                         alert("An error has occurred.");
                 },
@@ -435,8 +477,8 @@
         return false;
     }
     function resendRFQbyID(sRFQ_ID) {
-        jQuery("#<%= HiddenFieldResendRFQ.ClientID %>").val("264");
+        jQuery("#<%= HiddenFieldResendRFQ.ClientID %>").val(sRFQ_ID);
+        jQuery("#<%= btnResendRFQ.ClientID %>").click();
         return false;
     }
 </script>
-
