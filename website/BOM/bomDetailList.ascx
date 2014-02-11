@@ -25,7 +25,7 @@
     }
     .BOMLine
     {
-        left: 120px;
+        left: 140px;
         position: relative;
         border-radius: 4px;
         border: solid 1px dimgray;
@@ -55,7 +55,7 @@
     </script>
 
 </asp:Panel>
-<table cellspacing="0" align="left" style="margin-left: 60px;">
+<table cellspacing="0" align="left" style="margin-left: 80px;">
     <tr>
         <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
             Assigned To
@@ -227,20 +227,21 @@
     </tr>
 </table>
 <div style="clear: both; top: 30px;">
-    <div id="accordionBOM" style="position: relative; width: 1770px;">
+    <div id="accordionBOM" style="position: relative; width: 1790px;">
         <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
                 <h3 style="height: 20px;">
                     <div>
+                        <asp:CheckBox ID="chkSelect" runat="server" Style="float: left; position: absolute; left: 5px;" clickeableInHeader="true" />
                         <asp:ImageButton ImageUrl="~/pics/delete-icon.png" Height="20px" ID="deleteByID"
                             OnCommand="deleteByID" clickeableInHeader="true" runat="server" Text="Edit" Style="float: left;
-                            position: absolute; left: 10px;" />
+                            position: absolute; left: 30px;" />
                         <asp:ImageButton ImageUrl="~/pics/edit-icon.png" Height="20px" ID="updateByID" clickeableInHeader="true"
                             OnCommand="updateByID" runat="server" Text="Delete" Style="float: left; position: absolute;
-                            left: 40px;" />
+                            left: 60px;" />
                         <asp:LinkButton ID="linkAssignedToLine" runat="server" clickeableInHeader="true"
                             CommandArgument="" OnCommand="takeBOMLine" Style="float: left; position: absolute;
-                            left: 70px;">
+                            left: 90px;">
                         Take
                         </asp:LinkButton>
                         <asp:HiddenField ID="hiddenBOMDetailKey" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Id")%>' />
@@ -346,7 +347,7 @@
                 if (vActive.toString() !== "false") {
                     //jQuery('.dataTable').hide();
                     var bomDetailKey;
-                    bomDetailKey = ui.newHeader.children().children()[3].value;
+                    bomDetailKey = ui.newHeader.children().children()[4].value;
                     ui.newPanel.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
                 function(responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success")
@@ -398,7 +399,7 @@
                         var vActive = jQuery("#accordionBOM").accordion("option", "active");
                         if (vActive.toString() !== "false") {
                             var bomDetailKey;
-                            bomDetailKey = activeHeader.children().children()[3].value;
+                            bomDetailKey = activeHeader.children().children()[4].value;
                             activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
                 function(responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success") {
@@ -446,7 +447,7 @@
                         var vActive = jQuery("#accordionBOM").accordion("option", "active");
                         if (vActive.toString() !== "false") {
                             var bomDetailKey;
-                            bomDetailKey = activeHeader.children().children()[3].value;
+                            bomDetailKey = activeHeader.children().children()[4].value;
                             activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
                 function(responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success") {

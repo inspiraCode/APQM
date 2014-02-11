@@ -43,6 +43,7 @@ public partial class RFQ_RFQList : System.Web.UI.Page
         }
         return true;
     }
+
     [WebMethod]
     public static string deleteByID(string sRFQHeaderKey)
     {
