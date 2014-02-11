@@ -102,7 +102,7 @@ public partial class rfqList : System.Web.UI.UserControl
                 e.Row.Cells[7].Text = "Not sent, just created.";
             }
             
-            LinkButton linkDeleteByID = (LinkButton)e.Row.FindControl("linkDeleteByID");
+            ImageButton linkDeleteByID = (ImageButton)e.Row.FindControl("linkDeleteByID");
             linkDeleteByID.OnClientClick = "javascript:return deleteRFQByID(" + rfqHeaderKey + ");";
 
 

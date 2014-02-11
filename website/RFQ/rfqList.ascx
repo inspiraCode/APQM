@@ -63,9 +63,8 @@
                 ItemStyle-HorizontalAlign="Center" DataFormatString="{0:d}" />
             <asp:TemplateField ShowHeader="False" ItemStyle-HorizontalAlign="Center">
                 <ItemTemplate>
-                    <asp:LinkButton ID="linkDeleteByID" runat="server" CausesValidation="false" OnClientClick="return false;"
-                        CommandName="deleteRFQ" Text="Delete">
-                    </asp:LinkButton>
+                <asp:ImageButton ImageUrl="~/pics/delete-icon.png" Height="20px" ID="linkDeleteByID"
+                            CommandName="deleteRFQ" runat="server" Text="Edit" OnClientClick="return false;" />
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
