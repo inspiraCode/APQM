@@ -72,10 +72,10 @@ public class bomAccessCRUD
                 bom.NoRequired = float.Parse(table[i]["No Required"].ToString());
             }
             catch (Exception ex) {
-                bom.ImportComment = "BOM Line with incorrect field formatted: 'No Required', " 
-                    + "please review it and export it agian if necessary. Error: " + ex.Message; 
+                bom.NoRequired = 0;
+                //bom.ImportComment = "BOM Line with incorrect field formatted: 'No Required', " 
+                //    + "please review it and export it agian if necessary. Error: " + ex.Message; 
             }
-            
             
             recordset.Add(bom);
         }            

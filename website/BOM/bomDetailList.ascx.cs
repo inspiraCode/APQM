@@ -378,4 +378,16 @@ public partial class bomDetailList : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
         }
     }
+
+    protected void on_resendRFQ(object sender, EventArgs e)
+    {
+        loadDetail();
+        panelResendRFQ.Visible = false;
+        uscNotifier.showSuccess("RFQ was sent to Vendor's email successfully!");
+    }
+   
+    protected void on_cancel_resendRFQ(object sender, EventArgs e)
+    {
+        panelResendRFQ.Visible = false;
+    }
 }
