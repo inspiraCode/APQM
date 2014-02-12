@@ -65,7 +65,7 @@
                 <ItemTemplate>
                 <asp:ImageButton ImageUrl="~/pics/delete-icon.png" Height="20px" ID="linkDeleteByID"
                             CommandName="deleteRFQ" runat="server" Text="Delete" OnClientClick="return false;" />
-                <asp:ImageButton ImageUrl="~/pics/edit-icon.png" Height="20px" ID="linkUpdateBuyerSide" 
+                <asp:ImageButton ImageUrl="~/pics/edit-icon.png" Height="20px" ID="linkUpdateBuyerSide"  class="EditRFQButton"
                             CommandName="updateBuyerSide" runat="server" Text="Edit" OnClientClick="return false;" />
                 </ItemTemplate>
             </asp:TemplateField>

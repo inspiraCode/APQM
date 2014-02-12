@@ -9,6 +9,8 @@ using System.Configuration;
 
 public partial class RFQ_rfqAttachments : System.Web.UI.UserControl
 {
+    public event EventHandler AfterDeleteBuyerAttachment;
+
     private List<RFQAttachments> rfqAttachments = null;
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -52,6 +54,7 @@ public partial class RFQ_rfqAttachments : System.Web.UI.UserControl
             if (rfqAttachment != null)
             {
                 ((LinkButton)e.Item.FindControl("downloadByName")).CommandArgument = rfqAttachment.Directory + "\\" + rfqAttachment.FileName;
+                ((LinkButton)e.Item.FindControl("deleteByName")).CommandArgument = rfqAttachment.Directory + "\\" + rfqAttachment.FileName;
             }
         }
     }
@@ -63,5 +66,13 @@ public partial class RFQ_rfqAttachments : System.Web.UI.UserControl
         Response.AddHeader("Content-Disposition", "attachment;filename=" + file.Name);
         Response.TransmitFile(filePath);
         Response.End();
+    }
+    public void deleteByName(object sender, CommandEventArgs e)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        string filePath = baseAttachmentsPath + (string)e.CommandArgument;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+        AfterDeleteBuyerAttachment(null, null);
     }
 }

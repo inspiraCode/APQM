@@ -29,17 +29,26 @@ public partial class BOM_BOM_Form : System.Web.UI.Page
             string folderName = (string)Session["RFQATTACHMENTSFOLDER"];
             if (currentPathAttachments == null)
             {
-                do
+                if (folderName != null && folderName.Trim() != "")
                 {
-                    DateTime date = DateTime.Now;
-                    folderName = date.Year.ToString() + date.Month.ToString() +
-                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
-                    currentPathAttachments = baseAttachmentsPath + folderName;
-                } while (Directory.Exists(currentPathAttachments));
-                Directory.CreateDirectory(currentPathAttachments);
-                currentPathAttachments += @"\";
-                Session["RFQATTACHMENTS"] = currentPathAttachments;
-                Session["RFQATTACHMENTSFOLDER"] = folderName;
+                    currentPathAttachments = baseAttachmentsPath + folderName + @"\";
+                    Session["RFQATTACHMENTS"] = currentPathAttachments;
+                    Session["RFQATTACHMENTSFOLDER"] = folderName;
+                }
+                else
+                {
+                    do
+                    {
+                        DateTime date = DateTime.Now;
+                        folderName = date.Year.ToString() + date.Month.ToString() +
+                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                        currentPathAttachments = baseAttachmentsPath + folderName;
+                    } while (Directory.Exists(currentPathAttachments));
+                    Directory.CreateDirectory(currentPathAttachments);
+                    currentPathAttachments += @"\";
+                    Session["RFQATTACHMENTS"] = currentPathAttachments;
+                    Session["RFQATTACHMENTSFOLDER"] = folderName;
+                }
             }
 
             if (postedFile.ContentLength > 0)

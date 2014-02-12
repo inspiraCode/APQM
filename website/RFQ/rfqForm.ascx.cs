@@ -353,6 +353,10 @@ public partial class rfqForm : System.Web.UI.UserControl
     {
         updateListAttachmentsVendor(rfq);
     }
+    protected void on_after_delete_buyerAttachment(object sender, EventArgs e)
+    {
+        //Vendor is not able to delete Buyer attachment. Links are hidden.
+    }
     public void showCancelMessage(){
         uscNotifier.showLog("Values have been re-established.");
     }

@@ -405,6 +405,11 @@ public partial class bomDetailList : System.Web.UI.UserControl
 
     protected void on_editRFQBuyerSide(object sender, EventArgs e)
     {
+        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        SessionObject so =  (SessionObject)Session["bomObject"];
+        BOM bom = (BOM) so.Content;
+        List<BOMDetail> bomDetailList = bomDetail_CRUD.readByParentID(bom.Id);
+        setEntity(bomDetailList);
         loadDetail();
         panelEditRFQBuyerSide.Visible = false;
         uscNotifier.showSuccess("RFQ was edited successfully!");
@@ -416,6 +421,11 @@ public partial class bomDetailList : System.Web.UI.UserControl
     }
     protected void on_sendRFQ(object sender, EventArgs e)
     {
+        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        SessionObject so = (SessionObject)Session["bomObject"];
+        BOM bom = (BOM)so.Content;
+        List<BOMDetail> bomDetailList = bomDetail_CRUD.readByParentID(bom.Id);
+        setEntity(bomDetailList);
         loadDetail();
         panelEditRFQBuyerSide.Visible = false;
         uscNotifier.showSuccess("RFQ was sent to Vendor's email successfully!");

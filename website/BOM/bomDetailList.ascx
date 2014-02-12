@@ -325,7 +325,7 @@
     Style="display: none;" />
 <asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
 
-<asp:Button ID="btnEditRFQBuyerSide" runat="server" Text="Edit RFQ  Butyer Side" 
+<asp:Button ID="btnEditRFQBuyerSide" runat="server" Text="Edit RFQ Buyer Side" 
     Style="display: none;" onclick="btnEditRFQBuyerSide_Click" />
 <asp:HiddenField ID="HiddenFieldEditRFQBuyerSide" runat="server" />
 
@@ -506,7 +506,7 @@
             document.getElementById("<%= this.panelEditRFQBuyerSide.ClientID %>").setAttribute("title", "Edit RFQ Buyer-Side");
             jQuery("#<%= this.panelEditRFQBuyerSide.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1000, modal: true,
+                width: 950, modal: true,
                 dialogClass: "no-close", closeOnEscape: false
             });
         });

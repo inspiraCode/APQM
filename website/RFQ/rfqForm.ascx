@@ -65,6 +65,10 @@
     {
         width: 245px;
     }
+    .DeleteBuyerAttachment
+    {
+        display:none;
+    }
 </style>
 <br />
 <br />
@@ -100,7 +104,7 @@
         <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='3'
             data-intro='Sometimes you can receive attachments from our purchasing department that can be helpful for you to quote the piece.'>
             Attachments:<br />
-            <uc5:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" />
+            <uc5:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" OnAfterDeleteBuyerAttachment="on_after_delete_buyerAttachment" />
         </div>
         <asp:HiddenField ID="hiddenSentAttachmentsFolder" runat="server" />
         <asp:HiddenField ID="hiddenCreatedBy" runat="server" />

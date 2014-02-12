@@ -14,6 +14,11 @@
             <td>
                 <%# DataBinder.Eval(Container.DataItem, "Comments")%>
             </td>
+            <td>
+                <asp:LinkButton class="DeleteBuyerAttachment" ID="deleteByName" runat="server" CommandArgument="" OnCommand="deleteByName">
+                    Delete
+                </asp:LinkButton>
+            </td>
         </tr>
     </ItemTemplate>
     <FooterTemplate>

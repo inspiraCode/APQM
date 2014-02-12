@@ -10,6 +10,12 @@
 <%@ Register Src="rfqList.ascx" TagName="rfqList" TagPrefix="uc7" %>
 <%@ Register Src="rfqStatusInfo.ascx" TagName="rfqStatusInfo" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
+<style type="text/css">
+    .EditRFQButton
+    {
+        display:none;
+    }
+</style>
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Functions" runat="server">
             <uc2:Menu ID="uscMenu" runat="server" />

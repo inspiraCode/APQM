@@ -86,6 +86,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         txtCommentToVendor.Text = rfq.CommentsToVendor;
         updateListAttachmentsSent(rfq);
 
+        lblRFQNumber.Text = rfq.RfqGenerated;
+
     }
     public void updateListAttachmentsSent(RFQ rfq)
     {
@@ -161,12 +163,11 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
         bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
 
-        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
-
+        
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
-        string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
+        string strEAUTextBox = txtEAU.Text; //Enabled to change.
+        string strEAULabel = EAUHidden.Value; //Original EAU pulled from BOM.
 
         BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
         if (bomDetailObject == null)
@@ -252,9 +253,14 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         }
         rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
 
+        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
         if (folderAttachments != null)
         {
             rfq.SentAttachmentsFolder = folderAttachments;
+        }
+        else
+        {
+            rfq.SentAttachmentsFolder = hiddenAttachmentsSent.Value;
         }
 
         rfq.CreatedBy = strAuthUser;
@@ -296,6 +302,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
                                     + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
                                     + Environment.NewLine + Environment.NewLine
                                     + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
+                                    + Environment.NewLine + Environment.NewLine
+                                    + "RFQ Number: " + lblRFQNumber.Text
                                     + Environment.NewLine + Environment.NewLine
                                     + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
                                     + Environment.NewLine + Environment.NewLine
@@ -341,12 +349,10 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
         bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
 
-        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
-
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = txtEAU.Text;
-        string strEAULabel = EAUHidden.Value;
+        string strEAUTextBox = txtEAU.Text; //Enabled to change.
+        string strEAULabel = EAUHidden.Value; //Original EAU pulled from BOM.
 
         BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
         if (bomDetailObject == null)
@@ -432,9 +438,14 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         }
         rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
 
+        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
         if (folderAttachments != null)
         {
             rfq.SentAttachmentsFolder = folderAttachments;
+        }
+        else
+        {
+            rfq.SentAttachmentsFolder = hiddenAttachmentsSent.Value;
         }
 
         rfq.CreatedBy = strAuthUser;
@@ -460,5 +471,11 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
 
         supplier = null;
         Save_Click(this, e);
+    }
+
+
+    protected void on_after_delete_buyerAttachment(object sender, EventArgs e)
+    {
+        updateListAttachmentsSent(rfq);
     }
 }

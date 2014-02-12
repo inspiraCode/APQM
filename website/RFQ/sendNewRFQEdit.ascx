@@ -4,7 +4,8 @@
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc2" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc3" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
-<%@ Register src="rfqVendorAttachments.ascx" tagname="rfqVendorAttachments" tagprefix="uc5" %>
+<%@ Register Src="rfqVendorAttachments.ascx" TagName="rfqVendorAttachments" TagPrefix="uc5" %>
+<%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc6" %>
 <uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
 <asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
@@ -23,6 +24,14 @@
     <tr>
         <td style="vertical-align: top;">
             <table cellspacing="0">
+            <tr style="background-color:#D3D3D3;">
+                <td align="left" style="font-weight: bold; width: 125px;">
+                <div style="display:inline;width:400px;">
+                RFQ Number: 
+                    <asp:Label ID="lblRFQNumber" runat="server" Text=""></asp:Label>
+                </div>
+                </td>
+            </tr>
                 <tr>
                     <td>
                         <asp:FormView ID="frmBOMLine" runat="server" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
@@ -74,27 +83,27 @@
                         </asp:FormView>
                         <table>
                             <tr>
-                                <td align="right" style="font-weight: bold;width: 125px;">
+                                <td align="right" style="font-weight: bold; width: 125px;">
                                     EAU
                                 </td>
                                 <td align="left">
                                     <asp:HiddenField ID="EAUHidden" runat="server" />
                                     <asp:TextBox onkeyup="on_txtEAU_change();" onchange="on_txtEAU_change();" ID="txtEAU"
-                                        runat="server" validate="numbers" validationid="validatingNewRFQ"></asp:TextBox>
+                                        runat="server" validate="number" validationid="validatingNewRFQ"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                         <div id="divWarningEAU" style="font-size: 11px; color: Red; display: none;">
                             EAU different than original. Component within BOM will be updated if this RFQ is
-                            sent.</div>
+                            saved.</div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                    <br />
+                        <br />
                         <table>
                             <tr>
-                                <td align="right" style="font-weight: bold;width: 125px;" >
+                                <td align="right" style="font-weight: bold; width: 125px;">
                                     Supplier
                                 </td>
                                 <td>
@@ -105,7 +114,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="right" style="font-weight: bold;" >
+                                <td align="right" style="font-weight: bold;">
                                     Email
                                 </td>
                                 <td>
@@ -119,10 +128,13 @@
                     </td>
                 </tr>
                 <tr style="height: 120px;">
-                    <td>
-                        
-                        <uc5:rfqVendorAttachments ID="uscRfqAttachmentsSent" runat="server" />
-                        
+                    <td style="padding: 0px 10px; vertical-align: top;">
+                        Attachments (less than 4MB per file):
+                        <div id="uploadContainer" style="height: 230px; overflow-y: auto; width: 444px; background-color: #D3D3D3;">
+                            <div id="uploadZone">
+                                Upload
+                            </div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -138,15 +150,15 @@
             </table>
         </td>
         <td>
-            <table cellspacing="0" class="style5">
+            <table cellspacing="0">
                 <tr>
                     <td>
-                        <table align="center" cellspacing="0" style="width: 491px">
+                        <table align="center" cellspacing="0">
                             <tr style="height: 10px;">
-                                <td align="right" class="style2">
+                                <td align="right" style="font-weight: bold;width:150px;">
                                     Due Date
                                 </td>
-                                <td align="left" class="style4">
+                                <td align="left" >
                                     <asp:TextBox ID="txtDueDate" datepicker="true" runat="server" TabIndex="7" Width="200px"></asp:TextBox>
                                 </td>
                             </tr>
@@ -154,7 +166,7 @@
                                 <td align="right" style="font-weight: bold;">
                                     Market Sector
                                 </td>
-                                <td align="left" class="style3">
+                                <td align="left">
                                     <asp:DropDownList ID="cboMarketSector" runat="server" DataSourceID="SqlDataSourceMarketSector"
                                         DataTextField="Name" DataValueField="MarketSectorID" TabIndex="8" Width="124px">
                                     </asp:DropDownList>
@@ -186,19 +198,18 @@
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtCommentToVendor" runat="server" Height="50px" TabIndex="13" TextMode="MultiLine"
-                                        Width="300px"></asp:TextBox>
+                                        Width="280px"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td style="padding: 0px 10px; vertical-align: top;">
-                        Attachments (less than 4MB per file):
-                        <div id="uploadContainer" style="height: 230px; overflow-y: auto; width: 444px; background-color: #D3D3D3;">
-                            <div id="uploadZone">
-                                Upload
-                            </div>
+                    <td style="vertical-align: top;">
+                        <div style="background-color: #D3D3D3; width: 440px; min-height: 230px;">
+                            Attachments Sent:
+                            <br />
+                            <uc6:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" OnAfterDeleteBuyerAttachment="on_after_delete_buyerAttachment" />
                         </div>
                     </td>
                 </tr>
@@ -207,7 +218,7 @@
     </tr>
 </table>
 <br />
-<div align="center">
+<div align="right">
     <table>
         <tr>
             <td>
@@ -233,6 +244,7 @@
     </table>
 </div>
 <asp:HiddenField ID="hiddenAttachmentsSent" runat="server" />
+
 <script type="text/javascript">
     function toggleTargetPrice() {
         var checkboxTargetPriceIsChecked = jQuery('#<%= chkTargetPrice.ClientID %>').is(":checked");
@@ -249,7 +261,7 @@
         toggleTargetPrice();
 
         uploadObj = jQuery("#uploadZone").uploadFile({
-            url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>',
+            url: '<%= ResolveUrl("~/BOM/BOM_Form.aspx") %>',
             multiple: true,
             fileName: "myfile",
             autoSubmit: false,
