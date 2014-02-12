@@ -11,6 +11,10 @@
         {
             display: none;
         }
+        .no-close .ui-dialog-titlebar-close
+        {
+            display: none;
+        }
         .btnInTitle
         {
             position: fixed;
@@ -95,6 +99,9 @@
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Cookie/jquery.cookie.js") %>'
         type="text/javascript"></script>
 
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.datepicker.js") %>'
+        type="text/javascript"></script>
+
 </head>
 <body style="padding: 140px 20px 0px 20px; font-family: Tahoma; font-size: 12px;">
     <%-- <table width="100%" style="margin-bottom: -20px;">
@@ -164,6 +171,11 @@
     jQuery(document).ready(function() {
         jQuery("#javascriptEnabled").css("visibility", "visible");
         makeDropDownsChosen();
+        jQuery('[datepicker="true"]').datepicker({
+            showOn: "button",
+            buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
+            buttonImageOnly: true
+        });
     });
 
 

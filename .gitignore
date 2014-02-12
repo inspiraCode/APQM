@@ -41,7 +41,8 @@ Thumbs.db
 ######################
 *.pdb
 *.suo
+*.sln
 
-# Visual Studio IDE Files #
+# Other #
 ######################
 *.cache
