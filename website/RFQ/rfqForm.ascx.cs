@@ -254,7 +254,6 @@ public partial class rfqForm : System.Web.UI.UserControl
         {
             rfq.InboxAttachmentsFolder = hiddenInboxAttachments.Value;
         }
-        Session.Remove("RFQATTACHMENTSINBOX");
         Session.Remove("RFQATTACHMENTSFOLDERINBOX");
 
         List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();

@@ -4,6 +4,7 @@
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
 <%@ Register Src="../RFQ/resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc4" %>
+<%@ Register src="../RFQ/sendNewRFQEdit.ascx" tagname="sendNewRFQEdit" tagprefix="uc5" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -318,22 +319,16 @@
 </div>
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
-<asp:Panel ID="panelResendRFQ" runat="server" Visible="false">
-    <uc4:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
 
-    <script type="text/javascript">
-        document.getElementById("<%= this.panelResendRFQ.ClientID %>").setAttribute("title", "Re-send RFQ");
-        jQuery("#<%= this.panelResendRFQ.ClientID %>").dialog({ autoOpen: true,
-            appendTo: jQuery('form:first'),
-            width: 440, modal: true,
-            dialogClass: "no-close", closeOnEscape: false
-        });
-    </script>
 
-</asp:Panel>
 <asp:Button ID="btnResendRFQ" runat="server" Text="Resend RFQ" OnClick="btnResendRFQ_Click"
     Style="display: none;" />
 <asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
+
+<asp:Button ID="btnEditRFQBuyerSide" runat="server" Text="Edit RFQ  Butyer Side" 
+    Style="display: none;" onclick="btnEditRFQBuyerSide_Click" />
+<asp:HiddenField ID="HiddenFieldEditRFQBuyerSide" runat="server" />
+
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -482,4 +477,39 @@
         jQuery("#<%= btnResendRFQ.ClientID %>").click();
         return false;
     }
+    function editRFQBuyerSide(sRFQ_ID) {
+        jQuery("#<%= HiddenFieldEditRFQBuyerSide.ClientID %>").val(sRFQ_ID);
+        jQuery("#<%= btnEditRFQBuyerSide.ClientID %>").click();
+        return false;
+    }
 </script>
+
+
+<asp:Panel ID="panelResendRFQ" runat="server" Visible="false">
+    <uc4:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            document.getElementById("<%= this.panelResendRFQ.ClientID %>").setAttribute("title", "Re-send RFQ");
+            jQuery("#<%= this.panelResendRFQ.ClientID %>").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 440, modal: true,
+                dialogClass: "no-close", closeOnEscape: false, 
+            });
+        });
+    </script>
+
+</asp:Panel>
+<asp:Panel ID="panelEditRFQBuyerSide" runat="server" Visible="false">
+    <uc5:sendNewRFQEdit ID="uscSendNewRFQEdit" runat="server"  OnSend_Click="on_sendRFQ" OnSave_Click="on_editRFQBuyerSide" OnCancel_Click="on_cancel_editRFQBuyerSide" />
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            document.getElementById("<%= this.panelEditRFQBuyerSide.ClientID %>").setAttribute("title", "Edit RFQ Buyer-Side");
+            jQuery("#<%= this.panelEditRFQBuyerSide.ClientID %>").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 1000, modal: true,
+                dialogClass: "no-close", closeOnEscape: false
+            });
+        });
+    </script>
+
+</asp:Panel>

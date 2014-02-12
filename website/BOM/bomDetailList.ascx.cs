@@ -378,7 +378,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
         }
     }
-
     protected void on_resendRFQ(object sender, EventArgs e)
     {
         loadDetail();
@@ -389,5 +388,36 @@ public partial class bomDetailList : System.Web.UI.UserControl
     protected void on_cancel_resendRFQ(object sender, EventArgs e)
     {
         panelResendRFQ.Visible = false;
+    }
+    protected void btnEditRFQBuyerSide_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            long rfqHeaderKey = long.Parse(HiddenFieldEditRFQBuyerSide.Value);
+            uscSendNewRFQEdit.setEntity(rfqHeaderKey);
+            panelEditRFQBuyerSide.Visible = true;
+        }
+        catch (Exception ex)
+        {
+            Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
+        }
+    }
+
+    protected void on_editRFQBuyerSide(object sender, EventArgs e)
+    {
+        loadDetail();
+        panelEditRFQBuyerSide.Visible = false;
+        uscNotifier.showSuccess("RFQ was edited successfully!");
+    }
+
+    protected void on_cancel_editRFQBuyerSide(object sender, EventArgs e)
+    {
+        panelEditRFQBuyerSide.Visible = false;
+    }
+    protected void on_sendRFQ(object sender, EventArgs e)
+    {
+        loadDetail();
+        panelEditRFQBuyerSide.Visible = false;
+        uscNotifier.showSuccess("RFQ was sent to Vendor's email successfully!");
     }
 }

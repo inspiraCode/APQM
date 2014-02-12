@@ -8,7 +8,6 @@ using System.Net.Mail;
 
 public partial class ResendRFQ : System.Web.UI.UserControl
 {
-    
     public event EventHandler Ok_Click;
     public event EventHandler Cancel_Click;
 
@@ -56,8 +55,6 @@ public partial class ResendRFQ : System.Web.UI.UserControl
                 return;
             }
         }
-
-        
 
         TokenCRUD token_CRUD = new TokenCRUD();
         Token token = token_CRUD.readByRFQ(rfqToResend);

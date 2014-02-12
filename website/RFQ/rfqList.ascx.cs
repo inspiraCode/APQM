@@ -85,6 +85,17 @@ public partial class rfqList : System.Web.UI.UserControl
             DataKey keys = gridRFQList.DataKeys[e.Row.RowIndex];
             long rfqHeaderKey = long.Parse(keys.Value.ToString());
 
+            ImageButton linkDeleteByID = (ImageButton)e.Row.FindControl("linkDeleteByID");
+            linkDeleteByID.OnClientClick = "javascript:return deleteRFQByID(" + rfqHeaderKey + ");";
+
+            ImageButton linkUpdateBuyerSide = (ImageButton)e.Row.FindControl("linkUpdateBuyerSide");
+            linkUpdateBuyerSide.OnClientClick = "javascript:return editRFQBuyerSide(" + rfqHeaderKey + ");";
+
+            LinkButton linkSetAwardByID = (LinkButton)e.Row.FindControl("linkSetAward");
+            linkSetAwardByID.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
+
+            LinkButton linkResendRFQ = (LinkButton)e.Row.FindControl("resendRFQByID");
+            linkResendRFQ.OnClientClick = "javascript:return resendRFQbyID(" + rfqHeaderKey + ");";
 
             DataBoundLiteralControl hrefStatus = (DataBoundLiteralControl)e.Row.Cells[4].Controls[0];
             if (hrefStatus.Text.IndexOf("AWARDED") > -1)
@@ -94,24 +105,13 @@ public partial class rfqList : System.Web.UI.UserControl
 
             DateTime dateSentToVendor = DateTime.Parse(e.Row.Cells[7].Text);
 
-
             if (dateSentToVendor.Year == 1985 &&
                 dateSentToVendor.Month == 2 &&
                 dateSentToVendor.Day == 10)
             {
                 e.Row.Cells[7].Text = "Not sent, just created.";
+
             }
-            
-            ImageButton linkDeleteByID = (ImageButton)e.Row.FindControl("linkDeleteByID");
-            linkDeleteByID.OnClientClick = "javascript:return deleteRFQByID(" + rfqHeaderKey + ");";
-
-
-            LinkButton linkSetAwardByID = (LinkButton)e.Row.FindControl("linkSetAward");
-            linkSetAwardByID.OnClientClick = "javascript:return setAwardByRFQ_ID(" + rfqHeaderKey + ");";
-
-            LinkButton linkResendRFQ = (LinkButton)e.Row.FindControl("resendRFQByID");
-            linkResendRFQ.OnClientClick = "javascript:return resendRFQbyID(" + rfqHeaderKey + ");";
-
         }
     }
     protected void gridView_RowCommand(object sender, GridViewCommandEventArgs e)

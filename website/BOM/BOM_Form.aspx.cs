@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.IO;
 
 public partial class BOM_BOM_Form : System.Web.UI.Page
 {
@@ -14,9 +16,41 @@ public partial class BOM_BOM_Form : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        HttpPostedFile file = Request.Files["myfile"];
+        HttpFileCollection fileCollection = Request.Files;
+        if (file != null)
+        {
+            string fileName = file.FileName;
+            HttpPostedFile postedFile = file;
+
+            string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+
+            string currentPathAttachments = (string)Session["RFQATTACHMENTS"];
+            string folderName = (string)Session["RFQATTACHMENTSFOLDER"];
+            if (currentPathAttachments == null)
+            {
+                do
+                {
+                    DateTime date = DateTime.Now;
+                    folderName = date.Year.ToString() + date.Month.ToString() +
+                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                    currentPathAttachments = baseAttachmentsPath + folderName;
+                } while (Directory.Exists(currentPathAttachments));
+                Directory.CreateDirectory(currentPathAttachments);
+                currentPathAttachments += @"\";
+                Session["RFQATTACHMENTS"] = currentPathAttachments;
+                Session["RFQATTACHMENTSFOLDER"] = folderName;
+            }
+
+            if (postedFile.ContentLength > 0)
+            {
+                postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
+            }
+            return;
+        }
+        
         Control btnHome = Master.FindControl("btnHome");
         btnHome.Visible = false;
-
         if (ViewState["bomHeaderkey"] == null)
         {
             load();

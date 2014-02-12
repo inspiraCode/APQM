@@ -201,6 +201,42 @@ public class SupplierCRUD : ICRUD<Supplier>
 
         return result;
     }
+
+    public bool update(Supplier entity, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        bool result = false;
+        try
+        {
+            DM.Load_SP_Parameters("@SupplierKey", entity.Id.ToString());
+            DM.Load_SP_Parameters("@SupplierName", entity.SupplierName);
+            DM.Load_SP_Parameters("@ContactName", entity.ContactName);
+            DM.Load_SP_Parameters("@ContactPhoneNumber", entity.ContactPhone);
+            DM.Load_SP_Parameters("@ContactEmail", entity.ContactEmail);
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@QuotedCurrency", entity.QuotedCurrency);
+            DM.Load_SP_Parameters("@Capabilities", entity.Capabilities);
+            DM.Load_SP_Parameters("@Comments", entity.Comments);
+            DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
+            DM.Load_SP_Parameters("@Commodity", entity.Commodity);
+            DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
+
+            result = DM.Execute_StoreProcedure_Open_Conn("SupplierMaster_EditSupplier", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+
+        return result;
+    }
+
     public bool delete(long id)
     {
         ErrorOccur = false;

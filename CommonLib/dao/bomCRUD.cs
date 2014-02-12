@@ -1180,6 +1180,23 @@ public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
         ErrorMessage = DM.Error_Mjs;
         return false;
     }
+    public bool updateByVolumeAndBOMDetailKey(long bomDetailKey, long currentVolume, long newVolume, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        
+        string query = "UPDATE BOMDetailVolume SET BOMDetailKey = " + bomDetailKey + ", Volume = " + newVolume
+            + " WHERE (Volume = " + currentVolume + ")";
+
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
     public bool deleteByParentID(long id)
     {
         ErrorOccur = false;
