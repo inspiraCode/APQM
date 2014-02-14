@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SendNewRFQDetail.ascx.cs"
-    Inherits="RFQ_SendNewRFQDetail" %>
+    Inherits="BOM_SendNewRFQDetail" %>
 <asp:Repeater ID="repeaterNewRFQDetail" runat="server">
     <HeaderTemplate>
         <table border="1" id="tableNewRFQDetail" class="display" style="display: inline;">
@@ -9,10 +9,10 @@
                         Part Number
                     </th>
                     <th>
-                        Qty. Required
+                        Materia/Description
                     </th>
                     <th>
-                        Materia/Description
+                        Qty. Required
                     </th>
                     <th>
                     </th>
@@ -23,15 +23,13 @@
     <ItemTemplate>
         <tr height='27px;'>
             <td>
-                <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" CommandName="partID">                    
-                    <%# DataBinder.Eval(Container.DataItem, "partNumber")%>
-                </asp:LinkButton>
-            </td>
-            <td>
-                <%# DataBinder.Eval(Container.DataItem, "qtyRequired")%>
+                <%# DataBinder.Eval(Container.DataItem, "partNumber")%>
             </td>
             <td>
                 <%# DataBinder.Eval(Container.DataItem, "partName")%>
+            </td>
+            <td>
+                <%# DataBinder.Eval(Container.DataItem, "qtyRequired")%>
             </td>
             <td>
                 <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="partID"

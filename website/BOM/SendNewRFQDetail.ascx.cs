@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class RFQ_SendNewRFQDetail : System.Web.UI.UserControl
+public partial class BOM_SendNewRFQDetail : System.Web.UI.UserControl
 {
     List<Material> materialList;
     protected void Page_Load(object sender, EventArgs e)
@@ -55,7 +55,10 @@ public partial class RFQ_SendNewRFQDetail : System.Web.UI.UserControl
     {
         public long id;
         public string partNumber = "";
-        public float qtyRequired = 0;
         public string partName = "";
+        public string UM = "";
+        public float qtyRequired = 0;
+        public int EAU;
+        
     }
 }

@@ -1,27 +1,30 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="sendNewRFQ.ascx.cs" Inherits="SendNewRFQ" %>
-<%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc1" %>
-<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc2" %>
-<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc3" %>
-<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
-<%@ Register Src="rfqCountPerBomLines.ascx" TagName="rfqCountPerBomLines" TagPrefix="uc6" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="multipleComponentsToRFQ.ascx.cs" Inherits="BOM_multipleComponentsToRFQ" %>
+<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
+<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc2" %>
+<%@ Register src="../SIF/sifDetail.ascx" tagname="sifDetail" tagprefix="uc3" %>
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
-<uc2:notifier ID="uscNotifier" OnPrompt="on_prompt" runat="server" />
+<uc1:notifier ID="uscNotifier" runat="server" OnPrompt="on_prompt" />
 <asp:SqlDataSource ID="SqlDataSourceMarketSector" runat="server" OnInit="on_sqldatasource_Init"
     ProviderName="System.Data.SqlClient" SelectCommand="SELECT [MarketSectorID], [Name] FROM [MarketSector] ORDER BY [Name]">
 </asp:SqlDataSource>
-<uc3:Validator ID="Validator1" runat="server" />
+<uc2:Validator ID="Validator1" runat="server" />
 <asp:Label ID="lblBomDetailID" runat="server" Text="1" Visible="False"></asp:Label>
+<asp:SqlDataSource ID="SqlDataSourceCommodities" runat="server" ProviderName="System.Data.SqlClient"
+    OnInit="on_sqldatasource_Init" SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
+</asp:SqlDataSource>
+
+
+
+
+
+
+
+
+
+
 <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceSuppliers" runat="server"
     SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
-</asp:SqlDataSource>
-<asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceRFQCountPerBOMDetail"
-    runat="server" SelectCommand="SELECT InquiryNumber, TopPartNumber, PartDescription, PartNumber, Qty, Cost, Revision, Material, SIFHeaderKey, EAU FROM viewRFQCountPerBOMDetail WHERE (BOMDetailKey = @BOMDetailKey)"
-    ProviderName="System.Data.SqlClient">
-    <SelectParameters>
-        <asp:ControlParameter ControlID="lblBomDetailID" DefaultValue="-1" Name="BOMDetailKey"
-            PropertyName="Text" Type="Decimal" />
-    </SelectParameters>
 </asp:SqlDataSource>
 <table cellspacing="0">
     <tr>
@@ -29,63 +32,6 @@
             <table cellspacing="0">
                 <tr>
                     <td>
-                        <asp:FormView ID="frmBOMLine" runat="server" DataSourceID="SqlDataSourceRFQCountPerBOMDetail"
-                            Width="480px">
-                            <ItemTemplate>
-                                <table cellspacing="0" class="style5">
-                                    <tr>
-                                        <td align="right" style="font-weight: bold; width: 125px;">
-                                            Inquiry Number:
-                                        </td>
-                                        <td align="left">
-                                            <asp:Label ID="InquiryNumberLabel" runat="server" Text='<%# Bind("InquiryNumber") %>' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-weight: bold;">
-                                            Revision:
-                                        </td>
-                                        <td align="left">
-                                            <asp:Label ID="RevisionLabel" runat="server" Text='<%# Bind("Revision") %>' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-weight: bold;">
-                                            Product:
-                                        </td>
-                                        <td align="left">
-                                            <asp:Label ID="PartDescriptionLabel" runat="server" Text='<%# Bind("PartDescription") %>' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-weight: bold;">
-                                            Part Number:
-                                        </td>
-                                        <td align="left">
-                                            <asp:Label ID="PartNumberLabel" runat="server" Text='<%# Bind("PartNumber") %>' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-weight: bold;">
-                                            Part Description
-                                        </td>
-                                        <td align="left">
-                                            <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right" style="font-weight: bold;">
-                                            EAU
-                                        </td>
-                                        <td align="left">
-                                            <asp:HiddenField ID="EAUHidden" runat="server" Value='<%# Bind("EAU") %>' />
-                                            <asp:TextBox onkeyup="on_txtEAU_change();" onchange="on_txtEAU_change();" ID="txtEAU"
-                                                runat="server" Text='<%# Bind("EAU") %>' validate="numbers" validationid="validatingNewRFQ"></asp:TextBox>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </ItemTemplate>
-                        </asp:FormView>
                         <div id="divWarningEAU" style="font-size: 11px; color: Red; display: none;">
                             EAU different than original. Component within BOM will be updated if this RFQ is
                             sent.</div>
@@ -148,13 +94,18 @@
                     </td>
                 </tr>
                 
+                <tr style="height:120px;">
+                    <td>
+                        &nbsp;</td>
+                </tr>
                 <tr>
                     <td>
                         <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                             display: inline-block;">
-                            <uc4:sifDetail ID="uscSifDetail" runat="server" />
+                            <uc3:sifDetail ID="uscSifDetail" runat="server" />
                         </div>
                         <br />
+                        
                         <br />
                     </td>
                 </tr>
@@ -254,32 +205,17 @@
         </tr>
     </table>
 </div>
-<asp:Panel ID="panelPopupSelectMaterial" runat="server" Visible="false">
-    <uc6:rfqCountPerBomLines ID="uscRfqCountPerBomLines" runat="server" />
 
-    <script type="text/javascript">
 
-        document.getElementById("<%= this.panelPopupSelectMaterial.ClientID %>").setAttribute("title", "Selecting Material");
-        var popupSelectMaterial = jQuery("#<%= this.panelPopupSelectMaterial.ClientID %>").dialog({ autoOpen: true,
-            //appendTo: jQuery('form:first'),
-            width: 440, height: 400, modal: true,
-            dialogClass: "no-close", closeOnEscape: false
-        });
-        //popupSelectMaterial.dialog("moveToTop");
-    </script>
 
-    <br />
-    <br />
-    <div align="center" style="clear: both;">
-        <asp:Button ID="btnOKSelectMaterial" runat="server" Text="OK" Width="60px" OnClick="btnOKSelectMaterial_Click"
-            TabIndex="-1" />
-        <asp:Button ID="btnCancelSelectMaterial" runat="server" Text="Cancel" Width="60px"
-            OnClick="btnCancelSelectMaterial_Click" TabIndex="-1" />
-    </div>
-</asp:Panel>
-<asp:SqlDataSource ID="SqlDataSourceCommodities" runat="server" ProviderName="System.Data.SqlClient"
-    OnInit="on_sqldatasource_Init" SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
-</asp:SqlDataSource>
+
+
+
+
+
+
+
+
 
 <script type="text/javascript">
     function toggleTargetPrice() {

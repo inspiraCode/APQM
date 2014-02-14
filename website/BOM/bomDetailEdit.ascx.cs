@@ -101,6 +101,7 @@ public partial class BOM_bomDetailEdit : System.Web.UI.UserControl
         txtCapComAssm.Text = bomDetailEdit.CapComAssm;
         txtPurchasingComments.Text = bomDetailEdit.PurchasingComments;
         lblSalesStatus.Text = bomDetailEdit.SalesStatus;
+        lblSalesComments.Text = bomDetailEdit.SalesComments;
         chkDirectedBuy.Checked = bomDetailEdit.DirectedBuy;
         cboPurchasingStatus.SelectedValue = bomDetailEdit.PurchasingStatus;
         cboSystemStatus.SelectedValue = bomDetailEdit.Status;

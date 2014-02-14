@@ -112,6 +112,9 @@
         <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
             Sales Status
         </th>
+        <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+            Sales Comments
+        </th>
         <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
             Directed Buy
         </th>
@@ -206,6 +209,10 @@
             <div style="width: 70px;">
             </div>
         </th>
+        <th class="camposSinBordes">
+            <div style="width: 70px;">
+            </div>
+         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
@@ -228,7 +235,7 @@
     </tr>
 </table>
 <div style="clear: both; top: 30px;">
-    <div id="accordionBOM" style="position: relative; width: 1790px;">
+    <div id="accordionBOM" style="position: relative; width: 1860px;">
         <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
                 <h3 style="height: 20px;">
@@ -298,6 +305,9 @@
                                 </td>
                                 <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
                                     <%# DataBinder.Eval(Container.DataItem, "SalesStatus")%>
+                                </td>
+                                <td class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;">
+                                    <%# DataBinder.Eval(Container.DataItem, "SalesComments")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
                                     <%# DataBinder.Eval(Container.DataItem, "DirectedBuy")%>

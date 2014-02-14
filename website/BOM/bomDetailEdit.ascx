@@ -126,8 +126,8 @@
             EAU
         </td>
         <td class="style3">
-            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right" validate="numbers" validationid="bomlineedit"
-                Width="150px">0</asp:TextBox>
+            <asp:TextBox ID="txtEAU" runat="server" Style="text-align: right" validate="numbers"
+                validationid="bomlineedit" Width="150px">0</asp:TextBox>
         </td>
     </tr>
     <tr class="itemFields">
@@ -166,11 +166,19 @@
         </td>
     </tr>
     <tr>
-        <td class="style6" align="right" style="font-weight: bold">
+        <td align="right" style="font-weight: bold">
             Sales Status
         </td>
         <td class="style3">
             <asp:Label ID="lblSalesStatus" runat="server"></asp:Label>
+        </td>
+    </tr>
+    <tr>
+        <td class="style5" align="right" style="font-weight: bold">
+            Sales Comments
+        </td>
+        <td class="style3">
+            <asp:Label ID="lblSalesComments" runat="server" Height="36px" Text="" Width="245px"></asp:Label>
         </td>
     </tr>
     <tr>
