@@ -1,7 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="multipleComponentsToRFQ.ascx.cs" Inherits="BOM_multipleComponentsToRFQ" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc1" %>
-<%@ Register src="../Utils/Validator/Validator.ascx" tagname="Validator" tagprefix="uc2" %>
-<%@ Register src="../SIF/sifDetail.ascx" tagname="sifDetail" tagprefix="uc3" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="multipleComponentsToRFQ.ascx.cs"
+    Inherits="BOM_multipleComponentsToRFQ" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
+<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
+<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
 <uc1:notifier ID="uscNotifier" runat="server" OnPrompt="on_prompt" />
@@ -13,16 +14,6 @@
 <asp:SqlDataSource ID="SqlDataSourceCommodities" runat="server" ProviderName="System.Data.SqlClient"
     OnInit="on_sqldatasource_Init" SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
 </asp:SqlDataSource>
-
-
-
-
-
-
-
-
-
-
 <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceSuppliers" runat="server"
     SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
 </asp:SqlDataSource>
@@ -93,10 +84,10 @@
                         </asp:UpdatePanel>
                     </td>
                 </tr>
-                
-                <tr style="height:120px;">
+                <tr style="height: 120px;">
                     <td>
-                        &nbsp;</td>
+                        &nbsp;
+                    </td>
                 </tr>
                 <tr>
                     <td>
@@ -105,7 +96,6 @@
                             <uc3:sifDetail ID="uscSifDetail" runat="server" />
                         </div>
                         <br />
-                        
                         <br />
                     </td>
                 </tr>
@@ -187,7 +177,7 @@
             <td>
                 <div id="divImgEmail" style="visibility: hidden;">
                     <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
-                    <span style="position: relative; top: -10px;">Sending Email, Please wait..</span>
+                    <span style="position: relative; top: -10px;">Please wait..</span>
                 </div>
             </td>
             <td>
@@ -205,17 +195,6 @@
         </tr>
     </table>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 <script type="text/javascript">
     function toggleTargetPrice() {
@@ -288,3 +267,4 @@
             divWarningEAU.hide();
     }
 </script>
+

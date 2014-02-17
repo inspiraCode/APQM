@@ -216,7 +216,7 @@ namespace SalesDB_To_APQM
                                 sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% of Volume per Award Yr " + i].Value.ToString());
                             }
 
-                            if (sifDetail.AnnualRevenue > 0)
+                            if (sifDetail.ProjectedAnnualVolume > 0)
                             {
                                 sif.SifDetail.Add(sifDetail);
                             }

@@ -224,7 +224,7 @@
             <td>
                 <div id="divImgEmail" style="visibility: hidden;">
                     <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
-                    <span style="position: relative; top: -10px;">Sending Email, Please wait..</span>
+                    <span style="position: relative; top: -10px;">Please wait..</span>
                 </div>
             </td>
             <td>
