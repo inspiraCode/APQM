@@ -270,7 +270,7 @@
                         <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblTotalAcquisitionCost" runat="server" Text=''>
-                            0.00
+                            0.000
                                 </asp:Label>
                             </td>
                         </tr>
@@ -283,7 +283,7 @@
                         <tr height='11px;'>
                             <td>
                                 <asp:Label ID="lblAnnualPurchaseCost" runat="server" Text=''>
-                                    0.00
+                                    0.000
                                 </asp:Label>
                             </td>
                         </tr>
@@ -378,8 +378,8 @@
 
         var totalAcquisitionCost = ACost + BCost + CCost;
 
-        arrColumns[index].filter('[fieldname=lblTotalAcquisitionCost]').text(totalAcquisitionCost.toFixed(2));
-        arrColumns[index].filter('[fieldname=lblAnnualPurchaseCost]').text((EAV * totalAcquisitionCost).toFixed(2));
+        arrColumns[index].filter('[fieldname=lblTotalAcquisitionCost]').text(totalAcquisitionCost.toFixed(3));
+        arrColumns[index].filter('[fieldname=lblAnnualPurchaseCost]').text((EAV * totalAcquisitionCost).toFixed(3));
     }
 
     /******************************************************************/

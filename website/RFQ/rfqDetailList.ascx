@@ -115,7 +115,7 @@
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="12"></asp:TextBox>
             </th>
             <th class="camposSinBordes calculatedField" data-step='21' data-intro='This is the material cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
-                <asp:Label ID="lblMaterialTotal" runat="server" Width="70px">0.00</asp:Label>
+                <asp:Label ID="lblMaterialTotal" runat="server" Width="70px">0.000</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='22' data-intro='Outside services needed.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" 
@@ -128,7 +128,7 @@
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="14"></asp:TextBox>
             </th>
             <th class="camposSinBordes calculatedField" data-step='24' data-intro='This is the outside service cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit'>
-                <asp:Label ID="lblServiceTotal" runat="server" Width="70px">0.00</asp:Label>
+                <asp:Label ID="lblServiceTotal" runat="server" Width="70px">0.000</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='25' data-intro='Percentage of scrap.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" 
@@ -136,7 +136,7 @@
                     Style="text-align: right;" runat="server" Width="70px" TabIndex="15"></asp:TextBox>
             </th>
             <th class="camposSinBordes calculatedField" data-step='26' data-intro='This is the scrap cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>(Material Total + Service Total) x Scrap Value'>
-                <asp:Label ID="lblScrapCost" runat="server" Width="70px">0.00</asp:Label>
+                <asp:Label ID="lblScrapCost" runat="server" Width="70px">0.000</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='27' data-intro='Enter directly labor rate.'>
                 <asp:TextBox validate="number" validationid="validatingRFQDetail" 
@@ -150,7 +150,7 @@
             </th>
             <th class="camposSinBordes calculatedField" data-step='29' data-intro='This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.'
                 data-position='left'>
-                <asp:Label ID="lblLaborCost" runat="server" Width="70px">0.00</asp:Label>
+                <asp:Label ID="lblLaborCost" runat="server" Width="70px">0.000</asp:Label>
             </th>
             <th class="camposSinBordes" data-step='30' data-intro='Enter your total burden cost per unit.'
                 data-position='left'>
@@ -160,7 +160,7 @@
             </th>
             <th class="camposSinBordes calculatedField" data-step='31' data-intro='This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden'
                 data-position='left'>
-                <asp:Label ID="lblBurdenTotal" runat="server" Width="50px">0.00</asp:Label>
+                <asp:Label ID="lblBurdenTotal" runat="server" Width="50px">0.000</asp:Label>
             </th>
             <th class="camposSinBordes" colspan='2' data-step='32' data-intro='If your information in this line is correct, press this button to add it to the list.'
                 data-position='left'>
@@ -294,29 +294,29 @@
     function calculateMaterialCost() {
         var qty = Number(jQuery("#<%= txtQuantity.ClientID %>").val());
         var costUnit = Number(jQuery("#<%= txtCostUnit.ClientID %>").val());
-        jQuery("#<%= lblMaterialTotal.ClientID %>").text((qty * costUnit).toFixed(2));
+        jQuery("#<%= lblMaterialTotal.ClientID %>").text((qty * costUnit).toFixed(3));
         calculateScrap();
     }
     function calculateServiceTotal() {
         var qty = Number(jQuery("#<%= txtOutsideServicesQuantity.ClientID %>").val());
         var costUnit = Number(jQuery("#<%= txtOutsideServicesCostUnit.ClientID %>").val());
-        jQuery("#<%= lblServiceTotal.ClientID %>").text((qty * costUnit).toFixed(2));
+        jQuery("#<%= lblServiceTotal.ClientID %>").text((qty * costUnit).toFixed(3));
         calculateScrap();
     }
     function calculateScrap() {
         var materialTotal = Number(jQuery("#<%= lblMaterialTotal.ClientID %>").text()); 
         var serviceTotal = Number(jQuery("#<%= lblServiceTotal.ClientID %>").text()); 
         var scrap = Number(jQuery("#<%= txtScrapValue.ClientID %>").val());
-        jQuery("#<%= lblScrapCost.ClientID %>").text((((materialTotal + serviceTotal) * scrap / 100)).toFixed(2));
+        jQuery("#<%= lblScrapCost.ClientID %>").text((((materialTotal + serviceTotal) * scrap / 100)).toFixed(3));
     }
     function calculateLaborCost() {
         var directlyHrlyLaborRate = Number(jQuery("#<%= txtDirectHrlyLaborRate.ClientID %>").val());
         var stdHrs = Number(jQuery("#<%= txtStdHrs.ClientID %>").val());
-        jQuery("#<%= lblLaborCost.ClientID %>").text((directlyHrlyLaborRate * stdHrs).toFixed(2));
+        jQuery("#<%= lblLaborCost.ClientID %>").text((directlyHrlyLaborRate * stdHrs).toFixed(3));
     }
     function calculateBurdenTotal() {
         var burden = Number(jQuery("#<%= txtBurden.ClientID %>").val());
-        jQuery("#<%= lblBurdenTotal.ClientID %>").text(burden.toFixed(2));
+        jQuery("#<%= lblBurdenTotal.ClientID %>").text(burden.toFixed(3));
     }
 </script>
 

@@ -261,9 +261,9 @@
                     nQtyRequired = Number(txtQtyRequired.val());
                     nEAU = Number(txtEAU.val());
                     if (nEAU > 0) {
-                        txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(2));
+                        txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(3));
                     } else {
-                        txtQtyRequired.val("0.00");
+                        txtQtyRequired.val("0.000");
                     }
                 }
             }
