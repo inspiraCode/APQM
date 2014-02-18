@@ -3,6 +3,8 @@
 <%@ Register Src="bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc4" %>
+<%@ Register Src="multipleComponentsToRFQ.ascx" TagName="multipleComponentsToRFQ"
+    TagPrefix="uc5" %>
 <style type="text/css">
     .style1
     {
@@ -159,20 +161,19 @@
     </table>
 </div>
 <div align="center" style="clear: both;">
-<br />
+    <br />
     <div style="border: solid; border-color: gray; border-width: 2px;">
     </div>
     <br />
     <uc1:bomDetailList ID="uscBOMDetailList" runat="server" />
 </div>
-    <br />
-    <div align="center">
+<br />
+<div align="center">
+    <asp:Button ID="btnNewRFQ" runat="server" Text="New RFQ" Width="70px" OnClick="btnNewRFQ_Click" />
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
         OnClientClick="return validate();" validationid="validatingBOMHeader" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
-    </div>
-    
-
+</div>
 <br />
 <asp:HiddenField ID="hiddenProgressBar" runat="server" Value="0" />
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
@@ -198,6 +199,24 @@
 
         </asp:View>
     </asp:MultiView>
+</asp:Panel>
+<asp:Panel ID="panelSendRFQ" runat="server" Visible="false">
+    <div align="center">
+        <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
+            height: 100px; min-width: 160px; display: inline-block;">
+            <uc5:multipleComponentsToRFQ ID="uscMultipleComponentsToRFQ" runat="server" OnCancel_Click="on_cancel_newRFQ" OnOk_Click="on_ok_newRFQ" />
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        document.getElementById("<%= this.panelSendRFQ.ClientID %>").setAttribute("title", "New RFQs");
+        jQuery("#<%= this.panelSendRFQ.ClientID %>").dialog({ autoOpen: true,
+            appendTo: jQuery('form:first'),
+            width: 1000, height:525, modal: true,
+            dialogClass: "no-close", closeOnEscape: false
+        });
+    </script>
+
 </asp:Panel>
 <uc4:notifier ID="uscNotifier" runat="server" />
 
@@ -270,3 +289,4 @@
         }
     }
 </script>
+

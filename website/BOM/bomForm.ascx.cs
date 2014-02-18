@@ -247,4 +247,20 @@ public partial class bomForm : System.Web.UI.UserControl
         Session["bomDetailObject"] = bomDetailList;
         uscBOMDetailList.loadDetail();
     }
+    protected void btnNewRFQ_Click(object sender, EventArgs e)
+    {   
+        panelSendRFQ.Visible = true;
+        uscMultipleComponentsToRFQ.load(uscBOMDetailList.getSelected());
+        uscMultipleComponentsToRFQ.setSIFHeaderID(bom.SifId);
+    }
+    protected void on_ok_newRFQ(object sender, EventArgs e)
+    {
+        //Navigator.goToPage("~/default.aspx","bom");
+        panelSendRFQ.Visible = false;
+    }
+    protected void on_cancel_newRFQ(object sender, EventArgs e)
+    {
+        //Navigator.goToPage("~/default.aspx", "bom");
+        panelSendRFQ.Visible = false;
+    }
 }

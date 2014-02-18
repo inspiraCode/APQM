@@ -57,7 +57,6 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                     {
                         seqLocal = int.Parse(Request.Form[value]);
                     }
-
                     if (value.IndexOf("txtTotalBCost") != -1)
                     {
                         fTotalBCost = float.Parse(Request.Form[value]);

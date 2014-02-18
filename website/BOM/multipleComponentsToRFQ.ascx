@@ -3,6 +3,7 @@
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
+<%@ Register src="SendNewRFQDetail.ascx" tagname="SendNewRFQDetail" tagprefix="uc4" %>
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
 <uc1:notifier ID="uscNotifier" runat="server" OnPrompt="on_prompt" />
@@ -87,15 +88,15 @@
                 <tr style="height: 120px;">
                     <td>
                         &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                             display: inline-block;">
                             <uc3:sifDetail ID="uscSifDetail" runat="server" />
                         </div>
-                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <uc4:SendNewRFQDetail ID="uscSendNewRFQDetail" runat="server" />
                         <br />
                     </td>
                 </tr>
@@ -171,7 +172,7 @@
     </tr>
 </table>
 <br />
-<div align="center">
+<div align="right">
     <table>
         <tr>
             <td>
@@ -257,14 +258,6 @@
             }
         }
     }
-    function on_txtEAU_change() {
-        var divWarningEAU = jQuery('#divWarningEAU');
-        var txtEAU = jQuery('#<%= ((TextBox)frmBOMLine.FindControl("txtEAU")).ClientID %>');
-        var lblEAU = jQuery('#<%= ((HiddenField)frmBOMLine.FindControl("EAUHidden")).ClientID %>');
-        if (txtEAU.val().trim() != lblEAU.val().trim())
-            divWarningEAU.show();
-        else
-            divWarningEAU.hide();
-    }
+    
 </script>
 

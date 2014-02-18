@@ -84,6 +84,9 @@ public partial class bomDetailList : System.Web.UI.UserControl
             ((ImageButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
             ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
 
+            ((CheckBox)e.Item.FindControl("chkSelect")).Checked = true;
+
+
             //rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
 
             //if (ucRFQListByBOMID != null)
@@ -429,5 +432,53 @@ public partial class bomDetailList : System.Web.UI.UserControl
         loadDetail();
         panelEditRFQBuyerSide.Visible = false;
         uscNotifier.showSuccess("RFQ was sent to Vendor's email successfully!");
+    }
+    public List<BOMDetail> getSelected()
+    {
+        List<BOMDetail> result = new List<BOMDetail>();
+
+        string[] formKeys = Request.Form.AllKeys;
+
+        long bomDetailKeyLocal = -1;
+        string isSelected = "";
+        
+        if(bomDetail != null){
+
+            foreach (string value in formKeys)
+            {
+                if (value != null)
+                {
+                    int auxBomDetailKey = value.IndexOf("hiddenBOMDetailKey");
+                    if (auxBomDetailKey != -1)
+                    {
+                        bomDetailKeyLocal = long.Parse(Request.Form[value]);
+                    }
+
+                    int auxIsChecked = value.IndexOf("chkSelect");
+                    if (auxIsChecked != -1)
+                    {
+                        isSelected = Request.Form[value];
+                    }
+
+                    if (bomDetailKeyLocal != -1 && isSelected.Trim() != "")
+                    {
+                        foreach (BOMDetail bomLine in bomDetail)
+                        {
+                            if (bomLine.Id == bomDetailKeyLocal)
+                            {
+
+                                result.Add(bomLine);
+
+                                isSelected = "";
+                                bomDetailKeyLocal = -1;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        return result;
     }
 }

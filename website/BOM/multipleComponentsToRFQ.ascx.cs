@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net.Mail;
 
 public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
 {
@@ -12,7 +13,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
     private SupplierCRUD supplierCRUD = new SupplierCRUD();
     private SupplierCommodityCRUD supplierCommodityCRUD = new SupplierCommodityCRUD();
     private List<Supplier> supplierList = null;
-
+    
     protected void Page_Load(object sender, EventArgs e)
     {
         btnNewSupplier.OnClientClick = "return promptUser('New Supplier', 's~', " + ((HiddenField)uscNotifier.FindControl("txtPrompt")).ClientID + ")";
@@ -28,20 +29,20 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         {
             txtDueDate.Text = DateTime.Now.ToShortDateString();
         }
+    }
+    public void load(List<BOMDetail> components)
+    {
+        uscSendNewRFQDetail.setEntity(components);
+        uscSendNewRFQDetail.load();
 
+        lstEmail.Items.Clear();
+        lstEmail.DataBind();
+
+        cboSupplier.Focus();
     }
     
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        //Test for compare EAU with its original value in BOM Line
-        //string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
-        //string strEAULabel = ((Label)frmBOMLine.FindControl("EAUHidden")).Text;
-        //if(strEAULabel.Equals(strEAUTextBox))
-        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "Son iguales");
-        //else
-        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "son distintos");
-
-        //return;
         supplierList = null;
         Cancel_Click(this, e);
     }
@@ -56,7 +57,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
             }
         }
     }
-    public void setVendor(Object entidad)
+    private void setVendor(Object entidad)
     {
         Supplier supplier;
         if (entidad != null)
@@ -75,16 +76,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
     {
         cboSupplier_SelectedIndexChanged(sender, e);
     }
-    public void setBOMDetailID(long id)
-    {
-        lstEmail.Items.Clear();
-        lstEmail.DataBind();
-
-        ViewState["bomDetailID"] = id;
-        lblBomDetailID.Text = id.ToString();
-        
-        cboSupplier.Focus();
-    }
+    
     public void setSIFHeaderID(long id)
     {
         ViewState["sifHeaderID"] = id;
@@ -223,10 +215,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
     {
         loadSupplierDropDown();
     }
-
-
-
-
+    
 
 
 
@@ -236,400 +225,400 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
 
     protected void btnCreateRFQ_Click(object sender, EventArgs e)
     {
-        RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
-        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-        bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
+        //RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
+        //bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        //bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
 
-        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
+        //string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
 
-        string strAuthUser = HttpContext.Current.User.Identity.Name;
+        //string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
-        string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
+        //string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
+        //string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
 
-        BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
-        if (bomDetailObject == null)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
-            return;
-        }
+        //BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
+        //if (bomDetailObject == null)
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
+        //    return;
+        //}
 
-        string[] arrEAU = strEAUTextBox.Split(',');
-
-
-        ConnectionManager CM = new ConnectionManager();
-        Data_Base_MNG.SQL DM = CM.getDataManager();
-
-        /*Begin Transaction*/
-        DM.Open_Connection("Updating BOM Line EAU");
-
-        if (!strEAULabel.Equals(strEAUTextBox))
-        {
-            if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                return;
-            }
-
-            for (var i = 0; i < arrEAU.Length; i++)
-            {
-                if (arrEAU[i].Trim() != "")
-                {
-                    BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-                    bomDetailVolume.BomDetailKey = (long)ViewState["bomDetailID"];
-                    try
-                    {
-                        bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
-                    }
-                    catch
-                    {
-                        DM.RollBack();
-                        Navigator.goToPage("~/Error.aspx", "ERROR:" + "The EAU field did not pass the Numeric validation.");
-                        return;
-                    }
-                    if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
-                    {
-                        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                        return;
-                    }
-                }
-            }
-        }
-
-        bomDetailObject.EAU = strEAUTextBox;
-        if (bomDetailObject.Status != "Processed")
-        {
-            bomDetailObject.Status = "In Progress";
-        }
-        if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
-            return;
-        }
-
-        DM.CommitTransaction();
-        DM.Close_Open_Connection();
-
-        if (DM.ErrorOccur)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-            return;
-        }
-
-        if (supplierList.Count > 0)
-        {
-            foreach (Supplier supplier in supplierList)
-            {
-                for (var i = 0; i < arrEAU.Length; i++)
-                {
-                    if (arrEAU[i].Trim() != "")
-                    {
-                        RFQNumberEntity rfqNumber = new RFQNumberEntity();
-
-                        rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
-                        rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
-                        rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
-
-                        if (rfqNumber.RFQNumber == -1)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:There was an error generating a new RFQ number.");
-                            return;
-                        }
-
-                        CM = new ConnectionManager();
-                        DM = CM.getDataManager();
-
-                        /*Begin Transaction*/
-                        DM.Open_Connection("Send New RFQ Save");
+        //string[] arrEAU = strEAUTextBox.Split(',');
 
 
-                        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
-                        if (rfqNumberCRUD.ErrorOccur)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
-                            return;
-                        }
-                        else
-                        {
-                            RFQ rfq = new RFQ();
-                            RfqCRUD rfqCRUD = new RfqCRUD();
+        //ConnectionManager CM = new ConnectionManager();
+        //Data_Base_MNG.SQL DM = CM.getDataManager();
 
-                            rfq.SupplierId = supplier.Id;
-                            //rfq.SentToVendor = DateTime.Now;
-                            rfq.Status = "PENDING";
-                            rfq.BomDetailId = (long)ViewState["bomDetailID"];
-                            rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
-                            rfq.DueDate = DateTime.Parse(txtDueDate.Text);
-                            rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
-                            rfq.DrawingLevel = txtDrawingLevel.Text;
-                            rfq.EstimatedAnnualVolume = arrEAU[i].Trim();
-                            if (chkTargetPrice.Checked)
-                            {
-                                rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
-                            }
-                            rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+        ///*Begin Transaction*/
+        //DM.Open_Connection("Updating BOM Line EAU");
 
-                            if (folderAttachments != null)
-                            {
-                                rfq.SentAttachmentsFolder = folderAttachments;
-                            }
+        //if (!strEAULabel.Equals(strEAUTextBox))
+        //{
+        //    if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
+        //    {
+        //        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+        //        return;
+        //    }
 
-                            rfq.CreatedBy = strAuthUser;
+        //    for (var i = 0; i < arrEAU.Length; i++)
+        //    {
+        //        if (arrEAU[i].Trim() != "")
+        //        {
+        //            BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+        //            bomDetailVolume.BomDetailKey = (long)ViewState["bomDetailID"];
+        //            try
+        //            {
+        //                bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
+        //            }
+        //            catch
+        //            {
+        //                DM.RollBack();
+        //                Navigator.goToPage("~/Error.aspx", "ERROR:" + "The EAU field did not pass the Numeric validation.");
+        //                return;
+        //            }
+        //            if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
+        //            {
+        //                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
 
-                            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
+        //bomDetailObject.EAU = strEAUTextBox;
+        //if (bomDetailObject.Status != "Processed")
+        //{
+        //    bomDetailObject.Status = "In Progress";
+        //}
+        //if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+        //    return;
+        //}
 
-                            if (rfqCRUD.ErrorOccur)
-                            {
-                                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
-                                return;
-                            }
-                        }
+        //DM.CommitTransaction();
+        //DM.Close_Open_Connection();
 
-                        DM.CommitTransaction();
-                        DM.Close_Open_Connection();
+        //if (DM.ErrorOccur)
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+        //    return;
+        //}
 
-                        if (DM.ErrorOccur)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-                            return;
-                        }
-                    }
-                }
-            }
-        }
+        //if (supplierList.Count > 0)
+        //{
+        //    foreach (Supplier supplier in supplierList)
+        //    {
+        //        for (var i = 0; i < arrEAU.Length; i++)
+        //        {
+        //            if (arrEAU[i].Trim() != "")
+        //            {
+        //                RFQNumberEntity rfqNumber = new RFQNumberEntity();
 
-        Session.Remove("RFQATTACHMENTS");
-        Session.Remove("RFQATTACHMENTSFOLDER");
+        //                rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
+        //                rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
+        //                rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
 
-        supplierList = null;
+        //                if (rfqNumber.RFQNumber == -1)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:There was an error generating a new RFQ number.");
+        //                    return;
+        //                }
+
+        //                CM = new ConnectionManager();
+        //                DM = CM.getDataManager();
+
+        //                /*Begin Transaction*/
+        //                DM.Open_Connection("Send New RFQ Save");
+
+
+        //                String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
+        //                if (rfqNumberCRUD.ErrorOccur)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
+        //                    return;
+        //                }
+        //                else
+        //                {
+        //                    RFQ rfq = new RFQ();
+        //                    RfqCRUD rfqCRUD = new RfqCRUD();
+
+        //                    rfq.SupplierId = supplier.Id;
+        //                    //rfq.SentToVendor = DateTime.Now;
+        //                    rfq.Status = "PENDING";
+        //                    rfq.BomDetailId = (long)ViewState["bomDetailID"];
+        //                    rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
+        //                    rfq.DueDate = DateTime.Parse(txtDueDate.Text);
+        //                    rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+        //                    rfq.DrawingLevel = txtDrawingLevel.Text;
+        //                    rfq.EstimatedAnnualVolume = arrEAU[i].Trim();
+        //                    if (chkTargetPrice.Checked)
+        //                    {
+        //                        rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
+        //                    }
+        //                    rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+
+        //                    if (folderAttachments != null)
+        //                    {
+        //                        rfq.SentAttachmentsFolder = folderAttachments;
+        //                    }
+
+        //                    rfq.CreatedBy = strAuthUser;
+
+        //                    string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
+
+        //                    if (rfqCRUD.ErrorOccur)
+        //                    {
+        //                        Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
+        //                        return;
+        //                    }
+        //                }
+
+        //                DM.CommitTransaction();
+        //                DM.Close_Open_Connection();
+
+        //                if (DM.ErrorOccur)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //Session.Remove("RFQATTACHMENTS");
+        //Session.Remove("RFQATTACHMENTSFOLDER");
+
+        //supplierList = null;
         Ok_Click(this, e);
     }
     protected void btnSendRFQ_Click(object sender, EventArgs e)
     {
-        RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
-        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-        bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
+        //RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
+        //bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        //bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
 
-        string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
+        //string folderAttachments = (string)Session["RFQATTACHMENTSFOLDER"];
 
-        string strAuthUser = HttpContext.Current.User.Identity.Name;
+        //string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
-        string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
+        //string strEAUTextBox = ((TextBox)frmBOMLine.FindControl("txtEAU")).Text;
+        //string strEAULabel = ((HiddenField)frmBOMLine.FindControl("EAUHidden")).Value;
 
-        BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
-        if (bomDetailObject == null)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
-            return;
-        }
+        //BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
+        //if (bomDetailObject == null)
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
+        //    return;
+        //}
 
-        string[] arrEAU = strEAUTextBox.Split(',');
+        //string[] arrEAU = strEAUTextBox.Split(',');
 
-        ConnectionManager CM = new ConnectionManager();
-        Data_Base_MNG.SQL DM = CM.getDataManager();
+        //ConnectionManager CM = new ConnectionManager();
+        //Data_Base_MNG.SQL DM = CM.getDataManager();
 
-        /*Begin Transaction*/
-        DM.Open_Connection("Updating BOM Line EAU");
-
-
-        if (!strEAULabel.Equals(strEAUTextBox))
-        {
-            if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                return;
-            }
-
-            for (var i = 0; i < arrEAU.Length; i++)
-            {
-                if (arrEAU[i].Trim() != "")
-                {
-                    BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-                    bomDetailVolume.BomDetailKey = (long)ViewState["bomDetailID"];
-                    try
-                    {
-                        bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
-                    }
-                    catch
-                    {
-                        DM.RollBack();
-                        Navigator.goToPage("~/Error.aspx", "ERROR:" + "The EAU field did not pass the Numeric validation.");
-                        return;
-                    }
-                    if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
-                    {
-                        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                        return;
-                    }
-                }
-            }
-        }
-        bomDetailObject.EAU = strEAUTextBox;
-        if (bomDetailObject.Status != "Processed")
-        {
-            bomDetailObject.Status = "In Progress";
-        }
-        if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
-            return;
-        }
-
-        DM.CommitTransaction();
-        DM.Close_Open_Connection();
-
-        if (DM.ErrorOccur)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-            return;
-        }
-
-        if (supplierList.Count > 0)
-        {
-            foreach (Supplier supplier in supplierList)
-            {
-                for (var i = 0; i < arrEAU.Length; i++)
-                {
-                    if (arrEAU[i].Trim() != "")
-                    {
-                        RFQNumberEntity rfqNumber = new RFQNumberEntity();
-
-                        rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
-                        rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
-                        rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
-
-                        if (rfqNumber.RFQNumber == -1)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:There was an error generating a new RFQ number.");
-                            return;
-                        }
-
-                        CM = new ConnectionManager();
-                        DM = CM.getDataManager();
-
-                        /*Begin Transaction*/
-                        DM.Open_Connection("Send New RFQ Save");
+        ///*Begin Transaction*/
+        //DM.Open_Connection("Updating BOM Line EAU");
 
 
-                        String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
-                        if (rfqNumberCRUD.ErrorOccur)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
-                            return;
-                        }
-                        else
-                        {
-                            RFQ rfq = new RFQ();
-                            RfqCRUD rfqCRUD = new RfqCRUD();
+        //if (!strEAULabel.Equals(strEAUTextBox))
+        //{
+        //    if (!bomDetailVolume_CRUD.deleteByParentID((long)ViewState["bomDetailID"], ref DM))
+        //    {
+        //        Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+        //        return;
+        //    }
 
-                            rfq.SupplierId = supplier.Id;
-                            rfq.SentToVendor = DateTime.Now;
-                            rfq.Status = "PENDING";
-                            rfq.BomDetailId = (long)ViewState["bomDetailID"];
-                            rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
-                            rfq.DueDate = DateTime.Parse(txtDueDate.Text);
-                            rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
-                            rfq.DrawingLevel = txtDrawingLevel.Text;
-                            rfq.EstimatedAnnualVolume = arrEAU[i].Trim();
-                            if (chkTargetPrice.Checked)
-                            {
-                                rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
-                            }
-                            rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+        //    for (var i = 0; i < arrEAU.Length; i++)
+        //    {
+        //        if (arrEAU[i].Trim() != "")
+        //        {
+        //            BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
+        //            bomDetailVolume.BomDetailKey = (long)ViewState["bomDetailID"];
+        //            try
+        //            {
+        //                bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
+        //            }
+        //            catch
+        //            {
+        //                DM.RollBack();
+        //                Navigator.goToPage("~/Error.aspx", "ERROR:" + "The EAU field did not pass the Numeric validation.");
+        //                return;
+        //            }
+        //            if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
+        //            {
+        //                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
+        //                return;
+        //            }
+        //        }
+        //    }
+        //}
+        //bomDetailObject.EAU = strEAUTextBox;
+        //if (bomDetailObject.Status != "Processed")
+        //{
+        //    bomDetailObject.Status = "In Progress";
+        //}
+        //if (!bomDetail_CRUD.update(bomDetailObject, ref DM))
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
+        //    return;
+        //}
 
-                            if (folderAttachments != null)
-                            {
-                                rfq.SentAttachmentsFolder = folderAttachments;
-                            }
+        //DM.CommitTransaction();
+        //DM.Close_Open_Connection();
 
-                            rfq.CreatedBy = strAuthUser;
+        //if (DM.ErrorOccur)
+        //{
+        //    Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+        //    return;
+        //}
 
-                            string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
+        //if (supplierList.Count > 0)
+        //{
+        //    foreach (Supplier supplier in supplierList)
+        //    {
+        //        for (var i = 0; i < arrEAU.Length; i++)
+        //        {
+        //            if (arrEAU[i].Trim() != "")
+        //            {
+        //                RFQNumberEntity rfqNumber = new RFQNumberEntity();
 
-                            if (!rfqCRUD.ErrorOccur)
-                            {
-                                rfq.Id = long.Parse(idGenerated);
-                                TokenCRUD token_CRUD = new TokenCRUD();
-                                Token token = new Token();
-                                token.Subject = "RFQ";
-                                token.SubjectKey = long.Parse(idGenerated);
-                                token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
-                                if (token_CRUD.create(token, ref DM))
-                                {
-                                    Email NewMail = new Email();
-                                    MailMessage Message = new MailMessage();
+        //                rfqNumber.BOMDetailKey = (long)ViewState["bomDetailID"];
+        //                rfqNumber.SifHeaderKey = (long)ViewState["sifHeaderID"];
+        //                rfqNumber.RFQNumber = rfqNumberCRUD.generateNewRFQNumber(rfqNumber.SifHeaderKey);
 
-                                    Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
-                                    Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
-                                    Message.Subject = "Request For Quote";
-                                    Message.IsBodyHtml = true;
-                                    Message.BodyEncoding = System.Text.Encoding.UTF8;
+        //                if (rfqNumber.RFQNumber == -1)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:There was an error generating a new RFQ number.");
+        //                    return;
+        //                }
 
-                                    string strEmailContent = "Dear Supplier," + Environment.NewLine
-                                                                + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
-                                                                + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
-                                                                + Environment.NewLine + Environment.NewLine
-                                                                + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
-                                                                + Environment.NewLine + Environment.NewLine
-                                                                + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
-                                                                + Environment.NewLine + Environment.NewLine
-                                                                + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
-                                                                + Environment.NewLine + Environment.NewLine
-                                                                + "In order to open the hyperlink, it is necessary to have javascript enabled in your browser and Internet Explorer 11 or any other browser like Chrome or Firefox."
-                                                                + Environment.NewLine + Environment.NewLine
-                                                                + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
+        //                CM = new ConnectionManager();
+        //                DM = CM.getDataManager();
+
+        //                /*Begin Transaction*/
+        //                DM.Open_Connection("Send New RFQ Save");
 
 
-                                    AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strEmailContent);
-                                    Message.AlternateViews.Add(htmlView);
+        //                String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
+        //                if (rfqNumberCRUD.ErrorOccur)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
+        //                    return;
+        //                }
+        //                else
+        //                {
+        //                    RFQ rfq = new RFQ();
+        //                    RfqCRUD rfqCRUD = new RfqCRUD();
+
+        //                    rfq.SupplierId = supplier.Id;
+        //                    rfq.SentToVendor = DateTime.Now;
+        //                    rfq.Status = "PENDING";
+        //                    rfq.BomDetailId = (long)ViewState["bomDetailID"];
+        //                    rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
+        //                    rfq.DueDate = DateTime.Parse(txtDueDate.Text);
+        //                    rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
+        //                    rfq.DrawingLevel = txtDrawingLevel.Text;
+        //                    rfq.EstimatedAnnualVolume = arrEAU[i].Trim();
+        //                    if (chkTargetPrice.Checked)
+        //                    {
+        //                        rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
+        //                    }
+        //                    rfq.CommentsToVendor = txtCommentToVendor.Text.Trim();
+
+        //                    if (folderAttachments != null)
+        //                    {
+        //                        rfq.SentAttachmentsFolder = folderAttachments;
+        //                    }
+
+        //                    rfq.CreatedBy = strAuthUser;
+
+        //                    string idGenerated = rfqCRUD.createAndReturnIdGenerated(rfq, ref DM);
+
+        //                    if (!rfqCRUD.ErrorOccur)
+        //                    {
+        //                        rfq.Id = long.Parse(idGenerated);
+        //                        TokenCRUD token_CRUD = new TokenCRUD();
+        //                        Token token = new Token();
+        //                        token.Subject = "RFQ";
+        //                        token.SubjectKey = long.Parse(idGenerated);
+        //                        token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
+        //                        if (token_CRUD.create(token, ref DM))
+        //                        {
+        //                            Email NewMail = new Email();
+        //                            MailMessage Message = new MailMessage();
+
+        //                            Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
+        //                            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+        //                            Message.Subject = "Request For Quote";
+        //                            Message.IsBodyHtml = true;
+        //                            Message.BodyEncoding = System.Text.Encoding.UTF8;
+
+        //                            string strEmailContent = "Dear Supplier," + Environment.NewLine
+        //                                                        + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
+        //                                                        + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
+        //                                                        + Environment.NewLine + Environment.NewLine
+        //                                                        + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
+        //                                                        + Environment.NewLine + Environment.NewLine
+        //                                                        + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
+        //                                                        + Environment.NewLine + Environment.NewLine
+        //                                                        + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
+        //                                                        + Environment.NewLine + Environment.NewLine
+        //                                                        + "In order to open the hyperlink, it is necessary to have javascript enabled in your browser and Internet Explorer 11 or any other browser like Chrome or Firefox."
+        //                                                        + Environment.NewLine + Environment.NewLine
+        //                                                        + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
 
 
-                                    //NDA Attachment not used anymore
-                                    //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
-                                    //Attachment x = new Attachment(path);
-                                    //Message.Attachments.Add(x);
-                                    try
-                                    {
-                                        NewMail.SendMail(Message);
-                                    }
-                                    catch
-                                    {
-                                        DM.RollBack();
-                                        Navigator.goToPage("~/Error.aspx", "ERROR:Could not send email to: " + supplier.ContactEmail.ToString());
-                                        return;
-                                    }
-                                }
-                                else
-                                {
-                                    Navigator.goToPage("~/Error.aspx", "ERROR:" + token_CRUD.ErrorMessage);
-                                    return;
-                                }
-                            }
-                            else
-                            {
-                                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
-                                return;
-                            }
-                        }
+        //                            AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strEmailContent);
+        //                            Message.AlternateViews.Add(htmlView);
 
-                        DM.CommitTransaction();
-                        DM.Close_Open_Connection();
 
-                        if (DM.ErrorOccur)
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-                            return;
-                        }
-                    }
-                }
-            }
-        }
+        //                            //NDA Attachment not used anymore
+        //                            //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
+        //                            //Attachment x = new Attachment(path);
+        //                            //Message.Attachments.Add(x);
+        //                            try
+        //                            {
+        //                                NewMail.SendMail(Message);
+        //                            }
+        //                            catch
+        //                            {
+        //                                DM.RollBack();
+        //                                Navigator.goToPage("~/Error.aspx", "ERROR:Could not send email to: " + supplier.ContactEmail.ToString());
+        //                                return;
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            Navigator.goToPage("~/Error.aspx", "ERROR:" + token_CRUD.ErrorMessage);
+        //                            return;
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
+        //                        return;
+        //                    }
+        //                }
 
-        Session.Remove("RFQATTACHMENTS");
-        Session.Remove("RFQATTACHMENTSFOLDER");
+        //                DM.CommitTransaction();
+        //                DM.Close_Open_Connection();
 
-        supplierList = null;
+        //                if (DM.ErrorOccur)
+        //                {
+        //                    Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
+        //                    return;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //Session.Remove("RFQATTACHMENTS");
+        //Session.Remove("RFQATTACHMENTSFOLDER");
+
+        //supplierList = null;
         Ok_Click(this, e);
     }
 }

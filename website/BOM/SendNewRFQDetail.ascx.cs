@@ -7,10 +7,11 @@ using System.Web.UI.WebControls;
 
 public partial class BOM_SendNewRFQDetail : System.Web.UI.UserControl
 {
-    List<Material> materialList;
+    List<BOMDetail> componentsList;
     protected void Page_Load(object sender, EventArgs e)
     {
-        materialList = (List<Material>)Session["MaterialNewRFQ"];
+        componentsList = (List<BOMDetail>)Session["ComponentsToRFQ"];
+        bindList();
     }
     public void load()
     {
@@ -18,47 +19,18 @@ public partial class BOM_SendNewRFQDetail : System.Web.UI.UserControl
     }
     private void bindList()
     {
-        repeaterNewRFQDetail.DataSource = materialList;
+        repeaterNewRFQDetail.DataSource = componentsList;
         repeaterNewRFQDetail.DataBind();
     }
     private void reset()
     {
-        materialList = null;
-        Session.Remove("MaterialNewRFQ");
+        componentsList = null;
+        Session.Remove("ComponentsToRFQ");
+        bindList();
     }
     public void setEntity(List<BOMDetail> bomDetailList)
     {
-        if (bomDetailList != null)
-        {
-            materialList.Clear();
-            foreach (BOMDetail bomDetail in bomDetailList)
-            {
-                Material material = new Material();
-                material.id = bomDetail.Id;
-                material.partName = bomDetail.Material;
-                material.partNumber = bomDetail.PartNumber;
-                material.qtyRequired = bomDetail.Qty;
-                materialList.Add(material);
-            }
-        }
-        else
-        {
-            materialList = new List<Material>();
-        }
-        Session["MaterialNewRFQ"] = materialList;
-    }
-    public List<Material> getEntity()
-    {
-        return (List<Material>)Session["MaterialNewRFQ"];
-    }
-    public class Material
-    {
-        public long id;
-        public string partNumber = "";
-        public string partName = "";
-        public string UM = "";
-        public float qtyRequired = 0;
-        public int EAU;
-        
+        Session["ComponentsToRFQ"] = bomDetailList;
+        bindList();
     }
 }

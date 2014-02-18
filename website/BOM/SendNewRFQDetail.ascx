@@ -2,7 +2,7 @@
     Inherits="BOM_SendNewRFQDetail" %>
 <asp:Repeater ID="repeaterNewRFQDetail" runat="server">
     <HeaderTemplate>
-        <table border="1" id="tableNewRFQDetail" class="display" style="display: inline;">
+        <table border="1" cellspacing=0 id="tableNewRFQDetail">
             <thead>
                 <tr>
                     <th>
@@ -23,13 +23,13 @@
     <ItemTemplate>
         <tr height='27px;'>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "partNumber")%>
+                <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "partName")%>
+                <%# DataBinder.Eval(Container.DataItem, "Material")%>
             </td>
             <td>
-                <%# DataBinder.Eval(Container.DataItem, "qtyRequired")%>
+                <%# DataBinder.Eval(Container.DataItem, "Qty")%>
             </td>
             <td>
                 <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="partID"
