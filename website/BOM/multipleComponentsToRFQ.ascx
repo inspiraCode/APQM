@@ -3,7 +3,8 @@
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc1" %>
 <%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc2" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
-<%@ Register src="SendNewRFQDetail.ascx" tagname="SendNewRFQDetail" tagprefix="uc4" %>
+<%@ Register Src="SendNewRFQDetail.ascx" TagName="SendNewRFQDetail" TagPrefix="uc4" %>
+<%@ Register src="EAU.ascx" tagname="EAU" tagprefix="uc6" %>
 <asp:ScriptManager ID="ScriptManager1" runat="server">
 </asp:ScriptManager>
 <uc1:notifier ID="uscNotifier" runat="server" OnPrompt="on_prompt" />
@@ -85,19 +86,22 @@
                         </asp:UpdatePanel>
                     </td>
                 </tr>
-                <tr style="height: 120px;">
+                <tr style="height: 70px;">
                     <td>
                         &nbsp;
                         <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
-                            display: inline-block;">
-                            <uc3:sifDetail ID="uscSifDetail" runat="server" />
+                            display: inline-block; width: 400px;">
+                            
+                            <uc6:EAU ID="uscEAUs" runat="server" />
+                            
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <uc4:SendNewRFQDetail ID="uscSendNewRFQDetail" runat="server" />
-                        <br />
+                        <div style="height: 180px; overflow-y: auto;">
+                            <uc4:SendNewRFQDetail ID="uscSendNewRFQDetail" runat="server" />
+                        </div>
                     </td>
                 </tr>
             </table>

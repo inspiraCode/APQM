@@ -92,7 +92,7 @@ public class customerCRUD : ICRUD<Customer>
     public Customer readByNameInList(string name, List<Customer> list)
     {
         foreach(Customer customer in list){
-            if (customer.CustomerName.Trim() == name.Trim())
+            if (customer.CustomerName.Trim().ToLower() == name.Trim().ToLower())
             {                
                 return customer;
             }

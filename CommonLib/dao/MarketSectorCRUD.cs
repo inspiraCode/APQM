@@ -94,7 +94,7 @@ public class MarketSectorCRUD : ICRUD<MarketSector>
     {
         foreach (MarketSector marketSector in list)
         {
-            if (marketSector.Name.Trim() == name.Trim())
+            if (marketSector.Name.Trim().ToLower() == name.Trim().ToLower())
             {
                 return marketSector;
             }

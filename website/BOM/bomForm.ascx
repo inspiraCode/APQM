@@ -212,7 +212,7 @@
         document.getElementById("<%= this.panelSendRFQ.ClientID %>").setAttribute("title", "New RFQs");
         jQuery("#<%= this.panelSendRFQ.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
-            width: 1000, height:525, modal: true,
+            width: 1000, height:600, modal: true,
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>

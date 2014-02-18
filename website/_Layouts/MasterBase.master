@@ -161,8 +161,8 @@
     <%-- <script src='<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/js/jquery.js") %>'
         type="text/javascript"></script>--%>
 
-    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/media/js/jquery.dataTables.js") %>'
-        type="text/javascript"></script>
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/DataTable/jquery.dataTables.js") %>'
+        type="text/javascript"></script>    
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.core.js") %>'
         type="text/javascript"></script>

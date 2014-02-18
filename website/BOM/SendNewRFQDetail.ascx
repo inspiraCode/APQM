@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="SendNewRFQDetail.ascx.cs"
     Inherits="BOM_SendNewRFQDetail" %>
-<asp:Repeater ID="repeaterNewRFQDetail" runat="server">
+<asp:Repeater ID="repeaterNewRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
-        <table border="1" cellspacing=0 id="tableNewRFQDetail">
+        <table id="tableNewRFQDetail" border="1" class="display" style="display: none;">
             <thead>
                 <tr>
                     <th>
@@ -32,7 +32,7 @@
                 <%# DataBinder.Eval(Container.DataItem, "Qty")%>
             </td>
             <td>
-                <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="partID"
+                <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" CommandName="partID" OnCommand="deleteByID"
                      OnClientClick="return  confirm('Do you wish to delete this line?')">
                     Delete
                 </asp:LinkButton>
@@ -43,3 +43,14 @@
         </tbody></table>
     </FooterTemplate>
 </asp:Repeater>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var table = jQuery('#tableNewRFQDetail').dataTable({
+            "bFilter": false,
+            "bLengthChange": false,
+            "bInfo": false,
+            "bPaginate": false
+        }).show();
+    });
+</script>

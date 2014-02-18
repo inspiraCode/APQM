@@ -34,4 +34,29 @@ public partial class BOM_SendNewRFQDetail : System.Web.UI.UserControl
         Session["ComponentsToRFQ"] = componentsList;
         bindList();
     }
+    public List<BOMDetail> getEntity()
+    {
+        return componentsList;
+    }
+    public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e)
+    {
+        if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        {
+            BOMDetail bomDetail = (BOMDetail)e.Item.DataItem;
+            ((LinkButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Id.ToString();
+        }
+    }
+    public void deleteByID(object sender, CommandEventArgs e)
+    {
+        long bomDetailKey = long.Parse((string)e.CommandArgument);
+        foreach (BOMDetail detail in componentsList)
+        {
+            if (detail.Id == bomDetailKey)
+            {
+                componentsList.Remove(detail);
+                break;
+            }
+        }
+        bindList();
+    }
 }
