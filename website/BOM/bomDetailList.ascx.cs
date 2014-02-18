@@ -437,47 +437,64 @@ public partial class bomDetailList : System.Web.UI.UserControl
     {
         List<BOMDetail> result = new List<BOMDetail>();
 
-        string[] formKeys = Request.Form.AllKeys;
-
-        long bomDetailKeyLocal = -1;
-        string isSelected = "";
-        
-        if(bomDetail != null){
-
-            foreach (string value in formKeys)
+        foreach (RepeaterItem item in repeaterBOMDetail.Items)
+        {
+            CheckBox chkSelected = (CheckBox)item.FindControl("chkSelect");
+            if (chkSelected.Checked)
             {
-                if (value != null)
+                HiddenField hiddenBomDetailKey = (HiddenField)item.FindControl("hiddenBOMDetailKey");
+                foreach (BOMDetail bomLine in bomDetail)
                 {
-                    int auxBomDetailKey = value.IndexOf("hiddenBOMDetailKey");
-                    if (auxBomDetailKey != -1)
+                    if (bomLine.Id == long.Parse( hiddenBomDetailKey.Value))
                     {
-                        bomDetailKeyLocal = long.Parse(Request.Form[value]);
-                    }
-
-                    int auxIsChecked = value.IndexOf("chkSelect");
-                    if (auxIsChecked != -1)
-                    {
-                        isSelected = Request.Form[value];
-                    }
-
-                    if (bomDetailKeyLocal != -1 && isSelected.Trim() != "")
-                    {
-                        foreach (BOMDetail bomLine in bomDetail)
-                        {
-                            if (bomLine.Id == bomDetailKeyLocal)
-                            {
-
-                                result.Add(bomLine);
-
-                                isSelected = "";
-                                bomDetailKeyLocal = -1;
-                                break;
-                            }
-                        }
+                        result.Add(bomLine);
+                        break;
                     }
                 }
             }
         }
+
+        //string[] formKeys = Request.Form.AllKeys;
+
+        //long bomDetailKeyLocal = -1;
+        //string isSelected = "";
+        
+        //if(bomDetail != null){
+
+        //    foreach (string value in formKeys)
+        //    {
+        //        if (value != null)
+        //        {
+        //            int auxBomDetailKey = value.IndexOf("hiddenBOMDetailKey");
+        //            if (auxBomDetailKey != -1)
+        //            {
+        //                bomDetailKeyLocal = long.Parse(Request.Form[value]);
+        //            }
+
+        //            int auxIsChecked = value.IndexOf("chkSelect");
+        //            if (auxIsChecked != -1)
+        //            {
+        //                isSelected = Request.Form[value];
+        //            }
+
+        //            if (bomDetailKeyLocal != -1 && isSelected.Trim() != "")
+        //            {
+        //                foreach (BOMDetail bomLine in bomDetail)
+        //                {
+        //                    if (bomLine.Id == bomDetailKeyLocal)
+        //                    {
+
+        //                        result.Add(bomLine);
+
+        //                        isSelected = "";
+        //                        bomDetailKeyLocal = -1;
+        //                        break;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
         
         return result;
     }

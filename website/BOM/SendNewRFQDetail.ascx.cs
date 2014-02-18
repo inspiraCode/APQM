@@ -30,7 +30,8 @@ public partial class BOM_SendNewRFQDetail : System.Web.UI.UserControl
     }
     public void setEntity(List<BOMDetail> bomDetailList)
     {
-        Session["ComponentsToRFQ"] = bomDetailList;
+        componentsList = bomDetailList;
+        Session["ComponentsToRFQ"] = componentsList;
         bindList();
     }
 }

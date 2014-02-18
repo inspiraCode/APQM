@@ -250,6 +250,8 @@ public partial class bomForm : System.Web.UI.UserControl
     protected void btnNewRFQ_Click(object sender, EventArgs e)
     {   
         panelSendRFQ.Visible = true;
+        List<BOMDetail> selectedComponents = new List<BOMDetail>();
+        
         uscMultipleComponentsToRFQ.load(uscBOMDetailList.getSelected());
         uscMultipleComponentsToRFQ.setSIFHeaderID(bom.SifId);
     }
