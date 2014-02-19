@@ -25,13 +25,6 @@
             <table cellspacing="0">
                 <tr>
                     <td>
-                        <div id="divWarningEAU" style="font-size: 11px; color: Red; display: none;">
-                            EAU different than original. Component within BOM will be updated if this RFQ is
-                            sent.</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
                                 <table>
@@ -90,7 +83,7 @@
                     <td>
                         &nbsp;
                         <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
-                            display: inline-block; width: 400px;">
+                            display: inline-block; width: 400px;height: 130px; overflow-y: auto;">
                             
                             <uc6:EAU ID="uscEAUs" runat="server" />
                             

@@ -41,16 +41,16 @@
         <%--OnClientClick="return validate();"--%>
         <asp:Repeater ID="repeaterSIFDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
-                <tr height='27px;'>
-                    <td  style="text-align:center">
+                <tr height='20px;'>
+                    <td  style="text-align:center;font-size:10px;">
                         <%# DataBinder.Eval(Container.DataItem, "ProgramYear")%>
                     </td>
-                    <td  style="text-align:right;">
+                    <td  style="text-align:right;font-size:10px;">
                         <%# DataBinder.Eval(Container.DataItem, "ProjectedAnnualVolume")%>
                     </td>
-                    <td style="text-align:center">
+                    <td style="text-align:center;font-size:10px;">
                         <asp:LinkButton ID="deleteByID" runat="server" CommandArgument="" OnCommand="deleteByID"
-                            OnClientClick="return  confirm('Do you wish to delete this line item of SIF?')">
+                            OnClientClick="return  confirm('Do you wish to remove this EAU?')">
                             Delete
                         </asp:LinkButton>
                     </td>
