@@ -22,57 +22,20 @@ public partial class _Default : System.Web.UI.Page
             {
                 case "sif":
                     MultiViewMain.SetActiveView(viewSIF);
-                    
                     break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
                     uscBOMList.setUserFilterWithCookie();
-                    break;
-                case "rfq":
-                    MultiViewMain.SetActiveView(viewRFQ);
-                    uscRFQList.setUserFilterWithCookie();
-                    break;
-                //case "supplier":
-                //    MultiViewMain.SetActiveView(viewSupplier);
-                //    uscSupplierList.load();
-                //    break;
-                //case "popupSupplier":
-                //    Session.Remove("supplierObject");
-                //    MultiViewMain.SetActiveView(viewSupplier);
-                //    uscSupplierList.load();
-                //    openpopupContainer();
-                //    //popupContainer.Style.Add("height", "300px");
-                //    //popupContainer.Style.Add("width", "570px");
-                //    //popupContainer.Style.Add("left", "54%");
-                //    //popupContainer.Style.Add("top", "57%");
-                //    uscSupplierForm.load();
-                //    //disablePageForModalPopup();
-                //    break;
+                    break;                
                 case "popupSIF":
                     Session.Remove("sifObject");
                     MultiViewMain.SetActiveView(viewSIF);
                     multiViewPopup.SetActiveView(viewPopupSIF);
                     openpopupContainer();
-                    //panelPopup.Style.Add("height", "550px");
-                    //panelPopup.Style.Add("width", "910px");
-                    //panelPopup.Style.Add("left", "90px");
-                    //panelPopup.Style.Add("top", "-40px");
                     uscSIFForm.load();
-                    //disablePageForModalPopup();
                     break;
-                case "popupRFQ":
-                    MultiViewMain.SetActiveView(viewRFQ);
-                    multiViewPopup.SetActiveView(viewPopupRFQ);
-                    openpopupContainer();
-                    //popupContainer.Style.Add("height", "860px");
-                    //popupContainer.Style.Add("width", "1250px");
-                    //popupContainer.Style.Add("left", "350px");
-                    //popupContainer.Style.Add("top", "220px");
-                    uscRFQForm.load();
-                    //disablePageForModalPopup();
-                    break;
+               
                 default:
-                    //btnSuppliers_Click(null, null);
                     break;
             }
         }
@@ -80,7 +43,6 @@ public partial class _Default : System.Web.UI.Page
     protected void btnLogin_Click(object sender, EventArgs e)
     {
         goHome();
-        //logout.Visible = true;
     }
     private void goHome()
     {
@@ -90,34 +52,9 @@ public partial class _Default : System.Web.UI.Page
     private void disablePageForModalPopup()
     {
         uscMenu.disableButtons();
-        btnAddRFQ.Enabled = false;      
     }
     private void openpopupContainer()
     {
         panelPopup.Visible = true;
-    }
-    protected void on_add_rfq(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","rfq");
-    }
-    protected void on_cancelAdd_rfq(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","rfq");
-    }
-    protected void btnAddSupplier_Click(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","popupSupplier");        
-    }
-    protected void btnAddRFQ_Click(object sender, EventArgs e)
-    {
-        Navigator.goToPage("~/default.aspx","popupRFQ");
-    }
-    protected void on_save_supplier(object sender, EventArgs e)
-    {
-        uscSupplierForm.save();
-    }
-    protected void on_cancel_supplier(object sender, EventArgs e)
-    {
-        uscSupplierForm.cancel();
     }
 }

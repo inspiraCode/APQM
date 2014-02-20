@@ -161,9 +161,7 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
     {
         RfqCRUD rfq_CRUD = new RfqCRUD();
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-        bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
-
-        
+                
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
         string strEAUTextBox = txtEAU.Text; //Enabled to change.
@@ -175,50 +173,15 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
             return;
         }
-
-        ConnectionManager CM = new ConnectionManager();
-        Data_Base_MNG.SQL DM = CM.getDataManager();
-
-        /*Begin Transaction*/
-        DM.Open_Connection("Updating BOM Line EAU");
-
-        if (!strEAULabel.Equals(strEAUTextBox))
-        {
-            if (!bomDetailVolume_CRUD.updateByVolumeAndBOMDetailKey((long)ViewState["bomDetailID"], long.Parse(strEAULabel), long.Parse(strEAUTextBox), ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                return;
-            }
-        }
-
-        DM.CommitTransaction();
-        DM.Close_Open_Connection();
-
-        if (DM.ErrorOccur)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-            return;
-        }
-
-        List<BOMDetailVolume> bomDetailVolumeList = bomDetailVolume_CRUD.readByParentID((long)ViewState["bomDetailID"]);
-
-        string strVolume = "";
-        foreach (BOMDetailVolume objVolume in bomDetailVolumeList)
-        {
-            strVolume += objVolume.Volume + ", ";
-        }
-        strVolume = strVolume.Substring(0, strVolume.Length - 2);
-
-        bomDetailObject.EAU = strVolume;
-
+        
         if (bomDetailObject.Status != "Processed")
         {
             bomDetailObject.Status = "In Progress";
         }
 
-        CM = new ConnectionManager();
-        DM = CM.getDataManager();
-
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+        
         /*Begin Transaction*/
         DM.Open_Connection("Send RFQ Previously Saved");
 
@@ -347,8 +310,7 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
     {
         RfqCRUD rfq_CRUD = new RfqCRUD();
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-        bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
-
+        
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
         string strEAUTextBox = txtEAU.Text; //Enabled to change.
@@ -360,49 +322,15 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:" + "Could not find Component to RFQ.");
             return;
         }
-
-        ConnectionManager CM = new ConnectionManager();
-        Data_Base_MNG.SQL DM = CM.getDataManager();
-
-        /*Begin Transaction*/
-        DM.Open_Connection("Updating BOM Line EAU");
-
-        if (!strEAULabel.Equals(strEAUTextBox))
-        {
-            if (!bomDetailVolume_CRUD.updateByVolumeAndBOMDetailKey((long)ViewState["bomDetailID"], long.Parse(strEAULabel), long.Parse(strEAUTextBox), ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                return;
-            }
-        }
-
-        DM.CommitTransaction();
-        DM.Close_Open_Connection();
-
-        if (DM.ErrorOccur)
-        {
-            Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
-            return;
-        }
-
-        List<BOMDetailVolume> bomDetailVolumeList = bomDetailVolume_CRUD.readByParentID((long)ViewState["bomDetailID"]);
-
-        string strVolume = "";
-        foreach (BOMDetailVolume objVolume in bomDetailVolumeList)
-        {
-            strVolume += objVolume.Volume + ", ";
-        }
-        strVolume = strVolume.Substring(0, strVolume.Length - 2);
-
-        bomDetailObject.EAU = strVolume;
-
+        
         if (bomDetailObject.Status != "Processed")
         {
             bomDetailObject.Status = "In Progress";
         }
 
-        CM = new ConnectionManager();
-        DM = CM.getDataManager();
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();        
 
         /*Begin Transaction*/
         DM.Open_Connection("Send RFQ Previously Saved");

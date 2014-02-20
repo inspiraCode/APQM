@@ -100,9 +100,6 @@
         <th class="camposSinBordes" style="width: 60px; min-width: 60px; max-width: 60px;">
             Qty Required
         </th>
-        <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
-            EAU
-        </th>
         <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
             Cap Com Assm
         </th>
@@ -189,12 +186,7 @@
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtQuantity" validate="number" validationid="validatingBOMDetail"
-                runat="server" Width="56px" Style="text-align: right" onchange="calculateEAU()"
-                onkeyup="calculateEAU()">0</asp:TextBox>
-        </th>
-        <th class="camposSinBordes" style="vertical-align: top;">
-            <asp:TextBox ID="txtEAU" runat="server" validate="numbers" validationid="validatingBOMDetail"
-                Width="60px" Style="text-align: right" onchange="calculateQtyRequired()" onkeyup="calculateQtyRequired()">0</asp:TextBox>
+                runat="server" Width="56px" Style="text-align: right">0</asp:TextBox>
         </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:TextBox ID="txtCapComAssm" validationid="validatingBOMDetail" runat="server"
@@ -293,9 +285,6 @@
                                 </td>
                                 <td align="right" class="tableCell" style="width: 63px; min-width: 63px; max-width: 63px;">
                                     <%# DataBinder.Eval(Container.DataItem, "Qty")%>
-                                </td>
-                                <td align="right" class="tableCell" style="width: 71px; min-width: 71px; max-width: 71px;">
-                                    <%# DataBinder.Eval(Container.DataItem, "EAU")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapComAssm")%>

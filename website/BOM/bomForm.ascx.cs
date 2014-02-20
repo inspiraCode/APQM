@@ -14,7 +14,6 @@ public partial class bomForm : System.Web.UI.UserControl
     public BOM bom;
 
     private bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-    private bomDetailVolumeCRUD bomDetailVolume_CRUD = new bomDetailVolumeCRUD();
     private itemCRUD item_CRUD = new itemCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
@@ -55,21 +54,6 @@ public partial class bomForm : System.Web.UI.UserControl
         txtAnnualVolume.Text = bom.AnnualVolume.ToString();
         lblCustomer.Text = bom.CustomerName;
         lblSalesRep.Text = bom.SalesPerson;
-
-        foreach(BOMDetail detail in bom.BomDetail){
-            string strVolume = "";
-            detail.VolumeList = bomDetailVolume_CRUD.readByParentID(detail.Id);
-            if (detail.VolumeList.Count > 0)
-            {
-                
-                foreach (BOMDetailVolume objVolume in detail.VolumeList)
-                {
-                    strVolume += objVolume.Volume + ", ";
-                }
-                strVolume = strVolume.Substring(0, strVolume.Length - 2);
-            }
-            detail.EAU = strVolume;
-        }
 
         uscBOMDetailList.reset();
         uscBOMDetailList.setEntity(bom.BomDetail);
@@ -117,11 +101,6 @@ public partial class bomForm : System.Web.UI.UserControl
         List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
         foreach (BOMDetail detail in bomDetailListToDelete)
         {
-            if (!bomDetailVolume_CRUD.deleteByParentID(detail.Id, ref DM))
-            {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                return;
-            }
             if (!bomDetail_CRUD.delete(detail.Id, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
@@ -165,39 +144,6 @@ public partial class bomForm : System.Web.UI.UserControl
                     return;
                 }
             }
-
-            if (detail.internalAction != "")
-            {
-                if (!bomDetailVolume_CRUD.deleteByParentID(detail.Id, ref DM))
-                {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                    return;
-                }
-
-                string[] arrEAU = detail.EAU.Split(',');
-                for (var i = 0; i < arrEAU.Length; i++)
-                {
-                    if (arrEAU[i].Trim() != "")
-                    {
-                        BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-                        bomDetailVolume.BomDetailKey = detail.Id;
-                        try
-                        {
-                            bomDetailVolume.Volume = long.Parse(arrEAU[i].Trim());
-                        }
-                        catch {
-                            DM.RollBack();
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + "The Volume field did not pass the Numeric validation.");
-                            return;
-                        }
-                        if (!bomDetailVolume_CRUD.create(bomDetailVolume, ref DM))
-                        {
-                            Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetailVolume_CRUD.ErrorMessage);
-                            return;
-                        }
-                    }
-                }
-            }
         }
 
         DM.CommitTransaction();
@@ -231,21 +177,6 @@ public partial class bomForm : System.Web.UI.UserControl
     protected void btnClosePopup_Click(object sender, EventArgs e)
     {
         panelPopup.Visible = false; 
-    }
-    protected void btnApplyAnnualVolume_Click(object sender, EventArgs e)
-    {
-        List<BOMDetail> bomDetailList = uscBOMDetailList.getEntity();
-        foreach (BOMDetail detail in bomDetailList)
-        {
-            if (detail.Status != "Processed")
-            {
-                detail.EAU = Math.Round(detail.Qty * float.Parse(txtAnnualVolume.Text), 0).ToString();
-                if (detail.internalAction == "")
-                    detail.internalAction = "UPDATE";
-            }
-        }
-        Session["bomDetailObject"] = bomDetailList;
-        uscBOMDetailList.loadDetail();
     }
     protected void btnNewRFQ_Click(object sender, EventArgs e)
     {   

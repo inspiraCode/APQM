@@ -130,7 +130,7 @@
                 <tr style="height: 120px;">
                     <td style="padding: 0px 10px; vertical-align: top;">
                         Attachments (less than 4MB per file):
-                        <div id="uploadContainer" style="height: 230px; overflow-y: auto; width: 444px; background-color: #D3D3D3;">
+                        <div id="uploadContainer" style="height: 230px; overflow-y: auto; width: 324px; background-color: #D3D3D3;">
                             <div id="uploadZone">
                                 Upload
                             </div>

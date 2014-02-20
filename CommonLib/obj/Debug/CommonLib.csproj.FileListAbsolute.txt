@@ -1,10 +1,3 @@
-C:\wsetup\repositories\APQM\CommonLib\obj\Debug\ResolveAssemblyReference.cache
-C:\wsetup\repositories\APQM\CommonLib\bin\Debug\CommonLib.dll
-C:\wsetup\repositories\APQM\CommonLib\bin\Debug\CommonLib.pdb
-C:\wsetup\repositories\APQM\CommonLib\bin\Debug\BD_MNG.dll
-C:\wsetup\repositories\APQM\CommonLib\bin\Debug\BD_MNG.pdb
-C:\wsetup\repositories\APQM\CommonLib\obj\Debug\CommonLib.dll
-C:\wsetup\repositories\APQM\CommonLib\obj\Debug\CommonLib.pdb
 C:\gitRepositories\APQM\CommonLib\bin\Debug\CommonLib.dll
 C:\gitRepositories\APQM\CommonLib\bin\Debug\CommonLib.pdb
 C:\gitRepositories\APQM\CommonLib\bin\Debug\BD_MNG.dll
@@ -12,3 +5,10 @@ C:\gitRepositories\APQM\CommonLib\bin\Debug\BD_MNG.pdb
 C:\gitRepositories\APQM\CommonLib\obj\Debug\ResolveAssemblyReference.cache
 C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.dll
 C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.pdb
+C:\wsetup\repositories\APQM\CommonLib\bin\Debug\CommonLib.dll
+C:\wsetup\repositories\APQM\CommonLib\bin\Debug\CommonLib.pdb
+C:\wsetup\repositories\APQM\CommonLib\bin\Debug\BD_MNG.dll
+C:\wsetup\repositories\APQM\CommonLib\bin\Debug\BD_MNG.pdb
+C:\wsetup\repositories\APQM\CommonLib\obj\Debug\ResolveAssemblyReference.cache
+C:\wsetup\repositories\APQM\CommonLib\obj\Debug\CommonLib.dll
+C:\wsetup\repositories\APQM\CommonLib\obj\Debug\CommonLib.pdb

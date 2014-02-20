@@ -82,21 +82,12 @@ public partial class RFQDefault : System.Web.UI.Page
     protected void on_update_RFQ(object sender, EventArgs e)
     {
         panelPopup.Visible = false;
-        Navigator.goToPage("~/default.aspx","rfq");
+        Navigator.goToPage("~/RFQ/RFQ.aspx", "RFQ");
     }
     protected void on_cancel_RFQ(object sender, EventArgs e) 
     {
         panelPopup.Visible = false;
-        Navigator.goToPage("~/default.aspx","rfq");
-    }
-    protected void on_ok_sendRFQ(object sender, EventArgs e) 
-    {   
-        panelPopup.Visible = false;
-        uscRfqCountPerBomLines.refreshGrid();
-    }
-    protected void on_cancel_sendRFQ(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
+        Navigator.goToPage("~/RFQ/RFQ.aspx", "RFQ");
     }
     protected void tabRFQ_Click(object sender, EventArgs e)
     {
@@ -146,23 +137,23 @@ public partial class RFQDefault : System.Web.UI.Page
                 }                
                 break;
             case "sendNewRFQ":
-                try
-                {
-                    index = Convert.ToInt32(e.CommandArgument);
-                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index]["BOMDetailKey"].ToString());
-                    long sifHeaderID = long.Parse(((GridView)sender).DataKeys[index]["SIFHeaderKey"].ToString());
-                    Session.Remove("RFQATTACHMENTS");
-                    Session.Remove("RFQATTACHMENTSFOLDER");
-                    Session.Remove("SupplierList");
-                    openpopupContainer();
-                    multiViewPopup.SetActiveView(viewSendNewRFQ);
-                    uscSendNewRFQ.setBOMDetailID(bomDetailId);
-                    uscSendNewRFQ.setSIFHeaderID(sifHeaderID);
-                }
-                catch (Exception ex)
-                {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
-                }
+                //try
+                //{
+                //    index = Convert.ToInt32(e.CommandArgument);
+                //    bomDetailId = long.Parse(((GridView)sender).DataKeys[index]["BOMDetailKey"].ToString());
+                //    long sifHeaderID = long.Parse(((GridView)sender).DataKeys[index]["SIFHeaderKey"].ToString());
+                //    Session.Remove("RFQATTACHMENTS");
+                //    Session.Remove("RFQATTACHMENTSFOLDER");
+                //    Session.Remove("SupplierList");
+                //    openpopupContainer();
+                //    multiViewPopup.SetActiveView(viewSendNewRFQ);
+                //    uscSendNewRFQ.setBOMDetailID(bomDetailId);
+                //    uscSendNewRFQ.setSIFHeaderID(sifHeaderID);
+                //}
+                //catch (Exception ex)
+                //{
+                //    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
+                //}
                 break;
             case "rfqSummary":
                 try

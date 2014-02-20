@@ -5,7 +5,6 @@
 <%@ Register Src="../Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <%@ Register Src="rfqListByBom.ascx" TagName="rfqListByBom" TagPrefix="uc3" %>
 <%@ Register Src="rfqCountPerBomLines.ascx" TagName="rfqCountPerBomLines" TagPrefix="uc4" %>
-<%@ Register Src="sendNewRFQ.ascx" TagName="sendNewRFQ" TagPrefix="uc5" %>
 <%@ Register Src="rfqCountPerSharedItems.ascx" TagName="rfqCountPerSharedItems" TagPrefix="uc6" %>
 <%@ Register Src="rfqList.ascx" TagName="rfqList" TagPrefix="uc7" %>
 <%@ Register Src="rfqStatusInfo.ascx" TagName="rfqStatusInfo" TagPrefix="uc8" %>
@@ -33,20 +32,6 @@
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
                         width: 800, modal: true,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });
-                </script>
-
-            </asp:View>
-            <asp:View ID="viewSendNewRFQ" runat="server">
-                <uc5:sendNewRFQ ID="uscSendNewRFQ" runat="server" OnCancel_Click="on_cancel_sendRFQ"
-                    OnOk_Click="on_ok_sendRFQ" />
-
-                <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New RFQ");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 1050,  modal: true,
                         dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>

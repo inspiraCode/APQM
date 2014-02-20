@@ -434,7 +434,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU);
             
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
 
@@ -479,7 +478,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
 
@@ -523,7 +521,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMDetail_NewDetail", true);
 
@@ -546,7 +543,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query =  "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, " +
                         "LinePosition, SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, " +
                         "VendorQuoteEst, SalesComments, PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode " +
                         "FROM BOMDetail WHERE (BOMDetailKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -583,7 +580,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.ManufacturePN = table.Rows[0][20].ToString();
                 bomDetail.SupplierPN = table.Rows[0][21].ToString();
                 bomDetail.CommCode = table.Rows[0][22].ToString();
-                bomDetail.EAU = table.Rows[0][23].ToString();
 
                 sqlConnection.Dispose();
                 return bomDetail;
@@ -598,7 +594,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], [Description], PartNumber, " +
                         "LinePosition, SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, " +
                         "Um, VendorQuoteEst, SalesComments, PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode " +
                         "FROM viewBOMDetail_ReadAll WHERE (BOMHeaderKey = @key) ORDER BY BOMDetailKey";
 
         DataTable table = new DataTable();
@@ -637,7 +633,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.ManufacturePN = table.Rows[i][21].ToString();
                 bomDetail.SupplierPN = table.Rows[i][22].ToString();
                 bomDetail.CommCode = table.Rows[i][23].ToString();
-                bomDetail.EAU = table.Rows[i][24].ToString();
                 bomDetail.Sequence = i;
                 recordset.Add(bomDetail);
             }
@@ -653,7 +648,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, LinePosition, " +
                         "SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, " +
                         "PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, EAU " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode " +
                         "FROM BOMDetail ORDER BY BOMDetailKey";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -712,7 +707,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.ManufacturePN = table.Rows[i][20].ToString();
             bomDetail.SupplierPN = table.Rows[i][21].ToString();
             bomDetail.CommCode = table.Rows[i][22].ToString();
-            bomDetail.EAU = table.Rows[i][23].ToString();
             bomDetail.Sequence = i;
             recordset.Add(bomDetail);
         }
@@ -749,7 +743,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
 
@@ -795,7 +788,6 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@ManufacturePN", entity.ManufacturePN);
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
-            DM.Load_SP_Parameters("@EAU", entity.EAU);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
 
@@ -906,347 +898,5 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         return false;
     }
 
-    #endregion
-}
-
-public class bomDetailVolumeCRUD : ICRUD<BOMDetailVolume>
-{
-    ConnectionManager connectionManager = new ConnectionManager();
-    Data_Base_MNG.SQL DM;
-
-    public bool ErrorOccur = false;
-    public string ErrorMessage = "";
-
-    public bomDetailVolumeCRUD()
-    { }
-
-    #region ICRUD<BOMDetailVolume> Members
-
-    public bool create(BOMDetailVolume entity)
-    {
-        ErrorOccur = false;
-        bool result = false;
-        DM = connectionManager.getDataManager();
-
-        try
-        {
-            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
-            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
-
-            result = DM.Execute_StoreProcedure("BOMDetailVolume_NewVolume", true);
-            
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-        }
-        catch (Exception e)
-        {
-            ErrorOccur = true;
-            ErrorMessage = e.Message;
-            return false;
-        }
-
-        return result;
-    }
-    public bool create(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
-    {
-        ErrorOccur = false;
-        bool result = false;
-
-        try
-        {
-            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
-            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
-
-            result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_NewVolume", true);
-
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-        }
-        catch (Exception e)
-        {
-            ErrorOccur = true;
-            ErrorMessage = e.Message;
-            return false;
-        }
-
-        return result;
-    }
-
-    public BOMDetailVolume readById(long id)
-    {
-        BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-
-        string query =  "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
-                        "FROM       BOMDetailVolume " +
-                        "WHERE      (BOMDetailVolumeKey = @key) " +
-                        "ORDER BY Volume";
-
-        DataTable table = new DataTable();
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        if (sqlConnection != null)
-        {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(table);
-
-            if (table.Rows.Count > 0)
-            {
-                bomDetailVolume.Id = long.Parse(table.Rows[0][0].ToString());
-                bomDetailVolume.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
-                bomDetailVolume.Volume = long.Parse(table.Rows[0][2].ToString());
-
-                sqlConnection.Dispose();
-                return bomDetailVolume;
-            }
-        }
-        return null;
-    }
-    public List<BOMDetailVolume> readByParentID(long id)
-    {
-        List<BOMDetailVolume> recordset = new List<BOMDetailVolume>();
-
-        string query = "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
-                        "FROM       BOMDetailVolume " +
-                        "WHERE      (BOMDetailKey = @key) " +
-                        "ORDER BY Volume";
-
-        DataTable table = new DataTable();
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        if (sqlConnection != null)
-        {
-            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@key", id);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            sqlDataAdapter.Fill(table);
-
-            for (int i = 0; i < table.Rows.Count; i++)
-            {
-                BOMDetailVolume bomDetail = new BOMDetailVolume();
-                bomDetail.Id = long.Parse(table.Rows[i][0].ToString());
-                bomDetail.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
-                bomDetail.Volume = long.Parse(table.Rows[i][2].ToString());
-                
-                recordset.Add(bomDetail);
-            }
-        }
-        return recordset;
-    }
-    public IList<BOMDetailVolume> readAll()
-    {
-        List<BOMDetailVolume> recordset = new List<BOMDetailVolume>();
-        recordset.Clear();
-        DM = connectionManager.getDataManager();
-
-        string query = "SELECT     BOMDetailVolumeKey, BOMDetailKey, Volume " +
-                       "FROM       BOMDetailVolume " +
-                       "ORDER BY Volume";
-
-        DataTable table = new DataTable();
-        table = DM.Execute_Query(query);
-
-        for (int i = 0; i < table.Rows.Count; i++)
-        {
-            BOMDetailVolume bomDetailVolume = new BOMDetailVolume();
-            bomDetailVolume.Id = long.Parse(table.Rows[i][0].ToString());
-            if (table.Rows[i][1].ToString() != "")
-            {
-                bomDetailVolume.BomDetailKey = long.Parse(table.Rows[i][1].ToString());
-            }
-            else
-            {
-                bomDetailVolume.BomDetailKey = -1;
-            }
-            if (table.Rows[i][2].ToString() != "")
-            {
-                bomDetailVolume.Volume = long.Parse(table.Rows[i][2].ToString());
-            }
-            else
-            {
-                bomDetailVolume.Volume = -1;
-            }
-            
-            recordset.Add(bomDetailVolume);
-        }
-
-        return recordset;
-    }
-    public bool update(BOMDetailVolume entity)
-    {
-        ErrorOccur = false;
-        bool result = false;
-        DM = connectionManager.getDataManager();
-        try
-        {
-            DM.Load_SP_Parameters("@BOMDetailVolumeKey", entity.Id.ToString());
-            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
-            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
-
-            result = DM.Execute_StoreProcedure("BOMDetailVolume_EditVolume", true);
-
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-        }
-        catch (Exception e)
-        {
-            ErrorOccur = true;
-            ErrorMessage = e.Message;
-            return false;
-        }
-
-        return result;
-    }
-
-    public bool update(BOMDetailVolume entity, ref Data_Base_MNG.SQL DM)
-    {
-        ErrorOccur = false;
-        bool result = false;
-        try
-        {
-            DM.Load_SP_Parameters("@BOMDetailVolumeKey", entity.Id.ToString());
-            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
-            DM.Load_SP_Parameters("@Volume", entity.Volume.ToString());
-
-            result = DM.Execute_StoreProcedure_Open_Conn("BOMDetailVolume_EditVolume", true);
-            
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-        }
-        catch (Exception e)
-        {
-            ErrorOccur = true;
-            ErrorMessage = e.Message;
-            return false;
-        }
-
-        return result;
-    }
-    public bool delete(long id)
-    {
-        ErrorOccur = false;
-        int rowsAffected = 0;
-        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey=@key";
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        SqlCommand sqlCommand = null;
-        if (sqlConnection != null)
-        {
-            try
-            {
-                sqlCommand = new SqlCommand(query, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@key", id);
-                sqlConnection.Open();
-                rowsAffected = sqlCommand.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    ErrorOccur = true;
-                    ErrorMessage = "There were no rows affected for table: BOM Detail Volume.";
-                    return true;
-                }
-            }
-            catch (Exception e)
-            {
-                ErrorOccur = true;
-                ErrorMessage = e.Message;
-                //using return false below
-            }
-            finally
-            {
-                sqlConnection.Dispose();
-                sqlCommand.Dispose();
-            }
-        }
-        else
-        {
-            ErrorOccur = true;
-            ErrorMessage = "Could not connect to database.";
-        }
-        return false;
-    }
-    public bool delete(long id, ref Data_Base_MNG.SQL DM)
-    {
-        ErrorOccur = false;
-        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailVolumeKey = " + id;
-        if (DM.Execute_Command_Open_Connection(query))
-        {
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-            return true;
-        }
-        ErrorOccur = DM.ErrorOccur;
-        ErrorMessage = DM.Error_Mjs;
-        return false;
-    }
-    public bool updateByVolumeAndBOMDetailKey(long bomDetailKey, long currentVolume, long newVolume, ref Data_Base_MNG.SQL DM)
-    {
-        ErrorOccur = false;
-        
-        string query = "UPDATE BOMDetailVolume SET BOMDetailKey = " + bomDetailKey + ", Volume = " + newVolume
-            + " WHERE (Volume = " + currentVolume + ")";
-
-        if (DM.Execute_Command_Open_Connection(query))
-        {
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-            return true;
-        }
-        ErrorOccur = DM.ErrorOccur;
-        ErrorMessage = DM.Error_Mjs;
-        return false;
-    }
-    public bool deleteByParentID(long id)
-    {
-        ErrorOccur = false;
-        int rowsAffected = 0;
-        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=@key";
-        SqlConnection sqlConnection = connectionManager.getConnection();
-        SqlCommand sqlCommand = null;
-        if (sqlConnection != null)
-        {
-            try
-            {
-                sqlCommand = new SqlCommand(query, sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@key", id);
-                sqlConnection.Open();
-                rowsAffected = sqlCommand.ExecuteNonQuery();
-                return true;
-            }
-            catch (Exception e)
-            {
-                ErrorOccur = true;
-                ErrorMessage = e.Message;
-                //using return false below
-            }
-            finally
-            {
-                sqlConnection.Dispose();
-                sqlCommand.Dispose();
-            }
-        }
-        else
-        {
-            ErrorOccur = true;
-            ErrorMessage = "Error. Could not connecto to database.";
-        }
-        return false;
-    }
-    public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
-    {
-        ErrorOccur = false;
-        string query = "DELETE FROM BOMDetailVolume WHERE BOMDetailKey=" + id;
-        if (DM.Execute_Command_Open_Connection(query))
-        {
-            ErrorOccur = DM.ErrorOccur;
-            ErrorMessage = DM.Error_Mjs;
-            return true;
-        }
-        ErrorOccur = DM.ErrorOccur;
-        ErrorMessage = DM.Error_Mjs;
-        return false;
-    }
-   
     #endregion
 }

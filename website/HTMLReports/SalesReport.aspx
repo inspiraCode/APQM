@@ -197,6 +197,12 @@
                 <asp:BoundField DataField="LeadTimePPAP" HeaderText="Lead Time PPAP" SortExpression="LeadTimePPAP" />
                 <asp:BoundField DataField="ProductionLeadTime" HeaderText="Lead Time Production"
                     SortExpression="ProductionLeadTime" />
+                    <asp:BoundField DataField="LeadTimeFirstProductionOrder" HeaderText="Lead Time First Production Order"
+                    SortExpression="LeadTimeFirstProductionOrder" />
+                    <asp:BoundField DataField="LeadTimePPAPFAIR" HeaderText="Lead Time PPAP/FAIR"
+                    SortExpression="LeadTimePPAPFAIR" />
+                    <asp:BoundField DataField="LeadTimeNormalProductionOrders" HeaderText="Lead Time Normal Production Orders"
+                    SortExpression="LeadTimeNormalProductionOrders" />
             </Columns>
         </asp:GridView>
     </asp:Panel>

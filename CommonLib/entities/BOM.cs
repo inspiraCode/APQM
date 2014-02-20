@@ -114,13 +114,11 @@ public class BOMDetail
     private string purchasingComments = "";
     private string capComAssm = "";
     private string capsonicPN = "";
-    private string customerPN = ""; 
-    private string manufacturePN = ""; 
-    private string supplierPN = ""; 
-    private string commCode = ""; 
-    private string eau = "0";
-    private List<BOMDetailVolume> volumeList;    
-
+    private string customerPN = "";
+    private string manufacturePN = "";
+    private string supplierPN = "";
+    private string commCode = "";
+    
     public string CapsonicPN
     {
         get { return capsonicPN; }
@@ -145,11 +143,6 @@ public class BOMDetail
     {
         get { return commCode; }
         set { commCode = value; }
-    }
-    public string EAU
-    {
-        get { return eau; }
-        set { eau = value; }
     }
     public string ItemUm
     {
@@ -278,37 +271,8 @@ public class BOMDetail
         get { return capComAssm; }
         set { capComAssm = value; }
     }
-    public List<BOMDetailVolume> VolumeList
-    {
-        get { return volumeList; }
-        set { volumeList = value; }
-    }
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";
-    }
-}
-
-public class BOMDetailVolume
-{
-    private long id;
-    private long bomDetailKey = -1;
-    private long volume;
-
-
-    public long Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
-    public long BomDetailKey
-    {
-        get { return bomDetailKey; }
-        set { bomDetailKey = value; }
-    }
-    public long Volume
-    {
-        get { return volume; }
-        set { volume = value; }
     }
 }

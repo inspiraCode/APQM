@@ -90,6 +90,12 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                         srd.ToolingDetail = null;
                         srd.ProductionToolingLeadTime = null;
                         srd.ProductionLeadTime = null;
+
+                        srd.LeadTimeFirstProductionOrder = null;
+                        srd.LeadTimePPAPFAIR = null;
+                        srd.LeadTimeNormalProductionOrders = null;
+                        srd.EauCalendarYears = null;
+
                         srd.SupplierName = "";
                         salesReportDetailList.Add(srd);
                         break;
@@ -101,6 +107,12 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                         srd.ToolingDetail = null;
                         srd.ProductionToolingLeadTime = null;
                         srd.ProductionLeadTime = null;
+
+                        srd.LeadTimeFirstProductionOrder = null;
+                        srd.LeadTimePPAPFAIR = null;
+                        srd.LeadTimeNormalProductionOrders = null;
+                        srd.EauCalendarYears = null;
+
                         srd.SupplierName = "";
                         salesReportDetailList.Add(srd);
                         break;
@@ -362,6 +374,37 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             get { return bOMDetailKey; }
             set { bOMDetailKey = value; }
         }
+
+        private string leadTimePPAPFAIR = "";
+
+        public string LeadTimePPAPFAIR
+        {
+            get { return leadTimePPAPFAIR; }
+            set { leadTimePPAPFAIR = value; }
+        }
+        private string leadTimeFirstProductionOrder = "";
+
+        public string LeadTimeFirstProductionOrder
+        {
+            get { return leadTimeFirstProductionOrder; }
+            set { leadTimeFirstProductionOrder = value; }
+        }
+        private string leadTimeNormalProductionOrders = "";
+
+        public string LeadTimeNormalProductionOrders
+        {
+            get { return leadTimeNormalProductionOrders; }
+            set { leadTimeNormalProductionOrders = value; }
+        }
+        private string eauCalendarYears = "";
+
+        public string EauCalendarYears
+        {
+            get { return eauCalendarYears; }
+            set { eauCalendarYears = value; }
+        }
+
+        
     }
     private class SalesReportDetail_DAO
     {
@@ -377,7 +420,8 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             string query = "SELECT distinct PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, " +
                             "VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail, " +
                             "ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], " +
-                            "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey " +
+                            "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey, " + 
+                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id + 
                             "ORDER BY    LinePosition, BOMDetailKey";
@@ -415,6 +459,11 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                 salesReportDetailLocal.ProductionTooling = table.Rows[i][23].ToString();
                 salesReportDetailLocal.User = table.Rows[i][24].ToString();
                 salesReportDetailLocal.BOMDetailKey = long.Parse(table.Rows[i][25].ToString());
+                salesReportDetailLocal.LeadTimeFirstProductionOrder = table.Rows[i][26].ToString();
+                salesReportDetailLocal.LeadTimePPAPFAIR = table.Rows[i][27].ToString();
+                salesReportDetailLocal.LeadTimeNormalProductionOrders = table.Rows[i][28].ToString();
+                salesReportDetailLocal.EauCalendarYears = table.Rows[i][29].ToString();
+
 
                 recordset.Add(salesReportDetailLocal);
             }

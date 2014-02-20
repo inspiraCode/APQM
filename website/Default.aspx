@@ -6,8 +6,6 @@
 <%@ Register Src="Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc3" %>
 <%@ Register Src="SIF/sifList.ascx" TagName="sifList" TagPrefix="uc4" %>
 <%@ Register Src="SIF/SifMaster.ascx" TagName="SifMaster" TagPrefix="uc5" %>
-<%@ Register Src="RFQ/rfqList.ascx" TagName="rfqList" TagPrefix="uc6" %>
-<%@ Register Src="RFQ/rfqForm.ascx" TagName="rfqForm" TagPrefix="uc7" %>
 <%@ Register Src="BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="1">
@@ -77,23 +75,6 @@
     </asp:Panel>--%>
     <asp:Panel ID="panelPopup" runat="server" Visible="false">
         <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-            <asp:View ID="viewPopupSupplier" runat="server">
-                <uc1:supplierMaster ID="uscSupplierForm" runat="server" />
-
-                <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 1100, modal: true,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });                    
-                </script>
-
-                <div id="divButtons" align="center" runat="server">
-                    <asp:Button ID="btnSaveSupplier" runat="server" Text="Save" Width="70px" OnClick="on_save_supplier" />
-                    <asp:Button ID="btnCancelSupplier" runat="server" Text="Cancel" Width="70px" OnClick="on_cancel_supplier" />
-                </div>
-            </asp:View>
             <asp:View ID="viewPopupSIF" runat="server">
                 <uc5:SifMaster ID="uscSIFForm" runat="server"/>
 
@@ -106,18 +87,6 @@
                             dialogClass: "no-close", closeOnEscape: false
                         });
                     });
-                </script>
-
-            </asp:View>
-            <asp:View ID="viewPopupRFQ" runat="server">
-                <uc7:rfqForm ID="uscRFQForm" runat="server" OnOk_Click="on_add_rfq" OnCancel_Click="on_cancelAdd_rfq" />
-
-                <script type="text/javascript">
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 950, modal: true,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });                    
                 </script>
 
             </asp:View>
@@ -148,21 +117,6 @@
                 <br />
                 <br />
             </div>
-        </asp:View>
-        <asp:View ID="viewRFQ" runat="server">
-            <div class="Content">
-                RFQ
-                <asp:Button ID="btnAddRFQ" runat="server" Text="New RFQ" OnClick="btnAddRFQ_Click" />
-                <uc6:rfqList ID="uscRFQList" runat="server" />
-                <br />
-                <br />
-                <br />
-            </div>
-        </asp:View>
-        <asp:View ID="viewSupplier" runat="server">
-            
-        </asp:View>
-        <asp:View ID="viewPopup" runat="server">
         </asp:View>
     </asp:MultiView>
 </asp:Content>

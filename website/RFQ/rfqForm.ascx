@@ -38,7 +38,6 @@
     }
     .style70
     {
-        width: 157px;
     }
     .style73
     {
@@ -68,6 +67,10 @@
     .DeleteBuyerAttachment
     {
         display:none;
+    }
+    .style79
+    {
+        width: 166px;
     }
 </style>
 <br />
@@ -120,22 +123,53 @@
                     <asp:Label ID="lblDueDate" runat="server" BackColor="#D3D3D3" Style="text-align: center"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
-                <td align="left" class="style70">
+                <td align="left" class="style79">
                     <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
                 </td>
                 <td align="left" class="style29">
                     <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
                 </td>
                 <td align="left" class="style29" rowspan="9">
-                    <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.'
-                        style="width: 449px">
+                
+                <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.'
+                        style="width: 449px;">
+                    <tr>
+                        <td align="right">
+                            Lead Time PPAP/FAIR
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtLeadTimePPAP_FAIR" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="4"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Lead Time First Production Order
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Lead Time Normal Production Orders
+                        </td>
+                        <td align="left">
+                            <asp:TextBox ID="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm" runat="server"
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                        </td>
+                    </tr>
+                </table>
+                    <table cellspacing="0" 
+                        style="width: 449px; display:none;">
                         <tr>
                             <td align="right">
                                 Production Lead Time
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="4"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -144,7 +178,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -162,7 +196,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="7"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -179,7 +213,7 @@
                             </td>
                             <td align="left">
                                 <asp:TextBox ID="txtLeadTimePPAP" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="8"></asp:TextBox>
+                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -193,7 +227,7 @@
                     <asp:Label ID="lblRFQNumber" runat="server" Style="text-align: center" Width="145px"
                         BackColor="#D3D3D3" Height="20px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     Supplier Name
                 </td>
                 <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
@@ -209,7 +243,7 @@
                     <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     Manufacturing Location
                 </td>
                 <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
@@ -225,7 +259,7 @@
                     <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     Ship From Location
                 </td>
                 <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
@@ -241,7 +275,7 @@
                     <asp:Label ID="lblPartName" Style="text-align: left" runat="server" BackColor="LightGray"
                         Width="200px" Height="48px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     Prepared By
                 </td>
                 <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
@@ -250,7 +284,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     <asp:Label ID="lblBOMDetailID" runat="server" Visible="False"></asp:Label>
                 </td>
                 <td align="left" class="style29">
@@ -264,7 +298,7 @@
                     <asp:Label ID="lblDrawingLevel" Style="text-align: center" runat="server" BackColor="LightGray"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     &nbsp;
                 </td>
                 <td align="left" class="style29">
@@ -278,10 +312,10 @@
                 <td align="left" class="style77" data-step='10' data-intro='EAU for the current year.'>
                     <asp:Label ID="lblEAV" runat="server" BackColor="LightGray" Style="text-align: center"
                         Width="145px" Height="20px"></asp:Label>
-                </td>
-                <td align="right" class="style70">
-                </td>
-                <td align="left" class="style29">
+                &nbsp;EAU for Years:</td>
+                <td align="left" class="style70" colspan="2">
+                    <asp:Label ID="lblEAUYears" runat="server" BackColor="LightGray" Style="text-align: center"
+                        Width="300px" Height="20px"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -293,7 +327,7 @@
                     <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="#D3D3D3"
                         Width="145px" Height="20px"></asp:Label>
                 </td>
-                <td align="right" class="style70">
+                <td align="right" class="style79">
                     &nbsp;
                 </td>
                 <td align="left" class="style29">
@@ -475,7 +509,7 @@
                             <td style="vertical-align: top;">
                                 Attachments (less than 4MB per file):<br />
                                 <div id="uploadContainer" data-position='right' data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
-                                    style="height: 200px; overflow-y: auto; width: 444px; background-color: #D3D3D3;"
+                                    style="height: 200px; overflow-y: auto; width: 324px; background-color: #D3D3D3;"
                                     align="center">
                                     <div id="uploadZone">
                                         Upload
@@ -483,7 +517,7 @@
                                 </div>
                             </td>
                             <td style="vertical-align: top;">
-                                <div style="background-color: #D3D3D3; width: 444px; min-height: 216px;" data-step='47'
+                                <div style="background-color: #D3D3D3; width: 324px; min-height: 216px;" data-step='47'
                                      data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
                                     Attachments Sent:
                                     <br />

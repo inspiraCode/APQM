@@ -2,7 +2,7 @@
     Inherits="BOM_SendNewRFQDetail" %>
 <asp:Repeater ID="repeaterNewRFQDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
     <HeaderTemplate>
-        <table id="tableNewRFQDetail" border="1" class="display" style="display: none;">
+        <table id="tableNewRFQDetail" border="1" class="display" style="display: none;font-size:10px;">
             <thead>
                 <tr>
                     <th>
@@ -21,7 +21,7 @@
             <tbody>
     </HeaderTemplate>
     <ItemTemplate>
-        <tr height='27px;'>
+        <tr height='20px;'>
             <td>
                 <%# DataBinder.Eval(Container.DataItem, "PartNumber")%>
             </td>

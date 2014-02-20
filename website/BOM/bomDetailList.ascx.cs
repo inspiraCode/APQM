@@ -84,7 +84,7 @@ public partial class bomDetailList : System.Web.UI.UserControl
             ((ImageButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
             ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
 
-            ((CheckBox)e.Item.FindControl("chkSelect")).Checked = true;
+            //((CheckBox)e.Item.FindControl("chkSelect")).Checked = true;
 
 
             //rfqList ucRFQListByBOMID = (rfqList)LoadControl("~/RFQ/rfqList.ascx");
@@ -156,18 +156,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
         bomDetailLine.Um = cboUM.SelectedValue;
         //vendorQuote imported from sales db
         bomDetailLine.Qty = float.Parse(txtQuantity.Text);
-
-        string[] arrEAU = txtEAU.Text.Split(',');
-        for (var i = 0; i < arrEAU.Length; i++)
-        {
-            if (arrEAU[i].Trim() != "")
-            {
-                arrEAU[i] = Math.Round(float.Parse(arrEAU[i].Trim()), 0).ToString();
-            }
-        }
-
-        bomDetailLine.EAU = string.Join(",", arrEAU);
-
         bomDetailLine.Cost = float.Parse(txtCost.Text);
         bomDetailLine.CapComAssm = txtCapComAssm.Text;
         bomDetailLine.PurchasingComments = txtPurchasingComments.Text;
@@ -222,7 +210,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
         txtCommCode.Text = "";
         txtMaterial.Text = "";
         cboUM.SelectedIndex = -1;
-        txtEAU.Text = "0";
         txtCost.Text = "0";
 
         //Fields only in BOMDetail       
@@ -261,7 +248,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
                             txtCommCode.Text = "";
                             txtMaterial.Text = "";
                             cboUM.SelectedValue = "";
-                            txtEAU.Text = "0";
                             txtCost.Text = "0";
 
                             cboPartNumber.Focus();
@@ -307,7 +293,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
             txtManufacturePN.Text = item.ManufacturePN;
             txtSupplierPN.Text = item.SupplierPN;
             txtCommCode.Text = item.CommCode;
-            //txtEAU.Text = item.EAU.ToString();
 
             cboPartNumber.Focus();
         }
@@ -320,7 +305,6 @@ public partial class bomDetailList : System.Web.UI.UserControl
             txtCommCode.Text = "";
             txtMaterial.Text = "";
             cboUM.SelectedValue = "";
-            //txtEAU.Text = "0";
             txtCost.Text = "0";
             cboPartNumber.Focus();
         }

@@ -75,6 +75,7 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblDrawingLevel.Text = rfq.DrawingLevel;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
         lblEAV.Text = rfq.EstimatedAnnualVolume;
+        lblEAUYears.Text = rfq.EauCalendarYears;
 
         lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
@@ -85,12 +86,22 @@ public partial class rfqForm : System.Web.UI.UserControl
         txtSGAProfit.Text = rfq.SgAProfit.ToString();
         txtPackingCostUnit.Text = rfq.PackingPerUnit.ToString();
         txtAssemblyCostUnit.Text = rfq.AssemblyCostPerUnit.ToString();
+       
         
+        /*Fields repleaced by the next ones. Required by Seth*/
         txtProductionLeadTime.Text = rfq.ProductionLeadTime;
         txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
         txtPrototypeToolingLeadTime.Text = rfq.PrototypeToolingLeadTime;
         txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
         txtLeadTimePPAP.Text = rfq.LeadTimePPAP;
+        /*********************************************************/
+        
+        txtLeadTimeFirstProductionOrder.Text = rfq.LeadTimeFirstProductionOrder;
+        txtLeadTimePPAP_FAIR.Text = rfq.LeadTimePPAPFAIR;
+        txtLeadTimeNormalProductionOrders.Text = rfq.LeadTimeNormalProductionOrders;
+
+        /*********************************************************/
+        
 
         txtToolingDetail.Text = rfq.ToolingDetail;
         txtProductionTooling.Text = rfq.ProductionTooling.ToString();
@@ -207,17 +218,25 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         rfq.EstimatedAnnualVolume = lblEAV.Text;
+        rfq.EauCalendarYears = lblEAUYears.Text;
 
         rfq.PreparedBy = txtPreparedBy.Text;
         if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
         if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);
         if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
 
+        /* To be replaced, Requested by Seth*****************************************************/
         rfq.ProductionLeadTime = txtProductionLeadTime.Text;
         rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
         rfq.PrototypeToolingLeadTime = txtPrototypeToolingLeadTime.Text;
         rfq.PrototypePieceLeadTime = txtPrototypePieceLeadTime.Text;
         rfq.LeadTimePPAP = txtLeadTimePPAP.Text;
+
+        rfq.LeadTimeFirstProductionOrder = txtLeadTimeFirstProductionOrder.Text;
+        rfq.LeadTimePPAPFAIR = txtLeadTimePPAP_FAIR.Text;
+        rfq.LeadTimeNormalProductionOrders = txtLeadTimeNormalProductionOrders.Text;
+        /**************************************************************************************/
+
         
         rfq.ToolingDetail = txtToolingDetail.Text;
         if (txtProductionTooling.Text.Trim() != "") rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);

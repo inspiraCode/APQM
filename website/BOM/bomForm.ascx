@@ -147,9 +147,6 @@
                     runat="server" Width="120px"></asp:TextBox>
                 <asp:Button ID="btnOpenSIFDetail" runat="server" Text="..." OnClick="btnOpenSIFDetail_Click"
                     Style="margin-bottom: 5px;" />
-                <asp:Button ID="btnApplyAnnualVolume" runat="server" Text="Apply to lines not Processed"
-                    OnClick="btnApplyAnnualVolume_Click" Width="184px" OnClientClick="return validate();"
-                    validationid="validatingBOMHeader" />
             </td>
             <td align="left" class="style8">
             </td>
@@ -169,7 +166,8 @@
 </div>
 <br />
 <div align="center">
-    <asp:Button ID="btnNewRFQ" runat="server" Text="New RFQ" Width="70px" OnClick="btnNewRFQ_Click" />
+    <asp:Button ID="btnNewRFQ" runat="server" Text="New RFQ" Width="100px" 
+        OnClick="btnNewRFQ_Click" />
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
         OnClientClick="return validate();" validationid="validatingBOMHeader" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
@@ -202,10 +200,7 @@
 </asp:Panel>
 <asp:Panel ID="panelSendRFQ" runat="server" Visible="false">
     <div align="center">
-        <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
-            height: 100px; min-width: 160px; display: inline-block;">
-            <uc5:multipleComponentsToRFQ ID="uscMultipleComponentsToRFQ" runat="server" OnCancel_Click="on_cancel_newRFQ" OnOk_Click="on_ok_newRFQ" />
-        </div>
+        <uc5:multipleComponentsToRFQ ID="uscMultipleComponentsToRFQ" runat="server" OnCancel_Click="on_cancel_newRFQ" OnOk_Click="on_ok_newRFQ" />
     </div>
 
     <script type="text/javascript">
@@ -221,13 +216,7 @@
 <uc4:notifier ID="uscNotifier" runat="server" />
 
 <script type="text/javascript">
-    var txtAnnualVolume;
-    var txtQtyRequired;
-    var txtEAU;
     jQuery(document).ready(function() {
-        txtAnnualVolume = jQuery('#<%= txtAnnualVolume.ClientID %>');
-        txtQtyRequired = jQuery('#<%= uscBOMDetailList.FindControl("txtQuantity").ClientID %>');
-        txtEAU = jQuery('#<%= uscBOMDetailList.FindControl("txtEAU").ClientID %>');
         makeProgresBar();
     });
     function makeProgresBar() {
@@ -247,46 +236,6 @@
             }
         });
         progressBar.progressbar({ value: Number("<%= hiddenProgressBar.Value  %>") });
-    }
-    function calculateEAU() {
-        var nAnnualVolume;
-        var nQtyRequired;
-        var nEAU;
-
-        if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
-            nAnnualVolume = Number(txtAnnualVolume.val());
-            if (nAnnualVolume > 0) {
-                nQtyRequired = Number(txtQtyRequired.val());
-                nEAU = Number(txtEAU.val());
-
-                if (nQtyRequired > 0) {
-                    txtEAU.val((nAnnualVolume * nQtyRequired).toFixed(0));
-                }
-                else {
-                    txtEAU.val("0");
-                }
-            }
-        }
-    }
-    function calculateQtyRequired() {
-        var nAnnualVolume;
-        var nQtyRequired;
-        var nEAU;
-
-        if (txtEAU.val().indexOf(",") < 0) {
-            if (!isNaN(txtAnnualVolume.val()) && txtAnnualVolume.val().trim() != "") {
-                nAnnualVolume = Number(txtAnnualVolume.val());
-                if (nAnnualVolume > 0) {
-                    nQtyRequired = Number(txtQtyRequired.val());
-                    nEAU = Number(txtEAU.val());
-                    if (nEAU > 0) {
-                        txtQtyRequired.val((nEAU / nAnnualVolume).toFixed(3));
-                    } else {
-                        txtQtyRequired.val("0.000");
-                    }
-                }
-            }
-        }
     }
 </script>
 

@@ -12,8 +12,6 @@ public class RFQ
     private long rfqNumberKey = -1;
     private string drawingLevel = "";
     private string estimatedAnnualVolume = "";
-    private string productionLeadTime = "";
-    private string productionToolingLeadTime = "";
     private string prototypeToolingLeadTime = "";
     private string prototypePieceLeadTime = "";
     private string toolingDetail = "";
@@ -57,14 +55,28 @@ public class RFQ
 
     private string sentAttachmentsFolder = "";
     private string inboxAttachmentsFolder = "";
-
-    
+   
+    /******************************************************************/
+    /*Those fields:****************************************************/
+    private string productionLeadTime = "";
+    private string productionToolingLeadTime = "";
     private string leadTimePPAP = "";
 
+    /*will be replaced by the next three fields:*/
+    private string leadTimePPAPFAIR = "";
+    private string leadTimeFirstProductionOrder = "";
+    private string leadTimeNormalProductionOrders = "";
+    /*Requested by Seth************************************************/
+    /******************************************************************/
+    
     private string createdBy = "";
     private string cavitation = "";
-    private string material = "";   
+    private string material = "";
 
+    private string eauCalendarYears = "";
+
+    
+    
     private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -334,6 +346,26 @@ public class RFQ
         get { return material; }
         set { material = value; }
     }
+    public string EauCalendarYears
+    {
+        get { return eauCalendarYears; }
+        set { eauCalendarYears = value; }
+    }
+    public string LeadTimePPAPFAIR
+    {
+        get { return leadTimePPAPFAIR; }
+        set { leadTimePPAPFAIR = value; }
+    }
+    public string LeadTimeFirstProductionOrder
+    {
+        get { return leadTimeFirstProductionOrder; }
+        set { leadTimeFirstProductionOrder = value; }
+    }
+    public string LeadTimeNormalProductionOrders
+    {
+        get { return leadTimeNormalProductionOrders; }
+        set { leadTimeNormalProductionOrders = value; }
+    }
 }
 
 public class RFQEAV
@@ -347,7 +379,6 @@ public class RFQEAV
     {
         get { return year + " - " + volume; } 
     }
-
     public long Id
     {
         get { return id; }
@@ -603,6 +634,27 @@ public class RFQSummary
 
     private string status;
 
+
+
+    private string leadTimePPAPFAIR = "";
+    private string leadTimeFirstProductionOrder = "";
+    private string leadTimeNormalProductionOrders = "";
+
+    public string LeadTimePPAPFAIR
+    {
+        get { return leadTimePPAPFAIR; }
+        set { leadTimePPAPFAIR = value; }
+    }
+    public string LeadTimeFirstProductionOrder
+    {
+        get { return leadTimeFirstProductionOrder; }
+        set { leadTimeFirstProductionOrder = value; }
+    }
+    public string LeadTimeNormalProductionOrders
+    {
+        get { return leadTimeNormalProductionOrders; }
+        set { leadTimeNormalProductionOrders = value; }
+    }
     public float EAV
     {
         get { return eav; }
