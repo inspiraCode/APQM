@@ -66,14 +66,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         lblBomDetailID.Text = rfq.BomDetailId.ToString();
         frmBOMLine.DataBind();
 
-        ViewState["sifHeaderID"] = rfq.SifHeaderKey;
-        sifDetailCRUD sifDetail_CRUD = new sifDetailCRUD();
-        List<SIFDetail> sifDetail = sifDetail_CRUD.readByParentID(rfq.SifHeaderKey);
-        uscSifDetail.setEntity(sifDetail);
-
-
-        EAUHidden.Value = rfq.EstimatedAnnualVolume;
         txtEAU.Text = rfq.EstimatedAnnualVolume;
+        txtEAUCalendarYears.Text = rfq.EauCalendarYears;
 
         txtDueDate.Text = rfq.DueDate.ToShortDateString();
         cboMarketSector.SelectedValue = rfq.MarketSectorID.ToString();
@@ -164,9 +158,6 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
                 
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = txtEAU.Text; //Enabled to change.
-        string strEAULabel = EAUHidden.Value; //Original EAU pulled from BOM.
-
         BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
         if (bomDetailObject == null)
         {
@@ -203,13 +194,14 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
 
         //rfq.SupplierId = supplier.Id;
         rfq.SentToVendor = DateTime.Now;
-        rfq.Status = "PENDING";
+        //rfq.Status = "PENDING";
         //rfq.BomDetailId = (long)ViewState["bomDetailID"];
         //rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
         rfq.DueDate = DateTime.Parse(txtDueDate.Text);
         rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
         rfq.DrawingLevel = txtDrawingLevel.Text;
-        rfq.EstimatedAnnualVolume = strEAUTextBox;
+        rfq.EstimatedAnnualVolume = txtEAU.Text;
+        rfq.EauCalendarYears = txtEAUCalendarYears.Text;
         if (chkTargetPrice.Checked)
         {
             rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
@@ -313,9 +305,6 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         
         string strAuthUser = HttpContext.Current.User.Identity.Name;
 
-        string strEAUTextBox = txtEAU.Text; //Enabled to change.
-        string strEAULabel = EAUHidden.Value; //Original EAU pulled from BOM.
-
         BOMDetail bomDetailObject = bomDetail_CRUD.readById((long)ViewState["bomDetailID"]);
         if (bomDetailObject == null)
         {
@@ -330,7 +319,7 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
 
 
         ConnectionManager CM = new ConnectionManager();
-        Data_Base_MNG.SQL DM = CM.getDataManager();        
+        Data_Base_MNG.SQL DM = CM.getDataManager();
 
         /*Begin Transaction*/
         DM.Open_Connection("Send RFQ Previously Saved");
@@ -353,13 +342,14 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
 
         //rfq.SupplierId = supplier.Id;
         //rfq.SentToVendor = DateTime.Now;
-        rfq.Status = "PENDING";
+        //rfq.Status = "PENDING";
         //rfq.BomDetailId = (long)ViewState["bomDetailID"];
         //rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
         rfq.DueDate = DateTime.Parse(txtDueDate.Text);
         rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
         rfq.DrawingLevel = txtDrawingLevel.Text;
-        rfq.EstimatedAnnualVolume = strEAUTextBox;
+        rfq.EstimatedAnnualVolume = txtEAU.Text;
+        rfq.EauCalendarYears = txtEAUCalendarYears.Text;
         if (chkTargetPrice.Checked)
         {
             rfq.TargetPrice = float.Parse(txtTargetPrice.Text);

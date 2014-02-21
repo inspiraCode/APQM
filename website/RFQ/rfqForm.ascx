@@ -106,7 +106,7 @@
         <br />
         <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='3'
             data-intro='Sometimes you can receive attachments from our purchasing department that can be helpful for you to quote the piece.'>
-            Attachments:<br />
+            Attachments from Buyer to Vendor:<br />
             <uc5:rfqAttachments ID="uscRfqAttachmentsSent" runat="server" OnAfterDeleteBuyerAttachment="on_after_delete_buyerAttachment" />
         </div>
         <asp:HiddenField ID="hiddenSentAttachmentsFolder" runat="server" />
@@ -507,7 +507,7 @@
                     <table>
                         <tr>
                             <td style="vertical-align: top;">
-                                Attachments (less than 4MB per file):<br />
+                                Attachments from Vendor to Buyer, for send (less than 4MB per file):<br />
                                 <div id="uploadContainer" data-position='right' data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
                                     style="height: 200px; overflow-y: auto; width: 324px; background-color: #D3D3D3;"
                                     align="center">
@@ -519,7 +519,7 @@
                             <td style="vertical-align: top;">
                                 <div style="background-color: #D3D3D3; width: 324px; min-height: 216px;" data-step='47'
                                      data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
-                                    Attachments Sent:
+                                    Attachments from Vendor to Buyer, already sent:
                                     <br />
                                     <uc6:rfqVendorAttachments ID="uscRfqInboxAttachments" runat="server" OnAfterDeleteVendorAttachment="on_after_delete_vendorAttachment" />
                                 </div>

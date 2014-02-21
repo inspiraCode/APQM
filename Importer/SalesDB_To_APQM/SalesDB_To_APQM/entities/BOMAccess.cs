@@ -43,7 +43,7 @@ namespace SalesDB_To_APQM.entities
         private string assemblyDescription = ""; //Wont be used anymore
         private string status = "";
         private string importComment = "";
-        private string salesComments = ""; //Wont be used anymore
+        private string salesComments = "";
         private string vendorQuoteEst = "";
         private string capComAssm = "";
         private string commCode = "";

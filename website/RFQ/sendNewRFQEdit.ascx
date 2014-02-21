@@ -87,15 +87,18 @@
                                     EAU
                                 </td>
                                 <td align="left">
-                                    <asp:HiddenField ID="EAUHidden" runat="server" />
-                                    <asp:TextBox onkeyup="on_txtEAU_change();" onchange="on_txtEAU_change();" ID="txtEAU"
-                                        runat="server" validate="number" validationid="validatingNewRFQ"></asp:TextBox>
+                                    <asp:TextBox ID="txtEAU" runat="server" validate="number" 
+                                    validationid="validatingNewRFQ"></asp:TextBox>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="right" style="font-weight: bold; width: 125px;">
+                                    Calendar Years</td>
+                                <td align="left">
+                                    <asp:TextBox ID="txtEAUCalendarYears" runat="server"></asp:TextBox>
                                 </td>
                             </tr>
                         </table>
-                        <div id="divWarningEAU" style="font-size: 11px; color: Red; display: none;">
-                            EAU different than original. Component within BOM will be updated if this RFQ is
-                            saved.</div>
                     </td>
                 </tr>
                 <tr>
@@ -135,16 +138,6 @@
                                 Upload
                             </div>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
-                            display: inline-block;">
-                            <uc4:sifDetail ID="uscSifDetail" runat="server" />
-                        </div>
-                        <br />
-                        <br />
                     </td>
                 </tr>
             </table>
@@ -299,15 +292,6 @@
                 }
             }
         }
-    }
-    function on_txtEAU_change() {
-        var divWarningEAU = jQuery('#divWarningEAU');
-        var txtEAU = jQuery('#<%= txtEAU.ClientID %>');
-        var lblEAU = jQuery('#<%= EAUHidden.ClientID %>');
-        if (txtEAU.val().trim() != lblEAU.val().trim())
-            divWarningEAU.show();
-        else
-            divWarningEAU.hide();
     }
 </script>
 
