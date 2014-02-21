@@ -9,14 +9,16 @@ public partial class rfqSummaryPage : System.Web.UI.Page
 {
     private long bomDetailKey = -1;
     protected void Page_Load(object sender, EventArgs e)
-    {   
+    {
+        FormView frmHeader = (FormView)uscRFQSummaryForm.FindControl("frmRFQSummaryHeader");
+        frmHeader.Attributes.Add("align", "left");
+        
+        if(!IsPostBack)
+            Session.Remove("RFQSummaryHeader");
         if (retrieveEntity())
-        {
+        {   
             //Session["rfqSummary"] = bomDetailKey;
             uscRFQSummaryForm.setBomDetailID(bomDetailKey);
-            FormView frmHeader = (FormView) uscRFQSummaryForm.FindControl("frmRFQSummaryHeader");
-            frmHeader.Style.Remove("float");
-            
         }
     }   
     private bool retrieveEntity()

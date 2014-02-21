@@ -2069,11 +2069,11 @@ public class RfqSummaryHeaderCRUD
     {
         RFQSummaryHeader rfqSummaryHeader = new RFQSummaryHeader();
 
-        string query =  "SELECT     RFQSummaryHeaderKey, BOMDetailKey, PPAPDate, InitialReleaseQty, InitialReleaseDate, " +
-                        "PrebuildQty, PrebuildDate, SupplierKey, SupplierName, " +
+        string query =  "SELECT RFQSummaryHeaderKey, BOMDetailKey, PPAPDate, InitialReleaseQty, InitialReleaseDate, " +
+                        "PrebuildQty, PrebuildDate, " +
                         "PurchasingAllRecommendations, EngineeringAllConcurrences, ManufacturingAllConcurrences, " +
                         "QualityAllConcurrences, SalesAllConcurrences, Notes " +
-                        "FROM         viewRFQSummaryHeader " +
+                        "FROM   viewRFQSummaryHeader " +
                         "WHERE (RFQSummaryHeaderKey = @key)";
 
         DataTable table = new DataTable();
@@ -2094,14 +2094,12 @@ public class RfqSummaryHeaderCRUD
                 rfqSummaryHeader.InitialReleaseDate = DateTime.Parse(table.Rows[0][4].ToString());
                 rfqSummaryHeader.PrebuildQty = float.Parse(table.Rows[0][5].ToString());
                 rfqSummaryHeader.PrebuildDate = DateTime.Parse(table.Rows[0][6].ToString());
-                rfqSummaryHeader.SupplierKey = long.Parse((table.Rows[0][7].ToString()));
-                rfqSummaryHeader.SupplierName = table.Rows[0][8].ToString();
-                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][9].ToString();
-                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][10].ToString();
-                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][11].ToString();
-                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][12].ToString();
-                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][13].ToString();
-                rfqSummaryHeader.Notes = table.Rows[0][14].ToString();
+                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][7].ToString();
+                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][8].ToString();
+                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][9].ToString();
+                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][10].ToString();
+                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][11].ToString();
+                rfqSummaryHeader.Notes = table.Rows[0][12].ToString();
                 
                 sqlConnection.Dispose();
                 return rfqSummaryHeader;
@@ -2114,7 +2112,7 @@ public class RfqSummaryHeaderCRUD
         RFQSummaryHeader rfqSummaryHeader = new RFQSummaryHeader();
 
         string query = "SELECT     RFQSummaryHeaderKey, BOMDetailKey, PPAPDate, InitialReleaseQty, InitialReleaseDate, " +
-                        "PrebuildQty, PrebuildDate, SupplierKey, SupplierName, " +
+                        "PrebuildQty, PrebuildDate, " +
                         "PurchasingAllRecommendations, EngineeringAllConcurrences, ManufacturingAllConcurrences, " +
                         "QualityAllConcurrences, SalesAllConcurrences, Notes " +
                         "FROM         viewRFQSummaryHeader " +
@@ -2138,14 +2136,12 @@ public class RfqSummaryHeaderCRUD
                 rfqSummaryHeader.InitialReleaseDate = DateTime.Parse(table.Rows[0][4].ToString());
                 rfqSummaryHeader.PrebuildQty = float.Parse(table.Rows[0][5].ToString());
                 rfqSummaryHeader.PrebuildDate = DateTime.Parse(table.Rows[0][6].ToString());
-                rfqSummaryHeader.SupplierKey = long.Parse((table.Rows[0][7].ToString()));
-                rfqSummaryHeader.SupplierName = table.Rows[0][8].ToString();
-                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][9].ToString();
-                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][10].ToString();
-                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][11].ToString();
-                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][12].ToString();
-                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][13].ToString();
-                rfqSummaryHeader.Notes = table.Rows[0][14].ToString();
+                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][7].ToString();
+                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][8].ToString();
+                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][9].ToString();
+                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][10].ToString();
+                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][11].ToString();
+                rfqSummaryHeader.Notes = table.Rows[0][12].ToString();
 
                 sqlConnection.Dispose();
                 return rfqSummaryHeader;
@@ -2166,7 +2162,6 @@ public class RfqSummaryHeaderCRUD
             DM.Load_SP_Parameters("@InitialReleaseDate", entity.InitialReleaseDate.ToString());
             DM.Load_SP_Parameters("@PrebuildQty", entity.PrebuildQty.ToString());
             DM.Load_SP_Parameters("@PrebuildDate", entity.PrebuildDate.ToString());
-            DM.Load_SP_Parameters("@SupplierKey", entity.SupplierKey.ToString());
             DM.Load_SP_Parameters("@PurchasingAllRecommendations", entity.PurchasingAllRecommendations.ToString());
             DM.Load_SP_Parameters("@EngineeringAllConcurrences", entity.EngineeringAllConcurrences.ToString());
             DM.Load_SP_Parameters("@ManufacturingAllConcurrences", entity.ManufacturingAllConcurrences.ToString());

@@ -590,15 +590,13 @@ public class RFQACR
 
 public class RFQSummaryHeader
 {
-    private long id;
+    private long id = -1;
     private long bomDetailKey = -1; 
     private DateTime ppapDate = new DateTime(1985, 2, 10); 
     private float initialReleaseQty; 
     private DateTime initialReleaseDate = new DateTime(1985, 2, 10);
     private float prebuildQty; 
-    private DateTime prebuildDate = new DateTime(1985, 2, 10); 
-    private long supplierKey = -1; 
-    private string supplierName = ""; 
+    private DateTime prebuildDate = new DateTime(1985, 2, 10);
     private string purchasingAllRecommendations = ""; 
     private string engineeringAllConcurrences = ""; 
     private string manufacturingAllConcurrences = ""; 
@@ -640,16 +638,6 @@ public class RFQSummaryHeader
     {
         get { return prebuildDate; }
         set { prebuildDate = value; }
-    }
-    public long SupplierKey
-    {
-        get { return supplierKey; }
-        set { supplierKey = value; }
-    }
-    public string SupplierName
-    {
-        get { return supplierName; }
-        set { supplierName = value; }
     }
     public string PurchasingAllRecommendations
     {

@@ -11,14 +11,13 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        load();
+        //load();
     }
     public void load()
     {
         if (retrieveEntity())
         {
             //Session["rfqSummary"] = bomDetailKey;
-
             uscRFQSummaryForm.setBomDetailID(bomDetailKey);
         }
     }
@@ -29,7 +28,6 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     private bool retrieveEntity()
     {
         Object oBomLine = Session["rfqSummary"];
-
         if (oBomLine != null)
         {
             bomDetailKey = (long) oBomLine;
@@ -50,6 +48,7 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     }
     protected void btnSelect_Click(object sender, EventArgs e)
     {
+        Session.Remove("RFQSummaryHeader");
         panelPopup.Visible = true;
     }
     protected void on_rowCommand(Object sender, GridViewCommandEventArgs e)

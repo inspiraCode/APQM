@@ -24,12 +24,11 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         if (!IsPostBack)
         {
             updateRepeater();
-
         }
         ScriptManager.RegisterStartupScript(uscSelectRFQ, this.GetType(), "openPopupKey", "openPopup();", true);
         
     }
-    private void updateRepeater()
+    private bool updateRepeater()
     {
         string[] formKeys = Request.Form.AllKeys;
 
@@ -91,7 +90,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                                 if (!rfqSummaryCRUD.updateOrCreate(rfqS))
                                 {
                                     Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqSummaryCRUD.ErrorMessage);
-                                    return;
+                                    return false;
                                 }
                                 wasEdited = true;
                                 break;
@@ -104,12 +103,14 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
         else
         {
             uscNotifier.showLog("Need to open a program first.");
+            return false;
         }
         if (wasEdited)
         {
             load();
             uscNotifier.showSuccess("Information saved successfully");
         }
+        return true;
     }
     public void load()
     {
@@ -217,9 +218,9 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
             Navigator.goToPage("~/Error.aspx", "ERROR:Could not retrieve rfqSummary with id = " + id);
         }
     }
-    public void save()
+    public bool save()
     {
-        updateRepeater();
+        return updateRepeater();
     }
     protected void on_confirm_rfq(Object sender, EventArgs e)
     {
