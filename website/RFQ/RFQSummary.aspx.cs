@@ -58,17 +58,6 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
         //long bomHeaderKey;
         switch (e.CommandName)
         {
-            //case "selectSIF":
-            //    try
-            //    {
-            //        index = Convert.ToInt32(e.CommandArgument);
-            //        bomHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
-            //        multiViewPopup.SetActiveView(viewBOM);
-            //    }
-            //    catch {
-            //        Navigator.goToPage("~/Error.aspx", "");
-            //    }
-            //    break;
             case "selectBOM":
                 try
                 {

@@ -2054,3 +2054,162 @@ public class RfqSummaryCRUD
         return false;
     }
 }
+
+
+public class RfqSummaryHeaderCRUD
+{
+
+    ConnectionManager connectionManager = new ConnectionManager();
+    Data_Base_MNG.SQL DM;
+
+    public bool ErrorOccur = false;
+    public string ErrorMessage = "";
+
+    public RFQSummaryHeader readById(long id)
+    {
+        RFQSummaryHeader rfqSummaryHeader = new RFQSummaryHeader();
+
+        string query =  "SELECT     RFQSummaryHeaderKey, BOMDetailKey, PPAPDate, InitialReleaseQty, InitialReleaseDate, " +
+                        "PrebuildQty, PrebuildDate, SupplierKey, SupplierName, " +
+                        "PurchasingAllRecommendations, EngineeringAllConcurrences, ManufacturingAllConcurrences, " +
+                        "QualityAllConcurrences, SalesAllConcurrences, Notes " +
+                        "FROM         viewRFQSummaryHeader " +
+                        "WHERE (RFQSummaryHeaderKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                rfqSummaryHeader.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqSummaryHeader.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
+                rfqSummaryHeader.PpapDate = DateTime.Parse( table.Rows[0][2].ToString());
+                rfqSummaryHeader.InitialReleaseQty = float.Parse(table.Rows[0][3].ToString());
+                rfqSummaryHeader.InitialReleaseDate = DateTime.Parse(table.Rows[0][4].ToString());
+                rfqSummaryHeader.PrebuildQty = float.Parse(table.Rows[0][5].ToString());
+                rfqSummaryHeader.PrebuildDate = DateTime.Parse(table.Rows[0][6].ToString());
+                rfqSummaryHeader.SupplierKey = long.Parse((table.Rows[0][7].ToString()));
+                rfqSummaryHeader.SupplierName = table.Rows[0][8].ToString();
+                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][9].ToString();
+                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][10].ToString();
+                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][11].ToString();
+                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][12].ToString();
+                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][13].ToString();
+                rfqSummaryHeader.Notes = table.Rows[0][14].ToString();
+                
+                sqlConnection.Dispose();
+                return rfqSummaryHeader;
+            }
+        }
+        return null;
+    }
+    public RFQSummaryHeader readByBOMDetailID(long id)
+    {
+        RFQSummaryHeader rfqSummaryHeader = new RFQSummaryHeader();
+
+        string query = "SELECT     RFQSummaryHeaderKey, BOMDetailKey, PPAPDate, InitialReleaseQty, InitialReleaseDate, " +
+                        "PrebuildQty, PrebuildDate, SupplierKey, SupplierName, " +
+                        "PurchasingAllRecommendations, EngineeringAllConcurrences, ManufacturingAllConcurrences, " +
+                        "QualityAllConcurrences, SalesAllConcurrences, Notes " +
+                        "FROM         viewRFQSummaryHeader " +
+                        "WHERE (BOMDetailKey = @key)";
+
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@key", id);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            if (table.Rows.Count > 0)
+            {
+                rfqSummaryHeader.Id = long.Parse(table.Rows[0][0].ToString());
+                rfqSummaryHeader.BomDetailKey = long.Parse(table.Rows[0][1].ToString());
+                rfqSummaryHeader.PpapDate = DateTime.Parse(table.Rows[0][2].ToString());
+                rfqSummaryHeader.InitialReleaseQty = float.Parse(table.Rows[0][3].ToString());
+                rfqSummaryHeader.InitialReleaseDate = DateTime.Parse(table.Rows[0][4].ToString());
+                rfqSummaryHeader.PrebuildQty = float.Parse(table.Rows[0][5].ToString());
+                rfqSummaryHeader.PrebuildDate = DateTime.Parse(table.Rows[0][6].ToString());
+                rfqSummaryHeader.SupplierKey = long.Parse((table.Rows[0][7].ToString()));
+                rfqSummaryHeader.SupplierName = table.Rows[0][8].ToString();
+                rfqSummaryHeader.PurchasingAllRecommendations = table.Rows[0][9].ToString();
+                rfqSummaryHeader.EngineeringAllConcurrences = table.Rows[0][10].ToString();
+                rfqSummaryHeader.ManufacturingAllConcurrences = table.Rows[0][11].ToString();
+                rfqSummaryHeader.QualityAllConcurrences = table.Rows[0][12].ToString();
+                rfqSummaryHeader.SalesAllConcurrences = table.Rows[0][13].ToString();
+                rfqSummaryHeader.Notes = table.Rows[0][14].ToString();
+
+                sqlConnection.Dispose();
+                return rfqSummaryHeader;
+            }
+        }
+        return null;
+    }
+    public bool updateOrCreate(RFQSummaryHeader entity)
+    {
+        ErrorOccur = false;
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
+            DM.Load_SP_Parameters("@PPAPDate", entity.PpapDate.ToString());
+            DM.Load_SP_Parameters("@InitialReleaseQty", entity.InitialReleaseQty.ToString());
+            DM.Load_SP_Parameters("@InitialReleaseDate", entity.InitialReleaseDate.ToString());
+            DM.Load_SP_Parameters("@PrebuildQty", entity.PrebuildQty.ToString());
+            DM.Load_SP_Parameters("@PrebuildDate", entity.PrebuildDate.ToString());
+            DM.Load_SP_Parameters("@SupplierKey", entity.SupplierKey.ToString());
+            DM.Load_SP_Parameters("@PurchasingAllRecommendations", entity.PurchasingAllRecommendations.ToString());
+            DM.Load_SP_Parameters("@EngineeringAllConcurrences", entity.EngineeringAllConcurrences.ToString());
+            DM.Load_SP_Parameters("@ManufacturingAllConcurrences", entity.ManufacturingAllConcurrences.ToString());
+            DM.Load_SP_Parameters("@QualityAllConcurrences", entity.QualityAllConcurrences.ToString());
+            DM.Load_SP_Parameters("@SalesAllConcurrences", entity.SalesAllConcurrences.ToString());
+            DM.Load_SP_Parameters("@Notes", entity.Notes.ToString());
+
+            if (entity.Id > -1)
+            {
+                DM.Load_SP_Parameters("@RFQSummaryHeaderKey", entity.Id.ToString());
+                result = DM.Execute_StoreProcedure("RFQSummaryHeader_Edit", true);
+            }
+            else
+            {
+                result = DM.Execute_StoreProcedure("RFQSummaryHeader_New", true);
+            }
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+        return result;
+    }
+
+    public bool deleteByBOMDetailID(long id, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        string query = "DELETE FROM RFQSummaryHeader WHERE BOMDetailKey=" + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
+}
+
+

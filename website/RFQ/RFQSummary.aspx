@@ -3,7 +3,6 @@
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc1" %>
 <%@ Register Src="Summary/RFQSummaryForm.ascx" TagName="RFQSummaryForm" TagPrefix="uc2" %>
-<%@ Register Src="Summary/selectSIF.ascx" TagName="selectSIF" TagPrefix="uc3" %>
 <%@ Register Src="Summary/selectBOMLine.ascx" TagName="selectBOMLine" TagPrefix="uc4" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderLeft" runat="Server">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">

@@ -587,6 +587,102 @@ public class RFQACR
     }
 }
 
+
+public class RFQSummaryHeader
+{
+    private long id;
+    private long bomDetailKey = -1; 
+    private DateTime ppapDate = new DateTime(1985, 2, 10); 
+    private float initialReleaseQty; 
+    private DateTime initialReleaseDate = new DateTime(1985, 2, 10);
+    private float prebuildQty; 
+    private DateTime prebuildDate = new DateTime(1985, 2, 10); 
+    private long supplierKey = -1; 
+    private string supplierName = ""; 
+    private string purchasingAllRecommendations = ""; 
+    private string engineeringAllConcurrences = ""; 
+    private string manufacturingAllConcurrences = ""; 
+    private string qualityAllConcurrences = ""; 
+    private string salesAllConcurrences = "";
+    private string notes = "";
+
+    public long Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+    public long BomDetailKey
+    {
+        get { return bomDetailKey; }
+        set { bomDetailKey = value; }
+    }
+    public DateTime PpapDate
+    {
+        get { return ppapDate; }
+        set { ppapDate = value; }
+    }
+    public float InitialReleaseQty
+    {
+        get { return initialReleaseQty; }
+        set { initialReleaseQty = value; }
+    }
+    public DateTime InitialReleaseDate
+    {
+        get { return initialReleaseDate; }
+        set { initialReleaseDate = value; }
+    }
+    public float PrebuildQty
+    {
+        get { return prebuildQty; }
+        set { prebuildQty = value; }
+    }
+    public DateTime PrebuildDate
+    {
+        get { return prebuildDate; }
+        set { prebuildDate = value; }
+    }
+    public long SupplierKey
+    {
+        get { return supplierKey; }
+        set { supplierKey = value; }
+    }
+    public string SupplierName
+    {
+        get { return supplierName; }
+        set { supplierName = value; }
+    }
+    public string PurchasingAllRecommendations
+    {
+        get { return purchasingAllRecommendations; }
+        set { purchasingAllRecommendations = value; }
+    }
+    public string EngineeringAllConcurrences
+    {
+        get { return engineeringAllConcurrences; }
+        set { engineeringAllConcurrences = value; }
+    }
+    public string ManufacturingAllConcurrences
+    {
+        get { return manufacturingAllConcurrences; }
+        set { manufacturingAllConcurrences = value; }
+    }
+    public string QualityAllConcurrences
+    {
+        get { return qualityAllConcurrences; }
+        set { qualityAllConcurrences = value; }
+    }
+    public string SalesAllConcurrences
+    {
+        get { return salesAllConcurrences; }
+        set { salesAllConcurrences = value; }
+    }
+    public string Notes
+    {
+        get { return notes; }
+        set { notes = value; }
+    }
+}
+
 public class RFQSummary
 {
     private long id =-1;
