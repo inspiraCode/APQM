@@ -127,7 +127,7 @@
         
         <br />
         <br />
-        <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" >
+        <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" OnPreRender="gridView_PreRender">
             <Columns>
                 <asp:BoundField DataField="RFQStatus" ItemStyle-HorizontalAlign="Center" HeaderText="RFQ Status"
                     SortExpression="RFQStatus">
