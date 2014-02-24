@@ -399,6 +399,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
 
         Session.Remove("RFQATTACHMENTS");
         Session.Remove("RFQATTACHMENTSFOLDER");
+        Session.Remove("SupplierList");
 
         supplierList = null;
         Ok_Click(this, e);
@@ -522,7 +523,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
 
         Session.Remove("RFQATTACHMENTS");
         Session.Remove("RFQATTACHMENTSFOLDER");
-
+        Session.Remove("SupplierList");
         supplierList = null;
         Ok_Click(this, e);
     }
