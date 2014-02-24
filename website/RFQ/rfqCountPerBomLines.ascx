@@ -20,9 +20,9 @@
             <asp:BoundField DataField="MarketSector" HeaderText="Market Sector" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="PartNumber" HeaderText="Component Part Number" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Material" HeaderText="Part Name" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="CapsonicPN" HeaderText="Capsonic PN" ItemStyle-HorizontalAlign="Center" Visible="false"/>
             <asp:BoundField DataField="ManufacturePN" HeaderText="Manufacture PN" ItemStyle-HorizontalAlign="Center" />
-            <asp:BoundField DataField="SupplierPN" HeaderText="Supplier PN" ItemStyle-HorizontalAlign="Center" />
+            <asp:BoundField DataField="SupplierPN" HeaderText="Supplier PN" ItemStyle-HorizontalAlign="Center"  Visible="false"/>
             <asp:BoundField DataField="CommCode" HeaderText="Comm Code" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="VendorQuoteEst" HeaderText="Vendor Quote Est" ItemStyle-HorizontalAlign="Center" />
             <asp:BoundField DataField="Qty" HeaderText="Qty Required" ItemStyle-HorizontalAlign="Center"  />            

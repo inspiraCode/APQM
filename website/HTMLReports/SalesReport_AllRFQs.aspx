@@ -141,11 +141,11 @@
                     SortExpression="PartNumber">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" HeaderText="Capsonic PN"
+                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" HeaderText="Capsonic PN" Visible="false"
                     SortExpression="CapsonicPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" HeaderText="Customer PN"
+                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" HeaderText="Customer PN" Visible="false"
                     SortExpression="CustomerPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
@@ -153,7 +153,7 @@
                     SortExpression="ManufacturePN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier PN"
+                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier PN" Visible="false"
                     SortExpression="SupplierPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>

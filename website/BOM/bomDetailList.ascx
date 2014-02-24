@@ -70,16 +70,16 @@
         <th class="camposSinBordes itemFields" style="width: 120px; min-width: 120px; max-width: 120px;">
             Component Part Number
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
             Capsonic PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
             Customer PN
         </th>
         <th class="camposSinBordes itemFields" style="width: 90px; min-width: 90px; max-width: 90px;">
             Manufacture PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
             Supplier PN
         </th>
         <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
@@ -141,16 +141,16 @@
                     Text="New Part Number" />
             </div>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
             <asp:TextBox ID="txtCapsonicPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
             <asp:TextBox ID="txtCustomerPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:TextBox ID="txtManufacturePN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
             <asp:TextBox ID="txtSupplierPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -227,7 +227,7 @@
     </tr>
 </table>
 <div style="clear: both; top: 30px;">
-    <div id="accordionBOM" style="position: relative; width: 1860px;">
+    <div id="accordionBOM" style="position: relative; width: 1560px;">
         <asp:Repeater ID="repeaterBOMDetail" runat="server" OnItemDataBound="R1_ItemDataBound">
             <ItemTemplate>
                 <h3 style="height: 20px;">
@@ -256,16 +256,16 @@
                                 <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;">
                                     <asp:Label ID="lblPartNumber" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PartNumber") %>'></asp:Label>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
                                     <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;">
                                     <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;">
