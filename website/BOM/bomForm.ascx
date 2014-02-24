@@ -153,6 +153,9 @@
             <td align="left" class="style6">
                 <a href="../HTMLReports/SalesReport.aspx?BOM=<%= lblID.Text %>" target="_blank">Report
                     to Sales </a>
+                <br />
+                <a href="../HTMLReports/SalesReport_AllRFQs.aspx?BOM=<%= lblID.Text %>" target="_blank">
+                    Report All RFQs</a>
             </td>
         </tr>
     </table>
@@ -166,8 +169,7 @@
 </div>
 <br />
 <div align="center">
-    <asp:Button ID="btnNewRFQ" runat="server" Text="New RFQ" Width="100px" 
-        OnClick="btnNewRFQ_Click" />
+    <asp:Button ID="btnNewRFQ" runat="server" Text="New RFQ" Width="100px" OnClick="btnNewRFQ_Click" />
     <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClick="btnSave_Click"
         OnClientClick="return validate();" validationid="validatingBOMHeader" />
     <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
@@ -200,14 +202,15 @@
 </asp:Panel>
 <asp:Panel ID="panelSendRFQ" runat="server" Visible="false">
     <div align="center">
-        <uc5:multipleComponentsToRFQ ID="uscMultipleComponentsToRFQ" runat="server" OnCancel_Click="on_cancel_newRFQ" OnOk_Click="on_ok_newRFQ" />
+        <uc5:multipleComponentsToRFQ ID="uscMultipleComponentsToRFQ" runat="server" OnCancel_Click="on_cancel_newRFQ"
+            OnOk_Click="on_ok_newRFQ" />
     </div>
 
     <script type="text/javascript">
         document.getElementById("<%= this.panelSendRFQ.ClientID %>").setAttribute("title", "New RFQs");
         jQuery("#<%= this.panelSendRFQ.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
-            width: 1000, height:600, modal: true,
+            width: 1000, height: 600, modal: true,
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>

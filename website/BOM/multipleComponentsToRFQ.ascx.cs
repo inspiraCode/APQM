@@ -300,7 +300,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                             rfq.DueDate = DateTime.Parse(txtDueDate.Text);
                             rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
                             rfq.DrawingLevel = txtDrawingLevel.Text;
-                            rfq.EstimatedAnnualVolume = eau.ProjectedAnnualVolume.ToString();
+                            rfq.EstimatedAnnualVolume = Math.Round(component.Qty * eau.ProjectedAnnualVolume, 0).ToString();
                             rfq.EauCalendarYears = eau.ProgramYear;
                             if (chkTargetPrice.Checked)
                             {
@@ -482,7 +482,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                             rfq.DueDate = DateTime.Parse(txtDueDate.Text);
                             rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
                             rfq.DrawingLevel = txtDrawingLevel.Text;
-                            rfq.EstimatedAnnualVolume = eau.ProjectedAnnualVolume.ToString();
+                            rfq.EstimatedAnnualVolume = Math.Round(component.Qty * eau.ProjectedAnnualVolume,0).ToString();
                             rfq.EauCalendarYears = eau.ProgramYear;
                             if (chkTargetPrice.Checked)
                             {

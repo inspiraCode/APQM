@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Data;
 
-public partial class HTMLReports_SalesReport : System.Web.UI.Page
+public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
 {
     private List<SalesReportDetail> salesReportDetailList = new List<SalesReportDetail>();
     protected void Page_Load(object sender, EventArgs e)
@@ -73,82 +73,36 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
 
         foreach (SalesReportDetail srd in salesReportDetailAllList)
         {
-            SalesReportDetail srdInternal = salesReportDetailList.Find(r => r.BOMDetailKey == srd.BOMDetailKey);
-            if (srdInternal == null)
+            switch (srd.RFQStatus)
             {
-                switch (srd.RFQStatus)
-                {
-                    case "":
-                    case "PENDING":
-                    case "IN PROGRESS":
-                    case "COMPLETED":
-                    case "IN PROCESS":
-                        srd.RFQStatus = "IN PROCESS";
-                        srd.TotalACost = null;
-                        srd.LeadTimePPAP = null;
-                        srd.ProductionTooling = null;
-                        srd.ToolingDetail = null;
-                        srd.ProductionToolingLeadTime = null;
-                        srd.ProductionLeadTime = null;
+                case "":
+                case "PENDING":
+                case "IN PROGRESS":
+                case "COMPLETED":
+                case "IN PROCESS":
+                    srd.RFQStatus = "IN PROCESS";
+                    salesReportDetailList.Add(srd);
+                    break;
+                case "NO QUOTE":
+                    srd.RFQStatus = "NO QUOTE";
+                    srd.TotalACost = null;
+                    srd.LeadTimePPAP = null;
+                    srd.ProductionTooling = null;
+                    srd.ToolingDetail = null;
+                    srd.ProductionToolingLeadTime = null;
+                    srd.ProductionLeadTime = null;
 
-                        srd.LeadTimeFirstProductionOrder = null;
-                        srd.LeadTimePPAPFAIR = null;
-                        srd.LeadTimeNormalProductionOrders = null;
-                        srd.EauCalendarYears = null;
+                    srd.LeadTimeFirstProductionOrder = null;
+                    srd.LeadTimePPAPFAIR = null;
+                    srd.LeadTimeNormalProductionOrders = null;
 
-                        srd.SupplierName = "";
-                        salesReportDetailList.Add(srd);
-                        break;
-                    case "NO QUOTE":
-                        srd.RFQStatus = "NO QUOTE";
-                        srd.TotalACost = null;
-                        srd.LeadTimePPAP = null;
-                        srd.ProductionTooling = null;
-                        srd.ToolingDetail = null;
-                        srd.ProductionToolingLeadTime = null;
-                        srd.ProductionLeadTime = null;
-
-                        srd.LeadTimeFirstProductionOrder = null;
-                        srd.LeadTimePPAPFAIR = null;
-                        srd.LeadTimeNormalProductionOrders = null;
-                        srd.EauCalendarYears = null;
-
-                        srd.SupplierName = "";
-                        salesReportDetailList.Add(srd);
-                        break;
-                    case "AWARDED":
-                    case "SELECTED":
-                        salesReportDetailList.Add(srd);
-                        break;
-                    case "DISMISSED":
-                        break;
-                }
-            }
-            else
-            {
-                switch (srd.RFQStatus)
-                {
-                    case "":
-                    case "PENDING":
-                    case "IN PROGRESS":
-                    case "COMPLETED":
-                    case "NO QUOTE":
-                    case "IN PROCESS":
-                        break;
-                    case "AWARDED":
-                    case "SELECTED":
-                        for (int i = 0; i < salesReportDetailList.Count;i++ )
-                        {
-                            if (salesReportDetailList[i].BOMDetailKey == srd.BOMDetailKey)
-                            {
-                                salesReportDetailList[i] = srd;
-                                break;
-                            }
-                        }
-                        break;
-                    case "DISMISSED":
-                        break;
-                }
+                    salesReportDetailList.Add(srd);
+                    break;
+                case "DISMISSED":
+                case "AWARDED":
+                case "SELECTED":
+                    salesReportDetailList.Add(srd);
+                    break;
             }
         }
 
@@ -158,7 +112,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
     }
     protected void btnExportToExcel_Click(object sender, EventArgs e)
     {
-        string attachment = "attachment; filename=SalesReport.xls";
+        string attachment = "attachment; filename=SalesReportAllRFQs.xls";
         Response.ClearContent();
         Response.AddHeader("content-disposition",attachment);
         Response.ContentType = "application/ms-excel";
