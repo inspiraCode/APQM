@@ -343,6 +343,8 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                                                                 + Environment.NewLine + Environment.NewLine
                                                                 + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
                                                                 + Environment.NewLine + Environment.NewLine
+                                                                + "RFQ Number: " + rfqNumber.RfqGenerated
+                                                                + Environment.NewLine + Environment.NewLine
                                                                 + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
                                                                 + Environment.NewLine + Environment.NewLine
                                                                 + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."

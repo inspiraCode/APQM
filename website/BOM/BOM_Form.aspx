@@ -7,4 +7,9 @@
     <br />
     <br />
     <br />
+    <script>
+        jQuery(document).ready(function() {
+            makeDropDownsChosen();
+        });
+    </script>
 </asp:Content>

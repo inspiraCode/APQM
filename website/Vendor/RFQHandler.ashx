@@ -27,12 +27,18 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
             {
                 context.Session["token"] = token;
                 if (retrieveEntity(context))
-                {   
+                {
                     Navigator.goToPage("~/Vendor/Supplier.aspx", "supplier");
                     return;
                 }
             }
+            else
+            {
+                Navigator.goToPage("~/Vendor/RFQDeleted.aspx", "supplier");
+                return;
+            }
         }
+        
     }
     public bool retrieveEntity(HttpContext context)
     {
