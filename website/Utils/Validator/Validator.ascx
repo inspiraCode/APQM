@@ -27,7 +27,7 @@
         var target = event.target ? event.target : event.srcElement;
         jQuery('[validate]').filter('[validationid = ' + target.attributes['validationid'].value + ']').each(function() {
             if (jQuery(this).css('display') != "none" && jQuery(this).is(":visible")) {
-                jQuery(this).val(jQuery(this).val().trim());
+                jQuery(this).val(jQuery.trim(jQuery(this).val()));
                 switch (jQuery(this).attr('validate')) {
                     case 'number':
                         if (jQuery(this).val() == '')
@@ -59,7 +59,7 @@
                         if (arrNumbers != '') {
                             arrNumbers = arrNumbers.split(',');
                             for (var i = 0; i < arrNumbers.length; i++) {
-                                arrNumbers[i] = arrNumbers[i].trim();
+                                arrNumbers[i] = jQuery.trim(arrNumbers[i]);
                                 if (isNaN(arrNumbers[i]) || Number(arrNumbers[i]) < 0) {
                                     strErrorMessage = 'Number did not pass validation.';
                                     fieldNeedsCorrection = jQuery(this);

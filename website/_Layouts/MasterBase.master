@@ -230,7 +230,7 @@
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
-                        <asp:Image ID="logo" TabIndex="-1" runat="server" Height="80px" ImageUrl="~/pics/CA2Logo.jpg" />
+                        <img src='<%= ResolveUrl("~/pics/CA2Logo.jpg") %>' height="80px" alt="Capsonic Automotive and Aerospace" />
                     </td>
                 </tr>
                 <tr>

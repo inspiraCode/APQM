@@ -579,10 +579,13 @@
 
 
 <script type="text/javascript">
+    
     jQuery(document).ready(function() {
         on_change_option_quote();
         jQuery("[toHide]").hide();
-
+        
+        summarizeTotalPieceCost();
+        
         uploadObj = jQuery("#uploadZone").uploadFile({
             url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>',
             multiple: true,
@@ -620,7 +623,7 @@
     function summarizeTotalPieceCost() {
 
         var txtSGAProfit = document.getElementById("<%= txtSGAProfit.ClientID %>");
-        if (txtSGAProfit && txtSGAProfit.value.trim() != "") {
+        if (txtSGAProfit && jQuery.trim(txtSGAProfit.value) != "") {
             txtSGAProfit = Number(txtSGAProfit.value);
         }
         else {
@@ -628,7 +631,7 @@
         }
 
         var lblTotalManufacturingCost = document.getElementById("<%= lblTotalManufacturingCost.ClientID %>");
-        if (lblTotalManufacturingCost && lblTotalManufacturingCost.textContent.trim() != "") {
+        if (lblTotalManufacturingCost && jQuery.trim(lblTotalManufacturingCost.textContent) != "") {
             lblTotalManufacturingCost = Number(lblTotalManufacturingCost.textContent);
         }
         else {
@@ -636,7 +639,7 @@
         }
 
         var txtPackingCostUnit = document.getElementById("<%= txtPackingCostUnit.ClientID %>");
-        if (txtPackingCostUnit && txtPackingCostUnit.value.trim() != "") {
+        if (txtPackingCostUnit && jQuery.trim(txtPackingCostUnit.value) != "") {
             txtPackingCostUnit = Number(txtPackingCostUnit.value);
         }
         else {
@@ -644,7 +647,7 @@
         }
 
         var txtAssemblyCostUnit = document.getElementById("<%= txtAssemblyCostUnit.ClientID %>");
-        if (txtAssemblyCostUnit && txtAssemblyCostUnit.value.trim() != "") {
+        if (txtAssemblyCostUnit && jQuery.trim(txtAssemblyCostUnit.value) != "") {
             txtAssemblyCostUnit = Number(txtAssemblyCostUnit.value);
         }
         else {
@@ -655,8 +658,7 @@
 
         lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
-    window.onload = summarizeTotalPieceCost();
-
+    
     var uploadObj = null;
 
     function uploadFiles(strSaveMode) {
