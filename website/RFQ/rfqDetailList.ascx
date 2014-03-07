@@ -166,7 +166,7 @@
                 data-position='left'>
                 <asp:Button ID="btnAdd" validationid="validatingRFQDetail" runat="server" Text="Add"  data-step='32' data-intro='If your information in this line is correct, press this button to add it to the list.'
                     OnClick="add_Click" Width="40px" TabIndex="19" 
-                    OnClientClick="return validate();" />
+                    OnClientClick="return validate(event);" />
             </th>
         </tr>
         <div align="center">
@@ -221,7 +221,7 @@
                         </td>
                         <td width="52px">
                             <asp:LinkButton ID="updateByID" runat="server" CommandArgument="" OnCommand="updateByID"
-                                OnClientClick="return setSrcElementForEditForm();">
+                                OnClientClick="return setSrcElementForEditForm(event);">
                             Edit
                             </asp:LinkButton>
                         </td>
@@ -286,8 +286,9 @@
 <asp:HiddenField ID="hiddenEditFormLeftPosition" runat="server" />
 
 <script type="text/javascript">
-    function setSrcElementForEditForm() {
-        var src = event.srcElement;
+    function setSrcElementForEditForm(e) {
+        if (!e) e = window.event;
+        var src = e.target || e.srcElement;
         jQuery("#<%= hiddenEditFormTopPosition.ClientID %>").val(src.id);
         return true;
     }    

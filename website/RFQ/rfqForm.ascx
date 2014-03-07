@@ -661,14 +661,14 @@
     
     var uploadObj = null;
 
-    function uploadFiles(strSaveMode) {
+    function uploadFiles(e, strSaveMode) {
         if (strSaveMode == "finalize") {
             jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
         } else if (strSaveMode == "save") {
             jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
         }
 
-        if (validate()) {
+        if (validate(e)) {
             if (uploadObj != null) {
                 try {
                     enableCaller(false);

@@ -213,7 +213,7 @@
         toggleTargetPrice();
 
         uploadObj = jQuery("#uploadZone").uploadFile({
-            url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>',
+            url: '<%= ResolveUrl("~/BOM/BOM_Form.aspx") %>',
             multiple: true,
             fileName: "myfile",
             autoSubmit: false,

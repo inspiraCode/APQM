@@ -12,17 +12,16 @@
     </div>
     <br />
     <asp:Button ID="btnToRFQ" runat="server" Text="Next" Width="132px" OnClick="btnToRFQForm_Click"
-        validationid="validatingSupplierForm" />
+        validationid="validatingSupplierForm" OnClientClick="return validate(event);" />
     <br />
     <br />
     <br />
     <uc1:supplierMaster ID="uscSupplierForm" runat="server" OnAfterSave="on_save_supplier"
         OnAfterCancel="on_cancel_supplier" />
-        
-        <br />
-        * Fields required.
+    <br />
+    * Fields required.
     <div id="divButtons" align="center" runat="server" style="clear: both;">
-        <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClientClick="return validate();"
+        <asp:Button ID="btnSave" runat="server" Text="Save" Width="70px" OnClientClick="return validate(event);"
             validationid="validatingSupplierForm" OnClick="btnSave_Click" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click" />
     </div>
