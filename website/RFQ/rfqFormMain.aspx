@@ -7,9 +7,9 @@
     <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_afterSave_rfq" OnAfterFinalize="on_afterFinalize_rfq" />
     <div id="divButtons" align="center" runat="server">
         <asp:Button ID="btnFinalize" runat="server" Text="Finalize" Width="70px"
-    OnClientClick="if(confirm('RFQ Status will change to Complete\nAre you sure you want to Finalize this RFQ?')) {uploadFiles('finalize'); return false;} else return false;"
+    OnClientClick="if(confirm('RFQ Status will change to Complete\nAre you sure you want to Finalize this RFQ?')) {uploadFiles(event, 'finalize'); return false;} else return false;"
             validationid="validatingRFQForm" TabIndex="37" />
-        <input id="btnSave" onclick="uploadFiles('save');" type="button" validationid="validatingRFQForm"
+        <input id="btnSave" onclick="uploadFiles(event, 'save');" type="button" validationid="validatingRFQForm"
             style="width: 70px;" value="Save" tabindex="38" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
             TabIndex="39" />
