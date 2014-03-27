@@ -50,7 +50,7 @@
         document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
         jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
-            width: 560, modal: true,
+            width: 560, modal: false,
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>
@@ -174,6 +174,7 @@
                 <asp:ListItem Value="lb">lb</asp:ListItem>
                 <asp:ListItem Value="oz">oz</asp:ListItem>
                 <asp:ListItem Value="lt">lt</asp:ListItem>
+                <asp:ListItem Value="cubic meter">cubic meter</asp:ListItem>
             </asp:DropDownList>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -491,7 +492,7 @@
             document.getElementById("<%= this.panelResendRFQ.ClientID %>").setAttribute("title", "Re-send RFQ");
             jQuery("#<%= this.panelResendRFQ.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 440, modal: true,
+                width: 440, modal: false,
                 dialogClass: "no-close", closeOnEscape: false, 
             });
         });
@@ -505,7 +506,7 @@
             document.getElementById("<%= this.panelEditRFQBuyerSide.ClientID %>").setAttribute("title", "Edit RFQ Buyer-Side");
             jQuery("#<%= this.panelEditRFQBuyerSide.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 950, modal: true,
+                width: 950, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
         });

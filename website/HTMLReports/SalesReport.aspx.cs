@@ -404,6 +404,15 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             set { eauCalendarYears = value; }
         }
 
+        private string um = "";
+
+        public string Um
+        {
+            get { return um; }
+            set { um = value; }
+        }
+
+
         
     }
     private class SalesReportDetail_DAO
@@ -421,7 +430,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                             "VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail, " +
                             "ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], " +
                             "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey, " + 
-                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears " +
+                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
                             "ORDER BY    LinePosition, BOMDetailKey";
@@ -463,6 +472,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                 salesReportDetailLocal.LeadTimePPAPFAIR = table.Rows[i][27].ToString();
                 salesReportDetailLocal.LeadTimeNormalProductionOrders = table.Rows[i][28].ToString();
                 salesReportDetailLocal.EauCalendarYears = table.Rows[i][29].ToString();
+                salesReportDetailLocal.Um = table.Rows[i][30].ToString();
 
 
                 recordset.Add(salesReportDetailLocal);

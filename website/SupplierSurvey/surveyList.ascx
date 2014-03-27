@@ -68,7 +68,7 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Supplier Survey");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1090, modal: true,
+                width: 1090, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>

@@ -24,6 +24,7 @@
                     <asp:ListItem Value="lb">lb</asp:ListItem>
                     <asp:ListItem Value="oz">oz</asp:ListItem>
                     <asp:ListItem Value="lt">lt</asp:ListItem>
+                    <asp:ListItem Value="cubic meter">cubic meter</asp:ListItem>
             </asp:DropDownList>
         </td>
         <td class="camposSinBordes">

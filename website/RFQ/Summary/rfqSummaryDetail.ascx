@@ -388,7 +388,7 @@
         var popupSelectRFQ = jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
             width: 430,
-            modal: true,
+            modal: false,
             height: 320,
             dialogClass: "no-close",
             closeOnEscape: false,

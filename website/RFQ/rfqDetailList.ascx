@@ -102,6 +102,7 @@
                     <asp:ListItem Value="lb">lb</asp:ListItem>
                     <asp:ListItem Value="oz">oz</asp:ListItem>
                     <asp:ListItem Value="lt">lt</asp:ListItem>
+                    <asp:ListItem Value="cubic meter">cubic meter</asp:ListItem>
                 </asp:DropDownList>
             </th>
             <th class="camposSinBordes" data-step='19' data-intro='Quantity of material used.'>
@@ -330,7 +331,7 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ Line Edit");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1280, height: 60, modal: true,
+                width: 1280, height: 60, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
 

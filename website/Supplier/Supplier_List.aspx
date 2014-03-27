@@ -21,7 +21,7 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New Supplier");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1100, modal: true,
+                width: 1100, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });                    
         </script>

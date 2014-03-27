@@ -19,7 +19,7 @@
                 document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
                 jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                     appendTo: jQuery('form:first'),
-                    width: 950, modal: true,
+                    width: 950, modal: false,
                     dialogClass: "no-close", closeOnEscape: false
                 });
             });

@@ -325,7 +325,7 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Edit SIF Detail");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 700, modal: true,
+                width: 700, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>

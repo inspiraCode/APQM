@@ -31,7 +31,7 @@
             document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Send New Survey");
             jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 440, modal: true,
+                width: 440, modal: false,
                 dialogClass: "no-close", closeOnEscape: false
             });
         </script>

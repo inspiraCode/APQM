@@ -171,6 +171,10 @@
                     SortExpression="Qty">
                     <ItemStyle HorizontalAlign="Right" />
                 </asp:BoundField>
+                <asp:BoundField DataField="Um" ItemStyle-HorizontalAlign="Right" HeaderText="UM"
+                    SortExpression="Um">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
                 <asp:BoundField DataField="EAU" ItemStyle-HorizontalAlign="Right" HeaderText="EAU"
                     SortExpression="EAU">
                     <ItemStyle HorizontalAlign="Right" />

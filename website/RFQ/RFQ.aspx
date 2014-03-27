@@ -31,7 +31,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 800, modal: true,
+                        width: 800, modal: false,
                         dialogClass: "no-close", closeOnEscape: false
                     });
                 </script>

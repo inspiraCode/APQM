@@ -24,7 +24,7 @@
                     document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Please select a BOM Line");
                     jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                         appendTo: jQuery('form:first'),
-                        width: 1150, modal: true,
+                        width: 1150, modal: false,
                         dialogClass: "no-close",
                         closeOnEscape: false,
                         draggable: true

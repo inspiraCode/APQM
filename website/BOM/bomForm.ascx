@@ -192,7 +192,7 @@
                 document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "Projected Annual Volume");
                 jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
                     appendTo: jQuery('form:first'),
-                    width: 520, modal: true,
+                    width: 520, modal: false,
                     dialogClass: "no-close", closeOnEscape: false
                 });
             </script>
@@ -210,7 +210,7 @@
         document.getElementById("<%= this.panelSendRFQ.ClientID %>").setAttribute("title", "New RFQs");
         jQuery("#<%= this.panelSendRFQ.ClientID %>").dialog({ autoOpen: true,
             appendTo: jQuery('form:first'),
-            width: 1000, height: 600, modal: true,
+            width: 1000, height: 600, modal: false,
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>
