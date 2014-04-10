@@ -7,6 +7,30 @@
 <head runat="server">
     <title>Advanced Purchasing Quote Management</title>
     <style type="text/css">
+        .Overlay
+        {
+            /*top: 0px;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+            background-color: #000;
+            opacity: .5;
+            z-index: 1000;*/
+            
+            display: none; 
+            position: fixed; 
+            min-height: 100%; 
+            min-width: 100%;
+            z-index: 5000; 
+            background-color: black; 
+            filter: alpha(opacity=50);
+            opacity: 0.3; 
+            top: 0; 
+            left: 0;
+        }
         ::-ms-clear
         {
             display: none;
@@ -155,7 +179,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        LMD: 3/27/2014
+                        LMD: 4/10/2014
                     </td>
                 </tr>
             </table>

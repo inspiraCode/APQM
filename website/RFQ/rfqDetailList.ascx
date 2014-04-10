@@ -11,7 +11,7 @@
     }
 </style>
 <div align="center">
-    <table border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
+    <table id="tableRFQDetail" border="1" cellspacing="0" width="1220px" align="center" class="camposSinBordes">
         <tr style="background-color: #D3D3D3">
             <th colspan="5">
                 Raw Material And Purchased Components

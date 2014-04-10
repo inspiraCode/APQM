@@ -1,8 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="Validator.ascx.cs" Inherits="Utils_Validator_Validator" %>
-<div id="scrim" style="display: none; position: fixed; min-height: 100%; min-width: 100%;
-    z-index: 5000; background-color: black; opacity: 0.3; top: 0; left: 0;" onclick="hideScrim()">
+<div id="scrim" class="Overlay" onclick="hideScrim()">
 </div>
-
 <div id="messageDisplayer" align="center" style="color: Red; position: absolute;
     display: none; color: red; position: absolute; left: 67.5px; top: 645px; background-color: white;
     border: solid gray; border-radius: 20px; padding: 5px; z-index: 5001;">
@@ -11,7 +9,7 @@
 <script type="text/javascript">
     jQuery('body').keydown(function() {
         hideScrim();
-    });    
+    });
     function hideScrim() {
         jQuery('#scrim').hide();
         jQuery('#messageDisplayer').hide();
@@ -20,7 +18,7 @@
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
     }
-    function validate(e) {    
+    function validate(e) {
         var targetMessage = jQuery('#messageDisplayer').text('');
         var strErrorMessage = '';
         var fieldNeedsCorrection = null;
@@ -85,6 +83,9 @@
             var pos = fieldNeedsCorrection.position();
             targetMessage.css('left', (pos.left - 9) + 'px');
             targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
+            jQuery('html, body').animate({
+                scrollTop: fieldNeedsCorrection.offset().top - 300
+            }, 100);
             fieldNeedsCorrection.focus().select();
             return false;
         }

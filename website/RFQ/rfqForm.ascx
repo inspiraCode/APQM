@@ -5,7 +5,7 @@
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc5" %>
 <%@ Register Src="rfqVendorAttachments.ascx" TagName="rfqVendorAttachments" TagPrefix="uc6" %>
-<%@ Register src="../Utils/Notifier/notifier.ascx" tagname="notifier" tagprefix="uc7" %>
+<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc7" %>
 <style type="text/css">
     .style2
     {
@@ -66,7 +66,7 @@
     }
     .DeleteBuyerAttachment
     {
-        display:none;
+        display: none;
     }
     .style79
     {
@@ -130,39 +130,37 @@
                     <asp:Label ID="lblMode" runat="server" Visible="False">New</asp:Label>
                 </td>
                 <td align="left" class="style29" rowspan="9">
-                
-                <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.'
+                    <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.'
                         style="width: 449px;">
-                    <tr>
-                        <td align="right">
-                            Lead Time PPAP/FAIR
-                        </td>
-                        <td align="left">
-                            <asp:TextBox ID="txtLeadTimePPAP_FAIR" validationid="validatingRFQForm" runat="server"
+                        <tr>
+                            <td align="right">
+                                Lead Time PPAP/FAIR
+                            </td>
+                            <td align="left">
+                                <asp:TextBox ID="txtLeadTimePPAP_FAIR" validationid="validatingRFQForm" runat="server"
                                     Style="text-align: right" Width="240px" TabIndex="4"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">
-                            Lead Time First Production Order
-                        </td>
-                        <td align="left">
-                            <asp:TextBox ID="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td align="right">
-                            Lead Time Normal Production Orders
-                        </td>
-                        <td align="left">
-                            <asp:TextBox ID="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
-                        </td>
-                    </tr>
-                </table>
-                    <table cellspacing="0" 
-                        style="width: 449px; display:none;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                Lead Time First Production Order
+                            </td>
+                            <td align="left">
+                                <asp:TextBox ID="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm"
+                                    runat="server" Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                Lead Time Normal Production Orders
+                            </td>
+                            <td align="left">
+                                <asp:TextBox ID="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm"
+                                    runat="server" Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                            </td>
+                        </tr>
+                    </table>
+                    <table cellspacing="0" style="width: 449px; display: none;">
                         <tr>
                             <td align="right">
                                 Production Lead Time
@@ -312,7 +310,8 @@
                 <td align="left" class="style77" data-step='10' data-intro='EAU for the current year.'>
                     <asp:Label ID="lblEAV" runat="server" BackColor="LightGray" Style="text-align: center"
                         Width="145px" Height="20px"></asp:Label>
-                &nbsp;EAU for Years:</td>
+                    &nbsp;EAU for Years:
+                </td>
                 <td align="left" class="style70" colspan="2">
                     <asp:Label ID="lblEAUYears" runat="server" BackColor="LightGray" Style="text-align: center"
                         Width="300px" Height="20px"></asp:Label>
@@ -394,7 +393,7 @@
                         Total Piece Cost&nbsp;&nbsp;
                     </td>
                     <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
-                         data-position='left' style="border-right: solid gray; border-bottom: solid gray;">
+                        data-position='left' style="border-right: solid gray; border-bottom: solid gray;">
                         <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
                             Width="104px" Height="20px">0</asp:Label>
                     </td>
@@ -430,15 +429,13 @@
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.' 
-                                class="style78">
+                            <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.' class="style78">
                                 MOQ
                                 <asp:TextBox ID="txtMOQ" runat="server" Style="text-align: right" Width="130px" TabIndex="33"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
-                            <td align="right" data-step='45' data-intro='Enter the Brand if applicable.' 
-                                class="style78">
+                            <td align="right" data-step='45' data-intro='Enter the Brand if applicable.' class="style78">
                                 Brand
                                 <asp:TextBox ID="txtMake" runat="server" Style="text-align: right" Width="130px"
                                     TabIndex="34"></asp:TextBox>
@@ -507,7 +504,7 @@
                     <table>
                         <tr>
                             <td style="vertical-align: top;">
-                                Attachments from Vendor to Buyer, for send (less than 4MB per file):<br />
+                                Attachments from Vendor to Buyer (less than 4MB per file):<br />
                                 <div id="uploadContainer" data-position='right' data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
                                     style="height: 200px; overflow-y: auto; width: 324px; background-color: #D3D3D3;"
                                     align="center">
@@ -518,7 +515,7 @@
                             </td>
                             <td style="vertical-align: top;">
                                 <div style="background-color: #D3D3D3; width: 324px; min-height: 216px;" data-step='47'
-                                     data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                                    data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
                                     Attachments from Vendor to Buyer, already sent:
                                     <br />
                                     <uc6:rfqVendorAttachments ID="uscRfqInboxAttachments" runat="server" OnAfterDeleteVendorAttachment="on_after_delete_vendorAttachment" />
@@ -566,7 +563,7 @@
     <br />
     <br />
     Reason
-    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
+    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine" validate="required" validationid="validatingRFQForm"
         Width="400px" TabIndex="38"></asp:TextBox>
 </div>
 <br />
@@ -577,15 +574,14 @@
 <br />
 <uc7:notifier ID="uscNotifier" runat="server" />
 
-
 <script type="text/javascript">
-    
+
     jQuery(document).ready(function() {
         on_change_option_quote();
         jQuery("[toHide]").hide();
-        
+
         summarizeTotalPieceCost();
-        
+
         uploadObj = jQuery("#uploadZone").uploadFile({
             url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>',
             multiple: true,
@@ -658,11 +654,28 @@
 
         lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
-    
+
     var uploadObj = null;
 
     function uploadFiles(e, strSaveMode) {
         if (strSaveMode == "finalize") {
+            var btnAddRFQDetail =jQuery('#<%= uscRFQDetailList.FindControl("btnAdd").ClientID %>');
+            if (btnAddRFQDetail.css('display') != "none" && btnAddRFQDetail.is(":visible")) {
+                var iTotalRowsRFQDetail = jQuery("#tableRFQDetail tr").length;
+                
+                if (iTotalRowsRFQDetail < 6) {
+                    var pos = btnAddRFQDetail.position();
+                    jQuery('#messageDisplayer').css('left', (pos.left - 9) + 'px');
+                    jQuery('#messageDisplayer').css('top', (pos.top + btnAddRFQDetail.outerHeight() + 2) + 'px');
+                    jQuery('#scrim').show();
+                    jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
+                    jQuery('html, body').animate({
+                        scrollTop: btnAddRFQDetail.offset().top - 300
+                    }, 100);
+                    btnAddRFQDetail.focus();
+                    return;
+                }
+            }
             jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
         } else if (strSaveMode == "save") {
             jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
