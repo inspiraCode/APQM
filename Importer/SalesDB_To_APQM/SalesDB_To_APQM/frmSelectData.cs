@@ -207,9 +207,12 @@ namespace SalesDB_To_APQM
                             sifDetail.ProjectedAnnualVolume = long.Parse(row.Cells["Projected Annual Volume Yr " + i].Value.ToString());
                             sifDetail.ProjectedTargetPrice = float.Parse(row.Cells["Projected/Target Price Yr " + i].Value.ToString());
                             sifDetail.AnnualRevenue = float.Parse(row.Cells["Annual Revenue Yr " + i].Value.ToString());
-                            if (i == 2)
+                            if (i == 2 || i == 4)
                             {
-                                sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% of Volume Yr 2"].Value.ToString());
+                                sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% of Volume Yr " + i].Value.ToString());
+                            }
+                            else if(i==6 || i==7){
+                                sifDetail.PercentVolumePerAward = float.Parse(row.Cells["% Volume per Award Yr " + i].Value.ToString());
                             }
                             else
                             {
