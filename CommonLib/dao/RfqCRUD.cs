@@ -45,9 +45,9 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
             DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
             DM.Load_SP_Parameters("@Status", entity.Status.ToString());
-            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
-            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString("G"));
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString("G"));
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString("G"));
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
@@ -56,7 +56,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
-            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
             DM.Load_SP_Parameters("@Make", entity.Make);
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
@@ -110,9 +110,9 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
             DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
             DM.Load_SP_Parameters("@Status", entity.Status.ToString());
-            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
-            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString("G"));
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString("G"));
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString("G"));
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
@@ -121,7 +121,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
-            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
             DM.Load_SP_Parameters("@Make", entity.Make);
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
@@ -174,9 +174,9 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ProductionTooling", entity.ProductionTooling.ToString());
             DM.Load_SP_Parameters("@PrototypeTooling", entity.PrototypeTooling.ToString());
             DM.Load_SP_Parameters("@Status", entity.Status.ToString());
-            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
-            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString("G"));
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString("G"));
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString("G"));
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
@@ -185,7 +185,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
-            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
             DM.Load_SP_Parameters("@Make", entity.Make);
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
@@ -503,8 +503,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@Status", entity.Status.ToString());
-            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
-            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString("G"));
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString("G"));
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
@@ -513,7 +513,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
-            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
             DM.Load_SP_Parameters("@Make", entity.Make);
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
@@ -524,7 +524,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString("G"));
             DM.Load_SP_Parameters("@LeadTimePPAP_FAIR", entity.LeadTimePPAPFAIR);
             DM.Load_SP_Parameters("@LeadTimeFirstProductionOrder", entity.LeadTimeFirstProductionOrder);
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
@@ -568,8 +568,8 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@Status", entity.Status.ToString());
-            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString());
-            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString());
+            DM.Load_SP_Parameters("@DueDate", entity.DueDate.ToString("G"));
+            DM.Load_SP_Parameters("@FilledUp", entity.FilledUp.ToString("G"));
             DM.Load_SP_Parameters("@PreparedBy", entity.PreparedBy.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
             DM.Load_SP_Parameters("@TargetPrice", entity.TargetPrice.ToString());
@@ -578,7 +578,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToBuyer", entity.CommentsToBuyer);
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
-            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString());
+            DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
             DM.Load_SP_Parameters("@Make", entity.Make);
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
@@ -589,7 +589,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CreatedBy", entity.CreatedBy);
             DM.Load_SP_Parameters("@Cavitation", entity.Cavitation);
             DM.Load_SP_Parameters("@Material", entity.Material);
-            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString());
+            DM.Load_SP_Parameters("@SentToVendor", entity.SentToVendor.ToString("G"));
             DM.Load_SP_Parameters("@LeadTimePPAP_FAIR", entity.LeadTimePPAPFAIR);
             DM.Load_SP_Parameters("@LeadTimeFirstProductionOrder", entity.LeadTimeFirstProductionOrder);
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
@@ -2157,11 +2157,11 @@ public class RfqSummaryHeaderCRUD
         try
         {
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailKey.ToString());
-            DM.Load_SP_Parameters("@PPAPDate", entity.PpapDate.ToString());
+            DM.Load_SP_Parameters("@PPAPDate", entity.PpapDate.ToString("G"));
             DM.Load_SP_Parameters("@InitialReleaseQty", entity.InitialReleaseQty.ToString());
-            DM.Load_SP_Parameters("@InitialReleaseDate", entity.InitialReleaseDate.ToString());
+            DM.Load_SP_Parameters("@InitialReleaseDate", entity.InitialReleaseDate.ToString("G"));
             DM.Load_SP_Parameters("@PrebuildQty", entity.PrebuildQty.ToString());
-            DM.Load_SP_Parameters("@PrebuildDate", entity.PrebuildDate.ToString());
+            DM.Load_SP_Parameters("@PrebuildDate", entity.PrebuildDate.ToString("G"));
             DM.Load_SP_Parameters("@PurchasingAllRecommendations", entity.PurchasingAllRecommendations.ToString());
             DM.Load_SP_Parameters("@EngineeringAllConcurrences", entity.EngineeringAllConcurrences.ToString());
             DM.Load_SP_Parameters("@ManufacturingAllConcurrences", entity.ManufacturingAllConcurrences.ToString());

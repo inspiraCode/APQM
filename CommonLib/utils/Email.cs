@@ -16,9 +16,9 @@ using System.Net.Mail;
 /// </summary>
 public class Email
 {
-    public SmtpClient server = new SmtpClient("smtp.gmail.com", 587);
-    public string EmailAddress = "capsonic.apps@gmail.com";
-    public string Password = "cApsOnIc13";
+    public SmtpClient server = new SmtpClient("smtp.emailsrvr.com", 587);
+    public string EmailAddress = "rfqm@capsonic.com";
+    public string Password = "request1324";
 
     public Email()
     {
@@ -32,7 +32,7 @@ public class Email
         //capsonic.apps@gmail.com
 
         server.Credentials = new System.Net.NetworkCredential(EmailAddress, Password);
-        server.EnableSsl = true;
+        server.EnableSsl = false;
     }
 
     public void SendMail(MailMessage Message)

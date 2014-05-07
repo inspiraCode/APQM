@@ -331,7 +331,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                                     Email NewMail = new Email();
                                     MailMessage Message = new MailMessage();
 
-                                    Message.From = new MailAddress("capsonic.apps@gmail.com", "capsonic.apps@gmail.com");
+                                    Message.From = new MailAddress("rfqm@capsonic.com", "rfqm@capsonic.com");
                                     Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
                                     Message.Subject = "Request For Quote";
                                     Message.IsBodyHtml = true;
@@ -366,7 +366,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                                     {
                                         NewMail.SendMail(Message);
                                     }
-                                    catch
+                                    catch (Exception ex)
                                     {
                                         DM.RollBack();
                                         Navigator.goToPage("~/Error.aspx", "ERROR:Could not send email to: " + supplier.ContactEmail.ToString());

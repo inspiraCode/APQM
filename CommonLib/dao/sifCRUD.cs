@@ -52,8 +52,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
@@ -101,8 +101,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
@@ -151,8 +151,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
@@ -200,8 +200,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
@@ -469,8 +469,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
@@ -519,8 +519,8 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@PrimaryCompetitors", entity.PrimaryCompetitors);
             DM.Load_SP_Parameters("@SpecificResourceRequirements", entity.SpecificResourceRequirements);
             DM.Load_SP_Parameters("@Technical", entity.Technical);
-            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString());
-            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString());
+            DM.Load_SP_Parameters("@QuoteDue", entity.QuoteDue.ToString("G"));
+            DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
             DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
