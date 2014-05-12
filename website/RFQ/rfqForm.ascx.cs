@@ -54,8 +54,8 @@ public partial class rfqForm : System.Web.UI.UserControl
             so.Status = "forNew";
             Session["rfqObject"] = so;
             lblMode.Text = "New";
-            uscRFQDetailList.setEntity(null);
-            uscRFQDetailList.load();
+            //uscRFQDetailList.setEntity(null);
+            //uscRFQDetailList.load();
         }
     }
     public void fillWithEntity(RFQ rfq)
@@ -123,9 +123,18 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         ViewState["SentToVendor"] = rfq.SentToVendor;
 
-        uscRFQDetailList.reset();
-        uscRFQDetailList.setEntity(rfq.RfqDetail);
-        uscRFQDetailList.load();
+        List<RFQEAV> rfqEAVList = new List<RFQEAV>();
+        
+        foreach(RFQEAV rfqEAVObject in rfqEAVList){
+            rfqDetailList ucRFQDetailList = (rfqDetailList)LoadControl("~/RFQ/rfqList.ascx");
+            ucRFQDetailList.reset();
+            //ucRFQDetailList.setEntity
+            rfqDetailContainer.Controls.Add(ucRFQDetailList);
+        }
+
+        //uscRFQDetailList.reset();
+        //uscRFQDetailList.setEntity(rfq.RfqDetail);
+        //uscRFQDetailList.load();
 
         uscRfqACR.reset();
         uscRfqACR.setEntity(rfq.RfqAcr);

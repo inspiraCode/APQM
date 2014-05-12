@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqDetailList.ascx.cs"
-    Inherits="rfqDetailList" %>
+    Inherits="rfqDetailList" ClassName="rfqDetailClass" %>
 <%@ Register Src="rfqDetailEdit.ascx" TagName="rfqDetailEdit" TagPrefix="uc1" %>
 <style type="text/css">
     .camposSinBordes

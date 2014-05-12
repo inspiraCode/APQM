@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
+<%@ Reference Control="~/RFQ/rfqDetailList.ascx" %>
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
 <%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc3" %>
@@ -341,7 +342,10 @@
     </div>
     <div style="background-color: rgba(185, 198, 219, 0.28);">
         <br />
-        <uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />
+        <asp:Panel ID="rfqDetailContainer" runat="server">
+            
+        </asp:Panel>
+        <%--<uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />--%>
         <div style="width: 100%; height: 140px;">
             <table cellspacing="0" align="right" style="width: 300px;">
                 <tr>
