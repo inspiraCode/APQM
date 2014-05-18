@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="Supplier_List.aspx.cs" Inherits="Supplier_Supplier_List" MaintainScrollPositionOnPostback="True" %>
+    CodeFile="~/Supplier/Supplier_List.aspx.cs" Inherits="Supplier_Supplier_List" MaintainScrollPositionOnPostback="True" %>
 
-<%@ Register Src="supplierList.ascx" TagName="supplierList" TagPrefix="uc1" %>
-<%@ Register Src="supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc2" %>
+<%@ Register Src="~/Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc1" %>
+<%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderMain" runat="Server">
     <span class="mainTitle">Suppliers</span>
     <asp:Button ID="btnAddSupplier" class="btnInTitle" runat="server" Text="New Supplier"

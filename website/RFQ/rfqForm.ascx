@@ -1,12 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
-<%@ Reference Control="~/RFQ/rfqDetailList.ascx" %>
-<%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <%@ Register Src="rfqACR.ascx" TagName="rfqACR" TagPrefix="uc2" %>
-<%@ Register Src="rfqEAV.ascx" TagName="rfqEAV" TagPrefix="uc3" %>
 <%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc4" %>
 <%@ Register Src="rfqAttachments.ascx" TagName="rfqAttachments" TagPrefix="uc5" %>
 <%@ Register Src="rfqVendorAttachments.ascx" TagName="rfqVendorAttachments" TagPrefix="uc6" %>
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc7" %>
+<%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <style type="text/css">
     .style2
     {
@@ -184,7 +182,7 @@
                             <td align="right">
                                 Prototype Tooling Lead Time
                             </td>
-                            <td align="left"'">
+                            <td align="left">
                                 <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" runat="server"
                                     Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
                             </td>
@@ -306,20 +304,6 @@
             </tr>
             <tr>
                 <td align="right" class="style78">
-                    Estimated Annual Usage
-                </td>
-                <td align="left" class="style77" data-step='10' data-intro='EAU for the current year.'>
-                    <asp:Label ID="lblEAV" runat="server" BackColor="LightGray" Style="text-align: center"
-                        Width="145px" Height="20px"></asp:Label>
-                    &nbsp;EAU for Years:
-                </td>
-                <td align="left" class="style70" colspan="2">
-                    <asp:Label ID="lblEAUYears" runat="server" BackColor="LightGray" Style="text-align: center"
-                        Width="300px" Height="20px"></asp:Label>
-                </td>
-            </tr>
-            <tr>
-                <td align="right" class="style78">
                     <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right" Width="145px"
                         Height="20px">Target Price</asp:Label>
                 </td>
@@ -342,68 +326,25 @@
     </div>
     <div style="background-color: rgba(185, 198, 219, 0.28);">
         <br />
-        <asp:Panel ID="rfqDetailContainer" runat="server">
-            
-        </asp:Panel>
-        <%--<uc1:rfqDetailList ID="uscRFQDetailList" runat="server" />--%>
-        <div style="width: 100%; height: 140px;">
-            <table cellspacing="0" align="right" style="width: 300px;">
-                <tr>
-                    <td align="right" class="style75" style="border-top: solid gray; border-left: solid gray;">
-                        Total Manufacturing Cost&nbsp;&nbsp;
-                    </td>
-                    <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"
-                        data-step='33' data-intro='Total Manufacturing Cost (formulated cell not to be completed by Supplier).'
-                        data-position='left'>
-                        <asp:Label ID="lblTotalManufacturingCost" CssClass="calculatedField" Style="text-align: right;
-                            margin-left: 0px;" runat="server" Width="104px" Height="20px">0</asp:Label>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" class="style75" style="border-left: solid gray;">
-                        SG&amp;A Profit&nbsp;&nbsp;
-                    </td>
-                    <td align="left" class="style31" style="border-right: solid gray;" data-step='34'
-                        data-intro='Enter cost for SG&A/Profit' data-position='left'>
-                        <asp:TextBox ID="txtSGAProfit" validate="number" validationid="validatingRFQForm"
-                            Style="text-align: right" runat="server" onchange="summarizeTotalPieceCost()"
-                            onkeyup="summarizeTotalPieceCost()" Width="100px" TabIndex="20"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" class="style75" style="border-left: solid gray;">
-                        Packing Cost/Unit&nbsp;&nbsp;
-                    </td>
-                    <td align="left" class="style31" style="border-right: solid gray;" data-step='35'
-                        data-intro='Enter packaging cost per unit.' data-position='left'>
-                        <asp:TextBox ID="txtPackingCostUnit" validate="number" validationid="validatingRFQForm"
-                            Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                            runat="server" Width="100px" TabIndex="21"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr align="left">
-                    <td align="right" class="style75" style="border-left: solid gray;">
-                        Assembly Cost/Unit&nbsp;&nbsp;
-                    </td>
-                    <td align="left" class="style31" style="border-right: solid gray;" data-step='36'
-                        data-intro='Enter cost for assembly, if applicable.' data-position='left'>
-                        <asp:TextBox ID="txtAssemblyCostUnit" validate="number" validationid="validatingRFQForm"
-                            Style="text-align: right" onchange="summarizeTotalPieceCost()" onkeyup="summarizeTotalPieceCost()"
-                            runat="server" Width="100px" TabIndex="22"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right" class="style75" style="border-left: solid gray; border-bottom: solid gray;">
-                        Total Piece Cost&nbsp;&nbsp;
-                    </td>
-                    <td align="left" class="style31" data-step='37' data-intro='Total Piece Cost (formulated cell not to be completed by the Supplier).'
-                        data-position='left' style="border-right: solid gray; border-bottom: solid gray;">
-                        <asp:Label ID="lblTotalPieceCost" runat="server" CssClass="calculatedField" Style="text-align: right"
-                            Width="104px" Height="20px">0</asp:Label>
-                    </td>
-                </tr>
-            </table>
-        </div>
+        <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="on_item_databound">
+            <ItemTemplate>
+                <div align="left" style="height: 20px;">
+                    <asp:HiddenField ID="hiddenEAU_ID" runat="server" />
+                    <div style="display: inline;">
+                        Estimated Annual Usage:
+                    </div>
+                    <asp:Label ID="lblEAU" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Volume")%>' Style="min-width: 300px; display: inline-block;"></asp:Label>
+                    <div style="display: inline;">
+                        Years:
+                    </div>
+                    <asp:Label ID="lblYears" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Year")%>' Style="min-width: 300px; display: inline-block;"></asp:Label>
+                </div>
+                <div id="rfqDetailContainer" rfqEAU_ID='<%# DataBinder.Eval(Container.DataItem, "Id")%>'>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+        <%--<asp:Panel ID="rfqDetailContainer" runat="server">
+        </asp:Panel>--%>
     </div>
     <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
     </div>
@@ -567,8 +508,8 @@
     <br />
     <br />
     Reason
-    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine" validate="required" validationid="validatingRFQForm"
-        Width="400px" TabIndex="38"></asp:TextBox>
+    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
+        validate="required" validationid="validatingRFQForm" Width="400px" TabIndex="38"></asp:TextBox>
 </div>
 <br />
 <br />
@@ -578,9 +519,20 @@
 <br />
 <uc7:notifier ID="uscNotifier" runat="server" />
 
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('[rfqEAU_ID]').each(function () {
+            jQuery(this).load('<%= ResolveUrl("~/RFQ/RFQDetail.aspx") %>?EAV_ID=' + jQuery(this).attr('rfqEAU_ID') + '&noCache=' + Number(new Date()) + ' #RFQDetailContainer');
+        });
+    });
+    
+</script>
+
+
 <script type="text/javascript">
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         on_change_option_quote();
         jQuery("[toHide]").hide();
 
@@ -593,7 +545,7 @@
             autoSubmit: false,
             uploadButtonClass: "ajax-file-upload-green",
             maxFileSize: 4194304,
-            onError: function(files, status, errMsg) {
+            onError: function (files, status, errMsg) {
                 //files: list of files
                 //status: error status
                 //errMsg: error message
@@ -602,7 +554,7 @@
                 } catch (e) {
                 }
             },
-            afterUploadAll: function() {
+            afterUploadAll: function () {
                 setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
                 jQuery("#divImgEmail").css("display", "block");
             }
@@ -622,84 +574,84 @@
 
     function summarizeTotalPieceCost() {
 
-        var txtSGAProfit = document.getElementById("<%= txtSGAProfit.ClientID %>");
-        if (txtSGAProfit && jQuery.trim(txtSGAProfit.value) != "") {
-            txtSGAProfit = Number(txtSGAProfit.value);
-        }
-        else {
-            txtSGAProfit = 0;
-        }
+        //        var txtSGAProfit = document.getElementById("");
+        //        if (txtSGAProfit && jQuery.trim(txtSGAProfit.value) != "") {
+        //            txtSGAProfit = Number(txtSGAProfit.value);
+        //        }
+        //        else {
+        //            txtSGAProfit = 0;
+        //        }
 
-        var lblTotalManufacturingCost = document.getElementById("<%= lblTotalManufacturingCost.ClientID %>");
-        if (lblTotalManufacturingCost && jQuery.trim(lblTotalManufacturingCost.textContent) != "") {
-            lblTotalManufacturingCost = Number(lblTotalManufacturingCost.textContent);
-        }
-        else {
-            lblTotalManufacturingCost.textContent = 0;
-        }
+        //        var lblTotalManufacturingCost = document.getElementById("");
+        //        if (lblTotalManufacturingCost && jQuery.trim(lblTotalManufacturingCost.textContent) != "") {
+        //            lblTotalManufacturingCost = Number(lblTotalManufacturingCost.textContent);
+        //        }
+        //        else {
+        //            lblTotalManufacturingCost.textContent = 0;
+        //        }
 
-        var txtPackingCostUnit = document.getElementById("<%= txtPackingCostUnit.ClientID %>");
-        if (txtPackingCostUnit && jQuery.trim(txtPackingCostUnit.value) != "") {
-            txtPackingCostUnit = Number(txtPackingCostUnit.value);
-        }
-        else {
-            txtPackingCostUnit = 0;
-        }
+        //        var txtPackingCostUnit = document.getElementById("");
+        //        if (txtPackingCostUnit && jQuery.trim(txtPackingCostUnit.value) != "") {
+        //            txtPackingCostUnit = Number(txtPackingCostUnit.value);
+        //        }
+        //        else {
+        //            txtPackingCostUnit = 0;
+        //        }
 
-        var txtAssemblyCostUnit = document.getElementById("<%= txtAssemblyCostUnit.ClientID %>");
-        if (txtAssemblyCostUnit && jQuery.trim(txtAssemblyCostUnit.value) != "") {
-            txtAssemblyCostUnit = Number(txtAssemblyCostUnit.value);
-        }
-        else {
-            txtAssemblyCostUnit = 0;
-        }
+        //        var txtAssemblyCostUnit = document.getElementById("");
+        //        if (txtAssemblyCostUnit && jQuery.trim(txtAssemblyCostUnit.value) != "") {
+        //            txtAssemblyCostUnit = Number(txtAssemblyCostUnit.value);
+        //        }
+        //        else {
+        //            txtAssemblyCostUnit = 0;
+        //        }
 
-        var lblTotalPieceCost = document.getElementById("<%= lblTotalPieceCost.ClientID %>");
+        //        var lblTotalPieceCost = document.getElementById("");
 
-        lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
+        //        lblTotalPieceCost.textContent = txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit;
     }
 
     var uploadObj = null;
 
     function uploadFiles(e, strSaveMode) {
-        if (strSaveMode == "finalize") {
-            var btnAddRFQDetail =jQuery('#<%= uscRFQDetailList.FindControl("btnAdd").ClientID %>');
-            if (btnAddRFQDetail.css('display') != "none" && btnAddRFQDetail.is(":visible")) {
-                var iTotalRowsRFQDetail = jQuery("#tableRFQDetail tr").length;
-                
-                if (iTotalRowsRFQDetail < 6) {
-                    var pos = btnAddRFQDetail.position();
-                    jQuery('#messageDisplayer').css('left', (pos.left - 9) + 'px');
-                    jQuery('#messageDisplayer').css('top', (pos.top + btnAddRFQDetail.outerHeight() + 2) + 'px');
-                    jQuery('#scrim').show();
-                    jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
-                    jQuery('html, body').animate({
-                        scrollTop: btnAddRFQDetail.offset().top - 300
-                    }, 100);
-                    btnAddRFQDetail.focus();
-                    return;
-                }
-            }
-            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
-        } else if (strSaveMode == "save") {
-            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
-        }
+        //        if (strSaveMode == "finalize") {
+        //            var btnAddRFQDetail =jQuery('#');
+        //            if (btnAddRFQDetail.css('display') != "none" && btnAddRFQDetail.is(":visible")) {
+        //                var iTotalRowsRFQDetail = jQuery("#tableRFQDetail tr").length;
+        //                
+        //                if (iTotalRowsRFQDetail < 6) {
+        //                    var pos = btnAddRFQDetail.position();
+        //                    jQuery('#messageDisplayer').css('left', (pos.left - 9) + 'px');
+        //                    jQuery('#messageDisplayer').css('top', (pos.top + btnAddRFQDetail.outerHeight() + 2) + 'px');
+        //                    jQuery('#scrim').show();
+        //                    jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
+        //                    jQuery('html, body').animate({
+        //                        scrollTop: btnAddRFQDetail.offset().top - 300
+        //                    }, 100);
+        //                    btnAddRFQDetail.focus();
+        //                    return;
+        //                }
+        //            }
+        //            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
+        //        } else if (strSaveMode == "save") {
+        //            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
+        //        }
 
-        if (validate(e)) {
-            if (uploadObj != null) {
-                try {
-                    enableCaller(false);
-                } catch (e) {
-                }
+        //        if (validate(e)) {
+        //            if (uploadObj != null) {
+        //                try {
+        //                    enableCaller(false);
+        //                } catch (e) {
+        //                }
 
-                if (uploadObj.fileCounter > 1) {
-                    uploadObj.startUpload();
-                } else {
-                    setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
-                    jQuery("#divImgEmail").css("display", "block");
-                }
-            }
-        }
+        //                if (uploadObj.fileCounter > 1) {
+        //                    uploadObj.startUpload();
+        //                } else {
+        //                    setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
+        //                    jQuery("#divImgEmail").css("display", "block");
+        //                }
+        //            }
+        //        }
+        alert("update");
     }
 </script>
-

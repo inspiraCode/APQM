@@ -3,10 +3,6 @@ C:\Users\Aaron Corrales\Desktop\Proyeco CAPSONIC\Amalgamma\BD_MNG\bin\Debug\BD_M
 C:\Users\Aaron Corrales\Desktop\Proyeco CAPSONIC\Amalgamma\BD_MNG\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Aaron Corrales\Desktop\Proyeco CAPSONIC\Amalgamma\BD_MNG\obj\Debug\BD_MNG.dll
 C:\Users\Aaron Corrales\Desktop\Proyeco CAPSONIC\Amalgamma\BD_MNG\obj\Debug\BD_MNG.pdb
-C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.dll
-C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.pdb
-C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.dll
-C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.pdb
 C:\wsetup\repositories\APQM\BD_MNG\bin\Debug\BD_MNG.dll
 C:\wsetup\repositories\APQM\BD_MNG\bin\Debug\BD_MNG.pdb
 C:\wsetup\repositories\APQM\BD_MNG\obj\Debug\ResolveAssemblyReference.cache
@@ -17,3 +13,7 @@ C:\Users\apacheco\Documents\repositories\APQM\BD_MNG\bin\Debug\BD_MNG.pdb
 C:\Users\apacheco\Documents\repositories\APQM\BD_MNG\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\apacheco\Documents\repositories\APQM\BD_MNG\obj\Debug\BD_MNG.dll
 C:\Users\apacheco\Documents\repositories\APQM\BD_MNG\obj\Debug\BD_MNG.pdb
+C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.dll
+C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.pdb
+C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.dll
+C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.pdb

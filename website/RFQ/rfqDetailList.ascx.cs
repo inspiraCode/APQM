@@ -8,10 +8,11 @@ using System.Web.UI.WebControls;
 public partial class rfqDetailList : System.Web.UI.UserControl
 {    
     private List<RFQDetail> rfqDetail = null;
+
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        rfqDetail = (List<RFQDetail>) Session["rfqDetailObject"];
+        rfqDetail = (List<RFQDetail>)ViewState["rfqDetailObject"];
     }
     public void load()
     {
@@ -20,14 +21,13 @@ public partial class rfqDetailList : System.Web.UI.UserControl
     public void reset()
     {
         rfqDetail = null;
-        Session.Remove("rfqDetailObject");
+        ViewState.Remove("rfqDetailObject");
     }
     private void loadDetail()
     {        
         repeaterRFQDetail.DataSource = rfqDetail;
         repeaterRFQDetail.DataBind();
         summarizeTotals();
-       
     }
     public void summarizeTotals()
     {
@@ -64,11 +64,11 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         {
             rfqDetail = new List<RFQDetail>();
         }
-        Session["rfqDetailObject"] = rfqDetail;
+        ViewState["rfqDetailObject"] = rfqDetail;
     }
     public List<RFQDetail> getEntity()
     {
-        return (List<RFQDetail>) Session["rfqDetailObject"];
+        return (List<RFQDetail>)ViewState["rfqDetailObject"];
     }
     public void R1_ItemDataBound(Object Sender, RepeaterItemEventArgs e) 
     {
@@ -116,7 +116,7 @@ public partial class rfqDetailList : System.Web.UI.UserControl
         }
 
         rfqDetail.Add(rfqDetailLine);
-        Session["rfqDetailObject"] = rfqDetail;
+        ViewState["rfqDetailObject"] = rfqDetail;
 
         loadDetail();
         clearAddFields();

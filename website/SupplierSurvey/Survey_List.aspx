@@ -1,9 +1,9 @@
 <%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="Survey_List.aspx.cs" Inherits="SupplierSurvey_Survey_List" MaintainScrollPositionOnPostback="True" %>
+    CodeFile="~/SupplierSurvey/Survey_List.aspx.cs" Inherits="SupplierSurvey_Survey_List" MaintainScrollPositionOnPostback="True" %>
 
-<%@ Register Src="surveyList.ascx" TagName="surveyList" TagPrefix="uc1" %>
-<%@ Register Src="sendNewSurvey.ascx" TagName="sendNewSurvey" TagPrefix="uc2" %>
-<%@ Register Src="surveyForm.ascx" TagName="surveyForm" TagPrefix="uc3" %>
+<%@ Register Src="~/SupplierSurvey/surveyList.ascx" TagName="surveyList" TagPrefix="uc1" %>
+<%@ Register Src="~/SupplierSurvey/sendNewSurvey.ascx" TagName="sendNewSurvey" TagPrefix="uc2" %>
+<%@ Register Src="~/SupplierSurvey/surveyForm.ascx" TagName="surveyForm" TagPrefix="uc3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderMain" runat="Server">
     <span class="mainTitle" id="lblTitle" runat="server">Surveys</span>
     <asp:Button ID="btnSendSurvey" class="btnInTitle" runat="server" Text="Send new survey"

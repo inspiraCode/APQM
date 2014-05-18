@@ -62,6 +62,7 @@
         @import '<%= this.ResolveUrl("~/Scripts/Alertify/alertify.core.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/Alertify/alertify.default.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.css") %>';
+        @import '<%= this.ResolveUrl("~/Scripts/jQuery/Handsontable/jquery.handsontable.full.css") %>';
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js" type="text/javascript"></script>
@@ -126,6 +127,8 @@
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/jquery.ui.datepicker.js") %>'
         type="text/javascript"></script>
 
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Handsontable/jquery.handsontable.full.js") %>'
+        type="text/javascript"></script>
 </head>
 <body style="padding: 140px 20px 0px 20px; font-family: Tahoma; font-size: 12px;">
     <%-- <table width="100%" style="margin-bottom: -20px;">

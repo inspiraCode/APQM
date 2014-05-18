@@ -16,6 +16,7 @@ public partial class rfqForm : System.Web.UI.UserControl
     public RFQ rfq = null;
 
     private RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
+    private RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
     private RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();   
 
     protected void Page_Load(object sender, EventArgs e)
@@ -43,8 +44,8 @@ public partial class rfqForm : System.Web.UI.UserControl
             }
             else if (((SessionObject)Session["rfqObject"]).Status == "forNew")
             {
-                lblMode.Text = "New";                
-            }            
+                lblMode.Text = "New";
+            }
             ((SessionObject)Session["rfqObject"]).Status = "Retrieved";
         }
         else
@@ -74,19 +75,13 @@ public partial class rfqForm : System.Web.UI.UserControl
         lblPartName.Text = rfq.PartMaterial;
         lblDrawingLevel.Text = rfq.DrawingLevel;
         lblTargetPrice.Text = rfq.TargetPrice.ToString();
-        lblEAV.Text = rfq.EstimatedAnnualVolume;
-        lblEAUYears.Text = rfq.EauCalendarYears;
-
+        
         lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
         lblManufacturingLocation.Text = rfq.ManufacturingLocation;
         lblShipFromLocation.Text = rfq.ShipLocation;
         txtPreparedBy.Text = rfq.PreparedBy;
 
-        txtSGAProfit.Text = rfq.SgAProfit.ToString();
-        txtPackingCostUnit.Text = rfq.PackingPerUnit.ToString();
-        txtAssemblyCostUnit.Text = rfq.AssemblyCostPerUnit.ToString();
-       
         
         /*Fields repleaced by the next ones. Required by Seth*/
         txtProductionLeadTime.Text = rfq.ProductionLeadTime;
@@ -123,15 +118,11 @@ public partial class rfqForm : System.Web.UI.UserControl
 
         ViewState["SentToVendor"] = rfq.SentToVendor;
 
-        List<RFQEAV> rfqEAVList = new List<RFQEAV>();
-        
-        foreach(RFQEAV rfqEAVObject in rfqEAVList){
-            rfqDetailList ucRFQDetailList = (rfqDetailList)LoadControl("~/RFQ/rfqList.ascx");
-            ucRFQDetailList.reset();
-            //ucRFQDetailList.setEntity
-            rfqDetailContainer.Controls.Add(ucRFQDetailList);
-        }
+        List<RFQEAV> rfqEAVList = rfq.RfqEAV;
 
+        repeaterRFQDetail.DataSource = rfqEAVList;
+        repeaterRFQDetail.DataBind();
+        
         //uscRFQDetailList.reset();
         //uscRFQDetailList.setEntity(rfq.RfqDetail);
         //uscRFQDetailList.load();
@@ -226,14 +217,9 @@ public partial class rfqForm : System.Web.UI.UserControl
         rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
         rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
-        rfq.EstimatedAnnualVolume = lblEAV.Text;
-        rfq.EauCalendarYears = lblEAUYears.Text;
-
+        
         rfq.PreparedBy = txtPreparedBy.Text;
-        if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
-        if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);
-        if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
-
+        
         /* To be replaced, Requested by Seth*****************************************************/
         rfq.ProductionLeadTime = txtProductionLeadTime.Text;
         rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
@@ -284,7 +270,6 @@ public partial class rfqForm : System.Web.UI.UserControl
         }
         Session.Remove("RFQATTACHMENTSFOLDERINBOX");
 
-        List<RFQDetail> rfqDetailList = uscRFQDetailList.getEntity();
         List<RFQACR> rfqACRList = uscRfqACR.getEntity();
 
         ConnectionManager CM = new ConnectionManager();
@@ -317,10 +302,23 @@ public partial class rfqForm : System.Web.UI.UserControl
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                 return false;
             }
-            if (!rfqDetailCRUD.deleteByParentID(rfq.Id, ref DM))
+
+            foreach (RFQEAV rfqEAVLocal in rfq.RfqEAV)
             {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
-                return false;
+                if(rfqEAV_CRUD.update(rfqEAVLocal, ref DM))
+                {
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
+                    return false;
+                }
+                //if (txtSGAProfit.Text.Trim() != "") rfq.SgAProfit = float.Parse(txtSGAProfit.Text);
+                //if (txtPackingCostUnit.Text.Trim() != "") rfq.PackingPerUnit = float.Parse(txtPackingCostUnit.Text);
+                //if (txtAssemblyCostUnit.Text.Trim() != "") rfq.AssemblyCostPerUnit = float.Parse(txtAssemblyCostUnit.Text);
+
+                if (!rfqDetailCRUD.deleteByParentID(rfqEAVLocal.Id, ref DM))
+                {
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
+                    return false;
+                }
             }
             if (!rfqACRCRUD.deleteByParentID(rfq.Id, ref DM))
             {
@@ -328,13 +326,16 @@ public partial class rfqForm : System.Web.UI.UserControl
                 return false;
             }
         }
-        foreach (RFQDetail detail in rfqDetailList)
+        foreach (RFQEAV rfqEAVLocal in rfq.RfqEAV)
         {
-            detail.RfqHeaderKey = this.rfq.Id;
-            if (!rfqDetailCRUD.create(detail, ref DM))
+            foreach (RFQDetail detail in rfqEAVLocal.RfqDetail)
             {
-                Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
-                return false;
+                detail.RfqEAVKey = rfqEAVLocal.Id;
+                if (!rfqDetailCRUD.create(detail, ref DM))
+                {
+                    Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqDetailCRUD.ErrorMessage);
+                    return false;
+                }
             }
         }
         foreach (RFQACR detail in rfqACRList)
@@ -387,5 +388,31 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     public void showCancelMessage(){
         uscNotifier.showLog("Values have been re-established.");
+    }
+
+    public void on_item_databound(Object Sender, RepeaterItemEventArgs e)
+    {
+        //if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+        //{
+        //    BOMDetail bomDetail = (BOMDetail)e.Item.DataItem;
+        //    if (bomDetail.PartNumber.Trim() == "")
+        //    {
+        //        ((Label)e.Item.FindControl("lblPartNumber")).Text = "(Empty)";
+        //    }
+        //    if (bomDetail.User != "")
+        //    {
+        //        ((LinkButton)e.Item.FindControl("linkAssignedToLine")).Text = bomDetail.User;
+        //    }
+        //    if (bomDetail.internalAction == "UPDATE")
+        //    {
+
+        //        ((Label)e.Item.FindControl("lblStatus")).Text = "For Edit";
+        //    }
+
+        //    ((ImageButton)e.Item.FindControl("deleteByID")).CommandArgument = bomDetail.Sequence.ToString();
+        //    ((ImageButton)e.Item.FindControl("updateByID")).CommandArgument = bomDetail.Sequence.ToString();
+        //    ((LinkButton)e.Item.FindControl("linkAssignedToLine")).CommandArgument = bomDetail.Sequence.ToString();
+            
+        //}
     }
 }

@@ -2,11 +2,11 @@
     MasterPageFile="~/_Layouts/MasterP.master" MaintainScrollPositionOnPostback="True" %>
 
 <%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
-<%@ Register Src="Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
-<%@ Register Src="Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc3" %>
-<%@ Register Src="SIF/sifList.ascx" TagName="sifList" TagPrefix="uc4" %>
-<%@ Register Src="SIF/SifMaster.ascx" TagName="SifMaster" TagPrefix="uc5" %>
-<%@ Register Src="BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
+<%@ Register Src="~/Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
+<%@ Register Src="~/Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc3" %>
+<%@ Register Src="~/SIF/sifList.ascx" TagName="sifList" TagPrefix="uc4" %>
+<%@ Register Src="~/SIF/sifMaster.ascx" TagName="SifMaster" TagPrefix="uc5" %>
+<%@ Register Src="~/BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="1">
         <asp:View ID="Login" runat="server">

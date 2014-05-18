@@ -1,10 +1,10 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="SIF.aspx.cs" Inherits="_Default"
     MasterPageFile="~/_Layouts/MasterP.master" MaintainScrollPositionOnPostback="True" %>
 
-<%@ Register Src="sifMaster.ascx" TagName="sifMaster" TagPrefix="uc1" %>
-<%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
-<%@ Register Src="sifList.ascx" TagName="sifList" TagPrefix="uc3" %>
-<%@ Register Src="../BOM/bomForm.ascx" TagName="bomForm" TagPrefix="uc4" %>
+<%@ Register Src="~/SIF/sifMaster.ascx" TagName="sifMaster" TagPrefix="uc1" %>
+<%@ Register Src="~/Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
+<%@ Register Src="~/SIF/sifList.ascx" TagName="sifList" TagPrefix="uc3" %>
+<%@ Register Src="~/BOM/bomForm.ascx" TagName="bomForm" TagPrefix="uc4" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Functions" runat="server">

@@ -18,9 +18,6 @@ public class RFQ
     private float productionTooling;
     private float prototypeTooling;
     private float prototypePiece; 
-    private float sgAProfit; 
-    private float packingPerUnit; 
-    private float assemblyCostPerUnit;
     private string status = "";
     private DateTime dueDate = new DateTime(1985, 2, 10);
     private DateTime sentToVendor = new DateTime(1985, 2, 10);
@@ -75,9 +72,6 @@ public class RFQ
 
     private string eauCalendarYears = "";
 
-    
-    
-    private List<RFQDetail> rfqDetail;
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
 
@@ -105,11 +99,6 @@ public class RFQ
     {
         get { return acknowledgement; }
         set { acknowledgement = value; }
-    }
-    public List<RFQDetail> RfqDetail
-    {
-        get { return rfqDetail; }
-        set { rfqDetail = value; }
     }
     public DateTime DueDate
     {
@@ -191,21 +180,6 @@ public class RFQ
         get { return prototypePiece; }
         set { prototypePiece = value; }
     }
-    public float SgAProfit
-    {
-        get { return sgAProfit; }
-        set { sgAProfit = value; }
-    }
-    public float PackingPerUnit
-    {
-        get { return packingPerUnit; }
-        set { packingPerUnit = value; }
-    }
-    public float AssemblyCostPerUnit
-    {
-        get { return assemblyCostPerUnit; }
-        set { assemblyCostPerUnit = value; }
-    }    
     public long Id
     {
         get { return id; }
@@ -374,7 +348,19 @@ public class RFQEAV
     private long rfqHeaderKey = -1;
     private string year = "";
     private float volume;
+    private float sgAProfit;
+    private float packingPerUnit;
+    private float assemblyCostPerUnit;
+    
 
+    private List<RFQDetail> rfqDetail;
+
+    public List<RFQDetail> RfqDetail
+    {
+        get { return rfqDetail; }
+        set { rfqDetail = value; }
+    }
+    
     public string EAV_Year_Volume
     {
         get { return year + " - " + volume; } 
@@ -398,6 +384,21 @@ public class RFQEAV
     {
         get { return volume; }
         set { volume = value; }
+    }
+    public float SgAProfit
+    {
+        get { return sgAProfit; }
+        set { sgAProfit = value; }
+    }
+    public float PackingPerUnit
+    {
+        get { return packingPerUnit; }
+        set { packingPerUnit = value; }
+    }
+    public float AssemblyCostPerUnit
+    {
+        get { return assemblyCostPerUnit; }
+        set { assemblyCostPerUnit = value; }
     }
 }
 
@@ -442,10 +443,11 @@ public class RFQNumberEntity
     }
 }
 
+[Serializable]
 public class RFQDetail
 {
     private long id;
-    private long rfqHeaderKey;
+    private long rfqEAVKey;
     private string itemDescription = "";
     private string um = "";
     private float rpcQty;
@@ -507,10 +509,10 @@ public class RFQDetail
         get { return id; }
         set { id = value; }
     } 
-    public long RfqHeaderKey
+    public long RfqEAVKey
     {
-        get { return rfqHeaderKey; }
-        set { rfqHeaderKey = value; }
+        get { return rfqEAVKey; }
+        set { rfqEAVKey = value; }
     }
     public string ItemDescription
     {

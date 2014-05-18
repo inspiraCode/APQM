@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterMenu.master" AutoEventWireup="true"
-    CodeFile="Supplier_Form.aspx.cs" Inherits="Supplier_Supplier_Form" MaintainScrollPositionOnPostback="True" %>
+    CodeFile="~/Supplier/Supplier_Form.aspx.cs" Inherits="Supplier_Supplier_Form" MaintainScrollPositionOnPostback="True" %>
 
-<%@ Register Src="supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
+<%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderMain" runat="Server">
     <span class="mainTitle" runat="server" id="lblTitle"></span>
     <div id="Tabs" class="tabDiv">

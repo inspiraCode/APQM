@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomForm.ascx.cs" Inherits="bomForm" %>
-<%@ Register Src="bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
-<%@ Register Src="bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
-<%@ Register Src="../SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
-<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc4" %>
-<%@ Register Src="multipleComponentsToRFQ.ascx" TagName="multipleComponentsToRFQ"
+<%@ Register Src="~/BOM/bomDetailList.ascx" TagName="bomDetailList" TagPrefix="uc1" %>
+<%@ Register Src="~/BOM/bomStatusInfo.ascx" TagName="bomStatusInfo" TagPrefix="uc2" %>
+<%@ Register Src="~/SIF/sifDetail.ascx" TagName="sifDetail" TagPrefix="uc3" %>
+<%@ Register Src="~/Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc4" %>
+<%@ Register Src="~/BOM/multipleComponentsToRFQ.ascx" TagName="multipleComponentsToRFQ"
     TagPrefix="uc5" %>
 <style type="text/css">
     .style1

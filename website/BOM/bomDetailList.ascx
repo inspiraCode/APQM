@@ -1,10 +1,10 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomDetailList.ascx.cs"
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="~/BOM/bomDetailList.ascx.cs"
     Inherits="bomDetailList" %>
-<%@ Register Src="bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
-<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
-<%@ Register Src="../Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
-<%@ Register Src="../RFQ/resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc4" %>
-<%@ Register src="../RFQ/sendNewRFQEdit.ascx" tagname="sendNewRFQEdit" tagprefix="uc5" %>
+<%@ Register Src="~/BOM/bomDetailEdit.ascx" TagName="bomDetailEdit" TagPrefix="uc2" %>
+<%@ Register Src="~/Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc3" %>
+<%@ Register Src="~/Utils/Validator/Validator.ascx" TagName="Validator" TagPrefix="uc1" %>
+<%@ Register Src="~/RFQ/resendRFQ.ascx" TagName="resendRFQ" TagPrefix="uc4" %>
+<%@ Register Src="~/RFQ/sendNewRFQEdit.ascx" TagName="sendNewRFQEdit" TagPrefix="uc5" %>
 <style type="text/css">
     .camposSinBordes
     {
@@ -45,7 +45,6 @@
 <asp:Panel ID="panelPopup" runat="server" Visible="false">
     <uc2:bomDetailEdit ID="uscBomDetailEdit" runat="server" OnOk_Click="on_edit_line"
         OnCancel_Click="on_cancelEdit_line" />
-
     <script type="text/javascript">
         document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "BOM Line Edit");
         jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
@@ -54,7 +53,6 @@
             dialogClass: "no-close", closeOnEscape: false
         });
     </script>
-
 </asp:Panel>
 <table cellspacing="0" align="left" style="margin-left: 80px;">
     <tr>
@@ -70,16 +68,19 @@
         <th class="camposSinBordes itemFields" style="width: 120px; min-width: 120px; max-width: 120px;">
             Component Part Number
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
+            display: none;">
             Capsonic PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
+            display: none;">
             Customer PN
         </th>
         <th class="camposSinBordes itemFields" style="width: 90px; min-width: 90px; max-width: 90px;">
             Manufacture PN
         </th>
-        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;display:none;">
+        <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
+            display: none;">
             Supplier PN
         </th>
         <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
@@ -141,16 +142,16 @@
                     Text="New Part Number" />
             </div>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top; display: none;">
             <asp:TextBox ID="txtCapsonicPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top; display: none;">
             <asp:TextBox ID="txtCustomerPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
             <asp:TextBox ID="txtManufacturePN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
-        <th class="camposSinBordes itemFields" style="vertical-align: top;display:none;">
+        <th class="camposSinBordes itemFields" style="vertical-align: top; display: none;">
             <asp:TextBox ID="txtSupplierPN" Style="text-align: center;" runat="server" Width="60px"></asp:TextBox>
         </th>
         <th class="camposSinBordes itemFields" style="vertical-align: top;">
@@ -205,7 +206,7 @@
         <th class="camposSinBordes">
             <div style="width: 70px;">
             </div>
-         </th>
+        </th>
         <th class="camposSinBordes" style="vertical-align: top;">
             <asp:CheckBox ID="chkDirectedBuy" runat="server" Width="60px" />
         </th>
@@ -233,7 +234,8 @@
             <ItemTemplate>
                 <h3 style="height: 20px;">
                     <div>
-                        <asp:CheckBox ID="chkSelect" runat="server" Style="float: left; position: absolute; left: 5px;" clickeableInHeader="true" />
+                        <asp:CheckBox ID="chkSelect" runat="server" Style="float: left; position: absolute;
+                            left: 5px;" clickeableInHeader="true" />
                         <asp:ImageButton ImageUrl="~/pics/delete-icon.png" Height="20px" ID="deleteByID"
                             OnCommand="deleteByID" clickeableInHeader="true" runat="server" Text="Edit" Style="float: left;
                             position: absolute; left: 30px;" />
@@ -257,16 +259,19 @@
                                 <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;">
                                     <asp:Label ID="lblPartNumber" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "PartNumber") %>'></asp:Label>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;
+                                    display: none;">
                                     <%# DataBinder.Eval(Container.DataItem, "CapsonicPN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;
+                                    display: none;">
                                     <%# DataBinder.Eval(Container.DataItem, "CustomerPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;">
                                     <%# DataBinder.Eval(Container.DataItem, "ManufacturePN")%>
                                 </td>
-                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;display:none;">
+                                <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px;
+                                    display: none;">
                                     <%# DataBinder.Eval(Container.DataItem, "SupplierPN")%>
                                 </td>
                                 <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;">
@@ -319,32 +324,27 @@
 </div>
 <uc3:notifier ID="uscNotifier" OnPrompt="on_prompt_partNumber" runat="server" />
 <uc1:Validator ID="Validator1" runat="server" />
-
-
 <asp:Button ID="btnResendRFQ" runat="server" Text="Resend RFQ" OnClick="btnResendRFQ_Click"
     Style="display: none;" />
 <asp:HiddenField ID="HiddenFieldResendRFQ" runat="server" />
-
-<asp:Button ID="btnEditRFQBuyerSide" runat="server" Text="Edit RFQ Buyer Side" 
-    Style="display: none;" onclick="btnEditRFQBuyerSide_Click" />
+<asp:Button ID="btnEditRFQBuyerSide" runat="server" Text="Edit RFQ Buyer Side" Style="display: none;"
+    OnClick="btnEditRFQBuyerSide_Click" />
 <asp:HiddenField ID="HiddenFieldEditRFQBuyerSide" runat="server" />
-
-
 <script type="text/javascript">
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         jQuery("#accordionBOM").accordion({
             //            beforeActivate: function(event, ui) {
             //                ui.oldPanel.hide();
             //                ui.newPanel.hide();
             //            },
-            activate: function(event, ui) {
+            activate: function (event, ui) {
                 var vActive = jQuery(this).accordion("option", "active");
                 if (vActive.toString() !== "false") {
                     //jQuery('.dataTable').hide();
                     var bomDetailKey;
                     bomDetailKey = ui.newHeader.children().children()[4].value;
                     ui.newPanel.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
-                function(responseTxt, statusTxt, xhr) {
+                function (responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success")
                     //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
                         jQuery('.dataTable').dataTable({
@@ -370,7 +370,7 @@
         clickeableInHeader();
     });
     function clickeableInHeader() {
-        jQuery('[clickeableInHeader="true"]').click(function(e) {
+        jQuery('[clickeableInHeader="true"]').click(function (e) {
             e.stopPropagation();
             //Your Code here(For example a call to your function)
         });
@@ -380,14 +380,14 @@
             var activePaneNumber = jQuery("#accordionBOM").accordion('option', 'active');
             activeHeader = jQuery("#accordionBOM h3").eq(activePaneNumber);
             var activePaneContent = jQuery(event.srcElement).parent().parent().parent().parent().parent().parent().parent();
-            
+
             jQuery.ajax({
                 type: "POST",
                 url: '<%= ResolveUrl("~/RFQ/RFQList.aspx/deleteByID") %>',
                 data: "{sRFQHeaderKey:'" + sRFQ_ID + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function(msg) {
+                success: function (msg) {
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
                     if (msg.d != "") {
@@ -396,7 +396,7 @@
                             var bomDetailKey;
                             bomDetailKey = activeHeader.children().children()[4].value;
                             activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
-                function(responseTxt, statusTxt, xhr) {
+                function (responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success") {
                         //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
                         jQuery('.dataTable').dataTable({
@@ -417,7 +417,7 @@
                     else
                         alert("An error has occurred.");
                 },
-                error: function(a, b, c) {
+                error: function (a, b, c) {
                     alert("An error has occurred.");
                 }
             });
@@ -435,7 +435,7 @@
                 data: "{sRFQHeaderKey:'" + sRFQ_ID + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function(msg) {
+                success: function (msg) {
                     // Replace the div's content with the page method's return.
                     //$("#Result").text(msg.d);
                     if (msg.d != "") {
@@ -444,7 +444,7 @@
                             var bomDetailKey;
                             bomDetailKey = activeHeader.children().children()[4].value;
                             activePaneContent.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
-                function(responseTxt, statusTxt, xhr) {
+                function (responseTxt, statusTxt, xhr) {
                     if (statusTxt == "success") {
                         //jQuery(this).find("#clientID_GridRFQList").children().children().css("display", "block");
                         jQuery('.dataTable').dataTable({
@@ -465,7 +465,7 @@
                     else
                         alert("An error has occurred.");
                 },
-                error: function(a, b, c) {
+                error: function (a, b, c) {
                     alert("An error has occurred.");
                 }
             });
@@ -483,26 +483,24 @@
         return false;
     }
 </script>
-
-
 <asp:Panel ID="panelResendRFQ" runat="server" Visible="false">
     <uc4:resendRFQ ID="uscResendRFQ" runat="server" OnOk_Click="on_resendRFQ" OnCancel_Click="on_cancel_resendRFQ" />
     <script type="text/javascript">
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             document.getElementById("<%= this.panelResendRFQ.ClientID %>").setAttribute("title", "Re-send RFQ");
             jQuery("#<%= this.panelResendRFQ.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
                 width: 440, modal: false,
-                dialogClass: "no-close", closeOnEscape: false, 
+                dialogClass: "no-close", closeOnEscape: false
             });
         });
     </script>
-
 </asp:Panel>
 <asp:Panel ID="panelEditRFQBuyerSide" runat="server" Visible="false">
-    <uc5:sendNewRFQEdit ID="uscSendNewRFQEdit" runat="server"  OnSend_Click="on_sendRFQ" OnSave_Click="on_editRFQBuyerSide" OnCancel_Click="on_cancel_editRFQBuyerSide" />
+    <uc5:sendNewRFQEdit ID="uscSendNewRFQEdit" runat="server" OnSend_Click="on_sendRFQ"
+        OnSave_Click="on_editRFQBuyerSide" OnCancel_Click="on_cancel_editRFQBuyerSide" />
     <script type="text/javascript">
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             document.getElementById("<%= this.panelEditRFQBuyerSide.ClientID %>").setAttribute("title", "Edit RFQ Buyer-Side");
             jQuery("#<%= this.panelEditRFQBuyerSide.ClientID %>").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
@@ -511,5 +509,4 @@
             });
         });
     </script>
-
 </asp:Panel>

@@ -51,14 +51,18 @@ public partial class rfqFormMain : System.Web.UI.Page
         rfq = rfqCRUD.readById(rfqHeaderKey);
         if (rfq != null)
         {
-            List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
-            rfq.RfqDetail = rfqDetail;
-
+            
             List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
             rfq.RfqAcr = rfqACR;
 
-            List<RFQEAV> rfqEAV = rfqEAVCRUD.readByParentID(rfq.Id);
-            rfq.RfqEAV = rfqEAV;
+            List<RFQEAV> rfqEAVList = rfqEAVCRUD.readByParentID(rfq.Id);
+            rfq.RfqEAV = rfqEAVList;
+
+            foreach (RFQEAV rfqEAV in rfqEAVList)
+            {
+                List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfqEAV.Id);
+                rfqEAV.RfqDetail = rfqDetail;
+            }
 
             SessionObject soRFQ = new SessionObject();
             soRFQ.Content = rfq;

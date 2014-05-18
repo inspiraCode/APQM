@@ -15,6 +15,7 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
 
     RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
     RfqAcrCRUD rfqACRCRUD = new RfqAcrCRUD();
+    RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
     
     
     public void ProcessRequest (HttpContext context) {
@@ -55,11 +56,20 @@ public class RFQHandler : IHttpHandler, System.Web.SessionState.IRequiresSession
                 soSupplier.Status = "forUpdate";
                 context.Session["supplierObject"] = soSupplier;
 
-                System.Collections.Generic.List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
-                rfq.RfqDetail = rfqDetail;
+                
 
-                System.Collections.Generic.List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
-                rfq.RfqAcr = rfqACR;
+                System.Collections.Generic.List<RFQACR> rfqACRList = rfqACRCRUD.readByParentID(rfq.Id);
+                rfq.RfqAcr = rfqACRList;
+
+                System.Collections.Generic.List<RFQEAV> rfqEAVList = rfqEAV_CRUD.readByParentID(rfq.Id);
+                rfq.RfqEAV = rfqEAVList;
+
+                foreach (RFQEAV rfqEAV in rfqEAVList)
+                {
+                    System.Collections.Generic.List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
+                    rfqEAV.RfqDetail = rfqDetail;
+                }
+                
                 
                 SessionObject soRFQ = new SessionObject();
                 soRFQ.Content = rfq;

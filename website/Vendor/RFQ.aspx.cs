@@ -110,14 +110,17 @@ public partial class Vendor_RFQ : System.Web.UI.Page
                 soSupplier.Status = "forUpdate";
                 Session["supplierObject"] = soSupplier;
 
-                List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
-                rfq.RfqDetail = rfqDetail;
-
                 List<RFQACR> rfqACR = rfqACRCRUD.readByParentID(rfq.Id);
                 rfq.RfqAcr = rfqACR;
 
-                List<RFQEAV> rfqEAV = rfqEAVCRUD.readByParentID(rfq.Id);
-                rfq.RfqEAV = rfqEAV;
+                List<RFQEAV> rfqEAVList = rfqEAVCRUD.readByParentID(rfq.Id);
+                rfq.RfqEAV = rfqEAVList;
+
+                foreach (RFQEAV rfqEAV in rfqEAVList)
+                {
+                    System.Collections.Generic.List<RFQDetail> rfqDetail = rfqDetailCRUD.readByParentID(rfq.Id);
+                    rfqEAV.RfqDetail = rfqDetail;
+                }
 
                 SessionObject soRFQ = new SessionObject();
                 soRFQ.Content = rfq;
