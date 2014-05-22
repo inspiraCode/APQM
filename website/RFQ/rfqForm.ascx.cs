@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Configuration;
+using System.Xml.Linq;
 
 public partial class rfqForm : System.Web.UI.UserControl
 {
@@ -21,15 +22,15 @@ public partial class rfqForm : System.Web.UI.UserControl
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["rfqObject"] != null)
-        {
-            rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
-            if (rfq.TargetPrice < 0)
-            {
-                lblTargetPrice.Visible = false;
-                lblTargetPriceLabel.Visible = false;
-            }
-        }
+        //if (Session["rfqObject"] != null)
+        //{
+        //    rfq = (RFQ)((SessionObject)Session["rfqObject"]).Content;
+        //    if (rfq.TargetPrice < 0)
+        //    {
+        //        lblTargetPrice.Visible = false;
+        //        lblTargetPriceLabel.Visible = false;
+        //    }
+        //}
     }
     public void load()
     {
@@ -61,67 +62,36 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     public void fillWithEntity(RFQ rfq)
     {
-        txtCommentsToVendor.Text = rfq.CommentsToVendor;
-        optNoQuote.Checked = rfq.NoQuote;
-        optQuote.Checked = !rfq.NoQuote;
-        txtReasonNoQuote.Text = rfq.ReasonNoQuote;
         lblBOMDetailID.Text = rfq.BomDetailId.ToString();
         lblID.Text = rfq.Id.ToString();
-        lblDueDate.Text = rfq.DueDate.ToShortDateString();
-        lblRFQNumber.Text = rfq.RfqGenerated;
-        lblMarketSector.Text = rfq.MarketSectorName;
         ViewState["MarketSectoryID"] = rfq.MarketSectorID;
-        lblPartNumber.Text = rfq.PartNumber;
-        lblPartName.Text = rfq.PartMaterial;
-        lblDrawingLevel.Text = rfq.DrawingLevel;
-        lblTargetPrice.Text = rfq.TargetPrice.ToString();
         
-        lblSupplierName.Text = rfq.SupplierName;
         hiddenSupplierID.Value = rfq.SupplierId.ToString();
-        lblManufacturingLocation.Text = rfq.ManufacturingLocation;
-        lblShipFromLocation.Text = rfq.ShipLocation;
-        txtPreparedBy.Text = rfq.PreparedBy;
-
+        
         
         /*Fields repleaced by the next ones. Required by Seth*/
-        txtProductionLeadTime.Text = rfq.ProductionLeadTime;
-        txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
-        txtPrototypeToolingLeadTime.Text = rfq.PrototypeToolingLeadTime;
-        txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
-        txtLeadTimePPAP.Text = rfq.LeadTimePPAP;
+        //txtProductionLeadTime.Text = rfq.ProductionLeadTime;
+        //txtProductionToolingLeadTime.Text = rfq.ProductionToolingLeadTime;
+        //txtPrototypeToolingLeadTime.Text = rfq.PrototypeToolingLeadTime;
+        //txtPrototypePieceLeadTime.Text = rfq.PrototypePieceLeadTime;
+        //txtLeadTimePPAP.Text = rfq.LeadTimePPAP;
+        ///*********************************************************/
+        
+        //txtLeadTimeFirstProductionOrder.Text = rfq.LeadTimeFirstProductionOrder;
+        //txtLeadTimePPAP_FAIR.Text = rfq.LeadTimePPAPFAIR;
+        //txtLeadTimeNormalProductionOrders.Text = rfq.LeadTimeNormalProductionOrders;
+
         /*********************************************************/
         
-        txtLeadTimeFirstProductionOrder.Text = rfq.LeadTimeFirstProductionOrder;
-        txtLeadTimePPAP_FAIR.Text = rfq.LeadTimePPAPFAIR;
-        txtLeadTimeNormalProductionOrders.Text = rfq.LeadTimeNormalProductionOrders;
 
-        /*********************************************************/
-        
-
-        txtToolingDetail.Text = rfq.ToolingDetail;
-        txtProductionTooling.Text = rfq.ProductionTooling.ToString();
-        txtPrototypeTooling.Text = rfq.PrototypeTooling.ToString();
-        txtPrototypePiece.Text = rfq.PrototypePiece.ToString();
-
-        txtWeight.Text = rfq.Weight.ToString();
         //cboUMWeight.SelectedValue = rfq.UmWeight; Not to be used anymore: always lb
-        txtMOQ.Text = rfq.Moq;
-        txtMake.Text = rfq.Make;
-        txtComments.Text = rfq.CommentsToBuyer;
-
-        chkIAgree.Checked = rfq.IAgree;
-
+        
+        
         hiddenCreatedBy.Value = rfq.CreatedBy;
 
-        txtCavitation.Text = rfq.Cavitation;
-        txtMaterial.Text = rfq.Material;
-
+        
         ViewState["SentToVendor"] = rfq.SentToVendor;
 
-        List<RFQEAV> rfqEAVList = rfq.RfqEAV;
-
-        repeaterRFQDetail.DataSource = rfqEAVList;
-        repeaterRFQDetail.DataBind();
         
         //uscRFQDetailList.reset();
         //uscRFQDetailList.setEntity(rfq.RfqDetail);
@@ -200,61 +170,37 @@ public partial class rfqForm : System.Web.UI.UserControl
     }
     public bool saveRFQ()
     {
+        if (Request.ContentType.Contains("json") &&
+            Request.QueryString["Save"] != null)
+        {
+            XElement xmlElement = XElement.Load(Request.InputStream.ToString());
+            
+            return true;
+        }
+
+
+
         RFQ rfq = new RFQ();
         //lblPartNumber.Text
-        if (lblDueDate.Text.Trim() != "") rfq.DueDate = DateTime.Parse(lblDueDate.Text);
-
-        rfq.CommentsToVendor = txtCommentsToVendor.Text;
-        rfq.NoQuote = !optQuote.Checked;
-        if(rfq.NoQuote)
-            rfq.ReasonNoQuote = txtReasonNoQuote.Text;
-        else
-            rfq.ReasonNoQuote = "";
+        
+       //if(rfq.NoQuote)
+       //     rfq.ReasonNoQuote = txtReasonNoQuote.Text;
+       // else
+       //     rfq.ReasonNoQuote = "";
 
         rfq.BomDetailId = long.Parse(lblBOMDetailID.Text);
         rfq.SupplierId = long.Parse(hiddenSupplierID.Value);
         //rfq.RfqNumber = lblRFQNumber.Text;
-        rfq.DrawingLevel = lblDrawingLevel.Text;
         rfq.MarketSectorID = (long)ViewState["MarketSectoryID"];
-        rfq.TargetPrice = float.Parse(lblTargetPrice.Text);
         
-        rfq.PreparedBy = txtPreparedBy.Text;
         
-        /* To be replaced, Requested by Seth*****************************************************/
-        rfq.ProductionLeadTime = txtProductionLeadTime.Text;
-        rfq.ProductionToolingLeadTime = txtProductionToolingLeadTime.Text;
-        rfq.PrototypeToolingLeadTime = txtPrototypeToolingLeadTime.Text;
-        rfq.PrototypePieceLeadTime = txtPrototypePieceLeadTime.Text;
-        rfq.LeadTimePPAP = txtLeadTimePPAP.Text;
-
-        rfq.LeadTimeFirstProductionOrder = txtLeadTimeFirstProductionOrder.Text;
-        rfq.LeadTimePPAPFAIR = txtLeadTimePPAP_FAIR.Text;
-        rfq.LeadTimeNormalProductionOrders = txtLeadTimeNormalProductionOrders.Text;
-        /**************************************************************************************/
-
+       
         
-        rfq.ToolingDetail = txtToolingDetail.Text;
-        if (txtProductionTooling.Text.Trim() != "") rfq.ProductionTooling = float.Parse(txtProductionTooling.Text);
-        if (txtPrototypeTooling.Text.Trim() != "") rfq.PrototypeTooling = float.Parse(txtPrototypeTooling.Text);
-        if (txtPrototypePiece.Text.Trim() != "") rfq.PrototypePiece = float.Parse(txtPrototypePiece.Text);
-
-        if (txtWeight.Text.Trim() != "")
-        {
-            rfq.Weight = float.Parse(txtWeight.Text);
-            //rfq.UmWeight = cboUMWeight.SelectedValue; Not to be used anymore: always lb
-        }
-
-        rfq.Moq = txtMOQ.Text;
-        rfq.Make = txtMake.Text;
-        rfq.CommentsToBuyer = txtComments.Text;
-
-        rfq.IAgree = chkIAgree.Checked;
-
+        
+        
         rfq.CreatedBy = hiddenCreatedBy.Value;
 
-        rfq.Cavitation = txtCavitation.Text;
-        rfq.Material = txtMaterial.Text;
-
+        
         rfq.SentAttachmentsFolder = hiddenSentAttachmentsFolder.Value;
 
         rfq.SentToVendor = (DateTime)ViewState["SentToVendor"];

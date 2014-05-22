@@ -6,85 +6,34 @@
 <%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc7" %>
 <%@ Register Src="rfqDetailList.ascx" TagName="rfqDetailList" TagPrefix="uc1" %>
 <style type="text/css">
-    .style2
-    {
-        width: 191px;
-    }
-    .style29
-    {
-        width: 226px;
-    }
-    .style31
-    {
-    }
-    .style55
-    {
-        width: 911px;
-    }
-    .style56
-    {
-    }
-    .style58
-    {
-    }
-    .style61
-    {
-        width: 151px;
-    }
-    .style62
-    {
-        width: 147px;
-    }
-    .style70
-    {
-    }
-    .style73
-    {
-        width: 12px;
-    }
-    .style74
-    {
-        width: 3px;
-    }
     .calculatedField
     {
         background-color: #4682B4;
         color: white;
     }
-    .style75
-    {
-        width: 198px;
-    }
-    .style77
-    {
-        width: 270px;
-    }
-    .style78
-    {
-        width: 245px;
-    }
     .DeleteBuyerAttachment
     {
         display: none;
     }
-    .style79
+    .ReadOnlyFields
     {
-        width: 166px;
+    	background-color: #D3D3D3;
     }
 </style>
 <br />
 <br />
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
+    
 </div>
 <br />
 <div data-step='1' data-intro='Select "Quote" if you are able to quote this piece. Otherwise select "No Quote" and please specify your reason.'
     style="width: 300px;">
-    <asp:RadioButton ID="optQuote" runat="server" GroupName="Quote" Text="Quote" Checked="True"
-        onchange="on_change_option_quote()" TabIndex="1" />
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <asp:RadioButton ID="optNoQuote" runat="server" GroupName="Quote" Text="No Quote"
-        onchange="on_change_option_quote()" TabIndex="2" />
+    <input id="optQuote" bindTo="NoQuote"
+ type="radio" name="optQuote" tabindex="1" checked="checked" onchange="on_change_option_quote()"/>Quote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="optNoQuote" type="radio" name="optQuote" tabindex="2" onchange="on_change_option_quote()" />No Quote<br />
+
+    
 </div>
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
@@ -95,8 +44,8 @@
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
             style="width: 555px;">
             Comments to vendor:<br />
-            <asp:TextBox ID="txtCommentsToVendor" runat="server" BackColor="#D3D3D3" Height="45px"
-                ReadOnly="True" TextMode="MultiLine" Width="550px" Style="border: 0;" TabIndex="1"></asp:TextBox>
+            <textarea rows="4" cols="50" id="txtCommentsToVendor" bindTo="CommentsToVendor"
+ class="ReadOnlyFields" TabIndex="1"></textarea>
         </div>
         <br />
         <br />
@@ -118,9 +67,9 @@
                 <td align="right" class="style78">
                     Due Date
                 </td>
-                <td align="left" class="style77" data-step='4' data-intro='Please complete this RFQ  before this date.'>
-                    <asp:Label ID="lblDueDate" runat="server" BackColor="#D3D3D3" Style="text-align: center"
-                        Width="145px" Height="20px"></asp:Label>
+                <td align="left" class="style77" data-step='4' data-intro='Please complete this RFQ before this date.'>
+                <label id="lblDueDate" bindTo="DueDate"
+ style="text-align: center" class="ReadOnlyFields">DueDate</label>
                 </td>
                 <td align="left" class="style79">
                     <asp:Label ID="lblID" runat="server" Visible="False"></asp:Label>
@@ -136,8 +85,9 @@
                                 Lead Time PPAP/FAIR
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtLeadTimePPAP_FAIR" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="4"></asp:TextBox>
+                                <input type="text" id="txtLeadTimePPAP_FAIR" bindTo="LeadTimePPAPFAIR"
+ value="txtLeadTimePPAP_FAIR" validationid="validatingRFQForm" 
+                                    style="text-align: right;Width:240px;" TabIndex="4" />
                             </td>
                         </tr>
                         <tr>
@@ -145,8 +95,9 @@
                                 Lead Time First Production Order
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="5"></asp:TextBox>
+                                <input type="text" ID="txtLeadTimeFirstProductionOrder" bindTo="LeadTimeFirstProductionOrder"
+ value="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm"
+                                     style="text-align: right;Width:240px;" tabindex="5" />
                             </td>
                         </tr>
                         <tr>
@@ -154,8 +105,9 @@
                                 Lead Time Normal Production Orders
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm"
-                                    runat="server" Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                            <input type="text"  ID="txtLeadTimeNormalProductionOrders" bindTo="LeadTimeNormalProductionOrders"
+ value="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm"
+                                    style="text-align: right;Width:240px" tabindex="6" />
                             </td>
                         </tr>
                     </table>
@@ -165,8 +117,9 @@
                                 Production Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                                <input type="text"  id="txtProductionLeadTime" bindTo="ProductionLeadTime"
+ value="txtProductionLeadTime" validationid="validatingRFQForm"
+                                    style="text-align: right;Width:240px;" tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -174,8 +127,9 @@
                                 Production Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtProductionToolingLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                             <input type="text" id="txtProductionToolingLeadTime" 
+  value="txtProductionToolingLeadTime" validationid="validatingRFQForm" 
+                                    style="text-align: right;Width:240px;" tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -183,8 +137,9 @@
                                 Prototype Tooling Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                            <input type="text" id="txtPrototypeToolingLeadTime" bindTo="ProductionToolingLeadTime"
+ value="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" 
+                                    style="text-align: right;Width:240px;" tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -192,8 +147,10 @@
                                 Prototype Piece Lead Time
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtPrototypePieceLeadTime" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                            <input type="text" id="txtPrototypePieceLeadTime" bindTo="PrototypePieceLeadTime"
+ 
+ value="txtPrototypePieceLeadTime" validationid="validatingRFQForm"
+                                    style="text-align: right;Width:240px;" tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -209,8 +166,8 @@
                                 Lead Time PPAP
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtLeadTimePPAP" validationid="validatingRFQForm" runat="server"
-                                    Style="text-align: right" Width="240px" TabIndex="6"></asp:TextBox>
+                            <input type="text" ID="txtLeadTimePPAP" value="txtLeadTimePPAP" validationid="validatingRFQForm" 
+                                    style="text-align: right;Width:240px" TabIndex="6" />
                             </td>
                         </tr>
                     </table>
@@ -221,15 +178,15 @@
                     RFQ #
                 </td>
                 <td align="left" class="style77" data-step='5' data-intro='This is our RFQ number.'>
-                    <asp:Label ID="lblRFQNumber" runat="server" Style="text-align: center" Width="145px"
-                        BackColor="#D3D3D3" Height="20px"></asp:Label>
+                    <label ID="lblRFQNumber"  Style="text-align: center;Width:145px"
+                        class="ReadOnlyFields" Height="20px">lblRFQNumber</label>
                 </td>
                 <td align="right" class="style79">
                     Supplier Name
                 </td>
                 <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblSupplierName" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
+                    <label id="lblSupplierName" bindTo="SupplierName"
+  class="ReadOnlyFields" style="Width:220px;Height:20px;">lblSupplierName</label>
                 </td>
             </tr>
             <tr>
@@ -237,15 +194,15 @@
                     Market Sector
                 </td>
                 <td align="left" class="style77" data-step='6' data-intro='This is the Part Number to quote.'>
-                    <asp:Label ID="lblMarketSector" runat="server" Style="text-align: center" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
+                    <label id="lblMarketSector" bindTo="MarketSectorName"
+ style="text-align: center;Width:145px;Height:20px;" class="ReadOnlyFields">lblMarketSector</label>
                 </td>
                 <td align="right" class="style79">
                     Manufacturing Location
                 </td>
                 <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblManufacturingLocation" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
+                    <label id="lblManufacturingLocation" bindTo="ManufacturingLocation"
+ class="ReadOnlyFields" style="Width:220px;Height:20px;">lblManufacturingLocation</label>
                 </td>
             </tr>
             <tr>
@@ -253,15 +210,15 @@
                     Component Part Number
                 </td>
                 <td align="left" class="style77" data-step='7' data-intro='Market Sector of this piece.'>
-                    <asp:Label ID="lblPartNumber" Style="text-align: center" runat="server" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
+                <label id="lblPartNumber" bindTo="PartNumber"
+ class="ReadOnlyFields" style="text-align: center;Width:145px;Height:20px">lblPartNumber</label>
                 </td>
                 <td align="right" class="style79">
                     Ship From Location
                 </td>
                 <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <asp:Label ID="lblShipFromLocation" runat="server" BackColor="#D3D3D3" Width="220px"
-                        Height="20px"></asp:Label>
+                    <label id="lblShipFromLocation" bindTo="ShipLocation"
+  class="ReadOnlyFields" style="Width:220px;Height:20px">lblShipFromLocation</label>
                 </td>
             </tr>
             <tr align="left">
@@ -269,15 +226,17 @@
                     Part Description
                 </td>
                 <td align="left" class="style77" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
-                    <asp:Label ID="lblPartName" Style="text-align: left" runat="server" BackColor="LightGray"
-                        Width="200px" Height="48px"></asp:Label>
+                    <label id="lblPartName" bindTo="PartMaterial" class="ReadOnlyFields" 
+ style="text-align: left;Width:200px;Height:48px;" 
+                        >lblPartName</label>
                 </td>
                 <td align="right" class="style79">
                     Prepared By
                 </td>
                 <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
-                    <asp:TextBox ID="txtPreparedBy" validate="required" validationid="validatingRFQForm"
-                        runat="server" Style="width: 216px" TabIndex="3"></asp:TextBox>
+                    <input type="text" ID="txtPreparedBy" bindTo="PreparedBy"
+ value="txtPreparedBy" validate="required" validationid="validatingRFQForm"
+                        style="width: 216px;" TabIndex="3" />
                 </td>
             </tr>
             <tr>
@@ -292,8 +251,9 @@
                     Drawing Level
                 </td>
                 <td align="left" class="style77" data-step='9' data-intro='Drawing Level.'>
-                    <asp:Label ID="lblDrawingLevel" Style="text-align: center" runat="server" BackColor="LightGray"
-                        Width="145px" Height="20px"></asp:Label>
+                    <label id="lblDrawingLevel" bindTo="DrawingLevel" class="ReadOnlyFields" 
+ style="text-align: center;Width:145px;Height:20px;"
+                        >lblDrawingLevel</ label>
                 </td>
                 <td align="right" class="style79">
                     &nbsp;
@@ -308,8 +268,9 @@
                         Height="20px">Target Price</asp:Label>
                 </td>
                 <td align="left" class="style77" data-step='11' data-intro='Target Price. If specified by Purchasing Department.'>
-                    <asp:Label ID="lblTargetPrice" runat="server" Style="text-align: right" BackColor="#D3D3D3"
-                        Width="145px" Height="20px"></asp:Label>
+                <label id="lblTargetPrice" bindTo="TargetPrice"
+ style="text-align: right;Width:145px;Height="20px"" class="ReadOnlyFields"
+                        >lblTargetPrice</ label>
                 </td>
                 <td align="right" class="style79">
                     &nbsp;
@@ -326,25 +287,7 @@
     </div>
     <div style="background-color: rgba(185, 198, 219, 0.28);">
         <br />
-        <asp:Repeater ID="repeaterRFQDetail" runat="server" OnItemDataBound="on_item_databound">
-            <ItemTemplate>
-                <div align="left" style="height: 20px;">
-                    <asp:HiddenField ID="hiddenEAU_ID" runat="server" />
-                    <div style="display: inline;">
-                        Estimated Annual Usage:
-                    </div>
-                    <asp:Label ID="lblEAU" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Volume")%>' Style="min-width: 300px; display: inline-block;"></asp:Label>
-                    <div style="display: inline;">
-                        Years:
-                    </div>
-                    <asp:Label ID="lblYears" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "Year")%>' Style="min-width: 300px; display: inline-block;"></asp:Label>
-                </div>
-                <div id="rfqDetailContainer" rfqEAU_ID='<%# DataBinder.Eval(Container.DataItem, "Id")%>'>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
-        <%--<asp:Panel ID="rfqDetailContainer" runat="server">
-        </asp:Panel>--%>
+        <div id="divDetailSection"></div>
     </div>
     <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
     </div>
@@ -368,36 +311,39 @@
                             <td align="right" class="style78">
                                 <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
                                     Shipping Weight (lb)
-                                    <asp:TextBox ID="txtWeight" validate="number" validationid="validatingRFQForm" runat="server"
-                                        Style="text-align: right" Width="94px" TabIndex="32"></asp:TextBox>
+                                    <input type="text" id="txtWeight" bindTo="Weight"
+ value="txtWeight" validate="number" validationid="validatingRFQForm" 
+                                        style="text-align: right;Width:94px" tabindex="32" />
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.' class="style78">
                                 MOQ
-                                <asp:TextBox ID="txtMOQ" runat="server" Style="text-align: right" Width="130px" TabIndex="33"></asp:TextBox>
+                                <input type="text" id="txtMOQ" bindTo="Moq" value="txtMOQ"  style="text-align: right;Width:130px" tabindex="33" />
                             </td>
                         </tr>
                         <tr>
                             <td align="right" data-step='45' data-intro='Enter the Brand if applicable.' class="style78">
                                 Brand
-                                <asp:TextBox ID="txtMake" runat="server" Style="text-align: right" Width="130px"
-                                    TabIndex="34"></asp:TextBox>
+                                <input type="text" value="txtMake" bindTo="Make"
+ id="txtMake"  style="text-align: right;width:130px"
+                                    tabindex="34" />
                             </td>
                         </tr>
                         <tr>
                             <td align="right" class="style78">
                                 Cavitation
-                                <asp:TextBox ID="txtCavitation" runat="server" Style="text-align: right" Width="130px"
-                                    TabIndex="35"></asp:TextBox>
+                                <input type="text" ID="txtCavitation" bindTo="Cavitation" value="txtCavitation" style="text-align: right;width:130px;"
+                                    tabindex="35" />
                             </td>
                         </tr>
                         <tr>
                             <td align="right" class="style78">
                                 Material
-                                <asp:TextBox ID="txtMaterial" runat="server" Style="text-align: right" Width="130px"
-                                    TabIndex="36"></asp:TextBox>
+                                <input type="text" id="txtMaterial" bindTo="Material"
+ value="txtMaterial" style="text-align: right;Width:130px"
+                                    tabindex="36" />
                             </td>
                         </tr>
                     </table>
@@ -405,8 +351,7 @@
             </tr>
             <tr>
                 <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
-                    <asp:TextBox ID="txtToolingDetail" runat="server" Width="300px" Height="40px" TabIndex="23"
-                        TextMode="MultiLine"></asp:TextBox>
+                    <textarea rows="4" cols="50" id="txtToolingDetail" TabIndex="23"></textarea>
                 </td>
                 <td align="center" rowspan="4" data-step='42' data-intro='Outline your annual cost reduction commitment.'>
                     <uc2:rfqACR ID="uscRfqACR" runat="server" />
@@ -417,8 +362,8 @@
                     Production Tooling
                 </td>
                 <td class="style62" align="right" data-step='39' data-intro='Enter Production Tooling Cost.'>
-                    <asp:TextBox ID="txtProductionTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="24"></asp:TextBox>
+                    <input type="text" id="txtProductionTooling" bindTo="ProductionTooling" value="txtProductionTooling" validate="number" validationid="validatingRFQForm"
+                        style="text-align: right" tabindex="24" />
                 </td>
             </tr>
             <tr>
@@ -426,8 +371,8 @@
                     Prototype Tooling
                 </td>
                 <td class="style62" align="right" data-step='40' data-intro='Enter Prototype Tooling Cost.'>
-                    <asp:TextBox ID="txtPrototypeTooling" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="25"></asp:TextBox>
+                    <input type="text" id="txtPrototypeTooling" bindTo="PrototypeTooling" value="txtPrototypeTooling" validate="number" validationid="validatingRFQForm"
+                        style="text-align: right" tabindex="25" />
                 </td>
             </tr>
             <tr>
@@ -435,8 +380,8 @@
                     Prototype Piece
                 </td>
                 <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Piece Cost.'>
-                    <asp:TextBox ID="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
-                        Style="text-align: right" runat="server" TabIndex="26"></asp:TextBox>
+                    <input type="text" id="txtPrototypePiece" bindTo="PrototypePiece" value="txtPrototypePiece" validate="number" validationid="validatingRFQForm"
+                        style="text-align: right" tabindex="26" />
                 </td>
             </tr>
             <tr>
@@ -479,8 +424,8 @@
                 <td colspan="6" align="left">
                     <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
                         data-position='top' style="width: 100%;">
-                        <asp:TextBox ID="txtComments" runat="server" Style="text-align: left" Width="100%"
-                            TabIndex="37" Height="120px" TextMode="MultiLine"></asp:TextBox>
+                        <textarea rows="4" cols="0" id="txtComments" bindTo="CommentsToBuyer"
+ tabindex="37" style="width:100%;"></textarea>
                     </div>
                 </td>
             </tr>
@@ -493,11 +438,7 @@
                 <span style="display: inline;">Please wait..</span>
             </div>
         </div>
-        <div align="center" style="visibility: hidden;">
-            <br />
-            <asp:CheckBox ID="chkIAgree" runat="server" Text="I agree the NDA sent to my EMail."
-                TabIndex="-1" />
-        </div>
+        
     </div>
     <asp:Button ID="btnFinalize" runat="server" Text="Finalize and submit" Width="132px"
         OnClick="btnFinalize_Click" Style="display: none;" />
@@ -508,8 +449,8 @@
     <br />
     <br />
     Reason
-    <asp:TextBox ID="txtReasonNoQuote" runat="server" Height="100px" TextMode="MultiLine"
-        validate="required" validationid="validatingRFQForm" Width="400px" TabIndex="38"></asp:TextBox>
+    <textarea rows="4" cols="50" id="txtReasonNoQuote" bindTo="ReasonNoQuote"
+ tabindex="38">txtReasonNoQuote</textarea>
 </div>
 <br />
 <br />
@@ -518,18 +459,179 @@
 <br />
 <br />
 <uc7:notifier ID="uscNotifier" runat="server" />
-
-
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery('[rfqEAU_ID]').each(function () {
-            jQuery(this).load('<%= ResolveUrl("~/RFQ/RFQDetail.aspx") %>?EAV_ID=' + jQuery(this).attr('rfqEAU_ID') + '&noCache=' + Number(new Date()) + ' #RFQDetailContainer');
-        });
+        getRFQ();
     });
+
+    function test() {
+        var json = "{Example:1,Example2:2}"
+        var to='<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?Save=1';
+        var options = {
+            type: "POST",
+            url: to,
+            data: json,
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            async: false,
+            success: function(response) {
+                alert("success");
+            },
+            error: function(msg) { alert(msg); }
+        };
+
+        var returnText = $.ajax(options).responseText;
+    }
+    var RFQ;
+    function getRFQ(id) {
+        jQuery.getJSON('<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=read&id=12305006', function (result) {
+            RFQ = result;
+            RFQ.DateFilledOut = new Date(RFQ.DateFilledOut);
+            RFQ.DeadDate = new Date(RFQ.DeadDate);
+            RFQ.DueDate = new Date(RFQ.DueDate);
+            RFQ.FilledUp = new Date(RFQ.FilledUp);
+            RFQ.SentToVendor = new Date(RFQ.SentToVendor);
+            refreshForm();
+        });
+        return true;
+    }
     
+
+    function setControlsToVars() {
+        
+    }
+    function refreshForm() {
+        bindParentFields();
+        if (RFQ.RfqEAV != null) {
+            for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+                var objEAU = RFQ.RfqEAV[i];
+                var htmlEAU = '<div align="left" style="height: 20px;">' +
+                    '<div style="display: inline;">Estimated Annual Usage:</div>' +
+                    '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</ label>' +
+                    '<div style="display: inline;">Years:</div>' +
+                    '<label style="min-width: 300px; display: inline-block;">' + objEAU.Volume + '</ label></div>' +
+                    '<div rfqeau_id=' + objEAU.Id + ' /><br /><br />';
+
+                jQuery("#divDetailSection").append(htmlEAU);
+            }
+        }
+
+
+
+
+        var pseudoHeaderRenderer = function (instance, td, row, col, prop, value, cellProperties) {
+            Handsontable.TextCell.renderer.apply(this, arguments);
+
+            var style = td.style;
+            style.textAlign = 'center';
+            style.fontStyle = 'normal';
+            style.color = '#000';
+            style.background = '#eee';
+
+            return td;
+
+        }
+
+        jQuery('[rfqEAU_ID]').each(function () {
+            //jQuery(this).load('<%= ResolveUrl("~/RFQ/RFQDetail.aspx") %>?EAV_ID=' + jQuery(this).attr('rfqEAU_ID') + '&noCache=' + Number(new Date()) + ' #RFQDetailContainer');
+
+            var objEAV = getRFQEAUbyID(jQuery(this).attr("rfqEAU_ID"));
+            var detailEAU = [];
+            detailEAU.push(["Item Description", "UOM", "Quantity", "Cost/Unit", "Material Total", "Quantity", "Cost/Unit", "Service Total", "Scrap Value %", "Scrap Cost", "Directly Hrly Labor Rate", "Std Hrs.", "Labor Cost", "Burden", "Total Burden"]);
+            for (var j = 0; j < objEAV.RfqDetail.length; j++) {
+                console.debug(objEAV.RfqDetail[j]);
+                var currentDetail = objEAV.RfqDetail[j];
+                var oRFQDetailAdapter = [currentDetail.ItemDescription,
+                currentDetail.Um,
+                currentDetail.RpcQty,
+                currentDetail.RpcCostPerUnit,
+                currentDetail.MaterialTotal,
+                currentDetail.OSQty,
+                currentDetail.OSCostPerUnit,
+                currentDetail.ServiceTotal,
+                currentDetail.ScrapValue,
+                currentDetail.ScrapCost,
+                currentDetail.DirectHrlyLaborRate,
+                currentDetail.StdHrs,
+                currentDetail.LaborCost,
+                currentDetail.Burden,
+                currentDetail.BurdenTotal
+                ]
+
+                detailEAU.push(oRFQDetailAdapter);
+
+            }
+
+            jQuery(this).handsontable({
+                data: detailEAU,
+                //width: 1400,
+                colWidths: [300, 60, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70],
+                minRows: 5,
+                minCols: 15,
+                minSpareCols: 0,
+                //always keep at least 1 spare row at the right
+                minSpareRows: 1,
+                //always keep at least 1 spare row at the bottom
+                rowHeaders: false,
+                colHeaders: ['Raw Material And Purchased Components', 'Outside Services', 'Scrap', 'Labor', 'Burden Per Unit'],
+                contextMenu: false,
+                cells: function (row, col, prop) {
+                    if (row === 0) {
+                        return {
+                            type: {
+                                renderer: pseudoHeaderRenderer
+                            },
+                            readOnly: true
+                        }
+                    }
+                }
+            });
+
+            var hot = jQuery(this).handsontable('getInstance');
+            var th = hot.rootElement.find('table').first().find('thead tr th');
+
+            th.slice(-3).css('display', 'none');
+            th.eq(0).attr('colspan', 5);
+            th.eq(1).attr('colspan', 3);
+            th.eq(2).attr('colspan', 2);
+            th.eq(3).attr('colspan', 3);
+            th.eq(4).attr('colspan', 2);
+
+
+        });
+    }
+    function getRFQEAUbyID(id) {
+        for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+            if (RFQ.RfqEAV[i].Id == id) {
+                return RFQ.RfqEAV[i];
+            }
+        }
+        return null;
+    }
+    function bindParentFields(){
+        jQuery("[bindTo]").each(function () {
+            setValueForControl(this, jQuery(this), RFQ);
+        });
+    }
+    function setValueForControl(ref, control, sourceObject) {
+        var value = sourceObject[control.attr("bindTo")];
+        if(value instanceof Date){
+            value = value.toLocaleDateString();
+        }
+        switch (ref.type) {
+            case 'text':
+                control.val(value);
+                break;
+            case 'textarea':
+                control.val(value);
+                break;
+            default:
+                control.text(value);
+                break;
+        }
+    }
+
 </script>
-
-
 <script type="text/javascript">
 
     jQuery(document).ready(function () {
@@ -562,7 +664,7 @@
     });
 
     function on_change_option_quote() {
-        var optQuote = jQuery("#<%= optQuote.ClientID %>");
+        var optQuote = jQuery("#optQuote");
         if (optQuote.is(':checked')) {
             jQuery("#quoteSection").show();
             jQuery("#noQuoteSection").hide();

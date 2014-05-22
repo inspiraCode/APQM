@@ -12,11 +12,35 @@ using System.Xml.Linq;
 using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 
 public partial class RFQDefault : System.Web.UI.Page 
-{   
+{
+    RfqCRUD rfq_CRUD = new RfqCRUD();
+    RfqAcrCRUD rfqACR_CRUD = new RfqAcrCRUD();
+    RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
+    RfqDetailCRUD rfqDetail_CRUD = new RfqDetailCRUD();
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request["cmd"] == null)
+            return;
+
+        string cmd = Request["cmd"].ToString();
+        if (cmd == "read")
+        {
+            Response.Clear();
+            Response.Write(getRFQbyID(long.Parse(Request["id"])));
+            Response.End();
+        }
+
+
+        if (Request.ContentType.Contains("json") &&
+            Request.QueryString["Save"] != null)
+        {
+            saveRFQ();
+            return;
+        }
+        
         if (Session["SECTION"] != null)
         {
             HttpPostedFile file = Request.Files["myfile"];
@@ -73,6 +97,37 @@ public partial class RFQDefault : System.Web.UI.Page
                 default:
                     break;
             }
+        }
+    }
+
+    private string getRFQbyID(long id)
+    {
+        RFQ rfq = rfq_CRUD.readById(3550);
+
+        List<RFQACR> rfqACR = rfqACR_CRUD.readByParentID(rfq.Id);
+        rfq.RfqAcr = rfqACR;
+
+        List<RFQEAV> rfqEAVList = rfqEAV_CRUD.readByParentID(rfq.Id);
+        rfq.RfqEAV = rfqEAVList;
+
+        foreach (RFQEAV rfqEAV in rfqEAVList)
+        {
+            List<RFQDetail> rfqDetail = rfqDetail_CRUD.readByParentID(rfqEAV.Id);
+            rfqEAV.RfqDetail = rfqDetail;
+        }
+
+
+
+        return JsonConvert.SerializeObject(rfq);
+    }
+
+    public void saveRFQ()
+    {
+        if (Request.ContentType.Contains("json") &&
+            Request.QueryString["Save"] != null)
+        {
+            String s = new StreamReader(Request.InputStream).ReadToEnd();
+            String json = JsonConvert.SerializeObject(s);
         }
     }
     private void openpopupContainer()
