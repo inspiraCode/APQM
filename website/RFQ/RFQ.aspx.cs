@@ -26,19 +26,30 @@ public partial class RFQDefault : System.Web.UI.Page
             return;
 
         string cmd = Request["cmd"].ToString();
-        if (cmd == "read")
-        {
-            Response.Clear();
-            Response.Write(getRFQbyID(long.Parse(Request["id"])));
-            Response.End();
-        }
 
-
-        if (Request.ContentType.Contains("json") &&
-            Request.QueryString["Save"] != null)
+        switch (cmd)
         {
-            saveRFQ();
-            return;
+            case "create":
+                break;
+            case "read":
+                Response.Clear();
+                Response.Write(getRFQbyID(long.Parse(Request["id"])));
+                Response.End();
+                break;
+            case "update":
+                break;
+            case "delete":
+                break;
+            case "deleteAttachmentToBuyer":
+                break;
+            case "downloadAttachmentToBuyer":
+                downloadAttachmentToBuyer(Request["Directory"], Request["FileName"]);
+                break;
+            case "deleteAttachmentToVendor":
+                break;
+            case "downloadAttachmentToVendor":
+                downloadAttachmentToVendor(Request["Directory"], Request["FileName"]);
+                break;
         }
         
         if (Session["SECTION"] != null)
@@ -102,7 +113,7 @@ public partial class RFQDefault : System.Web.UI.Page
 
     private string getRFQbyID(long id)
     {
-        RFQ rfq = rfq_CRUD.readById(3550);
+        RFQ rfq = rfq_CRUD.readById(id);
 
         List<RFQACR> rfqACR = rfqACR_CRUD.readByParentID(rfq.Id);
         rfq.RfqAcr = rfqACR;
@@ -116,11 +127,81 @@ public partial class RFQDefault : System.Web.UI.Page
             rfqEAV.RfqDetail = rfqDetail;
         }
 
-
+        updateAttachmentsToBuyer(ref rfq);
+        updateAttachmentsToVendor(ref rfq);
 
         return JsonConvert.SerializeObject(rfq);
     }
 
+    private void updateAttachmentsToVendor(ref RFQ rfq)
+    {
+        rfq.AttachmentsToVendor = null;
+        string baseSentAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+
+        if (rfq.SentAttachmentsFolder.Trim() != "" && Directory.Exists(baseSentAttachmentsPath + rfq.SentAttachmentsFolder.Trim()))
+        {
+            List<RFQAttachments> rfqSentAttachmentsList = new List<RFQAttachments>();
+            DirectoryInfo directory = new DirectoryInfo(baseSentAttachmentsPath + rfq.SentAttachmentsFolder);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = rfq.SentAttachmentsFolder;
+                rfqSentAttachmentsList.Add(rfqAttachment);
+            }
+            rfq.AttachmentsToVendor = rfqSentAttachmentsList;
+        }
+    }
+    public void updateAttachmentsToBuyer(ref RFQ rfq)
+    {
+        rfq.AttachmentsToBuyer = null;
+        string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        if (rfq.InboxAttachmentsFolder.Trim() != "" && Directory.Exists(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder.Trim()))
+        {
+            List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
+            DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + rfq.InboxAttachmentsFolder);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = rfq.InboxAttachmentsFolder;
+                rfqInboxAttachmentsList.Add(rfqAttachment);
+            }
+            rfq.AttachmentsToBuyer = rfqInboxAttachmentsList;
+        }
+    }
+    public void downloadAttachmentToVendor(string strDirectory, string strFileName)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        Response.AddHeader("Content-Disposition", "attachment;filename=" + file.Name);
+        Response.TransmitFile(filePath);
+        Response.End();
+    }
+    public void deleteAttachmentToVendorByName(string strFileName)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        string filePath = baseAttachmentsPath + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+    }
+    public void downloadAttachmentToBuyer(string strDirectory, string strFileName)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        Response.AddHeader("Content-Disposition", "attachment;filename=" + file.Name);
+        Response.TransmitFile(filePath);
+        Response.End();
+    }
+    public void deleteAttachmentToBuyerByName(string strFileName)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        string filePath = baseAttachmentsPath + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+    }
     public void saveRFQ()
     {
         if (Request.ContentType.Contains("json") &&

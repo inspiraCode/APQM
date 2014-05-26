@@ -52,6 +52,11 @@ public class RFQ
 
     private string sentAttachmentsFolder = "";
     private string inboxAttachmentsFolder = "";
+
+    private List<RFQAttachments> attachmentsToVendor;
+    private List<RFQAttachments> attachmentsToBuyer;
+
+    
    
     /******************************************************************/
     /*Those fields:****************************************************/
@@ -339,6 +344,17 @@ public class RFQ
     {
         get { return leadTimeNormalProductionOrders; }
         set { leadTimeNormalProductionOrders = value; }
+    }
+    public List<RFQAttachments> AttachmentsToVendor
+    {
+        get { return attachmentsToVendor; }
+        set { attachmentsToVendor = value; }
+    }
+
+    public List<RFQAttachments> AttachmentsToBuyer
+    {
+        get { return attachmentsToBuyer; }
+        set { attachmentsToBuyer = value; }
     }
 }
 
