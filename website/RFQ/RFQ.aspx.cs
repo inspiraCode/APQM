@@ -13,6 +13,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
+using System.Web.Services;
 
 public partial class RFQDefault : System.Web.UI.Page 
 {
@@ -30,26 +31,31 @@ public partial class RFQDefault : System.Web.UI.Page
         switch (cmd)
         {
             case "create":
-                break;
+                return;
             case "read":
                 Response.Clear();
                 Response.Write(getRFQbyID(long.Parse(Request["id"])));
                 Response.End();
-                break;
+                return;
             case "update":
-                break;
+                Response.Clear();
+                Response.Write(updateRFQ());
+                Response.End();
+                return;
             case "delete":
-                break;
+
+                return;
             case "deleteAttachmentToBuyer":
-                break;
+                deleteAttachmentToBuyerByName(Request["Directory"], Request["FileName"]);
+                return;
             case "downloadAttachmentToBuyer":
                 downloadAttachmentToBuyer(Request["Directory"], Request["FileName"]);
-                break;
-            case "deleteAttachmentToVendor":
-                break;
+                return;
+            case "deleteAttachmentToVendor": 
+                return;
             case "downloadAttachmentToVendor":
                 downloadAttachmentToVendor(Request["Directory"], Request["FileName"]);
-                break;
+                return;
         }
         
         if (Session["SECTION"] != null)
@@ -185,6 +191,9 @@ public partial class RFQDefault : System.Web.UI.Page
         string filePath = baseAttachmentsPath + strFileName;
         FileInfo file = new FileInfo(filePath);
         file.Delete();
+        Response.Clear();
+        Response.Write("{\"Result\":\"" + "OK" + "\"}");
+        Response.End();
     }
     public void downloadAttachmentToBuyer(string strDirectory, string strFileName)
     {
@@ -195,22 +204,77 @@ public partial class RFQDefault : System.Web.UI.Page
         Response.TransmitFile(filePath);
         Response.End();
     }
-    public void deleteAttachmentToBuyerByName(string strFileName)
+    public void deleteAttachmentToBuyerByName(string strDirectory, string strFileName)
     {
         string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
-        string filePath = baseAttachmentsPath + strFileName;
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
         FileInfo file = new FileInfo(filePath);
         file.Delete();
+        Response.Clear();
+        Response.Write("{\"Result\":\"" + "Attachment deleted succesfully." + "\"}");
+        Response.End();
     }
-    public void saveRFQ()
+
+    private string updateRFQ()
     {
-        if (Request.ContentType.Contains("json") &&
-            Request.QueryString["Save"] != null)
+        String s = new StreamReader(Request.InputStream).ReadToEnd();
+        RFQ rfq = JsonConvert.DeserializeObject<RFQ>(s);
+
+        /*Begin Transaction*/
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+        
+        DM.Open_Connection("RFQ Update");
+        if (!rfq_CRUD.update(rfq, ref DM))
         {
-            String s = new StreamReader(Request.InputStream).ReadToEnd();
-            String json = JsonConvert.SerializeObject(s);
+            return "ERROR:" + rfq_CRUD.ErrorMessage;
         }
+
+        foreach (RFQEAV rfqEAVLocal in rfq.RfqEAV)
+        {
+            if (!rfqEAV_CRUD.update(rfqEAVLocal, ref DM))
+            {
+                return "ERROR:" + rfqEAV_CRUD.ErrorMessage;
+            }
+
+            if (!rfqDetail_CRUD.deleteByParentID(rfqEAVLocal.Id, ref DM))
+            {
+                return "ERROR:" + rfqDetail_CRUD.ErrorMessage;
+            }
+
+            foreach (RFQDetail rfqDetailCurrent in rfqEAVLocal.RfqDetail)
+            {
+                rfqDetailCurrent.RfqEAVKey = rfqEAVLocal.Id;
+                if (!rfqDetail_CRUD.create(rfqDetailCurrent, ref DM))
+                {
+                    return "ERROR:" + rfqDetail_CRUD.ErrorMessage;
+                }
+            }
+        }
+        if (!rfqACR_CRUD.deleteByParentID(rfq.Id, ref DM))
+        {
+            return "ERROR:" + rfqACR_CRUD.ErrorMessage;
+        }
+        foreach (RFQACR currentACR in rfq.RfqAcr)
+        {
+            currentACR.RfqHeaderKey = rfq.Id;
+            if (!rfqACR_CRUD.create(currentACR, ref DM))
+            {
+                return "ERROR:" + rfqACR_CRUD.ErrorMessage;
+            }
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            return "ERROR:" + DM.Error_Mjs;
+        }
+
+        return getRFQbyID(rfq.Id);
     }
+
     private void openpopupContainer()
     {
         panelPopup.Visible = true;

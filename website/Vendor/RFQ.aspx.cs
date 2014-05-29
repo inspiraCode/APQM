@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
 using System.Configuration;
+using Newtonsoft.Json;
 
 public partial class Vendor_RFQ : System.Web.UI.Page
 {
@@ -61,40 +62,53 @@ public partial class Vendor_RFQ : System.Web.UI.Page
 
             string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
 
-            string currentPathAttachments = (string)Session["RFQATTACHMENTSINBOX"];
+            string currentPathAttachments;
             
-            string folderName = (string)Session["RFQATTACHMENTSFOLDERINBOX"];
-            if (currentPathAttachments == null)
+            string folderName = Request["RFQATTACHMENTSFOLDERINBOX"];
+            if (folderName != null && folderName.Trim() != "")
             {
-                if (folderName != null && folderName.Trim() != "")
+                currentPathAttachments = baseAttachmentsPath + folderName + @"\";
+            }
+            else
+            {
+                do
                 {
-                    currentPathAttachments = baseAttachmentsPath + folderName + @"\";
-                    Session["RFQATTACHMENTSINBOX"] = currentPathAttachments;
-                    Session["RFQATTACHMENTSFOLDERINBOX"] = folderName;
-                }
-                else
-                {
-                    do
-                    {
-                        DateTime date = DateTime.Now;
-                        folderName = date.Year.ToString() + date.Month.ToString() +
-                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
-                        currentPathAttachments = baseAttachmentsPath + folderName;
-                    } while (Directory.Exists(currentPathAttachments));
-                    Directory.CreateDirectory(currentPathAttachments);
-                    currentPathAttachments += @"\";
-                    Session["RFQATTACHMENTSINBOX"] = currentPathAttachments;
-                    Session["RFQATTACHMENTSFOLDERINBOX"] = folderName;
-                }
+                    DateTime date = DateTime.Now;
+                    folderName = date.Year.ToString() + date.Month.ToString() +
+                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                    currentPathAttachments = baseAttachmentsPath + folderName;
+                } while (Directory.Exists(currentPathAttachments));
+                Directory.CreateDirectory(currentPathAttachments);
+                currentPathAttachments += @"\";
             }
 
             if (postedFile.ContentLength > 0)
             {
                 postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
             }
+            Response.Clear();
+            Response.Write("[{\"FolderName\":\"" + folderName + "\"}," + JsonConvert.SerializeObject(getAttachmentsFromFolder(folderName)) + "]");
+            Response.End();
             return true;
         }
         return false;
+    }
+    public List<RFQAttachments> getAttachmentsFromFolder(string folderName)
+    {
+        List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
+        string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        if (folderName != "" && Directory.Exists(baseInboxAttachmentsPath + folderName.Trim()))
+        {
+            DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + folderName);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = folderName;
+                rfqInboxAttachmentsList.Add(rfqAttachment);
+            }
+        }
+        return rfqInboxAttachmentsList;
     }
     private bool retrieveEntity()
     {

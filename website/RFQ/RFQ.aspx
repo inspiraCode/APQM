@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="RFQDefault"
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RFQ.aspx.cs" Inherits="RFQDefault" Async="true"
     MasterPageFile="~/_Layouts/MasterP.master" %>
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc2" %>

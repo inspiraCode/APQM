@@ -35,17 +35,17 @@
     <div>
         <br />
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
-            style="width: 555px;">
+            style="width: 450px;">
             Comments to vendor:<br />
             <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields"
-                tabindex="1"></textarea>
+                tabindex="1" style="width:450px;"></textarea>
         </div>
         <br />
         <br />
     </div>
     <div>
         <br />
-        <div style="background-color: #D3D3D3; width: 550px; min-height: 20px;" data-step='3'
+        <div style="background-color: #D3D3D3; width: 456px; min-height: 20px;" data-step='3'
             data-intro='Sometimes you can receive attachments from our purchasing department that can be helpful for you to quote the piece.'>
             Attachments from Buyer to Vendor:<br />
             <div id="divAttachmentsToVendor">
@@ -60,7 +60,7 @@
                     Due Date
                 </td>
                 <td align="left" class="style77" data-step='4' data-intro='Please complete this RFQ before this date.'>
-                    <label id="lblDueDate" bindto="DueDate" style="text-align: center" class="ReadOnlyFields">
+                    <label id="lblDueDate" style="text-align: center;width: 170px;height:20px;display: block;" class="ReadOnlyFields">
                         DueDate</label>
                 </td>
                 <td align="left" class="style79">
@@ -164,14 +164,15 @@
                     RFQ #
                 </td>
                 <td align="left" class="style77" data-step='5' data-intro='This is our RFQ number.'>
-                    <label id="lblRFQNumber" style="text-align: center; width: 145px; height: 20px" class="ReadOnlyFields">
+                    <label id="lblRFQNumber" bindto="RfqGenerated" style="text-align: center;width: 170px;display: block;
+                        height: 20px" class="ReadOnlyFields">
                         lblRFQNumber</label>
                 </td>
                 <td align="right" class="style79">
                     Supplier Name
                 </td>
                 <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblSupplierName" bindto="SupplierName" class="ReadOnlyFields" style="width: 220px;
+                    <label id="lblSupplierName" bindto="SupplierName" class="ReadOnlyFields" style="width: 220px;display: block;
                         height: 20px;">
                         lblSupplierName</label>
                 </td>
@@ -181,8 +182,8 @@
                     Market Sector
                 </td>
                 <td align="left" class="style77" data-step='6' data-intro='This is the Part Number to quote.'>
-                    <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;
-                        width: 145px; height: 20px;" class="ReadOnlyFields">
+                    <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;display: block;
+                        width: 170px; height: 20px;" class="ReadOnlyFields">
                         lblMarketSector</label>
                 </td>
                 <td align="right" class="style79">
@@ -190,7 +191,7 @@
                 </td>
                 <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
                     <label id="lblManufacturingLocation" bindto="ManufacturingLocation" class="ReadOnlyFields"
-                        style="width: 220px; height: 20px;">
+                        style="width: 220px; height: 20px;display: block;">
                         lblManufacturingLocation</label>
                 </td>
             </tr>
@@ -200,14 +201,14 @@
                 </td>
                 <td align="left" class="style77" data-step='7' data-intro='Market Sector of this piece.'>
                     <label id="lblPartNumber" bindto="PartNumber" class="ReadOnlyFields" style="text-align: center;
-                        width: 145px; height: 20px">
+                        width: 170px; height: 20px;display: block;">
                         lblPartNumber</label>
                 </td>
                 <td align="right" class="style79">
                     Ship From Location
                 </td>
                 <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblShipFromLocation" bindto="ShipLocation" class="ReadOnlyFields" style="width: 220px;
+                    <label id="lblShipFromLocation" bindto="ShipLocation" class="ReadOnlyFields" style="width: 220px;display: block;
                         height: 20px">
                         lblShipFromLocation</label>
                 </td>
@@ -218,7 +219,7 @@
                 </td>
                 <td align="left" class="style77" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
                     <label id="lblPartName" bindto="PartMaterial" class="ReadOnlyFields" style="text-align: left;
-                        width: 200px; height: 48px;">
+                        width: 170px; height: 48px;display: block;">
                         lblPartName</label>
                 </td>
                 <td align="right" class="style79">
@@ -241,7 +242,7 @@
                 </td>
                 <td align="left" class="style77" data-step='9' data-intro='Drawing Level.'>
                     <label id="lblDrawingLevel" bindto="DrawingLevel" class="ReadOnlyFields" style="text-align: center;
-                        width: 145px; height: 20px;">
+                        width: 170px; height: 20px;display: block;">
                         lblDrawingLevel</label>
                 </td>
                 <td align="right" class="style79">
@@ -253,12 +254,11 @@
             </tr>
             <tr>
                 <td align="right" class="style78">
-                    <asp:Label ID="lblTargetPriceLabel" runat="server" Style="text-align: right" Width="145px"
-                        Height="20px">Target Price</asp:Label>
+                    <label id="lblTargetPriceLabel" style="text-align: right;width:145px;height:20px;display:block;">Target Price<label>
                 </td>
                 <td align="left" class="style77" data-step='11' data-intro='Target Price. If specified by Purchasing Department.'>
-                    <label id="lblTargetPrice" bindto="TargetPrice" style="text-align: right; width: 145px;
-                        height: 20px;" class="ReadOnlyFields">
+                    <label id="lblTargetPrice" bindto="TargetPrice" style="text-align: right; width: 170px;
+                        height: 20px;display:block;" class="ReadOnlyFields">
                         lblTargetPrice</label>
                 </td>
                 <td align="right" class="style79">
@@ -293,7 +293,7 @@
             </tr>
             <tr>
                 <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
-                    <textarea rows="4" cols="50" id="txtToolingDetail" tabindex="23"></textarea>
+                    <textarea bindto="ToolingDetail" rows="4" cols="50" id="txtToolingDetail" tabindex="23"></textarea>
                 </td>
                 <td align="center" rowspan="4" data-step='42' data-intro='Outline your annual cost reduction commitment.'>
                 </td>
@@ -329,11 +329,11 @@
                 </td>
             </tr>
         </table>
-        <div style="float: left; margin-left: 50px; margin-right: 50px;">
+        <div style="float: left; margin-left: 50px; margin-right: 40px;">
             <div style="width: 200px;">
                 Annual Cost Reduction Commitment
             </div>
-            <div id="divACR">
+            <div id="divACR" style="margin-left: 30px; margin-top: 5px;">
             </div>
         </div>
         <table>
@@ -379,41 +379,40 @@
     <br />
     <br />
     <div style="clear: both;">
-        <table>
+    <br />
+    <br />
+        <table align="center">
             <tr>
-                <td style="vertical-align: top;">
+                <td style="vertical-align: top;width: 460px;">
                     Attachments from Vendor to Buyer (less than 4MB per file):<br />
-                    <div id="uploadContainer" data-position='right' data-step='46' data-intro='In this area you can upload attachments pressing the button or draggin a file into the area delimited.'
-                        style="height: 200px; overflow-y: auto; width: 450px; background-color: #D3D3D3;"
-                        align="center">
-                        <div id="uploadZone">
-                            Upload
+                    <div id="uploadZone">
+                        Upload
+                    </div>
+                    <div style="background-color: #D3D3D3; width: 449px; min-height: 200px;" data-step='47'
+                        data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                        <br />
+                        <div id="divAttachmentsToBuyer">
                         </div>
                     </div>
                 </td>
-                <td style="vertical-align: top;">
-                    <div style="background-color: #D3D3D3; width: 450px; min-height: 216px;" data-step='47'
-                        data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
-                        Attachments from Vendor to Buyer, already sent:
-                        <br />
-                        <div id="divAttachmentsToBuyer">
+                <td>
+                    <div style="margin-left: auto; margin-right: auto; width: 100%;">
+                        <div align="left">
+                            Comments</div>
+                        <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
+                            data-position='top' style="width: 100%;">
+                            <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="37"
+                                style="width: 400px;height:100px;"></textarea>
                         </div>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
-    <div align="left">
-        Comments</div>
-    <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
-        data-position='top' style="width: 100%;">
-        <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="37"
-            style="width: 100%;"></textarea>
-    </div>
     <div style="display: inline;">
         <asp:HiddenField ID="hiddenInboxAttachments" runat="server" />
         <br />
-        <div id="divImgEmail" style="display: none;">
+        <div id="divImgEmail" style="display: none; position: fixed; bottom: 100px; right: 100px;">
             <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
             <span style="display: inline;">Please wait..</span>
         </div>
@@ -431,12 +430,54 @@
 </div>
 <br />
 <br />
-<asp:HiddenField ID="hiddenSaveButtonClickedID" runat="server" />
 <br />
 <br />
 <uc7:notifier ID="uscNotifier" runat="server" />
-
 <script type="text/javascript">
+
+
+
+    var uploadObj = null;
+
+
+    function on_change_option_quote() {
+        var optQuote = jQuery("#optQuote");
+        if (optQuote.is(':checked')) {
+            jQuery("#quoteSection").show();
+            jQuery("#noQuoteSection").hide();
+        } else {
+            jQuery("#quoteSection").hide();
+            jQuery("#noQuoteSection").show();
+        }
+    }
+
+    var strSaveMode;
+    function uploadFiles(e, strSaveModeParameter) {
+        //        if (strSaveMode == "finalize") {
+        //            //jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
+
+        //           
+        //        } else if (strSaveMode == "save") {
+        //        }
+        strSaveMode = strSaveModeParameter;
+        if (validate(e)) {
+            if (uploadObj != null) {
+                try {
+                    enableCaller(false);
+                } catch (e) {
+                }
+                jQuery("#divImgEmail").css("display", "block");
+                var filesToUploadCount = jQuery(".ajax-file-upload-statusbar").children().filter("div:contains('Cancel'):visible").length;
+                if (filesToUploadCount > 0) {
+                    uploadObj.startUpload();
+                } else {
+                    save();
+                }
+            }
+        }
+    }
+
+
     jQuery(document).ready(function () {
         var params = urlParamsToObject();
         if (params.hasOwnProperty('rfq')) {
@@ -460,48 +501,132 @@
 
 
 
-    function test() {
-        var json = "{Example:1,Example2:2}"
-        var to = '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?Save=1';
-        var options = {
-            type: "POST",
-            url: to,
-            data: json,
-            contentType: "application/json;charset=utf-8",
-            dataType: "json",
-            async: false,
-            success: function (response) {
-                alert("success");
-            },
-            error: function (msg) { alert(msg); }
-        };
-
-        var returnText = $.ajax(options).responseText;
-    }
-
-
-
-
     var RFQ;
     function getRFQ(id) {
         jQuery.getJSON('<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
             RFQ = result;
-            RFQ.DateFilledOut = new Date(RFQ.DateFilledOut);
-            RFQ.DeadDate = new Date(RFQ.DeadDate);
-            RFQ.DueDate = new Date(RFQ.DueDate);
-            RFQ.FilledUp = new Date(RFQ.FilledUp);
-            RFQ.SentToVendor = new Date(RFQ.SentToVendor);
             refreshForm();
         });
         return true;
     }
 
+    function resetForm() {
+        jQuery("[bindTo]").each(function () {
+            setValueForControl(this, jQuery(this), '');
+        });
 
+        jQuery(".handsontable").each(function () {
+            jQuery(this).handsontable("getInstance").destroy();
+        })
 
+        jQuery(".rfqDetailTotals").remove();
+        jQuery("#divDetailSection").empty();
 
+        jQuery("#divAttachmentsToVendor").empty();
+        jQuery("#divAttachmentsToBuyer").empty();
 
+        jQuery("#lblDueDate").text("");
+
+        //        jQuery("#uploadZone").empty().text("Upload");
+        //        jQuery("#uploadZone").siblings().remove();
+    }
+
+    function deleteAttachmentToBuyer(directory, fileName) {
+        jQuery("#divImgEmail").css("display", "block");
+        jQuery.ajax({
+            type: "POST",
+            url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=deleteAttachmentToBuyer&Directory=' + directory + '&FileName=' + fileName,
+            contentType: "application/json;charset=utf-8",
+            dataType: "html",
+            success: function (response) {
+                response = jQuery.parseJSON(response);
+                if (response.Result) {
+                    jQuery("#tableAttachmentsToBuyer tr").filter('[FileName="' + fileName + '"]').remove();
+                    alertify.success(response.Result);
+                } else {
+                    alertify.success("An error has occurried. Please try again.");
+                }
+                jQuery("#divImgEmail").css("display", "none");
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.debug(jqXHR);
+                console.debug(textStatus);
+                console.debug(errorThrown);
+            }
+        });
+    }
+
+    function loadAttachmentsToBuyer() {
+        if (RFQ.AttachmentsToBuyer != null) {
+
+            var strTable = '<table id="tableAttachmentsToBuyer">';
+            for (var i = 0; i < RFQ.AttachmentsToBuyer.length; i++) {
+                var current = RFQ.AttachmentsToBuyer[i];
+
+                strTable += '<tr fileName="' + current.FileName + '"><td style="width: 380px;">';
+                strTable += '<a href="<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
+                strTable += '</td><td>';
+                strTable += '<a style="margin-left:10px;" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</ a><br />';
+                strTable += '</td></ tr>';
+            }
+
+            strTable += '</ table>';
+            jQuery("#divAttachmentsToBuyer").append(strTable);
+
+        } else {
+            jQuery("#divAttachmentsToBuyer").append('No files attached.');
+        }
+    }
     function refreshForm() {
+        resetForm();
+        if (RFQ.NoQuote == false) {
+            jQuery("#optQuote").prop('checked', true);
+            jQuery("#optNoQuote").prop('checked', false);
+        } else {
+            jQuery("#optQuote").prop('checked', false);
+            jQuery("#optNoQuote").prop('checked', true);
+        }
+
+        if (RFQ.TargetPrice < 0)
+        {
+            lblTargetPrice.Visible = false;
+            lblTargetPriceLabel.Visible = false;
+        }
+
+        on_change_option_quote();
+        jQuery("[toHide]").hide();
+
+        uploadObj = jQuery("#uploadZone").uploadFile({
+            url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>?RFQATTACHMENTSFOLDERINBOX=' + RFQ.InboxAttachmentsFolder,
+            multiple: true,
+            fileName: "myfile",
+            uploadButtonClass: "ajax-file-upload-green",
+            maxFileSize: 4194304,
+            showStatusAfterSuccess: false,
+            showAbort: false,
+            showDone: false,
+            onError: function (files, status, errMsg) {
+                //files: list of files
+                //status: error status
+                //errMsg: error message
+                try {
+                    enableCaller(true);
+                } catch (e) {
+                }
+            },
+            onSuccess: function (files, data, xhr) {
+                var resp = jQuery.parseJSON(data);
+                if (resp.length == 2) {
+                    RFQ.InboxAttachmentsFolder = resp[0].FolderName;
+                    RFQ.AttachmentsToBuyer = resp[1];
+                    jQuery("#divAttachmentsToBuyer").empty();
+                    loadAttachmentsToBuyer();
+                }
+            }
+        });
+
         bindParentFields();
+        jQuery("#lblDueDate").text((new Date(RFQ.DueDate)).toLocaleDateString());
         if (RFQ.RfqEAV != null) {
             for (var i = 0; i < RFQ.RfqEAV.length; i++) {
                 var objEAU = RFQ.RfqEAV[i];
@@ -512,7 +637,7 @@
                     '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</ label></div>' +
                     '<div rfqeau_id=' + objEAU.Id + ' /><br /><br />';
 
-                var htmlTotals ='<div style="width: 100%; height: 140px;">' +
+                var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 140px;">' +
                     '    <table cellspacing="0" align="right" style="width: 300px;">' +
                     '        <tr>' +
                     '            <td align="right" class="style75" style="border-top: solid gray; border-left: solid gray;">' +
@@ -588,15 +713,7 @@
             jQuery("#divAttachmentsToVendor").append('No files attached.');
         }
 
-        if (RFQ.AttachmentsToBuyer != null) {
-            for (var i = 0; i < RFQ.AttachmentsToBuyer.length; i++) {
-                var current = RFQ.AttachmentsToBuyer[i];
-                var htmlAttachmentToBuyer = '<a href="<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
-                jQuery("#divAttachmentsToBuyer").append(htmlAttachmentToBuyer);
-            }
-        } else {
-            jQuery("#divAttachmentsToBuyer").append('No files attached.');
-        }
+        loadAttachmentsToBuyer();
 
         var pseudoHeaderRenderer = function (instance, td, row, col, prop, value, cellProperties) {
             Handsontable.TextCell.renderer.apply(this, arguments);
@@ -715,6 +832,7 @@
                             },
                             {
                                 data: "ScrapCost",
+                                renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
                                 format: '0,0.0000',
@@ -776,12 +894,12 @@
                         var sumLaborCost = 0;
                         var sumTotalBurden = 0;
                         for (var i = 1; i < data.length - 1; i++) {
-                           
+
                             data[i].MaterialTotal = data[i].RpcQty * data[i].RpcCostPerUnit;
-                            data[i].ServiceTotal =  data[i].OSQty * data[i].OSCostPerUnit;
-                            data[i].ScrapCost =  (data[i].MaterialTotal + data[i].ServiceTotal) * data[i].ScrapValue / 100;
-                            data[i].LaborCost =  data[i].DirectHrlyLaborRate * data[i].StdHrs;
-                            data[i].BurdenTotal =  data[i].Burden;
+                            data[i].ServiceTotal = data[i].OSQty * data[i].OSCostPerUnit;
+                            data[i].ScrapCost = (data[i].MaterialTotal + data[i].ServiceTotal) * data[i].ScrapValue / 100;
+                            data[i].LaborCost = data[i].DirectHrlyLaborRate * data[i].StdHrs;
+                            data[i].BurdenTotal = data[i].Burden;
 
                             sumMaterialTotal += data[i].MaterialTotal;
                             sumServiceTotal += data[i].ServiceTotal;
@@ -810,25 +928,31 @@
 
         });
 
-        var detailACR = [["", ""]];
+        //var detailACR = [["", ""]];
+        var detailACR = [];
         if (RFQ.RfqAcr != null && RFQ.RfqAcr.length > 0) {
-            detailACR.pop();
+            //detailACR.pop();
             for (var k = 0; k < RFQ.RfqAcr.length; k++) {
                 var currentACR = RFQ.RfqAcr[k];
-                var oRFQACRAdapter = [
-                    currentACR.Year,
-                    currentACR.Porcentage
-                ];
-                detailACR.push(oRFQACRAdapter);
+                detailACR.push(currentACR);
             }
         }
 
-
         jQuery("#divACR").handsontable({
+            data: detailACR,
             colWidths: [70, 70],
-            colHeaders: ['Year', 'Cost %'],
             minRows: 5,
-            data: detailACR
+            minSpareRows: 1,
+            rowHeaders: false,
+            colHeaders: ['Year', 'Cost %'],
+            columns: [
+                        {
+                            data: "Year"
+                        },
+                        {
+                            data: "Porcentage"
+                        }
+                    ]
         });
 
     }
@@ -846,16 +970,14 @@
 
     function bindParentFields() {
         jQuery("[bindTo]").each(function () {
-            setValueForControl(this, jQuery(this), RFQ);
+            var value = RFQ[jQuery(this).attr("bindTo")];
+            setValueForControl(this, jQuery(this), value);
         });
     }
 
 
-    function setValueForControl(ref, control, sourceObject) {
-        var value = sourceObject[control.attr("bindTo")];
-        if (value instanceof Date) {
-            value = value.toLocaleDateString();
-        }
+
+    function setValueForControl(ref, control, value) {
         switch (ref.type) {
             case 'text':
                 control.val(value);
@@ -869,6 +991,68 @@
         }
     }
 
+    function retrieveValuesFromControls() {
+        jQuery("[bindTo]").each(function () {
+            getValueFromControl(this, jQuery(this), RFQ);
+        });
+
+        for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+            var current = RFQ.RfqEAV[i];
+            var ht = jQuery('[rfqeau_id="' + current.Id + '"]').handsontable('getInstance');
+            var data = ht.getData();
+            current.RfqDetail = [];
+            for (var j = 1; j < data.length - 1; j++) {
+                if (data[j].ItemDescription != null && data[j].ItemDescription != "") {
+                    for (prop in data[j]) {
+                        if (data[j].hasOwnProperty(prop)) {
+                            if (data[j][prop] == null) {
+                                data[j][prop] = 0;
+                            }
+                        }
+                    }
+                    current.RfqDetail.push(data[j]);
+                }
+            }
+        }
+
+        RFQ.RfqAcr = [];
+        var htACR = jQuery('#divACR').handsontable('getInstance');
+        var dataACR = htACR.getData();
+        for (var j = 0; j < dataACR.length - 1; j++) {
+            if (dataACR[j].Year != null && dataACR[j].Year != "" && dataACR[j].Porcentage != null && dataACR[j].Porcentage != "")
+                RFQ.RfqAcr.push(dataACR[j]);
+        }
+
+        if (RFQ.NoQuote == false) {
+            jQuery("#optQuote").prop('checked', false);
+            jQuery("#optNoQuote").prop('checked', true);
+        } else {
+            jQuery("#optQuote").prop('checked', true);
+            jQuery("#optNoQuote").prop('checked', false);
+        }
+
+        if (jQuery("#optQuote").is(':checked')) {
+            RFQ.NoQuote = false;
+        } else {
+            RFQ.NoQuote = true;
+        }
+
+
+    }
+
+    function getValueFromControl(ref, control, sourceObject) {
+        switch (ref.type) {
+            case 'text':
+                sourceObject[control.attr("bindTo")] = control.val();
+                break;
+            case 'textarea':
+                sourceObject[control.attr("bindTo")] = control.val();
+                break;
+            default:
+                sourceObject[control.attr("bindTo")] = control.text();
+                break;
+        }
+    }
 
     function summarizeTotalPieceCost(id_EAU) {
         var txtSGAProfit = jQuery('[idsgaprofit="' + id_EAU + '"]');
@@ -906,93 +1090,39 @@
         var lblTotalPieceCost = jQuery('[idtotalpiececost="' + id_EAU + '"]');
 
         lblTotalPieceCost.text((txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit).toFixed(4));
-        
     }
 
-    
-</script>
-<script type="text/javascript">
 
-    jQuery(document).ready(function () {
-        on_change_option_quote();
-        jQuery("[toHide]").hide();
+    function save() {
+        var to = '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=' + strSaveMode;
 
-        uploadObj = jQuery("#uploadZone").uploadFile({
-            url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>',
-            multiple: true,
-            fileName: "myfile",
-            autoSubmit: false,
-            uploadButtonClass: "ajax-file-upload-green",
-            maxFileSize: 4194304,
-            onError: function (files, status, errMsg) {
-                //files: list of files
-                //status: error status
-                //errMsg: error message
-                try {
-                    enableCaller(true);
-                } catch (e) {
-                }
+        retrieveValuesFromControls(); //For RFQ
+        if (strSaveMode == "update") {
+            RFQ.Status = "IN PROGRESS";
+        } else if (strSaveMode == "finalize") {
+            RFQ.Status = "COMPLETED";
+        }
+        else {
+            return;
+        }
+
+        jQuery.ajax({
+            type: "POST",
+            url: to,
+            data: JSON.stringify(RFQ),
+            contentType: "application/json;charset=utf-8",
+            dataType: "html",
+            success: function (response) {
+                RFQ = jQuery.parseJSON(response);
+                refreshForm();
+                jQuery("#divImgEmail").css("display", "none");
+                alertify.success("Information saved successfully.");
             },
-            afterUploadAll: function () {
-                setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
-                jQuery("#divImgEmail").css("display", "block");
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.debug(jqXHR);
+                console.debug(textStatus);
+                console.debug(errorThrown);
             }
         });
-    });
-
-    function on_change_option_quote() {
-        var optQuote = jQuery("#optQuote");
-        if (optQuote.is(':checked')) {
-            jQuery("#quoteSection").show();
-            jQuery("#noQuoteSection").hide();
-        } else {
-            jQuery("#quoteSection").hide();
-            jQuery("#noQuoteSection").show();
-        }
-    }
-
-    
-    var uploadObj = null;
-
-    function uploadFiles(e, strSaveMode) {
-        //        if (strSaveMode == "finalize") {
-        //            var btnAddRFQDetail =jQuery('#');
-        //            if (btnAddRFQDetail.css('display') != "none" && btnAddRFQDetail.is(":visible")) {
-        //                var iTotalRowsRFQDetail = jQuery("#tableRFQDetail tr").length;
-        //                
-        //                if (iTotalRowsRFQDetail < 6) {
-        //                    var pos = btnAddRFQDetail.position();
-        //                    jQuery('#messageDisplayer').css('left', (pos.left - 9) + 'px');
-        //                    jQuery('#messageDisplayer').css('top', (pos.top + btnAddRFQDetail.outerHeight() + 2) + 'px');
-        //                    jQuery('#scrim').show();
-        //                    jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
-        //                    jQuery('html, body').animate({
-        //                        scrollTop: btnAddRFQDetail.offset().top - 300
-        //                    }, 100);
-        //                    btnAddRFQDetail.focus();
-        //                    return;
-        //                }
-        //            }
-        //            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnFinalize.ClientID %>");
-        //        } else if (strSaveMode == "save") {
-        //            jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val("<%= btnSave.ClientID %>");
-        //        }
-
-        //        if (validate(e)) {
-        //            if (uploadObj != null) {
-        //                try {
-        //                    enableCaller(false);
-        //                } catch (e) {
-        //                }
-
-        //                if (uploadObj.fileCounter > 1) {
-        //                    uploadObj.startUpload();
-        //                } else {
-        //                    setTimeout(jQuery("#" + jQuery("#<%= hiddenSaveButtonClickedID.ClientID %>").val()).click(), 5);
-        //                    jQuery("#divImgEmail").css("display", "block");
-        //                }
-        //            }
-        //        }
-        alert("update");
     }
 </script>
