@@ -7,9 +7,12 @@
     <br />
     <br />
     <div id="divInfo" runat="server">
-        Please fill in all the non-shaded fields.  The gray fields are locked informational fields and the blue fields are calculated fields based on the information you provide.<br />
-        Please click on the Instructions button below for a tutorial on filling out this form.<br />
-        Upon completion, please click the Finalize & Submit button.  You will have the opportunity to Save & Continue later should you need to do so.
+        Please fill in all the non-shaded fields. The gray fields are locked informational
+        fields and the blue fields are calculated fields based on the information you provide.<br />
+        Please click on the Instructions button below for a tutorial on filling out this
+        form.<br />
+        Upon completion, please click the Finalize & Submit button. You will have the opportunity
+        to Save & Continue later should you need to do so.
     </div>
     <br />
     <div id="divButtonsTop" align="left" runat="server">
@@ -17,41 +20,48 @@
             Text="Back" Width="132px" TabIndex="1" />
         <div runat="server" id="divButtonsTopToHide" style="display: inline;">
             <input id="btnSendFilesAndFinalize1" onclick="uploadFiles(event, 'finalize');" type="button"
-                style="width: 150px;" validationid="validatingRFQForm" 
-                value="Finalize and submit" tabindex="1" />
-            <input id="btnSendFilesAndSave1" onclick="uploadFiles(event, 'save');" type="button" validationid="validatingRFQForm"
-                style="width: 150px;" value="Save & Continue Later" tabindex="1" />
-            <asp:Button ID="btnInstructions" runat="server" Width="132px" Text="Instructions"
-                OnClientClick="return beginTutorial();" TabIndex="1" />
+                style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit"
+                tabindex="1" />
+            <input id="btnSendFilesAndSave1" onclick="uploadFiles(event, 'update');" type="button"
+                validationid="validatingRFQForm" style="width: 150px;" value="Save & Continue Later"
+                tabindex="1" />
+            <input type="button" id="btnInstructions" style="width: 132px;" value="Instructions"
+                onclick="beginTutorial();" tabindex="1" />
+            <asp:Button ID="btnGoToThankyouPage" runat="server" Style="display: none;" Text="Button"
+                OnClick="btnGoToThankyouPage_Click" />
         </div>
     </div>
-    <uc1:rfqForm ID="uscRfqForm" runat="server" OnAfterSave="on_afterSave_rfq" OnAfterFinalize="on_afterFinalize_rfq" />
+    <uc1:rfqForm ID="uscRfqForm" runat="server" />
     <br />
     <div id="divButtons" align="center" runat="server">
-        <input id="btnSendFilesAndFinalize" onclick="uploadFiles(event, 'finalize');" type="button"
-            style="width: 150px;" validationid="validatingRFQForm" 
-            value="Finalize and submit" tabindex="37" />
-        <input id="btnSendFilesAndSave" onclick="uploadFiles(event, 'save');" type="button" validationid="validatingRFQForm"
-            style="width: 150px;" value="Save & Continue Later" tabindex="38" />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="70px" OnClick="btnCancel_Click"
-            TabIndex="39" />
+        <input id="btnSendFilesAndFinalize" onclick="save(event, 'finalize', onFinalizeSuccess, onFinalizeFail);"
+            type="button" style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit"
+            tabindex="37" />
+        <input id="btnSendFilesAndSave" onclick="save(event, 'update', onUpdateSuccess, onUpdateFail);"
+            type="button" validationid="validatingRFQForm" style="width: 150px;" value="Save & Continue Later"
+            tabindex="38" />
+        <input type="button" id="btnCancel" value="Cancel" style="width: 70px;" onclick="load();"
+            tabindex="39" />
     </div>
     <br />
-
+    <asp:HiddenField ID="hiddenRFQ_ID" runat="server" />
     <script type="text/javascript">
-        function enableCaller(bEnable) {
-            if (bEnable) {
-                jQuery("#<%= divButtons.ClientID %>").children().prop("disabled", false);
-                jQuery("#<%= divButtonsTop.ClientID %>").children().prop("disabled", false);
-            }
-            else {
-                jQuery("#<%= divButtons.ClientID %>").children().prop("disabled", true);
-                jQuery("#<%= divButtonsTop.ClientID %>").children().prop("disabled", true);
-            }
+        jQuery(document).ready(function () {
+            load();
+            
+        });
+
+        function blockIfCompleted() {
+            jQuery(".ajax-upload-dragdrop").remove();
+            jQuery(".deleteAttachmentToBuyer").hide();
+        }
+        function load() {
+            jQuery("#divImgEmail").css("display", "block");
+            getRFQ(jQuery('#<%= hiddenRFQ_ID.ClientID %>').val());
         }
         function beginTutorial() {
             alertify.alert("This tutorial will guide you so you can complete this RFQ without trouble." +
-            "<br /><br />You can use your arrow keys to navigate thru the instructions and press Esc to exit.", function(e, str) {
+            "<br /><br />You can use your arrow keys to navigate thru the instructions and press Esc to exit.", function (e, str) {
                 if (e) {
                     introJs().setOptions({
                         'exitOnOverlayClick': false,
@@ -63,6 +73,22 @@
             });
             return false;
         }
-    </script>
 
+        function onFinalizeSuccess() {
+            jQuery('#<%= btnGoToThankyouPage.ClientID %>').click();
+        }
+
+        function onFinalizeFail() {
+        }
+
+        function onUpdateSuccess() {
+            alertify.success("Information saved successfully.");
+        }
+
+        function onUpdateFail() {
+        }
+
+        
+
+    </script>
 </asp:Content>

@@ -1,5 +1,4 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="rfqForm.ascx.cs" Inherits="rfqForm" %>
-<%@ Register Src="../Utils/Notifier/notifier.ascx" TagName="notifier" TagPrefix="uc7" %>
 <style type="text/css">
     .calculatedField
     {
@@ -15,6 +14,13 @@
         background-color: #D3D3D3;
     }
 </style>
+<div id="divImgEmail" style="display: none; position: fixed; top: 50px; right: 100px;
+    z-index: 1000;">
+    <img id="" alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
+        position: relative;" />
+    <span style="display: inline; position: relative;">Please wait..</span>
+</div>
+<br />
 <br />
 <br />
 <br />
@@ -31,14 +37,14 @@
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
-<div id="quoteSection">
+<div id="quoteSection" style="display:none;">
     <div>
         <br />
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
             style="width: 450px;">
             Comments to vendor:<br />
             <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields"
-                tabindex="1" style="width:450px;"></textarea>
+                tabindex="1" style="width: 450px;"></textarea>
         </div>
         <br />
         <br />
@@ -60,23 +66,24 @@
                     Due Date
                 </td>
                 <td align="left" class="style77" data-step='4' data-intro='Please complete this RFQ before this date.'>
-                    <label id="lblDueDate" style="text-align: center;width: 170px;height:20px;display: block;" class="ReadOnlyFields">
-                        DueDate</label>
+                    <label id="lblDueDate" style="text-align: center; width: 170px; height: 20px; display: block;"
+                        class="ReadOnlyFields">
+                    </label>
                 </td>
                 <td align="left" class="style79">
                 </td>
                 <td align="left" class="style29">
                 </td>
                 <td align="left" class="style29" rowspan="9">
-                    <table cellspacing="0" data-step='16' data-intro='Please complete these fields as applicable.'
+                    <table cellspacing="0" data-step='15' data-intro='Please complete these fields as applicable.'
                         style="width: 449px;">
                         <tr>
                             <td align="right">
                                 Lead Time PPAP/FAIR
                             </td>
                             <td align="left">
-                                <input type="text" id="txtLeadTimePPAP_FAIR" bindto="LeadTimePPAPFAIR" value="txtLeadTimePPAP_FAIR"
-                                    validationid="validatingRFQForm" style="text-align: right; width: 240px;" tabindex="4" />
+                                <input type="text" id="txtLeadTimePPAP_FAIR" bindto="LeadTimePPAPFAIR" value="" validationid="validatingRFQForm"
+                                    style="text-align: right; width: 240px;" tabindex="4" />
                             </td>
                         </tr>
                         <tr>
@@ -85,8 +92,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtLeadTimeFirstProductionOrder" bindto="LeadTimeFirstProductionOrder"
-                                    value="txtLeadTimeFirstProductionOrder" validationid="validatingRFQForm" style="text-align: right;
-                                    width: 240px;" tabindex="5" />
+                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px;"
+                                    tabindex="5" />
                             </td>
                         </tr>
                         <tr>
@@ -95,8 +102,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtLeadTimeNormalProductionOrders" bindto="LeadTimeNormalProductionOrders"
-                                    value="txtLeadTimeNormalProductionOrders" validationid="validatingRFQForm" style="text-align: right;
-                                    width: 240px" tabindex="6" />
+                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px"
+                                    tabindex="6" />
                             </td>
                         </tr>
                     </table>
@@ -106,7 +113,7 @@
                                 Production Lead Time
                             </td>
                             <td align="left">
-                                <input type="text" id="txtProductionLeadTime" bindto="ProductionLeadTime" value="txtProductionLeadTime"
+                                <input type="text" id="txtProductionLeadTime" bindto="ProductionLeadTime" value=""
                                     validationid="validatingRFQForm" style="text-align: right; width: 240px;" tabindex="6" />
                             </td>
                         </tr>
@@ -115,8 +122,8 @@
                                 Production Tooling Lead Time
                             </td>
                             <td align="left">
-                                <input type="text" id="txtProductionToolingLeadTime" value="txtProductionToolingLeadTime"
-                                    validationid="validatingRFQForm" style="text-align: right; width: 240px;" tabindex="6" />
+                                <input type="text" id="txtProductionToolingLeadTime" value="" validationid="validatingRFQForm"
+                                    style="text-align: right; width: 240px;" tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -125,8 +132,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtPrototypeToolingLeadTime" bindto="ProductionToolingLeadTime"
-                                    value="txtPrototypeToolingLeadTime" validationid="validatingRFQForm" style="text-align: right;
-                                    width: 240px;" tabindex="6" />
+                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px;"
+                                    tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -135,8 +142,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtPrototypePieceLeadTime" bindto="PrototypePieceLeadTime"
-                                    value="txtPrototypePieceLeadTime" validationid="validatingRFQForm" style="text-align: right;
-                                    width: 240px;" tabindex="6" />
+                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px;"
+                                    tabindex="6" />
                             </td>
                         </tr>
                         <tr>
@@ -152,7 +159,7 @@
                                 Lead Time PPAP
                             </td>
                             <td align="left">
-                                <input type="text" id="txtLeadTimePPAP" value="txtLeadTimePPAP" validationid="validatingRFQForm"
+                                <input type="text" id="txtLeadTimePPAP" value="" validationid="validatingRFQForm"
                                     style="text-align: right; width: 240px" tabindex="6" />
                             </td>
                         </tr>
@@ -164,17 +171,17 @@
                     RFQ #
                 </td>
                 <td align="left" class="style77" data-step='5' data-intro='This is our RFQ number.'>
-                    <label id="lblRFQNumber" bindto="RfqGenerated" style="text-align: center;width: 170px;display: block;
-                        height: 20px" class="ReadOnlyFields">
-                        lblRFQNumber</label>
+                    <label id="lblRFQNumber" bindto="RfqGenerated" style="text-align: center; width: 170px;
+                        display: block; height: 20px" class="ReadOnlyFields">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     Supplier Name
                 </td>
-                <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblSupplierName" bindto="SupplierName" class="ReadOnlyFields" style="width: 220px;display: block;
-                        height: 20px;">
-                        lblSupplierName</label>
+                <td align="left" class="style29" data-step='11' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                    <label id="lblSupplierName" bindto="SupplierName" class="ReadOnlyFields" style="width: 220px;
+                        display: block; height: 20px;">
+                    </label>
                 </td>
             </tr>
             <tr>
@@ -182,17 +189,17 @@
                     Market Sector
                 </td>
                 <td align="left" class="style77" data-step='6' data-intro='This is the Part Number to quote.'>
-                    <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;display: block;
-                        width: 170px; height: 20px;" class="ReadOnlyFields">
-                        lblMarketSector</label>
+                    <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;
+                        display: block; width: 170px; height: 20px;" class="ReadOnlyFields">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     Manufacturing Location
                 </td>
-                <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
                     <label id="lblManufacturingLocation" bindto="ManufacturingLocation" class="ReadOnlyFields"
-                        style="width: 220px; height: 20px;display: block;">
-                        lblManufacturingLocation</label>
+                        style="width: 220px; height: 20px; display: block;">
+                    </label>
                 </td>
             </tr>
             <tr>
@@ -201,16 +208,16 @@
                 </td>
                 <td align="left" class="style77" data-step='7' data-intro='Market Sector of this piece.'>
                     <label id="lblPartNumber" bindto="PartNumber" class="ReadOnlyFields" style="text-align: center;
-                        width: 170px; height: 20px;display: block;">
-                        lblPartNumber</label>
+                        width: 170px; height: 20px; display: block;">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     Ship From Location
                 </td>
-                <td align="left" class="style29" data-step='14' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblShipFromLocation" bindto="ShipLocation" class="ReadOnlyFields" style="width: 220px;display: block;
-                        height: 20px">
-                        lblShipFromLocation</label>
+                <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                    <label id="lblShipFromLocation" bindto="ShipLocation" class="ReadOnlyFields" style="width: 220px;
+                        display: block; height: 20px">
+                    </label>
                 </td>
             </tr>
             <tr align="left">
@@ -219,14 +226,14 @@
                 </td>
                 <td align="left" class="style77" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
                     <label id="lblPartName" bindto="PartMaterial" class="ReadOnlyFields" style="text-align: left;
-                        width: 170px; height: 48px;display: block;">
-                        lblPartName</label>
+                        width: 170px; height: 48px; display: block;">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     Prepared By
                 </td>
-                <td align="left" class="style29" data-step='15' data-intro='Please enter your name.'>
-                    <input type="text" id="txtPreparedBy" bindto="PreparedBy" value="txtPreparedBy" validate="required"
+                <td align="left" class="style29" data-step='14' data-intro='Please enter your name.'>
+                    <input type="text" id="txtPreparedBy" bindto="PreparedBy" value="" validate="required"
                         validationid="validatingRFQForm" style="width: 216px;" tabindex="3" />
                 </td>
             </tr>
@@ -242,8 +249,8 @@
                 </td>
                 <td align="left" class="style77" data-step='9' data-intro='Drawing Level.'>
                     <label id="lblDrawingLevel" bindto="DrawingLevel" class="ReadOnlyFields" style="text-align: center;
-                        width: 170px; height: 20px;display: block;">
-                        lblDrawingLevel</label>
+                        width: 170px; height: 20px; display: block;">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     &nbsp;
@@ -254,12 +261,14 @@
             </tr>
             <tr>
                 <td align="right" class="style78">
-                    <label id="lblTargetPriceLabel" style="text-align: right;width:145px;height:20px;display:block;">Target Price<label>
+                    <label id="lblTargetPriceLabel" style="text-align: right; width: 145px; height: 20px;
+                        display: block;">
+                    </label>
                 </td>
-                <td align="left" class="style77" data-step='11' data-intro='Target Price. If specified by Purchasing Department.'>
+                <td align="left" class="style77" data-step='10' data-intro='Target Price. If specified by Purchasing Department.'>
                     <label id="lblTargetPrice" bindto="TargetPrice" style="text-align: right; width: 170px;
-                        height: 20px;display:block;" class="ReadOnlyFields">
-                        lblTargetPrice</label>
+                        height: 20px; display: block;" class="ReadOnlyFields">
+                    </label>
                 </td>
                 <td align="right" class="style79">
                     &nbsp;
@@ -272,14 +281,7 @@
         <br />
         <br />
     </div>
-    <div style="border: solid; height: 0px; border-color: #FE0000; border-width: 1px;">
-    </div>
-    <div style="background-color: rgba(185, 198, 219, 0.28);">
-        <br />
-        <div id="divDetailSection">
-        </div>
-    </div>
-    <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
+    <div id="divDetailSection">
     </div>
     <br />
     <div style="margin-left: auto; margin-right: auto; width: 980px;">
@@ -295,15 +297,13 @@
                 <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
                     <textarea bindto="ToolingDetail" rows="4" cols="50" id="txtToolingDetail" tabindex="23"></textarea>
                 </td>
-                <td align="center" rowspan="4" data-step='42' data-intro='Outline your annual cost reduction commitment.'>
-                </td>
             </tr>
             <tr>
                 <td align="right" class="style61" style="width: 260px;">
                     Production Tooling
                 </td>
                 <td class="style62" align="right" data-step='39' data-intro='Enter Production Tooling Cost.'>
-                    <input type="text" id="txtProductionTooling" bindto="ProductionTooling" value="txtProductionTooling"
+                    <input type="text" id="txtProductionTooling" bindto="ProductionTooling" value=""
                         validate="number" validationid="validatingRFQForm" style="text-align: right"
                         tabindex="24" />
                 </td>
@@ -313,9 +313,8 @@
                     Prototype Tooling
                 </td>
                 <td class="style62" align="right" data-step='40' data-intro='Enter Prototype Tooling Cost.'>
-                    <input type="text" id="txtPrototypeTooling" bindto="PrototypeTooling" value="txtPrototypeTooling"
-                        validate="number" validationid="validatingRFQForm" style="text-align: right"
-                        tabindex="25" />
+                    <input type="text" id="txtPrototypeTooling" bindto="PrototypeTooling" value="" validate="number"
+                        validationid="validatingRFQForm" style="text-align: right" tabindex="25" />
                 </td>
             </tr>
             <tr>
@@ -323,13 +322,13 @@
                     Prototype Piece
                 </td>
                 <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Piece Cost.'>
-                    <input type="text" id="txtPrototypePiece" bindto="PrototypePiece" value="txtPrototypePiece"
-                        validate="number" validationid="validatingRFQForm" style="text-align: right"
-                        tabindex="26" />
+                    <input type="text" id="txtPrototypePiece" bindto="PrototypePiece" value="" validate="number"
+                        validationid="validatingRFQForm" style="text-align: right" tabindex="26" />
                 </td>
             </tr>
         </table>
-        <div style="float: left; margin-left: 50px; margin-right: 40px;">
+        <div data-step='42' data-intro='Outline your annual cost reduction commitment.' style="float: left;
+            margin-left: 50px; margin-right: 40px;">
             <div style="width: 200px;">
                 Annual Cost Reduction Commitment
             </div>
@@ -341,103 +340,84 @@
                 <td align="right" class="style78">
                     <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
                         Shipping Weight (lb)
-                        <input type="text" id="txtWeight" bindto="Weight" value="txtWeight" validate="number"
-                            validationid="validatingRFQForm" style="text-align: right; width: 94px" tabindex="32" />
+                        <input type="text" id="txtWeight" bindto="Weight" value="" validate="number" validationid="validatingRFQForm"
+                            style="text-align: right; width: 94px" tabindex="32" />
                     </div>
                 </td>
             </tr>
             <tr>
-                <td align="right" data-step='44' data-intro='Enter the MOQ if applicable.' class="style78">
-                    MOQ
-                    <input type="text" id="txtMOQ" bindto="Moq" value="txtMOQ" style="text-align: right;
-                        width: 130px" tabindex="33" />
-                </td>
-            </tr>
-            <tr>
-                <td align="right" data-step='45' data-intro='Enter the Brand if applicable.' class="style78">
+                <td align="right" data-step='44' data-intro='Enter the Brand if applicable.' class="style78">
                     Brand
-                    <input type="text" value="txtMake" bindto="Make" id="txtMake" style="text-align: right;
+                    <input type="text" value="" bindto="Make" id="txtMake" style="text-align: right;
                         width: 130px" tabindex="34" />
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style78">
+                <td align="right" data-step='45' data-intro='Enter the number of Cavitation if applicable.'
+                    class="style78">
                     Cavitation
-                    <input type="text" id="txtCavitation" bindto="Cavitation" value="txtCavitation" style="text-align: right;
+                    <input type="text" id="txtCavitation" bindto="Cavitation" value="" style="text-align: right;
                         width: 130px;" tabindex="35" />
                 </td>
             </tr>
             <tr>
-                <td align="right" class="style78">
+                <td align="right" data-step='46' data-intro='Enter the Material if applicable.' class="style78">
                     Material
-                    <input type="text" id="txtMaterial" bindto="Material" value="txtMaterial" style="text-align: right;
+                    <input type="text" id="txtMaterial" bindto="Material" value="" style="text-align: right;
                         width: 130px" tabindex="36" />
                 </td>
             </tr>
         </table>
-    </div>
-    <br />
-    <br />
-    <div style="clear: both;">
-    <br />
-    <br />
-        <table align="center">
-            <tr>
-                <td style="vertical-align: top;width: 460px;">
-                    Attachments from Vendor to Buyer (less than 4MB per file):<br />
-                    <div id="uploadZone">
-                        Upload
-                    </div>
-                    <div style="background-color: #D3D3D3; width: 449px; min-height: 200px;" data-step='47'
-                        data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
-                        <br />
-                        <div id="divAttachmentsToBuyer">
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div style="margin-left: auto; margin-right: auto; width: 100%;">
-                        <div align="left">
-                            Comments</div>
-                        <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
-                            data-position='top' style="width: 100%;">
-                            <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="37"
-                                style="width: 400px;height:100px;"></textarea>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div style="display: inline;">
-        <asp:HiddenField ID="hiddenInboxAttachments" runat="server" />
         <br />
-        <div id="divImgEmail" style="display: none; position: fixed; bottom: 100px; right: 100px;">
-            <img id="" alt="" src="../Utils/loading.gif" style="display: inline;" />
-            <span style="display: inline;">Please wait..</span>
+        <br />
+        <div style="clear: both;">
+            <br />
+            <br />
+            <table align="center">
+                <tr>
+                    <td style="vertical-align: top; width: 460px;">
+                        Attachments from Vendor to Buyer (less than 4MB per file):<br />
+                        <div id="uploadZone">
+                            Upload
+                        </div>
+                        <div style="background-color: #D3D3D3; width: 449px; min-height: 200px;" data-step='47'
+                            data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                            <br />
+                            <div id="divAttachmentsToBuyer">
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div style="margin-left: auto; margin-right: auto; width: 100%;">
+                            <div align="left">
+                                Comments</div>
+                            <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
+                                data-position='top' style="width: 100%;">
+                                <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="37"
+                                    style="width: 400px; height: 100px;"></textarea>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="display: inline;">
+            <asp:HiddenField ID="hiddenInboxAttachments" runat="server" />
+            <br />
         </div>
     </div>
 </div>
-<asp:Button ID="btnFinalize" runat="server" Text="Finalize and submit" Width="132px"
-    OnClick="btnFinalize_Click" Style="display: none;" />
-<asp:Button ID="btnSave" runat="server" Text="Save and continue later" Width="160px"
-    Style="display: none;" OnClick="btnSave_Click" />
-<div id="noQuoteSection" style="vertical-align: top;">
+<div id="noQuoteSection" style="vertical-align: top;display:none;">
     <br />
     <br />
     Reason
-    <textarea rows="4" cols="50" id="txtReasonNoQuote" bindto="ReasonNoQuote" tabindex="38">txtReasonNoQuote</textarea>
+    <textarea rows="4" cols="50" id="txtReasonNoQuote" bindto="ReasonNoQuote" tabindex="38"></textarea>
 </div>
 <br />
 <br />
 <br />
 <br />
-<uc7:notifier ID="uscNotifier" runat="server" />
 <script type="text/javascript">
-
-
-
-    var uploadObj = null;
 
 
     function on_change_option_quote() {
@@ -451,41 +431,31 @@
         }
     }
 
-    var strSaveMode;
-    function uploadFiles(e, strSaveModeParameter) {
-        //        if (strSaveMode == "finalize") {
-        //            //jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
+    //    var strSaveMode;
+    //    function uploadFiles(e, strSaveModeParameter,) {
+    //        //        if (strSaveMode == "finalize") {
+    //        //            //jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
 
-        //           
-        //        } else if (strSaveMode == "save") {
-        //        }
-        strSaveMode = strSaveModeParameter;
-        if (validate(e)) {
-            if (uploadObj != null) {
-                try {
-                    enableCaller(false);
-                } catch (e) {
-                }
-                jQuery("#divImgEmail").css("display", "block");
-                var filesToUploadCount = jQuery(".ajax-file-upload-statusbar").children().filter("div:contains('Cancel'):visible").length;
-                if (filesToUploadCount > 0) {
-                    uploadObj.startUpload();
-                } else {
-                    save();
-                }
-            }
-        }
-    }
-
-
-    jQuery(document).ready(function () {
-        var params = urlParamsToObject();
-        if (params.hasOwnProperty('rfq')) {
-            getRFQ(params.rfq);
-        }
-    });
-
-
+    //        //           
+    //        //        } else if (strSaveMode == "save") {
+    //        //        }
+    //        strSaveMode = strSaveModeParameter;
+    //        if (validate(e)) {
+    //            if (uploadObj != null) {
+    //                try {
+    //                    enableCaller(false);
+    //                } catch (e) {
+    //                }
+    //                jQuery("#divImgEmail").css("display", "block");
+    //                var filesToUploadCount = jQuery(".ajax-file-upload-statusbar").children().filter("div:contains('Cancel'):visible").length;
+    //                if (filesToUploadCount > 0) {
+    //                    uploadObj.startUpload();
+    //                } else {
+    //                    save();
+    //                }
+    //            }
+    //        }
+    //    }
 
 
     function urlParamsToObject() {
@@ -498,25 +468,28 @@
         return result;
     }
 
-
-
-
     var RFQ;
     function getRFQ(id) {
-        jQuery.getJSON('<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
+        jQuery.getJSON('<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
             RFQ = result;
             refreshForm();
+            jQuery("#divImgEmail").css("display", "none");
+
         });
         return true;
     }
 
     function resetForm() {
+
         jQuery("[bindTo]").each(function () {
             setValueForControl(this, jQuery(this), '');
         });
 
         jQuery(".handsontable").each(function () {
-            jQuery(this).handsontable("getInstance").destroy();
+            var current = jQuery(this).handsontable("getInstance");
+            if (current) {
+                current.destroy();
+            }
         })
 
         jQuery(".rfqDetailTotals").remove();
@@ -528,14 +501,14 @@
         jQuery("#lblDueDate").text("");
 
         //        jQuery("#uploadZone").empty().text("Upload");
-        //        jQuery("#uploadZone").siblings().remove();
+        jQuery(".ajax-upload-dragdrop").remove();
     }
 
     function deleteAttachmentToBuyer(directory, fileName) {
         jQuery("#divImgEmail").css("display", "block");
         jQuery.ajax({
             type: "POST",
-            url: '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=deleteAttachmentToBuyer&Directory=' + directory + '&FileName=' + fileName,
+            url: '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=deleteAttachmentToBuyer&Directory=' + directory + '&FileName=' + fileName,
             contentType: "application/json;charset=utf-8",
             dataType: "html",
             success: function (response) {
@@ -564,9 +537,9 @@
                 var current = RFQ.AttachmentsToBuyer[i];
 
                 strTable += '<tr fileName="' + current.FileName + '"><td style="width: 380px;">';
-                strTable += '<a href="<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
+                strTable += '<a href="<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
                 strTable += '</td><td>';
-                strTable += '<a style="margin-left:10px;" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</ a><br />';
+                strTable += '<a style="margin-left:10px;" class="deleteAttachmentToBuyer" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</ a><br />';
                 strTable += '</td></ tr>';
             }
 
@@ -577,8 +550,16 @@
             jQuery("#divAttachmentsToBuyer").append('No files attached.');
         }
     }
+
+
+    var urlAttachments = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>';
+
+
     function refreshForm() {
+
+        var scrollPosition = jQuery("body").scrollTop();
         resetForm();
+
         if (RFQ.NoQuote == false) {
             jQuery("#optQuote").prop('checked', true);
             jQuery("#optNoQuote").prop('checked', false);
@@ -587,18 +568,20 @@
             jQuery("#optNoQuote").prop('checked', true);
         }
 
-        if (RFQ.TargetPrice < 0)
-        {
-            lblTargetPrice.Visible = false;
-            lblTargetPriceLabel.Visible = false;
+        if (RFQ.TargetPrice < 0) {
+            jQuery("#lblTargetPrice").hide();
+            jQuery("#lblTargetPriceLabel").hide();
+        } else {
+            jQuery("#lblTargetPrice").show();
+            jQuery("#lblTargetPriceLabel").show();
         }
 
         on_change_option_quote();
         jQuery("[toHide]").hide();
 
-        uploadObj = jQuery("#uploadZone").uploadFile({
-            url: '<%= ResolveUrl("~/Vendor/RFQ.aspx") %>?RFQATTACHMENTSFOLDERINBOX=' + RFQ.InboxAttachmentsFolder,
-            multiple: true,
+        jQuery("#uploadZone").uploadFile({
+            url: urlAttachments,
+            multiple: false,
             fileName: "myfile",
             uploadButtonClass: "ajax-file-upload-green",
             maxFileSize: 4194304,
@@ -622,6 +605,9 @@
                     jQuery("#divAttachmentsToBuyer").empty();
                     loadAttachmentsToBuyer();
                 }
+            },
+            onSubmit: function (a, b, c, d) {
+                this.url = urlAttachments + "?RFQATTACHMENTSFOLDERINBOX=" + RFQ.InboxAttachmentsFolder;
             }
         });
 
@@ -630,83 +616,89 @@
         if (RFQ.RfqEAV != null) {
             for (var i = 0; i < RFQ.RfqEAV.length; i++) {
                 var objEAU = RFQ.RfqEAV[i];
-                var htmlEAU = '<div align="left" style="height: 20px;">' +
+                var htmlEAU = '<div style="border: solid; height: 0px; border-color: #FE0000; border-width: 1px;clear:both;"></div>' +
+                               '<div style="background-color: rgba(185, 198, 219, 0.28);"><br />';
+                htmlEAU += '<div  data-step="16" data-intro="Please quote for this EAU and Calendar Years" align="left" style="height: 20px;width:600px;">' +
                     '<div style="display: inline;margin-right: 5px;">Estimated Annual Usage:</div>' +
                     '<label style="min-width: 300px; display: inline-block;">' + objEAU.Volume + '</ label>' +
-                    '<div style="display: inline;margin-left:20px;margin-right: 5px;">Years:</div>' +
+                    '<div style="display: inline;margin-left:20px;margin-right: 5px;">Calendar Years:</div>' +
                     '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</ label></div>' +
-                    '<div rfqeau_id=' + objEAU.Id + ' /><br /><br />';
+                    '<div style="margin-left: auto;margin-right: auto;width: 1295px;" rfqeau_id=' + objEAU.Id + ' />';
 
-                var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 140px;">' +
-                    '    <table cellspacing="0" align="right" style="width: 300px;">' +
+                var htmlMOQ = '<div data-step="37" data-intro="Please specify MOQ for each EAU." style="position: absolute;margin: 63px;">MOQ<input type="text" idMOQ="' + objEAU.Id + '" style="text-align: right; width: 100px;"' +
+                    '              tabindex="20" value="' + objEAU.Moq + '" /></ div>';
+                var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 160px;background-color: rgba(185, 198, 219, 0.28);">' +
+                    '    <table cellspacing="0" align="right" style="width: 305px;margin-right: 11px;margin-top: 7px;">' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="border-top: solid gray; border-left: solid gray;">' +
+                    '            <td align="right" class="style75" style="padding-top: 5px;border-top: solid gray; border-left: solid gray;border-width: 1px;">' +
                     '                Total Manufacturing Cost&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" style="border-top: solid gray; border-right: solid gray;"' +
-                    '                data-step="33" data-intro="Total Manufacturing Cost (formulated cell not to be completed by Supplier)."' +
+                    '            <td align="left" class="style31" style="padding-top: 5px;border-top: solid gray; border-right: solid gray;border-width: 1px;"' +
+                    '                data-step="32" data-intro="Total Manufacturing Cost (formulated cell not to be completed by Supplier)."' +
                     '                data-position="left">' +
                     '                <label idTotalManufacturingCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right;' +
-                    '                    margin-left: 0px; width: 100px; height: 20px;display: block;padding-right: 3px;">' +
+                    '                    margin-left: 0px; width: 140px; height: 20px;display: block;padding-right: 3px;">' +
                     '                    0</label>' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="border-left: solid gray;">' +
+                    '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                SG&amp;A Profit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" style="border-right: solid gray;" data-step="34"' +
+                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="33"' +
                     '                data-intro="Enter cost for SG&A/Profit" data-position="left">' +
                     '                <input type="text" idSGAProfit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
-                    '                    style="text-align: right; width: 100px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="20" />' +
+                    '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="20" value="' + objEAU.SgAProfit + '" />' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="border-left: solid gray;">' +
+                    '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                Packing Cost/Unit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" style="border-right: solid gray;" data-step="35"' +
+                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="34"' +
                     '                data-intro="Enter packaging cost per unit." data-position="left">' +
                     '                <input type="text" idPackingCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
-                    '                    style="text-align: right; width: 100px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="21" />' +
+                    '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="21" value="' + objEAU.PackingPerUnit + '" />' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr align="left">' +
-                    '            <td align="right" class="style75" style="border-left: solid gray;">' +
+                    '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                Assembly Cost/Unit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '           <td align="left" class="style31" style="border-right: solid gray;" data-step="36"' +
+                    '           <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="35"' +
                     '                data-intro="Enter cost for assembly, if applicable." data-position="left">' +
                     '                <input type="text" idAssemblyCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
-                    '                    style="text-align: right; width: 100px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="22" />' +
+                    '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="22" value="' + objEAU.AssemblyCostPerUnit + '"/>' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="border-left: solid gray; border-bottom: solid gray;">' +
+                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
                     '                Total Piece Cost&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" data-step="37" data-intro="Total Piece Cost (formulated cell not to be completed by the Supplier)."' +
-                    '                data-position="left" style="border-right: solid gray; border-bottom: solid gray;">' +
-                    '                <label idTotalPieceCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right; width: 100px; height: 20px;display: block;padding-right: 3px;">' +
+                    '            <td align="left" class="style31" data-step="36" data-intro="Total Piece Cost (formulated cell not to be completed by the Supplier)."' +
+                    '                data-position="left" style="padding-bottom: 5px;border-right: solid gray; border-bottom: solid gray;border-width: 1px;">' +
+                    '                <label idTotalPieceCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;">' +
                     '                    0</label>' +
                     '            </td>' +
                     '        </tr>' +
-                    '    </table>' +
-                    '</div>'
+                    '    </table><br /><br /><br />' +
+                    '</div>';
+
+                htmlTotals += '</div><div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 1px;"></div><br /><br />';
 
                 jQuery("#divDetailSection").append(htmlEAU);
+                jQuery("#divDetailSection").append(htmlMOQ);
                 jQuery("#divDetailSection").append(htmlTotals);
-
             }
         }
 
         if (RFQ.AttachmentsToVendor != null) {
             for (var i = 0; i < RFQ.AttachmentsToVendor.length; i++) {
                 var current = RFQ.AttachmentsToVendor[i];
-                var htmlAttachmentToVendor = '<a href="<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
+                var htmlAttachmentToVendor = '<a href="<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
                 jQuery("#divAttachmentsToVendor").append(htmlAttachmentToVendor);
             }
         } else {
@@ -743,7 +735,7 @@
             var objEAV = getRFQEAUbyID(id_EAU);
             var detailEAU = [];
             detailEAU.push({
-                ItemDescription: "Item Description",
+                ItemDescription: "<b>Item Description</ b>",
                 Um: "UOM",
                 RpcQty: "Quantity",
                 RpcCostPerUnit: "Cost/Unit",
@@ -782,7 +774,10 @@
                                 data: "ItemDescription"
                             },
                             {
-                                data: "Um"
+                                data: "Um",
+                                type: "autocomplete",
+                                source: ["each", "in", "ft", "yd", "mm", "cm", "m", "g", "kg", "oz", "lt", "gal", "cubic meter"],
+                                strict: false
                             },
                             {
                                 data: "RpcQty",
@@ -885,34 +880,34 @@
                 },
                 afterChange: function (changes, source) {
                     //Calculating formulas:
-                    if (source != "loadData") {
-                        var data = this.getData();
+                    //if (source != "loadData") {
+                    var data = this.getData();
 
-                        var sumMaterialTotal = 0;
-                        var sumServiceTotal = 0;
-                        var sumScrapCost = 0;
-                        var sumLaborCost = 0;
-                        var sumTotalBurden = 0;
-                        for (var i = 1; i < data.length - 1; i++) {
+                    var sumMaterialTotal = 0;
+                    var sumServiceTotal = 0;
+                    var sumScrapCost = 0;
+                    var sumLaborCost = 0;
+                    var sumTotalBurden = 0;
+                    for (var i = 1; i < data.length - 1; i++) {
 
-                            data[i].MaterialTotal = data[i].RpcQty * data[i].RpcCostPerUnit;
-                            data[i].ServiceTotal = data[i].OSQty * data[i].OSCostPerUnit;
-                            data[i].ScrapCost = (data[i].MaterialTotal + data[i].ServiceTotal) * data[i].ScrapValue / 100;
-                            data[i].LaborCost = data[i].DirectHrlyLaborRate * data[i].StdHrs;
-                            data[i].BurdenTotal = data[i].Burden;
+                        data[i].MaterialTotal = data[i].RpcQty * data[i].RpcCostPerUnit;
+                        data[i].ServiceTotal = data[i].OSQty * data[i].OSCostPerUnit;
+                        data[i].ScrapCost = (data[i].MaterialTotal + data[i].ServiceTotal) * data[i].ScrapValue / 100;
+                        data[i].LaborCost = data[i].DirectHrlyLaborRate * data[i].StdHrs;
+                        data[i].BurdenTotal = data[i].Burden;
 
-                            sumMaterialTotal += data[i].MaterialTotal;
-                            sumServiceTotal += data[i].ServiceTotal;
-                            sumScrapCost += data[i].ScrapCost;
-                            sumLaborCost += data[i].LaborCost;
-                            sumTotalBurden += data[i].BurdenTotal;
-                        }
-
-                        jQuery('[idtotalmanufacturingcost="' + self.id_EAU + '"]').text((sumMaterialTotal + sumServiceTotal + sumScrapCost + sumLaborCost + sumTotalBurden).toFixed(4));
-                        summarizeTotalPieceCost(self.id_EAU);
-
-                        this.render();
+                        sumMaterialTotal += data[i].MaterialTotal;
+                        sumServiceTotal += data[i].ServiceTotal;
+                        sumScrapCost += data[i].ScrapCost;
+                        sumLaborCost += data[i].LaborCost;
+                        sumTotalBurden += data[i].BurdenTotal;
                     }
+
+                    jQuery('[idtotalmanufacturingcost="' + self.id_EAU + '"]').text((sumMaterialTotal + sumServiceTotal + sumScrapCost + sumLaborCost + sumTotalBurden).toFixed(4));
+                    summarizeTotalPieceCost(self.id_EAU);
+
+                    this.render();
+                    //}
                 }
             });
 
@@ -926,6 +921,56 @@
             th.eq(3).attr('colspan', 3);
             th.eq(4).attr('colspan', 2);
 
+            var instructionCols = jQuery(".htCore:first tr").eq(2).children();
+            if (instructionCols.length > 0) {
+                instructionCols[0].setAttribute('data-step', '17');
+                instructionCols[0].setAttribute('data-intro', 'Please indicate.');
+
+                instructionCols[1].setAttribute('data-step', '18');
+                instructionCols[1].setAttribute('data-intro', 'Please indicate the unit of measure.');
+
+                instructionCols[2].setAttribute('data-step', '19');
+                instructionCols[2].setAttribute('data-intro', 'Quantity of material used.');
+
+                instructionCols[3].setAttribute('data-step', '20');
+                instructionCols[3].setAttribute('data-intro', 'Material cost per unit.');
+
+                instructionCols[4].setAttribute('data-step', '21');
+                instructionCols[4].setAttribute('data-intro', 'This is the material cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit');
+
+                instructionCols[5].setAttribute('data-step', '22');
+                instructionCols[5].setAttribute('data-intro', 'Outside services needed.');
+
+                instructionCols[6].setAttribute('data-step', '23');
+                instructionCols[6].setAttribute('data-intro', 'Cost of the outside service.');
+
+                instructionCols[7].setAttribute('data-step', '24');
+                instructionCols[7].setAttribute('data-intro', 'This is the outside service cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit');
+
+                instructionCols[8].setAttribute('data-step', '25');
+                instructionCols[8].setAttribute('data-intro', 'Percentage of scrap.');
+
+                instructionCols[9].setAttribute('data-step', '26');
+                instructionCols[9].setAttribute('data-intro', 'This is the scrap cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>(Material Total + Service Total) x Scrap Value');
+
+                instructionCols[10].setAttribute('data-step', '27');
+                instructionCols[10].setAttribute('data-intro', 'Enter directly labor rate.');
+
+                instructionCols[11].setAttribute('data-step', '28');
+                instructionCols[11].setAttribute('data-intro', 'Enter the number of standards hours required per part.');
+
+                instructionCols[12].setAttribute('data-step', '29');
+                instructionCols[12].setAttribute('data-position', 'left');
+                instructionCols[12].setAttribute('data-intro', 'This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.');
+
+                instructionCols[13].setAttribute('data-step', '30');
+                instructionCols[13].setAttribute('data-position', 'left');
+                instructionCols[13].setAttribute('data-intro', 'Enter your total burden cost per unit.');
+
+                instructionCols[14].setAttribute('data-step', '31');
+                instructionCols[14].setAttribute('data-position', 'left');
+                instructionCols[14].setAttribute('data-intro', 'This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden');
+            }
         });
 
         //var detailACR = [["", ""]];
@@ -947,14 +992,22 @@
             colHeaders: ['Year', 'Cost %'],
             columns: [
                         {
-                            data: "Year"
+                            data: "Year",
+                            type: "numeric"
                         },
                         {
-                            data: "Porcentage"
+                            data: "Porcentage",
+                            type: "numeric"
                         }
                     ]
         });
-
+        try {
+            if (RFQ.Status == "COMPLETED")
+                setTimeout(blockIfCompleted(), 1000);
+        } catch (e) {//blockIfCompleted function implemented only for vendors in /Vendor/RFQ.aspx
+            console.debug(e);
+        }
+        jQuery("body").scrollTop(scrollPosition);
     }
 
 
@@ -975,8 +1028,6 @@
         });
     }
 
-
-
     function setValueForControl(ref, control, value) {
         switch (ref.type) {
             case 'text':
@@ -992,52 +1043,51 @@
     }
 
     function retrieveValuesFromControls() {
+
         jQuery("[bindTo]").each(function () {
             getValueFromControl(this, jQuery(this), RFQ);
         });
 
-        for (var i = 0; i < RFQ.RfqEAV.length; i++) {
-            var current = RFQ.RfqEAV[i];
-            var ht = jQuery('[rfqeau_id="' + current.Id + '"]').handsontable('getInstance');
-            var data = ht.getData();
-            current.RfqDetail = [];
-            for (var j = 1; j < data.length - 1; j++) {
-                if (data[j].ItemDescription != null && data[j].ItemDescription != "") {
-                    for (prop in data[j]) {
-                        if (data[j].hasOwnProperty(prop)) {
-                            if (data[j][prop] == null) {
-                                data[j][prop] = 0;
-                            }
-                        }
-                    }
-                    current.RfqDetail.push(data[j]);
-                }
-            }
-        }
-
-        RFQ.RfqAcr = [];
-        var htACR = jQuery('#divACR').handsontable('getInstance');
-        var dataACR = htACR.getData();
-        for (var j = 0; j < dataACR.length - 1; j++) {
-            if (dataACR[j].Year != null && dataACR[j].Year != "" && dataACR[j].Porcentage != null && dataACR[j].Porcentage != "")
-                RFQ.RfqAcr.push(dataACR[j]);
-        }
-
-        if (RFQ.NoQuote == false) {
-            jQuery("#optQuote").prop('checked', false);
-            jQuery("#optNoQuote").prop('checked', true);
-        } else {
-            jQuery("#optQuote").prop('checked', true);
-            jQuery("#optNoQuote").prop('checked', false);
-        }
-
         if (jQuery("#optQuote").is(':checked')) {
             RFQ.NoQuote = false;
+
+            for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+                var current = RFQ.RfqEAV[i];
+
+                current.SgAProfit = jQuery('[idsgaprofit="' + current.Id + '"]').val();
+                current.PackingPerUnit = jQuery('[idpackingcostunit="' + current.Id + '"]').val();
+                current.AssemblyCostPerUnit = jQuery('[idassemblycostunit="' + current.Id + '"]').val();
+                current.Moq = jQuery('[idMOQ="' + current.Id + '"]').val();
+
+                var ht = jQuery('[rfqeau_id="' + current.Id + '"]').handsontable('getInstance');
+                var data = ht.getData();
+                current.RfqDetail = [];
+                for (var j = 1; j < data.length - 1; j++) {
+                    if (data[j].ItemDescription != null && data[j].ItemDescription != "") {
+                        for (prop in data[j]) {
+                            if (data[j].hasOwnProperty(prop)) {
+                                if (data[j][prop] == null) {
+                                    data[j][prop] = 0;
+                                }
+                            }
+                        }
+                        current.RfqDetail.push(data[j]);
+                    }
+                }
+            }
+
+            RFQ.RfqAcr = [];
+            var htACR = jQuery('#divACR').handsontable('getInstance');
+            var dataACR = htACR.getData();
+            for (var j = 0; j < dataACR.length - 1; j++) {
+                if (dataACR[j].Year != null && dataACR[j].Year != "" && dataACR[j].Porcentage != null && dataACR[j].Porcentage != "")
+                    RFQ.RfqAcr.push(dataACR[j]);
+            }
+
+
         } else {
             RFQ.NoQuote = true;
         }
-
-
     }
 
     function getValueFromControl(ref, control, sourceObject) {
@@ -1093,36 +1143,43 @@
     }
 
 
-    function save() {
-        var to = '<%= ResolveUrl("~/RFQ/RFQ.aspx") %>?cmd=' + strSaveMode;
+    function save(e, strSaveMode, onSuccess, onFail) {
+        
+        if (validate(e)) {
+            retrieveValuesFromControls(); //For RFQ variable
 
-        retrieveValuesFromControls(); //For RFQ
-        if (strSaveMode == "update") {
-            RFQ.Status = "IN PROGRESS";
-        } else if (strSaveMode == "finalize") {
-            RFQ.Status = "COMPLETED";
-        }
-        else {
-            return;
-        }
-
-        jQuery.ajax({
-            type: "POST",
-            url: to,
-            data: JSON.stringify(RFQ),
-            contentType: "application/json;charset=utf-8",
-            dataType: "html",
-            success: function (response) {
-                RFQ = jQuery.parseJSON(response);
-                refreshForm();
-                jQuery("#divImgEmail").css("display", "none");
-                alertify.success("Information saved successfully.");
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.debug(jqXHR);
-                console.debug(textStatus);
-                console.debug(errorThrown);
+            if (strSaveMode == "update") {
+                RFQ.Status = "IN PROGRESS";
+            } else if (strSaveMode == "finalize") {
+                RFQ.Status = "COMPLETED";
             }
-        });
+            else {
+                return;
+            }
+
+            var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=update';
+
+            jQuery("#divImgEmail").css("display", "block");
+
+            jQuery.ajax({
+                type: "POST",
+                url: to,
+                data: JSON.stringify(RFQ),
+                contentType: "application/json;charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    RFQ = jQuery.parseJSON(response);
+                    refreshForm();
+                    jQuery("#divImgEmail").css("display", "none");
+                    onSuccess();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.debug(jqXHR);
+                    console.debug(textStatus);
+                    console.debug(errorThrown);
+                    onFail();
+                }
+            });
+        }
     }
 </script>

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Net.Mail;
+using System.IO;
+using System.Configuration;
 
 public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
 {
@@ -216,7 +218,21 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
     }
 
 
-
+    public string createAttachmentsInboxFolder()
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        string currentPathAttachments;
+        string folderName;
+        do
+        {
+            DateTime date = DateTime.Now;
+            folderName = date.Year.ToString() + date.Month.ToString() +
+                            date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+            currentPathAttachments = baseAttachmentsPath + folderName;
+        } while (Directory.Exists(currentPathAttachments));
+        Directory.CreateDirectory(currentPathAttachments);
+        return folderName;
+    }
 
 
 

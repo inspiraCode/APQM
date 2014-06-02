@@ -209,7 +209,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
-            "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
+            "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
             "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders  " +
             "FROM viewRFQHeader_ReadAll " +
@@ -254,30 +254,29 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ShipLocation = table.Rows[0][22].ToString();
                 rfq.PreparedBy = table.Rows[0][23].ToString();
                 rfq.RfqGenerated = table.Rows[0][24].ToString();
-                rfq.Moq = table.Rows[0][25].ToString();
-                rfq.TargetPrice = float.Parse(table.Rows[0][26].ToString());
-                rfq.NoQuote = bool.Parse(table.Rows[0][27].ToString());
-                rfq.MarketSectorID = long.Parse(table.Rows[0][28].ToString());
-                rfq.CommentsToBuyer = table.Rows[0][29].ToString();
-                rfq.CommentsToVendor = table.Rows[0][30].ToString();
-                rfq.IAgree = bool.Parse(table.Rows[0][31].ToString());
-                rfq.DateFilledOut = DateTime.Parse(table.Rows[0][32].ToString());
-                rfq.Make = table.Rows[0][33].ToString();
-                rfq.ReasonNoQuote = table.Rows[0][34].ToString();
-                rfq.Weight = float.Parse(table.Rows[0][35].ToString());
-                rfq.UmWeight = table.Rows[0][36].ToString();
-                rfq.PartMaterial = table.Rows[0][37].ToString();
-                rfq.SifHeaderKey = long.Parse(table.Rows[0][38].ToString());
-                rfq.SentAttachmentsFolder = table.Rows[0][39].ToString();
-                rfq.LeadTimePPAP = table.Rows[0][40].ToString();
-                rfq.InboxAttachmentsFolder = table.Rows[0][41].ToString();
-                rfq.MarketSectorName = table.Rows[0][42].ToString();
-                rfq.CreatedBy = table.Rows[0][43].ToString();
-                rfq.Cavitation = table.Rows[0][44].ToString();
-                rfq.Material = table.Rows[0][45].ToString();
-                rfq.LeadTimePPAPFAIR = table.Rows[0][46].ToString();
-                rfq.LeadTimeFirstProductionOrder = table.Rows[0][47].ToString();
-                rfq.LeadTimeNormalProductionOrders = table.Rows[0][48].ToString();
+                rfq.TargetPrice = float.Parse(table.Rows[0][25].ToString());
+                rfq.NoQuote = bool.Parse(table.Rows[0][26].ToString());
+                rfq.MarketSectorID = long.Parse(table.Rows[0][27].ToString());
+                rfq.CommentsToBuyer = table.Rows[0][28].ToString();
+                rfq.CommentsToVendor = table.Rows[0][29].ToString();
+                rfq.IAgree = bool.Parse(table.Rows[0][30].ToString());
+                rfq.DateFilledOut = DateTime.Parse(table.Rows[0][31].ToString());
+                rfq.Make = table.Rows[0][32].ToString();
+                rfq.ReasonNoQuote = table.Rows[0][33].ToString();
+                rfq.Weight = float.Parse(table.Rows[0][34].ToString());
+                rfq.UmWeight = table.Rows[0][35].ToString();
+                rfq.PartMaterial = table.Rows[0][36].ToString();
+                rfq.SifHeaderKey = long.Parse(table.Rows[0][37].ToString());
+                rfq.SentAttachmentsFolder = table.Rows[0][38].ToString();
+                rfq.LeadTimePPAP = table.Rows[0][39].ToString();
+                rfq.InboxAttachmentsFolder = table.Rows[0][40].ToString();
+                rfq.MarketSectorName = table.Rows[0][41].ToString();
+                rfq.CreatedBy = table.Rows[0][42].ToString();
+                rfq.Cavitation = table.Rows[0][43].ToString();
+                rfq.Material = table.Rows[0][44].ToString();
+                rfq.LeadTimePPAPFAIR = table.Rows[0][45].ToString();
+                rfq.LeadTimeFirstProductionOrder = table.Rows[0][46].ToString();
+                rfq.LeadTimeNormalProductionOrders = table.Rows[0][47].ToString();
                 sqlConnection.Dispose();
                 return rfq;
             }
@@ -293,7 +292,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "ProductionLeadTime, ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
             "PrototypeTooling, PrototypePiece, Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
-            "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
+            "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
             "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
             "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key)";
@@ -338,30 +337,29 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ShipLocation = table.Rows[i][22].ToString();
                 rfq.PreparedBy = table.Rows[i][23].ToString();
                 rfq.RfqGenerated = table.Rows[i][24].ToString();
-                rfq.Moq = table.Rows[i][25].ToString();
-                rfq.TargetPrice = float.Parse(table.Rows[i][26].ToString());
-                rfq.NoQuote = bool.Parse(table.Rows[i][27].ToString());
-                rfq.MarketSectorID = long.Parse(table.Rows[i][28].ToString());
-                rfq.CommentsToBuyer = table.Rows[i][29].ToString();
-                rfq.CommentsToVendor = table.Rows[i][30].ToString();
-                rfq.IAgree = bool.Parse(table.Rows[i][31].ToString());
-                rfq.DateFilledOut = DateTime.Parse(table.Rows[i][32].ToString());
-                rfq.Make = table.Rows[i][33].ToString();
-                rfq.ReasonNoQuote = table.Rows[i][34].ToString();
-                rfq.Weight = float.Parse(table.Rows[i][35].ToString());
-                rfq.UmWeight = table.Rows[i][36].ToString();
-                rfq.PartMaterial = table.Rows[i][37].ToString();
-                rfq.SifHeaderKey = long.Parse(table.Rows[i][38].ToString());
-                rfq.SentAttachmentsFolder = table.Rows[i][39].ToString();
-                rfq.LeadTimePPAP = table.Rows[i][40].ToString();
-                rfq.InboxAttachmentsFolder = table.Rows[i][41].ToString();
-                rfq.MarketSectorName = table.Rows[i][42].ToString();
-                rfq.CreatedBy = table.Rows[i][43].ToString();
-                rfq.Cavitation = table.Rows[i][44].ToString();
-                rfq.Material = table.Rows[i][45].ToString();
-                rfq.LeadTimePPAPFAIR = table.Rows[i][46].ToString();
-                rfq.LeadTimeFirstProductionOrder = table.Rows[i][47].ToString();
-                rfq.LeadTimeNormalProductionOrders = table.Rows[i][48].ToString();
+                rfq.TargetPrice = float.Parse(table.Rows[i][25].ToString());
+                rfq.NoQuote = bool.Parse(table.Rows[i][26].ToString());
+                rfq.MarketSectorID = long.Parse(table.Rows[i][27].ToString());
+                rfq.CommentsToBuyer = table.Rows[i][28].ToString();
+                rfq.CommentsToVendor = table.Rows[i][29].ToString();
+                rfq.IAgree = bool.Parse(table.Rows[i][30].ToString());
+                rfq.DateFilledOut = DateTime.Parse(table.Rows[i][31].ToString());
+                rfq.Make = table.Rows[i][32].ToString();
+                rfq.ReasonNoQuote = table.Rows[i][33].ToString();
+                rfq.Weight = float.Parse(table.Rows[i][34].ToString());
+                rfq.UmWeight = table.Rows[i][35].ToString();
+                rfq.PartMaterial = table.Rows[i][36].ToString();
+                rfq.SifHeaderKey = long.Parse(table.Rows[i][37].ToString());
+                rfq.SentAttachmentsFolder = table.Rows[i][38].ToString();
+                rfq.LeadTimePPAP = table.Rows[i][39].ToString();
+                rfq.InboxAttachmentsFolder = table.Rows[i][40].ToString();
+                rfq.MarketSectorName = table.Rows[i][41].ToString();
+                rfq.CreatedBy = table.Rows[i][42].ToString();
+                rfq.Cavitation = table.Rows[i][43].ToString();
+                rfq.Material = table.Rows[i][44].ToString();
+                rfq.LeadTimePPAPFAIR = table.Rows[i][45].ToString();
+                rfq.LeadTimeFirstProductionOrder = table.Rows[i][46].ToString();
+                rfq.LeadTimeNormalProductionOrders = table.Rows[i][47].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -378,7 +376,7 @@ public class RfqCRUD : ICRUD<RFQ>
                       "PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, "
                     + "PrototypeTooling, PrototypePiece, [Status], DueDate, SentToVendor, FilledUp, PartNumber, DeadDate, "
                     + "Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
-                      "MOQ, TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
+                      "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, LeadTimePPAP, " +
                       "AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
                       "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
@@ -418,30 +416,29 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.ShipLocation = table.Rows[i][22].ToString();
             rfq.PreparedBy = table.Rows[i][23].ToString();
             rfq.RfqGenerated = table.Rows[i][24].ToString();
-            rfq.Moq = table.Rows[i][25].ToString();
-            rfq.TargetPrice = float.Parse(table.Rows[i][26].ToString());
-            rfq.NoQuote = bool.Parse(table.Rows[i][27].ToString());
-            rfq.MarketSectorID = long.Parse(table.Rows[i][28].ToString());
-            rfq.CommentsToBuyer = table.Rows[i][29].ToString();
-            rfq.CommentsToVendor = table.Rows[i][30].ToString();
-            rfq.IAgree = bool.Parse(table.Rows[i][31].ToString());
-            rfq.DateFilledOut = DateTime.Parse(table.Rows[i][32].ToString());
-            rfq.Make = table.Rows[i][33].ToString();
-            rfq.ReasonNoQuote = table.Rows[i][34].ToString();
-            rfq.Weight = float.Parse(table.Rows[i][35].ToString());
-            rfq.UmWeight = table.Rows[i][36].ToString();
-            rfq.PartMaterial = table.Rows[i][37].ToString();
-            rfq.SifHeaderKey = long.Parse(table.Rows[i][38].ToString());
-            rfq.SentAttachmentsFolder = table.Rows[i][39].ToString();
-            rfq.LeadTimePPAP = table.Rows[i][40].ToString();
-            rfq.InboxAttachmentsFolder = table.Rows[i][41].ToString();
-            rfq.MarketSectorName = table.Rows[i][42].ToString();
-            rfq.CreatedBy = table.Rows[i][43].ToString();
-            rfq.Cavitation = table.Rows[i][44].ToString();
-            rfq.Material = table.Rows[i][45].ToString();
-            rfq.LeadTimePPAPFAIR = table.Rows[i][46].ToString();
-            rfq.LeadTimeFirstProductionOrder = table.Rows[i][47].ToString();
-            rfq.LeadTimeNormalProductionOrders = table.Rows[i][48].ToString();
+            rfq.TargetPrice = float.Parse(table.Rows[i][25].ToString());
+            rfq.NoQuote = bool.Parse(table.Rows[i][26].ToString());
+            rfq.MarketSectorID = long.Parse(table.Rows[i][27].ToString());
+            rfq.CommentsToBuyer = table.Rows[i][28].ToString();
+            rfq.CommentsToVendor = table.Rows[i][29].ToString();
+            rfq.IAgree = bool.Parse(table.Rows[i][30].ToString());
+            rfq.DateFilledOut = DateTime.Parse(table.Rows[i][31].ToString());
+            rfq.Make = table.Rows[i][32].ToString();
+            rfq.ReasonNoQuote = table.Rows[i][33].ToString();
+            rfq.Weight = float.Parse(table.Rows[i][34].ToString());
+            rfq.UmWeight = table.Rows[i][35].ToString();
+            rfq.PartMaterial = table.Rows[i][36].ToString();
+            rfq.SifHeaderKey = long.Parse(table.Rows[i][37].ToString());
+            rfq.SentAttachmentsFolder = table.Rows[i][38].ToString();
+            rfq.LeadTimePPAP = table.Rows[i][39].ToString();
+            rfq.InboxAttachmentsFolder = table.Rows[i][40].ToString();
+            rfq.MarketSectorName = table.Rows[i][41].ToString();
+            rfq.CreatedBy = table.Rows[i][42].ToString();
+            rfq.Cavitation = table.Rows[i][43].ToString();
+            rfq.Material = table.Rows[i][44].ToString();
+            rfq.LeadTimePPAPFAIR = table.Rows[i][45].ToString();
+            rfq.LeadTimeFirstProductionOrder = table.Rows[i][46].ToString();
+            rfq.LeadTimeNormalProductionOrders = table.Rows[i][47].ToString();
             recordset.Add(rfq);
         }
         return recordset;
@@ -700,6 +697,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
             
             result = DM.Execute_StoreProcedure("RFQEAV_NewEAV", true);
 
@@ -729,6 +727,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
             
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQEAV_NewEAV", true);
 
@@ -757,6 +756,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
             
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQEAV_NewEAV", true);
 
@@ -777,7 +777,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     {
         RFQEAV rfqEAV = new RFQEAV();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
                         "FROM  RFQEAV WHERE (EAVKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -797,6 +797,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 rfqEAV.SgAProfit = float.Parse(table.Rows[0][4].ToString());
                 rfqEAV.PackingPerUnit = float.Parse(table.Rows[0][5].ToString());
                 rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[0][6].ToString());
+                rfqEAV.Moq = table.Rows[0][7].ToString();
                 
                 sqlConnection.Dispose();
                 return rfqEAV;
@@ -808,7 +809,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     {
         List<RFQEAV> recordset = new List<RFQEAV>();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
                         "FROM  RFQEAV WHERE RFQHeaderKey = @key ORDER BY RFQHeaderKey, Year";
 
         DataTable table = new DataTable();
@@ -830,6 +831,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 rfqEAV.SgAProfit = float.Parse(table.Rows[i][4].ToString());
                 rfqEAV.PackingPerUnit = float.Parse(table.Rows[i][5].ToString());
                 rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[i][6].ToString());
+                rfqEAV.Moq = table.Rows[i][7].ToString();
 
                 recordset.Add(rfqEAV);
             }
@@ -842,7 +844,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
                         "FROM  RFQEAV ORDER BY RFQHeaderKey, Year";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -857,6 +859,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             rfqEAV.SgAProfit = float.Parse(table.Rows[i][4].ToString());
             rfqEAV.PackingPerUnit = float.Parse(table.Rows[i][5].ToString());
             rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[i][6].ToString());
+            rfqEAV.Moq = table.Rows[i][7].ToString();
 
             recordset.Add(rfqEAV);
         }
@@ -878,6 +881,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
             
             result = DM.Execute_StoreProcedure("RFQEAV_EditEAV", true);
 
@@ -907,6 +911,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@SG_A_Profit", entity.SgAProfit.ToString());
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
+            DM.Load_SP_Parameters("@MOQ", entity.Moq);
             
             result = DM.Execute_StoreProcedure_Open_Conn("RFQEAV_EditEAV", true);
 

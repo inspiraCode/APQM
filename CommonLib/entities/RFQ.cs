@@ -367,7 +367,7 @@ public class RFQEAV
     private float sgAProfit;
     private float packingPerUnit;
     private float assemblyCostPerUnit;
-    
+    private string moq = "";
 
     private List<RFQDetail> rfqDetail;
 
@@ -415,6 +415,11 @@ public class RFQEAV
     {
         get { return assemblyCostPerUnit; }
         set { assemblyCostPerUnit = value; }
+    }
+    public string Moq
+    {
+        get { return moq; }
+        set { moq = value; }
     }
 }
 

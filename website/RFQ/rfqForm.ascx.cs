@@ -49,7 +49,6 @@ public partial class rfqForm : System.Web.UI.UserControl
     
 
     public bool finalize() {
-        uscNotifier.hide();
         if (saveRFQ())
         {
             RFQ rfq = rfqCRUD.readById(this.rfq.Id);
@@ -69,7 +68,6 @@ public partial class rfqForm : System.Web.UI.UserControl
         {
             return false;
         }
-        uscNotifier.showSuccess("Information saved successfully.");
         return true;
     }
     public bool saveRFQ()
@@ -176,7 +174,6 @@ public partial class rfqForm : System.Web.UI.UserControl
             return false;
         }
 
-        uscNotifier.showSuccess("Information saved successfully.");
         return true;
     }
     public void setEnabled(bool enabled)
@@ -206,10 +203,6 @@ public partial class rfqForm : System.Web.UI.UserControl
         //Vendor is not able to delete Buyer attachment. Links are hidden.
     }
     public void showCancelMessage(){
-        uscNotifier.showLog("Values have been re-established.");
-    }
-
-    public void on_item_databound(Object Sender, RepeaterItemEventArgs e)
-    {
+        //uscNotifier.showLog("Values have been re-established.");
     }
 }
