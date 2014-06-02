@@ -34,6 +34,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
 
         long rfqHeaderKeyLocal = -1;
         int seqLocal = -1;
+        float eavLocal = -1;
 
         float fTotalBCost = 0;
         float fTotalCCost = 0;
@@ -48,6 +49,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                 {
                     long auxRFQKey = value.IndexOf("txtKey");
                     int auxSeq = value.IndexOf("txtSeq");
+                    float auxEAU = value.IndexOf("txtRFQ_EAU");
                     if (auxRFQKey != -1)
                     {
                         rfqHeaderKeyLocal = long.Parse(Request.Form[value]);
@@ -55,6 +57,10 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                     if (auxSeq != -1)
                     {
                         seqLocal = int.Parse(Request.Form[value]);
+                    }
+                    if (auxEAU != -1)
+                    {
+                        eavLocal = int.Parse(Request.Form[value]);
                     }
                     if (value.IndexOf("txtTotalBCost") != -1)
                     {
@@ -69,11 +75,11 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                         if (Request.Form[value] != "")
                             fEAV = float.Parse(Request.Form[value]);
                     }
-                    if (rfqHeaderKeyLocal != -1 && seqLocal != -1)
+                    if (rfqHeaderKeyLocal != -1 && seqLocal != -1 && eavLocal != -1)
                     {
                         foreach (RFQSummary rfqS in rfqSummary)
                         {
-                            if (rfqS.RfqHeaderKey == rfqHeaderKeyLocal)
+                            if (rfqS.RfqHeaderKey == rfqHeaderKeyLocal && rfqS.EstimatedAnnualVolume == eavLocal)
                             {
                                 rfqS.Sequence = seqLocal;
                                 rfqS.TotalBCost = fTotalBCost;
@@ -82,6 +88,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
                                 
                                 seqLocal = -1;
                                 rfqHeaderKeyLocal = -1;
+                                eavLocal = -1;
 
                                 fTotalBCost = 0;
                                 fTotalCCost = 0;
@@ -164,7 +171,7 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
 
             AsyncPostBackTrigger trigger = new AsyncPostBackTrigger();
             LinkButton linkSupplier =(LinkButton)e.Item.FindControl("lnkSupplier");
-            linkSupplier.CommandArgument = rfqSummary.RfqHeaderKey.ToString();
+            linkSupplier.CommandArgument = rfqSummary.RfqHeaderKey.ToString() + "|" + rfqSummary.EstimatedAnnualVolume;
             trigger.ControlID = linkSupplier.UniqueID;
             trigger.EventName = "Click";
             UpdatePanel1.Triggers.Add(trigger);
@@ -197,9 +204,11 @@ public partial class rfqSummaryDetail : System.Web.UI.UserControl
 
     public void selectRFQ(object sender, CommandEventArgs e)
     {
-        long id = long.Parse((string)e.CommandArgument);
+        string[] argument = ((string)e.CommandArgument).Split('|');
+        long id = long.Parse(argument[0]);
+        float volume = float.Parse(argument[1]);
         RFQSummary rfqSummary = new RFQSummary();
-        rfqSummary = rfqSummaryCRUD.readByRFQHeaderId(id);
+        rfqSummary = rfqSummaryCRUD.readByRFQHeaderIdAndEAU(id,volume);
         if (rfqSummary != null)
         {
             SessionObject so = new SessionObject();

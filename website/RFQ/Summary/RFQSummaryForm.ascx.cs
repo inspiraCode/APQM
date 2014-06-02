@@ -18,7 +18,7 @@ public partial class RFQSummaryForm : System.Web.UI.UserControl
     public void setBomDetailID(long bomDetailID)
     {
         ViewState["bomDetailID"] = bomDetailID;
-        txtBomDetailID.Text = bomDetailID.ToString();
+        txtBomDetailID.Value = bomDetailID.ToString();
         uscRfqSummaryList.setEntity(bomDetailID);
         frmRFQSummaryHeader.DataBind();
 

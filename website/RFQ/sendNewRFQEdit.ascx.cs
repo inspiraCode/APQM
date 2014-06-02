@@ -66,8 +66,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         lblBomDetailID.Text = rfq.BomDetailId.ToString();
         frmBOMLine.DataBind();
 
-        txtEAU.Text = rfq.EstimatedAnnualVolume;
-        txtEAUCalendarYears.Text = rfq.EauCalendarYears;
+        //txtEAU.Text = rfq.EstimatedAnnualVolume;
+        //txtEAUCalendarYears.Text = rfq.EauCalendarYears;
 
         txtDueDate.Text = rfq.DueDate.ToShortDateString();
         cboMarketSector.SelectedValue = rfq.MarketSectorID.ToString();
@@ -200,8 +200,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         rfq.DueDate = DateTime.Parse(txtDueDate.Text);
         rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
         rfq.DrawingLevel = txtDrawingLevel.Text;
-        rfq.EstimatedAnnualVolume = txtEAU.Text;
-        rfq.EauCalendarYears = txtEAUCalendarYears.Text;
+        //rfq.EstimatedAnnualVolume = txtEAU.Text;
+        //rfq.EauCalendarYears = txtEAUCalendarYears.Text;
         if (chkTargetPrice.Checked)
         {
             rfq.TargetPrice = float.Parse(txtTargetPrice.Text);
@@ -348,8 +348,8 @@ public partial class SendNewRFQEdit : System.Web.UI.UserControl
         rfq.DueDate = DateTime.Parse(txtDueDate.Text);
         rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
         rfq.DrawingLevel = txtDrawingLevel.Text;
-        rfq.EstimatedAnnualVolume = txtEAU.Text;
-        rfq.EauCalendarYears = txtEAUCalendarYears.Text;
+        //rfq.EstimatedAnnualVolume = txtEAU.Text;
+        //rfq.EauCalendarYears = txtEAUCalendarYears.Text;
         if (chkTargetPrice.Checked)
         {
             rfq.TargetPrice = float.Parse(txtTargetPrice.Text);

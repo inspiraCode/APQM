@@ -168,7 +168,7 @@
                 <div id="zone" class="container" style="margin-left: 125px; position: relative;">
             </HeaderTemplate>
             <ItemTemplate>
-                <div class="movible" style="position: absolute;">
+                <div class="movible" style="position: absolute;" eav_volume='<%# DataBinder.Eval(Container.DataItem, "EstimatedAnnualVolume")%>' >
                     <table class="rfqUnselected" style="text-align: right; width: 100%;">
                         <tr height='11px;'>
                             <td align="center">
@@ -308,6 +308,7 @@
                             <td>
                                 <asp:TextBox ID="txtSeq" runat="server" class="Sequence" Width="20px" Text='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>'></asp:TextBox>
                                 <asp:TextBox ID="txtKey" runat="server" Width="20px" Text='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>'></asp:TextBox>
+                                <asp:TextBox ID="txtRFQ_EAU" runat="server" Width="20px" Text='<%# DataBinder.Eval(Container.DataItem, "EstimatedAnnualVolume")%>'></asp:TextBox>
                                 <asp:HiddenField ID="txtHiddenRFQKey" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "RfqHeaderKey")%>' />
                                 <asp:HiddenField ID="txtHiddenSeq" runat="server" Value='<%# DataBinder.Eval(Container.DataItem, "Sequence")%>' />
                             </td>
@@ -335,16 +336,26 @@
 
 <script type="text/javascript">
     var arrColumns = {};
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
+        makeShapeshift();
+        jQuery('[item]').each(function () {
+            if (!arrColumns.hasOwnProperty(jQuery(this).attr("item")))
+                arrColumns[jQuery(this).attr("item")] = jQuery("[item = " + jQuery(this).attr("item") + "]");
+
+            summarizeColumn(jQuery(this).attr("item"));
+        });
+    });
+
+    function makeShapeshift() {
         var width = 0;
         var count = 0;
-        jQuery('.movible').each(function() {
+        jQuery('.movible:visible').each(function () {
             if (jQuery(this).outerWidth() > width) {
                 width = jQuery(this).outerWidth() + 10;
             }
             count++;
         });
-        jQuery('.movible').each(function() {
+        jQuery('.movible').each(function () {
             jQuery(this).width(width);
             var strStatus = jQuery(this).children().children().children(":first").children().children().text();
             if (strStatus == "SELECTED" || strStatus == "AWARDED") {
@@ -354,20 +365,13 @@
         width += 30;
         jQuery('#zone').width(width * count);
         jQuery('.container').shapeshift();
-        jQuery('.container').on("ss-rearranged", function(e, selected) {
+        jQuery('.container').on("ss-rearranged", function (e, selected) {
             var sort = 0;
-            jQuery('.movible').each(function() {
+            jQuery('.movible').each(function () {
                 jQuery(this).find(".Sequence").val(sort++);
             });
         });
-
-        jQuery('[item]').each(function() {
-            if (!arrColumns.hasOwnProperty(jQuery(this).attr("item")))
-                arrColumns[jQuery(this).attr("item")] = jQuery("[item = " + jQuery(this).attr("item") + "]");
-
-            summarizeColumn(jQuery(this).attr("item"));
-        });
-    });
+    }
 
     function summarizeColumn(index) {
         var ACost = Number(arrColumns[index].filter('[fieldname=lblTotalACost]').text());

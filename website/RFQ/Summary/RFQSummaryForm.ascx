@@ -9,7 +9,7 @@
                 BOMDetail ON BOMHeader.BOMHeaderKey = BOMDetail.BOMHeaderKey INNER JOIN ItemMaster ON BOMDetail.ItemMasterKey = ItemMaster.ItemMasterKey 
                 WHERE (BOMDetail.BOMDetailKey = @BOMDetailID)" ProviderName="System.Data.SqlClient">
     <SelectParameters>
-        <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" PropertyName="Text" />
+        <asp:ControlParameter ControlID="txtBomDetailID" Name="BOMDetailID" PropertyName="Value" />
     </SelectParameters>
 </asp:SqlDataSource>
 <div style="width: 100%; height: 120px;">
@@ -77,9 +77,13 @@
             </table>
         </ItemTemplate>
     </asp:FormView>
+    <div id="divEAV">
+    </div>
 </div>
 <div align="center">
     <br />
+    <div id="divSummaryDetail"></div>
+    
     <uc1:rfqSummaryDetail ID="uscRfqSummaryList" runat="server" />
 </div>
 <div id="divRFQSummaryHeader" align="left" style="clear: both; height: 500px;" runat="server"
@@ -288,16 +292,93 @@
         </tr>
     </table>
 </div>
-<asp:TextBox ID="txtBomDetailID" runat="server" Visible="False"></asp:TextBox>
+<asp:HiddenField ID="txtBomDetailID" runat="server" />
 <asp:Button ID="btnSave" runat="server" Text="Save" class="btnInTitle dontprint"
     Style="right: 125px; width: 110px;" OnClick="btnSave_Click" />
 <uc2:Validator ID="uscValidator" runat="server" />
-
 <script type="text/javascript">
+    var bomDetailID;
+    jQuery(document).ready(function () {
+        bomDetailID = jQuery('#<%= txtBomDetailID.ClientID %>').val();
+        if (bomDetailID != "")
+            getRFQSummary(bomDetailID);
+
+    });
+
+    var RFQSummary;
+    function load() {
+
+    }
+    function getRFQSummary(id) {
+        jQuery.getJSON('<%= ResolveUrl("~/WebService/RFQSummary.aspx") %>?cmd=read&id=' + id, function (result) {
+            RFQSummary = result;
+            refreshForm();
+            //jQuery("#divImgEmail").css("display", "none");
+        });
+        return true;
+    }
+    function resetForm() {
+
+        //        jQuery("[bindTo]").each(function () {
+        //            setValueForControl(this, jQuery(this), '');
+        //        });
+
+        jQuery("#divEAV").empty();
+    }
+    function loadEAUs() {
+        var strTable = '<table id="tableEAUs" cellspacing="0" border="0">';
+//        strTable += '<tr><td><input type="radio" name="optEAU" checked="checked"></td><td>Manual</ td><td></ td></ tr>';
+        //        strTable += '<tr><td><input type="radio" name="optEAU"></td><td>Equal to:</ td><td><input type="text" value="" id="txtEqualEAU" style="width:100px;"></ td></ tr>';
+        strTable += '<tr><td></td><td style="text-align: right;">EAV</ td><td style="text-align: right;">Calendar Years</ td></ tr>';
+        var eauGroupped = getEAUGroupped();
+        for (current in eauGroupped) {
+            if (eauGroupped.hasOwnProperty(current)) {
+                strTable += '<tr><td><input optEAU_ID="' + current + '" type="radio" name="optEAU" onclick="onFilterEAU(event);"></td><td style="width: 70px;text-align: right;">' + current + '</ td><td style="width: 130px;text-align: right;">2013, 2014</ td></ tr>';
+            }
+        }
+        strTable += '</ table>';
+        jQuery("#divEAV").append(strTable);
+        jQuery(":radio").eq(0).attr("checked", true);
+        filterColumnsByEAU(jQuery(":radio").eq(0).parent().siblings().eq(0).text());
+    }
+    function getEAUGroupped() {
+        var result = {};
+        if (RFQSummary.RfqSummaryList != null) {
+            for (var i = 0; i < RFQSummary.RfqSummaryList.length; i++) {
+                var current = RFQSummary.RfqSummaryList[i];
+                if (!(current.EstimatedAnnualVolume in result)) {
+                    result[current.EstimatedAnnualVolume] = current.EstimatedAnnualVolume;
+                }
+            }
+        }
+        return result;
+    }
+    function onFilterEAU(e) {
+        if (!e) e = window.event;
+        var target = e.target || e.srcElement;
+        var eau = jQuery(target).parent().siblings().eq(0).text();
+        filterColumnsByEAU(eau);
+    }
+    function filterColumnsByEAU(eau) {
+        jQuery('#opt' + eau).attr("checked", true);
+        jQuery('[eav_volume]').hide();
+        jQuery('[eav_volume="' + eau + '"]').show();
+        makeShapeshift();
+    }
+
+    function refreshForm() {
+        var scrollPosition = jQuery("body").scrollTop();
+        resetForm();
+        //bindParentFields();
+        loadEAUs();
+        //onFilterEAU(jQuery(":radio").eq(0));
+        jQuery("body").scrollTop(scrollPosition);
+        
+    }
+
     var mainEAV = jQuery('[mainEAV]');
     function setEAVValues() {
-        jQuery('[fieldName=txtEAV]').each(function() { jQuery(this).val(mainEAV.val()) });
-        jQuery('[item]').each(function() { summarizeColumn(jQuery(this).attr("item")) });
+        jQuery('[fieldName=txtEAV]').each(function () { jQuery(this).val(mainEAV.val()) });
+        jQuery('[item]').each(function () { summarizeColumn(jQuery(this).attr("item")) });
     }
 </script>
-

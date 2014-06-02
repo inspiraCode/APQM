@@ -11,7 +11,6 @@ public class RFQ
     private long supplierId = -1;
     private long rfqNumberKey = -1;
     private string drawingLevel = "";
-    private string estimatedAnnualVolume = "";
     private string prototypeToolingLeadTime = "";
     private string prototypePieceLeadTime = "";
     private string toolingDetail = "";
@@ -75,8 +74,6 @@ public class RFQ
     private string cavitation = "";
     private string material = "";
 
-    private string eauCalendarYears = "";
-
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
 
@@ -139,11 +136,6 @@ public class RFQ
     {
         get { return drawingLevel; }
         set { drawingLevel = value; }
-    }
-    public string EstimatedAnnualVolume
-    {
-        get { return estimatedAnnualVolume; }
-        set { estimatedAnnualVolume = value; }
     }
     public string ProductionLeadTime
     {
@@ -324,11 +316,6 @@ public class RFQ
     {
         get { return material; }
         set { material = value; }
-    }
-    public string EauCalendarYears
-    {
-        get { return eauCalendarYears; }
-        set { eauCalendarYears = value; }
     }
     public string LeadTimePPAPFAIR
     {
@@ -626,6 +613,10 @@ public class RFQSummaryHeader
     private string qualityAllConcurrences = ""; 
     private string salesAllConcurrences = "";
     private string notes = "";
+    private int eauSelectedForView; //Used for know what EAU to show in RFQ Summary page.
+
+    private List<RFQSummary> rfqSummaryList;
+    private BOMDetail bomDetail;
 
     public long Id
     {
@@ -692,6 +683,21 @@ public class RFQSummaryHeader
         get { return notes; }
         set { notes = value; }
     }
+    public List<RFQSummary> RfqSummaryList
+    {
+        get { return rfqSummaryList; }
+        set { rfqSummaryList = value; }
+    }
+    public int EauSelectedForView
+    {
+        get { return eauSelectedForView; }
+        set { eauSelectedForView = value; }
+    }
+    public BOMDetail BomDetail
+    {
+        get { return bomDetail; }
+        set { bomDetail = value; }
+    }
 }
 
 public class RFQSummary
@@ -711,7 +717,8 @@ public class RFQSummary
     private float tooling;
     private string cavitation;
     private string materialTooling;
-   
+
+    
     public float ManufacturingCost
     {
         get { return MaterialTotal + ServiceTotal + ScrapTotal + LaborTotal + BurdenTotal; }       
@@ -740,8 +747,6 @@ public class RFQSummary
     private float eav;
 
     private string status;
-
-
 
     private string leadTimePPAPFAIR = "";
     private string leadTimeFirstProductionOrder = "";

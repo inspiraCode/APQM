@@ -470,7 +470,7 @@
 
     var RFQ;
     function getRFQ(id) {
-        jQuery.getJSON('<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
+        jQuery.getJSON('<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
             RFQ = result;
             refreshForm();
             jQuery("#divImgEmail").css("display", "none");
@@ -508,7 +508,7 @@
         jQuery("#divImgEmail").css("display", "block");
         jQuery.ajax({
             type: "POST",
-            url: '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=deleteAttachmentToBuyer&Directory=' + directory + '&FileName=' + fileName,
+            url: '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=deleteAttachmentToBuyer&Directory=' + directory + '&FileName=' + fileName,
             contentType: "application/json;charset=utf-8",
             dataType: "html",
             success: function (response) {
@@ -537,7 +537,7 @@
                 var current = RFQ.AttachmentsToBuyer[i];
 
                 strTable += '<tr fileName="' + current.FileName + '"><td style="width: 380px;">';
-                strTable += '<a href="<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
+                strTable += '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
                 strTable += '</td><td>';
                 strTable += '<a style="margin-left:10px;" class="deleteAttachmentToBuyer" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</ a><br />';
                 strTable += '</td></ tr>';
@@ -552,7 +552,7 @@
     }
 
 
-    var urlAttachments = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>';
+    var urlAttachments = '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>';
 
 
     function refreshForm() {
@@ -698,7 +698,7 @@
         if (RFQ.AttachmentsToVendor != null) {
             for (var i = 0; i < RFQ.AttachmentsToVendor.length; i++) {
                 var current = RFQ.AttachmentsToVendor[i];
-                var htmlAttachmentToVendor = '<a href="<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
+                var htmlAttachmentToVendor = '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
                 jQuery("#divAttachmentsToVendor").append(htmlAttachmentToVendor);
             }
         } else {
@@ -1157,7 +1157,7 @@
                 return;
             }
 
-            var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=update';
+            var to = '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=update';
 
             jQuery("#divImgEmail").css("display", "block");
 

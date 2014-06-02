@@ -42,7 +42,7 @@ public partial class RFQ_Summary_selectRFQ : System.Web.UI.UserControl
         RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
 
         RFQ rfq = rfqCRUD.readById(rfqSummary.RfqHeaderKey);
-        List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(rfq.BomDetailId);
+        List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailIDAndEAU(rfq.BomDetailId, rfqSummary.EstimatedAnnualVolume);
         List<RFQ> rfqList = rfqCRUD.readByBOMDetailKey(rfq.BomDetailId);
 
         bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
