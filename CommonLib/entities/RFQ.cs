@@ -614,9 +614,9 @@ public class RFQSummaryHeader
     private string salesAllConcurrences = "";
     private string notes = "";
     private int eauSelectedForView; //Used for know what EAU to show in RFQ Summary page.
+    private string recommendedSupplier = "";
 
     private List<RFQSummary> rfqSummaryList;
-    private BOMDetail bomDetail;
 
     public long Id
     {
@@ -693,10 +693,10 @@ public class RFQSummaryHeader
         get { return eauSelectedForView; }
         set { eauSelectedForView = value; }
     }
-    public BOMDetail BomDetail
+    public string RecommendedSupplier
     {
-        get { return bomDetail; }
-        set { bomDetail = value; }
+        get { return recommendedSupplier; }
+        set { recommendedSupplier = value; }
     }
 }
 
