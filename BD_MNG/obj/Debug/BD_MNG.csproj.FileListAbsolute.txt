@@ -17,3 +17,4 @@ C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.dll
 C:\gitRepositories\APQM\BD_MNG\bin\Debug\BD_MNG.pdb
 C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.dll
 C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.pdb
+C:\gitRepositories\APQM\BD_MNG\obj\Debug\BD_MNG.csprojResolveAssemblyReference.cache

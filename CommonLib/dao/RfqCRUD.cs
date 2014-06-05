@@ -1833,7 +1833,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Status], [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
                         "FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
@@ -1873,6 +1873,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimePPAPFAIR= table.Rows[0][23].ToString();
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
+                rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
 
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -1887,7 +1888,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
                         "FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -1922,6 +1923,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimePPAPFAIR = table.Rows[0][23].ToString();
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
+                rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
@@ -1943,7 +1945,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
                         "FROM viewRFQ_Summary WHERE RFQHeaderKey = @key AND EstimatedAnnualVolume = @volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -1979,6 +1981,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimePPAPFAIR = table.Rows[0][23].ToString();
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
+                rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
@@ -2001,7 +2004,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
                         "FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2037,6 +2040,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimePPAPFAIR = table.Rows[i][23].ToString();
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[i][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[i][25].ToString();
+                rfqSummary.RfqEAVKey = long.Parse(table.Rows[i][26].ToString());
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());
@@ -2058,7 +2062,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
                         "FROM viewRFQ_Summary WHERE BOMDetailKey = @key AND EstimatedAnnualVolume=@volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2095,6 +2099,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimePPAPFAIR = table.Rows[i][23].ToString();
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[i][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[i][25].ToString();
+                rfqSummary.RfqEAVKey = long.Parse(table.Rows[i][26].ToString());
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());
@@ -2115,7 +2120,7 @@ public class RfqSummaryCRUD
         DM = connectionManager.getDataManager();
         try
         {
-            DM.Load_SP_Parameters("@RFQHeaderKey", entity.RfqHeaderKey.ToString());
+            DM.Load_SP_Parameters("@RFQEAVKey", entity.RfqEAVKey.ToString());
             DM.Load_SP_Parameters("@BCost", entity.TotalBCost.ToString());
             DM.Load_SP_Parameters("@CCost", entity.TotalCCost.ToString());
             DM.Load_SP_Parameters("@EAV", entity.EAV.ToString());
@@ -2146,7 +2151,7 @@ public class RfqSummaryCRUD
     public bool deleteByParentID(long id, ref Data_Base_MNG.SQL DM)
     {
         ErrorOccur = false;
-        string query = "DELETE FROM RFQSummary WHERE RFQHeaderKey=" + id;
+        string query = "DELETE FROM RFQSummary WHERE RFQEAVKey=" + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
             ErrorOccur = DM.ErrorOccur;

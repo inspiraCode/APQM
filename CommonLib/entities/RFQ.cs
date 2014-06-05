@@ -703,7 +703,6 @@ public class RFQSummaryHeader
 public class RFQSummary
 {
     private long id =-1;
-    private long rfqHeaderKey = -1;
     private long bomDetailKey = -1;
     private string rfqNumber = "";
     private long supplierKey = -1;
@@ -717,7 +716,20 @@ public class RFQSummary
     private float tooling;
     private string cavitation;
     private string materialTooling;
+    private long rfqEAVKey = -1;
+    private long rfqHeaderKey = -1;
 
+    public long RfqHeaderKey
+    {
+        get { return rfqHeaderKey; }
+        set { rfqHeaderKey = value; }
+    }
+
+    public long RfqEAVKey
+    {
+        get { return rfqEAVKey; }
+        set { rfqEAVKey = value; }
+    }
     
     public float ManufacturingCost
     {
@@ -771,12 +783,6 @@ public class RFQSummary
     {
         get { return eav; }
         set { eav = value; }
-    }
-
-    public long RfqHeaderKey
-    {
-        get { return rfqHeaderKey; }
-        set { rfqHeaderKey = value; }
     }
     public long Id
     {

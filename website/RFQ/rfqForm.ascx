@@ -29,7 +29,7 @@
 <br />
 <div data-step='1' data-intro='Select "Quote" if you are able to quote this piece. Otherwise select "No Quote" and please specify your reason.'
     style="width: 300px;">
-    <input id="optQuote" bindto="NoQuote" type="radio" name="optQuote" tabindex="1" checked="checked"
+    <input id="optQuote" type="radio" name="optQuote" tabindex="1" checked="checked"
         onchange="on_change_option_quote()" />Quote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input id="optNoQuote" type="radio" name="optQuote" tabindex="2" onchange="on_change_option_quote()" />No
     Quote<br />
@@ -522,9 +522,9 @@
                 jQuery("#divImgEmail").css("display", "none");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.debug(jqXHR);
-                console.debug(textStatus);
-                console.debug(errorThrown);
+                console.log(jqXHR);
+                console.log(textStatus);
+                console.log(errorThrown);
             }
         });
     }
@@ -537,17 +537,17 @@
                 var current = RFQ.AttachmentsToBuyer[i];
 
                 strTable += '<tr fileName="' + current.FileName + '"><td style="width: 380px;">';
-                strTable += '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a>';
+                strTable += '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToBuyer&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</a>';
                 strTable += '</td><td>';
-                strTable += '<a style="margin-left:10px;" class="deleteAttachmentToBuyer" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</ a><br />';
-                strTable += '</td></ tr>';
+                strTable += '<a style="margin-left:10px;" class="deleteAttachmentToBuyer" href="#" onclick="deleteAttachmentToBuyer(\'' + current.Directory + '\', \'' + current.FileName + '\');return false;">Delete</a><br />';
+                strTable += '</td></tr>';
             }
 
-            strTable += '</ table>';
-            jQuery("#divAttachmentsToBuyer").append(strTable);
+            strTable += '</table>';
+            jQuery("#divAttachmentsToBuyer").html(strTable);
 
         } else {
-            jQuery("#divAttachmentsToBuyer").append('No files attached.');
+            jQuery("#divAttachmentsToBuyer").html('No files attached.');
         }
     }
 
@@ -614,19 +614,20 @@
         bindParentFields();
         jQuery("#lblDueDate").text((new Date(RFQ.DueDate)).toLocaleDateString());
         if (RFQ.RfqEAV != null) {
+            var htmlAll = '';
             for (var i = 0; i < RFQ.RfqEAV.length; i++) {
                 var objEAU = RFQ.RfqEAV[i];
                 var htmlEAU = '<div style="border: solid; height: 0px; border-color: #FE0000; border-width: 1px;clear:both;"></div>' +
-                               '<div style="background-color: rgba(185, 198, 219, 0.28);"><br />';
-                htmlEAU += '<div  data-step="16" data-intro="Please quote for this EAU and Calendar Years" align="left" style="height: 20px;width:600px;">' +
+                               '<div style="background-color: rgba(185, 198, 219, 0.28);"><br>';
+                htmlEAU += '<div  data-step="16" data-intro="Please quote for this EAU and Calendar Years" align="left" style="height: 20px;">' +
                     '<div style="display: inline;margin-right: 5px;">Estimated Annual Usage:</div>' +
-                    '<label style="min-width: 300px; display: inline-block;">' + objEAU.Volume + '</ label>' +
+                    '<label style="display: inline-block;">' + objEAU.Volume + '</label>' +
                     '<div style="display: inline;margin-left:20px;margin-right: 5px;">Calendar Years:</div>' +
-                    '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</ label></div>' +
-                    '<div style="margin-left: auto;margin-right: auto;width: 1295px;" rfqeau_id=' + objEAU.Id + ' />';
+                    '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</label></div>' +
+                    '<div style="margin-left: auto;margin-right: auto;width: 1295px;" rfqeau_id="' + objEAU.Id + '"></div>';
 
                 var htmlMOQ = '<div data-step="37" data-intro="Please specify MOQ for each EAU." style="position: absolute;margin: 63px;">MOQ<input type="text" idMOQ="' + objEAU.Id + '" style="text-align: right; width: 100px;"' +
-                    '              tabindex="20" value="' + objEAU.Moq + '" /></ div>';
+                    '              tabindex="20" value="' + objEAU.Moq + '"></div>';
                 var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 160px;background-color: rgba(185, 198, 219, 0.28);">' +
                     '    <table cellspacing="0" align="right" style="width: 305px;margin-right: 11px;margin-top: 7px;">' +
                     '        <tr>' +
@@ -649,7 +650,7 @@
                     '                data-intro="Enter cost for SG&A/Profit" data-position="left">' +
                     '                <input type="text" idSGAProfit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="20" value="' + objEAU.SgAProfit + '" />' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="20" value="' + objEAU.SgAProfit + '">' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
@@ -660,7 +661,7 @@
                     '                data-intro="Enter packaging cost per unit." data-position="left">' +
                     '                <input type="text" idPackingCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="21" value="' + objEAU.PackingPerUnit + '" />' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="21" value="' + objEAU.PackingPerUnit + '">' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr align="left">' +
@@ -671,7 +672,7 @@
                     '                data-intro="Enter cost for assembly, if applicable." data-position="left">' +
                     '                <input type="text" idAssemblyCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
-                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="22" value="' + objEAU.AssemblyCostPerUnit + '"/>' +
+                    '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="22" value="' + objEAU.AssemblyCostPerUnit + '">' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
@@ -684,25 +685,25 @@
                     '                    0</label>' +
                     '            </td>' +
                     '        </tr>' +
-                    '    </table><br /><br /><br />' +
+                    '    </table><br><br><br>' +
                     '</div>';
 
-                htmlTotals += '</div><div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 1px;"></div><br /><br />';
+                htmlTotals += '</div><div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 1px;"></div><br><br>';
+                htmlAll += (htmlEAU + htmlMOQ + htmlTotals);
 
-                jQuery("#divDetailSection").append(htmlEAU);
-                jQuery("#divDetailSection").append(htmlMOQ);
-                jQuery("#divDetailSection").append(htmlTotals);
             }
+            jQuery("#divDetailSection").html(htmlAll);
         }
 
         if (RFQ.AttachmentsToVendor != null) {
+            var htmlAttachmentToVendor = '';
             for (var i = 0; i < RFQ.AttachmentsToVendor.length; i++) {
                 var current = RFQ.AttachmentsToVendor[i];
-                var htmlAttachmentToVendor = '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</ a><br />'
-                jQuery("#divAttachmentsToVendor").append(htmlAttachmentToVendor);
+                htmlAttachmentToVendor += '<a href="<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=downloadAttachmentToVendor&Directory=' + current.Directory + '&FileName=' + current.FileName + '">' + current.FileName + '</a><br>'
             }
+            jQuery("#divAttachmentsToVendor").html(htmlAttachmentToVendor);
         } else {
-            jQuery("#divAttachmentsToVendor").append('No files attached.');
+            jQuery("#divAttachmentsToVendor").html('No files attached.');
         }
 
         loadAttachmentsToBuyer();
@@ -735,7 +736,7 @@
             var objEAV = getRFQEAUbyID(id_EAU);
             var detailEAU = [];
             detailEAU.push({
-                ItemDescription: "<b>Item Description</ b>",
+                ItemDescription: "Item Description",
                 Um: "UOM",
                 RpcQty: "Quantity",
                 RpcCostPerUnit: "Cost/Unit",
@@ -890,17 +891,17 @@
                     var sumTotalBurden = 0;
                     for (var i = 1; i < data.length - 1; i++) {
 
-                        data[i].MaterialTotal = data[i].RpcQty * data[i].RpcCostPerUnit;
-                        data[i].ServiceTotal = data[i].OSQty * data[i].OSCostPerUnit;
-                        data[i].ScrapCost = (data[i].MaterialTotal + data[i].ServiceTotal) * data[i].ScrapValue / 100;
-                        data[i].LaborCost = data[i].DirectHrlyLaborRate * data[i].StdHrs;
-                        data[i].BurdenTotal = data[i].Burden;
+                        data[i].MaterialTotal = Number(data[i].RpcQty) * Number(data[i].RpcCostPerUnit);
+                        data[i].ServiceTotal = Number(data[i].OSQty) * Number(data[i].OSCostPerUnit);
+                        data[i].ScrapCost = (Number(data[i].MaterialTotal) + Number(data[i].ServiceTotal)) * Number(data[i].ScrapValue) / 100;
+                        data[i].LaborCost = Number(data[i].DirectHrlyLaborRate) * Number(data[i].StdHrs);
+                        data[i].BurdenTotal = Number(data[i].Burden);
 
-                        sumMaterialTotal += data[i].MaterialTotal;
-                        sumServiceTotal += data[i].ServiceTotal;
-                        sumScrapCost += data[i].ScrapCost;
-                        sumLaborCost += data[i].LaborCost;
-                        sumTotalBurden += data[i].BurdenTotal;
+                        sumMaterialTotal += Number(data[i].MaterialTotal);
+                        sumServiceTotal += Number(data[i].ServiceTotal);
+                        sumScrapCost += Number(data[i].ScrapCost);
+                        sumLaborCost += Number(data[i].LaborCost);
+                        sumTotalBurden += Number(data[i].BurdenTotal);
                     }
 
                     jQuery('[idtotalmanufacturingcost="' + self.id_EAU + '"]').text((sumMaterialTotal + sumServiceTotal + sumScrapCost + sumLaborCost + sumTotalBurden).toFixed(4));
@@ -1005,7 +1006,7 @@
             if (RFQ.Status == "COMPLETED")
                 setTimeout(blockIfCompleted(), 1000);
         } catch (e) {//blockIfCompleted function implemented only for vendors in /Vendor/RFQ.aspx
-            console.debug(e);
+            console.log(e);
         }
         jQuery("body").scrollTop(scrollPosition);
     }
@@ -1174,9 +1175,9 @@
                     onSuccess();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.debug(jqXHR);
-                    console.debug(textStatus);
-                    console.debug(errorThrown);
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
                     onFail();
                 }
             });

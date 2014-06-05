@@ -24,7 +24,7 @@
         var fieldNeedsCorrection = null;
         if (!e) e = window.event;
         var target = e.target || e.srcElement;
-        jQuery('[validate]').filter('[validationid = ' + target.attributes['validationid'].value + ']').each(function() {
+        jQuery('[validate]').filter('[validationid = ' + target.attributes['validationid'].value + ']').each(function () {
             if (jQuery(this).css('display') != "none" && jQuery(this).is(":visible")) {
                 jQuery(this).val(jQuery.trim(jQuery(this).val()));
                 switch (jQuery(this).attr('validate')) {
@@ -68,6 +68,15 @@
                         }
                         else {
                             strErrorMessage = 'Number did not pass validation.';
+                            fieldNeedsCorrection = jQuery(this);
+                            return false;
+                        }
+                        break;
+                    case 'date':
+                        var dateToValidate = new Date(jQuery(this).val());
+                        dateToValidate = dateToValidate.toJSON();
+                        if (dateToValidate == null) {
+                            strErrorMessage = 'Date did not pass validation.';
                             fieldNeedsCorrection = jQuery(this);
                             return false;
                         }
