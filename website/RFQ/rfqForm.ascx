@@ -37,7 +37,7 @@
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
-<div id="quoteSection" style="display:none;">
+<div id="quoteSection" style="display: none;">
     <div>
         <br />
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
@@ -407,7 +407,7 @@
         </div>
     </div>
 </div>
-<div id="noQuoteSection" style="vertical-align: top;display:none;">
+<div id="noQuoteSection" style="vertical-align: top; display: none;">
     <br />
     <br />
     Reason
@@ -517,14 +517,17 @@
                     jQuery("#tableAttachmentsToBuyer tr").filter('[FileName="' + fileName + '"]').remove();
                     alertify.success(response.Result);
                 } else {
-                    alertify.success("An error has occurried. Please try again.");
+                    alertify.error("An error has occurried. Please try again.");
                 }
                 jQuery("#divImgEmail").css("display", "none");
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log(jqXHR);
-                console.log(textStatus);
-                console.log(errorThrown);
+                if (console && console.log) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+                alertify.error('An error has occurred.');
             }
         });
     }
@@ -1006,7 +1009,9 @@
             if (RFQ.Status == "COMPLETED")
                 setTimeout(blockIfCompleted(), 1000);
         } catch (e) {//blockIfCompleted function implemented only for vendors in /Vendor/RFQ.aspx
-            console.log(e);
+            if (console && console.log) {
+                console.log(e);
+            }
         }
         jQuery("body").scrollTop(scrollPosition);
     }
@@ -1145,7 +1150,7 @@
 
 
     function save(e, strSaveMode, onSuccess, onFail) {
-        
+
         if (validate(e)) {
             retrieveValuesFromControls(); //For RFQ variable
 
@@ -1172,13 +1177,19 @@
                     RFQ = jQuery.parseJSON(response);
                     refreshForm();
                     jQuery("#divImgEmail").css("display", "none");
-                    onSuccess();
+                    try {
+                        onSuccess();
+                    } catch (e) { }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
-                    console.log(textStatus);
-                    console.log(errorThrown);
-                    onFail();
+                    if (console && console.log) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                    try {
+                        onFail();
+                    } catch (e) { }
                 }
             });
         }

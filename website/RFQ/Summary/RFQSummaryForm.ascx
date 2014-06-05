@@ -878,9 +878,11 @@
                     try { onSuccess(); } catch (e) { }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.debug(jqXHR);
-                    console.debug(textStatus);
-                    console.debug(errorThrown);
+                    if (console && console.log) {
+                        console.debug(jqXHR);
+                        console.debug(textStatus);
+                        console.debug(errorThrown);
+                    }
                     try { onFail(); } catch (e) { }
                 }
             });
@@ -936,9 +938,11 @@
                     alertify.success("Information saved successfully.");
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    console.debug(jqXHR);
-                    console.debug(textStatus);
-                    console.debug(errorThrown);
+                    if (console && console.log) {
+                        console.debug(jqXHR);
+                        console.debug(textStatus);
+                        console.debug(errorThrown);
+                    }
                     alertify.error("An error has occurred.");
                 }
             });

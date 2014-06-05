@@ -137,14 +137,15 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                         break;
                     case "AWARDED":
                     case "SELECTED":
-                        for (int i = 0; i < salesReportDetailList.Count;i++ )
-                        {
-                            if (salesReportDetailList[i].BOMDetailKey == srd.BOMDetailKey)
-                            {
-                                salesReportDetailList[i] = srd;
-                                break;
-                            }
-                        }
+                        //for (int i = 0; i < salesReportDetailList.Count;i++ )
+                        //{
+                        //    if (salesReportDetailList[i].BOMDetailKey == srd.BOMDetailKey)
+                        //    {
+                        //        salesReportDetailList[i] = srd;
+                        //        break;
+                        //    }
+                        //}
+                        salesReportDetailList.Add(srd);
                         break;
                     case "DISMISSED":
                         break;

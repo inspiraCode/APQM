@@ -385,7 +385,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                             "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
-                            "ORDER BY    LinePosition, BOMDetailKey";
+                            "ORDER BY    LinePosition, BOMDetailKey, SupplierName";
 
             DataTable table = new DataTable();
             table = DM.Execute_Query(query);
