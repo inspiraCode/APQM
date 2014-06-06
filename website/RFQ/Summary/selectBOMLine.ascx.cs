@@ -33,4 +33,17 @@ public partial class RFQ_Summary_selectBOMLine : System.Web.UI.UserControl
     protected void Page_Load(object sender, EventArgs e)
     {
     }
+    protected void gridViewBOM_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            DataKey keys = gridViewBOM.DataKeys[e.Row.RowIndex];
+            string one_selected = keys.Values[1].ToString();
+
+            if (one_selected == "ONE_SELECTED")
+            {
+                e.Row.BackColor = System.Drawing.Color.FromArgb(255,215,0);
+            }
+        }
+    }
 }
