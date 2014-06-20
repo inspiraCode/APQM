@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="dao\bomCRUD.cs" />
     <Compile Include="dao\CommodityCRUD.cs" />
+    <Compile Include="dao\UserCRUD.cs" />
     <Compile Include="dao\customerCRUD.cs" />
     <Compile Include="dao\itemCRUD.cs" />
     <Compile Include="dao\MarketSectorCRUD.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="dao\TokenCRUD.cs" />
     <Compile Include="entities\BOM.cs" />
     <Compile Include="entities\Commodity.cs" />
+    <Compile Include="entities\User.cs" />
     <Compile Include="entities\Customer.cs" />
     <Compile Include="entities\Item.cs" />
     <Compile Include="entities\MarketSector.cs" />

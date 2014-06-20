@@ -38,14 +38,15 @@
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
 <div id="quoteSection" style="display: none;">
-    <div>
+    <div style="display: inline;">
         <br />
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
-            style="width: 450px;">
+            style="width: 450px;display: inline;">
             Comments to vendor:<br />
             <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields"
                 tabindex="1" style="width: 450px;"></textarea>
         </div>
+        <div id="divBuyerInfo" style="float:right;"></div>
         <br />
         <br />
     </div>
@@ -495,6 +496,7 @@
         jQuery(".rfqDetailTotals").remove();
         jQuery("#divDetailSection").empty();
 
+        jQuery("#divBuyerInfo").empty();
         jQuery("#divAttachmentsToVendor").empty();
         jQuery("#divAttachmentsToBuyer").empty();
 
@@ -616,6 +618,15 @@
 
         bindParentFields();
         jQuery("#lblDueDate").text((new Date(RFQ.DueDate)).toLocaleDateString());
+
+        if (RFQ.User != null) {
+            var strBuyerInfo = '';
+            strBuyerInfo += '<b style="width: 40px;display: inline-block;">Buyer:</b> ' + RFQ.User.Name;
+            strBuyerInfo += '<br><b style="width: 40px;display: inline-block;">Email:</b> <a href="mailto:' + RFQ.User.Email + '" target="_top">' + RFQ.User.Email + '</a>';
+            strBuyerInfo += '<br>' + RFQ.User.Phone1;
+            strBuyerInfo += '<br>' + RFQ.User.Phone2;
+            jQuery('#divBuyerInfo').html(strBuyerInfo);
+        }
         if (RFQ.RfqEAV != null) {
             var htmlAll = '';
             for (var i = 0; i < RFQ.RfqEAV.length; i++) {

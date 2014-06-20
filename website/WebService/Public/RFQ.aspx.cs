@@ -14,6 +14,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
     RfqAcrCRUD rfqACR_CRUD = new RfqAcrCRUD();
     RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
     RfqDetailCRUD rfqDetail_CRUD = new RfqDetailCRUD();
+    UserCRUD user_CRUD = new UserCRUD();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -118,13 +119,13 @@ public partial class WebService_RFQ : System.Web.UI.Page
     {
         RFQ rfq = rfq_CRUD.readById(id);
 
-        List<RFQACR> rfqACR = rfqACR_CRUD.readByParentID(rfq.Id);
-        rfq.RfqAcr = rfqACR;
+        rfq.User = user_CRUD.readById(rfq.CreatedBy);
 
-        List<RFQEAV> rfqEAVList = rfqEAV_CRUD.readByParentID(rfq.Id);
-        rfq.RfqEAV = rfqEAVList;
+        rfq.RfqAcr = rfqACR_CRUD.readByParentID(rfq.Id);
 
-        foreach (RFQEAV rfqEAV in rfqEAVList)
+        rfq.RfqEAV = rfqEAV_CRUD.readByParentID(rfq.Id);
+
+        foreach (RFQEAV rfqEAV in rfq.RfqEAV)
         {
             List<RFQDetail> rfqDetail = rfqDetail_CRUD.readByParentID(rfqEAV.Id);
             rfqEAV.RfqDetail = rfqDetail;

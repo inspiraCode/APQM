@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesDB_To_APQM", "SalesDB_To_APQM\SalesDB_To_APQM.csproj", "{D1B7EAF0-FCA6-479E-AA8F-EA5999FB37B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BD_MNG", "..\..\BD_MNG\BD_MNG.csproj", "{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}"

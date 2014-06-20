@@ -55,6 +55,13 @@ public class RFQ
     private List<RFQAttachments> attachmentsToVendor;
     private List<RFQAttachments> attachmentsToBuyer;
 
+    private User user;
+
+    public User User
+    {
+        get { return user; }
+        set { user = value; }
+    }
     
    
     /******************************************************************/

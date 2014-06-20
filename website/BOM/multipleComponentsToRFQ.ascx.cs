@@ -343,6 +343,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                             {
                                 RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
                                 eau.RfqHeaderKey = rfq.Id;
+                                eau.Volume = eau.Volume * component.Qty;
                                 rfqEAV_CRUD.createAndReturnIdGenerated(eau, ref DM);
                                 if (rfqEAV_CRUD.ErrorOccur)
                                 {
@@ -545,6 +546,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                         {
                             RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
                             eau.RfqHeaderKey = long.Parse(idGenerated);
+                            eau.Volume = eau.Volume * component.Qty;
                             rfqEAV_CRUD.createAndReturnIdGenerated(eau, ref DM);
                             if (rfqEAV_CRUD.ErrorOccur)
                             {
