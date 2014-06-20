@@ -645,12 +645,6 @@ public class RfqCRUD : ICRUD<RFQ>
             ErrorMessage = token_CRUD.ErrorMessage;
             return false;
         }
-        if (!rfqSummaryCRUD.deleteByParentID(ID, ref DM))
-        {
-            ErrorOccur = true;
-            ErrorMessage = rfqSummaryCRUD.ErrorMessage;
-            return false;
-        }
         if (!delete(ID, ref DM))
         {
             return false;
