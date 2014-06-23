@@ -89,7 +89,8 @@
         if (strErrorMessage != '') {
             jQuery('#scrim').show();
             targetMessage.text('Please verify field. ' + strErrorMessage).show();
-            var pos = fieldNeedsCorrection.position();
+
+            var pos = fieldNeedsCorrection.offset();
             targetMessage.css('left', (pos.left - 9) + 'px');
             targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
             jQuery('html, body').animate({

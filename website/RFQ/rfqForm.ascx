@@ -41,12 +41,13 @@
     <div style="display: inline;">
         <br />
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
-            style="width: 450px;display: inline;">
+            style="width: 450px; display: inline;">
             Comments to vendor:<br />
             <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields"
                 tabindex="1" style="width: 450px;"></textarea>
         </div>
-        <div id="divBuyerInfo" style="float:right;"></div>
+        <div id="divBuyerInfo" style="float: right;">
+        </div>
         <br />
         <br />
     </div>
@@ -83,8 +84,8 @@
                                 Lead Time PPAP/FAIR
                             </td>
                             <td align="left">
-                                <input type="text" id="txtLeadTimePPAP_FAIR" bindto="LeadTimePPAPFAIR" value="" validationid="validatingRFQForm"
-                                    style="text-align: right; width: 240px;" tabindex="4" />
+                                <input type="text" id="txtLeadTimePPAP_FAIR" bindto="LeadTimePPAPFAIR" value="" validate="required"
+                                    validationid="validatingRFQForm" style="text-align: right; width: 240px;" tabindex="4" />
                             </td>
                         </tr>
                         <tr>
@@ -93,8 +94,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtLeadTimeFirstProductionOrder" bindto="LeadTimeFirstProductionOrder"
-                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px;"
-                                    tabindex="5" />
+                                    value="" validate="required" validationid="validatingRFQForm" style="text-align: right;
+                                    width: 240px;" tabindex="5" />
                             </td>
                         </tr>
                         <tr>
@@ -103,8 +104,8 @@
                             </td>
                             <td align="left">
                                 <input type="text" id="txtLeadTimeNormalProductionOrders" bindto="LeadTimeNormalProductionOrders"
-                                    value="" validationid="validatingRFQForm" style="text-align: right; width: 240px"
-                                    tabindex="6" />
+                                    value="" validate="required" validationid="validatingRFQForm" style="text-align: right;
+                                    width: 240px" tabindex="6" />
                             </td>
                         </tr>
                     </table>
@@ -389,18 +390,34 @@
                         </div>
                     </td>
                     <td>
-                        <div style="margin-left: auto; margin-right: auto; width: 100%;">
+                        <div style="margin-left: auto; margin-right: auto; width: 405px; height: 150px;"
+                            data-step='48' data-intro='Please enter here any exception you have out of the print.'
+                            data-position='top'>
                             <div align="left">
-                                Comments</div>
-                            <div data-step='48' data-intro='If you have any comments to share with us, please use this field.'
-                                data-position='top' style="width: 100%;">
-                                <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="37"
-                                    style="width: 400px; height: 100px;"></textarea>
+                                <input id="chkQuote100ToPrint" type="checkbox" onchange="on_change_chkQuote100ToPrint()" />Quote
+                                100% to Print
+                                <br />
+                                <br />
+                            </div>
+                            <div id="divExceptionTo100ToPrint" style="width: 100%;">
+                                Exception to 100% to Print
+                                <textarea rows="4" cols="0" id="txtExceptionTo100ToPrint" bindto="ExceptionTo100ToPrint"
+                                    validate="required" validationid="validatingRFQForm" tabindex="37" style="width: 400px;
+                                    height: 100px;"></textarea>
                             </div>
                         </div>
                     </td>
                 </tr>
             </table>
+            <div style="margin-left: auto; margin-right: auto; width: 450px;">
+                <div align="left">
+                    Comments</div>
+                <div data-step='49' data-intro='If you have any comments to share with us, please use this field.'
+                    data-position='top' style="width: 100%;">
+                    <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="38"
+                        style="width: 400px; height: 100px;"></textarea>
+                </div>
+            </div>
         </div>
         <div style="display: inline;">
             <asp:HiddenField ID="hiddenInboxAttachments" runat="server" />
@@ -412,7 +429,8 @@
     <br />
     <br />
     Reason
-    <textarea rows="4" cols="50" id="txtReasonNoQuote" bindto="ReasonNoQuote" tabindex="38"></textarea>
+    <textarea rows="4" cols="50" id="txtReasonNoQuote" bindto="ReasonNoQuote" tabindex="39"
+        validate="required" validationid="validatingRFQForm"></textarea>
 </div>
 <br />
 <br />
@@ -432,32 +450,16 @@
         }
     }
 
-    //    var strSaveMode;
-    //    function uploadFiles(e, strSaveModeParameter,) {
-    //        //        if (strSaveMode == "finalize") {
-    //        //            //jQuery('#messageDisplayer').text('It is required to have at least one item added to the list.').show();
-
-    //        //           
-    //        //        } else if (strSaveMode == "save") {
-    //        //        }
-    //        strSaveMode = strSaveModeParameter;
-    //        if (validate(e)) {
-    //            if (uploadObj != null) {
-    //                try {
-    //                    enableCaller(false);
-    //                } catch (e) {
-    //                }
-    //                jQuery("#divImgEmail").css("display", "block");
-    //                var filesToUploadCount = jQuery(".ajax-file-upload-statusbar").children().filter("div:contains('Cancel'):visible").length;
-    //                if (filesToUploadCount > 0) {
-    //                    uploadObj.startUpload();
-    //                } else {
-    //                    save();
-    //                }
-    //            }
-    //        }
-    //    }
-
+    function on_change_chkQuote100ToPrint() {
+        var chkQuote100ToPrint = jQuery("#chkQuote100ToPrint");
+        if (chkQuote100ToPrint.is(':checked')) {
+            jQuery("#divExceptionTo100ToPrint").hide();
+            //jQuery("#divExceptionTo100ToPrint").css('visibility', 'hidden');
+        } else {
+            jQuery("#divExceptionTo100ToPrint").show();
+            //jQuery("#divExceptionTo100ToPrint").css('visibility', 'visible');
+        }
+    }
 
     function urlParamsToObject() {
         var result = {};
@@ -501,6 +503,7 @@
         jQuery("#divAttachmentsToBuyer").empty();
 
         jQuery("#lblDueDate").text("");
+        jQuery("#chkQuote100ToPrint").attr('checked', true);
 
         //        jQuery("#uploadZone").empty().text("Upload");
         jQuery(".ajax-upload-dragdrop").remove();
@@ -573,6 +576,12 @@
             jQuery("#optNoQuote").prop('checked', true);
         }
 
+        if (RFQ.Quote100ToPrint == false) {
+            jQuery("#chkQuote100ToPrint").prop('checked', false);
+        } else {
+            jQuery("#chkQuote100ToPrint").prop('checked', true);
+        }
+
         if (RFQ.TargetPrice < 0) {
             jQuery("#lblTargetPrice").hide();
             jQuery("#lblTargetPriceLabel").hide();
@@ -582,6 +591,7 @@
         }
 
         on_change_option_quote();
+        on_change_chkQuote100ToPrint();
         jQuery("[toHide]").hide();
 
         jQuery("#uploadZone").uploadFile({
@@ -641,7 +651,7 @@
                     '<div style="margin-left: auto;margin-right: auto;width: 1295px;" rfqeau_id="' + objEAU.Id + '"></div>';
 
                 var htmlMOQ = '<div data-step="37" data-intro="Please specify MOQ for each EAU." style="position: absolute;margin: 63px;">MOQ<input type="text" idMOQ="' + objEAU.Id + '" style="text-align: right; width: 100px;"' +
-                    '              tabindex="20" value="' + objEAU.Moq + '"></div>';
+                    '             validate="required" validationid="validatingRFQForm" tabindex="20" value="' + objEAU.Moq + '"></div>';
                 var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 160px;background-color: rgba(185, 198, 219, 0.28);">' +
                     '    <table cellspacing="0" align="right" style="width: 305px;margin-right: 11px;margin-top: 7px;">' +
                     '        <tr>' +
@@ -791,7 +801,7 @@
                             {
                                 data: "Um",
                                 type: "autocomplete",
-                                source: ["each", "in", "ft", "yd", "mm", "cm", "m", "g", "kg", "oz", "lt", "gal", "cubic meter"],
+                                source: ["each", "lb", "in", "ft", "yd", "mm", "cm", "m", "g", "kg", "oz", "lt", "gal", "cubic meter"],
                                 strict: false
                             },
                             {
@@ -1064,6 +1074,8 @@
         jQuery("[bindTo]").each(function () {
             getValueFromControl(this, jQuery(this), RFQ);
         });
+
+        RFQ.Quote100ToPrint = jQuery("#chkQuote100ToPrint").is(':checked');
 
         if (jQuery("#optQuote").is(':checked')) {
             RFQ.NoQuote = false;

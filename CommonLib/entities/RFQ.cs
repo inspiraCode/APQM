@@ -81,6 +81,9 @@ public class RFQ
     private string cavitation = "";
     private string material = "";
 
+    private string exceptionTo100ToPrint = "";
+    private bool quote100ToPrint = false;
+
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
 
@@ -349,6 +352,17 @@ public class RFQ
     {
         get { return attachmentsToBuyer; }
         set { attachmentsToBuyer = value; }
+    }
+    public string ExceptionTo100ToPrint
+    {
+        get { return exceptionTo100ToPrint; }
+        set { exceptionTo100ToPrint = value; }
+    }
+
+    public bool Quote100ToPrint
+    {
+        get { return quote100ToPrint; }
+        set { quote100ToPrint = value; }
     }
 }
 
