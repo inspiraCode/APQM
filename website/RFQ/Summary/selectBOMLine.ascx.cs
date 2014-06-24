@@ -46,4 +46,8 @@ public partial class RFQ_Summary_selectBOMLine : System.Web.UI.UserControl
             }
         }
     }
+    public void refreshGrid()
+    {
+        gridViewBOM.DataBind();
+    }
 }

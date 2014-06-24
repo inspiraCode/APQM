@@ -50,6 +50,7 @@ public partial class RFQSummaryDefault : System.Web.UI.Page
     {
         Session.Remove("RFQSummaryHeader");
         panelPopup.Visible = true;
+        uscSelectBOM.refreshGrid();
     }
     protected void on_rowCommand(Object sender, GridViewCommandEventArgs e)
     {

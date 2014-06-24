@@ -631,6 +631,8 @@ public class RfqCRUD : ICRUD<RFQ>
     public bool delete(long id, ref Data_Base_MNG.SQL DM)
     {
         ErrorOccur = false;
+        
+        
         string query = "DELETE FROM RFQHeader WHERE RFQHeaderKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
@@ -648,6 +650,11 @@ public class RfqCRUD : ICRUD<RFQ>
 
         RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
 
+        RFQ rfq = readById(ID);
+
+        bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+        BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
+
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
 
@@ -661,6 +668,15 @@ public class RfqCRUD : ICRUD<RFQ>
             ErrorMessage = token_CRUD.ErrorMessage;
             return false;
         }
+
+        bomDetail.Status = "In Progress";
+        if (!bomDetailCRUD.update(bomDetail, ref DM))
+        {
+            ErrorOccur = true;
+            ErrorMessage = bomDetailCRUD.ErrorMessage;
+            return false;
+        }
+
         if (!delete(ID, ref DM))
         {
             return false;
