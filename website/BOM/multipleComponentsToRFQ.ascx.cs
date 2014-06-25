@@ -200,14 +200,15 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         if (cboCommodities.SelectedItem.Text == "ALL")
         {
             SqlDataSourceSuppliers.SelectCommand = "SELECT      SupplierMaster.SupplierMasterKey, SupplierMaster.SupplierName, SupplierMaster.ContactEmail " +
-                                                    "FROM       SupplierMaster";
+                                                    "FROM       SupplierMaster " +
+                                                    "WHERE      sys_active = 1";
         }
         else
         {
             SqlDataSourceSuppliers.SelectCommand = "SELECT      SupplierMaster.SupplierMasterKey, SupplierMaster.SupplierName, SupplierMaster.ContactEmail " +
                                                     "FROM       SupplierMaster INNER JOIN " +
                                                     "Supplier_Commodity ON SupplierMaster.SupplierMasterKey = Supplier_Commodity.SupplierKey " +
-                                                    "WHERE Supplier_Commodity.CommodityKey = " + cboCommodities.SelectedValue;
+                                                    "WHERE sys_active = 1 AND Supplier_Commodity.CommodityKey = " + cboCommodities.SelectedValue;
         }
 
         cboSupplier.DataBind();

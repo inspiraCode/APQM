@@ -360,6 +360,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
             DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
             DM.Load_SP_Parameters("@Notes", entity.Notes);
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierSurvey_EditSurvey", true);
 
@@ -402,6 +403,7 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
             DM.Load_SP_Parameters("@ToolingInHouseYN", entity.ToolingInHouseYN.ToString());
             DM.Load_SP_Parameters("@ToolingOutsourcedYN", entity.ToolingOutsourcedYN.ToString());
             DM.Load_SP_Parameters("@Notes", entity.Notes);
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierSurvey_EditSurvey", true);
 
@@ -461,7 +463,52 @@ public class SupplierSurveyCRUD : ICRUD<SupplierSurvey>
         }
         return false;
     }
-
+    public bool setActive(long id, byte bActive)
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
+        string query = "UPDATE SupplierSuvey SET sys_active=@bActive WHERE SupplierSuveyKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlCommand.Parameters.AddWithValue("@bActive", bActive);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier_Survey";
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
+        return false;
+    }
     #endregion
 }
 

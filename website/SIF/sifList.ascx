@@ -125,6 +125,6 @@
 </script>
 
 <asp:SqlDataSource ID="SqlDataSourceUsers" runat="server" OnInit="on_sqldatasource_Init"
-    ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS AssignedTo, 0 AS orderNumber UNION SELECT DISTINCT AssignedTo, 2 AS orderNumber FROM SIFHeader ORDER BY orderNumber">
+    ProviderName="System.Data.SqlClient" SelectCommand="SELECT 'All' AS AssignedTo, 0 AS orderNumber UNION SELECT DISTINCT AssignedTo, 2 AS orderNumber FROM SIFHeader WHERE sys_active=1 ORDER BY orderNumber">
 </asp:SqlDataSource>
 <uc1:notifier ID="uscNotifier" runat="server" />

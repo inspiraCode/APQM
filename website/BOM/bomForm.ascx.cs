@@ -101,7 +101,7 @@ public partial class bomForm : System.Web.UI.UserControl
         List<BOMDetail> bomDetailListToDelete = uscBOMDetailList.getBomDetailToDelete();
         foreach (BOMDetail detail in bomDetailListToDelete)
         {
-            if (!bomDetail_CRUD.delete(detail.Id, ref DM))
+            if (!bomDetail_CRUD.setActive(detail.Id, 0, ref DM))
             {
                 Navigator.goToPage("~/Error.aspx", "ERROR:" + bomDetail_CRUD.ErrorMessage);
                 return;

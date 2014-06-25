@@ -96,7 +96,7 @@ public partial class sifList : System.Web.UI.UserControl
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (sif_CRUD.delete(id))
+        if (sif_CRUD.setActive(id, 0))
         {
             load();
             uscNotifier.showSuccess("SIF deleted successfully.");
@@ -109,7 +109,7 @@ public partial class sifList : System.Web.UI.UserControl
     public void deleteBOMByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (bom_CRUD.delete(id))
+        if (bom_CRUD.setActive(id, 0))
         {
             load();
             uscNotifier.showSuccess("BOM deleted successfully.");

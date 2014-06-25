@@ -31,7 +31,7 @@ public partial class supplierList : System.Web.UI.UserControl
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (supplierCRUD.delete(id))
+        if (supplierCRUD.setActive(id, 0))
         {
             load();
             uscNotifier.showSuccess("Supplier deleted successfully.");
