@@ -81,7 +81,7 @@ public partial class bomList : System.Web.UI.UserControl
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (bom_CRUD.delete(id))
+        if (bom_CRUD.setActive(id, 0))
         {
             Navigator.goToPage("~/Default.aspx","bom");
         }

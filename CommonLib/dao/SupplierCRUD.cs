@@ -186,6 +186,7 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
             DM.Load_SP_Parameters("@Commodity", entity.Commodity);
             DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
 
             result = DM.Execute_StoreProcedure("SupplierMaster_EditSupplier", true);
 
@@ -221,6 +222,7 @@ public class SupplierCRUD : ICRUD<Supplier>
             DM.Load_SP_Parameters("@Visible", entity.Visible.ToString());
             DM.Load_SP_Parameters("@Commodity", entity.Commodity);
             DM.Load_SP_Parameters("@ContactCellPhoneNumber", entity.ContactCellPhone);
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SupplierMaster_EditSupplier", true);
 
@@ -282,7 +284,52 @@ public class SupplierCRUD : ICRUD<Supplier>
         }
         return false;
     }
-
+    public bool setActive(long id, byte bActive)
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
+        string query = "UPDATE SupplierMaster SET sys_active=@bActive WHERE SupplierMasterKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlCommand.Parameters.AddWithValue("@bActive", bActive);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: Supplier.";
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
+        return false;
+    }
     #endregion
 }
 

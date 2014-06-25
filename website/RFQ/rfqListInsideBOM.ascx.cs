@@ -70,7 +70,7 @@ public partial class rfqListInsideBOM : System.Web.UI.UserControl
                     rfqHeaderKey = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
 
                     RfqCRUD rfqCRUD = new RfqCRUD();
-                    if (!rfqCRUD.deleteByID(rfqHeaderKey))
+                    if (!rfqCRUD.setActiveByID(rfqHeaderKey, 0))
                     {
                         Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                         return;

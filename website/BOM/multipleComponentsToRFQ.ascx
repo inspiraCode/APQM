@@ -17,7 +17,7 @@
     OnInit="on_sqldatasource_Init" SelectCommand="SELECT 0 AS 'CommodityKey', 'ALL' AS 'Commodity', 'A' AS sortColumn UNION SELECT CommodityKey, Commodity, 'B' AS sortColumn FROM CommodityMaster ORDER BY sortColumn">
 </asp:SqlDataSource>
 <asp:SqlDataSource OnInit="on_sqldatasource_Init" ID="SqlDataSourceSuppliers" runat="server"
-    SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] ORDER BY [SupplierName]">
+    SelectCommand="SELECT [SupplierName], [SupplierMasterKey], [ContactEmail] FROM [SupplierMaster] WHERE sys_active=1 ORDER BY [SupplierName]">
 </asp:SqlDataSource>
 <table cellspacing="0">
     <tr>

@@ -49,7 +49,7 @@ public partial class RFQ_RFQList : System.Web.UI.Page
     {
         long rfqHeaderKey = long.Parse(sRFQHeaderKey);
         RfqCRUD rfq_CRUD = new RfqCRUD();
-        if (!rfq_CRUD.deleteByID(rfqHeaderKey))
+        if (!rfq_CRUD.setActiveByID(rfqHeaderKey, 0))
         {
             Navigator.goToPage("~/Error.aspx", "ERROR:" + rfq_CRUD.ErrorMessage);
             return "";

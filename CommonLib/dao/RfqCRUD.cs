@@ -504,6 +504,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
             
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
 
@@ -566,6 +567,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
+            DM.Load_SP_Parameters("@sys_active", true.ToString());
             
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 
@@ -628,12 +630,73 @@ public class RfqCRUD : ICRUD<RFQ>
     }
     #endregion
 
+
+    public bool setActive(long id, byte bActive)
+    {
+        ErrorOccur = false;
+        int rowsAffected = 0;
+        string query = "UPDATE RFQHeader SET sys_active=@bActive WHERE RFQHeaderKey=@key";
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        SqlCommand sqlCommand = null;
+        if (sqlConnection != null)
+        {
+            try
+            {
+                sqlCommand = new SqlCommand(query, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@key", id);
+                sqlCommand.Parameters.AddWithValue("@bActive", bActive);
+                sqlConnection.Open();
+                rowsAffected = sqlCommand.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    ErrorOccur = true;
+                    ErrorMessage = "There were no rows affected for table: RFQ Header.";
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                ErrorOccur = true;
+                ErrorMessage = e.Message;
+                //using return false below
+            }
+            finally
+            {
+                sqlConnection.Dispose();
+                sqlCommand.Dispose();
+            }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "Error. Could not connect to database.";
+        }
+        return false;
+    }
     public bool delete(long id, ref Data_Base_MNG.SQL DM)
     {
         ErrorOccur = false;
         
-        
         string query = "DELETE FROM RFQHeader WHERE RFQHeaderKey = " + id;
+        if (DM.Execute_Command_Open_Connection(query))
+        {
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+            return true;
+        }
+        ErrorOccur = DM.ErrorOccur;
+        ErrorMessage = DM.Error_Mjs;
+        return false;
+    }
+    public bool setActive(long id, byte bActive, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+
+        string query = "UPDATE RFQHeader SET sys_active=" + bActive + " WHERE RFQHeaderKey = " + id;
         if (DM.Execute_Command_Open_Connection(query))
         {
             ErrorOccur = DM.ErrorOccur;
@@ -678,6 +741,56 @@ public class RfqCRUD : ICRUD<RFQ>
         }
 
         if (!delete(ID, ref DM))
+        {
+            return false;
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+        /* End transaction */
+
+        if (DM.ErrorOccur)
+        {
+            ErrorOccur = true;
+            ErrorMessage = DM.Error_Mjs;
+            return false;
+        }
+        return true;
+    }
+    public bool setActiveByID(long ID, byte bActive)
+    {
+        ErrorOccur = false;
+
+        RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
+
+        RFQ rfq = readById(ID);
+
+        bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
+        BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("RFQ Set Active");
+
+        TokenCRUD token_CRUD = new TokenCRUD();
+        if (!token_CRUD.setActiveByRFQID(ID, bActive, ref DM))
+        {
+            ErrorOccur = true;
+            ErrorMessage = token_CRUD.ErrorMessage;
+            return false;
+        }
+
+        bomDetail.Status = "In Progress";
+        if (!bomDetailCRUD.update(bomDetail, ref DM))
+        {
+            ErrorOccur = true;
+            ErrorMessage = bomDetailCRUD.ErrorMessage;
+            return false;
+        }
+
+        if (!setActive(ID, bActive, ref DM))
         {
             return false;
         }

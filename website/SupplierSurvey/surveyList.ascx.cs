@@ -44,7 +44,7 @@ public partial class surveyList : System.Web.UI.UserControl
     public void deleteByID(object sender, CommandEventArgs e)
     {
         long id = long.Parse((string)e.CommandArgument);
-        if (surveyCRUD.delete(id))
+        if (surveyCRUD.setActive(id, 0))
         {
             load();
             uscNotifier.showSuccess("Survey deleted successfully.");
