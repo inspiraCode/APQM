@@ -732,12 +732,15 @@ public class RfqCRUD : ICRUD<RFQ>
             return false;
         }
 
-        bomDetail.Status = "In Progress";
-        if (!bomDetailCRUD.update(bomDetail, ref DM))
+        if (rfq.Status == "SELECTED" || rfq.Status == "AWARDED")
         {
-            ErrorOccur = true;
-            ErrorMessage = bomDetailCRUD.ErrorMessage;
-            return false;
+            bomDetail.Status = "In Progress";
+            if (!bomDetailCRUD.update(bomDetail, ref DM))
+            {
+                ErrorOccur = true;
+                ErrorMessage = bomDetailCRUD.ErrorMessage;
+                return false;
+            }
         }
 
         if (!delete(ID, ref DM))
@@ -782,12 +785,15 @@ public class RfqCRUD : ICRUD<RFQ>
             return false;
         }
 
-        bomDetail.Status = "In Progress";
-        if (!bomDetailCRUD.update(bomDetail, ref DM))
+        if (rfq.Status == "SELECTED" || rfq.Status == "AWARDED")
         {
-            ErrorOccur = true;
-            ErrorMessage = bomDetailCRUD.ErrorMessage;
-            return false;
+            bomDetail.Status = "In Progress";
+            if (!bomDetailCRUD.update(bomDetail, ref DM))
+            {
+                ErrorOccur = true;
+                ErrorMessage = bomDetailCRUD.ErrorMessage;
+                return false;
+            }
         }
 
         if (!setActive(ID, bActive, ref DM))
