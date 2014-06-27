@@ -42,7 +42,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(bomDetail.Id);
             foreach (RFQSummary rfqSummary in rfqSummaryList)
             {
-                if (rfqSummary.Status == "SELECTED" || rfqSummary.Status == "AWARDED")
+                if (rfqSummary.Eav_status == "SELECTED" || rfqSummary.Eav_status == "AWARDED")
                 {
                     totalCostMaterial += rfqSummary.TotalACost;
 
@@ -76,14 +76,14 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             SalesReportDetail srdInternal = salesReportDetailList.Find(r => r.BOMDetailKey == srd.BOMDetailKey);
             if (srdInternal == null)
             {
-                switch (srd.RFQStatus)
+                switch (srd.Eau_status)
                 {
                     case "":
                     case "PENDING":
                     case "IN PROGRESS":
                     case "COMPLETED":
                     case "IN PROCESS":
-                        srd.RFQStatus = "IN PROCESS";
+                        srd.Eau_status = "IN PROCESS";
                         srd.TotalACost = null;
                         srd.LeadTimePPAP = null;
                         srd.ProductionTooling = null;
@@ -100,7 +100,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                         salesReportDetailList.Add(srd);
                         break;
                     case "NO QUOTE":
-                        srd.RFQStatus = "NO QUOTE";
+                        srd.Eau_status = "NO QUOTE";
                         srd.TotalACost = null;
                         srd.LeadTimePPAP = null;
                         srd.ProductionTooling = null;
@@ -126,7 +126,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             }
             else
             {
-                switch (srd.RFQStatus)
+                switch (srd.Eau_status)
                 {
                     case "":
                     case "PENDING":
@@ -413,6 +413,14 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             set { um = value; }
         }
 
+        private string eau_status = "";
+
+        public string Eau_status
+        {
+            get { return eau_status; }
+            set { eau_status = value; }
+        }
+
 
         
     }
@@ -430,8 +438,8 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             string query = "SELECT distinct PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, " +
                             "VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail, " +
                             "ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], " +
-                            "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey, " + 
-                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um " +
+                            "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey, " +
+                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
                             "ORDER BY    LinePosition, BOMDetailKey";
@@ -474,7 +482,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                 salesReportDetailLocal.LeadTimeNormalProductionOrders = table.Rows[i][28].ToString();
                 salesReportDetailLocal.EauCalendarYears = table.Rows[i][29].ToString();
                 salesReportDetailLocal.Um = table.Rows[i][30].ToString();
-
+                salesReportDetailLocal.Eau_status = table.Rows[i][31].ToString();
 
                 recordset.Add(salesReportDetailLocal);
             }

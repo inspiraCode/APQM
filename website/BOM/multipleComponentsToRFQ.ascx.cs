@@ -235,9 +235,6 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         return folderName;
     }
 
-
-
-
     protected void btnSendRFQ_Click(object sender, EventArgs e)
     {
         RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
@@ -251,7 +248,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         }
 
         List<RFQEAV> newEAUList = new List<RFQEAV>();
-        foreach(SIFDetail eau in EAUsList)
+        foreach (SIFDetail eau in EAUsList)
         {
             RFQEAV eauParsed = new RFQEAV();
             eauParsed.Volume = eau.ProjectedAnnualVolume;
@@ -343,9 +340,12 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                             foreach (RFQEAV eau in newEAUList)
                             {
                                 RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
-                                eau.RfqHeaderKey = rfq.Id;
-                                eau.Volume = eau.Volume * component.Qty;
-                                rfqEAV_CRUD.createAndReturnIdGenerated(eau, ref DM);
+                                RFQEAV rfqEAV_toPersist = new RFQEAV();
+                                rfqEAV_toPersist.RfqHeaderKey = long.Parse(idGenerated);
+                                rfqEAV_toPersist.Volume = eau.Volume * component.Qty;
+                                rfqEAV_toPersist.Year = eau.Year;
+                                rfqEAV_toPersist.Status = "CREATED";
+                                rfqEAV_CRUD.createAndReturnIdGenerated(rfqEAV_toPersist, ref DM);
                                 if (rfqEAV_CRUD.ErrorOccur)
                                 {
                                     Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqEAV_CRUD.ErrorMessage);
@@ -426,7 +426,6 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                         Navigator.goToPage("~/Error.aspx", "ERROR:" + DM.Error_Mjs);
                         return;
                     }
-
                 }
             }
         }
@@ -542,20 +541,22 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                             Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqCRUD.ErrorMessage);
                             return;
                         }
-
+                        
                         foreach (RFQEAV eau in newEAUList)
                         {
                             RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
-                            eau.RfqHeaderKey = long.Parse(idGenerated);
-                            eau.Volume = eau.Volume * component.Qty;
-                            rfqEAV_CRUD.createAndReturnIdGenerated(eau, ref DM);
+                            RFQEAV rfqEAV_toPersist = new RFQEAV();
+                            rfqEAV_toPersist.RfqHeaderKey = long.Parse(idGenerated);
+                            rfqEAV_toPersist.Volume = eau.Volume * component.Qty;
+                            rfqEAV_toPersist.Year = eau.Year;
+                            rfqEAV_toPersist.Status = "CREATED";
+                            rfqEAV_CRUD.createAndReturnIdGenerated(rfqEAV_toPersist, ref DM);
                             if (rfqEAV_CRUD.ErrorOccur)
                             {
                                 Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqEAV_CRUD.ErrorMessage);
                                 return;
                             }
                         }
-
                     }
 
                     DM.CommitTransaction();

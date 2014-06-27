@@ -376,7 +376,8 @@ public class RFQEAV
     private float packingPerUnit;
     private float assemblyCostPerUnit;
     private string moq = "";
-
+    private string status = "";
+    
     private List<RFQDetail> rfqDetail;
 
     public List<RFQDetail> RfqDetail
@@ -428,6 +429,11 @@ public class RFQEAV
     {
         get { return moq; }
         set { moq = value; }
+    }
+    public string Status
+    {
+        get { return status; }
+        set { status = value; }
     }
 }
 
@@ -784,6 +790,14 @@ public class RFQSummary
     private string leadTimePPAPFAIR = "";
     private string leadTimeFirstProductionOrder = "";
     private string leadTimeNormalProductionOrders = "";
+
+    private string eav_status = "";
+
+    public string Eav_status
+    {
+        get { return eav_status; }
+        set { eav_status = value; }
+    }
 
     public string LeadTimePPAPFAIR
     {

@@ -33,7 +33,7 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
                 return;
             case "selectRFQ":
                 Response.Clear();
-                Response.Write(selectRFQ(long.Parse(Request["rfqheaderkey"]), float.Parse(Request["newBomCost"])));
+                Response.Write(selectRFQ(long.Parse(Request["rfqheaderkey"]), long.Parse(Request["eavKey"]), float.Parse(Request["newBomCost"])));
                 Response.End();
                 return;
         }
@@ -94,7 +94,7 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
         return getRFQSummarybyBOMDetailID(rfqSummaryHeader.BomDetailKey);
     }
 
-    public string selectRFQ(long rfqHeaderKey, float newBomCost)
+    public string selectRFQ(long rfqHeaderKey, long eavKey, float newBomCost)
     {
         saveRFQSummary();
 
@@ -105,17 +105,39 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
         //List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailIDAndEAU(rfq.BomDetailId, rfqSummary.EstimatedAnnualVolume);
         List<RFQ> rfqList = rfqCRUD.readByBOMDetailKey(rfq.BomDetailId);
 
+        RFQEAVCRUD rfqEAV_CRUD = new RFQEAVCRUD();
+        RFQEAV eavSelected = rfqEAV_CRUD.readById(eavKey);
+
         bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
         BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
 
+        List<RFQEAV> eavList = new List<RFQEAV>();
+        foreach (RFQ rfqObj in rfqList)
+        {
+            eavList.AddRange(rfqEAV_CRUD.readByParentID(rfqObj.Id));
+        }
+
         /*Begin Transaction*/
         DM.Open_Connection("RFQ Selection");
 
         foreach (RFQ rfqObj in rfqList)
         {
+            foreach (RFQEAV eavCurrent in eavList)
+            {
+                if (eavCurrent.Id != eavKey && eavCurrent.RfqHeaderKey==rfqObj.Id)
+                {
+                    eavCurrent.Status = "DISMISSED";
+                    if (rfqObj.NoQuote == true)
+                        eavCurrent.Status = "NO QUOTE";
+                    if (!rfqEAV_CRUD.update(eavCurrent, ref DM))
+                    {
+                        return "ERROR:" + rfqEAV_CRUD.ErrorMessage;
+                    }
+                }
+            }
             if (rfqObj.Id != rfq.Id)
             {
                 rfqObj.Status = "DISMISSED";
@@ -125,8 +147,10 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
                 {
                     return "ERROR:" + rfqCRUD.ErrorMessage;
                 }
+                
             }
         }
+        
 
         if (rfq != null)
         {
@@ -135,8 +159,13 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
             {
                 return "ERROR:" + rfqCRUD.ErrorMessage;
             }
-            else
+            if (eavSelected != null)
             {
+                eavSelected.Status = "SELECTED";
+                if(!rfqEAV_CRUD.update(eavSelected,ref DM)){
+                    return "ERROR:" + rfqEAV_CRUD.ErrorMessage;
+                }
+
                 if (bomDetail != null)
                 {
                     if (newBomCost > -1)
@@ -151,12 +180,19 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
                 }
                 else
                 {
+                    DM.RollBack();
                     return "ERROR:There was an error retrieving BOM Detail for BomDetailKey = " + rfq.BomDetailId;
                 }
+            }
+            else
+            {
+                DM.RollBack();
+                return "ERROR:There was an error retrieving EAV entity for eavKey = " + eavKey;
             }
         }
         else
         {
+            DM.RollBack();
             return "ERROR:Could not retrieve RFQ for ID = " + rfqHeaderKey;
         }
 
@@ -169,5 +205,4 @@ public partial class WebService_RFQSummary : System.Web.UI.Page
         }
         return getRFQSummarybyBOMDetailID(rfq.BomDetailId);
     }
-
 }

@@ -610,7 +610,7 @@
         '            <table class="rfqUnselected" style="text-align: right; width: 100%;">' +
         '                <tr style="height:11px;">' +
         '                    <td align="center">' +
-        '                        <label id="lblSelected">' + jQuery.trim(current.Status) + '</ label>' +
+        '                        <label id="lblSelected">' + jQuery.trim(current.Eav_status) + '</ label>' +
         '                    </td>' +
         '                </tr>' +
         '                <tr style="height:11px;">' +
@@ -920,7 +920,7 @@
             if (jQuery("#chkUpdateBOMLineCost").is(':checked')){
                 costBom = selected.TotalACost
             }
-            var to = '<%= ResolveUrl("~/WebService/RFQSummary.aspx") %>?cmd=selectRFQ&rfqheaderkey=' + selected.RfqHeaderKey + '&newBomCost=' + costBom;
+            var to = '<%= ResolveUrl("~/WebService/RFQSummary.aspx") %>?cmd=selectRFQ&rfqheaderkey=' + selected.RfqHeaderKey + '&eavKey=' + selected.RfqEAVKey + '&newBomCost=' + costBom;
 
             jQuery("#divImgEmail").css("display", "block");
 

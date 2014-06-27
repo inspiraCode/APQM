@@ -843,7 +843,8 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
-            
+            DM.Load_SP_Parameters("@Status", entity.Status);
+                       
             result = DM.Execute_StoreProcedure("RFQEAV_NewEAV", true);
 
             ErrorOccur = DM.ErrorOccur;
@@ -873,6 +874,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@Status", entity.Status);
             
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQEAV_NewEAV", true);
 
@@ -902,6 +904,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@Status", entity.Status);
             
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQEAV_NewEAV", true);
 
@@ -922,7 +925,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     {
         RFQEAV rfqEAV = new RFQEAV();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ, Status " +
                         "FROM  RFQEAV WHERE (EAVKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -943,6 +946,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 rfqEAV.PackingPerUnit = float.Parse(table.Rows[0][5].ToString());
                 rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[0][6].ToString());
                 rfqEAV.Moq = table.Rows[0][7].ToString();
+                rfqEAV.Status = table.Rows[0][8].ToString();
                 
                 sqlConnection.Dispose();
                 return rfqEAV;
@@ -954,7 +958,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
     {
         List<RFQEAV> recordset = new List<RFQEAV>();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ, Status " +
                         "FROM  RFQEAV WHERE RFQHeaderKey = @key ORDER BY RFQHeaderKey, Year";
 
         DataTable table = new DataTable();
@@ -977,6 +981,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
                 rfqEAV.PackingPerUnit = float.Parse(table.Rows[i][5].ToString());
                 rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[i][6].ToString());
                 rfqEAV.Moq = table.Rows[i][7].ToString();
+                rfqEAV.Status = table.Rows[i][8].ToString();
 
                 recordset.Add(rfqEAV);
             }
@@ -989,7 +994,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
         recordset.Clear();
         DM = connectionManager.getDataManager();
 
-        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ " +
+        string query = "SELECT EAVKey, RFQHeaderKey, Year, Volume, SG_A_Profit, PackingPerUnit, AssemblyCostPerUnit, MOQ, Status " +
                         "FROM  RFQEAV ORDER BY RFQHeaderKey, Year";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -1005,6 +1010,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             rfqEAV.PackingPerUnit = float.Parse(table.Rows[i][5].ToString());
             rfqEAV.AssemblyCostPerUnit = float.Parse(table.Rows[i][6].ToString());
             rfqEAV.Moq = table.Rows[i][7].ToString();
+            rfqEAV.Status = table.Rows[i][8].ToString();
 
             recordset.Add(rfqEAV);
         }
@@ -1027,6 +1033,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@Status", entity.Status);
             
             result = DM.Execute_StoreProcedure("RFQEAV_EditEAV", true);
 
@@ -1057,6 +1064,7 @@ public class RFQEAVCRUD : ICRUD<RFQEAV>
             DM.Load_SP_Parameters("@PackingPerUnit", entity.PackingPerUnit.ToString());
             DM.Load_SP_Parameters("@AssemblyCostPerUnit", entity.AssemblyCostPerUnit.ToString());
             DM.Load_SP_Parameters("@MOQ", entity.Moq);
+            DM.Load_SP_Parameters("@Status", entity.Status);
             
             result = DM.Execute_StoreProcedure_Open_Conn("RFQEAV_EditEAV", true);
 
@@ -1978,7 +1986,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Status], [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status " +
                         "FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
@@ -2019,6 +2027,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
+                rfqSummary.Eav_status = table.Rows[0][27].ToString();
 
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -2033,7 +2042,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status " +
                         "FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2069,6 +2078,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
+                rfqSummary.Eav_status = table.Rows[0][27].ToString();
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
@@ -2090,7 +2100,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status " +
                         "FROM viewRFQ_Summary WHERE RFQHeaderKey = @key AND EstimatedAnnualVolume = @volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2127,6 +2137,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[0][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[0][25].ToString();
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
+                rfqSummary.Eav_status = table.Rows[0][27].ToString();
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
@@ -2149,7 +2160,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status " +
                         "FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2186,6 +2197,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[i][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[i][25].ToString();
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[i][26].ToString());
+                rfqSummary.Eav_status = table.Rows[i][27].ToString();
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());
@@ -2207,7 +2219,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status " +
                         "FROM viewRFQ_Summary WHERE BOMDetailKey = @key AND EstimatedAnnualVolume=@volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2245,6 +2257,7 @@ public class RfqSummaryCRUD
                 rfqSummary.LeadTimeFirstProductionOrder = table.Rows[i][24].ToString();
                 rfqSummary.LeadTimeNormalProductionOrders = table.Rows[i][25].ToString();
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[i][26].ToString());
+                rfqSummary.Eav_status = table.Rows[i][27].ToString();
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());
