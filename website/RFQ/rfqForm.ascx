@@ -112,15 +112,6 @@
                     <table cellspacing="0" style="width: 449px; display: none;">
                         <tr>
                             <td align="right">
-                                Production Lead Time
-                            </td>
-                            <td align="left">
-                                <input type="text" id="txtProductionLeadTime" bindto="ProductionLeadTime" value=""
-                                    validationid="validatingRFQForm" style="text-align: right; width: 240px;" tabindex="6" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">
                                 Production Tooling Lead Time
                             </td>
                             <td align="left">
@@ -154,15 +145,6 @@
                             </td>
                             <td align="left">
                                 &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="right">
-                                Lead Time PPAP
-                            </td>
-                            <td align="left">
-                                <input type="text" id="txtLeadTimePPAP" value="" validationid="validatingRFQForm"
-                                    style="text-align: right; width: 240px" tabindex="6" />
                             </td>
                         </tr>
                     </table>

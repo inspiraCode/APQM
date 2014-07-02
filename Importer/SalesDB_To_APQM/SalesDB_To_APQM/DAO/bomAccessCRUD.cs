@@ -59,6 +59,7 @@ public class bomAccessCRUD
             bom.SalesComments = table[i]["Comments"].ToString();
             bom.CapComAssm = table[i]["Cap Com Assm"].ToString();
             bom.CommCode = table[i]["Component Lead Time"].ToString();
+            bom.Um = table[i]["UM"].ToString();
             try
             {
                 bom.PartCost = float.Parse(table[i]["Part Cost ($)"].ToString());
@@ -89,7 +90,7 @@ public class bomAccessCRUD
         DM = connectionManager.getDataManager();
 
         string query = "SELECT [Material Position], [Part Number/Code ID], " +
-                        "[Material/Assembly Description], [Part Cost ($)], [No Required], "
+                        "[Material/Assembly Description], [Part Cost ($)], [No Required], UM, "
                         + "[Assembly Description], Status, [Inquiry Number], Revision, " 
                         + "[Vendor Quote Est], Comments, [Cap Com Assm], [Lead Time PPAP], [Component Lead Time] " +
                         "FROM [Mat Assm Tool Descrip Table]";

@@ -42,7 +42,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(bomDetail.Id);
             foreach (RFQSummary rfqSummary in rfqSummaryList)
             {
-                if (rfqSummary.Status == "SELECTED" || rfqSummary.Status == "AWARDED")
+                if (rfqSummary.Eav_status == "SELECTED" || rfqSummary.Eav_status == "AWARDED")
                 {
                     totalCostMaterial += rfqSummary.TotalACost;
 
@@ -73,29 +73,29 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
 
         foreach (SalesReportDetail srd in salesReportDetailAllList)
         {
-            switch (srd.RFQStatus)
+            switch (srd.Eau_status)
             {
                 case "":
+                case "CREATED":
                 case "PENDING":
                 case "IN PROGRESS":
                 case "COMPLETED":
                 case "IN PROCESS":
-                    srd.RFQStatus = "IN PROCESS";
-                    salesReportDetailList.Add(srd);
-                    break;
-                case "NO QUOTE":
-                    srd.RFQStatus = "NO QUOTE";
-                    srd.TotalACost = null;
-                    srd.LeadTimePPAP = null;
-                    srd.ProductionTooling = null;
-                    srd.ToolingDetail = null;
-                    srd.ProductionToolingLeadTime = null;
-                    srd.ProductionLeadTime = null;
+                    if (srd.RFQStatus == "NO QUOTE")
+                    {
+                        srd.TotalACost = null;
+                        srd.ProductionTooling = null;
+                        srd.ToolingDetail = null;
+                        srd.ProductionToolingLeadTime = null;
 
-                    srd.LeadTimeFirstProductionOrder = null;
-                    srd.LeadTimePPAPFAIR = null;
-                    srd.LeadTimeNormalProductionOrders = null;
-
+                        srd.LeadTimeFirstProductionOrder = null;
+                        srd.LeadTimePPAPFAIR = null;
+                        srd.LeadTimeNormalProductionOrders = null;
+                    }
+                    else
+                    {
+                        srd.RFQStatus = "IN PROCESS";
+                    }
                     salesReportDetailList.Add(srd);
                     break;
                 case "DISMISSED":
@@ -252,13 +252,6 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             get { return productionToolingLeadTime; }
             set { productionToolingLeadTime = value; }
         }
-        private string productionLeadTime = "";
-
-        public string ProductionLeadTime
-        {
-            get { return productionLeadTime; }
-            set { productionLeadTime = value; }
-        }
         private long bOMHeaderKey;
 
         public long BOMHeaderKey1
@@ -299,13 +292,6 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
         {
             get { return totalACost; }
             set { totalACost = value; }
-        }
-        private string leadTimePPAP = "";
-
-        public string LeadTimePPAP
-        {
-            get { return leadTimePPAP; }
-            set { leadTimePPAP = value; }
         }
         private string productionTooling = "";
 
@@ -365,7 +351,13 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             set { um = value; }
         }
 
-        
+        private string eau_status = "";
+
+        public string Eau_status
+        {
+            get { return eau_status; }
+            set { eau_status = value; }
+        }
     }
     private class SalesReportDetail_DAO
     {
@@ -380,9 +372,9 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
 
             string query = "SELECT distinct PartNumber, CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Material, " +
                             "VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail, " +
-                            "ProductionToolingLeadTime, ProductionLeadTime, BOMHeaderKey, LinePosition, [Status], " +
-                            "RFQStatus, TotalACost, LeadTimePPAP, ProductionTooling, [User], BOMDetailKey, " + 
-                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um " +
+                            "ProductionToolingLeadTime, BOMHeaderKey, LinePosition, [Status], " +
+                            "RFQStatus, TotalACost, ProductionTooling, [User], BOMDetailKey, " +
+                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
                             "ORDER BY    LinePosition, BOMDetailKey, SupplierName";
@@ -410,21 +402,20 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                 salesReportDetailLocal.PurchasingComments = table.Rows[i][13].ToString();
                 salesReportDetailLocal.ToolingDetail = table.Rows[i][14].ToString();
                 salesReportDetailLocal.ProductionToolingLeadTime = table.Rows[i][15].ToString();
-                salesReportDetailLocal.ProductionLeadTime = table.Rows[i][16].ToString();
-                salesReportDetailLocal.BOMHeaderKey = long.Parse(table.Rows[i][17].ToString());
-                salesReportDetailLocal.LinePosition = table.Rows[i][18].ToString();
-                salesReportDetailLocal.Status = table.Rows[i][19].ToString();
-                salesReportDetailLocal.RFQStatus = table.Rows[i][20].ToString();
-                salesReportDetailLocal.TotalACost = table.Rows[i][21].ToString();
-                salesReportDetailLocal.LeadTimePPAP = table.Rows[i][22].ToString();
-                salesReportDetailLocal.ProductionTooling = table.Rows[i][23].ToString();
-                salesReportDetailLocal.User = table.Rows[i][24].ToString();
-                salesReportDetailLocal.BOMDetailKey = long.Parse(table.Rows[i][25].ToString());
-                salesReportDetailLocal.LeadTimeFirstProductionOrder = table.Rows[i][26].ToString();
-                salesReportDetailLocal.LeadTimePPAPFAIR = table.Rows[i][27].ToString();
-                salesReportDetailLocal.LeadTimeNormalProductionOrders = table.Rows[i][28].ToString();
-                salesReportDetailLocal.EauCalendarYears = table.Rows[i][29].ToString();
-                salesReportDetailLocal.Um = table.Rows[i][30].ToString();
+                salesReportDetailLocal.BOMHeaderKey = long.Parse(table.Rows[i][16].ToString());
+                salesReportDetailLocal.LinePosition = table.Rows[i][17].ToString();
+                salesReportDetailLocal.Status = table.Rows[i][18].ToString();
+                salesReportDetailLocal.RFQStatus = table.Rows[i][19].ToString();
+                salesReportDetailLocal.TotalACost = table.Rows[i][20].ToString();
+                salesReportDetailLocal.ProductionTooling = table.Rows[i][21].ToString();
+                salesReportDetailLocal.User = table.Rows[i][22].ToString();
+                salesReportDetailLocal.BOMDetailKey = long.Parse(table.Rows[i][23].ToString());
+                salesReportDetailLocal.LeadTimeFirstProductionOrder = table.Rows[i][24].ToString();
+                salesReportDetailLocal.LeadTimePPAPFAIR = table.Rows[i][25].ToString();
+                salesReportDetailLocal.LeadTimeNormalProductionOrders = table.Rows[i][26].ToString();
+                salesReportDetailLocal.EauCalendarYears = table.Rows[i][27].ToString();
+                salesReportDetailLocal.Um = table.Rows[i][28].ToString();
+                salesReportDetailLocal.Eau_status = table.Rows[i][29].ToString();
 
                 recordset.Add(salesReportDetailLocal);
             }

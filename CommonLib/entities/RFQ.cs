@@ -66,9 +66,9 @@ public class RFQ
    
     /******************************************************************/
     /*Those fields:****************************************************/
-    private string productionLeadTime = "";
+    //private string productionLeadTime = "";
     private string productionToolingLeadTime = "";
-    private string leadTimePPAP = "";
+    //private string leadTimePPAP = "";
 
     /*will be replaced by the next three fields:*/
     private string leadTimePPAPFAIR = "";
@@ -147,11 +147,6 @@ public class RFQ
         get { return drawingLevel; }
         set { drawingLevel = value; }
     }
-    public string ProductionLeadTime
-    {
-        get { return productionLeadTime; }
-        set { productionLeadTime = value; }
-    }    
     public string ProductionToolingLeadTime
     {
         get { return productionToolingLeadTime; }
@@ -301,11 +296,6 @@ public class RFQ
     {
         get { return inboxAttachmentsFolder; }
         set { inboxAttachmentsFolder = value; }
-    }
-    public string LeadTimePPAP
-    {
-        get { return leadTimePPAP; }
-        set { leadTimePPAP = value; }
     }
     public string MarketSectorName
     {
@@ -623,7 +613,6 @@ public class RFQACR
         set { porcentage = value; }
     }
 }
-
 
 public class RFQSummaryHeader
 {

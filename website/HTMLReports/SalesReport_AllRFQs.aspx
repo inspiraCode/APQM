@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/_Layouts/MasterBaseStatic.master"
-    AutoEventWireup="true" CodeFile="SalesReport_AllRFQs.aspx.cs" Inherits="HTMLReports_SalesReport_AllRFQs" MaintainScrollPositionOnPostback="True" %>
+    AutoEventWireup="true" CodeFile="SalesReport_AllRFQs.aspx.cs" Inherits="HTMLReports_SalesReport_AllRFQs"
+    MaintainScrollPositionOnPostback="True" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
     <style type="text/css">
@@ -68,7 +69,8 @@
                             <asp:Label ID="SalesPersonLabel" runat="server" Text='<%# Bind("SalesPerson") %>' />
                         </td>
                         <td align="right" class="style1">
-                            Total Material Cost with Reduction:</td>
+                            Total Material Cost with Reduction:
+                        </td>
                         <td align="right">
                             <asp:Label ID="lblTotalMaterialCostWithReduction" runat="server" />
                         </td>
@@ -124,7 +126,6 @@
                 </table>
             </ItemTemplate>
         </asp:FormView>
-        
         <br />
         <br />
         <asp:GridView ID="gridSalesReport" runat="server" AutoGenerateColumns="False" OnPreRender="gridView_PreRender">
@@ -141,20 +142,20 @@
                     SortExpression="PartNumber">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" HeaderText="Capsonic PN" Visible="false"
-                    SortExpression="CapsonicPN">
+                <asp:BoundField DataField="CapsonicPN" ItemStyle-HorizontalAlign="Center" HeaderText="Capsonic PN"
+                    Visible="false" SortExpression="CapsonicPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" HeaderText="Customer PN" Visible="false"
-                    SortExpression="CustomerPN">
+                <asp:BoundField DataField="CustomerPN" ItemStyle-HorizontalAlign="Center" HeaderText="Customer PN"
+                    Visible="false" SortExpression="CustomerPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="ManufacturePN" ItemStyle-HorizontalAlign="Center" HeaderText="Manufacture PN"
                     SortExpression="ManufacturePN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier PN" Visible="false"
-                    SortExpression="SupplierPN">
+                <asp:BoundField DataField="SupplierPN" ItemStyle-HorizontalAlign="Center" HeaderText="Supplier PN"
+                    Visible="false" SortExpression="SupplierPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="CommCode" ItemStyle-HorizontalAlign="Center" HeaderText="Comm Code"
@@ -198,14 +199,10 @@
                 <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost ($)" SortExpression="ProductionTooling" />
                 <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Tooling Lead Time"
                     SortExpression="ProductionToolingLeadTime" />
-                <asp:BoundField DataField="LeadTimePPAP" HeaderText="Lead Time PPAP" SortExpression="LeadTimePPAP" />
-                <asp:BoundField DataField="ProductionLeadTime" HeaderText="Lead Time Production"
-                    SortExpression="ProductionLeadTime" />
-                    <asp:BoundField DataField="LeadTimeFirstProductionOrder" HeaderText="Lead Time First Production Order"
+                <asp:BoundField DataField="LeadTimePPAPFAIR" HeaderText="Lead Time PPAP/FAIR" SortExpression="LeadTimePPAPFAIR" />
+                <asp:BoundField DataField="LeadTimeFirstProductionOrder" HeaderText="Lead Time First Production Order"
                     SortExpression="LeadTimeFirstProductionOrder" />
-                    <asp:BoundField DataField="LeadTimePPAPFAIR" HeaderText="Lead Time PPAP/FAIR"
-                    SortExpression="LeadTimePPAPFAIR" />
-                    <asp:BoundField DataField="LeadTimeNormalProductionOrders" HeaderText="Lead Time Normal Production Orders"
+                <asp:BoundField DataField="LeadTimeNormalProductionOrders" HeaderText="Lead Time Normal Production Orders"
                     SortExpression="LeadTimeNormalProductionOrders" />
             </Columns>
         </asp:GridView>

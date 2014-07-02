@@ -13,3 +13,14 @@ C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\C
 C:\wsetup\repositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\CommonLib.pdb
 C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.exe
 C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.pdb
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\SalesDB_To_APQM.exe
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\SalesDB_To_APQM.pdb
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\BD_MNG.dll
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\CommonLib.dll
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\BD_MNG.pdb
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\bin\Debug\CommonLib.pdb
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.csprojResolveAssemblyReference.cache
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmExport.resources
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.frmSelectData.resources
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.Properties.Resources.resources
+C:\gitRepositories\APQM\Importer\SalesDB_To_APQM\SalesDB_To_APQM\obj\Debug\SalesDB_To_APQM.csproj.GenerateResource.Cache

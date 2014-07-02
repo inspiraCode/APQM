@@ -40,6 +40,7 @@ namespace SalesDB_To_APQM.entities
         private string material = ""; 
         private float partCost;
         private float noRequired;
+        private string um = "";
         private string assemblyDescription = ""; //Wont be used anymore
         private string status = "";
         private string importComment = "";
@@ -74,6 +75,11 @@ namespace SalesDB_To_APQM.entities
         {
             get { return noRequired; }
             set { noRequired = value; }
+        }
+        public string Um
+        {
+            get { return um; }
+            set { um = value; }
         }
         public string AssemblyDescription
         {

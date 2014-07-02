@@ -348,6 +348,7 @@ namespace SalesDB_To_APQM
                                                 bomDetail.SalesStatus = bom.Status;
                                                 bomDetail.Cost = bom.PartCost;
                                                 bomDetail.Qty = bom.NoRequired;
+                                                bomDetail.Um = bom.Um;
                                                 bomDetail.PartNumber = bom.PartNumber;
                                                 bomDetail.SalesComments = bom.SalesComments; //wont be used anymore
                                                 bomDetail.VendorQuoteEst = bom.VendorQuoteEst;
