@@ -194,9 +194,11 @@
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
                 <asp:BoundField DataField="PurchasingComments" HeaderText="Purchasing Comments" SortExpression="PurchasingComments" />
+                <asp:BoundField DataField="PurchasingStatus" HeaderText="Purchasing Status" SortExpression="PurchasingStatus" />
                 <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling / Equiptment Type"
                     SortExpression="ToolingDetail" />
                 <asp:BoundField DataField="ProductionTooling" HeaderText="Tooling Cost ($)" SortExpression="ProductionTooling" />
+                <asp:BoundField DataField="PrototypeTooling" HeaderText="Prototype Tooling" SortExpression="PrototypeTooling" />
                 <asp:BoundField DataField="ProductionToolingLeadTime" HeaderText="Tooling Lead Time"
                     SortExpression="ProductionToolingLeadTime" />
                 <asp:BoundField DataField="LeadTimePPAPFAIR" HeaderText="Lead Time PPAP/FAIR" SortExpression="LeadTimePPAPFAIR" />
@@ -204,6 +206,8 @@
                     SortExpression="LeadTimeFirstProductionOrder" />
                 <asp:BoundField DataField="LeadTimeNormalProductionOrders" HeaderText="Lead Time Normal Production Orders"
                     SortExpression="LeadTimeNormalProductionOrders" />
+                <asp:BoundField DataField="CommentsToBuyer" HeaderText="Vendor Comments" SortExpression="CommentsToBuyer" />
+                <asp:BoundField DataField="ExceptionsToDrawing" HeaderText="Exception to Print" SortExpression="ExceptionsToDrawing" />
             </Columns>
         </asp:GridView>
     </asp:Panel>

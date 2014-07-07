@@ -76,6 +76,10 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             SalesReportDetail srdInternal = salesReportDetailList.Find(r => r.BOMDetailKey == srd.BOMDetailKey);
             if (srdInternal == null)
             {
+                if (srd.Quote100ToDrawing == true)
+                {
+                    srd.ExceptionsToDrawing = "";
+                }
                 switch (srd.Eau_status)
                 {
                     case "":
@@ -84,8 +88,16 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                     case "IN PROGRESS":
                     case "COMPLETED":
                     case "IN PROCESS":
-                        if(srd.RFQStatus != "NO QUOTE")
+                        if (srd.RFQStatus == "")
+                        {
+                            srd.RFQStatus = "PROCESSED";
+                            srd.Eau_status = "PROCESSED";
+                        }
+                        else if (srd.RFQStatus != "NO QUOTE")
+                        {
                             srd.RFQStatus = "IN PROCESS";
+                        }
+
                         srd.TotalACost = null;
                         srd.ProductionTooling = null;
                         srd.ToolingDetail = null;
@@ -145,7 +157,7 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
     {
         string attachment = "attachment; filename=SalesReport.xls";
         Response.ClearContent();
-        Response.AddHeader("content-disposition",attachment);
+        Response.AddHeader("content-disposition", attachment);
         Response.ContentType = "application/ms-excel";
         StringWriter sw = new StringWriter();
         HtmlTextWriter htw = new HtmlTextWriter(sw);
@@ -389,6 +401,38 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
             get { return eau_status; }
             set { eau_status = value; }
         }
+
+        private float prototypeTooling;
+        private string commentsToBuyer = "";
+        private string exceptionsToDrawing = "";
+        private bool quote100ToDrawing = true;
+        private string purchasingStatus = "";
+
+        public float PrototypeTooling
+        {
+            get { return prototypeTooling; }
+            set { prototypeTooling = value; }
+        }
+        public string CommentsToBuyer
+        {
+            get { return commentsToBuyer; }
+            set { commentsToBuyer = value; }
+        }
+        public string ExceptionsToDrawing
+        {
+            get { return exceptionsToDrawing; }
+            set { exceptionsToDrawing = value; }
+        }
+        public bool Quote100ToDrawing
+        {
+            get { return quote100ToDrawing; }
+            set { quote100ToDrawing = value; }
+        }
+        public string PurchasingStatus
+        {
+            get { return purchasingStatus; }
+            set { purchasingStatus = value; }
+        }
     }
     private class SalesReportDetail_DAO
     {
@@ -405,10 +449,11 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                             "VendorQuoteEst, Qty, EAU, MOQ, SupplierName, CapComAssm, PurchasingComments, ToolingDetail, " +
                             "ProductionToolingLeadTime, BOMHeaderKey, LinePosition, [Status], " +
                             "RFQStatus, TotalACost, ProductionTooling, [User], BOMDetailKey, " +
-                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status " +
+                            "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status, " +
+                            "PrototypeTooling, CommentsToBuyer, Quote100ToPrint, ExceptionTo100ToPrint, PurchasingStatus " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
-                            "ORDER BY    LinePosition, BOMDetailKey";
+                            " ORDER BY    LinePosition, BOMDetailKey";
 
             DataTable table = new DataTable();
             table = DM.Execute_Query(query);
@@ -447,6 +492,14 @@ public partial class HTMLReports_SalesReport : System.Web.UI.Page
                 salesReportDetailLocal.EauCalendarYears = table.Rows[i][27].ToString();
                 salesReportDetailLocal.Um = table.Rows[i][28].ToString();
                 salesReportDetailLocal.Eau_status = table.Rows[i][29].ToString();
+                try { salesReportDetailLocal.PrototypeTooling = float.Parse(table.Rows[i][30].ToString()); }
+                catch { }
+                salesReportDetailLocal.CommentsToBuyer = table.Rows[i][31].ToString();
+                try { salesReportDetailLocal.Quote100ToDrawing = bool.Parse(table.Rows[i][32].ToString()); }
+                catch { }
+                salesReportDetailLocal.ExceptionsToDrawing = table.Rows[i][33].ToString();
+                try { salesReportDetailLocal.PurchasingStatus = table.Rows[i][34].ToString(); }
+                catch { }
 
                 recordset.Add(salesReportDetailLocal);
             }
