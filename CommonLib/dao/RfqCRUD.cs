@@ -1199,6 +1199,37 @@ public class RFQNumberCRUD : ICRUD<RFQNumberEntity>
 
         return idGenerated;
     }
+    public RFQNumberEntity create_return_object(RFQNumberEntity entity, ref Data_Base_MNG.SQL DM)
+    {
+        ErrorOccur = false;
+        RFQNumberEntity rfqNumberCreated = entity;
+        try
+        {
+            DM.clearOutputParameters();
+            DM.Load_SP_Parameters("@BOMDetailKey", entity.BOMDetailKey.ToString());
+            DM.Load_SP_Parameters("@SIFHeaderKey", entity.SifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@RFQNumber", entity.RFQNumber.ToString());
+            DM.Load_SP_Parameters_Output("@RFQNumberGenerated", SqlDbType.NVarChar, 50);
+            DM.Load_SP_Parameters_Output("@IDGenerated", SqlDbType.Int);
+
+            if (DM.Execute_StoreProcedure_Use_Output_Parameters_Open_Conn("RFQNumber_New_ReturnObject", true))
+            {
+                rfqNumberCreated.Id = long.Parse(DM.getOutputParameter("@IDGenerated"));
+                rfqNumberCreated.RfqGenerated = DM.getOutputParameter("@RFQNumberGenerated");
+            }
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return null;
+        }
+
+        return rfqNumberCreated;
+    }
     public RFQNumberEntity readById(long id)
     {
         RFQNumberEntity rfqNumber = new RFQNumberEntity();

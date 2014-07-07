@@ -948,6 +948,7 @@ namespace Data_Base_MNG
         private SqlTransaction _transaction;
 
         private List<SqlParameter> _parameters = new List<SqlParameter>();
+        private List<SqlParameter> _parametersOutput = new List<SqlParameter>();
 
         //private SqlParameter[] _parameters;
         private SqlCommand _command;
@@ -1377,6 +1378,26 @@ namespace Data_Base_MNG
             SqlParameter param = new SqlParameter(ParameterName, ParameterValue);
             _parameters.Add(param);
         }
+        public void Load_SP_Parameters_Output(string ParameterName, SqlDbType type, int length)
+        {
+            SqlParameter param = new SqlParameter(ParameterName, type,length);
+            param.Direction = ParameterDirection.Output;
+            _parametersOutput.Add(param);
+        }
+        public void Load_SP_Parameters_Output(string ParameterName, SqlDbType type)
+        {
+            SqlParameter param = new SqlParameter(ParameterName, type);
+            param.Direction = ParameterDirection.Output;
+            _parametersOutput.Add(param);
+        }
+        public string getOutputParameter(string param)
+        {
+            return _command.Parameters[param].Value.ToString();
+        }
+        public void clearOutputParameters()
+        {
+            _parametersOutput.Clear();
+        }
         public bool Execute_StoreProcedure(string Command, bool ParametersNeeded)
         {
             bool result = false;
@@ -1537,6 +1558,48 @@ namespace Data_Base_MNG
                 //Stop_Connection();
                 ErrorFlag = true;
                 result = "";
+
+                try
+                {
+                    _transaction.Rollback();
+                }
+                catch (Exception ex2)
+                {
+                    _error_mjs = ex.Message + " RollBack Error: " + ex2.Message;
+                }
+            }
+            return result;
+        }
+        public bool Execute_StoreProcedure_Use_Output_Parameters_Open_Conn(string Command, bool ParametersNeeded)
+        {
+            bool result = false;
+            Build_Command(Command);
+            _command.CommandType = CommandType.StoredProcedure;
+            try
+            {
+                //Start_Connection();
+                ///
+                _command.Parameters.Clear();
+                if (ParametersNeeded)
+                {
+                    _command.Parameters.AddRange(_parameters.ToArray());
+                    _command.Parameters.AddRange(_parametersOutput.ToArray());
+                }
+                _command.Transaction = _transaction;
+                _command.ExecuteNonQuery();
+                
+                _parameters.Clear();
+                //Stop_Connection();
+                ErrorFlag = false;
+                result = true;
+            }
+            catch (Exception ex)
+            {
+
+                _error_mjs = ex.Message;
+                //Stop_Connection();
+                ErrorFlag = true;
+                result = false;
 
                 try
                 {

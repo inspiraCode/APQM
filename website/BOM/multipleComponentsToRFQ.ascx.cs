@@ -296,7 +296,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                     DM.Open_Connection("Send New RFQ Save");
 
 
-                    String idGeneratedRFQNumber = rfqNumberCRUD.createAndReturnIdGenerated(rfqNumber, ref DM);
+                    RFQNumberEntity rfqNumberGenereated = rfqNumberCRUD.create_return_object(rfqNumber, ref DM);
                     if (rfqNumberCRUD.ErrorOccur)
                     {
                         Navigator.goToPage("~/Error.aspx", "ERROR:" + rfqNumberCRUD.ErrorMessage);
@@ -311,7 +311,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                         rfq.SentToVendor = DateTime.Now;
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
-                        rfq.RfqNumberKey = long.Parse(idGeneratedRFQNumber);
+                        rfq.RfqNumberKey = rfqNumberGenereated.Id;
                         rfq.DueDate = DateTime.Parse(txtDueDate.Text);
                         rfq.MarketSectorID = long.Parse(cboMarketSector.SelectedValue);
                         rfq.DrawingLevel = txtDrawingLevel.Text;
@@ -376,8 +376,9 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                                                             + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
                                                             + Environment.NewLine + Environment.NewLine
                                                             + "RFQ Number: " + rfqNumber.RfqGenerated
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
+                                                            + Environment.NewLine
+                                                            + "Component to quote: " + component.PartNumber
+                                                            + Environment.NewLine + Environment.NewLine + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
                                                             + Environment.NewLine + Environment.NewLine
                                                             + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
                                                             + Environment.NewLine + Environment.NewLine
