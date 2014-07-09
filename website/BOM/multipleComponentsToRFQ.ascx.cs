@@ -239,6 +239,11 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
     {
         RFQNumberCRUD rfqNumberCRUD = new RFQNumberCRUD();
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        UserCRUD user_CRUD = new UserCRUD();
+
+
+        string strAuthUser = HttpContext.Current.User.Identity.Name;
+        User user = user_CRUD.readById(strAuthUser);
         
         List<SIFDetail> EAUsList = uscEAUs.getEntity();
         if (EAUsList.Count == 0)
@@ -265,8 +270,7 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         }
 
         List<BOMDetail> bomDetailList = uscSendNewRFQDetail.getEntity();
-
-        string strAuthUser = HttpContext.Current.User.Identity.Name;
+        
 
         ConnectionManager CM = new ConnectionManager();
         Data_Base_MNG.SQL DM = CM.getDataManager();
@@ -369,32 +373,17 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
                                 Message.IsBodyHtml = true;
                                 Message.BodyEncoding = System.Text.Encoding.UTF8;
 
-                                string strEmailContent = "Dear Supplier," + Environment.NewLine
-                                                            + "We are seeking quotations to match the part/process description shown on our RFQ form.  Please click the following link to be directed to the RFQ page.  Drawings and special instructions will be included there also."
-                                                            + " Please fill out the RFQ form as completely as possible. You may attach documents to the RFQ, but the RFQ form must be completed."
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "There is an instruction module available to walk you through the form should you need assistance.  If you have any questions regarding the RFQ, please contact the Capsonic Advanced Purchasing Buyer shown on the RFQ form."
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "RFQ Number: " + rfqNumber.RfqGenerated
-                                                            + Environment.NewLine
-                                                            + "Component to quote: " + component.PartNumber
-                                                            + Environment.NewLine + Environment.NewLine + "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "Please mark this e-mail as coming from a trusted source to avoid issues with future correspondence reaching your inbox."
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "In order to open the hyperlink, it is necessary to have javascript enabled in your browser and Internet Explorer 11 or any other browser like Chrome or Firefox."
-                                                            + Environment.NewLine + Environment.NewLine
-                                                            + "Sincerely," + Environment.NewLine + Environment.NewLine + "The Capsonic Advanced Purchasing Team";
+                                var url = ResolveUrl("~/Vendor/Email_RFQ_Request.htm");
+                                var strEmailContent =  HTMLContent(url);
+                                strEmailContent = strEmailContent.Replace("{BuyerName}", user.Name);
+                                strEmailContent = strEmailContent.Replace("{BuyerPhone}", user.Phone1);
+                                strEmailContent = strEmailContent.Replace("{BuyerEmail}", user.Email);
+                                strEmailContent = strEmailContent.Replace("{RFQ Number}", rfqNumber.RfqGenerated);
+                                strEmailContent = strEmailContent.Replace("{Part Number}", component.PartNumber);
+                                strEmailContent = strEmailContent.Replace("{RFQLink}", "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
 
+                                Message.Body = strEmailContent;
 
-                                AlternateView htmlView = AlternateView.CreateAlternateViewFromString(strEmailContent);
-                                Message.AlternateViews.Add(htmlView);
-
-
-                                //NDA Attachment not used anymore
-                                //string path = HttpRuntime.AppDomainAppPath.ToString() + @"\Docs\NDA.pdf";
-                                //Attachment x = new Attachment(path);
-                                //Message.Attachments.Add(x);
                                 try
                                 {
                                     NewMail.SendMail(Message);
@@ -579,5 +568,13 @@ public partial class BOM_multipleComponentsToRFQ : System.Web.UI.UserControl
         supplierList = null;
         Ok_Click(this, e);
     }
-
+    private string HTMLContent(string url)
+    {
+        string result = string.Empty;
+        using (StreamReader reader = new StreamReader(Server.MapPath(url)))
+        {
+            result = reader.ReadToEnd();
+        }
+        return result;
+    }
 }

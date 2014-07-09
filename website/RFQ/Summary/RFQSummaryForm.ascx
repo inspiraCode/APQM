@@ -450,7 +450,7 @@
         var strTable = '<table id="tableEAUs" cellspacing="0" border="0">';
         //        strTable += '<tr><td><input type="radio" name="optEAU" checked="checked"></td><td>Manual</ td><td></ td></ tr>';
         //        strTable += '<tr><td><input type="radio" name="optEAU"></td><td>Equal to:</ td><td><input type="text" value="" id="txtEqualEAU" style="width:100px;"></ td></ tr>';
-        strTable += '<tr><td></td><td style="text-align: right;">EAV</ td><td style="text-align: right;">Calendar Years</ td></ tr>';
+        strTable += '<tr><td></td><td style="text-align: right;">EAU</ td><td style="text-align: right;">Calendar Years</ td></ tr>';
         var eauGroupped = getEAUGroupped();
         for (current in eauGroupped) {
             if (eauGroupped.hasOwnProperty(current)) {
