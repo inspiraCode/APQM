@@ -33,6 +33,16 @@ public class BOM
         get { return bomDetail; }
         set { bomDetail = value; }
     }
+
+    private List<SIFDetail> sifDetail;
+
+    public List<SIFDetail> SifDetail
+    {
+        get { return sifDetail; }
+        set { sifDetail = value; }
+    }
+
+
     public long Id
     {
         get { return id; }
@@ -118,7 +128,8 @@ public class BOMDetail
     private string manufacturePN = "";
     private string supplierPN = "";
     private string commCode = "";
-    
+    private List<RFQ> rFQList;
+
     public string CapsonicPN
     {
         get { return capsonicPN; }
@@ -270,6 +281,11 @@ public class BOMDetail
     {
         get { return capComAssm; }
         set { capComAssm = value; }
+    }
+    public List<RFQ> RFQList
+    {
+        get { return rFQList; }
+        set { rFQList = value; }
     }
     public override string ToString()
     {

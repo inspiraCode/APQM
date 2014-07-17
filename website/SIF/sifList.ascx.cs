@@ -53,7 +53,7 @@ public partial class sifList : System.Web.UI.UserControl
             ((HtmlAnchor)e.Item.FindControl("aLinkSIF")).HRef = "../SIF/SIF_Form.aspx?sif=" + sif.Id;
             if (sif.BomId > -1)
             {
-                ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).HRef = "../BOM/BOM_Form.aspx?bom=" + sif.BomId;
+                ((HtmlAnchor)e.Item.FindControl("aLinkEditBOM")).HRef = "../BOM/BOM_Main.aspx?bom=" + sif.BomId;
                 ((LinkButton)e.Item.FindControl("linkDeleteBOM")).CommandArgument = sif.BomId.ToString();
                 ((LinkButton)e.Item.FindControl("linkCreateBOM")).Visible = false; 
                 //((LinkButton)e.Item.FindControl("linkCreateBOM")).CommandArgument = sif.Id.ToString(); 

@@ -751,6 +751,12 @@ public class RfqCRUD : ICRUD<RFQ>
 
         RFQ rfq = readById(ID);
 
+        if (rfq == null)
+        {
+            ErrorOccur = true;
+            ErrorMessage = "No RFQ found with ID = " + ID;
+            return false;
+        }
         bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
         BOMDetail bomDetail = bomDetailCRUD.readById(rfq.BomDetailId);
 

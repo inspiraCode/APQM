@@ -4,6 +4,7 @@
     .style1
     {
         width: 587px;
+        font-size: 11px;
     }
     .style2
     {
@@ -12,7 +13,7 @@
         width: 94px;
     }
 </style>
-<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 115px;width: 530px;" >
+<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 108px;width: 478px;" >
 <table align="left" cellspacing="0" class="style1">
     <tr>
         <td class="style2" align="right">
