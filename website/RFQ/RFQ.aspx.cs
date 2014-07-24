@@ -75,31 +75,12 @@ public partial class RFQDefault : System.Web.UI.Page
                     MultiViewMain.SetActiveView(viewRFQCountPerSharedItems);
                     ViewState["actualSection"] = "RFQPerSharedItems";
                     break;
-                case "popupRFQbyBOM":
-                    openpopupContainer();
-                    break;
                 default:
                     break;
             }
         }
     }
 
-    
-
-    private void openpopupContainer()
-    {
-        panelPopup.Visible = true;
-    }
-    protected void on_update_RFQ(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-        Navigator.goToPage("~/RFQ/RFQ.aspx", "RFQ");
-    }
-    protected void on_cancel_RFQ(object sender, EventArgs e) 
-    {
-        panelPopup.Visible = false;
-        Navigator.goToPage("~/RFQ/RFQ.aspx", "RFQ");
-    }
     protected void tabRFQ_Click(object sender, EventArgs e)
     {
         Navigator.goToPage("~/RFQ/RFQ.aspx","RFQ");
@@ -125,28 +106,6 @@ public partial class RFQDefault : System.Web.UI.Page
         long bomDetailId;
         switch (e.CommandName)
         {
-            case "seeRFQ":
-                try
-                {   
-                    index = ((GridViewRow)((Control)e.CommandSource).NamingContainer).RowIndex;
-                    bomDetailId = long.Parse(((GridView)sender).DataKeys[index].Value.ToString());
-                    // Get the last name of the selected author from the appropriate
-                    // cell in the GridView control.
-                    //GridViewRow selectedRow = ((GridView)sender).Rows[index];
-                    //TableCell rfqCountCell = selectedRow.Cells[8];
-                    int iRfqCount = int.Parse(e.CommandArgument.ToString());
-                    if (iRfqCount > 0)
-                    {
-                        openpopupContainer();
-                        multiViewPopup.SetActiveView(viewRFQListByBom);
-                        uscRfqListByBom.setBomID(bomDetailId);
-                    }
-                }
-                catch(Exception ex)
-                {
-                    Navigator.goToPage("~/Error.aspx", "ERROR:" + ex.Message);
-                }                
-                break;
             case "sendNewRFQ":
                 //try
                 //{
@@ -222,10 +181,6 @@ public partial class RFQDefault : System.Web.UI.Page
     //            break;
     //    }
     //}
-    protected void btnClosePopup_Click(object sender, EventArgs e)
-    {
-        panelPopup.Visible = false;
-    }
     protected void on_activeView_changed(object sender, EventArgs e)
     {
         var objSent = sender;

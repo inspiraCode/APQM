@@ -24,13 +24,42 @@
         }
         .BOMLine
         {
-            left: 170px;
+            left: 140px;
             position: relative;
             border-radius: 4px;
             border: solid 1px dimgray;
-            color: black;
-            background-color: darkgray;
+            color: black; /*background-color:#A9A9A9;*/
         }
+        .Imported
+        {
+            background: #A9A9A9;
+        }
+        .Created
+        {
+            background: #B0E0E6;
+        }
+        .ForAdd
+        {
+            background: #FFD700;
+        }
+        .ForEdit
+        {
+            background: #D8BFD8;
+        }
+        .InProgress
+        {
+            background: #8FBC8F;
+        }
+        .NoQuote
+        {
+            background: #F0E68C;
+        }
+        .Processed
+        {
+            background: #F0E68C;
+        }
+        
+        
         #accordion .ui-accordion-content
         {
             width: 100%;
@@ -63,6 +92,12 @@
             zoom: 1;
         }
     </style>
+    <div id="divImgEmail" style="display: none; position: fixed; top: 27px; right: 246px;
+        z-index: 1000;">
+        <img id="" alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
+            position: relative;" />
+        <span style="display: inline; position: relative;">Please wait..</span>
+    </div>
     <div style="position: absolute; top: 32px; left: 135px; font-size: 30px;">
         <label id="lblInquiryNumber" bindto="InquiryNumber">
         </label>
@@ -145,8 +180,8 @@
     <div style="position: relative; float: right;">
         <uc1:bomStatusInfo ID="uscBomStatusInfo" runat="server" />
     </div>
-    <div align="center" style="clear: both;">
-        <table cellspacing="0" align="left" style="margin-left: 110px;">
+    <div style="clear: both; width: 1200px; margin-left: auto; margin-right: auto;">
+        <table cellspacing="0" align="left" style="margin-left: 80px;">
             <tr>
                 <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
                     Assigned To
@@ -154,10 +189,10 @@
                 <th class="camposSinBordes" style="width: 55px; min-width: 55px; max-width: 55px;">
                     Status
                 </th>
-                <th class="camposSinBordes" style="width: 30px; min-width: 30px; max-width: 30px;">
-                    #
+                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+                    Sales LN
                 </th>
-                <th class="camposSinBordes itemFields" style="width: 120px; min-width: 120px; max-width: 120px;">
+                <th class="camposSinBordes itemFields" style="width: 132px; min-width: 132px; max-width: 132px;">
                     Component Part Number
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
@@ -168,14 +203,16 @@
                     display: none;">
                     Customer PN
                 </th>
-                <th class="camposSinBordes itemFields" style="width: 90px; min-width: 90px; max-width: 90px;">
+                <th class="camposSinBordes itemFields" style="width: 90px; min-width: 90px; max-width: 90px;
+                    display: none;">
                     Manufacture PN
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
                     display: none;">
                     Supplier PN
                 </th>
-                <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;">
+                <th class="camposSinBordes itemFields" style="width: 80px; min-width: 80px; max-width: 80px;
+                    display: none;">
                     Comm Code
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 145px; min-width: 145px; max-width: 145px;">
@@ -187,25 +224,29 @@
                 <th class="camposSinBordes itemFields" style="width: 52px; min-width: 52px; max-width: 52px;">
                     Cost
                 </th>
-                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;
+                    display: none;">
                     Vendor Quote Est
                 </th>
                 <th class="camposSinBordes" style="width: 60px; min-width: 60px; max-width: 60px;">
                     Qty Required
                 </th>
-                <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
+                <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;
+                    display: none;">
                     Cap Com Assm
                 </th>
-                <th class="camposSinBordes" style="width: 80px; min-width: 80px; max-width: 80px;">
+                <th class="camposSinBordes" style="width: 147px; min-width: 147px; max-width: 147px;">
                     Purchasing Comments
                 </th>
-                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;
+                    display: none;">
                     Sales Status
                 </th>
-                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+                <th class="camposSinBordes" style="width: 147px; min-width: 147px; max-width: 147px;">
                     Sales Comments
                 </th>
-                <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;">
+                <th class="camposSinBordes" style="width: 50px; min-width: 50px; max-width: 50px;
+                    display: none;">
                     Directed Buy
                 </th>
                 <th class="camposSinBordes" style="width: 110px; min-width: 110px; max-width: 110px;">
@@ -215,18 +256,30 @@
                 </th>
             </tr>
         </table>
-        <div id="divBOMDetailList">
+        <div id="divBOMDetailList" style="width: 1200px;">
         </div>
     </div>
     <br />
     <div align="center" class="gradientBG" style="position: fixed; left: 0px; width: 100%;
         bottom: 0; padding: 5px; border-top: solid 1px black;">
-        <input type="button" value="SIF Volumes" onclick="on_openSIFDetail();" />
-        <input type="button" id="btnNewRFQ" value="New RFQ" style="width: 100px;" />
-        <input type="button" id="btnSaveBOM" value="Save" style="width: 100px;" />
-        <input type="button" id="btnCancel" value="Cancel" style="width: 100px;" />
-        <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" style="width: 150px;" />
-        <input type="button" id="btnReportAllRFQs" value="Report All RFQs" style="width: 150px;" />
+        <input type="button" id="btnNewRFQ" style="float: left;" value="New RFQ" />
+        <input type="button" value="Select All" style="float: left;" onclick="on_select_all_lines();" />
+        <input type="button" value="Unselect All" style="float: left;" onclick="on_unselect_all_lines();" />
+        <input type="button" id="btnNoQuote" onclick="on_noQuote_click();" style="float: left;"
+            value="No Quote" />
+        <input type="button" id="btnQuote" onclick="on_Quote_click();" style="float: left;"
+            value="Quote" />
+        <input type="button" id="btnReportAllRFQs" value="Report All RFQs" style="width: 150px;
+            float: right; margin-right: 12px;" />
+        <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" style="width: 150px;
+            float: right; margin-right: 2px;" />
+        <input type="button" value="SIF Volumes" style="float: right;" onclick="on_openSIFDetail();" />
+        <input type="button" id="btnCancel" value="Refresh" onclick="location.reload(true);return false;"
+            style="width: 150px; float: right; margin-right: 2px;" />
+        <input type="button" id="btnSaveBOM" onclick="on_save_bom();" value="Save" style="width: 100px;
+            float: right; margin-right: 2px;" />
+        <input type="button" id="btnEdifBOM" onclick="on_btnEditBOM_click();" value="Edit BOM"
+            style="width: 100px; float: right; margin-right: 2px;" />
     </div>
     <br />
     <div id="divDialog_SifDetail" style="display: none;">
@@ -240,6 +293,16 @@
         <div align="right">
             <input type="button" value="Close" id="btnClosePopup" onclick="on_closeSIFDetail();" />
         </div>
+    </div>
+    <div id="divDialog_EditBOM" title="BOM Edit" style="display: none; font-size: 9px;">
+        <div id="divEditBOMContainer" style="height: 420px; width: 960px; overflow-y: auto;
+            align: center;">
+            <div id="divEditBOM">
+            </div>
+        </div>
+        <br />
+        <input type="button" id="btnOKBOMEdit" value="OK" onclick="on_ok_BOM_Edit();" style="width: 100px;
+            float: right;" />
     </div>
     <asp:Panel ID="panelSendRFQ" runat="server" Visible="false">
         <div align="center">
@@ -257,8 +320,31 @@
     </asp:Panel>
     <script type="text/javascript">
         jQuery(document).ready(function () {
+            jQuery("#spanTitle").text("BOM");
             load();
+            jQuery('#divDialog_EditBOM').on('shown.bs.modal', function () {
+                jQuery(document).off('focusin.bs.modal');
+            });
+
+            jQuery("#btnReportAllRFQs").click(function () {
+                window.open("../HTMLReports/SalesReport_AllRFQs.aspx?BOM=" + BOM.Id);
+            });
+
+            jQuery("#btnReportSelectedRFQs").click(function () {
+                window.open("../HTMLReports/SalesReport.aspx?BOM=" + BOM.Id);
+            });
+
+
+            jQuery("#btnNewRFQ").click(function () {
+                window.open("../RFQ/NewRFQ.aspx");
+            });
+
         });
+        function setEventHanlderToCheckBoxes() {
+            jQuery('[type="checkbox"]').click(function () {
+                BOM.BomDetail[jQuery(this).parents("[bomlineindex]").attr("bomlineindex")].selected = this.checked;
+            });
+        }
 
         function load() {
             jQuery("#divImgEmail").css("display", "block");
@@ -363,29 +449,30 @@
             jQuery("#divDialog_SifDetail").dialog("close");
         }
 
+        var indexSortFrom = -1;
+        var indexSortTo = -1;
 
         function loadBOMDetailList() {
 
             var strBOMDetailList = '<div style="clear: both; top: 30px;"> ' +
-'    <div id="accordionBOM" style="position: relative; width: 1560px;"> ';
+'    <div id="accordionBOM" style="position: relative;"> ';
 
             for (var j = 0; j < BOM.BomDetail.length; j++) {
                 var current = BOM.BomDetail[j];
-                strBOMDetailList += '<div class="group"><h3 style="height: 20px;"> ' +
+                if (current.Status == null) current.Status = "";
+                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 class="' + current.internalAction.replace(' ', '') + '" style="height: 20px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
-'    <input type="checkbox" id="chkSelect"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
+'    <input type="checkbox" id="chkSelect" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
 '    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" id="deleteByID" ' +
-'    onclick="deleteBOMLineByID(' + current.Id + ');return false;" clickeableInHeader="true" /> ' +
-'    <input type="image" src="../pics/edit-icon.png" style="height:20px;float: left; position: absolute;left: 90px;" ' +
-'    id="updateByID" clickeableInHeader="true" onclick="updateByID();" /> ' +
+'    onclick="deleteBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
 '    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
-'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 120px;top: 8px;">Take</label> ' +
+'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 90px;top: 8px;">Take</label> ' +
 '    <table cellspacing="0" align="left" class="BOMLine"> ' +
 '    <tr style="height: 19px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 650px;"> ' +
 '        <label id="lblStatus" >' + current.Status + '</label> ' +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 30px; min-width: 30px; max-width: 30px;"> ' +
+'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
 '        <label id="lblSalesLN" >' + current.LinePosition + '</label> ' +
 '    </td> ' +
 '    <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;"> ' +
@@ -397,12 +484,12 @@
 '    <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px; ' +
 '        display: none;"> ' + current.CustomerPN +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;"> ' + current.ManufacturePN +
+'    <td align="center" class="tableCell" style="width: 100px; min-width: 100px; max-width: 100px;display:none;"> ' + current.ManufacturePN +
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px; ' +
 '        display: none;"> ' + current.SupplierPN +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;"> ' + current.CommCode +
+'    <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;display:none;"> ' + current.CommCode +
 '    </td> ' +
 '    <td class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;"> ' + current.Material +
 '    </td> ' +
@@ -410,19 +497,19 @@
 '    </td> ' +
 '    <td align="right" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;"> ' + current.Cost +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.VendorQuoteEst +
+'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;display:none;"> ' + current.VendorQuoteEst +
 '    </td> ' +
 '    <td align="right" class="tableCell" style="width: 63px; min-width: 63px; max-width: 63px;"> ' + current.Qty +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;"> ' + current.CapComAssm +
+'    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;display:none;"> ' + current.CapComAssm +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;"> ' + current.PurchasingComments +
+'    <td align="center" class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;"> ' + current.PurchasingComments +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.SalesStatus +
+'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;display:none;"> ' + current.SalesStatus +
 '    </td> ' +
-'    <td class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.SalesComments +
+'    <td class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;"> ' + current.SalesComments +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;"> ' + current.DirectedBuy +
+'    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;display:none;"> ' + current.DirectedBuy +
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 125px; min-width: 125px; max-width: 125px;"> ' + current.PurchasingStatus +
 '    </td></tr></table></div></h3><div accordionContainer>';
@@ -471,8 +558,20 @@
                     ui.item.children("h3").triggerHandler("focusout");
                     jQuery(this).accordion("refresh");
                     jQuery(".LN").each(function (index, value) {
+                        var line = jQuery(this).parents("[bomlineindex]");
+                        var currentIndex = line.attr("bomLineIndex");
+                        if (currentIndex == indexSortFrom) indexSortTo = index;
                         jQuery(this).text((index + 1));
+                        line.attr("bomLineIndex", index);
                     });
+                    arraymove(BOM.BomDetail, Number(indexSortFrom), Number(indexSortTo));
+                    for (var i = 0; i < BOM.BomDetail.length; i++) {
+                        BOM.BomDetail[i].Sequence = i;
+                    }
+                },
+                start: function (event, ui) {
+                    var draggedLine = jQuery(event.toElement);
+                    indexSortFrom = jQuery(draggedLine.parents("[bomLineIndex]")).attr("bomLineIndex");
                 }
             });
 
@@ -485,29 +584,46 @@
                 "bPaginate": false
             }).show();
 
+
             clickeableInHeader();
+            hideCheckboxesForUnsavedLines();
+
         }
+
+        function hideCheckboxesForUnsavedLines() {
+            jQuery('input:checkbox').css("visibility", "visible");
+            jQuery('[internalAction="ForAdd"],[internalAction="ForEdit"]').css("visibility", "hidden");
+        }
+
+        function arraymove(arr, fromIndex, toIndex) {
+            var element = arr[fromIndex]
+            arr.splice(fromIndex, 1);
+            arr.splice(toIndex, 0, element);
+        }
+
         function getRFQsTableByBOMDetail(bomLine) {
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
             strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th style="width: 80px;min-width: 80px;max-width: 80px;"></th><th>Created By</th><th>RFQ Number</th><th>Due Date</th>' +
             //'<th>Component Part Number</th>' +
                 '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th></tr></thead><tbody>';
-            for (var r = 0; r < bomLine.RFQList.length; r++) {
-                var currentRFQ = bomLine.RFQList[r];
-                strRFQDetailList += '<tr>';
-                strRFQDetailList += '<td>SetAwrd</td>';
-                strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
+            if (bomLine.RFQList != null) {
+                for (var r = 0; r < bomLine.RFQList.length; r++) {
+                    var currentRFQ = bomLine.RFQList[r];
+                    strRFQDetailList += '<tr>';
+                    strRFQDetailList += '<td></td>';
+                    strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
                     '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
-                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID();" />' +
-                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="resendRFQ();" /></td>';
-                strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
-                strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
-                strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
-                strRFQDetailList += '<td>' + currentRFQ.Status + '</td>';
-                //strRFQDetailList += '<td>' + currentRFQ.PartNumber + '</td>';
-                strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
-                strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
-                strRFQDetailList += '</tr>';
+                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;display:none;" onclick="resendRFQ();return false;" /></td>';
+                    strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.Status + '</td>';
+                    //strRFQDetailList += '<td>' + currentRFQ.PartNumber + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
+                    strRFQDetailList += '</tr>';
+                }
             }
             strRFQDetailList += '</tbody></table></div></div>';
             return strRFQDetailList;
@@ -527,9 +643,18 @@
             loadSIFDetail();
             loadBOMDetailList();
             makeProgresBar();
-
+            setEventHanlderToCheckBoxes();
             jQuery("body").scrollTop(scrollPosition);
 
+        }
+
+        function refreshDetail() {
+            var scrollPosition = jQuery("body").scrollTop();
+            jQuery("#divBOMDetailList").empty();
+            loadBOMDetailList();
+            makeProgresBar();
+            setEventHanlderToCheckBoxes();
+            jQuery("body").scrollTop(scrollPosition);
         }
 
         function bindParentFields() {
@@ -557,6 +682,40 @@
             jQuery("[bindTo]").each(function () {
                 getValueFromControl(this, jQuery(this), BOM);
             });
+
+
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                var current = BOM.BomDetail[i];
+                current.BomHeaderKey = BOM.Id;
+                if (current.CapComAssm == null) current.CapComAssm = '';
+                if (current.CapsonicPN == null) current.CapsonicPN = '';
+                if (current.CommCode == null) current.CommCode = '';
+                if (current.Cost == null) current.Cost = 0;
+                if (current.CustomerPN == null) current.CustomerPN = '';
+                if (current.Description == null) current.Description = '';
+                if (current.DirectedBuy == null) current.DirectedBuy = false;
+                if (current.Id == null) current.Id = -1;
+                //if (current.Item == null) current.Item = '';
+                if (current.ItemDescription == null) current.ItemDescription = '';
+                if (current.ItemMasterkey == null) current.ItemMasterkey = -1;
+                if (current.ItemMaterial == null) current.ItemMaterial = '';
+                if (current.ItemUm == null) current.ItemUm = '';
+                if (current.LinePosition == null) current.LinePosition = '';
+                if (current.ManufacturePN == null) current.ManufacturePN = '';
+                if (current.Material == null) current.Material = '';
+                if (current.PartNumber == null) current.PartNumber = '';
+                if (current.PurchasingComments == null) current.PurchasingComments = '';
+                if (current.PurchasingStatus == null) current.PurchasingStatus = '';
+                if (current.Qty == null) current.Qty = 0;
+                if (current.SalesComments == null) current.SalesComments = '';
+                if (current.SalesStatus == null) current.SalesStatus = '';
+                if (current.Status == null) current.Status = '';
+                if (current.SupplierPN == null) current.SupplierPN = '';
+                if (current.Um == null) current.Um = '';
+                if (current.User == null) current.User = '';
+                if (current.VendorQuoteEst == null) current.VendorQuoteEst = '';
+                if (current.internalAction == null) current.internalAction = '';
+            }
         }
         function getValueFromControl(ref, control, sourceObject) {
             switch (ref.type) {
@@ -569,43 +728,6 @@
                 default:
                     sourceObject[control.attr("bindTo")] = control.text();
                     break;
-            }
-        }
-
-        function save(e, strSaveMode, onSuccess, onFail) {
-
-            if (validate(e)) {
-                retrieveValuesFromControls(); //For BOM variable
-
-                var to = '<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=update';
-
-                jQuery("#divImgEmail").css("display", "block");
-
-                jQuery.ajax({
-                    type: "POST",
-                    url: to,
-                    data: JSON.stringify(BOM),
-                    contentType: "application/json;charset=utf-8",
-                    dataType: "html",
-                    success: function (response) {
-                        BOM = jQuery.parseJSON(response);
-                        refreshForm();
-                        jQuery("#divImgEmail").css("display", "none");
-                        try {
-                            onSuccess();
-                        } catch (e) { }
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        if (console && console.log) {
-                            console.log(jqXHR);
-                            console.log(textStatus);
-                            console.log(errorThrown);
-                        }
-                        try {
-                            onFail();
-                        } catch (e) { }
-                    }
-                });
             }
         }
 
@@ -633,28 +755,25 @@
                             alertify.success("RFQ deleted successfully;");
                             return;
                         }
-                    } 
+                    }
                 }
             }
         }
 
-        function afterDeleteBOMLine(iBOMLineID) {
-            for (var i = 0; i < BOM.BomDetail.length; i++) {
-                var currentBOMLine = BOM.BomDetail[i];
-                if (currentBOMLine.Id == iBOMLineID) {
-                    BOM.BomDetail.splice(i, 1);
-                    jQuery("#divBOMDetailList").css("visibility", "hidden");
-                    jQuery(".dataTable").DataTable().fnDestroy();
-                    jQuery("#accordionBOM").accordion("destroy");
-                    jQuery("#divBOMDetailList").empty();
-                    loadBOMDetailList();
-                    jQuery("#divBOMDetailList").css("visibility", "visible");
-                    alertify.success("RFQ deleted successfully;");
-                    return;
-                }
-            }
+        function afterDeleteBOMLine(iIndex) {
+            BOM.BomDetail.splice(iIndex, 1);
+            jQuery("#divBOMDetailList").css("visibility", "hidden");
+            jQuery(".dataTable").DataTable().fnDestroy();
+            jQuery("#accordionBOM").accordion("destroy");
+            jQuery("#divBOMDetailList").empty();
+            loadBOMDetailList();
+            jQuery("#divBOMDetailList").css("visibility", "visible");
+            setEventHanlderToCheckBoxes();
+            alertify.success("BOM Line deleted successfully;");
         }
-
+        function updateRFQByID(iRFQ_ID) {
+            window.open("../RFQ/rfqFormMain.aspx?rfq=" + iRFQ_ID);
+        }
         function deleteRFQByID(iBOMLineID, iRFQ_ID) {
             if (confirm("Are you sure?")) {
                 var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=delete&id=' + iRFQ_ID;
@@ -668,7 +787,6 @@
                     contentType: "application/json;charset=utf-8",
                     dataType: "html",
                     success: function (response) {
-                        console.debug(response);
                         response = JSON.parse(response);
                         if (response.Result == "OK") {
                             afterDeleteRFQ(iBOMLineID, iRFQ_ID);
@@ -693,8 +811,13 @@
             }
         }
 
-        function deleteBOMLineByID(iBOMLineID) {
+        function deleteBOMLineByID(iBOMLineID, src) {
             if (confirm("Are you sure?")) {
+                if (iBOMLineID == null) {
+                    afterDeleteBOMLine(jQuery(src).parents("[bomLineIndex]").attr("bomLineIndex"));
+                    return;
+                }
+
                 var to = '<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=delete&id=' + iBOMLineID;
 
                 jQuery("#divImgEmail").css("display", "block");
@@ -709,7 +832,7 @@
                         console.debug(response);
                         response = JSON.parse(response);
                         if (response.Result == "OK") {
-                            afterDeleteBOMLine(iBOMLineID);
+                            afterDeleteBOMLine(jQuery(src).parents("[bomLineIndex]").attr("bomLineIndex"));
                         } else {
                             alertify.error(response);
                         }
@@ -759,6 +882,248 @@
                 }
             });
             progressBar.progressbar({ value: Number(value.toFixed(1)) });
+        }
+
+        function on_ok_BOM_Edit() {
+            jQuery("#divDialog_EditBOM").dialog("close");
+        }
+
+        function on_btnEditBOM_click() {
+            jQuery("#divDialog_EditBOM").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 1000, height: 520, modal: false,
+                closeOnEscape: false,
+                close: function (event, ui) {
+                    var oneWasEdited = false;
+                    for (var i = BOM.BomDetail.length - 1; i >= 0; i--) {
+                        var current = BOM.BomDetail[i];
+                        var toDelete = true;
+                        if (current.internalAction == "For Edit" || current.internalAction == "For Add") oneWasEdited = true;
+                        for (prop in current) {
+                            if (current.hasOwnProperty(prop)) {
+                                if (current[prop] != null && prop != 'internalAction') {
+                                    toDelete = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (toDelete) {
+                            BOM.BomDetail.splice(i, 1);
+                        }
+                    }
+
+                    if (oneWasEdited) {
+                        for (var i = 0; i < BOM.BomDetail.length; i++) {
+                            BOM.BomDetail[i].Sequence = i;
+                        }
+
+                        refreshForm();
+                        on_unselect_all_lines();
+                    }
+                },
+                resize: function (event, ui) {
+                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
+                    divEditBOMContainer.width(ui.size.width - 40);
+                    divEditBOMContainer.height(ui.size.height - 95);
+                },
+                open: function () {
+                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
+                    divEditBOMContainer.width(jQuery(this).width() - 30);
+                    divEditBOMContainer.height(jQuery(this).height() - 65);
+                }
+            });
+
+            var bomContent = BOM.BomDetail;
+
+            jQuery("#divEditBOM").handsontable({
+                data: bomContent,
+                width: 1850,
+                colWidths: [70, 70, 60, 90, 90, 90, 90, 90, 70, 200, 50, 80, 100, 80, 70, 150, 70, 90, 70, 110],
+                minRows: 20,
+                minSpareRows: 1,
+                rowHeaders: true,
+                colHeaders: ['Assigned To', 'Status', 'Sales LN', 'Part Number',
+                            'Capsonic PN', 'Customer PN', 'Manufacture PN', 'Supplier PN', 'Comm Code',
+                            'Material', 'UOM', 'Cost', 'Vendor Quote Est', 'Qty', 'Cap Com Assm', 'Purchasing Comments',
+                             'Sales Status', 'Sales Comments', 'Directed Buy', 'Purchasing Status'],
+                columns: [
+
+                            {
+                                data: "User",
+                                readOnly: true
+                            },
+                            {
+                                data: "Status",
+                                readOnly: true
+                            },
+                            {
+                                data: "LinePosition",
+                                readOnly: true
+                            },
+                            {
+                                data: "PartNumber"
+                            },
+                            {
+                                data: "CapsonicPN"
+                            },
+                            {
+                                data: "CustomerPN"
+                            },
+                            {
+                                data: "ManufacturePN"
+                            },
+                            {
+                                data: "SupplierPN"
+                            },
+                            {
+                                data: "CommCode"
+                            },
+                            {
+                                data: "Material"
+                            },
+                            {
+                                data: "Um",
+                                type: "autocomplete",
+                                source: ["each", "lb", "in", "ft", "yd", "mm", "cm", "m", "g", "kg", "oz", "lt", "gal", "cubic meter"],
+                                strict: false
+                            },
+                            {
+                                data: "Cost",
+                                type: "numeric",
+                                format: '0,0.0000',
+                                language: 'en' //this is the default locale, set up for USD
+                            },
+                            {
+                                data: "VendorQuoteEst"
+                            },
+                            {
+                                data: "Qty",
+                                type: "numeric",
+                                format: '0,0.0000',
+                                language: 'en' //this is the default locale, set up for USD
+                            },
+                            {
+                                data: "CapComAssm"
+                            },
+                            {
+                                data: "PurchasingComments"
+                            },
+                            {
+                                data: "SalesStatus",
+                                readOnly: true
+                            },
+                            { data: "SalesComments",
+                                readOnly: true
+                            },
+                            {
+                                data: "DirectedBuy"
+                            },
+                            {
+                                data: "PurchasingStatus",
+                                type: "autocomplete",
+                                source: ["Quote", "Estimate", "Pass Thru", "Manufacture", "Firm Requirement"],
+                                strict: false
+                            }],
+                afterChange: function (changes, source) {
+                    //Calculating formulas:
+                    //if (source != "loadData") {
+                    if (source != "loadData") {
+                        var data = this.getData();
+                        for (var i = 0; i < changes.length; i++) {
+                            var current = data[changes[i][0]];
+                            if (current.internalAction == null) {
+                                current.internalAction = "For Add";
+                            } else {
+                                if (current.internalAction != "ForAdd") {
+                                    current.internalAction = "For Edit";
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function on_unselect_all_lines() {
+            jQuery('[type="checkbox"]').prop('checked', false)
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                BOM.BomDetail[i].selected = false;
+            }
+        }
+
+        function on_select_all_lines() {
+            jQuery('[type="checkbox"]').prop('checked', true)
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                BOM.BomDetail[i].selected = true;
+            }
+        }
+
+        function on_save_bom() {
+            save(event, 'update');
+        }
+
+        function save(e, strSaveMode, onSuccess, onFail) {
+
+            //if (validate(e)) {
+            retrieveValuesFromControls(); //For BOM variable
+
+            var to = '<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=update';
+
+            jQuery("#divImgEmail").css("display", "block");
+
+            jQuery.ajax({
+                type: "POST",
+                url: to,
+                data: JSON.stringify(BOM),
+                contentType: "application/json;charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    BOM = jQuery.parseJSON(response);
+                    refreshForm();
+                    jQuery("#divImgEmail").css("display", "none");
+                    alertify.success("BOM saved successfully");
+                    try {
+                        onSuccess();
+                    } catch (e) { }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (console && console.log) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                    try {
+                        onFail();
+                    } catch (e) { }
+                }
+            });
+            //}
+        }
+
+        function on_noQuote_click() {
+            var someOneEdited = false;
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                var current = BOM.BomDetail[i];
+                if (current.selected) {
+                    current.internalAction = "For Edit";
+                    current.Status = "No Quote";
+                    someOneEdited = true;
+                }
+            }
+            if (someOneEdited) refreshDetail();
+        }
+
+        function on_Quote_click() {
+            var someOneEdited = false;
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                var current = BOM.BomDetail[i];
+                if (current.selected) {
+                    current.internalAction = "For Edit";
+                    current.Status = "In Progress";
+                    someOneEdited = true;
+                }
+            }
+            if (someOneEdited) refreshDetail();
         }
     </script>
 </asp:Content>

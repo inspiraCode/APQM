@@ -13,7 +13,8 @@ public partial class WebService_BOM : System.Web.UI.Page
     bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
     RfqCRUD rfq_CRUD = new RfqCRUD();
     sifDetailCRUD sif_detail_CRUD = new sifDetailCRUD();
-   
+    itemCRUD item_CRUD = new itemCRUD();
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,7 +30,7 @@ public partial class WebService_BOM : System.Web.UI.Page
                 Response.Write(getBOMbyID(long.Parse(Request["id"])));
                 Response.End();
                 return;
-            case "save":
+            case "update":
                 Response.Clear();
                 Response.Write(saveBOM());
                 Response.End();
@@ -61,6 +62,8 @@ public partial class WebService_BOM : System.Web.UI.Page
         String s = new StreamReader(Request.InputStream).ReadToEnd();
         BOM bomHeader = JsonConvert.DeserializeObject<BOM>(s);
 
+        List<Item> itemList = (List<Item>)item_CRUD.readAll();
+
 
         /*Begin Transaction*/
         ConnectionManager CM = new ConnectionManager();
@@ -74,6 +77,42 @@ public partial class WebService_BOM : System.Web.UI.Page
 
         foreach (BOMDetail bomLine in bomHeader.BomDetail)
         {
+            Item item = readByPartNumberInList(bomLine, itemList);
+            if (item == null)
+            {
+                item = new Item();
+                item.PartNumber = bomLine.PartNumber;
+                item.Cost = bomLine.Cost;
+                item.Um = bomLine.Um;
+                item.Material = bomLine.Material;
+                item.CommCode = bomLine.CommCode;
+
+                string itemIDGenerated = item_CRUD.createAndReturnIdGenerated(item, ref DM);
+                if (itemIDGenerated == "")
+                {
+                    return "ERROR: Could not export Item: " + item + "\n" +
+                            "Error Description: " + DM.Error_Mjs;
+                }
+                else
+                {
+                    item.Id = long.Parse(itemIDGenerated);
+                    itemList.Add(item);
+                }
+            }
+            else
+            {
+                item.PartNumber = bomLine.PartNumber;
+                item.Cost = bomLine.Cost;
+                item.Um = bomLine.Um;
+                item.Material = bomLine.Material;
+                item.CommCode = bomLine.CommCode;
+
+                if (!item_CRUD.update(item, ref DM))
+                {
+                    return "ERROR:" + item_CRUD.ErrorMessage;
+                }
+            }
+
             if (bomLine.Id > 0)
             {
                 if (!bomDetail_CRUD.update(bomLine, ref DM))
@@ -83,6 +122,9 @@ public partial class WebService_BOM : System.Web.UI.Page
             }
             else
             {
+                bomLine.BomHeaderKey = bomHeader.Id;
+                bomLine.ItemMasterkey = item.Id;
+                bomLine.Status = "Created";
                 if (!bomDetail_CRUD.create(bomLine, ref DM))
                 {
                     return "ERROR:" + bomDetail_CRUD.ErrorMessage;
@@ -99,6 +141,17 @@ public partial class WebService_BOM : System.Web.UI.Page
         }
 
         return getBOMbyID(bomHeader.Id);
+    }
+    private Item readByPartNumberInList(BOMDetail bom, List<Item> list)
+    {
+        foreach (Item item in list)
+        {
+            if (item.PartNumber.Trim().ToLower() == bom.PartNumber.Trim().ToLower())
+            {
+                return item;
+            }
+        }
+        return null;
     }
     public void deleteBOMLinebyID(long idBOMLine)
     {

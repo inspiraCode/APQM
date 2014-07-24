@@ -3,7 +3,6 @@
 
 <%@ Register Src="../Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
 <%@ Register Src="../Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
-<%@ Register Src="rfqListByBom.ascx" TagName="rfqListByBom" TagPrefix="uc3" %>
 <%@ Register Src="rfqCountPerBomLines.ascx" TagName="rfqCountPerBomLines" TagPrefix="uc4" %>
 <%@ Register Src="rfqCountPerSharedItems.ascx" TagName="rfqCountPerSharedItems" TagPrefix="uc6" %>
 <%@ Register Src="rfqList.ascx" TagName="rfqList" TagPrefix="uc7" %>
@@ -20,25 +19,6 @@
             <uc2:Menu ID="uscMenu" runat="server" />
         </asp:View>
     </asp:MultiView>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-            <asp:View ID="viewRFQListByBom" runat="server">
-                <uc3:rfqListByBom ID="uscRfqListByBom" runat="server" />
-                <div align="right">
-                    <asp:Button ID="btnClosePopup" runat="server" Text="Close" OnClick="btnClosePopup_Click" /></div>
-
-                <script type="text/javascript">
-                    document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "RFQ By BOM Line");
-                    jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                        appendTo: jQuery('form:first'),
-                        width: 800, modal: false,
-                        dialogClass: "no-close", closeOnEscape: false
-                    });
-                </script>
-
-            </asp:View>
-        </asp:MultiView>
-    </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <span class="mainTitle">RFQs</span>

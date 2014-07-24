@@ -80,6 +80,7 @@
     <Compile Include="dao\TokenCRUD.cs" />
     <Compile Include="entities\BOM.cs" />
     <Compile Include="entities\Commodity.cs" />
+    <Compile Include="entities\NewRFQScreen.cs" />
     <Compile Include="entities\User.cs" />
     <Compile Include="entities\Customer.cs" />
     <Compile Include="entities\Item.cs" />

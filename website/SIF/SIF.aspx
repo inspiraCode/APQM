@@ -4,7 +4,6 @@
 <%@ Register Src="~/SIF/sifMaster.ascx" TagName="sifMaster" TagPrefix="uc1" %>
 <%@ Register Src="~/Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
 <%@ Register Src="~/SIF/sifList.ascx" TagName="sifList" TagPrefix="uc3" %>
-<%@ Register Src="~/BOM/bomForm.ascx" TagName="bomForm" TagPrefix="uc4" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="0">
         <asp:View ID="Functions" runat="server">
@@ -36,16 +35,6 @@
             <br />
             <br />
         </asp:View>
-        <asp:View ID="viewBOM" runat="server">
-        <span class="mainTitle">SIFs > BOM</span>
-            <div>
-                <div runat="server" id="divBOM">
-                    <uc4:bomForm ID="uscBomForm" OnOk_Click="on_save_bom" OnCancel_Click="on_cancel_bom"
-                        runat="server" />
-                </div>
-            </div>
-            <br />
-            <br />
-        </asp:View>
+        
     </asp:MultiView>
 </asp:Content>

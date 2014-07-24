@@ -1008,6 +1008,7 @@
                         }
                     ]
         });
+
         try {
             if (RFQ.Status == "COMPLETED")
                 setTimeout(blockIfCompleted(), 1000);
@@ -1156,47 +1157,51 @@
 
     function save(e, strSaveMode, onSuccess, onFail) {
 
-        if (validate(e)) {
-            retrieveValuesFromControls(); //For RFQ variable
-
-            if (strSaveMode == "update") {
-                RFQ.Status = "IN PROGRESS";
-            } else if (strSaveMode == "finalize") {
+        if (strSaveMode == "update") {
+            RFQ.Status = "IN PROGRESS";
+        } else if (strSaveMode == "finalize") {
+            if (validate(e)) {
                 RFQ.Status = "COMPLETED";
-            }
-            else {
+            } else {
                 return;
             }
-
-            var to = '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=update';
-
-            jQuery("#divImgEmail").css("display", "block");
-
-            jQuery.ajax({
-                type: "POST",
-                url: to,
-                data: JSON.stringify(RFQ),
-                contentType: "application/json;charset=utf-8",
-                dataType: "html",
-                success: function (response) {
-                    RFQ = jQuery.parseJSON(response);
-                    refreshForm();
-                    jQuery("#divImgEmail").css("display", "none");
-                    try {
-                        onSuccess();
-                    } catch (e) { }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (console && console.log) {
-                        console.log(jqXHR);
-                        console.log(textStatus);
-                        console.log(errorThrown);
-                    }
-                    try {
-                        onFail();
-                    } catch (e) { }
-                }
-            });
         }
+        else {
+            alertify.error("Error: Not knowing if update or finalize.");
+            return;
+        }
+
+        retrieveValuesFromControls(); //For RFQ variable
+
+        var to = '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=update';
+
+        jQuery("#divImgEmail").css("display", "block");
+
+        jQuery.ajax({
+            type: "POST",
+            url: to,
+            data: JSON.stringify(RFQ),
+            contentType: "application/json;charset=utf-8",
+            dataType: "html",
+            success: function (response) {
+                RFQ = jQuery.parseJSON(response);
+                refreshForm();
+                jQuery("#divImgEmail").css("display", "none");
+                try {
+                    onSuccess();
+                } catch (e) { }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (console && console.log) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+                try {
+                    onFail();
+                } catch (e) { }
+            }
+        });
+
     }
 </script>

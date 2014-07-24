@@ -18,8 +18,15 @@ public partial class WebService_RFQ : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
-        if (getPostedFiles()) return;
+        if (Request["RFQATTACHMENTSFOLDERINBOX"] != null)
+        {
+            if (getPostedAttachmentsToBuyer()) return;
+        }
+        else if (Request["RFQATTACHMENTSFOLDER"] != null)
+        {
+            if (getPostedAttachmentsToVendor()) return;
+        }
+        
 
         if (Request["cmd"] == null)
             return;
@@ -50,6 +57,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                 downloadAttachmentToBuyer(Request["Directory"], Request["FileName"]);
                 return;
             case "deleteAttachmentToVendor":
+                deleteAttachmentToVendorByName(Request["Directory"], Request["FileName"]);
                 return;
             case "downloadAttachmentToVendor":
                 downloadAttachmentToVendor(Request["Directory"], Request["FileName"]);
@@ -57,7 +65,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
         }
     }
 
-    public bool getPostedFiles()
+    public bool getPostedAttachmentsToBuyer()
     {
         HttpPostedFile file = Request.Files["myfile"];
         HttpFileCollection fileCollection = Request.Files;
@@ -98,10 +106,68 @@ public partial class WebService_RFQ : System.Web.UI.Page
         }
         return false;
     }
+    public bool getPostedAttachmentsToVendor()
+    {
+        HttpPostedFile file = Request.Files["myfile"];
+        HttpFileCollection fileCollection = Request.Files;
+        if (file != null)
+        {
+            string fileName = file.FileName;
+            HttpPostedFile postedFile = file;
+
+            string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+
+            string currentPathAttachments;
+            string folderName = Request["RFQATTACHMENTSFOLDER"];
+            if (folderName != null && folderName.Trim() != "")
+            {
+                currentPathAttachments = baseAttachmentsPath + folderName + @"\";
+            }
+            else
+            {
+                do
+                {
+                    DateTime date = DateTime.Now;
+                    folderName = date.Year.ToString() + date.Month.ToString() +
+                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                    currentPathAttachments = baseAttachmentsPath + folderName;
+                } while (Directory.Exists(currentPathAttachments));
+                Directory.CreateDirectory(currentPathAttachments);
+                currentPathAttachments += @"\";
+            }
+
+            if (postedFile.ContentLength > 0)
+            {
+                postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
+            }
+            Response.Clear();
+            Response.Write("[{\"FolderName\":\"" + folderName + "\"}," + JsonConvert.SerializeObject(getAttachmentsFromSentFolder(folderName)) + "]");
+            Response.End();
+            return true;
+        }
+        return false;
+    }
     public List<RFQAttachments> getAttachmentsFromFolder(string folderName)
     {
         List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
         string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
+        if (folderName != "" && Directory.Exists(baseInboxAttachmentsPath + folderName.Trim()))
+        {
+            DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + folderName);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                RFQAttachments rfqAttachment = new RFQAttachments();
+                rfqAttachment.FileName = file.Name;
+                rfqAttachment.Directory = folderName;
+                rfqInboxAttachmentsList.Add(rfqAttachment);
+            }
+        }
+        return rfqInboxAttachmentsList;
+    }
+    public List<RFQAttachments> getAttachmentsFromSentFolder(string folderName)
+    {
+        List<RFQAttachments> rfqInboxAttachmentsList = new List<RFQAttachments>();
+        string baseInboxAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
         if (folderName != "" && Directory.Exists(baseInboxAttachmentsPath + folderName.Trim()))
         {
             DirectoryInfo directory = new DirectoryInfo(baseInboxAttachmentsPath + folderName);
@@ -183,16 +249,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
         Response.TransmitFile(filePath);
         Response.End();
     }
-    public void deleteAttachmentToVendorByName(string strFileName)
-    {
-        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
-        string filePath = baseAttachmentsPath + strFileName;
-        FileInfo file = new FileInfo(filePath);
-        file.Delete();
-        Response.Clear();
-        Response.Write("{\"Result\":\"" + "OK" + "\"}");
-        Response.End();
-    }
+    
     public void downloadAttachmentToBuyer(string strDirectory, string strFileName)
     {
         string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];
@@ -210,6 +267,34 @@ public partial class WebService_RFQ : System.Web.UI.Page
         file.Delete();
         Response.Clear();
         Response.Write("{\"Result\":\"" + "Attachment deleted succesfully." + "\"}");
+        Response.End();
+    }
+    public void deleteAttachmentToVendorByName(string strFileName)
+    {
+        GatewayResponse response = new GatewayResponse();
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        string filePath = baseAttachmentsPath + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+        response.ErrorThrown = false;
+        response.ResponseDescription = "Attachment '" + strFileName + "' deleted succesfully.";
+        response.Result = strFileName;
+        Response.Clear();
+        Response.Write(JsonConvert.SerializeObject(response));
+        Response.End();
+    }
+    public void deleteAttachmentToVendorByName(string strDirectory, string strFileName)
+    {
+        GatewayResponse response = new GatewayResponse();
+        string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+        response.ErrorThrown = false;
+        response.ResponseDescription = "Attachment '" + strFileName + "' deleted succesfully.";
+        response.Result = strFileName;
+        Response.Clear();
+        Response.Write(JsonConvert.SerializeObject(response));
         Response.End();
     }
 

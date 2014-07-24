@@ -141,10 +141,24 @@ public class RfqCRUD : ICRUD<RFQ>
 
         return idGenerated;
     }
-    public string createAndReturnIdGenerated(RFQ entity, ref Data_Base_MNG.SQL DM)
+    public string createAndReturnIdGenerated(RFQ entity, BOMDetail bomDetail, ref Data_Base_MNG.SQL DM)
     {
         ErrorOccur = false;
         string idGenerated = "";
+
+        bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
+        
+        if (bomDetail != null)
+        {
+            bomDetail.Status = "In Progress";
+            if (!bomDetail_CRUD.update(bomDetail, ref DM))
+            {
+                ErrorOccur = true;
+                ErrorMessage = bomDetail_CRUD.ErrorMessage;
+                return "";
+            }
+        }
+
         try
         {
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());

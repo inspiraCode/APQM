@@ -128,6 +128,7 @@ public class BOMDetail
     private string manufacturePN = "";
     private string supplierPN = "";
     private string commCode = "";
+    private int sequence = 0;
     private List<RFQ> rFQList;
 
     public string CapsonicPN
@@ -162,7 +163,6 @@ public class BOMDetail
     }
     
     //Fields not in database:
-    private int sequence = -1;
     public string internalAction = "";
     
     private Item item;

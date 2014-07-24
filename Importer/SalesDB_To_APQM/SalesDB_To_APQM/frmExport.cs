@@ -302,7 +302,7 @@ namespace SalesDB_To_APQM
                                                     item.PartNumber = bom.PartNumber;
                                                     item.Description = bom.AssemblyDescription; //wont be used anymore
                                                     item.Cost = bom.PartCost;
-                                                    item.Um = "";
+                                                    item.Um = bom.Um;
                                                     item.Material = bom.Material;
                                                     item.CommCode = bom.CommCode;
 

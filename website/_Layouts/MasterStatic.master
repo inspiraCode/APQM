@@ -148,7 +148,7 @@
             <table width="100%" style="background-color: white;">
                 <tr>
                     <td colspan="2" align="center">
-                        <span id="spanTitle" style="float: left;font-size: 50px;">BOM</span>
+                        <span id="spanTitle" style="float: left;font-size: 50px;"></span>
                         <img src='<%= ResolveUrl("~/pics/CA2Logo.jpg") %>' style="float:right;" height="50px" alt="Capsonic Automotive and Aerospace" />
                     </td>
                 </tr>
