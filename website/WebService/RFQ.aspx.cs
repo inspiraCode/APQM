@@ -36,6 +36,11 @@ public partial class WebService_RFQ : System.Web.UI.Page
                 Response.Write(sendRFQ());
                 Response.End();
                 return;
+            case "resendrfq":
+                Response.Clear();
+                Response.Write(resendRFQ());
+                Response.End();
+                return;
         }
     }
 
@@ -147,6 +152,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
 
                         rfq.SupplierId = supplier.Id;
                         rfq.SentToVendor = DateTime.Now;
+                        rfq.LastEmail = supplier.ContactEmail;
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
@@ -351,6 +357,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
 
                         rfq.SupplierId = supplier.Id;
                         //rfq.SentToVendor = DateTime.Now;
+                        //rfq.LastEmail
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
@@ -421,5 +428,122 @@ public partial class WebService_RFQ : System.Web.UI.Page
             result = reader.ReadToEnd();
         }
         return result;
+    }
+    public string resendRFQ()
+    {
+        GatewayResponse response = new GatewayResponse();
+        String s;
+        RFQ rfqToResend;
+        try
+        {
+            s = new StreamReader(Request.InputStream).ReadToEnd();
+            rfqToResend = JsonConvert.DeserializeObject<RFQ>(s);
+        }
+        catch (Exception ex)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: When trying to parse JSON in server. " + ex.Message;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        UserCRUD user_CRUD = new UserCRUD();
+        string strAuthUser = HttpContext.Current.User.Identity.Name;
+        User user = user_CRUD.readById(strAuthUser);
+
+        SupplierCRUD supplier_CRUD = new SupplierCRUD();
+        Supplier supplier = supplier_CRUD.readById(rfqToResend.SupplierId);
+        if (supplier != null)
+        {
+            if (supplier.ContactEmail.Trim() != rfqToResend.LastEmail.Trim())
+            {
+                supplier.ContactEmail = rfqToResend.LastEmail.Trim();
+                if (!supplier_CRUD.update(supplier))
+                {
+                    response.ErrorThrown = true;
+                    response.ResponseDescription = "ERROR:" + supplier_CRUD.ErrorMessage;
+                    return JsonConvert.SerializeObject(response);
+                }
+            }
+        }
+
+        TokenCRUD token_CRUD = new TokenCRUD();
+        Token token = token_CRUD.readByRFQ(rfqToResend);
+
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        /*Begin Transaction*/
+        DM.Open_Connection("RFQ Re-send");
+
+        rfqToResend.SentToVendor = DateTime.Now;
+        if (!rfq_CRUD.update(rfqToResend, ref DM))
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR:" + rfq_CRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        if (token == null)
+        {
+            token = new Token();
+            token.Subject = "RFQ";
+            token.SubjectKey = rfqToResend.Id;
+            token.TokenNumber = MD5HashGenerator.GenerateKey(DateTime.Now);
+            token_CRUD.create(token, ref DM);
+            if (token_CRUD.ErrorOccur)
+            {
+                response.ErrorThrown = true;
+                response.ResponseDescription = "ERROR:" + token_CRUD.ErrorMessage;
+                return JsonConvert.SerializeObject(response);
+            }
+        }
+
+
+        Email NewMail = new Email();
+        MailMessage Message = new MailMessage();
+        try
+        {
+            Message.From = new MailAddress("rfqm@capsonic.com", "rfqm@capsonic.com");
+            Message.To.Add(new MailAddress(supplier.ContactEmail.ToString()));
+            Message.Subject = "Request For Quote";
+            Message.IsBodyHtml = true;
+            Message.BodyEncoding = System.Text.Encoding.UTF8;
+
+            var url = ResolveUrl("~/Vendor/Email_RFQ_Request.htm");
+            var strEmailContent = HTMLContent(url);
+            strEmailContent = strEmailContent.Replace("{BuyerName}", user.Name);
+            strEmailContent = strEmailContent.Replace("{BuyerPhone}", user.Phone1);
+            strEmailContent = strEmailContent.Replace("{BuyerEmail}", user.Email);
+            strEmailContent = strEmailContent.Replace("{RFQ Number}", rfqToResend.RfqGenerated);
+            strEmailContent = strEmailContent.Replace("{Part Number}", rfqToResend.PartNumber);
+            strEmailContent = strEmailContent.Replace("{RFQLink}", "http://" + Request.Url.Authority + Request.ApplicationPath + "/Vendor/RFQHandler.ashx?token=" + token.TokenNumber);
+
+            Message.Body = strEmailContent;
+
+
+            NewMail.SendMail(Message);
+        }
+        catch (Exception ex)
+        {
+            DM.RollBack();
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: Could not send email to: " + supplier.ContactEmail.ToString();
+            return JsonConvert.SerializeObject(response);
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR:" + DM.Error_Mjs;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "RFQ " + rfqToResend.RfqGenerated + " re-sent successfully.";
+        response.Result = rfqToResend;
+        return JsonConvert.SerializeObject(response);
     }
 }

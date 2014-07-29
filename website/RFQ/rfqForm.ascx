@@ -43,7 +43,7 @@
         <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
             style="width: 450px; display: inline;">
             Comments to vendor:<br />
-            <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields"
+            <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields" readonly
                 tabindex="1" style="width: 450px;"></textarea>
         </div>
         <div id="divBuyerInfo" style="float: right;">
@@ -181,9 +181,7 @@
                     Manufacturing Location
                 </td>
                 <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblManufacturingLocation" bindto="ManufacturingLocation" class="ReadOnlyFields"
-                        style="width: 220px; height: 20px; display: block;">
-                    </label>
+                    <input type="text" tabindex="3" id="txtManufacturingLocation" bindto="ManufacturingLocation" style="width: 216px;display: block;" />
                 </td>
             </tr>
             <tr>
@@ -199,9 +197,7 @@
                     Ship From Location
                 </td>
                 <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <label id="lblShipFromLocation" bindto="ShipLocation" class="ReadOnlyFields" style="width: 220px;
-                        display: block; height: 20px">
-                    </label>
+                    <input type="text" tabindex="3" id="txtShipFromLocation" bindto="ShipLocation" style="width: 216px;display: block;" />
                 </td>
             </tr>
             <tr align="left">

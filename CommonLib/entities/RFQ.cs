@@ -27,8 +27,8 @@ public class RFQ
     private string acknowledgement;//From TokenMaster
     private string preparedBy = "";
     private string supplierName = ""; //From SupplierMaster
-    private string manufacturingLocation = ""; //From SupplierMaster
-    private string shipLocation = "";//From SupplierMaster
+    private string manufacturingLocation = ""; 
+    private string shipLocation = "";
 
     private string rfqGenerated = ""; //From RFQNumber
 
@@ -83,6 +83,9 @@ public class RFQ
 
     private string exceptionTo100ToPrint = "";
     private bool quote100ToPrint = false;
+
+    private string lastEmail = "";
+    
 
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -354,6 +357,12 @@ public class RFQ
         get { return quote100ToPrint; }
         set { quote100ToPrint = value; }
     }
+    public string LastEmail
+    {
+        get { return lastEmail; }
+        set { lastEmail = value; }
+    }
+    
 }
 
 public class RFQEAV

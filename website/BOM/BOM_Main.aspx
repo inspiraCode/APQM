@@ -94,7 +94,7 @@
     </style>
     <div id="divImgEmail" style="display: none; position: fixed; top: 27px; right: 246px;
         z-index: 1000;">
-        <img id="" alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
+        <img alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
             position: relative;" />
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
@@ -180,7 +180,7 @@
     <div style="position: relative; float: right;">
         <uc1:bomStatusInfo ID="uscBomStatusInfo" runat="server" />
     </div>
-    <div style="clear: both; width: 1200px; margin-left: auto; margin-right: auto;">
+    <div style="clear: both; width: 1205px; margin-left: auto; margin-right: auto;">
         <table cellspacing="0" align="left" style="margin-left: 80px;">
             <tr>
                 <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
@@ -256,7 +256,7 @@
                 </th>
             </tr>
         </table>
-        <div id="divBOMDetailList" style="width: 1200px;">
+        <div id="divBOMDetailList" style="width: 1205px;">
         </div>
     </div>
     <br />
@@ -282,7 +282,7 @@
             style="width: 100px; float: right; margin-right: 2px;" />
     </div>
     <br />
-    <div id="divDialog_SifDetail" style="display: none;">
+    <div id="divDialog_SifDetail" title="Projected Annual Volume" style="display: none;">
         <div align="center">
             <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                 height: 45px; min-width: 160px; display: inline-block;">
@@ -304,20 +304,54 @@
         <input type="button" id="btnOKBOMEdit" value="OK" onclick="on_ok_BOM_Edit();" style="width: 100px;
             float: right;" />
     </div>
-    <asp:Panel ID="panelSendRFQ" runat="server" Visible="false">
+    <div id="divDialog_ResendRFQ" title="Re-send RFQ" style="display: none;">
         <div align="center">
-            <div id="divCreateRFQ">
+            <div id="divResendRFQ">
+                <table cellspacing="0">
+                    <tr>
+                        <td align="right">
+                            <b style="margin-right: 5px;">RFQ to Re-Send:</b>
+                        </td>
+                        <td>
+                            <label id="lblRFQNumber" style="Width:350px;"></label>
+                        </td>
+                    </tr>
+                    <tr style="height: 20px;"></tr>
+                    <tr>
+                        <td align="right">
+                            <b style="margin-right: 5px;">Supplier:</b>
+                        </td>
+                        <td>
+                            <label id="lblSupplier" style="Width:350px;"></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <b style="margin-right: 5px;">Email:</b>
+                        </td>
+                        <td>
+                            <input type="text" id="txtEmail" style="width:350px;" />
+                        </td>
+                    </tr>
+                    <tr style="height: 40px;">
+                        <td colspan="2" >
+                            <div id="divPleaseWait" style="display: none;">
+                                <img id="imgPleaseWaitResendRFQ" alt="" src="../Utils/loading.gif" style="display: inline;" />
+                                <span style="position: relative; top: -10px;">Please wait..</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="3">
+                            <input type="button" id="btnResendRFQ" onclick="return false;" style="width:80px;"
+                                value="Re-Send" />
+                            <input type="button" id="btnCancelResendRFQ" onclick="on_closeResendRFQ();" value="Cancel" style="width:80px;" />
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
-        <script type="text/javascript">
-            document.getElementById("<%= this.panelSendRFQ.ClientID %>").setAttribute("title", "New RFQs");
-            jQuery("#<%= this.panelSendRFQ.ClientID %>").dialog({ autoOpen: true,
-                appendTo: jQuery('form:first'),
-                width: 1000, height: 600, modal: false,
-                dialogClass: "no-close", closeOnEscape: false
-            });
-        </script>
-    </asp:Panel>
+    </div>
     <script type="text/javascript">
         jQuery(document).ready(function () {
             jQuery("#spanTitle").text("BOM");
@@ -369,8 +403,7 @@
             jQuery.getJSON('<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=read&id=' + id, function (result) {
                 BOM = result;
                 refreshForm();
-                jQuery("#divImgEmail").css("display", "none");
-
+                getResources();
             });
             return true;
         }
@@ -437,16 +470,118 @@
         }
 
         function on_openSIFDetail() {
-            document.getElementById("divDialog_SifDetail").setAttribute("title", "Projected Annual Volume");
             jQuery("#divDialog_SifDetail").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 520, modal: false,
-                dialogClass: "no-close", closeOnEscape: false
+                width: 520, modal: false, closeOnEscape: false
+            });
+        }
+
+        function getRFQByID(iBOMLine_ID, iRFQ_ID) {
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                if (BOM.BomDetail[i].Id == iBOMLine_ID) {
+                    for (var j = 0; j < BOM.BomDetail[i].RFQList.length; j++) {
+                        if (BOM.BomDetail[i].RFQList[j].Id == iRFQ_ID) {
+                            return BOM.BomDetail[i].RFQList[j];
+                        }
+                    } 
+                }
+            }
+            return null;
+        }
+        function on_openResendRFQ(iBOMLine_ID, iRFQ_ID) {
+            jQuery("#btnResendRFQ").prop("disabled", false);
+            jQuery("#btnCancelResendRFQ").prop("disabled", false);
+            jQuery("#divPleaseWait").hide();
+
+            var rfqToResend = getRFQByID(iBOMLine_ID, iRFQ_ID);
+            if (rfqToResend != null) {
+
+                jQuery("#lblSupplier").text(rfqToResend.SupplierName);
+                jQuery("#lblRFQNumber").text(rfqToResend.RfqGenerated);
+
+                jQuery("#txtEmail").val('');
+                if (rfqToResend.LastEmail != "") {
+                    jQuery("#txtEmail").val(rfqToResend.LastEmail);
+                } else {
+                    var aSupplier = getSupplierByID(rfqToResend.SupplierId);
+                    if (aSupplier != null) {
+                        jQuery("#txtEmail").val(aSupplier.ContactEmail);
+                    }
+                }
+
+                jQuery("#btnResendRFQ").unbind("click").click(function () { resendRFQ(rfqToResend, afterResendRFQ); });
+
+                jQuery("#divDialog_ResendRFQ").dialog({ autoOpen: true,
+                    appendTo: jQuery('form:first'),
+                    width: 520, modal: false, closeOnEscape: false
+                });
+            } else {
+                alertify.alert("An error has occurried. Could not find RFQ to Re-Send.");
+            }
+        }
+
+        function afterResendRFQ(response) {
+            var rfqUpdated = response.Result;
+            jQuery("#divDialog_ResendRFQ").dialog("close");
+        }
+
+        function resendRFQ(rfqToResend, onSuccess) {
+
+            if (rfqToResend == null) {
+                alertify.alert("Error: RFQ not found, try refreshing the page.");
+                jQuery("#btnResendRFQ").prop("disabled", false);
+                jQuery("#btnCancelResendRFQ").prop("disabled", false);
+                return;
+            }
+            jQuery("#btnResendRFQ").prop("disabled", true);
+            jQuery("#btnCancelResendRFQ").prop("disabled", true);
+            
+            rfqToResend.LastEmail = jQuery("#txtEmail").val();
+            
+            var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=resendrfq';
+
+            jQuery("#divPleaseWait").show();
+            jQuery("#divImgEmail").css("display", "block");
+            var rfqUpdated = null;
+            jQuery.ajax({
+                type: "POST",
+                url: to,
+                data: JSON.stringify(rfqToResend),
+                contentType: "application/json;charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    response = jQuery.parseJSON(response);
+                    if (response.ErrorThrown === false) {
+                        try { onSuccess(response); } catch (e) { }
+                        alertify.success(response.ResponseDescription);
+                    } else {
+                        try { onFail(); } catch (e) { }
+                        alertify.alert(response.ResponseDescription);
+                    }
+                    jQuery("#divImgEmail").css("display", "none");
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (console && console.log) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                    try {
+                        onFail();
+                    } catch (e) { }
+                    jQuery("#btnResendRFQ").prop("disabled", false);
+                    jQuery("#btnCancelResendRFQ").prop("disabled", false);
+                    jQuery("#divPleaseWait").hide();
+                    jQuery("#divImgEmail").css("display", "none");
+                }
             });
         }
 
         function on_closeSIFDetail() {
             jQuery("#divDialog_SifDetail").dialog("close");
+        }
+        function on_closeResendRFQ() {
+            jQuery("#divDialog_ResendRFQ").dialog("close");
         }
 
         var indexSortFrom = -1;
@@ -469,7 +604,7 @@
 '    onclick="takeBOMLine();" style="float: left; position: absolute;left: 90px;top: 8px;">Take</label> ' +
 '    <table cellspacing="0" align="left" class="BOMLine"> ' +
 '    <tr style="height: 19px; white-space: nowrap;"> ' +
-'    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 650px;"> ' +
+'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
 '        <label id="lblStatus" >' + current.Status + '</label> ' +
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
@@ -605,7 +740,7 @@
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
             strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th style="width: 80px;min-width: 80px;max-width: 80px;"></th><th>Created By</th><th>RFQ Number</th><th>Due Date</th>' +
             //'<th>Component Part Number</th>' +
-                '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th></tr></thead><tbody>';
+                '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody>';
             if (bomLine.RFQList != null) {
                 for (var r = 0; r < bomLine.RFQList.length; r++) {
                     var currentRFQ = bomLine.RFQList[r];
@@ -614,7 +749,7 @@
                     strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
                     '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
                     '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
-                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;display:none;" onclick="resendRFQ();return false;" /></td>';
+                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" /></td>';
                     strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
@@ -622,6 +757,7 @@
                     //strRFQDetailList += '<td>' + currentRFQ.PartNumber + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.LastEmail + '</td>';
                     strRFQDetailList += '</tr>';
                 }
             }
@@ -1124,6 +1260,36 @@
                 }
             }
             if (someOneEdited) refreshDetail();
+        }
+
+
+        var Suppliers = [];
+        function getSuppliers() {
+            jQuery.getJSON('<%= ResolveUrl("~/WebService/Catalogs.aspx") %>?cmd=read&catalog=supplier', function (result) {
+                Suppliers = result;
+                readCallBack();
+            });
+            return true;
+        }
+
+        function getSupplierByID(idSupplier) {
+            for (var i = 0; i < Suppliers.length; i++) {
+                if (Suppliers[i].Id == idSupplier) {
+                    return Suppliers[i];
+                }
+            }
+            return null;
+        }
+        function getResources() {
+            getSuppliers();
+        }
+        var readCounter = 0;
+        function readCallBack() {
+            readCounter++;
+            if (readCounter == 1) {
+                readCounter = 0;
+                jQuery("#divImgEmail").css("display", "none");
+            }
         }
     </script>
 </asp:Content>

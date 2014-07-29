@@ -66,6 +66,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
 
@@ -126,7 +130,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
-            
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
 
             ErrorOccur = DM.ErrorOccur;
@@ -199,7 +206,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@LeadTimeNormalProductionOrders", entity.LeadTimeNormalProductionOrders);
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
-            
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
 
             ErrorOccur = DM.ErrorOccur;
@@ -225,7 +235,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint  " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
             "FROM viewRFQHeader_ReadAll " +
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
@@ -291,6 +301,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.LeadTimeNormalProductionOrders = table.Rows[0][45].ToString();
                 rfq.ExceptionTo100ToPrint = table.Rows[0][46].ToString();
                 rfq.Quote100ToPrint = bool.Parse(table.Rows[0][47].ToString());
+                rfq.LastEmail = table.Rows[0][48].ToString();
                 sqlConnection.Dispose();
                 return rfq;
             }
@@ -308,7 +319,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint  " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
             "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key)";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -374,6 +385,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.LeadTimeNormalProductionOrders = table.Rows[i][45].ToString();
                 rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
                 rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
+                rfq.LastEmail = table.Rows[i][48].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -392,7 +404,7 @@ public class RfqCRUD : ICRUD<RFQ>
                       "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, " +
                       "AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-                      "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint  " +
+                      "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
                       "FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -452,6 +464,7 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.LeadTimeNormalProductionOrders = table.Rows[i][45].ToString();
             rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
             rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
+            rfq.LastEmail = table.Rows[i][48].ToString();
             recordset.Add(rfq);
         }
         return recordset;
@@ -504,6 +517,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
             DM.Load_SP_Parameters("@sys_active", true.ToString());
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+
             
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
 
@@ -565,7 +582,10 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ExceptionTo100ToPrint", entity.ExceptionTo100ToPrint);
             DM.Load_SP_Parameters("@Quote100ToPrint", entity.Quote100ToPrint.ToString());
             DM.Load_SP_Parameters("@sys_active", true.ToString());
-            
+            DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
+            DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
+            DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 
             ErrorOccur = DM.ErrorOccur;
