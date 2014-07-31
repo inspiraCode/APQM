@@ -595,15 +595,15 @@
             for (var j = 0; j < BOM.BomDetail.length; j++) {
                 var current = BOM.BomDetail[j];
                 if (current.Status == null) current.Status = "";
-                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 class="' + current.internalAction.replace(' ', '') + '" style="height: 20px;"> ' +
+                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
 '    <input type="checkbox" id="chkSelect" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
 '    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" id="deleteByID" ' +
 '    onclick="deleteBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
 '    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
 '    onclick="takeBOMLine();" style="float: left; position: absolute;left: 90px;top: 8px;">Take</label> ' +
-'    <table cellspacing="0" align="left" class="BOMLine"> ' +
-'    <tr style="height: 19px; white-space: nowrap;"> ' +
+'    <table cellspacing="0" align="left" style="top:-3px;" class="BOMLine"> ' +
+'    <tr style="height: 35px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
 '        <label id="lblStatus" >' + current.Status + '</label> ' +
 '    </td> ' +
@@ -626,8 +626,8 @@
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;display:none;"> ' + current.CommCode +
 '    </td> ' +
-'    <td class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;"> ' + current.Material +
-'    </td> ' +
+'    <td class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.Material +
+'    </div></td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.Um +
 '    </td> ' +
 '    <td align="right" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;"> ' + current.Cost +
@@ -638,8 +638,8 @@
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;display:none;"> ' + current.CapComAssm +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;"> ' + current.PurchasingComments +
-'    </td> ' +
+'    <td align="center" class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.PurchasingComments +
+'    </div></td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;display:none;"> ' + current.SalesStatus +
 '    </td> ' +
 '    <td class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;"> ' + current.SalesComments +

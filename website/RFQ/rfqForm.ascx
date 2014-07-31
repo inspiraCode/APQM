@@ -172,7 +172,7 @@
                 <td align="right" class="style78">
                     Market Sector
                 </td>
-                <td align="left" class="style77" data-step='6' data-intro='This is the Part Number to quote.'>
+                <td align="left" class="style77" data-step='6' data-intro='Market Sector of this piece.'>
                     <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;
                         display: block; width: 170px; height: 20px;" class="ReadOnlyFields">
                     </label>
@@ -180,15 +180,16 @@
                 <td align="right" class="style79">
                     Manufacturing Location
                 </td>
-                <td align="left" class="style29" data-step='12' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <input type="text" tabindex="3" id="txtManufacturingLocation" bindto="ManufacturingLocation" style="width: 216px;display: block;" />
+                <td align="left" class="style29" data-step='12' data-intro='Your Manufacturing Location for the Part to quote.'>
+                    <input type="text" tabindex="3" id="txtManufacturingLocation" validate="required"
+                        validationid="validatingRFQForm" bindto="ManufacturingLocation" style="width: 216px;display: block;" />
                 </td>
             </tr>
             <tr>
                 <td align="right" class="style78">
                     Component Part Number
                 </td>
-                <td align="left" class="style77" data-step='7' data-intro='Market Sector of this piece.'>
+                <td align="left" class="style77" data-step='7' data-intro='This is the Part Number to quote.'>
                     <label id="lblPartNumber" bindto="PartNumber" class="ReadOnlyFields" style="text-align: center;
                         width: 170px; height: 20px; display: block;">
                     </label>
@@ -196,8 +197,9 @@
                 <td align="right" class="style79">
                     Ship From Location
                 </td>
-                <td align="left" class="style29" data-step='13' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
-                    <input type="text" tabindex="3" id="txtShipFromLocation" bindto="ShipLocation" style="width: 216px;display: block;" />
+                <td align="left" class="style29" data-step='13' data-intro='Your Ship Location for the Part to quote.'>
+                    <input type="text" tabindex="3" id="txtShipFromLocation" validate="required"
+                        validationid="validatingRFQForm" bindto="ShipLocation" style="width: 216px;display: block;" />
                 </td>
             </tr>
             <tr align="left">
@@ -242,7 +244,7 @@
             <tr>
                 <td align="right" class="style78">
                     <label id="lblTargetPriceLabel" style="text-align: right; width: 145px; height: 20px;
-                        display: block;">
+                        display: block;">Target Price
                     </label>
                 </td>
                 <td align="left" class="style77" data-step='10' data-intro='Target Price. If specified by Purchasing Department.'>
@@ -562,7 +564,7 @@
 
         if (RFQ.TargetPrice < 0) {
             jQuery("#lblTargetPrice").hide();
-            jQuery("#lblTargetPriceLabel").hide();
+            jQuery("#lblTargetPriceLabel").hide(); 
         } else {
             jQuery("#lblTargetPrice").show();
             jQuery("#lblTargetPriceLabel").show();
@@ -1074,8 +1076,13 @@
                     if (data[j].ItemDescription != null && data[j].ItemDescription != "") {
                         for (prop in data[j]) {
                             if (data[j].hasOwnProperty(prop)) {
-                                if (data[j][prop] == null) {
-                                    data[j][prop] = 0;
+                                if (jQuery.trim(data[j][prop]) == '') {
+                                    if (prop == "Um") {
+                                        data[j][prop] = '';
+                                    }
+                                    else {
+                                        data[j][prop] = 0;
+                                    }
                                 }
                             }
                         }
@@ -1168,6 +1175,24 @@
         }
 
         retrieveValuesFromControls(); //For RFQ variable
+
+        if (strSaveMode == "finalize") {
+            for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+                var currentEAV = RFQ.RfqEAV[i];
+                if (currentEAV.RfqDetail.length == 0) {
+                    jQuery('#scrim').show();
+                    var targetMessage = jQuery('#messageDisplayer').text('It is required at least one item. Be aware that Item Description is required, otherwise, the whole row wont be taken into account.').show();
+                    var fieldNeedsCorrection = jQuery("[rfqeau_id=" + currentEAV.Id + "]");
+                    var pos = fieldNeedsCorrection.offset();
+                    targetMessage.css('left', (pos.left - 9) + 'px');
+                    targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
+                    jQuery('html, body').animate({
+                        scrollTop: fieldNeedsCorrection.offset().top - 300
+                    }, 100);
+                    return;
+                }
+            }
+        }
 
         var to = '<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=update';
 
