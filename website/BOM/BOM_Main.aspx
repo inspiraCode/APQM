@@ -262,24 +262,22 @@
     <br />
     <div align="center" class="gradientBG" style="position: fixed; left: 0px; width: 100%;
         bottom: 0; padding: 5px; border-top: solid 1px black;">
-        <input type="button" id="btnNewRFQ" style="float: left;" value="New RFQ" />
-        <input type="button" value="Select All" style="float: left;" onclick="on_select_all_lines();" />
-        <input type="button" value="Unselect All" style="float: left;" onclick="on_unselect_all_lines();" />
-        <input type="button" id="btnNoQuote" onclick="on_noQuote_click();" style="float: left;"
-            value="No Quote" />
-        <input type="button" id="btnQuote" onclick="on_Quote_click();" style="float: left;"
-            value="Quote" />
-        <input type="button" id="btnReportAllRFQs" value="Report All RFQs" style="width: 150px;
-            float: right; margin-right: 12px;" />
-        <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" style="width: 150px;
-            float: right; margin-right: 2px;" />
-        <input type="button" value="SIF Volumes" style="float: right;" onclick="on_openSIFDetail();" />
-        <input type="button" id="btnCancel" value="Refresh" onclick="location.reload(true);return false;"
-            style="width: 150px; float: right; margin-right: 2px;" />
-        <input type="button" id="btnSaveBOM" onclick="on_save_bom();" value="Save" style="width: 100px;
-            float: right; margin-right: 2px;" />
-        <input type="button" id="btnEdifBOM" onclick="on_btnEditBOM_click();" value="Edit BOM"
-            style="width: 100px; float: right; margin-right: 2px;" />
+        <div id="divButtonsLeftSide" style="float: left;">
+            <input type="button" id="btnNewRFQ" value="New RFQ" />
+            <input type="button" value="Select All" onclick="on_select_all_lines();" />
+            <input type="button" value="Unselect All" onclick="on_unselect_all_lines();" />
+            <input type="button" id="btnNoQuote" onclick="on_noQuote_click();" value="No Quote" />
+            <input type="button" id="btnQuote" onclick="on_Quote_click();" value="Quote" />
+        </div>
+        <div id="divButtonsRightSide" style="float: right; margin-right: 10px;">
+            <input type="button" id="btnEdifBOM" onclick="on_btnEditBOM_click();" value="Edit BOM" />
+            <input type="button" id="btnSaveBOM" onclick="on_save_bom();" value="Save" />
+            <input type="button" id="btnCancel" value="Refresh" onclick="location.reload(true);return false;" />
+            <input type="button" value="SIF Volumes" onclick="on_openSIFDetail();" />
+            <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" />
+            <input type="button" id="btnReportAllRFQs" value="Report All RFQs" />
+            <input type="button" id="btnPrintBOM" value="BOM Print" />
+        </div>
     </div>
     <br />
     <div id="divDialog_SifDetail" title="Projected Annual Volume" style="display: none;">
@@ -313,16 +311,19 @@
                             <b style="margin-right: 5px;">RFQ to Re-Send:</b>
                         </td>
                         <td>
-                            <label id="lblRFQNumber" style="Width:350px;"></label>
+                            <label id="lblRFQNumber" style="width: 350px;">
+                            </label>
                         </td>
                     </tr>
-                    <tr style="height: 20px;"></tr>
+                    <tr style="height: 20px;">
+                    </tr>
                     <tr>
                         <td align="right">
                             <b style="margin-right: 5px;">Supplier:</b>
                         </td>
                         <td>
-                            <label id="lblSupplier" style="Width:350px;"></label>
+                            <label id="lblSupplier" style="width: 350px;">
+                            </label>
                         </td>
                     </tr>
                     <tr>
@@ -330,11 +331,11 @@
                             <b style="margin-right: 5px;">Email:</b>
                         </td>
                         <td>
-                            <input type="text" id="txtEmail" style="width:350px;" />
+                            <input type="text" id="txtEmail" style="width: 350px;" />
                         </td>
                     </tr>
                     <tr style="height: 40px;">
-                        <td colspan="2" >
+                        <td colspan="2">
                             <div id="divPleaseWait" style="display: none;">
                                 <img id="imgPleaseWaitResendRFQ" alt="" src="../Utils/loading.gif" style="display: inline;" />
                                 <span style="position: relative; top: -10px;">Please wait..</span>
@@ -343,9 +344,10 @@
                     </tr>
                     <tr>
                         <td align="center" colspan="3">
-                            <input type="button" id="btnResendRFQ" onclick="return false;" style="width:80px;"
+                            <input type="button" id="btnResendRFQ" onclick="return false;" style="width: 80px;"
                                 value="Re-Send" />
-                            <input type="button" id="btnCancelResendRFQ" onclick="on_closeResendRFQ();" value="Cancel" style="width:80px;" />
+                            <input type="button" id="btnCancelResendRFQ" onclick="on_closeResendRFQ();" value="Cancel"
+                                style="width: 80px;" />
                         </td>
                     </tr>
                 </table>
@@ -371,6 +373,10 @@
 
             jQuery("#btnNewRFQ").click(function () {
                 window.open("../RFQ/NewRFQ.aspx");
+            });
+
+            jQuery("#btnPrintBOM").click(function () {
+                window.open("BOM_Print.aspx?bom=" + BOM.Id);
             });
 
         });
@@ -483,7 +489,7 @@
                         if (BOM.BomDetail[i].RFQList[j].Id == iRFQ_ID) {
                             return BOM.BomDetail[i].RFQList[j];
                         }
-                    } 
+                    }
                 }
             }
             return null;
@@ -535,9 +541,9 @@
             }
             jQuery("#btnResendRFQ").prop("disabled", true);
             jQuery("#btnCancelResendRFQ").prop("disabled", true);
-            
+
             rfqToResend.LastEmail = jQuery("#txtEmail").val();
-            
+
             var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=resendrfq';
 
             jQuery("#divPleaseWait").show();
@@ -738,7 +744,7 @@
 
         function getRFQsTableByBOMDetail(bomLine) {
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
-            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th style="width: 80px;min-width: 80px;max-width: 80px;"></th><th>Created By</th><th>RFQ Number</th><th>Due Date</th>' +
+            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th style="width: 80px;min-width: 80px;max-width: 80px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
             //'<th>Component Part Number</th>' +
                 '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody>';
             if (bomLine.RFQList != null) {
@@ -751,10 +757,10 @@
                     '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
                     '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" /></td>';
                     strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
+                    strRFQDetailList += '<td>' + currentRFQ.DrawingLevel + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.Status + '</td>';
-                    //strRFQDetailList += '<td>' + currentRFQ.PartNumber + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
                     strRFQDetailList += '<td>' + currentRFQ.LastEmail + '</td>';
