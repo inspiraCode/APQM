@@ -151,11 +151,13 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         RfqCRUD rfqCRUD = new RfqCRUD();
 
                         rfq.SupplierId = supplier.Id;
+                        rfq.SupplierName = supplier.SupplierName;
                         rfq.SentToVendor = DateTime.Now;
                         rfq.LastEmail = supplier.ContactEmail;
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
+                        rfq.RfqGenerated = rfqNumberGenereated.RfqGenerated;
                         rfq.DueDate = newRFQScreen.DueDate;
                         rfq.MarketSectorID = newRFQScreen.MarketSectorID;
                         rfq.DrawingLevel = newRFQScreen.DrawingLevel;
@@ -255,6 +257,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                 }
             }
         }
+
         response.ErrorThrown = false;
         response.ResponseDescription = "RFQs created successfully.";
         response.Result = resultRFQs;
@@ -356,11 +359,13 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         RfqCRUD rfqCRUD = new RfqCRUD();
 
                         rfq.SupplierId = supplier.Id;
+                        rfq.SupplierName = supplier.SupplierName;
                         //rfq.SentToVendor = DateTime.Now;
                         //rfq.LastEmail
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
+                        rfq.RfqGenerated = rfqNumberGenereated.RfqGenerated;
                         rfq.DueDate = newRFQScreen.DueDate;
                         rfq.MarketSectorID = newRFQScreen.MarketSectorID;
                         rfq.DrawingLevel = newRFQScreen.DrawingLevel;

@@ -138,9 +138,9 @@
                 <td>
                 </td>
                 <td>
-                    <input id="btnSendRFQ" onclick="sendRFQ(event,'sendrfq',afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
+                    <input id="btnSendRFQ" onclick="sendRFQ(event,'sendrfq',opener.afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
                         value="Send New RFQ" tabindex="14" />
-                    <input id="btnCreateRFQ" onclick="sendRFQ(event,'createrfq',afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
+                    <input id="btnCreateRFQ" onclick="sendRFQ(event,'createrfq',opener.afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
                         value="Create RFQ without email" tabindex="14" />
                 </td>
             </tr>
@@ -489,11 +489,7 @@
             });
 
         }
-
-        function afterCreateOrSendRFQ(response) {
-
-            //alertify.success(response.ResponseDescription);
-        }
+        
         function sendRFQ(e, strSaveMode, onSuccess, onFail) {
 
             if (validate(e)) {

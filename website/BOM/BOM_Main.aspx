@@ -355,6 +355,7 @@
         </div>
     </div>
     <script type="text/javascript">
+        var popupRFQScreen = null;
         jQuery(document).ready(function () {
             jQuery("#spanTitle").text("BOM");
             load();
@@ -372,7 +373,7 @@
 
 
             jQuery("#btnNewRFQ").click(function () {
-                window.open("../RFQ/NewRFQ.aspx");
+                popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
             });
 
             jQuery("#btnPrintBOM").click(function () {
@@ -744,14 +745,13 @@
 
         function getRFQsTableByBOMDetail(bomLine) {
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
-            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th style="width: 80px;min-width: 80px;max-width: 80px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
+            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
             //'<th>Component Part Number</th>' +
                 '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody>';
             if (bomLine.RFQList != null) {
                 for (var r = 0; r < bomLine.RFQList.length; r++) {
                     var currentRFQ = bomLine.RFQList[r];
                     strRFQDetailList += '<tr>';
-                    strRFQDetailList += '<td></td>';
                     strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
                     '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
                     '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
@@ -1267,6 +1267,30 @@
             }
             if (someOneEdited) refreshDetail();
         }
+
+        function afterCreateOrSendRFQ(response) {
+            popupRFQScreen.close();
+            for (var i = 0; i < response.Result.length; i++) {
+                var current = response.Result[i];
+                var currentDataTable = jQuery('[parentID="' + current.BomDetailId + '"]').DataTable();
+                currentDataTable.fnAddData(['<input type="image" src="../pics/delete-icon.png" style="height:20px;"' +
+                    '    onclick="deleteRFQByID(' + current.BomDetailId + ',' + current.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + current.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + current.BomDetailId + ',' + current.Id + ');return false;" />',
+                                            current.CreatedBy,
+                                            current.DrawingLevel,
+                                            current.RfqGenerated,
+                                            current.DueDate,
+                                            current.Status,
+                                            current.SupplierName,
+                                            current.SentToVendor,
+                                            current.LastEmail]);
+            }
+
+            alertify.success(response.ResponseDescription);
+
+        }
+        
 
 
         var Suppliers = [];
