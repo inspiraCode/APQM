@@ -41,6 +41,11 @@ public partial class WebService_RFQ : System.Web.UI.Page
                 Response.Write(resendRFQ());
                 Response.End();
                 return;
+            case "readbybomlineid":
+                Response.Clear();
+                Response.Write(readRFQsByBOMLineID(long.Parse(Request["bomlineid"])));
+                Response.End();
+                return;
         }
     }
 
@@ -549,6 +554,18 @@ public partial class WebService_RFQ : System.Web.UI.Page
         response.ErrorThrown = false;
         response.ResponseDescription = "RFQ " + rfqToResend.RfqGenerated + " re-sent successfully.";
         response.Result = rfqToResend;
+        return JsonConvert.SerializeObject(response);
+    }
+    public string readRFQsByBOMLineID(long BOMLineID)
+    {
+        GatewayResponse response = new GatewayResponse();
+        
+        List<RFQ> result = new List<RFQ>();
+        result = rfq_CRUD.readByBOMDetailKey(BOMLineID);
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "";
+        response.Result = result;
         return JsonConvert.SerializeObject(response);
     }
 }
