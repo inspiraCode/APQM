@@ -658,7 +658,8 @@
 '    <td align="center" class="tableCell" style="width: 125px; min-width: 125px; max-width: 125px;"> ' + current.PurchasingStatus +
 '    </td></tr></table></div></h3><div accordionContainer>';
 
-                strBOMDetailList += getRFQsTableByBOMDetail(current);
+                strBOMDetailList += getRFQsDataTableByBOMLine(current);
+                strBOMDetailList += '</div></div>';
             }
 
 
@@ -693,15 +694,40 @@
                                         var currentBOMLine = BOM.BomDetail[i];
                                         if (currentBOMLine.Id == bomDetailKey) {
                                             currentBOMLine.RFQList = response.Result;
-                                            theTable.parent().html(getRFQsTableByBOMDetail(currentBOMLine));
-
+                                            theTable.parent().html(getRFQsDataTableByBOMLine(currentBOMLine));
+                                            
                                             jQuery("[parentid=" + bomDetailKey + "]").dataTable({
+                                                "aaData": getRFQArray(currentBOMLine, currentBOMLine.RFQList),
+                                                "aoColumns": [
+                                                null,
+                                               null,
+                                                null,
+                                                null,
+                                                {"sType": "date",
+                                                    "mRender": function (data, type, full) {
+                                                        return new Date(data).toLocaleDateString();
+                                                    }
+                                                },
+                                                null,
+                                                null,
+                                                {   "sType": "date",
+                                                    "mRender": function (data, type, full) {
+                                                        var dLastDate = new Date(data);
+                                                        if (dLastDate.getDate() == 9 && dLastDate.getMonth() == 1 && dLastDate.getFullYear() == 1985) {
+                                                            return "";
+                                                        }
+                                                        return dLastDate.toLocaleString();
+                                                    }
+                                                },
+                                                null
+                                            ],
                                                 "bDestroy": true,
                                                 "bStateSave": true,
                                                 "bFilter": false,
                                                 "bLengthChange": false,
                                                 "bInfo": false,
-                                                "bPaginate": false
+                                                "bPaginate": false,
+                                                
                                             }).show();
                                             break;
                                         }
@@ -787,6 +813,8 @@
 
         }
 
+
+        
         function hideCheckboxesForUnsavedLines() {
             jQuery('input:checkbox').css("visibility", "visible");
             jQuery('[internalAction="ForAdd"],[internalAction="ForEdit"]').css("visibility", "hidden");
@@ -797,7 +825,28 @@
             arr.splice(fromIndex, 1);
             arr.splice(toIndex, 0, element);
         }
-
+        function getRFQArray(bomLine,arrRFQList) {
+            var result = [];
+            for (var i = 0; i < arrRFQList.length; i++) {
+                var currentRFQ = arrRFQList[i];
+                var oCurrent = ['<input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
+                    '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />',
+                                currentRFQ.CreatedBy,
+                                currentRFQ.DrawingLevel,
+                                currentRFQ.RfqGenerated,
+                                new Date(currentRFQ.DueDate),
+                                currentRFQ.Status,
+                                currentRFQ.SupplierName,
+                                new Date(currentRFQ.SentToVendor),
+                                currentRFQ.LastEmail
+                                ];
+                result.push(oCurrent);
+            }
+            return result;
+        
+        }
         function getRFQsTableByBOMDetail(bomLine) {
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
             strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
@@ -806,6 +855,7 @@
             if (bomLine.RFQList != null) {
                 for (var r = 0; r < bomLine.RFQList.length; r++) {
                     var currentRFQ = bomLine.RFQList[r];
+
                     strRFQDetailList += '<tr>';
                     strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
                     '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
@@ -825,6 +875,16 @@
             strRFQDetailList += '</tbody></table></div></div>';
             return strRFQDetailList;
         }
+
+        function getRFQsDataTableByBOMLine(bomLine) {
+            var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
+            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
+            //'<th>Component Part Number</th>' +
+                '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody></table>';
+            return strRFQDetailList;
+        }
+
+
         function clickeableInHeader() {
             jQuery('[clickeableInHeader="true"]').click(function (e) {
                 e.stopPropagation();
@@ -939,15 +999,42 @@
                             var theTable = jQuery("[parentid=" + iBOMLineID + "]").DataTable();
                             theTable.css("visibility", "hidden");
                             theTable.fnDestroy();
-                            theTable.parent().html(getRFQsTableByBOMDetail(currentBOMLine));
+                            theTable.parent().html(getRFQsDataTableByBOMLine(currentBOMLine));
 
                             jQuery("[parentid=" + iBOMLineID + "]").dataTable({
-                                "bDestroy": true,
+                                "aaData": getRFQArray(currentBOMLine, currentBOMLine.RFQList),
+                                "aoColumns": [
+                                                null,
+                                                null,
+                                                null,
+                                                null,
+                                                {
+                                                "sType": "date",
+                                                    "mRender": function (data, type, full) {
+                                                        return new Date(data).toLocaleDateString();
+                                                    }
+                                                },
+                                                null,
+                                                null,
+                                                { 
+                                                 "sType": "date",
+                                                    "mRender": function (data, type, full) {
+                                                        var dLastDate = new Date(data);
+                                                        if (dLastDate.getDate() == 9 && dLastDate.getMonth() == 1 && dLastDate.getFullYear() == 1985) {
+                                                            return "";
+                                                        }
+                                                        return dLastDate.toLocaleString();
+                                                    }
+                                                },
+                                                null
+                                            ],
+                                            "bDestroy": true,
                                 "bStateSave": true,
                                 "bFilter": false,
                                 "bLengthChange": false,
                                 "bInfo": false,
-                                "bPaginate": false
+                                "bPaginate": false,
+                                
                             }).show();
                             alertify.success("RFQ deleted successfully;");
                             return;

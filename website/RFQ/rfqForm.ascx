@@ -331,7 +331,7 @@
                 <td align="right" data-step='44' data-intro='Enter the Brand if applicable.' class="style78">
                     Brand
                     <input type="text" value="" bindto="Make" id="txtMake" style="text-align: right;
-                        width: 130px" tabindex="34" />
+                        width: 130px; text-transform:uppercase;" tabindex="34" />
                 </td>
             </tr>
             <tr>

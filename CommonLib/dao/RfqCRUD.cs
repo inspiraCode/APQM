@@ -32,7 +32,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
             DM.Load_SP_Parameters("@PrototypePiece", entity.PrototypePiece.ToString());
             DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
-            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel.ToUpper());
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
@@ -52,7 +52,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
             DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
-            DM.Load_SP_Parameters("@Make", entity.Make);
+            DM.Load_SP_Parameters("@Make", entity.Make.ToUpper());
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
@@ -96,7 +96,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
             DM.Load_SP_Parameters("@PrototypePiece", entity.PrototypePiece.ToString());
             DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
-            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel.ToUpper());
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
@@ -116,7 +116,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
             DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
-            DM.Load_SP_Parameters("@Make", entity.Make);
+            DM.Load_SP_Parameters("@Make", entity.Make.ToUpper());
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
@@ -172,7 +172,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
             DM.Load_SP_Parameters("@PrototypePiece", entity.PrototypePiece.ToString());
             DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
-            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel.ToUpper());
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
@@ -192,7 +192,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
             DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
-            DM.Load_SP_Parameters("@Make", entity.Make);
+            DM.Load_SP_Parameters("@Make", entity.Make.ToUpper());
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
@@ -320,7 +320,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
             "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
-            "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key)";
+            "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
         if (sqlConnection != null)
@@ -481,7 +481,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
             //DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
-            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel.ToUpper());
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
@@ -501,7 +501,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
             DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
-            DM.Load_SP_Parameters("@Make", entity.Make);
+            DM.Load_SP_Parameters("@Make", entity.Make.ToUpper());
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());
@@ -546,7 +546,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@BOMDetailKey", entity.BomDetailId.ToString());
             DM.Load_SP_Parameters("@SupplierMasterKey", entity.SupplierId.ToString());
             //DM.Load_SP_Parameters("@RFQNumberKey", entity.RfqNumberKey.ToString());
-            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel);
+            DM.Load_SP_Parameters("@DrawingLevel", entity.DrawingLevel.ToUpper());
             DM.Load_SP_Parameters("@ProductionToolingLeadTime", entity.ProductionToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypeToolingLeadTime", entity.PrototypeToolingLeadTime);
             DM.Load_SP_Parameters("@PrototypePieceLeadTime", entity.PrototypePieceLeadTime);
@@ -566,7 +566,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@CommentsToVendor", entity.CommentsToVendor);
             DM.Load_SP_Parameters("@IAgree", entity.IAgree.ToString());
             DM.Load_SP_Parameters("@DateFilledOut", entity.DateFilledOut.ToString("G"));
-            DM.Load_SP_Parameters("@Make", entity.Make);
+            DM.Load_SP_Parameters("@Make", entity.Make.ToUpper());
             DM.Load_SP_Parameters("@ReasonNoQuote", entity.ReasonNoQuote);
             DM.Load_SP_Parameters("@Weight", entity.Weight.ToString());
             DM.Load_SP_Parameters("@UMWeight", entity.UmWeight.ToString());

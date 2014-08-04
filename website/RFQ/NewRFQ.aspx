@@ -91,7 +91,7 @@
                                             Drawing Level
                                         </td>
                                         <td align="left">
-                                            <input type="text" id="txtDrawingLevel" bindto="DrawingLevel" style="width: 120px;" tabindex="10" />
+                                            <input type="text" id="txtDrawingLevel" bindto="DrawingLevel" style="width: 120px;text-transform:uppercase;" tabindex="10" />
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
@@ -491,7 +491,8 @@
         }
         
         function sendRFQ(e, strSaveMode, onSuccess, onFail) {
-
+            jQuery('#btnSendRFQ').prop("disabled", true);
+            jQuery('#btnCreateRFQ').prop("disabled", true);
             if (validate(e)) {
                 retrieveValuesFromControls(); //For newRFQScreen variable
 
@@ -499,16 +500,16 @@
                 if (newRFQScreen.SupplierList.length <= 0) {
                     strValidation = "You must select at least one Supplier.";
                 }
-                if(newRFQScreen.BomDetailList.length <= 0){
+                if (newRFQScreen.BomDetailList.length <= 0) {
                     strValidation = "You must select at least one BOM Line.";
                 }
-                if(newRFQScreen.SIFVolumesList.length <= 0){
+                if (newRFQScreen.SIFVolumesList.length <= 0) {
                     strValidation = "There must be at least one EAU.";
                 }
-                if(newRFQScreen.SIFHeaderID == -1){
+                if (newRFQScreen.SIFHeaderID == -1) {
                     strValidation = "SIF ID missing.";
                 }
-                if(newRFQScreen.DueDate == -1){
+                if (newRFQScreen.DueDate == -1) {
                     strValidation = "SIF ID missing.";
                 }
                 if (strSaveMode == "" || strSaveMode == null) {
@@ -520,7 +521,7 @@
                 }
 
                 var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=' + strSaveMode;
-                
+
                 jQuery("#divImgEmail").css("display", "block");
 
                 jQuery.ajax({
@@ -539,6 +540,8 @@
                             alertify.alert(response.ResponseDescription);
                         }
                         jQuery("#divImgEmail").hide();
+                        jQuery('#btnSendRFQ').prop("disabled", null);
+                        jQuery('#btnCreateRFQ').prop("disabled", null);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {
@@ -548,8 +551,15 @@
                         }
                         alertify.alert('An error has occurred.');
                         jQuery("#divImgEmail").hide();
+                        jQuery('#btnSendRFQ').prop("disabled", null);
+                        jQuery('#btnCreateRFQ').prop("disabled", null);
                     }
                 });
+
+            }
+            else {
+                jQuery('#btnSendRFQ').prop("disabled", null);
+                jQuery('#btnCreateRFQ').prop("disabled", null);
             }
         }
         
