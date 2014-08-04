@@ -92,8 +92,8 @@
             zoom: 1;
         }
     </style>
-    <div id="divImgEmail" style="display: none; position: fixed; top: 27px; right: 246px;
-        z-index: 1000;">
+    <div id="divImgEmail" style="display: block; position: fixed; width: 105px; height: 35px;
+        z-index: 1000; background-color: white; border: 2px solid gray; padding: 5px;">
         <img alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
             position: relative;" />
         <span style="display: inline; position: relative;">Please wait..</span>
@@ -358,10 +358,12 @@
         var popupRFQScreen = null;
         jQuery(document).ready(function () {
             jQuery("#spanTitle").text("BOM");
+            jQuery('#divImgEmail').css("top", (jQuery(window).height() / 2) - (jQuery('#divImgEmail').outerHeight() / 2));
+            jQuery('#divImgEmail').css("left", (jQuery(window).width() / 2) - (jQuery('#divImgEmail').outerWidth() / 2));
             load();
-            jQuery('#divDialog_EditBOM').on('shown.bs.modal', function () {
-                jQuery(document).off('focusin.bs.modal');
-            });
+            //            jQuery('#divDialog_EditBOM').on('shown.bs.modal', function () {
+            //                jQuery(document).off('focusin.bs.modal');
+            //            });
 
             jQuery("#btnReportAllRFQs").click(function () {
                 window.open("../HTMLReports/SalesReport_AllRFQs.aspx?BOM=" + BOM.Id);
@@ -565,7 +567,7 @@
                         try { onFail(); } catch (e) { }
                         alertify.alert(response.ResponseDescription);
                     }
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     if (console && console.log) {
@@ -579,7 +581,7 @@
                     jQuery("#btnResendRFQ").prop("disabled", false);
                     jQuery("#btnCancelResendRFQ").prop("disabled", false);
                     jQuery("#divPleaseWait").hide();
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                 }
             });
         }
@@ -602,7 +604,7 @@
             for (var j = 0; j < BOM.BomDetail.length; j++) {
                 var current = BOM.BomDetail[j];
                 if (current.Status == null) current.Status = "";
-                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
+                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
 '    <input type="checkbox" id="chkSelect" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
 '    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" id="deleteByID" ' +
@@ -666,26 +668,79 @@
 
             jQuery("#accordionBOM").accordion({
                 activate: function (event, ui) {
-                    //                    var vActive = jQuery(this).accordion("option", "active");
-                    //                    if (vActive.toString() !== "false") {
-                    //                        var bomDetailKey;
-                    //                        bomDetailKey = ui.newHeader.children().children()[4].value;
-                    //                        ui.newPanel.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
-                    //                function (responseTxt, statusTxt, xhr) {
-                    //                    if (statusTxt == "success")
-                    //                        jQuery('.dataTable').dataTable({
-                    //                            "bDestroy": true,
-                    //                            "bStateSave": true,
-                    //                            "bFilter": false,
-                    //                            "bLengthChange": false,
-                    //                            "bInfo": false,
-                    //                            "bPaginate": false
-                    //                        }).show();
-                    //                    if (statusTxt == "error")
-                    //                        alert("Error: " + xhr.status + ": " + xhr.statusText);
-                    //                });
-                    //                        ui.newPanel.show();
-                    //                    }
+                    var vActive = jQuery(this).accordion("option", "active");
+                    if (vActive.toString() !== "false") {
+                        var bomDetailKey;
+                        bomDetailKey = ui.newHeader.attr("bomDetailId");
+
+                        var to = '<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=readbybomlineid&bomlineid=' + bomDetailKey;
+                        jQuery("#divImgEmail").css("display", "block");
+
+                        var theTable = jQuery("[parentid=" + bomDetailKey + "]").DataTable();
+                        theTable.css("visibility", "hidden");
+                        theTable.fnDestroy();
+
+                        jQuery.ajax({
+                            type: "POST",
+                            url: to,
+                            data: null,
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "html",
+                            success: function (response) {
+                                response = jQuery.parseJSON(response);
+                                if (response.ErrorThrown === false) {
+                                    for (var i = 0; i < BOM.BomDetail.length; i++) {
+                                        var currentBOMLine = BOM.BomDetail[i];
+                                        if (currentBOMLine.Id == bomDetailKey) {
+                                            currentBOMLine.RFQList = response.Result;
+                                            theTable.parent().html(getRFQsTableByBOMDetail(currentBOMLine));
+
+                                            jQuery("[parentid=" + bomDetailKey + "]").dataTable({
+                                                "bDestroy": true,
+                                                "bStateSave": true,
+                                                "bFilter": false,
+                                                "bLengthChange": false,
+                                                "bInfo": false,
+                                                "bPaginate": false
+                                            }).show();
+                                            break;
+                                        }
+                                    }
+
+                                } else {
+                                    theTable.parent().html(response.ResponseDescription);
+                                }
+                                jQuery("#divImgEmail").hide();
+                            },
+                            error: function (jqXHR, textStatus, errorThrown) {
+                                if (console && console.log) {
+                                    console.log(jqXHR);
+                                    console.log(textStatus);
+                                    console.log(errorThrown);
+                                }
+                                try {
+                                    onFail();
+                                } catch (e) { }
+                                jQuery("#divImgEmail").hide();
+                            }
+                        });
+
+                        //                        ui.newPanel.load('<%= ResolveUrl("~/RFQ/RFQList.aspx") %>?bomComponent=' + bomDetailKey + '&noCache=' + Number(new Date()) + ' #clientID_GridRFQList',
+                        //                                    function (responseTxt, statusTxt, xhr) {
+                        //                                        if (statusTxt == "success")
+                        //                                            jQuery('.dataTable').dataTable({
+                        //                                                "bDestroy": true,
+                        //                                                "bStateSave": true,
+                        //                                                "bFilter": false,
+                        //                                                "bLengthChange": false,
+                        //                                                "bInfo": false,
+                        //                                                "bPaginate": false
+                        //                                            }).show();
+                        //                                        if (statusTxt == "error")
+                        //                                            alert("Error: " + xhr.status + ": " + xhr.statusText);
+                        //                                    });
+                        //                        ui.newPanel.show();
+                    }
                 },
                 active: false,
                 collapsible: true,
@@ -717,14 +772,14 @@
                 }
             });
 
-            jQuery('.dataTable').dataTable({
-                "bDestroy": true,
-                "bStateSave": true,
-                "bFilter": false,
-                "bLengthChange": false,
-                "bInfo": false,
-                "bPaginate": false
-            }).show();
+            //            jQuery('.dataTable').dataTable({
+            //                "bDestroy": true,
+            //                "bStateSave": true,
+            //                "bFilter": false,
+            //                "bLengthChange": false,
+            //                "bInfo": false,
+            //                "bPaginate": false
+            //            }).show();
 
 
             clickeableInHeader();
@@ -937,7 +992,7 @@
                         }
                         //refreshForm();
 
-                        jQuery("#divImgEmail").css("display", "none");
+                        jQuery("#divImgEmail").hide();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {
@@ -980,7 +1035,7 @@
                         }
                         //refreshForm();
 
-                        jQuery("#divImgEmail").css("display", "none");
+                        jQuery("#divImgEmail").hide();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {
@@ -1222,7 +1277,7 @@
                 success: function (response) {
                     BOM = jQuery.parseJSON(response);
                     refreshForm();
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                     alertify.success("BOM saved successfully");
                     try {
                         onSuccess();
@@ -1290,8 +1345,6 @@
             alertify.success(response.ResponseDescription);
 
         }
-        
-
 
         var Suppliers = [];
         function getSuppliers() {
@@ -1318,7 +1371,7 @@
             readCounter++;
             if (readCounter == 1) {
                 readCounter = 0;
-                jQuery("#divImgEmail").css("display", "none");
+                jQuery("#divImgEmail").hide();
             }
         }
     </script>

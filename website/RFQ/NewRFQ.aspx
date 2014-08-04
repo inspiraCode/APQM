@@ -222,7 +222,7 @@
             if (readCounter == 3) {
                 readCounter = 0;
                 load();
-                jQuery("#divImgEmail").css("display", "none");
+                jQuery("#divImgEmail").hide();
             }
         }
 
@@ -415,7 +415,7 @@
                         try { onFail(); } catch (e) { }
                         alertify.alert(response.ResponseDescription);
                     }
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     if (console && console.log) {
@@ -424,7 +424,7 @@
                         console.log(errorThrown);
                     }
                     alertify.alert('An error has occurred.');
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                 }
             });
         }
@@ -538,7 +538,7 @@
                             try { onFail(); } catch (e) { }
                             alertify.alert(response.ResponseDescription);
                         }
-                        jQuery("#divImgEmail").css("display", "none");
+                        jQuery("#divImgEmail").hide();
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {
@@ -547,7 +547,7 @@
                             console.log(errorThrown);
                         }
                         alertify.alert('An error has occurred.');
-                        jQuery("#divImgEmail").css("display", "none");
+                        jQuery("#divImgEmail").hide();
                     }
                 });
             }

@@ -252,7 +252,7 @@
             jQuery.getJSON('<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=read&id=' + id, function (result) {
                 BOM = result;
                 refreshForm();
-                jQuery("#divImgEmail").css("display", "none");
+                jQuery("#divImgEmail").hide();
                 window.document.close();
                 window.print();
             });

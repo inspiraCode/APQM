@@ -425,7 +425,7 @@
         jQuery.getJSON('<%= ResolveUrl("~/WebService/RFQSummary.aspx") %>?cmd=read&id=' + id, function (result) {
             RFQSummary = result;
             refreshForm();
-            jQuery("#divImgEmail").css("display", "none");
+            jQuery("#divImgEmail").hide();
         });
         return true;
     }
@@ -874,7 +874,7 @@
                 success: function (response) {
                     RFQSummary = jQuery.parseJSON(response);
                     refreshForm();
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                     try { onSuccess(); } catch (e) { }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -933,7 +933,7 @@
                 success: function (response) {
                     RFQSummary = jQuery.parseJSON(response);
                     refreshForm();
-                    jQuery("#divImgEmail").css("display", "none");
+                    jQuery("#divImgEmail").hide();
                     dialogSelectRFQ.dialog("close");
                     alertify.success("Information saved successfully.");
                 },

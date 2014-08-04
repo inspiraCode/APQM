@@ -48,10 +48,10 @@ public partial class WebService_BOM : System.Web.UI.Page
 
         bomHeader.BomDetail = bomDetail_CRUD.readByParentID(bomID);
 
-        foreach (BOMDetail bomLine in bomHeader.BomDetail)
-        {
-            bomLine.RFQList = rfq_CRUD.readByBOMDetailKey(bomLine.Id);
-        }
+        //foreach (BOMDetail bomLine in bomHeader.BomDetail)
+        //{
+        //    bomLine.RFQList = rfq_CRUD.readByBOMDetailKey(bomLine.Id);
+        //}
 
         bomHeader.SifDetail = sif_detail_CRUD.readByParentID(bomHeader.SifId);
 

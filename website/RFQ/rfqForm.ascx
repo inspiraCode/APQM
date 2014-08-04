@@ -456,7 +456,7 @@
         jQuery.getJSON('<%= ResolveUrl("~/WebService/Public/RFQ.aspx") %>?cmd=read&id=' + id, function (result) {
             RFQ = result;
             refreshForm();
-            jQuery("#divImgEmail").css("display", "none");
+            jQuery("#divImgEmail").hide();
 
         });
         return true;
@@ -504,7 +504,7 @@
                 } else {
                     alertify.error("An error has occurried. Please try again.");
                 }
-                jQuery("#divImgEmail").css("display", "none");
+                jQuery("#divImgEmail").hide();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 if (console && console.log) {
@@ -1207,7 +1207,7 @@
             success: function (response) {
                 RFQ = jQuery.parseJSON(response);
                 refreshForm();
-                jQuery("#divImgEmail").css("display", "none");
+                jQuery("#divImgEmail").hide();
                 try {
                     onSuccess();
                 } catch (e) { }
