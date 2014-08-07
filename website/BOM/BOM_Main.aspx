@@ -24,7 +24,7 @@
         }
         .BOMLine
         {
-            left: 140px;
+            left: 170px;
             position: relative;
             border-radius: 4px;
             border: solid 1px dimgray;
@@ -180,8 +180,8 @@
     <div style="position: relative; float: right;">
         <uc1:bomStatusInfo ID="uscBomStatusInfo" runat="server" />
     </div>
-    <div style="clear: both; width: 1205px; margin-left: auto; margin-right: auto;">
-        <table cellspacing="0" align="left" style="margin-left: 80px;">
+    <div style="clear: both; width: 1250px; margin-left: auto; margin-right: auto;">
+        <table cellspacing="0" align="left" style="margin-left: 110px;">
             <tr>
                 <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
                     Assigned To
@@ -256,7 +256,7 @@
                 </th>
             </tr>
         </table>
-        <div id="divBOMDetailList" style="width: 1205px;">
+        <div id="divBOMDetailList" style="width: 1250px;">
         </div>
     </div>
     <br />
@@ -372,7 +372,6 @@
             jQuery("#btnReportSelectedRFQs").click(function () {
                 window.open("../HTMLReports/SalesReport.aspx?BOM=" + BOM.Id);
             });
-
 
             jQuery("#btnNewRFQ").click(function () {
                 popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
@@ -607,10 +606,12 @@
                 strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
 '    <input type="checkbox" id="chkSelect" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
-'    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" id="deleteByID" ' +
+'    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" ' +
 '    onclick="deleteBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
+'    <input type="image" src="../pics/FilterIcon.png" style="height:20px;float: left;position: absolute; left: 90px;" ' +
+'    onclick="openRFQSummary(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
 '    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
-'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 90px;top: 8px;">Take</label> ' +
+'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 120px;top: 8px;">Take</label> ' +
 '    <table cellspacing="0" align="left" style="top:-3px;" class="BOMLine"> ' +
 '    <tr style="height: 35px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
@@ -635,7 +636,7 @@
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;display:none;"> ' + current.CommCode +
 '    </td> ' +
-'    <td class="tableCell" style="width: 145px; min-width: 145px; max-width: 145px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.Material +
+'    <td class="tableCell" style="width: 160px; min-width: 160px; max-width: 160px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.Material +
 '    </div></td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.Um +
 '    </td> ' +
@@ -813,7 +814,9 @@
 
         }
 
-
+        function openRFQSummary(iBOMLineID){
+            window.open("../RFQ/Summary/RFQSummary_Main.aspx?bomline=" + iBOMLineID);
+        }
         
         function hideCheckboxesForUnsavedLines() {
             jQuery('input:checkbox').css("visibility", "visible");
@@ -845,36 +848,35 @@
                 result.push(oCurrent);
             }
             return result;
-        
         }
-        function getRFQsTableByBOMDetail(bomLine) {
-            var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
-            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
-            //'<th>Component Part Number</th>' +
-                '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody>';
-            if (bomLine.RFQList != null) {
-                for (var r = 0; r < bomLine.RFQList.length; r++) {
-                    var currentRFQ = bomLine.RFQList[r];
+//        function getRFQsTableByBOMDetail(bomLine) {
+//            var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
+//            strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
+//            //'<th>Component Part Number</th>' +
+//                '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody>';
+//            if (bomLine.RFQList != null) {
+//                for (var r = 0; r < bomLine.RFQList.length; r++) {
+//                    var currentRFQ = bomLine.RFQList[r];
 
-                    strRFQDetailList += '<tr>';
-                    strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
-                    '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
-                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
-                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" /></td>';
-                    strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.DrawingLevel + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.Status + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
-                    strRFQDetailList += '<td>' + currentRFQ.LastEmail + '</td>';
-                    strRFQDetailList += '</tr>';
-                }
-            }
-            strRFQDetailList += '</tbody></table></div></div>';
-            return strRFQDetailList;
-        }
+//                    strRFQDetailList += '<tr>';
+//                    strRFQDetailList += '<td><input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
+//                    '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
+//                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
+//                    '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" /></td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.CreatedBy + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.DrawingLevel + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.RfqGenerated + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.DueDate + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.Status + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.SupplierName + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.SentToVendor + '</td>';
+//                    strRFQDetailList += '<td>' + currentRFQ.LastEmail + '</td>';
+//                    strRFQDetailList += '</tr>';
+//                }
+//            }
+//            strRFQDetailList += '</tbody></table></div></div>';
+//            return strRFQDetailList;
+//        }
 
         function getRFQsDataTableByBOMLine(bomLine) {
             var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
@@ -1033,7 +1035,7 @@
                                 "bFilter": false,
                                 "bLengthChange": false,
                                 "bInfo": false,
-                                "bPaginate": false,
+                                "bPaginate": false
                                 
                             }).show();
                             alertify.success("RFQ deleted successfully;");

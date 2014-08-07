@@ -391,6 +391,89 @@ public class RfqCRUD : ICRUD<RFQ>
         }
         return recordset;
     }
+    public List<RFQ> readByUser(string user)
+    {
+        List<RFQ> recordset = new List<RFQ>();
+        recordset.Clear();
+
+        string query = "SELECT RFQHeaderKey, BOMDetailKey, SupplierMasterKey, RFQNumberKey, DrawingLevel, " +
+            "ProductionToolingLeadTime, PrototypeToolingLeadTime, PrototypePieceLeadTime, ToolingDetail, ProductionTooling, " +
+            "PrototypeTooling, PrototypePiece, Status, DueDate, SentToVendor, FilledUp, PartNumber, " +
+            "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
+            "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
+            "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
+            "FROM viewRFQHeader_ReadAll WHERE (CreatedBy = @user) ORDER BY RFQHeaderKey";
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@user", user);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                RFQ rfq = new RFQ();
+                rfq.Id = long.Parse(table.Rows[i][0].ToString());
+                rfq.BomDetailId = long.Parse(table.Rows[i][1].ToString());
+                rfq.SupplierId = long.Parse(table.Rows[i][2].ToString());
+                rfq.RfqNumberKey = long.Parse(table.Rows[i][3].ToString());
+                rfq.DrawingLevel = table.Rows[i][4].ToString();
+                rfq.ProductionToolingLeadTime = table.Rows[i][5].ToString();
+                rfq.PrototypeToolingLeadTime = table.Rows[i][6].ToString();
+                rfq.PrototypePieceLeadTime = table.Rows[i][7].ToString();
+                rfq.ToolingDetail = table.Rows[i][8].ToString();
+                rfq.ProductionTooling = float.Parse(table.Rows[i][9].ToString());
+                rfq.PrototypeTooling = float.Parse(table.Rows[i][10].ToString());
+                rfq.PrototypePiece = float.Parse(table.Rows[i][11].ToString());
+                rfq.Status = table.Rows[i][12].ToString();
+                rfq.DueDate = DateTime.Parse(table.Rows[i][13].ToString());
+                rfq.SentToVendor = DateTime.Parse(table.Rows[i][14].ToString());
+                rfq.FilledUp = DateTime.Parse(table.Rows[i][15].ToString());
+                rfq.PartNumber = table.Rows[i][16].ToString();
+                string strDate = table.Rows[i][17].ToString();
+                if (strDate != "")
+                {
+                    rfq.DeadDate = DateTime.Parse(table.Rows[i][17].ToString());
+                }
+                rfq.Acknowledgement = table.Rows[i][18].ToString();
+                rfq.SupplierName = table.Rows[i][19].ToString();
+                rfq.ManufacturingLocation = table.Rows[i][20].ToString();
+                rfq.ShipLocation = table.Rows[i][21].ToString();
+                rfq.PreparedBy = table.Rows[i][22].ToString();
+                rfq.RfqGenerated = table.Rows[i][23].ToString();
+                rfq.TargetPrice = float.Parse(table.Rows[i][24].ToString());
+                rfq.NoQuote = bool.Parse(table.Rows[i][25].ToString());
+                rfq.MarketSectorID = long.Parse(table.Rows[i][26].ToString());
+                rfq.CommentsToBuyer = table.Rows[i][27].ToString();
+                rfq.CommentsToVendor = table.Rows[i][28].ToString();
+                rfq.IAgree = bool.Parse(table.Rows[i][29].ToString());
+                rfq.DateFilledOut = DateTime.Parse(table.Rows[i][30].ToString());
+                rfq.Make = table.Rows[i][31].ToString();
+                rfq.ReasonNoQuote = table.Rows[i][32].ToString();
+                rfq.Weight = float.Parse(table.Rows[i][33].ToString());
+                rfq.UmWeight = table.Rows[i][34].ToString();
+                rfq.PartMaterial = table.Rows[i][35].ToString();
+                rfq.SifHeaderKey = long.Parse(table.Rows[i][36].ToString());
+                rfq.SentAttachmentsFolder = table.Rows[i][37].ToString();
+                rfq.InboxAttachmentsFolder = table.Rows[i][38].ToString();
+                rfq.MarketSectorName = table.Rows[i][39].ToString();
+                rfq.CreatedBy = table.Rows[i][40].ToString();
+                rfq.Cavitation = table.Rows[i][41].ToString();
+                rfq.Material = table.Rows[i][42].ToString();
+                rfq.LeadTimePPAPFAIR = table.Rows[i][43].ToString();
+                rfq.LeadTimeFirstProductionOrder = table.Rows[i][44].ToString();
+                rfq.LeadTimeNormalProductionOrders = table.Rows[i][45].ToString();
+                rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
+                rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
+                rfq.LastEmail = table.Rows[i][48].ToString();
+                recordset.Add(rfq);
+            }
+        }
+        return recordset;
+    }
     public IList<RFQ> readAll()
     {
         List<RFQ> recordset = new List<RFQ>();
@@ -469,7 +552,17 @@ public class RfqCRUD : ICRUD<RFQ>
         }
         return recordset;
     }
+    public DataTable viewRFQCountPerBOMLine()
+    {
+        DataTable result = new DataTable();
+        DM = connectionManager.getDataManager();
 
+        string query = "SELECT * FROM [viewRFQCountPerBOMDetail] ORDER BY [InquiryNumber], [TopPartNumber], [PartNumber]";
+        
+        result = DM.Execute_Query(query);
+        
+        return result;
+    }
     public bool update(RFQ entity)
     {
         ErrorOccur = false;

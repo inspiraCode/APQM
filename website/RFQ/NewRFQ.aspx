@@ -109,7 +109,7 @@
                                             Comments to Vendor
                                         </td>
                                         <td align="left">
-                                            <textarea id="txtCommentToVendor" bindTo="CommentsToVendor" style="height: 50px; width: 300px;" tabindex="13"></textarea>
+                                            <textarea id="txtCommentToVendor" bindTo="CommentsToVendor" style="height: 50px; width: 300px;" rows="2" cols="30" tabindex="13"></textarea>
                                         </td>
                                     </tr>
                                 </table>

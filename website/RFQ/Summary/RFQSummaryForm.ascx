@@ -405,7 +405,6 @@
     var RFQSummary;
     var dialogSelectRFQ;
     jQuery(document).ready(function () {
-        
 
         dialogSelectRFQ = jQuery("#popupSelectRFQ").dialog({ autoOpen: false,
             appendTo: jQuery('form:first'),
@@ -443,7 +442,6 @@
 
         jQuery("#divEAV").empty();
         jQuery('#divSummaryDetail').empty();
-
 
     }
     function loadEAUs() {

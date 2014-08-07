@@ -46,6 +46,16 @@ public partial class WebService_RFQ : System.Web.UI.Page
                 Response.Write(readRFQsByBOMLineID(long.Parse(Request["bomlineid"])));
                 Response.End();
                 return;
+            case "readbyuser":
+                Response.Clear();
+                Response.Write(readRFQsByUser(Request["user"]));
+                Response.End();
+                return;
+            case "readrfqcountperbomline":
+                Response.Clear();
+                Response.Write(readRFQCountPerBOMLine());
+                Response.End();
+                return;
         }
     }
 
@@ -562,6 +572,36 @@ public partial class WebService_RFQ : System.Web.UI.Page
         
         List<RFQ> result = new List<RFQ>();
         result = rfq_CRUD.readByBOMDetailKey(BOMLineID);
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "";
+        response.Result = result;
+        return JsonConvert.SerializeObject(response);
+    }
+    public string readRFQsByUser(string user)
+    {
+        GatewayResponse response = new GatewayResponse();
+        
+        List<RFQ> result = new List<RFQ>();
+        if (user.ToUpper() == "ALL")
+        {
+            result = (List<RFQ>) rfq_CRUD.readAll();
+        }
+        else
+        {
+            result = rfq_CRUD.readByUser(user);
+        }
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "";
+        response.Result = result;
+        return JsonConvert.SerializeObject(response);
+    }
+    public string readRFQCountPerBOMLine()
+    {
+        GatewayResponse response = new GatewayResponse();
+
+        System.Data.DataTable result = rfq_CRUD.viewRFQCountPerBOMLine();
 
         response.ErrorThrown = false;
         response.ResponseDescription = "";

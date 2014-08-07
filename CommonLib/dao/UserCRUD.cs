@@ -191,7 +191,36 @@ public class UserCRUD : ICRUD<User>
        
         return recordset;
     }
+    public List<User> getUsersWithRFQ()
+    {
+        List<User> result = new List<User>();
+        string query = "SELECT distinct UserProfile.UserName, UserProfile.Name, UserProfile.Email, " +
+                        "UserProfile.Phone1, UserProfile.Phone2 " +
+                        "FROM  UserProfile INNER JOIN " +
+                        "viewRFQHeader_ReadAll ON UserProfile.UserName = viewRFQHeader_ReadAll.[User] order by UserProfile.UserName";
 
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                User user = new User();
+                user.UserName = table.Rows[i][0].ToString();
+                user.Name = table.Rows[i][1].ToString();
+                user.Email = table.Rows[i][2].ToString();
+                user.Phone1 = table.Rows[i][3].ToString();
+                user.Phone2 = table.Rows[i][4].ToString();
+                
+                result.Add(user);
+            }
+        }
+        return result;
+    }
     public bool update(User entity)
     {
         ErrorOccur = false;
