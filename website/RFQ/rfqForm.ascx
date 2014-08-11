@@ -1176,20 +1176,22 @@
 
         retrieveValuesFromControls(); //For RFQ variable
 
-        if (strSaveMode == "finalize") {
-            for (var i = 0; i < RFQ.RfqEAV.length; i++) {
-                var currentEAV = RFQ.RfqEAV[i];
-                if (currentEAV.RfqDetail.length == 0) {
-                    jQuery('#scrim').show();
-                    var targetMessage = jQuery('#messageDisplayer').text('It is required at least one item. Be aware that Item Description is required, otherwise, the whole row wont be taken into account.').show();
-                    var fieldNeedsCorrection = jQuery("[rfqeau_id=" + currentEAV.Id + "]");
-                    var pos = fieldNeedsCorrection.offset();
-                    targetMessage.css('left', (pos.left - 9) + 'px');
-                    targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
-                    jQuery('html, body').animate({
-                        scrollTop: fieldNeedsCorrection.offset().top - 300
-                    }, 100);
-                    return;
+        if (RFQ.NoQuote == false) {
+            if (strSaveMode == "finalize") {
+                for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+                    var currentEAV = RFQ.RfqEAV[i];
+                    if (currentEAV.RfqDetail.length == 0) {
+                        jQuery('#scrim').show();
+                        var targetMessage = jQuery('#messageDisplayer').text('It is required at least one item. Be aware that Item Description is required, otherwise, the whole row wont be taken into account.').show();
+                        var fieldNeedsCorrection = jQuery("[rfqeau_id=" + currentEAV.Id + "]");
+                        var pos = fieldNeedsCorrection.offset();
+                        targetMessage.css('left', (pos.left - 9) + 'px');
+                        targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
+                        jQuery('html, body').animate({
+                            scrollTop: fieldNeedsCorrection.offset().top - 300
+                        }, 100);
+                        return;
+                    }
                 }
             }
         }

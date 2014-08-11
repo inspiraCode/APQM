@@ -12,10 +12,10 @@ C:\Users\apacheco\Documents\repositories\APQM\CommonLib\bin\Debug\BD_MNG.pdb
 C:\Users\apacheco\Documents\repositories\APQM\CommonLib\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\apacheco\Documents\repositories\APQM\CommonLib\obj\Debug\CommonLib.dll
 C:\Users\apacheco\Documents\repositories\APQM\CommonLib\obj\Debug\CommonLib.pdb
-C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.csprojResolveAssemblyReference.cache
 C:\gitRepositories\APQM\CommonLib\bin\Debug\CommonLib.dll
 C:\gitRepositories\APQM\CommonLib\bin\Debug\CommonLib.pdb
 C:\gitRepositories\APQM\CommonLib\bin\Debug\BD_MNG.dll
 C:\gitRepositories\APQM\CommonLib\bin\Debug\BD_MNG.pdb
+C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.csprojResolveAssemblyReference.cache
 C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.dll
 C:\gitRepositories\APQM\CommonLib\obj\Debug\CommonLib.pdb

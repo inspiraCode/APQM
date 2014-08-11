@@ -63,6 +63,7 @@
         @import '<%= this.ResolveUrl("~/Scripts/Alertify/alertify.default.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Handsontable/jquery.handsontable.full.css") %>';
+        @import '<%= this.ResolveUrl("~/Scripts/jQuery/Selectize/css/selectize.css") %>';
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js" type="text/javascript"></script>
@@ -131,6 +132,8 @@
         type="text/javascript"></script>
 
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Handsontable/jquery.handsontable.full.js") %>'
+        type="text/javascript"></script>
+    <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Selectize/js/selectize.js") %>'
         type="text/javascript"></script>
 </head>
 <body style="font-family: Tahoma; font-size: 12px;">

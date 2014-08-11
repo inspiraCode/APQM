@@ -10,13 +10,13 @@
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
     <br />
-    <div id="tabs" style="width:1700px">
+    <div id="tabs" style="border:0;">
         <ul>
             <li><a href="#tabs-1">All RFQs</a></li>
             <li><a href="#tabs-2">RFQs per BOM Lines</a></li>
         </ul>
         <div id="tabs-1" style="min-height: 400px;">
-            <div id="tab-1-content" style="display: none;width:1000px;">
+            <div id="tab-1-content" style="display: none;">
                 <div id="divFilterByUser">
                     <table cellspacing="0" align="left">
                         <tr>

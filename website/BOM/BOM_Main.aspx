@@ -293,11 +293,11 @@
         </div>
     </div>
     <div id="divDialog_EditBOM" title="BOM Edit" style="display: none; font-size: 9px;">
-        <div id="divEditBOMContainer" style="height: 420px; width: 960px; overflow-y: auto;
-            align: center;">
-            <div id="divEditBOM">
-            </div>
+        <%--<div id="divEditBOMContainer" style="height: 420px; width: 960px; overflow-y: auto;
+            align: center;">--%>
+        <div id="divEditBOM">
         </div>
+        <%--</div>--%>
         <br />
         <input type="button" id="btnOKBOMEdit" value="OK" onclick="on_ok_BOM_Edit();" style="width: 100px;
             float: right;" />
@@ -354,6 +354,25 @@
             </div>
         </div>
     </div>
+    <div id="divDialog_PartNumber" title="Part Number" style="display: none;">
+        <div id="divPartNumberContent">
+            <table>
+                <tr>
+                    <td>
+                        Part Number
+                    </td>
+                    <td>
+                        <div id="divPartNumber">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <input type="button" id="btnCancelPartNumber" onclick="on_cancel_PartNumber();return false;"
+            value="Cancel" style="width: 100px; float: right;" />
+        <input type="button" id="btnOKPartNumber" value="OK" style="width: 100px; float: right;" />
+    </div>
     <script type="text/javascript">
         var popupRFQScreen = null;
         jQuery(document).ready(function () {
@@ -361,9 +380,9 @@
             jQuery('#divImgEmail').css("top", (jQuery(window).height() / 2) - (jQuery('#divImgEmail').outerHeight() / 2));
             jQuery('#divImgEmail').css("left", (jQuery(window).width() / 2) - (jQuery('#divImgEmail').outerWidth() / 2));
             load();
-            //            jQuery('#divDialog_EditBOM').on('shown.bs.modal', function () {
-            //                jQuery(document).off('focusin.bs.modal');
-            //            });
+            jQuery('#divDialog_EditBOM').on('shown.bs.modal', function () {
+                jQuery(document).off('focusin.bs.modal');
+            });
 
             jQuery("#btnReportAllRFQs").click(function () {
                 window.open("../HTMLReports/SalesReport_AllRFQs.aspx?BOM=" + BOM.Id);
@@ -1177,7 +1196,8 @@
         function on_btnEditBOM_click() {
             jQuery("#divDialog_EditBOM").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1000, height: 520, modal: false,
+                width: 1020, height: 550, modal: false,
+                resizable:false,
                 closeOnEscape: false,
                 close: function (event, ui) {
                     var oneWasEdited = false;
@@ -1208,26 +1228,33 @@
                     }
                 },
                 resize: function (event, ui) {
-                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
-                    divEditBOMContainer.width(ui.size.width - 40);
-                    divEditBOMContainer.height(ui.size.height - 95);
+//                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
+//                    divEditBOMContainer.width(ui.size.width - 40);
+//                    divEditBOMContainer.height(ui.size.height - 95);
                 },
                 open: function () {
-                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
-                    divEditBOMContainer.width(jQuery(this).width() - 30);
-                    divEditBOMContainer.height(jQuery(this).height() - 65);
+//                    var divEditBOMContainer = jQuery("#divEditBOMContainer");
+//                    divEditBOMContainer.width(jQuery(this).width() - 30);
+//                    divEditBOMContainer.height(jQuery(this).height() - 65);
                 }
             });
 
             var bomContent = BOM.BomDetail;
+            for(var i=0; i<BOM.BomDetail.length;i++){
+                BOM.BomDetail[i].PartNumberCell = '<input type="button" onclick="on_partNumber_click(' + i + ');return false;" />' + BOM.BomDetail[i].PartNumber;
+            }
 
             jQuery("#divEditBOM").handsontable({
                 data: bomContent,
-                width: 1850,
-                colWidths: [70, 70, 60, 90, 90, 90, 90, 90, 70, 200, 50, 80, 100, 80, 70, 150, 70, 90, 70, 110],
+                //width: 1850,
+                width: 1000,
+                height:450,
+                colWidths: [70, 70, 60, 130, 90, 90, 90, 90, 70, 200, 50, 80, 100, 80, 70, 150, 70, 90, 70, 110],
                 minRows: 20,
                 minSpareRows: 1,
+                fixedColumnsLeft:4,
                 rowHeaders: true,
+                manualColumnResize: true,
                 colHeaders: ['Assigned To', 'Status', 'Sales LN', 'Part Number',
                             'Capsonic PN', 'Customer PN', 'Manufacture PN', 'Supplier PN', 'Comm Code',
                             'Material', 'UOM', 'Cost', 'Vendor Quote Est', 'Qty', 'Cap Com Assm', 'Purchasing Comments',
@@ -1247,7 +1274,9 @@
                                 readOnly: true
                             },
                             {
-                                data: "PartNumber"
+                                data: "PartNumberCell",
+                                readOnly: true,
+                                renderer: "html"
                             },
                             {
                                 data: "CapsonicPN"
@@ -1329,7 +1358,46 @@
                 }
             });
         }
+        var selectizePartNumber = null;
+        function on_partNumber_click(indexLine){
 
+             var strPartNumberSelect = '<select id="cboPartNumbers" style="width: 300px;">';
+//            for (var i = 0; i < Items.length; i++) {
+//                var current = Items[i];
+//                strPartNumberSelect += '<option value="' + current.Id + '">' + current.PartNumber + '</option>';
+//            }
+            strPartNumberSelect += '</select>';
+
+            jQuery("#divPartNumber").html(strPartNumberSelect);
+            selectizePartNumber = jQuery("#cboPartNumbers").selectize({
+                create:true,
+                options:Items,
+                valueField: 'Id',
+                labelField:'PartNumber',
+                searchField: 'PartNumber',
+                openOnFocus:false
+            });
+            jQuery("#btnOKPartNumber").unbind("click").click(function(){
+                on_ok_PartNumber(indexLine, jQuery("#cboPartNumbers").val());
+            });
+            jQuery("#divDialog_PartNumber").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 600, height: 300, modal: true,
+                resizable:false,
+                closeOnEscape: true
+            });
+        }
+        function on_ok_PartNumber(indexLine, value){
+            selectizePartNumber = selectizePartNumber[0].selectize;
+            BOM.BomDetail[indexLine].internalAction = "For Edit";
+            BOM.BomDetail[indexLine].PartNumber = value;
+            BOM.BomDetail[indexLine].PartNumberCell = '<input type="button" onclick="on_partNumber_click(' + indexLine + ');return false;" />' + BOM.BomDetail[indexLine].PartNumber;
+            jQuery("#divDialog_PartNumber").dialog("close");
+            jQuery("#divEditBOM").handsontable("render");
+        }
+        function on_cancel_PartNumber(){
+            jQuery("#divDialog_PartNumber").dialog("close");
+        }
         function on_unselect_all_lines() {
             jQuery('[type="checkbox"]').prop('checked', false)
             for (var i = 0; i < BOM.BomDetail.length; i++) {
@@ -1436,9 +1504,19 @@
         }
 
         var Suppliers = [];
+        var Items = [];
+
         function getSuppliers() {
             jQuery.getJSON('<%= ResolveUrl("~/WebService/Catalogs.aspx") %>?cmd=read&catalog=supplier', function (result) {
                 Suppliers = result;
+                readCallBack();
+            });
+            return true;
+        }
+
+        function getItems() {
+            jQuery.getJSON('<%= ResolveUrl("~/WebService/Catalogs.aspx") %>?cmd=read&catalog=item', function (result) {
+                Items = result;
                 readCallBack();
             });
             return true;
@@ -1452,13 +1530,24 @@
             }
             return null;
         }
+
+        function getItemByID(idItem) {
+            for (var i = 0; i < Items.length; i++) {
+                if (Items[i].Id == idItem) {
+                    return Items[i];
+                }
+            }
+            return null;
+        }
+
         function getResources() {
             getSuppliers();
+            getItems();
         }
         var readCounter = 0;
         function readCallBack() {
             readCounter++;
-            if (readCounter == 1) {
+            if (readCounter == 2) {
                 readCounter = 0;
                 jQuery("#divImgEmail").hide();
             }

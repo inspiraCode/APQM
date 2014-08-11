@@ -44,6 +44,11 @@ public partial class WebService_Catalogs : System.Web.UI.Page
                             Response.Write(getUsers());
                             Response.End();
                             return;
+                        case "item": 
+                            Response.Clear();
+                            Response.Write(getItems());
+                            Response.End();
+                            return;
                     }
                 }
                 return;
@@ -76,5 +81,12 @@ public partial class WebService_Catalogs : System.Web.UI.Page
         List<User> listUsers = (List<User>)user_CRUD.getUsersWithRFQ();
 
         return JsonConvert.SerializeObject(listUsers);
+    }
+    private string getItems()
+    {
+        itemCRUD item_CRUD = new itemCRUD();
+        List<Item> listItems = (List<Item>) item_CRUD.readAll();
+
+        return JsonConvert.SerializeObject(listItems);
     }
 }

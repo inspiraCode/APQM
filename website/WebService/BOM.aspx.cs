@@ -81,7 +81,7 @@ public partial class WebService_BOM : System.Web.UI.Page
             if (item == null)
             {
                 item = new Item();
-                item.PartNumber = bomLine.PartNumber;
+                item.PartNumber = bomLine.PartNumber.Trim();
                 item.Cost = bomLine.Cost;
                 item.Um = bomLine.Um;
                 item.Material = bomLine.Material;
@@ -101,7 +101,7 @@ public partial class WebService_BOM : System.Web.UI.Page
             }
             else
             {
-                item.PartNumber = bomLine.PartNumber;
+                item.PartNumber = bomLine.PartNumber.Trim();
                 item.Cost = bomLine.Cost;
                 item.Um = bomLine.Um;
                 item.Material = bomLine.Material;
@@ -115,6 +115,7 @@ public partial class WebService_BOM : System.Web.UI.Page
 
             if (bomLine.Id > 0)
             {
+                bomLine.ItemMasterkey = item.Id;
                 if (!bomDetail_CRUD.update(bomLine, ref DM))
                 {
                     return "ERROR:" + bomDetail_CRUD.ErrorMessage;
