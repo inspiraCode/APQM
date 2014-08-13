@@ -49,6 +49,11 @@ public partial class WebService_Catalogs : System.Web.UI.Page
                             Response.Write(getItems());
                             Response.End();
                             return;
+                        case "um":
+                            Response.Clear();
+                            Response.Write(getUMs());
+                            Response.End();
+                            return;
                     }
                 }
                 return;
@@ -88,5 +93,15 @@ public partial class WebService_Catalogs : System.Web.UI.Page
         List<Item> listItems = (List<Item>) item_CRUD.readAll();
 
         return JsonConvert.SerializeObject(listItems);
+    }
+    private string getUMs()
+    {
+        List<UM> result = new List<UM>();
+        List<string> UMs = new List<string> { "each", "lb", "in", "ft", "yd", "mm", "cm", "m", "g", "kg", "oz", "lt", "gal", "cubic meter" };
+        foreach(string umName in UMs){
+            result.Add(new UM(){Um=umName});
+        }
+        
+        return JsonConvert.SerializeObject(result);
     }
 }

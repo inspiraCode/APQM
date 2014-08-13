@@ -41,8 +41,7 @@
                             </td>
                         </tr>
                         <tr style="height: 70px;">
-                            <td>
-                                &nbsp;
+                            <td style="text-align:right;">
                                 <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                                     display: inline-block; width: 170px; height: 170px; overflow-y: auto;">
                                     <div id="divEAUs">

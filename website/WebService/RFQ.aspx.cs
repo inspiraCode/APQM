@@ -240,7 +240,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                                 {
                                     DM.RollBack();
                                     response.ErrorThrown = true;
-                                    response.ResponseDescription = "ERROR: Could not send email to: " + supplier.ContactEmail.ToString();
+                                    response.ResponseDescription = "ERROR: Could not send email to: " + supplier.ContactEmail.ToString() + "; " + ex.Message;
                                     return JsonConvert.SerializeObject(response);
                                 }
                             }

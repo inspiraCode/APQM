@@ -129,6 +129,9 @@ public class BOMDetail
     private string supplierPN = "";
     private string commCode = "";
     private int sequence = 0;
+    private string attachmentsFolder = "";
+    private List<Attachment> attachmentsList;
+    
     private List<RFQ> rFQList;
 
     public string CapsonicPN
@@ -287,6 +290,17 @@ public class BOMDetail
         get { return rFQList; }
         set { rFQList = value; }
     }
+    public string AttachmentsFolder
+    {
+        get { return Id.ToString(); }
+        set { attachmentsFolder = value; }
+    }
+    public List<Attachment> AttachmentsList
+    {
+        get { return attachmentsList; }
+        set { attachmentsList = value; }
+    }
+
     public override string ToString()
     {
         return "{Description: " + this.description + " Quantity: " + this.qty + " Cost: " + this.cost + " Status:" + salesStatus + "}";

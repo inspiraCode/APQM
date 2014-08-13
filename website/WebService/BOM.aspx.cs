@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using System.IO;
+using System.Configuration;
 
 public partial class WebService_BOM : System.Web.UI.Page
 {
@@ -18,6 +19,13 @@ public partial class WebService_BOM : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
+
+        if (Request["ATTACHMENTSFOLDER"] != null)
+        {
+            if (getPostedAttachments()) return;
+        }
+
         if (Request["cmd"] == null)
             return;
 
@@ -38,7 +46,63 @@ public partial class WebService_BOM : System.Web.UI.Page
             case "delete":
                 deleteBOMLinebyID(long.Parse(Request["id"]));
                 return;
+            case "deleteAttachment":
+                deleteAttachment(Request["Directory"], Request["FileName"], "BOMLineAttachments");
+                return;
+            case "downloadAttachment":
+                downloadAttachment(Request["Directory"], Request["FileName"], "BOMLineAttachments");
+                return;
         }
+    }
+    public bool getPostedAttachments()
+    {
+        HttpPostedFile file = Request.Files["myfile"];
+        HttpFileCollection fileCollection = Request.Files;
+        string strAppSettingsFolder = "BOMLineAttachments";
+        string folderName = Request["ATTACHMENTSFOLDER"];
+
+        if (file != null && strAppSettingsFolder != null && strAppSettingsFolder.Trim() != "" && folderName != null && folderName.Trim() != "")
+        {
+            string fileName = file.FileName;
+            HttpPostedFile postedFile = file;
+
+            string baseAttachmentsPath = ConfigurationManager.AppSettings[strAppSettingsFolder];
+
+            string currentPathAttachments = baseAttachmentsPath + folderName;
+
+            if (!Directory.Exists(currentPathAttachments))
+            {
+                Directory.CreateDirectory(currentPathAttachments);
+            }
+            currentPathAttachments += @"\";
+
+            postedFile.SaveAs(currentPathAttachments + Path.GetFileName(postedFile.FileName));
+
+            Response.Clear();
+            Response.Write("[{\"FolderName\":\"" + folderName + "\"}," + JsonConvert.SerializeObject(getAttachmentsFromFolder(folderName, strAppSettingsFolder)) + "]");
+            Response.End();
+            return true;
+        }
+        return false;
+    }
+    public void downloadAttachment(string strDirectory, string strFileName, string appSettingsFolder)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings[appSettingsFolder];
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        Response.AddHeader("Content-Disposition", "attachment;filename=" + file.Name);
+        Response.TransmitFile(filePath);
+        Response.End();
+    }
+    public void deleteAttachment(string strDirectory, string strFileName, string appSettingsFolder)
+    {
+        string baseAttachmentsPath = ConfigurationManager.AppSettings[appSettingsFolder];
+        string filePath = baseAttachmentsPath + strDirectory + "\\" + strFileName;
+        FileInfo file = new FileInfo(filePath);
+        file.Delete();
+        Response.Clear();
+        Response.Write("{\"Result\":\"" + "Attachment deleted succesfully." + "\"}");
+        Response.End();
     }
     private string getBOMbyID(long bomID)
     {
@@ -48,14 +112,32 @@ public partial class WebService_BOM : System.Web.UI.Page
 
         bomHeader.BomDetail = bomDetail_CRUD.readByParentID(bomID);
 
-        //foreach (BOMDetail bomLine in bomHeader.BomDetail)
-        //{
-        //    bomLine.RFQList = rfq_CRUD.readByBOMDetailKey(bomLine.Id);
-        //}
+
+        foreach (BOMDetail bomLine in bomHeader.BomDetail)
+        {
+            bomLine.AttachmentsList = getAttachmentsFromFolder(bomLine.AttachmentsFolder, "BOMLineAttachments");
+        }
 
         bomHeader.SifDetail = sif_detail_CRUD.readByParentID(bomHeader.SifId);
 
         return JsonConvert.SerializeObject(bomHeader);
+    }
+    public List<Attachment> getAttachmentsFromFolder(string folderName, string appSettingsFolder)
+    {
+        List<Attachment> attachmentsList = new List<Attachment>();
+        string baseAttachmentsPath = ConfigurationManager.AppSettings[appSettingsFolder];
+        if (folderName != "" && Directory.Exists(baseAttachmentsPath + folderName.Trim()))
+        {
+            DirectoryInfo directory = new DirectoryInfo(baseAttachmentsPath + folderName);
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                Attachment attachment = new Attachment();
+                attachment.FileName = file.Name;
+                attachment.Directory = folderName;
+                attachmentsList.Add(attachment);
+            }
+        }
+        return attachmentsList;
     }
     private string saveBOM()
     {

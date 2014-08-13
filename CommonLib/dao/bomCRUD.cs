@@ -482,6 +482,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
             
             result = DM.Execute_StoreProcedure("BOMDetail_NewDetail", true);
 
@@ -527,6 +528,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_NewDetail", true);
 
@@ -571,6 +573,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@SupplierPN", entity.SupplierPN);
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("BOMDetail_NewDetail", true);
 
@@ -593,7 +596,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query =  "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, " +
                         "LinePosition, SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, " +
                         "VendorQuoteEst, SalesComments, PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence, AttachmentsFolder " +
                         "FROM BOMDetail WHERE (BOMDetailKey = @key)";
 
         DataTable table = new DataTable();
@@ -631,6 +634,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.SupplierPN = table.Rows[0][21].ToString();
                 bomDetail.CommCode = table.Rows[0][22].ToString();
                 bomDetail.Sequence = int.Parse(table.Rows[0][23].ToString());
+                bomDetail.AttachmentsFolder = table.Rows[0][24].ToString();
                 bomDetail.internalAction = bomDetail.Status;
 
                 sqlConnection.Dispose();
@@ -646,7 +650,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], [Description], PartNumber, " +
                         "LinePosition, SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, " +
                         "Um, VendorQuoteEst, SalesComments, PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence, AttachmentsFolder " +
                         "FROM viewBOMDetail_ReadAll WHERE (BOMHeaderKey = @key) ORDER BY Sequence, LinePosition";
 
         DataTable table = new DataTable();
@@ -686,6 +690,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
                 bomDetail.SupplierPN = table.Rows[i][22].ToString();
                 bomDetail.CommCode = table.Rows[i][23].ToString();
                 bomDetail.Sequence = int.Parse(table.Rows[i][24].ToString());
+                bomDetail.AttachmentsFolder = table.Rows[i][25].ToString();
                 bomDetail.internalAction = bomDetail.Status;
 
                 recordset.Add(bomDetail);
@@ -702,7 +707,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         string query = "SELECT BOMDetailKey, BOMHeaderKey, ItemMasterKey, Qty, Cost, [Status], Description, LinePosition, " +
                         "SalesStatus, [User], PurchasingStatus, DirectedBuy, Material, Um, VendorQuoteEst, SalesComments, " +
                         "PurchasingComments, CapComAssm, " +
-                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence " +
+                        "CapsonicPN, CustomerPN, ManufacturePN, SupplierPN, CommCode, Sequence, AttachmentsFolder " +
                         "FROM BOMDetail ORDER BY Sequence, LinePosition";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -762,6 +767,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             bomDetail.SupplierPN = table.Rows[i][21].ToString();
             bomDetail.CommCode = table.Rows[i][22].ToString();
             bomDetail.Sequence = int.Parse(table.Rows[i][23].ToString());
+            bomDetail.AttachmentsFolder = table.Rows[i][24].ToString();
             bomDetail.internalAction = bomDetail.Status;
 
             recordset.Add(bomDetail);
@@ -801,6 +807,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
             DM.Load_SP_Parameters("@sys_active", true.ToString());
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             result = DM.Execute_StoreProcedure("BOMDetail_EditDetail", true);
 
@@ -848,6 +855,7 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
             DM.Load_SP_Parameters("@CommCode", entity.CommCode);
             DM.Load_SP_Parameters("@sys_active", true.ToString());
             DM.Load_SP_Parameters("@Sequence", entity.Sequence.ToString());
+            DM.Load_SP_Parameters("@AttachmentsFolder", entity.AttachmentsFolder);
 
             result = DM.Execute_StoreProcedure_Open_Conn("BOMDetail_EditDetail", true);
 
