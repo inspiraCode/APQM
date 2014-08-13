@@ -190,10 +190,10 @@
                 <th class="camposSinBordes" style="width: 73px; min-width: 73px; max-width: 73px;">
                     Assigned To
                 </th>
-                <th class="camposSinBordes" style="width: 55px; min-width: 55px; max-width: 55px;">
+                <th class="camposSinBordes" style="width: 75px; min-width: 75px; max-width: 75px;">
                     Status
                 </th>
-                <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;">
+                <th class="camposSinBordes" style="width: 72px; min-width: 72px; max-width: 72px;">
                     Sales LN
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 132px; min-width: 132px; max-width: 132px;">
@@ -225,7 +225,7 @@
                 <th class="camposSinBordes itemFields" style="width: 68px; min-width: 68px; max-width: 68px;">
                     UM
                 </th>
-                <th class="camposSinBordes itemFields" style="width: 52px; min-width: 52px; max-width: 52px;">
+                <th class="camposSinBordes itemFields" style="width: 60px; min-width: 60px; max-width: 60px;">
                     Cost
                 </th>
                 <th class="camposSinBordes" style="width: 70px; min-width: 70px; max-width: 70px;
@@ -358,7 +358,7 @@
     </div>
     <div id="divDialog_PartNumber" title="Part Number" style="display: none;">
         <div id="divPartNumberContent">
-            <table style="width:300px;">
+            <table style="width: 300px;">
                 <tr>
                     <td>
                         Part Number
@@ -376,7 +376,7 @@
         <input type="button" id="btnOKPartNumber" value="OK" style="width: 100px; float: right;" />
     </div>
     <div id="divDialog_EditOrCreate_BOMLine" title="BOM Component" style="display: none;">
-        <div id="divDialog_EditOrCreate_Content" style="height:500px;">
+        <div id="divDialog_EditOrCreate_Content" style="height: 500px;">
             <table>
                 <tr>
                     <td style="vertical-align: top;">
@@ -524,7 +524,7 @@
                                     <b>Purchasing Comments</b>
                                 </td>
                                 <td align="left">
-                                    <textarea id="txtPurchasingCommentsPopup" rows="3" cols="40" ></textarea>
+                                    <textarea id="txtPurchasingCommentsPopup" rows="3" cols="40"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -561,10 +561,10 @@
                                 </td>
                             </tr>
                             <tr>
-                            <tr style="height:30px;">
-                            </tr>
-                            <td colspan="2">
-                            <div>
+                                <tr style="height: 30px;">
+                                </tr>
+                                <td colspan="2">
+                                    <div>
                                         Attachments (less than 4MB per file):<br />
                                         <div id="uploadZone">
                                             Upload
@@ -575,7 +575,7 @@
                                             </div>
                                         </div>
                                     </div>
-                            </td>
+                                </td>
                             </tr>
                         </table>
                     </td>
@@ -608,7 +608,11 @@
             });
 
             jQuery("#btnNewRFQ").click(function () {
-                popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
+                if (jQuery("h3 input:checkbox:checked").length > 0) {
+                    popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
+                } else {
+                    alertify.log("You have not selected any component to quote.");
+                }
             });
 
             jQuery("#btnPrintBOM").click(function () {
@@ -839,10 +843,10 @@
                 strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
 '    <input type="checkbox" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
-'    <input type="image" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" ' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" ' +
 '    onclick="deleteBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
-'    <input type="image" src="../pics/edit-icon.png" style="height:20px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
-'    <input type="image" src="../pics/FilterIcon.png" style="height:20px;float: left;position: absolute; left: 120px;" ' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/edit-icon.png" style="height:20px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/FilterIcon.png" style="height:20px;float: left;position: absolute; left: 120px;" ' +
 '    onclick="openRFQSummary(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
 '    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
 '    onclick="takeBOMLine();" style="float: left; position: absolute;left: 150px;top: 8px;">Take</label> ' +
@@ -1044,7 +1048,7 @@
 
 
             clickeableInHeader();
-            hideCheckboxesForUnsavedLines();
+            hideLineButtonsForUnsavedLines();
 
         }
 
@@ -1052,8 +1056,8 @@
             window.open("../RFQ/Summary/RFQSummary_Main.aspx?bomline=" + iBOMLineID);
         }
 
-        function hideCheckboxesForUnsavedLines() {
-            jQuery('input:checkbox').css("visibility", "visible");
+        function hideLineButtonsForUnsavedLines() {
+            jQuery('[internalAction]').css("visibility", "visible");
             jQuery('[internalAction="ForAdd"],[internalAction="ForEdit"]').css("visibility", "hidden");
         }
 
@@ -1113,7 +1117,7 @@
         //        }
 
         function getRFQsDataTableByBOMLine(bomLine) {
-            var strRFQDetailList = '<table class="display dataTable" parentID=' + bomLine.Id + '><thead>';
+            var strRFQDetailList = '<table class="display dataTable" style="text-align: center;" parentID=' + bomLine.Id + '><thead>';
             strRFQDetailList += '<tr><th style="width: 30px;min-width: 30px;max-width: 30px;"></th><th>Created By</th><th>Drawing Rev</th><th>RFQ Number</th><th>Due Date</th>' +
             //'<th>Component Part Number</th>' +
                 '<th>Status</th><th>Vendor</th><th>Last Sent To Vendor</th><th>Last Email</th></tr></thead><tbody></table>';
@@ -1365,84 +1369,87 @@
                 openOnFocus: false
             });
 
-            selectizeUMCreateEdit =jQuery(selectizeUM)[0].selectize;
+            selectizeUMCreateEdit = jQuery(selectizeUM)[0].selectize;
         }
         function updateBOMLineByID(iBOMLineID, src) {
+            try {
+                populatePartNumberPopup();
+                populateUMPopup();
 
-            populatePartNumberPopup();
-            populateUMPopup();
+                var index = jQuery(src).parents("[bomLineIndex]").attr("bomLineIndex");
+                var oBOMLineToUpdate = BOM.BomDetail[index];
+                if (oBOMLineToUpdate != null) {
 
-            var index = jQuery(src).parents("[bomLineIndex]").attr("bomLineIndex");
-            var oBOMLineToUpdate = BOM.BomDetail[index];
-            if (oBOMLineToUpdate != null) {
+                    jQuery("#lblLineNumberPopup").text((Number(oBOMLineToUpdate.Sequence) + 1));
+                    jQuery("#lblAssignedToPopup").text(oBOMLineToUpdate.User);
+                    jQuery("#lblStatusPopup").text(oBOMLineToUpdate.Status);
+                    jQuery("#lblSalesLNPopup").text(oBOMLineToUpdate.LinePosition);
+                    selectizePartNumberCreateEdit.setValue(oBOMLineToUpdate.ItemMasterkey);
+                    jQuery("#txtCapsonicPNPopup").val(oBOMLineToUpdate.CapsonicPN);
+                    jQuery("#txtManufacturePNPopup").val(oBOMLineToUpdate.ManufacturePN);
+                    jQuery("#txtSupplierPNPopup").val(oBOMLineToUpdate.SupplierPN);
+                    jQuery("#txtCustomerPNPopup").val(oBOMLineToUpdate.CustomerPN);
+                    jQuery("#txtCommCodePopup").val(oBOMLineToUpdate.CommCode);
+                    jQuery("#txtMaterialPopup").val(oBOMLineToUpdate.Material);
+                    selectizeUMCreateEdit.addOption({ Um: oBOMLineToUpdate.Um.toLowerCase() });
+                    selectizeUMCreateEdit.setValue(oBOMLineToUpdate.Um.toLowerCase());
+                    jQuery("#txtCostPopup").val(oBOMLineToUpdate.Cost);
+                    jQuery("#txtVendorQuoteEstPopup").val(oBOMLineToUpdate.VendorQuoteEst);
+                    jQuery("#txtQtyPopup").val(oBOMLineToUpdate.Qty);
+                    jQuery("#txtCapComAssmPopup").val(oBOMLineToUpdate.CapComAssm);
+                    jQuery("#txtPurchasingCommentsPopup").val(oBOMLineToUpdate.PurchasingComments);
+                    jQuery("#lblSalesStatusPopup").text(oBOMLineToUpdate.SalesStatus);
+                    jQuery("#lblSalesCommentsPopup").text(oBOMLineToUpdate.SalesComments);
+                    jQuery("#chkDirectedBuyPopup").prop('checked', oBOMLineToUpdate.DirectedBuy);
 
-                jQuery("#lblLineNumberPopup").text((Number(oBOMLineToUpdate.Sequence) + 1));
-                jQuery("#lblAssignedToPopup").text(oBOMLineToUpdate.User);
-                jQuery("#lblStatusPopup").text(oBOMLineToUpdate.Status);
-                jQuery("#lblSalesLNPopup").text(oBOMLineToUpdate.LinePosition);
-                selectizePartNumberCreateEdit.setValue(oBOMLineToUpdate.ItemMasterkey);
-                jQuery("#txtCapsonicPNPopup").val(oBOMLineToUpdate.CapsonicPN);
-                jQuery("#txtManufacturePNPopup").val(oBOMLineToUpdate.ManufacturePN);
-                jQuery("#txtSupplierPNPopup").val(oBOMLineToUpdate.SupplierPN);
-                jQuery("#txtCustomerPNPopup").val(oBOMLineToUpdate.CustomerPN);
-                jQuery("#txtCommCodePopup").val(oBOMLineToUpdate.CommCode);
-                jQuery("#txtMaterialPopup").val(oBOMLineToUpdate.Material);
-                selectizeUMCreateEdit.addOption({ Um: oBOMLineToUpdate.Um.toLowerCase() });
-                selectizeUMCreateEdit.setValue(oBOMLineToUpdate.Um.toLowerCase());
-                jQuery("#txtCostPopup").val(oBOMLineToUpdate.Cost);
-                jQuery("#txtVendorQuoteEstPopup").val(oBOMLineToUpdate.VendorQuoteEst);
-                jQuery("#txtQtyPopup").val(oBOMLineToUpdate.Qty);
-                jQuery("#txtCapComAssmPopup").val(oBOMLineToUpdate.CapComAssm);
-                jQuery("#txtPurchasingCommentsPopup").val(oBOMLineToUpdate.PurchasingComments);
-                jQuery("#lblSalesStatusPopup").text(oBOMLineToUpdate.SalesStatus);
-                jQuery("#lblSalesCommentsPopup").text(oBOMLineToUpdate.SalesComments);
-                jQuery("#chkDirectedBuyPopup").prop('checked', oBOMLineToUpdate.DirectedBuy);
+                    jQuery("#btnOKEditOrCreateBOMLine").unbind("click").click(function () { saveOrCreateBOMLine(oBOMLineToUpdate); });
 
-                jQuery("#btnOKEditOrCreateBOMLine").unbind("click").click(function () { saveOrCreateBOMLine(oBOMLineToUpdate); });
+                    var urlAttachments = '<%= ResolveUrl("~/WebService/BOM.aspx") %>';
 
-                var urlAttachments = '<%= ResolveUrl("~/WebService/BOM.aspx") %>';
-
-                jQuery(".ajax-upload-dragdrop").remove();
-                jQuery("#divAttachmentsPopup").empty();
-                loadAttachments(oBOMLineToUpdate);
-                jQuery("#uploadZone").uploadFile({
-                    url: urlAttachments,
-                    multiple: false,
-                    fileName: "myfile",
-                    uploadButtonClass: "ajax-file-upload-green",
-                    maxFileSize: 4194304,
-                    showStatusAfterSuccess: false,
-                    showAbort: false,
-                    showDone: false,
-                    onError: function (files, status, errMsg) {
-                        //files: list of files
-                        //status: error status
-                        //errMsg: error message
-                        alertify.alert("Error: " + errMsg);
-                    },
-                    onSuccess: function (files, data, xhr) {
-                        var resp = jQuery.parseJSON(data);
-                        if (resp.length == 2) {
-                            oBOMLineToUpdate.AttachmentsFolder = resp[0].FolderName;
-                            oBOMLineToUpdate.AttachmentsList = resp[1];
-                            jQuery("#divAttachmentsPopup").empty();
-                            loadAttachments(oBOMLineToUpdate);
+                    jQuery(".ajax-upload-dragdrop").remove();
+                    jQuery("#divAttachmentsPopup").empty();
+                    loadAttachments(oBOMLineToUpdate);
+                    jQuery("#uploadZone").uploadFile({
+                        url: urlAttachments,
+                        multiple: false,
+                        fileName: "myfile",
+                        uploadButtonClass: "ajax-file-upload-green",
+                        maxFileSize: 4194304,
+                        showStatusAfterSuccess: false,
+                        showAbort: false,
+                        showDone: false,
+                        onError: function (files, status, errMsg) {
+                            //files: list of files
+                            //status: error status
+                            //errMsg: error message
+                            alertify.alert("Error: " + errMsg);
+                        },
+                        onSuccess: function (files, data, xhr) {
+                            var resp = jQuery.parseJSON(data);
+                            if (resp.length == 2) {
+                                oBOMLineToUpdate.AttachmentsFolder = resp[0].FolderName;
+                                oBOMLineToUpdate.AttachmentsList = resp[1];
+                                jQuery("#divAttachmentsPopup").empty();
+                                loadAttachments(oBOMLineToUpdate);
+                            }
+                        },
+                        onSubmit: function (a, b, c, d) {
+                            this.url = urlAttachments + "?ATTACHMENTSFOLDER=" + oBOMLineToUpdate.Id;
                         }
-                    },
-                    onSubmit: function (a, b, c, d) {
-                        this.url = urlAttachments + "?ATTACHMENTSFOLDER=" + oBOMLineToUpdate.Id;
-                    }
-                });
+                    });
 
-                loadAttachments(oBOMLineToUpdate);
+                    loadAttachments(oBOMLineToUpdate);
 
-                jQuery("#divDialog_EditOrCreate_BOMLine").dialog({ autoOpen: true,
-                    appendTo: jQuery('form:first'),
-                    width: 900, modal: true, closeOnEscape: false
-                });
+                    jQuery("#divDialog_EditOrCreate_BOMLine").dialog({ autoOpen: true,
+                        appendTo: jQuery('form:first'),
+                        width: 900, modal: true, closeOnEscape: false
+                    });
 
-            } else {
-                alertify.alert("An error has occurried. Could not find BOM Line to update.");
+                } else {
+                    alertify.alert("An error has occurried. Could not find BOM Line to update.");
+                }
+            } catch (e) {
+                alertify.alert("An error has occurried: " + e.message);
             }
         }
         function loadAttachments(oBOMLine) {
@@ -1511,7 +1518,7 @@
             oBOMLineToSave.CustomerPN = jQuery("#txtCustomerPNPopup").val();
             oBOMLineToSave.CommCode = jQuery("#txtCommCodePopup").val();
             oBOMLineToSave.Material = jQuery("#txtMaterialPopup").val();
-            var oUM = null;// getItemByID(selectizeUMCreateEdit.getValue());
+            var oUM = null; // getItemByID(selectizeUMCreateEdit.getValue());
             if (oUM != null) {
                 oBOMLineToSave.Um = oUM.UM;
             }
@@ -1867,29 +1874,37 @@
         }
 
         function on_noQuote_click() {
-            var someOneEdited = false;
-            for (var i = 0; i < BOM.BomDetail.length; i++) {
-                var current = BOM.BomDetail[i];
-                if (current.selected) {
-                    current.internalAction = "For Edit";
-                    current.Status = "No Quote";
-                    someOneEdited = true;
+            if (jQuery("h3 input:checkbox:checked").length > 0) {
+                var someOneEdited = false;
+                for (var i = 0; i < BOM.BomDetail.length; i++) {
+                    var current = BOM.BomDetail[i];
+                    if (current.selected) {
+                        current.internalAction = "For Edit";
+                        current.Status = "No Quote";
+                        someOneEdited = true;
+                    }
                 }
+                if (someOneEdited) refreshDetail();
+            } else {
+                alertify.log("You have not selected any item to No Quote.");
             }
-            if (someOneEdited) refreshDetail();
         }
 
         function on_Quote_click() {
-            var someOneEdited = false;
-            for (var i = 0; i < BOM.BomDetail.length; i++) {
-                var current = BOM.BomDetail[i];
-                if (current.selected) {
-                    current.internalAction = "For Edit";
-                    current.Status = "In Progress";
-                    someOneEdited = true;
+            if (jQuery("h3 input:checkbox:checked").length > 0) {
+                var someOneEdited = false;
+                for (var i = 0; i < BOM.BomDetail.length; i++) {
+                    var current = BOM.BomDetail[i];
+                    if (current.selected) {
+                        current.internalAction = "For Edit";
+                        current.Status = "In Progress";
+                        someOneEdited = true;
+                    }
                 }
+                if (someOneEdited) refreshDetail();
+            } else {
+                alertify.log("You have not selected any item to Quote.");
             }
-            if (someOneEdited) refreshDetail();
         }
 
         function afterCreateOrSendRFQ(response) {

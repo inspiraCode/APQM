@@ -2,21 +2,37 @@
     CodeFile="NewRFQ.aspx.cs" Inherits="RFQ_NewRFQ" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBase" runat="Server">
+    <style type="text/css">
+        .gradientBG
+        {
+            background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, #A9A9A9 ),
+	color-stop(1, #EDE6EA)
+);
+            background-image: -o-linear-gradient(bottom, #A9A9A9  0%, #EDE6EA 100%);
+            background-image: -moz-linear-gradient(bottom, #A9A9A9  0%, #EDE6EA 100%);
+            background-image: -webkit-linear-gradient(bottom, #A9A9A9  0%, #EDE6EA 100%);
+            background-image: -ms-linear-gradient(bottom, #A9A9A9  0%, #EDE6EA 100%);
+            background-image: linear-gradient(to bottom, #A9A9A9  0%, #EDE6EA 100%);
+        }
+    </style>
     <div id="divImgEmail" style="display: none; position: fixed; top: 27px; right: 246px;
         z-index: 1000;">
         <img id="Img1" alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
             position: relative;" />
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
-    
-    <div id="divMain">
-        <table cellspacing="0" style="margin-left: auto; margin-right: auto;">
+    <div id="divMain" style="visibility:hidden;">
+        <table cellspacing="0" style="margin-left: auto; margin-right: auto; width: 100%;">
             <tr>
                 <td style="vertical-align: top;">
-                    <table cellspacing="0">
+                    <table cellspacing="0" style="margin-left: auto;">
                         <tr>
                             <td>
-                                <table>
+                                <table style="margin-left: auto;">
                                     <tr>
                                         <td align="right" style="width: 125px;">
                                             Filter by Commodity
@@ -41,7 +57,7 @@
                             </td>
                         </tr>
                         <tr style="height: 70px;">
-                            <td style="text-align:right;">
+                            <td style="text-align: right;">
                                 <div style="border-radius: 10px; border: solid #D3D3D3; background-color: #D3D3D3;
                                     display: inline-block; width: 170px; height: 170px; overflow-y: auto;">
                                     <div id="divEAUs">
@@ -52,9 +68,7 @@
                         <tr>
                             <td>
                                 <br />
-                                <div style="height: 180px; overflow-y: auto;">
-                                    <div id="divBOMLines">
-                                    </div>
+                                <div id="divBOMLines">
                                 </div>
                             </td>
                         </tr>
@@ -70,8 +84,8 @@
                                             Due Date
                                         </td>
                                         <td align="left" class="style4">
-                                            <input type="text" id="txtDueDate" datepicker="true" validate="date"
-                                    validationid="validatingNewRFQ"  tabindex="7" style="width: 200px;" />
+                                            <input type="text" id="txtDueDate" datepicker="true" validate="date" validationid="validatingNewRFQ"
+                                                tabindex="7" style="width: 200px;" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -90,7 +104,8 @@
                                             Drawing Level
                                         </td>
                                         <td align="left">
-                                            <input type="text" id="txtDrawingLevel" bindto="DrawingLevel" style="width: 120px;text-transform:uppercase;" tabindex="10" />
+                                            <input type="text" id="txtDrawingLevel" bindto="DrawingLevel" style="width: 120px;
+                                                text-transform: uppercase;" tabindex="10" />
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
@@ -99,8 +114,8 @@
                                         </td>
                                         <td align="left">
                                             <input type="checkbox" id="chkTargetPrice" onchange="toggleTargetPrice();" tabindex="11" />
-                                            <input type="text" id="txtTargetPrice" bindTo="TargetPrice" style="display: none; text-align: right;"
-                                                tabindex="12" validate="number" validationid="validatingNewRFQ" />
+                                            <input type="text" id="txtTargetPrice" bindto="TargetPrice" style="display: none;
+                                                text-align: right;" tabindex="12" validate="number" validationid="validatingNewRFQ" />
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
@@ -108,7 +123,8 @@
                                             Comments to Vendor
                                         </td>
                                         <td align="left">
-                                            <textarea id="txtCommentToVendor" bindTo="CommentsToVendor" style="height: 50px; width: 300px;" rows="2" cols="30" tabindex="13"></textarea>
+                                            <textarea id="txtCommentToVendor" bindto="CommentsToVendor" style="height: 50px;
+                                                width: 300px;" rows="2" cols="30" tabindex="13"></textarea>
                                         </td>
                                     </tr>
                                 </table>
@@ -132,15 +148,21 @@
             </tr>
         </table>
         <br />
+    </div>
+    <br />
+    <br />
+    <div align="center" class="gradientBG" style="position: fixed; left: 0px; width: 100%;
+        bottom: 0; padding: 5px; border-top: solid 1px black;">
         <table style="margin-left: auto; margin-right: auto;">
             <tr>
                 <td>
                 </td>
                 <td>
-                    <input id="btnSendRFQ" onclick="sendRFQ(event,'sendrfq',opener.afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
-                        value="Send New RFQ" tabindex="14" />
-                    <input id="btnCreateRFQ" onclick="sendRFQ(event,'createrfq',opener.afterCreateOrSendRFQ);" type="button" validationid="validatingNewRFQ"
-                        value="Create RFQ without email" tabindex="14" />
+                    <input id="btnSendRFQ" onclick="sendRFQ(event,'sendrfq',opener.afterCreateOrSendRFQ);"
+                        type="button" validationid="validatingNewRFQ" value="Send New RFQ" tabindex="14" />
+                    <input id="btnCreateRFQ" onclick="sendRFQ(event,'createrfq',opener.afterCreateOrSendRFQ);"
+                        type="button" validationid="validatingNewRFQ" value="Create RFQ without email"
+                        tabindex="14" />
                 </td>
             </tr>
         </table>
@@ -148,16 +170,16 @@
     <script type="text/javascript">
 
         var newRFQScreen = {
-            SIFVolumesList:[],
-            BomDetailList:[],
-            SupplierList:[],
-            SIFHeaderID:-1,
-            DueDate: new Date(1985,1,10),
-            MarketSectorID:-1,
-            DrawingLevel:'',
-            TargetPrice:-1,
-            CommentsToVendor:'',
-            FolderAttachments:''
+            SIFVolumesList: [],
+            BomDetailList: [],
+            SupplierList: [],
+            SIFHeaderID: -1,
+            DueDate: new Date(1985, 1, 10),
+            MarketSectorID: -1,
+            DrawingLevel: '',
+            TargetPrice: -1,
+            CommentsToVendor: '',
+            FolderAttachments: ''
         };
 
         var Commodities = [];
@@ -170,7 +192,7 @@
 
 
         jQuery(document).ready(function () {
-
+            
             jQuery("#spanTitle").text("New RFQ");
             newRFQScreen.SIFHeaderID = opener.BOM.SifId;
 
@@ -222,6 +244,7 @@
                 readCounter = 0;
                 load();
                 jQuery("#divImgEmail").hide();
+                jQuery("#divMain").css("visibility","visible");
             }
         }
 
@@ -300,25 +323,50 @@
                 if (currentBOMLine.selected) newRFQScreen.BomDetailList.push(currentBOMLine);
             }
 
-            var strBOMLines = '<table id="tableNewRFQDetail" border="1" class="display dataTable" style="font-size: 10px;">' +
-            '<thead><tr><th>Part Number</th><th>Material/Description</th><th>Qty. Required</th></tr></thead><tbody>';
-            
+            var strBOMLines = '<table id="tableNewRFQDetail" border="1" class="display dataTable" style="font-size: 10px;width:640px;">' +
+            '<thead><tr><th>Part Number</th><th style="width:200px;">Material/Description</th><th>Qty. Required</th><th>Attachments</th><th></th></tr></thead><tbody>';
+
             for (var j = 0; j < newRFQScreen.BomDetailList.length; j++) {
                 var current = newRFQScreen.BomDetailList[j];
-                strBOMLines += '<tr height="20px;"><td>' + current.PartNumber + '</td>';
-                strBOMLines += '<td>' + current.Material + '</td>';
+                strBOMLines += '<tr><td>' + current.PartNumber + '</td>';
+                strBOMLines += '<td style="white-space: normal;">' + current.Material + '</td>';
                 strBOMLines += '<td>' + current.Qty + '</td>';
-                //strBOMLines += '<td><a onclick="return confirm(\'Do you wish to delete this line?\');" href="">Delete</a></td>';
+                strBOMLines += '<td style="vertical-align:top;">';
+                strBOMLines += getAttachmentsSelect(current);
+                strBOMLines += '</td>';
+
+
+                strBOMLines += '<td><a onclick="confirm(\'Do you wish to delete this line?\');return false;" href="#">Delete</a></td>';
                 strBOMLines += '</tr>';
             }
-            strBOMLines+= '</tbody></table>';
+            strBOMLines += '</tbody></table>';
             jQuery("#divBOMLines").html(strBOMLines);
+
+            jQuery("[toChosen]").chosen({ display_selected_options: false });
+            jQuery("#tableNewRFQDetail tr").each(function () { jQuery(this).height(jQuery(this).height() + 30); });
+
             jQuery('#tableNewRFQDetail').dataTable({
                 "bFilter": false,
                 "bLengthChange": false,
                 "bInfo": false,
                 "bPaginate": false
             }).show();
+
+        }
+        function getAttachmentsSelect(oBOMLine) {
+            if (oBOMLine.AttachmentsList != null && oBOMLine.AttachmentsList.length > 0) {
+                //var strAttachments = '<div style="height:' + (oBOMLine.AttachmentsList.length * 30) + 'px;">';
+                var strAttachments = '<select size="5" id="cboAttachments_' + oBOMLine.Id + '" style="width:200px;" toChosen multiple>';
+                for (var i = 0; i < oBOMLine.AttachmentsList.length; i++) {
+                    var current = oBOMLine.AttachmentsList[i];
+                    strAttachments += '<option selected value="' + current.FileName + '">' + current.FileName + '</option>';
+                }
+                strAttachments += '</select>'; //</div>';
+
+                return strAttachments;
+
+            }
+            return "No files attached.";
         }
         function populateSIFVolumes() {
             newRFQScreen.SIFVolumesList = [];
@@ -466,7 +514,7 @@
             } else {
                 newRFQScreen.DueDate = (new Date(jQuery('#txtDueDate').val())).toJSON();
             }
-            
+
             newRFQScreen.MarketSectorID = Number(jQuery("#cboMarketSectors option:selected").val());
             newRFQScreen.FolderAttachments = InboxAttachmentsFolder;
 
@@ -488,7 +536,7 @@
             });
 
         }
-        
+
         function sendRFQ(e, strSaveMode, onSuccess, onFail) {
             jQuery('#btnSendRFQ').prop("disabled", true);
             jQuery('#btnCreateRFQ').prop("disabled", true);
@@ -504,6 +552,7 @@
                 }
                 if (newRFQScreen.SIFVolumesList.length <= 0) {
                     strValidation = "There must be at least one EAU.";
+                    populateSIFVolumes();
                 }
                 if (newRFQScreen.SIFHeaderID == -1) {
                     strValidation = "SIF ID missing.";
@@ -516,6 +565,8 @@
                 }
                 if (strValidation != "") {
                     alertify.alert(strValidation);
+                    jQuery('#btnSendRFQ').prop("disabled", null);
+                    jQuery('#btnCreateRFQ').prop("disabled", null);
                     return;
                 }
 
