@@ -93,6 +93,8 @@ public partial class WebService_RFQ : System.Web.UI.Page
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
         UserCRUD user_CRUD = new UserCRUD();
 
+        string baseBOMAttachmentsPath = ConfigurationManager.AppSettings["BOMLineAttachments"];
+        string baseRFQAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
 
         string strAuthUser = HttpContext.Current.User.Identity.Name;
         User user = user_CRUD.readById(strAuthUser);
@@ -163,6 +165,75 @@ public partial class WebService_RFQ : System.Web.UI.Page
                     }
                     else
                     {
+                        //rfq.SentAttachmentsFolder = newRFQScreen.FolderAttachments;
+
+                        newRFQScreen.FolderAttachments = newRFQScreen.FolderAttachments.Trim();
+                        if (newRFQScreen.FolderAttachments != "")
+                        {
+                            if (System.IO.Directory.Exists((baseRFQAttachmentsPath + newRFQScreen.FolderAttachments)))
+                            {
+                                DirectoryInfo directory = new DirectoryInfo((baseRFQAttachmentsPath + newRFQScreen.FolderAttachments));
+                                if (directory.GetFiles().Length > 0)
+                                {
+                                    string folderName = "";
+                                    do
+                                    {
+                                        DateTime date = DateTime.Now;
+                                        folderName = date.Year.ToString() + date.Month.ToString() +
+                                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                                    } while (Directory.Exists((baseRFQAttachmentsPath + folderName)));
+                                    Directory.CreateDirectory((baseRFQAttachmentsPath + folderName));
+                                    rfq.SentAttachmentsFolder = folderName;
+
+
+                                    foreach (FileInfo file in directory.GetFiles())
+                                    {
+                                        try
+                                        {
+                                            File.Copy(file.FullName, (baseRFQAttachmentsPath + rfq.SentAttachmentsFolder + @"\" + file.Name), true);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            response.ErrorThrown = true;
+                                            response.ResponseDescription = "ERROR:" + ex.Message;
+                                            return JsonConvert.SerializeObject(response);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach (Attachment bomAttachment in component.AttachmentsList)
+                        {
+
+                            if (rfq.SentAttachmentsFolder.Trim() == "")
+                            {
+                                string folderName = "";
+                                do
+                                {
+                                    DateTime date = DateTime.Now;
+                                    folderName = date.Year.ToString() + date.Month.ToString() +
+                                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                                } while (Directory.Exists((baseRFQAttachmentsPath + folderName)));
+                                Directory.CreateDirectory((baseRFQAttachmentsPath + folderName));
+                                rfq.SentAttachmentsFolder = folderName;
+
+                            }
+                            string currentPathAttachmentSource = baseBOMAttachmentsPath + bomAttachment.Directory + @"\" + bomAttachment.FileName;
+                            string currentPathAttachmentTarget = baseRFQAttachmentsPath + rfq.SentAttachmentsFolder + @"\" + bomAttachment.FileName;
+                            try
+                            {
+                                File.Copy(currentPathAttachmentSource, currentPathAttachmentTarget, true);
+                            }
+                            catch (Exception e)
+                            {
+                                response.ErrorThrown = true;
+                                response.ResponseDescription = "ERROR:" + e.Message;
+                                return JsonConvert.SerializeObject(response);
+                            }
+                        }
+
+
                         RfqCRUD rfqCRUD = new RfqCRUD();
 
                         rfq.SupplierId = supplier.Id;
@@ -178,7 +249,6 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         rfq.DrawingLevel = newRFQScreen.DrawingLevel;
                         rfq.TargetPrice = newRFQScreen.TargetPrice;
                         rfq.CommentsToVendor = newRFQScreen.CommentsToVendor;
-                        rfq.SentAttachmentsFolder = newRFQScreen.FolderAttachments;
 
                         rfq.CreatedBy = strAuthUser;
 
@@ -302,6 +372,9 @@ public partial class WebService_RFQ : System.Web.UI.Page
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
         UserCRUD user_CRUD = new UserCRUD();
 
+        string baseBOMAttachmentsPath = ConfigurationManager.AppSettings["BOMLineAttachments"];
+        string baseRFQAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsSent"];
+
         string strAuthUser = HttpContext.Current.User.Identity.Name;
         User user = user_CRUD.readById(strAuthUser);
 
@@ -371,6 +444,74 @@ public partial class WebService_RFQ : System.Web.UI.Page
                     }
                     else
                     {
+                        //rfq.SentAttachmentsFolder = newRFQScreen.FolderAttachments;
+                        
+                        newRFQScreen.FolderAttachments = newRFQScreen.FolderAttachments.Trim();
+                        if (newRFQScreen.FolderAttachments != "")
+                        {
+                            if (System.IO.Directory.Exists((baseRFQAttachmentsPath + newRFQScreen.FolderAttachments)))
+                            {
+                                DirectoryInfo directory = new DirectoryInfo((baseRFQAttachmentsPath + newRFQScreen.FolderAttachments));
+                                if (directory.GetFiles().Length > 0)
+                                {
+                                    string folderName = "";
+                                    do
+                                    {
+                                        DateTime date = DateTime.Now;
+                                        folderName = date.Year.ToString() + date.Month.ToString() +
+                                                        date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                                    } while (Directory.Exists((baseRFQAttachmentsPath + folderName)));
+                                    Directory.CreateDirectory((baseRFQAttachmentsPath + folderName));
+                                    rfq.SentAttachmentsFolder = folderName;
+
+                                    foreach (FileInfo file in directory.GetFiles())
+                                    {
+                                        try
+                                        {
+                                            File.Copy(file.FullName, (baseRFQAttachmentsPath + rfq.SentAttachmentsFolder + @"\" + file.Name), true);
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            response.ErrorThrown = true;
+                                            response.ResponseDescription = "ERROR:" + ex.Message;
+                                            return JsonConvert.SerializeObject(response);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        foreach (Attachment bomAttachment in component.AttachmentsList)
+                        {
+
+                            if (rfq.SentAttachmentsFolder.Trim() == "")
+                            {
+                                string folderName = "";
+                                do
+                                {
+                                    DateTime date = DateTime.Now;
+                                    folderName = date.Year.ToString() + date.Month.ToString() +
+                                                    date.Day.ToString() + "_" + MD5HashGenerator.GenerateKey(date);
+                                } while (Directory.Exists((baseRFQAttachmentsPath + folderName)));
+                                Directory.CreateDirectory((baseRFQAttachmentsPath + folderName));
+                                rfq.SentAttachmentsFolder = folderName;
+
+                            }
+                            string currentPathAttachmentSource = baseBOMAttachmentsPath + bomAttachment.Directory + @"\" + bomAttachment.FileName;
+                            string currentPathAttachmentTarget = baseRFQAttachmentsPath + rfq.SentAttachmentsFolder + @"\" + bomAttachment.FileName;
+                            try
+                            {
+                                File.Copy(currentPathAttachmentSource, currentPathAttachmentTarget,true);
+                            }
+                            catch (Exception e)
+                            {
+                                response.ErrorThrown = true;
+                                response.ResponseDescription = "ERROR:" + e.Message;
+                                return JsonConvert.SerializeObject(response);
+                            }
+                        }
+
+
                         RfqCRUD rfqCRUD = new RfqCRUD();
 
                         rfq.SupplierId = supplier.Id;
@@ -386,7 +527,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         rfq.DrawingLevel = newRFQScreen.DrawingLevel;
                         rfq.TargetPrice = newRFQScreen.TargetPrice;
                         rfq.CommentsToVendor = newRFQScreen.CommentsToVendor;
-                        rfq.SentAttachmentsFolder = newRFQScreen.FolderAttachments;
+                        
 
                         rfq.CreatedBy = strAuthUser;
 

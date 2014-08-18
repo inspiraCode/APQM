@@ -208,7 +208,7 @@
                 </td>
                 <td align="left" class="style77" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
                     <label id="lblPartName" bindto="PartMaterial" class="ReadOnlyFields" style="text-align: left;
-                        width: 170px; height: 48px; display: block;">
+                        width: 170px; min-height: 48px; display: block;">
                     </label>
                 </td>
                 <td align="right" class="style79">
@@ -787,13 +787,13 @@
                             {
                                 data: "RpcQty",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "RpcCostPerUnit",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
@@ -801,19 +801,19 @@
                                 renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "OSQty",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "OSCostPerUnit",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
@@ -821,13 +821,13 @@
                                 renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "ScrapValue",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
@@ -835,19 +835,19 @@
                                 renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "DirectHrlyLaborRate",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "StdHrs",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
@@ -855,13 +855,13 @@
                                 renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
                                 data: "Burden",
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
                             {
@@ -869,7 +869,7 @@
                                 renderer: grayRenderer,
                                 readOnly: true,
                                 type: "numeric",
-                                format: '0,0.0000',
+                                format: '0,0.00000',
                                 language: 'en' //this is the default locale, set up for USD
                             }
                           ],
@@ -908,7 +908,7 @@
                         sumTotalBurden += Number(data[i].BurdenTotal);
                     }
 
-                    jQuery('[idtotalmanufacturingcost="' + self.id_EAU + '"]').text((sumMaterialTotal + sumServiceTotal + sumScrapCost + sumLaborCost + sumTotalBurden).toFixed(4));
+                    jQuery('[idtotalmanufacturingcost="' + self.id_EAU + '"]').text((sumMaterialTotal + sumServiceTotal + sumScrapCost + sumLaborCost + sumTotalBurden).toFixed(5));
                     summarizeTotalPieceCost(self.id_EAU);
 
                     this.render();
@@ -1154,7 +1154,7 @@
 
         var lblTotalPieceCost = jQuery('[idtotalpiececost="' + id_EAU + '"]');
 
-        lblTotalPieceCost.text((txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit).toFixed(4));
+        lblTotalPieceCost.text((txtSGAProfit + lblTotalManufacturingCost + txtPackingCostUnit + txtAssemblyCostUnit).toFixed(5));
     }
 
 

@@ -25,7 +25,7 @@
             position: relative;" />
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
-    <div id="divMain" style="visibility:hidden;">
+    <div id="divMain" style="visibility: hidden;">
         <table cellspacing="0" style="margin-left: auto; margin-right: auto; width: 100%;">
             <tr>
                 <td style="vertical-align: top;">
@@ -192,7 +192,7 @@
 
 
         jQuery(document).ready(function () {
-            
+
             jQuery("#spanTitle").text("New RFQ");
             newRFQScreen.SIFHeaderID = opener.BOM.SifId;
 
@@ -244,7 +244,7 @@
                 readCounter = 0;
                 load();
                 jQuery("#divImgEmail").hide();
-                jQuery("#divMain").css("visibility","visible");
+                jQuery("#divMain").css("visibility", "visible");
             }
         }
 
@@ -534,6 +534,20 @@
                     newRFQScreen.SupplierList.push(vendor);
                 }
             });
+
+
+            newRFQScreen.BomDetailList = jQuery.extend(true, [], newRFQScreen.BomDetailList);
+            for (var j = 0; j < newRFQScreen.BomDetailList.length; j++) {
+                var currentLine = newRFQScreen.BomDetailList[j];
+                jQuery("#cboAttachments_" + currentLine.Id + " option:not(:selected)").each(function () {
+                    for (var k = currentLine.AttachmentsList.length - 1; k >= 0; k--) {
+                        var currentAttachment = currentLine.AttachmentsList[k];
+                        if (currentAttachment.FileName == jQuery(this).text()) {
+                            currentLine.AttachmentsList.splice(k, 1);
+                        }
+                    }
+                });
+            }
 
         }
 

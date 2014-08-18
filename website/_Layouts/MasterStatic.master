@@ -64,6 +64,7 @@
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Chosen/chosen.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Handsontable/jquery.handsontable.full.css") %>';
         @import '<%= this.ResolveUrl("~/Scripts/jQuery/Selectize/css/selectize.css") %>';
+        @import '<%= this.ResolveUrl("~/Scripts/jQuery/iCheck/skins/square/grey.css") %>';
     </style>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js" type="text/javascript"></script>
@@ -135,6 +136,9 @@
         type="text/javascript"></script>
     <script src='<%= this.ResolveUrl("~/Scripts/jQuery/Selectize/js/selectize.js") %>'
         type="text/javascript"></script>
+
+        <script src='<%= this.ResolveUrl("~/Scripts/jQuery/iCheck/icheck.min.js") %>'
+        type="text/javascript"></script>
 </head>
 <body style="font-family: Tahoma; font-size: 12px;">
     <%-- <table width="100%" style="margin-bottom: -20px;">
@@ -179,6 +183,11 @@
             buttonImage: '<%= this.ResolveUrl("~/Scripts/jQuery/Dialog/calendar.gif") %>',
             buttonImageOnly: true
         });
+//        jQuery('input').iCheck({
+//            checkboxClass: 'icheckbox_square-grey',
+//            radioClass: 'iradio_square-grey'
+//            //increaseArea: '20%' // optional
+//        });
     });
 
     function ieCompatibilityViewCheck() {
