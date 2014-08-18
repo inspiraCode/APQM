@@ -193,7 +193,7 @@
                 <th class="camposSinBordes" style="width: 75px; min-width: 75px; max-width: 75px;">
                     Status
                 </th>
-                <th class="camposSinBordes" style="width: 72px; min-width: 72px; max-width: 72px;">
+                <th class="camposSinBordes" style="width: 72px; min-width: 72px; max-width: 72px;display: none;">
                     Sales LN
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 132px; min-width: 132px; max-width: 132px;">
@@ -219,7 +219,7 @@
                     display: none;">
                     Comm Code
                 </th>
-                <th class="camposSinBordes itemFields" style="width: 145px; min-width: 145px; max-width: 145px;">
+                <th class="camposSinBordes itemFields" style="width: 220px; min-width: 220px; max-width: 220px;">
                     Component Part Description/Material
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 68px; min-width: 68px; max-width: 68px;">
@@ -840,25 +840,25 @@
             for (var j = 0; j < BOM.BomDetail.length; j++) {
                 var current = BOM.BomDetail[j];
                 if (current.Status == null) current.Status = "";
-                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 30px;"> ' +
-'    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 8px;">' + (j + 1) + '</label>' +
-'    <input type="checkbox" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;" clickeableInHeader="true" /> ' +
-'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/delete-icon.png" style="height:20px;float: left;position: absolute; left: 60px;" ' +
+                strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 37px;"> ' +
+'    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 16px;">' + (j + 1) + '</label>' +
+'    <input type="checkbox" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;top:14px;" clickeableInHeader="true" /> ' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/delete-small.png" style="height:20px;top:14px;float: left;position: absolute; left: 60px;" ' +
 '    onclick="deleteBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
-'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/edit-icon.png" style="height:20px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
-'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/FilterIcon.png" style="height:20px;float: left;position: absolute; left: 120px;" ' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/edit-small.png" style="height:20px;top:14px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
+'    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/FilterIcon.png" style="height:20px;top:14px;float: left;position: absolute; left: 120px;" ' +
 '    onclick="openRFQSummary(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
 '    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
-'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 150px;top: 8px;">Take</label> ' +
+'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 150px;top: 16px;">Take</label> ' +
 '    <table cellspacing="0" align="left" style="top:-3px;" class="BOMLine"> ' +
-'    <tr style="height: 35px; white-space: nowrap;"> ' +
+'    <tr style="height: 40px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
 '        <label id="lblStatus" >' + current.Status + '</label> ' +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
+'    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;display: none;"> ' +
 '        <label id="lblSalesLN" >' + current.LinePosition + '</label> ' +
 '    </td> ' +
-'    <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;"> ' +
+'    <td class="tableCell" style="width: 132px; min-width: 132px; max-width: 132px;text-align:center;"> ' +
 '        <label id="lblPartNumber" >' + current.PartNumber + '</label> ' +
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 81px; min-width: 81px; max-width: 81px; ' +
@@ -874,7 +874,7 @@
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 85px; min-width: 85px; max-width: 85px;display:none;"> ' + current.CommCode +
 '    </td> ' +
-'    <td class="tableCell" style="width: 160px; min-width: 160px; max-width: 160px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.Material +
+'    <td class="tableCell" style="width: 230px; min-width: 230px; max-width: 230px;white-space: normal;"><div style="overflow-y:auto;height: 40px;">' + current.Material +
 '    </div></td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' + current.Um +
 '    </td> ' +
@@ -886,7 +886,7 @@
 '    </td> ' +
 '    <td align="center" class="tableCell" style="width: 60px; min-width: 60px; max-width: 60px;display:none;"> ' + current.CapComAssm +
 '    </td> ' +
-'    <td align="center" class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;white-space: normal;"><div style="overflow-y:auto;height: 30px;">' + current.PurchasingComments +
+'    <td align="left" class="tableCell" style="width: 147px; min-width: 147px; max-width: 147px;white-space: normal;"><div style="overflow-y:auto;height: 30px;padding-left: 5px;">' + current.PurchasingComments +
 '    </div></td> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;display:none;"> ' + current.SalesStatus +
 '    </td> ' +
@@ -1070,7 +1070,7 @@
             var result = [];
             for (var i = 0; i < arrRFQList.length; i++) {
                 var currentRFQ = arrRFQList[i];
-                var oCurrent = ['<input type="image" src="../pics/delete-icon.png" style="height:20px;" id="deleteRFQByID" ' +
+                var oCurrent = ['<input type="image" src="../pics/delete-icon.png" style="height:20px;" ' +
                     '    onclick="deleteRFQByID(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />' +
                     '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" id="updateRFQByID" onclick="updateRFQByID(' + currentRFQ.Id + ');return false;" />' +
                     '<input type="image" src="../pics/mail_send_icon.png" style="height:20px;margin-left: 5px;" onclick="on_openResendRFQ(' + bomLine.Id + ',' + currentRFQ.Id + ');return false;" />',

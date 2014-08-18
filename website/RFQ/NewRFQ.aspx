@@ -19,9 +19,9 @@
             background-image: linear-gradient(to bottom, #A9A9A9  0%, #EDE6EA 100%);
         }
     </style>
-    <div id="divImgEmail" style="display: none; position: fixed; top: 27px; right: 246px;
-        z-index: 1000;">
-        <img id="Img1" alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
+    <div id="divImgEmail" style="display: block; position: fixed; width: 105px; height: 35px;
+        z-index: 1000; background-color: white; border: 2px solid gray; padding: 5px;">
+        <img alt="" src="<%= ResolveUrl("~/Utils/loading.gif") %>" style="display: inline;
             position: relative;" />
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
@@ -34,10 +34,10 @@
                             <td>
                                 <table style="margin-left: auto;">
                                     <tr>
-                                        <td align="right" style="width: 125px;">
+                                        <td align="right">
                                             Filter by Commodity
                                         </td>
-                                        <td>
+                                        <td style="width: 360px;">
                                             <div id="divCommodities">
                                             </div>
                                         </td>
@@ -47,10 +47,10 @@
                                             Vendor
                                         </td>
                                         <td>
-                                            <div id="divSuppliers">
+                                            <div id="divSuppliers" style="display: inline-block; width: 306px;">
                                             </div>
-                                            <input type="button" id="btnNewSupplier" tabindex="2" value="New" style="width: 60px;
-                                                display: none;" />
+                                            <input type="button" id="btnNewSupplier" tabindex="2" value="New" onclick="on_newSupplier_click();return false;"
+                                                style="width: 50px; display: inline-block;" />
                                         </td>
                                     </tr>
                                 </table>
@@ -167,6 +167,43 @@
             </tr>
         </table>
     </div>
+    <div id="divDialog_NewSupplier" title="New Supplier" style="display: none;">
+        <div align="center">
+            <div id="divNewSupplier">
+                <table cellspacing="0">
+                    <tr>
+                        <td align="right">
+                            <b style="margin-right: 5px;">Supplier:</b>
+                        </td>
+                        <td>
+                            <input type="text" id="txtNewSupplier" style="width: 350px;" validate="required" validationid="validatingNewSupplier" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            <b style="margin-right: 5px;">Email:</b>
+                        </td>
+                        <td>
+                            <input type="text" id="txtNewEmail" style="width: 350px;" validate="email" validationid="validatingNewSupplier" />
+                        </td>
+                    </tr>
+                    <tr style="height: 40px;">
+                        <td colspan="2">
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" colspan="3">
+                            <input type="button" id="btnCreateSupplier" onclick="return false;" style="width: 80px;" validationid="validatingNewSupplier"
+                                value="Create" />
+                            <input type="button" id="btnCancelCreateSupplier" onclick="on_closeCreateSupplier();"
+                                value="Cancel" style="width: 80px;" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
     <script type="text/javascript">
 
         var newRFQScreen = {
@@ -190,13 +227,13 @@
         var InboxAttachmentsFolder = '';
 
 
-
         jQuery(document).ready(function () {
 
             jQuery("#spanTitle").text("New RFQ");
             newRFQScreen.SIFHeaderID = opener.BOM.SifId;
+            jQuery('#divImgEmail').css("top", (jQuery(window).height() / 2) - (jQuery('#divImgEmail').outerHeight() / 2));
+            jQuery('#divImgEmail').css("left", (jQuery(window).width() / 2) - (jQuery('#divImgEmail').outerWidth() / 2));
 
-            jQuery("#divImgEmail").css("display", "block");
             getResources();
 
             jQuery("#uploadZone").uploadFile({
@@ -293,7 +330,7 @@
         }
 
         function populateSuppliers() {
-            var strSuppliers = '<select id="cboSuppliers" multiple tabindex="2" data-placeholder="Select Emails" style="width: 285px;">';
+            var strSuppliers = '<select id="cboSuppliers" multiple tabindex="2" data-placeholder="Select Emails" style="width: 309px;">';
             for (var i = 0; i < Suppliers.length; i++) {
                 var current = Suppliers[i];
                 strSuppliers += '<option value="' + current.Id + '">' + current.NameAndEmail + '</option>';
@@ -320,9 +357,16 @@
             newRFQScreen.BomDetailList = [];
             for (var i = 0; i < BOM.BomDetail.length; i++) {
                 var currentBOMLine = BOM.BomDetail[i];
-                if (currentBOMLine.selected) newRFQScreen.BomDetailList.push(currentBOMLine);
+                if (currentBOMLine.selected) newRFQScreen.BomDetailList.push(jQuery.extend(true, {}, currentBOMLine));
             }
 
+            repaintTableBOMLines();
+        }
+        function repaintTableBOMLines() {
+            jQuery("#divBOMLines").css("visibility", "hidden");
+            try {
+                jQuery('#tableNewRFQDetail').dataTable().fnDestroy();
+            } catch (e) { }  //there is no table yet}
             var strBOMLines = '<table id="tableNewRFQDetail" border="1" class="display dataTable" style="font-size: 10px;width:640px;">' +
             '<thead><tr><th>Part Number</th><th style="width:200px;">Material/Description</th><th>Qty. Required</th><th>Attachments</th><th></th></tr></thead><tbody>';
 
@@ -334,9 +378,8 @@
                 strBOMLines += '<td style="vertical-align:top;">';
                 strBOMLines += getAttachmentsSelect(current);
                 strBOMLines += '</td>';
-
-
-                strBOMLines += '<td><a onclick="confirm(\'Do you wish to delete this line?\');return false;" href="#">Delete</a></td>';
+                strBOMLines += '<td><input type="image" src="../pics/delete-small.png" style="height:20px;" ' +
+                                ' onclick="deleteLine(' + j + ');return false;" /></td>';
                 strBOMLines += '</tr>';
             }
             strBOMLines += '</tbody></table>';
@@ -351,7 +394,13 @@
                 "bInfo": false,
                 "bPaginate": false
             }).show();
-
+            jQuery("#divBOMLines").css("visibility", "visible");
+        }
+        function deleteLine(index) {
+            if (confirm('Do you wish to delete this line?')) {
+                newRFQScreen.BomDetailList.splice(index, 1);
+            }
+            repaintTableBOMLines();
         }
         function getAttachmentsSelect(oBOMLine) {
             if (oBOMLine.AttachmentsList != null && oBOMLine.AttachmentsList.length > 0) {
@@ -626,6 +675,78 @@
                 jQuery('#btnCreateRFQ').prop("disabled", null);
             }
         }
-        
+        function on_newSupplier_click() {
+            jQuery("#btnCreateSupplier").prop("disabled", false);
+            jQuery("#btnCancelCreateSupplier").prop("disabled", false);
+            
+            jQuery("#txtNewSupplier").val('');
+            jQuery("#txtNewEmail").val('');
+            jQuery("#btnCreateSupplier").unbind("click").click(function () { createSupplier(this, afterCreateSupplier); });
+
+            jQuery("#divDialog_NewSupplier").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 520, modal: false, closeOnEscape: false
+            });
+        }
+        function createSupplier(e, onSuccess) {
+            if (validate()) {
+                jQuery("#btnCreateSupplier").prop("disabled", true);
+                jQuery("#btnCancelCreateSupplier").prop("disabled", true);
+
+                var vendorToCreate = {
+                    SupplierName: jQuery("#txtNewSupplier").val(),
+                    ContactEmail: jQuery("#txtNewEmail").val()
+                };
+                
+                var to = '<%= ResolveUrl("~/WebService/Catalogs.aspx") %>?cmd=create&catalog=supplier';
+
+                jQuery("#divImgEmail").css("display", "block");
+                jQuery.ajax({
+                    type: "POST",
+                    url: to,
+                    data: JSON.stringify(vendorToCreate),
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        response = jQuery.parseJSON(response);
+                        if (response.ErrorThrown === true) {
+                            try { onFail(); } catch (e) { }
+                            alertify.alert(response.ResponseDescription);
+                        } else {
+                            try { onSuccess(response); } catch (e) { }
+                            alertify.success(response.ResponseDescription);
+                        }
+                        jQuery("#divImgEmail").hide();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (console && console.log) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        }
+                        try {
+                            onFail();
+                        } catch (e) { }
+                        jQuery("#btnCreateSupplier").prop("disabled", false);
+                        jQuery("#btnCancelCreateSupplier").prop("disabled", false);
+                        jQuery("#divImgEmail").hide();
+                    }
+                });
+            } else {
+                jQuery("#btnCreateSupplier").prop("disabled", false);
+                jQuery("#btnCancelCreateSupplier").prop("disabled", false);
+                return;
+            }
+        }
+        function afterCreateSupplier(response) {
+            var vendorCreated = response.Result;
+            Suppliers.push(vendorCreated);
+            jQuery("#divDialog_NewSupplier").dialog("close");
+            jQuery("#cboSuppliers").append('<option value="' + vendorCreated.Id + '">' + vendorCreated.NameAndEmail + '</option>')
+            jQuery("#cboSuppliers").trigger("chosen:updated");
+        }
+        function on_closeCreateSupplier() {
+            jQuery("#divDialog_NewSupplier").dialog("close");
+        }
     </script>
 </asp:Content>

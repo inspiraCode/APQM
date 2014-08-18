@@ -1,71 +1,64 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="bomStatusInfo.ascx.cs"
     Inherits="BOM_bomStatusInfo" %>
 <style type="text/css">
-    .style1
+    .colorColumn
     {
-        width: 477px;
-        font-size: 11px;
-    }
-    .style2
-    {
-        padding-right: 5px;
-        font-weight: bold;
-        width: 66px;
+        width:15px;
     }
     .firstColumn
     {
         padding-right: 5px;
         font-weight: bold;
-        width: 23px;
+        width: 66px;
+        font-size:11px;
     }
 </style>
-<div style="background-color: #e3e3e3;border: solid #424242 2px;height: 105px;width: 480px;" >
-<table align="left" cellspacing="0" class="style1">
+<table align="left" cellspacing="0" style="width: 477px;font-size: 11px;background-color: #e3e3e3;border: solid #424242 2px;">
     <tr>
-        <td class="firstColumn Imported" align="right">
+        <td class="colorColumn Imported" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             Imported</td>
         <td align="left">
             Imported from Sales Database.</td>
     </tr>
     <tr>
-        <td class="firstColumn Created" align="right">
+        <td class="colorColumn Created" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             Created</td>
         <td align="left">
             This component was not imported from Sales DB, instead, a Buyer created it.</td>
     </tr>
     <tr>
-        <td class="firstColumn ForAdd" align="right">
+        <td class="colorColumn ForAdd" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             For Add
         </td>
         <td align="left">
             You are adding this BOM line, but need to click Save button to create it.</td>
     </tr>
     <tr>
-        <td class="firstColumn ForEdit" align="right">
+        <td class="colorColumn ForEdit" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             For Edit</td>
         <td align="left">
             You are editing this BOM line, but need to click Save button to update it.</td>
     </tr>
     <tr>
-        <td class="firstColumn InProgress" align="right">
+        <td class="colorColumn InProgress" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             In Progress</td>
         <td align="left">
             Already sent several RFQs, but have not selected anyone.</td>
     </tr>
     <tr>
-        <td class="firstColumn NoQuote" align="right">
+        <td class="colorColumn NoQuote" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             No Quote
         </td>
         <td align="left">
@@ -73,12 +66,11 @@
         </td>
     </tr>
     <tr>
-        <td class="firstColumn Processed" align="right">
+        <td class="colorColumn Processed" align="right">
             &nbsp;</td>
-        <td class="style2" align="right">
+        <td class="firstColumn" align="right">
             Processed</td>
         <td align="left">
             Already requested to several vendors and selected one RFQ.</td>
     </tr>
 </table>
-</div>

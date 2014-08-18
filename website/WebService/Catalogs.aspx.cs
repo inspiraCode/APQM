@@ -15,11 +15,11 @@ public partial class WebService_Catalogs : System.Web.UI.Page
             return;
 
         string cmd = Request["cmd"].ToString();
+        string catalog = Request["catalog"];
 
         switch (cmd)
         {
             case "read":
-                string catalog = Request["catalog"];
                 if (catalog != null)
                 {
                     switch (catalog)
@@ -52,6 +52,19 @@ public partial class WebService_Catalogs : System.Web.UI.Page
                         case "um":
                             Response.Clear();
                             Response.Write(getUMs());
+                            Response.End();
+                            return;
+                    }
+                }
+                return;
+            case "create":
+                if (catalog != null)
+                {
+                    switch (catalog)
+                    {
+                        case "supplier":
+                            Response.Clear();
+                            Response.Write(createSupplier());
                             Response.End();
                             return;
                     }
@@ -103,5 +116,37 @@ public partial class WebService_Catalogs : System.Web.UI.Page
         }
         
         return JsonConvert.SerializeObject(result);
+    }
+    public string createSupplier()
+    {
+        Supplier resultSupplier = new Supplier();
+        GatewayResponse response = new GatewayResponse();
+        String s;
+        try
+        {
+            s = new StreamReader(Request.InputStream).ReadToEnd();
+            resultSupplier = JsonConvert.DeserializeObject<Supplier>(s);
+        }
+        catch (Exception ex)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: When trying to parse JSON in server. " + ex.Message;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        SupplierCRUD supplierCRUD= new SupplierCRUD();
+        string idGenerated = supplierCRUD.createAndReturnIdGenerated(resultSupplier);
+        if (supplierCRUD.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: " + supplierCRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        resultSupplier.Id = long.Parse(idGenerated);
+        response.ErrorThrown = false;
+        response.ResponseDescription = "Supplier created successfully.";
+        response.Result = resultSupplier;
+        return JsonConvert.SerializeObject(response);
     }
 }
