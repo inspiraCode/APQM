@@ -738,11 +738,18 @@ public class RFQSummary
     private float laborTotal;
     private float burdenTotal;
     private int sequence;
-    private float tooling;
+    private float tooling; //Production Tooling
     private string cavitation;
     private string materialTooling;
     private long rfqEAVKey = -1;
     private long rfqHeaderKey = -1;
+    private float prototypeTooling;
+
+    public float PrototypeTooling
+    {
+        get { return prototypeTooling; }
+        set { prototypeTooling = value; }
+    }
 
     public long RfqHeaderKey
     {
@@ -777,6 +784,15 @@ public class RFQSummary
         get { return TotalACost + TotalBCost + TotalCCost; }
     }
     private float estimatedAnnualVolume;
+
+    private string calendarYear = "";
+
+    public string CalendarYear
+    {
+        get { return calendarYear; }
+        set { calendarYear = value; }
+    }
+
     public float AnnualPurchaseCost
     {
         get { return TotalAcquisitionCost * EstimatedAnnualVolume; }

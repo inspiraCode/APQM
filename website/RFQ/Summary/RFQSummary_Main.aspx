@@ -70,12 +70,12 @@
         <asp:FormView ID="frmRFQSummaryHeader" runat="server" DataSourceID="SqlDataSource1"
             Style="margin-top: 8px;" align="right">
             <ItemTemplate>
-                <table cellspacing="0" class="style1">
+                <table cellspacing="1" class="style1">
                     <tr>
                         <td align="right" class="style5">
                             InquiryNumber:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0; width: 300px;">
+                        <td class="style4" style="background-color: #E0E0E0; width: 300px;">
                             <asp:Label ID="InquiryNumberLabel" inquiryNumber runat="server" Text='<%# Bind("InquiryNumber") %>' />
                         </td>
                     </tr>
@@ -83,7 +83,7 @@
                         <td align="right" class="style5">
                             Finished Good Description:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0">
+                        <td class="style4" style="background-color: #E0E0E0">
                             <asp:Label ID="PartDescriptionLabel" Width="100%" runat="server" Text='<%# Bind("Product") %>' />
                         </td>
                     </tr>
@@ -91,7 +91,7 @@
                         <td align="right" class="style5">
                             SIF Program:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0">
+                        <td class="style4" style="background-color: #E0E0E0">
                             <asp:Label ID="TopPartNumberLabel" runat="server" Text='<%# Bind("Application") %>' />
                         </td>
                     </tr>
@@ -99,7 +99,7 @@
                         <td align="right" class="style5">
                             Component Part Number:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0">
+                        <td class="style4" style="background-color: #E0E0E0">
                             <asp:Label ID="PartNumberLabel" partNumber runat="server" Text='<%# Bind("PartNumber") %>' />
                         </td>
                     </tr>
@@ -107,7 +107,7 @@
                         <td align="right" class="style5">
                             Component Material:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0">
+                        <td class="style4" style="background-color: #E0E0E0">
                             <asp:Label ID="MaterialLabel" runat="server" Text='<%# Bind("Material") %>' />
                         </td>
                     </tr>
@@ -115,7 +115,7 @@
                 <td align="right" class="style5">
                     Component Description:
                 </td>
-                <td class="style4" style="background-color: #C0C0C0">
+                <td class="style4" style="background-color: #E0E0E0">
                     <asp:Label ID="DescriptionLabel" runat="server" Text='<%# Bind("Description") %>' />
                 </td>
             </tr>--%>
@@ -123,7 +123,7 @@
                         <td align="right" class="style5">
                             EAU:
                         </td>
-                        <td class="style4" style="background-color: #C0C0C0">
+                        <td class="style4" style="background-color: #E0E0E0">
                             <asp:TextBox ID="txtEAV" Width="100px" runat="server" mainEAV="" onchange="setEAVValues()"
                                 onkeyup="setEAVValues()" Style="text-align: right;"></asp:TextBox>
                         </td>
@@ -468,11 +468,11 @@
             var strTable = '<table id="tableEAUs" cellspacing="0" border="0">';
             //        strTable += '<tr><td><input type="radio" name="optEAU" checked="checked"></td><td>Manual</ td><td></ td></ tr>';
             //        strTable += '<tr><td><input type="radio" name="optEAU"></td><td>Equal to:</ td><td><input type="text" value="" id="txtEqualEAU" style="width:100px;"></ td></ tr>';
-            strTable += '<tr><td></td><td style="text-align: right;">EAU</ td><td style="text-align: right;">Calendar Years</ td></ tr>';
+            strTable += '<tr><td></td><td style="text-align: right;"><b>EAU<b></ td><td style="text-align: right;"><b>Calendar Years<b></ td></ tr>';
             var eauGroupped = getEAUGroupped();
             for (current in eauGroupped) {
                 if (eauGroupped.hasOwnProperty(current)) {
-                    strTable += '<tr><td><input optEAU_ID="' + current + '" type="radio" name="optEAU" onclick="onFilterEAU(event);"></td><td style="width: 70px;text-align: right;">' + current + '</ td><td style="width: 130px;text-align: right;"></ td></ tr>';
+                    strTable += '<tr><td><input optEAU_ID="' + current + '" type="radio" name="optEAU" onclick="onFilterEAU(event);"></td><td style="width: 60px;text-align: right;padding-left:10px;">' + current + '</ td><td style="text-align: right;padding-left:10px;">' + eauGroupped[current] + '</ td></ tr>';
                 }
             }
             strTable += '</ table>';
@@ -486,11 +486,26 @@
                 for (var i = 0; i < RFQSummary.RfqSummaryList.length; i++) {
                     var current = RFQSummary.RfqSummaryList[i];
                     if (!(current.EstimatedAnnualVolume in result)) {
-                        result[current.EstimatedAnnualVolume] = current.EstimatedAnnualVolume;
+                        result[current.EstimatedAnnualVolume] = current.CalendarYear;
+                    } else {
+                        result[current.EstimatedAnnualVolume] += ", " + current.CalendarYear;
                     }
                 }
             }
+
+            for (var strEAU in result) {
+                if(result.hasOwnProperty(strEAU)){
+                    result[strEAU] = removeDuplicates(result[strEAU].split(",")).join(",");
+                }
+            } 
             return result;
+        }
+        function removeDuplicates(arr){
+            var uniqueElements = [];
+            $.each(arr, function (i, el) {
+                if ($.inArray(jQuery.trim(el), uniqueElements) === -1) uniqueElements.push(jQuery.trim(el));
+            });
+            return uniqueElements;
         }
         function onFilterEAU(e) {
             if (!e) e = window.event;
@@ -516,102 +531,107 @@
         '                    <table>' +
         '                        <tr style="height:16px;">' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Supplier Name</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Material</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Material O/S</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Scrap</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Labor</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Burden</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Manufacturing Cost</ label>' +
         '                            </td>' +
         '                       </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>SGA&A Profit</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Packaging</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Assembly Cost Per Unit</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>A Cost</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>B Cost</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>C Cost</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Total Acquisition Cost</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Estimated Annual Volume</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Annual Purchase Cost</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
-        '                                <label>Tooling</ label>' +
+        '                                <label>Production Tooling</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
+        '                            <td>' +
+        '                                <label>Prototype Tooling</ label>' +
+        '                            </td>' +
+        '                        </tr>' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Cavitation</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td>' +
         '                                <label>Material</ label>' +
         '                            </td>' +
         '                        </tr>' +
-        '                        <tr style="height:12px;">' +
+        '                        <tr style="height:16px;">' +
         '                            <td></td>' +
         '                        </tr>' +
         '                    </table>' +
@@ -626,112 +646,117 @@
                 if (current.EstimatedAnnualVolume == currentEAUFilter) {
                     htmlDetail += '<div class="movible" style="position: absolute;" eav_volume="' + current.EstimatedAnnualVolume + '" >' +
         '            <table class="rfqUnselected" style="text-align: right; width: 100%;">' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td align="center">' +
         '                        <label id="lblSelected">' + jQuery.trim(current.Eav_status) + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <a id="lnkSupplier" rfqHeaderKey=' + current.RfqHeaderKey + ' eavvol=' + current.EstimatedAnnualVolume + ' href="#" validationid="rfqSummary" onclick="on_selectRFQ(this);return false;"' +
         '                            title="" style="text-align: center;display: block; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;' +
         '                            width: 70px;">' + jQuery.trim(current.SupplierName) + '</ a>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblMaterialTotal">' + jQuery.trim(current.MaterialTotal) + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblServiceTotal">' + jQuery.trim(current.ServiceTotal) + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblScrapTotal">' + current.ScrapTotal + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblLaborTotal">' + current.LaborTotal + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblBurdenTotal">' + current.BurdenTotal + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblManufacturingCost">' + current.ManufacturingCost + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblSgaProfit">' + current.SgaProfit + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblPackingPerUnit">' + current.PackingPerUnit + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                       <label id="lblAssemblyCostPerUnit">' + current.AssemblyCostPerUnit + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblTotalACost" item="' + i + '"  fieldName="lblTotalACost">' + current.TotalACost + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td style="background-color: lightgray;">' +
         '                        <input type="text"  id="txtTotalBCost" item="' + i + '"  fieldName="txtTotalBCost" validate="number" validationid="rfqSummary"' +
         '                          onchange="summarizeColumn(' + i + ')" onkeyup="summarizeColumn(' + i + ')" style="width:100%;" class="textManual" value="' + current.TotalBCost + '" / >' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td style="background-color: lightgray;">' +
         '                        <input type="text"  id="txtTotalCCost" item="' + i + '"  fieldName="txtTotalCCost" validate="number" validationid="rfqSummary"' +
         '                          onchange="summarizeColumn(' + i + ')" onkeyup="summarizeColumn(' + i + ')"   class="textManual" value="' + current.TotalCCost + '" / >' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="lblTotalAcquisitionCost" item="' + i + '" fieldName="lblTotalAcquisitionCost" >0.000</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td style="background-color: lightgray;">' +
         '                        <input type="text"  id="txtEAV"  item="' + i + '"  fieldName="txtEAV" validate="number" validationid="rfqSummary" ' +
         '                          onchange="summarizeColumn(' + i + ')" onkeyup="summarizeColumn(' + i + ')"    class="textManual" value="' + current.EAV + '" / >' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label  id="lblAnnualPurchaseCost"  item="' + i + '"  fieldName="lblAnnualPurchaseCost">0.000</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="txtTooling">' + current.Tooling + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
+        '                    <td>' +
+        '                        <label id="txtTooling">' + current.PrototypeTooling + '</ label>' +
+        '                    </td>' +
+        '                </tr>' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="txtCavitation" >' + current.Cavitation + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;">' +
+        '                <tr style="height:16px;">' +
         '                    <td>' +
         '                        <label id="txtMaterial"  style="text-align: right;">' + current.MaterialTooling + '</ label>' +
         '                    </td>' +
         '                </tr>' +
-        '                <tr style="height:11px;display: none;">' +
+        '                <tr style="height:16px;display: none;">' +
         '                    <td>' +
         '                        <input type="text"  id="txtSeq"  class="Sequence" style="width:20px;" value="' + current.Sequence + '" / >' +
         '                        <input type="text"  id="txtKey" style="width:20px;" value="' + current.RfqHeaderKey + '" / >' +
@@ -826,9 +851,28 @@
                 var value = RFQSummary[jQuery(this).attr("bindTo")];
                 setValueForControl(this, jQuery(this), value);
             });
-            jQuery('#txtPPAPDate').val((new Date(RFQSummary.PpapDate)).toLocaleDateString());
-            jQuery('#txtInitialReleaseDate').val((new Date(RFQSummary.InitialReleaseDate)).toLocaleDateString());
-            jQuery('#txtPreBuildDate').val((new Date(RFQSummary.PrebuildDate)).toLocaleDateString());
+
+            var dPPAPDate = new Date(RFQSummary.PpapDate);
+            if (dPPAPDate.getDate() == 9 && dPPAPDate.getMonth() == 1 && dPPAPDate.getFullYear() == 1985) {
+                jQuery('#txtPPAPDate').val("");
+            } else {
+                jQuery('#txtPPAPDate').val(dPPAPDate.toLocaleString());
+            }
+
+            var dInitialReleaseDate = new Date(RFQSummary.InitialReleaseDate);
+            if (dInitialReleaseDate.getDate() == 9 && dInitialReleaseDate.getMonth() == 1 && dInitialReleaseDate.getFullYear() == 1985) {
+                jQuery('#txtInitialReleaseDate').val("");
+            } else {
+                jQuery('#txtInitialReleaseDate').val(dInitialReleaseDate.toLocaleString());
+            }
+
+            var dPrebuildDate = new Date(RFQSummary.PrebuildDate);
+            if (dPrebuildDate.getDate() == 9 && dPrebuildDate.getMonth() == 1 && dPrebuildDate.getFullYear() == 1985) {
+                jQuery('#txtPreBuildDate').val("");
+            } else {
+                jQuery('#txtPreBuildDate').val(dPrebuildDate.toLocaleString());
+            }
+
         }
 
         function setValueForControl(ref, control, value) {
