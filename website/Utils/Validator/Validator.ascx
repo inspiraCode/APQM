@@ -81,6 +81,17 @@
                             return false;
                         }
                         break;
+                    case 'dateOrEmpty':
+                        if (jQuery(this).val() != '') {
+                            var dateToValidate = new Date(jQuery(this).val());
+                            dateToValidate = dateToValidate.toJSON();
+                            if (dateToValidate == null) {
+                                strErrorMessage = 'Date did not pass validation.';
+                                fieldNeedsCorrection = jQuery(this);
+                                return false;
+                            } 
+                        }
+                        break;
                     default:
                 }
             }

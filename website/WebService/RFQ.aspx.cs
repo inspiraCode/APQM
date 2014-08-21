@@ -242,6 +242,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         rfq.LastEmail = supplier.ContactEmail;
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
+                        rfq.Um = component.Um;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
                         rfq.RfqGenerated = rfqNumberGenereated.RfqGenerated;
                         rfq.DueDate = newRFQScreen.DueDate;
@@ -249,6 +250,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         rfq.DrawingLevel = newRFQScreen.DrawingLevel;
                         rfq.TargetPrice = newRFQScreen.TargetPrice;
                         rfq.CommentsToVendor = newRFQScreen.CommentsToVendor;
+                        
 
                         rfq.CreatedBy = strAuthUser;
 
@@ -520,6 +522,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
                         //rfq.LastEmail
                         rfq.Status = "PENDING";
                         rfq.BomDetailId = component.Id;
+                        rfq.Um = component.Um;
                         rfq.RfqNumberKey = rfqNumberGenereated.Id;
                         rfq.RfqGenerated = rfqNumberGenereated.RfqGenerated;
                         rfq.DueDate = newRFQScreen.DueDate;

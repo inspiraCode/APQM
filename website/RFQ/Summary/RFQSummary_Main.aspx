@@ -147,7 +147,7 @@
                     PPAP Date:
                 </td>
                 <td>
-                    <input type="text" id="txtPPAPDate" validate="date" validationid="rfqSummary" datepicker="true" />
+                    <input type="text" id="txtPPAPDate" validate="dateOrEmpty" validationid="rfqSummary" datepicker="true" />
                 </td>
                 <td style="width: 100px;">
                 </td>
@@ -175,7 +175,7 @@
                     Initial Release Date:
                 </td>
                 <td>
-                    <input type="text" id="txtInitialReleaseDate" validate="date" validationid="rfqSummary"
+                    <input type="text" id="txtInitialReleaseDate" validate="dateOrEmpty" validationid="rfqSummary"
                         datepicker="true" />
                 </td>
                 <td>
@@ -204,7 +204,7 @@
                     Pre-Build Date
                 </td>
                 <td>
-                    <input type="text" id="txtPreBuildDate" validate="date" validationid="rfqSummary"
+                    <input type="text" id="txtPreBuildDate" validate="dateOrEmpty" validationid="rfqSummary"
                         datepicker="true" />
                 </td>
                 <td>
@@ -468,7 +468,7 @@
             var strTable = '<table id="tableEAUs" cellspacing="0" border="0">';
             //        strTable += '<tr><td><input type="radio" name="optEAU" checked="checked"></td><td>Manual</ td><td></ td></ tr>';
             //        strTable += '<tr><td><input type="radio" name="optEAU"></td><td>Equal to:</ td><td><input type="text" value="" id="txtEqualEAU" style="width:100px;"></ td></ tr>';
-            strTable += '<tr><td></td><td style="text-align: right;"><b>EAU<b></ td><td style="text-align: right;"><b>Calendar Years<b></ td></ tr>';
+            strTable += '<tr><td></td><td style="text-align: right;"><b>EAU<b></ td><td style="text-align: right;padding-left: 20px;"><b>Calendar Years<b></ td></ tr>';
             var eauGroupped = getEAUGroupped();
             for (current in eauGroupped) {
                 if (eauGroupped.hasOwnProperty(current)) {
@@ -632,6 +632,11 @@
         '                            </td>' +
         '                        </tr>' +
         '                        <tr style="height:16px;">' +
+        '                            <td>' +
+        '                                <label>UOM</ label>' +
+        '                            </td>' +
+        '                        </tr>' +
+        '                        <tr style="height:16px;">' +
         '                            <td></td>' +
         '                        </tr>' +
         '                    </table>' +
@@ -756,6 +761,11 @@
         '                        <label id="txtMaterial"  style="text-align: right;">' + current.MaterialTooling + '</ label>' +
         '                    </td>' +
         '                </tr>' +
+        '                <tr style="height:16px;">' +
+        '                    <td>' +
+        '                        <label style="text-align: right;">' + current.Um + '</ label>' +
+        '                    </td>' +
+        '                </tr>' +
         '                <tr style="height:16px;display: none;">' +
         '                    <td>' +
         '                        <input type="text"  id="txtSeq"  class="Sequence" style="width:20px;" value="' + current.Sequence + '" / >' +
@@ -851,28 +861,10 @@
                 var value = RFQSummary[jQuery(this).attr("bindTo")];
                 setValueForControl(this, jQuery(this), value);
             });
-
-            var dPPAPDate = new Date(RFQSummary.PpapDate);
-            if (dPPAPDate.getDate() == 9 && dPPAPDate.getMonth() == 1 && dPPAPDate.getFullYear() == 1985) {
-                jQuery('#txtPPAPDate').val("");
-            } else {
-                jQuery('#txtPPAPDate').val(dPPAPDate.toLocaleString());
-            }
-
-            var dInitialReleaseDate = new Date(RFQSummary.InitialReleaseDate);
-            if (dInitialReleaseDate.getDate() == 9 && dInitialReleaseDate.getMonth() == 1 && dInitialReleaseDate.getFullYear() == 1985) {
-                jQuery('#txtInitialReleaseDate').val("");
-            } else {
-                jQuery('#txtInitialReleaseDate').val(dInitialReleaseDate.toLocaleString());
-            }
-
-            var dPrebuildDate = new Date(RFQSummary.PrebuildDate);
-            if (dPrebuildDate.getDate() == 9 && dPrebuildDate.getMonth() == 1 && dPrebuildDate.getFullYear() == 1985) {
-                jQuery('#txtPreBuildDate').val("");
-            } else {
-                jQuery('#txtPreBuildDate').val(dPrebuildDate.toLocaleString());
-            }
-
+            
+            jQuery('#txtPPAPDate').val(formatDate(new Date(RFQSummary.PpapDate)));
+            jQuery('#txtInitialReleaseDate').val(formatDate(new Date(RFQSummary.InitialReleaseDate)));
+            jQuery('#txtPreBuildDate').val(formatDate(new Date(RFQSummary.PrebuildDate)));
         }
 
         function setValueForControl(ref, control, value) {
@@ -895,9 +887,10 @@
                 getValueFromControl(this, jQuery(this), RFQSummary);
             });
 
-            RFQSummary.PpapDate = jQuery('#txtPPAPDate').val();
-            RFQSummary.InitialReleaseDate = jQuery('#txtInitialReleaseDate').val();
-            RFQSummary.PrebuildDate = jQuery('#txtPreBuildDate').val();
+            RFQSummary.PpapDate = getJSONDate(jQuery('#txtPPAPDate').val());
+            RFQSummary.InitialReleaseDate = getJSONDate(jQuery('#txtInitialReleaseDate').val());
+            RFQSummary.PrebuildDate = getJSONDate(jQuery('#txtPreBuildDate').val());
+            
 
             //        if (jQuery("#optQuote").is(':checked')) {
             //            RFQ.NoQuote = false;

@@ -368,13 +368,14 @@
                 jQuery('#tableNewRFQDetail').dataTable().fnDestroy();
             } catch (e) { }  //there is no table yet}
             var strBOMLines = '<table id="tableNewRFQDetail" border="1" class="display dataTable" style="font-size: 10px;width:640px;">' +
-            '<thead><tr><th>Part Number</th><th style="width:200px;">Material/Description</th><th>Qty. Required</th><th>Attachments</th><th></th></tr></thead><tbody>';
+            '<thead><tr><th>Part Number</th><th style="width:200px;">Material/Description</th><th style="width:70px;">Qty. Required</th><th style="width:50px;">UOM</th><th>Attachments</th><th></th></tr></thead><tbody>';
 
             for (var j = 0; j < newRFQScreen.BomDetailList.length; j++) {
                 var current = newRFQScreen.BomDetailList[j];
                 strBOMLines += '<tr><td>' + current.PartNumber + '</td>';
                 strBOMLines += '<td style="white-space: normal;">' + current.Material + '</td>';
-                strBOMLines += '<td>' + current.Qty + '</td>';
+                strBOMLines += '<td style="text-align:right;">' + current.Qty + '</td>';
+                strBOMLines += '<td style="text-align:center;">' + current.Um + '</td>';
                 strBOMLines += '<td style="vertical-align:top;">';
                 strBOMLines += getAttachmentsSelect(current);
                 strBOMLines += '</td>';

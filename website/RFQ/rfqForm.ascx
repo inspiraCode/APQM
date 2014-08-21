@@ -27,8 +27,7 @@
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
 <br />
-<div data-step='1' data-intro='Select "Quote" if you are able to quote this piece. Otherwise select "No Quote" and please specify your reason.'
-    style="width: 300px;">
+<div id="step1" style="width: 300px;">
     <input id="optQuote" type="radio" name="optQuote" tabindex="1" checked="checked"
         onchange="on_change_option_quote()" />Quote&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <input id="optNoQuote" type="radio" name="optQuote" tabindex="2" onchange="on_change_option_quote()" />No
@@ -37,11 +36,10 @@
 <br />
 <div style="border: solid; height: 0px; border-color: #D3D3D3; border-width: 2px;">
 </div>
-<div id="quoteSection" style="display: none;">
+<div id="quoteSection">
     <div style="display: inline;">
         <br />
-        <div data-step='2' data-intro='Sometimes you can receive some comments from our purchasing department that can be helpful for you to quote the piece.'
-            style="width: 450px; display: inline;">
+        <div id="step2" style="width: 450px; display: inline;">
             Comments to vendor:<br />
             <textarea rows="4" cols="50" id="txtCommentsToVendor" bindto="CommentsToVendor" class="ReadOnlyFields" readonly
                 tabindex="1" style="width: 450px;"></textarea>
@@ -53,8 +51,7 @@
     </div>
     <div>
         <br />
-        <div style="background-color: #D3D3D3; width: 456px; min-height: 20px;" data-step='3'
-            data-intro='Sometimes you can receive attachments from our purchasing department that can be helpful for you to quote the piece.'>
+        <div id="step3" style="background-color: #D3D3D3; width: 456px; min-height: 20px;">
             Attachments from Buyer to Vendor:<br />
             <div id="divAttachmentsToVendor">
             </div>
@@ -67,7 +64,7 @@
                 <td align="right" class="style78">
                     Due Date
                 </td>
-                <td align="left" class="style77" data-step='4' data-intro='Please complete this RFQ before this date.'>
+                <td id="step4" align="left" class="style77">
                     <label id="lblDueDate" style="text-align: center; width: 170px; height: 20px; display: block;"
                         class="ReadOnlyFields">
                     </label>
@@ -76,8 +73,8 @@
                 </td>
                 <td align="left" class="style29">
                 </td>
-                <td align="left" class="style29" rowspan="9">
-                    <table cellspacing="0" data-step='15' data-intro='Please complete these fields as applicable.'
+                <td align="left" class="style29" rowspan="10">
+                    <table id="step16" cellspacing="0"
                         style="width: 449px;">
                         <tr>
                             <td align="right">
@@ -154,7 +151,7 @@
                 <td align="right" class="style78">
                     RFQ #
                 </td>
-                <td align="left" class="style77" data-step='5' data-intro='This is our RFQ number.'>
+                <td id="step5" align="left" class="style77">
                     <label id="lblRFQNumber" bindto="RfqGenerated" style="text-align: center; width: 170px;
                         display: block; height: 20px" class="ReadOnlyFields">
                     </label>
@@ -162,7 +159,7 @@
                 <td align="right" class="style79">
                     Supplier Name
                 </td>
-                <td align="left" class="style29" data-step='11' data-intro='If this is incorrect, please click Save & Continue Later button. Once saved, you can go back to initial supplier page to make the change to the information.'>
+                <td id="step12" align="left" class="style29">
                     <label id="lblSupplierName" bindto="SupplierName" class="ReadOnlyFields" style="width: 220px;
                         display: block; height: 20px;">
                     </label>
@@ -172,7 +169,7 @@
                 <td align="right" class="style78">
                     Market Sector
                 </td>
-                <td align="left" class="style77" data-step='6' data-intro='Market Sector of this piece.'>
+                <td id="step6" align="left" class="style77">
                     <label id="lblMarketSector" bindto="MarketSectorName" style="text-align: center;
                         display: block; width: 170px; height: 20px;" class="ReadOnlyFields">
                     </label>
@@ -180,7 +177,7 @@
                 <td align="right" class="style79">
                     Manufacturing Location
                 </td>
-                <td align="left" class="style29" data-step='12' data-intro='Your Manufacturing Location for the Part to quote.'>
+                <td id="step13" align="left" class="style29">
                     <input type="text" tabindex="3" id="txtManufacturingLocation" validate="required"
                         validationid="validatingRFQForm" bindto="ManufacturingLocation" style="width: 216px;display: block;" />
                 </td>
@@ -189,7 +186,7 @@
                 <td align="right" class="style78">
                     Component Part Number
                 </td>
-                <td align="left" class="style77" data-step='7' data-intro='This is the Part Number to quote.'>
+                <td id="step7" align="left" class="style77">
                     <label id="lblPartNumber" bindto="PartNumber" class="ReadOnlyFields" style="text-align: center;
                         width: 170px; height: 20px; display: block;">
                     </label>
@@ -197,39 +194,54 @@
                 <td align="right" class="style79">
                     Ship From Location
                 </td>
-                <td align="left" class="style29" data-step='13' data-intro='Your Ship Location for the Part to quote.'>
+                <td id="step14" align="left" class="style29">
                     <input type="text" tabindex="3" id="txtShipFromLocation" validate="required"
                         validationid="validatingRFQForm" bindto="ShipLocation" style="width: 216px;display: block;" />
                 </td>
             </tr>
             <tr align="left">
-                <td align="right" class="style78" rowspan="2">
-                    Part Description
-                </td>
-                <td align="left" class="style77" rowspan="2" data-step='8' data-intro='This is the material or name of the piece to quote.'>
-                    <label id="lblPartName" bindto="PartMaterial" class="ReadOnlyFields" style="text-align: left;
-                        width: 170px; min-height: 48px; display: block;">
+                <td align="right" class="style78">
+                    Um</td>
+                <td id="step8" align="left" class="style77">
+                    <label id="lblUOM" bindto="Um" class="ReadOnlyFields" style="text-align: center;
+                        width: 170px; height: 20px; display: block;">
                     </label>
                 </td>
                 <td align="right" class="style79">
                     Prepared By
                 </td>
-                <td align="left" class="style29" data-step='14' data-intro='Please enter your name.'>
+                <td id="step15" align="left" class="style29">
                     <input type="text" id="txtPreparedBy" bindto="PreparedBy" value="" validate="required"
                         validationid="validatingRFQForm" style="width: 216px;" tabindex="3" />
                 </td>
             </tr>
             <tr>
+                <td align="right" class="style78" rowspan="2">
+                    Part Description
+                </td>
+                <td id="step9" align="left" class="style77" rowspan="2">
+                    <label id="lblPartName" bindto="PartMaterial" class="ReadOnlyFields" style="text-align: left;
+                        width: 170px; min-height: 48px; display: block;">
+                    </label>
+                </td>
                 <td align="right" class="style79">
                 </td>
                 <td align="left" class="style29">
                 </td>
             </tr>
             <tr>
+                <td align="right" class="style79">
+                    &nbsp;
+                </td>
+                <td align="left" class="style29">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
                 <td align="right" class="style78">
                     Drawing Level
                 </td>
-                <td align="left" class="style77" data-step='9' data-intro='Drawing Level.'>
+                <td id="step10" align="left" class="style77">
                     <label id="lblDrawingLevel" bindto="DrawingLevel" class="ReadOnlyFields" style="text-align: center;
                         width: 170px; height: 20px; display: block;">
                     </label>
@@ -247,17 +259,15 @@
                         display: block;">Target Price
                     </label>
                 </td>
-                <td align="left" class="style77" data-step='10' data-intro='Target Price. If specified by Purchasing Department.'>
+                <td id="step11" align="left" class="style77">
                     <label id="lblTargetPrice" bindto="TargetPrice" style="text-align: right; width: 170px;
                         height: 20px; display: block;" class="ReadOnlyFields">
                     </label>
                 </td>
                 <td align="right" class="style79">
-                    &nbsp;
-                </td>
+                    &nbsp;</td>
                 <td align="left" class="style29">
-                    &nbsp;
-                </td>
+                    &nbsp;</td>
             </tr>
         </table>
         <br />
@@ -276,7 +286,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="style56" colspan="2" align="right" data-step='38' data-intro='Please provide tooling information.'>
+                <td id="step40" class="style56" colspan="2" align="right">
                     <textarea bindto="ToolingDetail" rows="4" cols="50" id="txtToolingDetail" tabindex="23"></textarea>
                 </td>
             </tr>
@@ -284,7 +294,7 @@
                 <td align="right" class="style61" style="width: 260px;">
                     Production Tooling
                 </td>
-                <td class="style62" align="right" data-step='39' data-intro='Enter Production Tooling Cost.'>
+                <td id="step41" class="style62" align="right">
                     <input type="text" id="txtProductionTooling" bindto="ProductionTooling" value=""
                         validate="number" validationid="validatingRFQForm" style="text-align: right"
                         tabindex="24" />
@@ -294,7 +304,7 @@
                 <td align="right" class="style61">
                     Prototype Tooling
                 </td>
-                <td class="style62" align="right" data-step='40' data-intro='Enter Prototype Tooling Cost.'>
+                <td id="step42" class="style62" align="right">
                     <input type="text" id="txtPrototypeTooling" bindto="PrototypeTooling" value="" validate="number"
                         validationid="validatingRFQForm" style="text-align: right" tabindex="25" />
                 </td>
@@ -303,13 +313,13 @@
                 <td align="right" class="style61">
                     Prototype Piece
                 </td>
-                <td class="style62" align="right" data-step='41' data-intro='Enter Prototype Piece Cost.'>
+                <td id="step43" class="style62" align="right">
                     <input type="text" id="txtPrototypePiece" bindto="PrototypePiece" value="" validate="number"
                         validationid="validatingRFQForm" style="text-align: right" tabindex="26" />
                 </td>
             </tr>
         </table>
-        <div data-step='42' data-intro='Outline your annual cost reduction commitment.' style="float: left;
+        <div id="step44" style="float: left;
             margin-left: 50px; margin-right: 40px;">
             <div style="width: 200px;">
                 Annual Cost Reduction Commitment
@@ -320,7 +330,7 @@
         <table>
             <tr>
                 <td align="right" class="style78">
-                    <div style="width: 226px; display: inline;" align="right" data-step='43' data-intro='Please enter the weight of the part to be shipped.'>
+                    <div id="step45" style="width: 226px; display: inline;" align="right">
                         Shipping Weight (lb)
                         <input type="text" id="txtWeight" bindto="Weight" value="" validate="number" validationid="validatingRFQForm"
                             style="text-align: right; width: 94px" tabindex="32" />
@@ -328,14 +338,14 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" data-step='44' data-intro='Enter the Brand if applicable.' class="style78">
+                <td id="step46" align="right" class="style78">
                     Brand
                     <input type="text" value="" bindto="Make" id="txtMake" style="text-align: right;
                         width: 130px; text-transform:uppercase;" tabindex="34" />
                 </td>
             </tr>
             <tr>
-                <td align="right" data-step='45' data-intro='Enter the number of Cavitation if applicable.'
+                <td id="step47" align="right"
                     class="style78">
                     Cavitation
                     <input type="text" id="txtCavitation" bindto="Cavitation" value="" style="text-align: right;
@@ -343,7 +353,7 @@
                 </td>
             </tr>
             <tr>
-                <td align="right" data-step='46' data-intro='Enter the Material if applicable.' class="style78">
+                <td id="step48" align="right" class="style78">
                     Material
                     <input type="text" id="txtMaterial" bindto="Material" value="" style="text-align: right;
                         width: 130px" tabindex="36" />
@@ -362,17 +372,14 @@
                         <div id="uploadZone">
                             Upload
                         </div>
-                        <div style="background-color: #D3D3D3; width: 449px; min-height: 200px;" data-step='47'
-                            data-position='left' data-intro='Here are the attachments that you sent to Purchasing Department.'>
+                        <div style="background-color: #D3D3D3; width: 449px; min-height: 200px;" id="step49">
                             <br />
                             <div id="divAttachmentsToBuyer">
                             </div>
                         </div>
                     </td>
                     <td>
-                        <div style="margin-left: auto; margin-right: auto; width: 405px; height: 150px;"
-                            data-step='48' data-intro='Please enter here any exception you have out of the print.'
-                            data-position='top'>
+                        <div id="step50" style="margin-left: auto; margin-right: auto; width: 405px; height: 150px;">
                             <div align="left">
                                 <input id="chkQuote100ToPrint" type="checkbox" onchange="on_change_chkQuote100ToPrint()" />Quote
                                 100% to Print
@@ -392,8 +399,7 @@
             <div style="margin-left: auto; margin-right: auto; width: 450px;">
                 <div align="left">
                     Comments</div>
-                <div data-step='49' data-intro='If you have any comments to share with us, please use this field.'
-                    data-position='top' style="width: 100%;">
+                <div id="step51" style="width: 100%;">
                     <textarea rows="4" cols="0" id="txtComments" bindto="CommentsToBuyer" tabindex="38"
                         style="width: 400px; height: 100px;"></textarea>
                 </div>
@@ -473,7 +479,7 @@
             if (current) {
                 current.destroy();
             }
-        })
+        });
 
         jQuery(".rfqDetailTotals").remove();
         jQuery("#divDetailSection").empty();
@@ -606,8 +612,8 @@
             }
         });
 
-        bindParentFields();
-        jQuery("#lblDueDate").text((new Date(RFQ.DueDate)).toLocaleDateString());
+
+        jQuery("#lblDueDate").text(formatDate(new Date(RFQ.DueDate)));
 
         if (RFQ.User != null) {
             var strBuyerInfo = '';
@@ -623,24 +629,23 @@
                 var objEAU = RFQ.RfqEAV[i];
                 var htmlEAU = '<div style="border: solid; height: 0px; border-color: #FE0000; border-width: 1px;clear:both;"></div>' +
                                '<div style="background-color: rgba(185, 198, 219, 0.28);"><br>';
-                htmlEAU += '<div  data-step="16" data-intro="Please quote for this EAU and Calendar Years" align="left" style="height: 20px;">' +
+                htmlEAU += '<div id="step17" align="left" style="height: 20px;">' +
                     '<div style="display: inline;margin-right: 5px;">Estimated Annual Usage:</div>' +
                     '<label style="display: inline-block;">' + objEAU.Volume + '</label>' +
                     '<div style="display: inline;margin-left:20px;margin-right: 5px;">Calendar Years:</div>' +
                     '<label style="min-width: 300px; display: inline-block;">' + objEAU.Year + '</label></div>' +
                     '<div style="margin-left: auto;margin-right: auto;width: 1295px;" rfqeau_id="' + objEAU.Id + '"></div>';
 
-                var htmlMOQ = '<div data-step="37" data-intro="Please specify MOQ for each EAU." style="position: absolute;margin: 63px;">MOQ<input type="text" idMOQ="' + objEAU.Id + '" style="text-align: right; width: 100px;"' +
+                var htmlMOQ = '<div data-step="step39" style="position: absolute;margin: 63px;">MOQ<input type="text" idMOQ="' + objEAU.Id + '" style="text-align: right; width: 100px;"' +
                     '             validate="required" validationid="validatingRFQForm" tabindex="20" value="' + objEAU.Moq + '"></div>';
-                var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 160px;background-color: rgba(185, 198, 219, 0.28);">' +
+                var htmlTotals = '<div class="rfqDetailTotals" style="width: 100%; height: 180px;background-color: rgba(185, 198, 219, 0.28);">' +
                     '    <table cellspacing="0" align="right" style="width: 305px;margin-right: 11px;margin-top: 7px;">' +
                     '        <tr>' +
                     '            <td align="right" class="style75" style="padding-top: 5px;border-top: solid gray; border-left: solid gray;border-width: 1px;">' +
                     '                Total Manufacturing Cost&nbsp;&nbsp;' +
                     '            </td>' +
                     '            <td align="left" class="style31" style="padding-top: 5px;border-top: solid gray; border-right: solid gray;border-width: 1px;"' +
-                    '                data-step="32" data-intro="Total Manufacturing Cost (formulated cell not to be completed by Supplier)."' +
-                    '                data-position="left">' +
+                    '                data-step="step33">' +
                     '                <label idTotalManufacturingCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right;' +
                     '                    margin-left: 0px; width: 140px; height: 20px;display: block;padding-right: 3px;">' +
                     '                    0</label>' +
@@ -650,8 +655,7 @@
                     '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                SG&amp;A Profit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="33"' +
-                    '                data-intro="Enter cost for SG&A/Profit" data-position="left">' +
+                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="step34">' +
                     '                <input type="text" idSGAProfit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
                     '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="20" value="' + objEAU.SgAProfit + '">' +
@@ -661,8 +665,7 @@
                     '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                Packing Cost/Unit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="34"' +
-                    '                data-intro="Enter packaging cost per unit." data-position="left">' +
+                    '            <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="step35">' +
                     '                <input type="text" idPackingCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
                     '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="21" value="' + objEAU.PackingPerUnit + '">' +
@@ -672,20 +675,27 @@
                     '            <td align="right" class="style75" style="border-left: solid gray;border-width: 1px;">' +
                     '                Assembly Cost/Unit&nbsp;&nbsp;' +
                     '            </td>' +
-                    '           <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="35"' +
-                    '                data-intro="Enter cost for assembly, if applicable." data-position="left">' +
+                    '           <td align="left" class="style31" style="border-right: solid gray;border-width: 1px;" data-step="step36">' +
                     '                <input type="text" idAssemblyCostUnit="' + objEAU.Id + '" validate="number" validationid="validatingRFQForm"' +
                     '                    style="text-align: right; width: 140px;" onchange="summarizeTotalPieceCost(' + objEAU.Id + ')"' +
                     '                    onkeyup="summarizeTotalPieceCost(' + objEAU.Id + ')" tabindex="22" value="' + objEAU.AssemblyCostPerUnit + '">' +
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
+                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray 1px;">' +
                     '                Total Piece Cost&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" data-step="36" data-intro="Total Piece Cost (formulated cell not to be completed by the Supplier)."' +
-                    '                data-position="left" style="padding-bottom: 5px;border-right: solid gray; border-bottom: solid gray;border-width: 1px;">' +
+                    '            <td align="left" class="style31" data-step="step37" style="padding-bottom: 5px;border-right: solid gray 1px;">' +
                     '                <label idTotalPieceCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;">' +
+                    '                    0</label>' +
+                    '            </td>' +
+                    '        </tr>' +
+                    '        <tr>' +
+                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
+                    '                UOM&nbsp;&nbsp;' +
+                    '            </td>' +
+                    '            <td align="left" class="style31" data-step="step38" style="padding-bottom: 5px;border-right: solid gray; border-bottom: solid gray;border-width: 1px;">' +
+                    '                <label class="ReadOnlyFields" bindTo="Um" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;border:1px solid gray;">' +
                     '                    0</label>' +
                     '            </td>' +
                     '        </tr>' +
@@ -697,7 +707,10 @@
 
             }
             jQuery("#divDetailSection").html(htmlAll);
+            
         }
+
+        bindParentFields();
 
         if (RFQ.AttachmentsToVendor != null) {
             var htmlAttachmentToVendor = '';
@@ -928,53 +941,35 @@
 
             var instructionCols = jQuery(".htCore:first tr").eq(2).children();
             if (instructionCols.length > 0) {
-                instructionCols[0].setAttribute('data-step', '17');
-                instructionCols[0].setAttribute('data-intro', 'Please indicate.');
+                instructionCols[0].setAttribute('data-step', 'step18');
 
-                instructionCols[1].setAttribute('data-step', '18');
-                instructionCols[1].setAttribute('data-intro', 'Please indicate the unit of measure.');
+                instructionCols[1].setAttribute('data-step', 'step19');
 
-                instructionCols[2].setAttribute('data-step', '19');
-                instructionCols[2].setAttribute('data-intro', 'Quantity of material used.');
+                instructionCols[2].setAttribute('data-step', 'step20');
 
-                instructionCols[3].setAttribute('data-step', '20');
-                instructionCols[3].setAttribute('data-intro', 'Material cost per unit.');
+                instructionCols[3].setAttribute('data-step', 'step21');
 
-                instructionCols[4].setAttribute('data-step', '21');
-                instructionCols[4].setAttribute('data-intro', 'This is the material cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit');
+                instructionCols[4].setAttribute('data-step', 'step22');
 
-                instructionCols[5].setAttribute('data-step', '22');
-                instructionCols[5].setAttribute('data-intro', 'Outside services needed.');
+                instructionCols[5].setAttribute('data-step', 'step23');
 
-                instructionCols[6].setAttribute('data-step', '23');
-                instructionCols[6].setAttribute('data-intro', 'Cost of the outside service.');
+                instructionCols[6].setAttribute('data-step', 'step24');
 
-                instructionCols[7].setAttribute('data-step', '24');
-                instructionCols[7].setAttribute('data-intro', 'This is the outside service cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Quantity x Cost/Unit');
+                instructionCols[7].setAttribute('data-step', 'step25');
 
-                instructionCols[8].setAttribute('data-step', '25');
-                instructionCols[8].setAttribute('data-intro', 'Percentage of scrap.');
+                instructionCols[8].setAttribute('data-step', 'step26');
 
-                instructionCols[9].setAttribute('data-step', '26');
-                instructionCols[9].setAttribute('data-intro', 'This is the scrap cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>(Material Total + Service Total) x Scrap Value');
+                instructionCols[9].setAttribute('data-step', 'step27');
 
-                instructionCols[10].setAttribute('data-step', '27');
-                instructionCols[10].setAttribute('data-intro', 'Enter directly labor rate.');
+                instructionCols[10].setAttribute('data-step', 'step28');
 
-                instructionCols[11].setAttribute('data-step', '28');
-                instructionCols[11].setAttribute('data-intro', 'Enter the number of standards hours required per part.');
+                instructionCols[11].setAttribute('data-step', 'step29');
 
-                instructionCols[12].setAttribute('data-step', '29');
-                instructionCols[12].setAttribute('data-position', 'left');
-                instructionCols[12].setAttribute('data-intro', 'This is the labor cost total (formulated cell not to be completed by Supplier).<br/>Formula:<br/>Directly Hrly Labor Rate x Std Hrs.');
+                instructionCols[12].setAttribute('data-step', 'step30');
 
-                instructionCols[13].setAttribute('data-step', '30');
-                instructionCols[13].setAttribute('data-position', 'left');
-                instructionCols[13].setAttribute('data-intro', 'Enter your total burden cost per unit.');
+                instructionCols[13].setAttribute('data-step', 'step31');
 
-                instructionCols[14].setAttribute('data-step', '31');
-                instructionCols[14].setAttribute('data-position', 'left');
-                instructionCols[14].setAttribute('data-intro', 'This is the burden cost total (formulated cell not to be completed  by Supplier).<br/>Formula:<br/>=Burden');
+                instructionCols[14].setAttribute('data-step', 'step32');
             }
         });
 

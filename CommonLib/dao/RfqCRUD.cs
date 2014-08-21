@@ -69,6 +69,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+            DM.Load_SP_Parameters("@Um", entity.Um);
 
             
             result = DM.Execute_StoreProcedure("RFQHeader_NewRFQ", true);
@@ -133,6 +134,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+            DM.Load_SP_Parameters("@Um", entity.Um);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar("RFQHeader_NewRFQ", true);
 
@@ -209,6 +211,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+            DM.Load_SP_Parameters("@Um", entity.Um);
 
             idGenerated = DM.Execute_StoreProcedure_Scalar_Open_Conn("RFQHeader_NewRFQ", true);
 
@@ -235,7 +238,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail, Um  " +
             "FROM viewRFQHeader_ReadAll " +
             "WHERE (RFQHeaderKey = @key)";
         DataTable table = new DataTable();
@@ -302,6 +305,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ExceptionTo100ToPrint = table.Rows[0][46].ToString();
                 rfq.Quote100ToPrint = bool.Parse(table.Rows[0][47].ToString());
                 rfq.LastEmail = table.Rows[0][48].ToString();
+                rfq.Um = table.Rows[0][49].ToString();
                 sqlConnection.Dispose();
                 return rfq;
             }
@@ -319,7 +323,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail, Um  " +
             "FROM viewRFQHeader_ReadAll WHERE (BOMDetailKey = @key) ORDER BY RFQHeaderKey";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -386,6 +390,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
                 rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
                 rfq.LastEmail = table.Rows[i][48].ToString();
+                rfq.Um = table.Rows[i][49].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -402,7 +407,7 @@ public class RfqCRUD : ICRUD<RFQ>
             "DeadDate, Acknowledgement, SupplierName, ManufacturingLocation, ShipLocation, PreparedBy, RFQGenerated, " +
             "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, Make, ReasonNoQuote, Weight, UMWeight, " +
             "Material, SIFHeaderKey, AttachmentsFolder, AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
+            "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail, Um  " +
             "FROM viewRFQHeader_ReadAll WHERE (CreatedBy = @user) ORDER BY RFQHeaderKey";
         DataTable table = new DataTable();
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -469,6 +474,7 @@ public class RfqCRUD : ICRUD<RFQ>
                 rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
                 rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
                 rfq.LastEmail = table.Rows[i][48].ToString();
+                rfq.Um = table.Rows[i][49].ToString();
                 recordset.Add(rfq);
             }
         }
@@ -487,7 +493,7 @@ public class RfqCRUD : ICRUD<RFQ>
                       "TargetPrice, NoQuote, MarketSector, CommentsToBuyer, CommentsToVendor, IAgree, DateFilledOut, " +
                       "Make, ReasonNoQuote, Weight, UMWeight, Material, SIFHeaderKey, AttachmentsFolder, " +
                       "AttachmentsFolderVendor, MarketSectorName, CreatedBy, Cavitation, MaterialRFQ, " +
-                      "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail  " +
+                      "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, ExceptionTo100ToPrint, Quote100ToPrint, LastEmail, Um  " +
                       "FROM viewRFQHeader_ReadAll";
         DataTable table = new DataTable();
         table = DM.Execute_Query(query);
@@ -548,6 +554,7 @@ public class RfqCRUD : ICRUD<RFQ>
             rfq.ExceptionTo100ToPrint = table.Rows[i][46].ToString();
             rfq.Quote100ToPrint = bool.Parse(table.Rows[i][47].ToString());
             rfq.LastEmail = table.Rows[i][48].ToString();
+            rfq.Um = table.Rows[i][49].ToString();
             recordset.Add(rfq);
         }
         return recordset;
@@ -613,6 +620,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+            DM.Load_SP_Parameters("@Um", entity.Um);
 
             
             result = DM.Execute_StoreProcedure("RFQHeader_EditRFQ", true);
@@ -678,6 +686,7 @@ public class RfqCRUD : ICRUD<RFQ>
             DM.Load_SP_Parameters("@ManufacturingLocation", entity.ManufacturingLocation);
             DM.Load_SP_Parameters("@ShipLocation", entity.ShipLocation);
             DM.Load_SP_Parameters("@LastEmail", entity.LastEmail);
+            DM.Load_SP_Parameters("@Um", entity.Um);
 
             result = DM.Execute_StoreProcedure_Open_Conn("RFQHeader_EditRFQ", true);
 
@@ -2133,7 +2142,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Status], [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year  " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year, Um  " +
                         "FROM viewRFQ_Summary WHERE (RFQSummaryKey = @key) ORDER BY RFQHeaderKey";
 
         DataTable table = new DataTable();
@@ -2177,6 +2186,7 @@ public class RfqSummaryCRUD
                 rfqSummary.Eav_status = table.Rows[0][27].ToString();
                 rfqSummary.PrototypeTooling = float.Parse(table.Rows[0][28].ToString());
                 rfqSummary.CalendarYear = table.Rows[0][29].ToString();
+                rfqSummary.Um = table.Rows[0][30].ToString();
 
                 sqlConnection.Dispose();
                 return rfqSummary;
@@ -2191,7 +2201,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year, Um " +
                         "FROM viewRFQ_Summary WHERE (RFQHeaderKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2229,7 +2239,8 @@ public class RfqSummaryCRUD
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[0][26].ToString());
                 rfqSummary.Eav_status = table.Rows[0][27].ToString();
                 rfqSummary.PrototypeTooling = float.Parse( table.Rows[0][28].ToString());
-                rfqSummary.CalendarYear= table.Rows[0][29].ToString();
+                rfqSummary.CalendarYear = table.Rows[0][29].ToString();
+                rfqSummary.Um = table.Rows[0][30].ToString();
 
                 if (table.Rows[0][15].ToString() != "")
                 {
@@ -2252,7 +2263,7 @@ public class RfqSummaryCRUD
         string query = "SELECT RFQHeaderKey, BOMDetailKey, RFQGenerated, SupplierMasterKey, MaterialTotal, ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year, Um " +
                         "FROM viewRFQ_Summary WHERE RFQHeaderKey = @key AND EstimatedAnnualVolume = @volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2292,6 +2303,7 @@ public class RfqSummaryCRUD
                 rfqSummary.Eav_status = table.Rows[0][27].ToString();
                 rfqSummary.PrototypeTooling = float.Parse(table.Rows[0][28].ToString());
                 rfqSummary.CalendarYear = table.Rows[0][29].ToString();
+                rfqSummary.Um = table.Rows[0][30].ToString();
                 if (table.Rows[0][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[0][15].ToString());
@@ -2314,7 +2326,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year, Um " +
                         "FROM viewRFQ_Summary WHERE (BOMDetailKey = @key) ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2353,7 +2365,8 @@ public class RfqSummaryCRUD
                 rfqSummary.RfqEAVKey = long.Parse(table.Rows[i][26].ToString());
                 rfqSummary.Eav_status = table.Rows[i][27].ToString();
                 rfqSummary.PrototypeTooling = float.Parse(table.Rows[i][28].ToString());
-                rfqSummary.CalendarYear =table.Rows[i][29].ToString();
+                rfqSummary.CalendarYear = table.Rows[i][29].ToString();
+                rfqSummary.Um = table.Rows[i][30].ToString();
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());
@@ -2375,7 +2388,7 @@ public class RfqSummaryCRUD
                         "ServiceTotal, ScrapTotal, LaborTotal, BurdenTotal, SG_A_Profit, PackingPerUnit, " +
                         "AssemblyCostPerUnit, EstimatedAnnualVolume, SupplierName, [Status], " +
                         "RFQSummaryKey, BCost, CCost, EAV, Tooling, Cavitation, Material, [Sequence], " +
-                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year " +
+                        "LeadTimePPAP_FAIR, LeadTimeFirstProductionOrder, LeadTimeNormalProductionOrders, RFQEAVKey, EAV_Status, PrototypeTooling, Year, Um " +
                         "FROM viewRFQ_Summary WHERE BOMDetailKey = @key AND EstimatedAnnualVolume=@volume ORDER BY Sequence";
 
         DataTable table = new DataTable();
@@ -2416,6 +2429,7 @@ public class RfqSummaryCRUD
                 rfqSummary.Eav_status = table.Rows[i][27].ToString();
                 rfqSummary.PrototypeTooling = float.Parse(table.Rows[i][28].ToString());
                 rfqSummary.CalendarYear = table.Rows[i][29].ToString();
+                rfqSummary.Um = table.Rows[i][30].ToString();
                 if (table.Rows[i][15].ToString() != "")
                 {
                     rfqSummary.Id = long.Parse(table.Rows[i][15].ToString());

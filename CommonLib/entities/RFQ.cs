@@ -85,7 +85,8 @@ public class RFQ
     private bool quote100ToPrint = false;
 
     private string lastEmail = "";
-    
+
+    private string um = "";
 
     private List<RFQACR> rfqAcr;
     private List<RFQEAV> rfqEAV;
@@ -362,7 +363,11 @@ public class RFQ
         get { return lastEmail; }
         set { lastEmail = value; }
     }
-    
+    public string Um
+    {
+        get { return um; }
+        set { um = value; }
+    }
 }
 
 public class RFQEAV
@@ -744,6 +749,7 @@ public class RFQSummary
     private long rfqEAVKey = -1;
     private long rfqHeaderKey = -1;
     private float prototypeTooling;
+    private string um = "";
 
     public float PrototypeTooling
     {
@@ -937,6 +943,11 @@ public class RFQSummary
     {
         get { return materialTooling; }
         set { materialTooling = value; }
+    }
+    public string Um
+    {
+        get { return um; }
+        set { um = value; }
     }
 }
 

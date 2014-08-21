@@ -944,18 +944,14 @@
                                                 null,
                                                 { "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return new Date(data).toLocaleDateString();
+                                                        return formatDate(new Date(data));
                                                     }
                                                 },
                                                 null,
                                                 null,
                                                 { "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        var dLastDate = new Date(data);
-                                                        if (dLastDate.getDate() == 9 && dLastDate.getMonth() == 1 && dLastDate.getFullYear() == 1985) {
-                                                            return "";
-                                                        }
-                                                        return dLastDate.toLocaleString();
+                                                        return formatDateTime(new Date(data));
                                                     }
                                                 },
                                                 null
@@ -1077,10 +1073,10 @@
                                 currentRFQ.CreatedBy,
                                 currentRFQ.DrawingLevel,
                                 currentRFQ.RfqGenerated,
-                                new Date(currentRFQ.DueDate),
+                                currentRFQ.DueDate,
                                 currentRFQ.Status,
                                 currentRFQ.SupplierName,
-                                new Date(currentRFQ.SentToVendor),
+                                currentRFQ.SentToVendor,
                                 currentRFQ.LastEmail
                                 ];
                 result.push(oCurrent);
@@ -1135,7 +1131,6 @@
             var scrollPosition = jQuery("body").scrollTop();
             resetForm();
             bindParentFields();
-            //jQuery("#lblDueDate").text((new Date(RFQ.DueDate)).toLocaleDateString());
             loadSIFDetail();
             loadBOMDetailList();
             makeProgresBar();
@@ -1250,7 +1245,7 @@
                                                 {
                                                     "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return new Date(data).toLocaleDateString();
+                                                        return formatDate(new Date(data));
                                                     }
                                                 },
                                                 null,
@@ -1258,11 +1253,7 @@
                                                 {
                                                     "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        var dLastDate = new Date(data);
-                                                        if (dLastDate.getDate() == 9 && dLastDate.getMonth() == 1 && dLastDate.getFullYear() == 1985) {
-                                                            return "";
-                                                        }
-                                                        return dLastDate.toLocaleString();
+                                                        return formatDateTime(new Date(data));
                                                     }
                                                 },
                                                 null

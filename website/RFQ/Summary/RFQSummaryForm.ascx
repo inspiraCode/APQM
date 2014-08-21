@@ -130,7 +130,7 @@
                 PPAP Date:
             </td>
             <td>
-                <input type="text" id="txtPPAPDate" validate="date" validationid="rfqSummary" datepicker="true" />
+                <input type="text" id="txtPPAPDate" validate="dateOrEmpty" validationid="rfqSummary" datepicker="true" />
             </td>
             <td style="width: 100px;">
             </td>
@@ -158,7 +158,7 @@
                 Initial Release Date:
             </td>
             <td>
-                <input type="text" id="txtInitialReleaseDate"validate="date" validationid="rfqSummary" datepicker="true" />
+                <input type="text" id="txtInitialReleaseDate"validate="dateOrEmpty" validationid="rfqSummary" datepicker="true" />
             </td>
             <td>
             </td>
@@ -186,7 +186,7 @@
                 Pre-Build Date
             </td>
             <td>
-                <input type="text" id="txtPreBuildDate" validate="date" validationid="rfqSummary" datepicker="true" />
+                <input type="text" id="txtPreBuildDate" validate="dateOrEmpty" validationid="rfqSummary" datepicker="true" />
             </td>
             <td>
             </td>
@@ -806,9 +806,9 @@
             var value = RFQSummary[jQuery(this).attr("bindTo")];
             setValueForControl(this, jQuery(this), value);
         });
-        jQuery('#txtPPAPDate').val((new Date(RFQSummary.PpapDate)).toLocaleDateString());
-        jQuery('#txtInitialReleaseDate').val((new Date(RFQSummary.InitialReleaseDate)).toLocaleDateString());
-        jQuery('#txtPreBuildDate').val((new Date(RFQSummary.PrebuildDate)).toLocaleDateString());
+        jQuery('#txtPPAPDate').val(formatDate(new Date(RFQSummary.PpapDate)));
+        jQuery('#txtInitialReleaseDate').val(formatDate((new Date(RFQSummary.InitialReleaseDate)));
+        jQuery('#txtPreBuildDate').val(formatDate(new Date(RFQSummary.PrebuildDate)));
     }
 
     function setValueForControl(ref, control, value) {

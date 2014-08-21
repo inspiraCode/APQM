@@ -275,7 +275,7 @@
                     {
                         "sType": "date",
                         "mRender": function (data, type, full) {
-                            return new Date(data).toLocaleDateString();
+                            return formatDate(new Date(data));
                         }
                     },
                     null,
@@ -283,11 +283,7 @@
                     {
                         "sType": "date",
                         "mRender": function (data, type, full) {
-                            var dLastDate = new Date(data);
-                            if (dLastDate.getDate() == 9 && dLastDate.getMonth() == 1 && dLastDate.getFullYear() == 1985) {
-                                return "";
-                            }
-                            return dLastDate.toLocaleString();
+                            return formatDateTime(new Date(data));
                         }
                     },
                     null
