@@ -54,6 +54,11 @@ public partial class WebService_Catalogs : System.Web.UI.Page
                             Response.Write(getUMs());
                             Response.End();
                             return;
+                        case "customer":
+                            Response.Clear();
+                            Response.Write(getCustomers());
+                            Response.End();
+                            return;
                     }
                 }
                 return;
@@ -65,6 +70,16 @@ public partial class WebService_Catalogs : System.Web.UI.Page
                         case "supplier":
                             Response.Clear();
                             Response.Write(createSupplier());
+                            Response.End();
+                            return;
+                        case "marketsector":
+                            Response.Clear();
+                            Response.Write(createMarketSector());
+                            Response.End();
+                            return;
+                        case "customer":
+                            Response.Clear();
+                            Response.Write(createCustomer());
                             Response.End();
                             return;
                     }
@@ -107,6 +122,13 @@ public partial class WebService_Catalogs : System.Web.UI.Page
 
         return JsonConvert.SerializeObject(listItems);
     }
+    private string getCustomers()
+    {
+        customerCRUD customer_CRUD = new customerCRUD();
+        List<Customer> listCustomers = (List<Customer>)customer_CRUD.readAll();
+
+        return JsonConvert.SerializeObject(listCustomers);
+    }
     private string getUMs()
     {
         List<UM> result = new List<UM>();
@@ -147,6 +169,70 @@ public partial class WebService_Catalogs : System.Web.UI.Page
         response.ErrorThrown = false;
         response.ResponseDescription = "Supplier created successfully.";
         response.Result = resultSupplier;
+        return JsonConvert.SerializeObject(response);
+    }
+    public string createMarketSector()
+    {
+        MarketSector resultMarketSector = new MarketSector();
+        GatewayResponse response = new GatewayResponse();
+        String s;
+        try
+        {
+            s = new StreamReader(Request.InputStream).ReadToEnd();
+            resultMarketSector = JsonConvert.DeserializeObject<MarketSector>(s);
+        }
+        catch (Exception ex)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: When trying to parse JSON in server. " + ex.Message;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        MarketSectorCRUD marketSectorCRUD = new MarketSectorCRUD();
+        string idGenerated = marketSectorCRUD.createAndReturnIdGenerated(resultMarketSector);
+        if (marketSectorCRUD.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: " + marketSectorCRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        resultMarketSector.Id = long.Parse(idGenerated);
+        response.ErrorThrown = false;
+        response.ResponseDescription = "Market Sector created successfully.";
+        response.Result = resultMarketSector;
+        return JsonConvert.SerializeObject(response);
+    }
+    public string createCustomer()
+    {
+        Customer resultCustomer = new Customer();
+        GatewayResponse response = new GatewayResponse();
+        String s;
+        try
+        {
+            s = new StreamReader(Request.InputStream).ReadToEnd();
+            resultCustomer = JsonConvert.DeserializeObject<Customer>(s);
+        }
+        catch (Exception ex)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: When trying to parse JSON in server. " + ex.Message;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        customerCRUD customer_CRUD = new customerCRUD();
+        string idGenerated = customer_CRUD.createAndReturnIdGenerated(resultCustomer);
+        if (customer_CRUD.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR: " + customer_CRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        resultCustomer.Id = long.Parse(idGenerated);
+        response.ErrorThrown = false;
+        response.ResponseDescription = "Customer created successfully.";
+        response.Result = resultCustomer;
         return JsonConvert.SerializeObject(response);
     }
 }

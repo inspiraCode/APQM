@@ -206,6 +206,7 @@
             buttonImageOnly: true,
             dateFormat: 'm/d/yy'
         });
+        jQuery('input[type=button]').button();
     });
 
     function ieCompatibilityViewCheck() {

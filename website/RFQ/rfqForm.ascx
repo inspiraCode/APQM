@@ -613,7 +613,7 @@
         });
 
 
-        jQuery("#lblDueDate").text(formatDate(new Date(RFQ.DueDate)));
+        jQuery("#lblDueDate").text(formatDate(RFQ.DueDate));
 
         if (RFQ.User != null) {
             var strBuyerInfo = '';

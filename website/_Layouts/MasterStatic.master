@@ -186,6 +186,7 @@
             buttonImageOnly: true,
             dateFormat: 'm/d/yy'
         });
+        jQuery('input[type=button]').button();
 //        jQuery('input').iCheck({
 //            checkboxClass: 'icheckbox_square-grey',
 //            radioClass: 'iradio_square-grey'

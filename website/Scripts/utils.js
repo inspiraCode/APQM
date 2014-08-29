@@ -1,11 +1,13 @@
 ﻿function formatDate(theDate) {
-    if (theDate.getDate() == 10 && theDate.getMonth() == 1 && theDate.getFullYear() == 1985) {
+    theDate = new Date(theDate);
+    if (theDate.getMonth() == 1 && theDate.getFullYear() == 1985) {
         return "";
     } else {
         return '' + (theDate.getMonth() + 1) + '/' + theDate.getDate() + '/' + theDate.getFullYear();
     }
 }
 function formatDateTime(theDate) {
+    theDate = new Date(theDate);
     if (theDate.getMonth() == 1 && theDate.getFullYear() == 1985) {
         return "";
     } else {

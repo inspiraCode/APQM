@@ -178,7 +178,7 @@
                         <td align="center" colspan="3">
                             <input type="button" id="btnResendRFQ" onclick="return false;" style="width: 80px;"
                                 value="Re-Send" />
-                            <input type="button" id="btnCancelResendRFQ" onclick="on_closeResendRFQ();" value="Cancel"
+                            <input type="button" id="btnCancelResendRFQ" onclick="on_closeResendRFQ();return false;" value="Cancel"
                                 style="width: 80px;" />
                         </td>
                     </tr>
@@ -249,7 +249,7 @@
         function filterRFQList() {
             RFQList = [];
             jQuery("#divImgEmail").show();
-            var strSelectedUser = jQuery("#cboUsers option:selected").val()
+            var strSelectedUser = jQuery("#cboUsers option:selected").val();
             jQuery.getJSON('<%= ResolveUrl("~/WebService/RFQ.aspx") %>?cmd=readbyuser&user=' + strSelectedUser, function (response) {
                 RFQList = response.Result;
                 refreshRFQList();
@@ -275,7 +275,7 @@
                     {
                         "sType": "date",
                         "mRender": function (data, type, full) {
-                            return formatDate(new Date(data));
+                            return formatDate(data);
                         }
                     },
                     null,
@@ -283,7 +283,7 @@
                     {
                         "sType": "date",
                         "mRender": function (data, type, full) {
-                            return formatDateTime(new Date(data));
+                            return formatDateTime(data);
                         }
                     },
                     null
@@ -355,6 +355,9 @@
         }
         function updateRFQByID(iRFQ_ID) {
             window.open("../RFQ/rfqFormMain.aspx?rfq=" + iRFQ_ID);
+        }
+        function on_closeResendRFQ() {
+            jQuery("#divDialog_ResendRFQ").dialog("close");
         }
         function on_openResendRFQ(iRFQ_ID) {
             jQuery("#btnResendRFQ").prop("disabled", false);

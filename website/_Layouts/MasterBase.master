@@ -301,19 +301,19 @@
 </html>
 
 <script type="text/javascript">
-    jQuery('#divContent').css('height', (jQuery(window).height() - 253).toString());
+    jQuery('#divContent').css('height', (jQuery(window).height() - 250).toString());
     jQuery(window).resize(function() {
-        jQuery('#divContent').css('height', (jQuery(window).height() - 253).toString());
+        jQuery('#divContent').css('height', (jQuery(window).height() - 250).toString());
     });
 
     function makeDropDownsChosen() {
         jQuery('[chosen="true"]').chosen();
     }
 
-    jQuery(document).ready(function() {
+    jQuery(document).ready(function () {
         jQuery("#javascriptEnabled").css("visibility", "visible");
         makeDropDownsChosen();
-
+        jQuery('input[type=button]').button();
     });
 
     jQuery('[datepicker="true"]').datepicker({

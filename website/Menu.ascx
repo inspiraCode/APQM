@@ -31,8 +31,8 @@
                 <table style="width: 120px">
                     <tr>
                         <td>
-                            <asp:Button ID="btnSIF" runat="server" Style="height: 26px;" PostBackUrl="~/SIF/SIF_List.aspx"
-                                Text="SIF" Width="110px" />
+                            <asp:Button ID="btnSIF" runat="server" Style="height: 26px;" 
+                                Text="SIF" Width="110px" onclick="btnSIF_Click" />
                         </td>
                     </tr>
                     <tr style="display: none;">

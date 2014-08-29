@@ -30,7 +30,6 @@ public class sifCRUD : ICRUD<SIF>
         try
         {
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -79,7 +78,6 @@ public class sifCRUD : ICRUD<SIF>
         try
         {
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -129,7 +127,6 @@ public class sifCRUD : ICRUD<SIF>
         try
         {
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -178,7 +175,6 @@ public class sifCRUD : ICRUD<SIF>
         try
         {
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -227,7 +223,7 @@ public class sifCRUD : ICRUD<SIF>
 
         string query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, Reason4Quote, " +
                         "Application, Specification, DrawingLevel, TaskDescription, PartPrint, Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, QuoteDue, SOP, SalesDBID, " +
-                        "MarketSector, AssignedTo, CreatedDate FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
+                        "MarketSector, AssignedTo, CreatedDate, BOMProgress FROM viewSIF_ReadAll WHERE(SIFHeaderKey = @key)";
         DataTable table = new DataTable();
 
         SqlConnection sqlConnection = connectionManager.getConnection();
@@ -279,7 +275,7 @@ public class sifCRUD : ICRUD<SIF>
                 sif.AssignedTo = table.Rows[0][28].ToString();
                 if (table.Rows[0][29].ToString() != "")
                     sif.CreatedDate = DateTime.Parse( table.Rows[0][29].ToString());
-
+                sif.BOMProgress = float.Parse(table.Rows[0][30].ToString());
                 sqlConnection.Dispose();
                 return sif;
             }
@@ -307,7 +303,7 @@ public class sifCRUD : ICRUD<SIF>
                         "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
                         "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
                         "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
-                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
                         "FROM viewSIF_ReadAll ORDER BY SIFHeaderKey ASC";
 
         DataTable table = new DataTable();
@@ -362,6 +358,7 @@ public class sifCRUD : ICRUD<SIF>
             if(table.Rows[i][31].ToString() != "")
                 sif.CreatedDate = DateTime.Parse(table.Rows[i][31].ToString());
 
+            sif.BOMProgress = float.Parse(table.Rows[i][32].ToString());
 
             recordset.Add(sif);
         }
@@ -378,7 +375,7 @@ public class sifCRUD : ICRUD<SIF>
                         "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
                         "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
                         "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
-                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
                         "FROM viewSIF_ReadAll " + filter + " ORDER BY SIFHeaderKey ASC";
 
         DataTable table = new DataTable();
@@ -432,10 +429,177 @@ public class sifCRUD : ICRUD<SIF>
             if (table.Rows[i][31].ToString() != "")
                 sif.CreatedDate = DateTime.Parse(table.Rows[i][31].ToString());
 
-
+            sif.BOMProgress = float.Parse(table.Rows[i][32].ToString());
             recordset.Add(sif);
         }
 
+        return recordset;
+    }
+    public List<SIF> readByUserOrDates(string user, string dFrom, string dTo)
+    {
+        List<SIF> recordset = new List<SIF>();
+        recordset.Clear();
+        string query = "";
+        user = user.Trim();
+        Object dateFrom = null;
+        Object dateTo = null;
+        try
+        {
+            dateFrom = DateTime.Parse(dFrom);
+            DateTime theDate = (DateTime)dateFrom;
+            if (theDate.Year == 1985 && theDate.Month == 2 && theDate.Day == 10)
+            {
+                dateFrom = null;
+            }
+        }
+        catch { }
+        try
+        {
+            dateTo = DateTime.Parse(dTo);
+            DateTime theDate = (DateTime)dateTo;
+            if (theDate.Year == 1985 && theDate.Month == 2 && theDate.Day == 10)
+            {
+                dateTo = null;
+            }
+        }
+        catch { }
+
+        if(user == "")
+        {
+            if (dateFrom == null && dateTo == null)
+            {
+                return (List<SIF>)readAll();
+            }
+            else if (dateFrom != null && dateTo == null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (CreatedDate >= @dateFrom) ORDER BY SIFHeaderKey ASC";
+            }
+            else if (dateFrom == null && dateTo != null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (CreatedDate <= @dateTo) ORDER BY SIFHeaderKey ASC";
+            }
+            else if (dateFrom != null && dateTo != null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (CreatedDate >= @dateFrom AND CreatedDate <= @dateTo) ORDER BY SIFHeaderKey ASC";
+            }
+        }
+        else if (user != "")
+        {
+            if (dateFrom == null && dateTo == null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                         "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                         "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                         "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                         "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                         "FROM viewSIF_ReadAll WHERE (AssignedTo = @user) ORDER BY SIFHeaderKey ASC";
+            }
+            else if (dateFrom != null && dateTo == null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (AssignedTo = @user AND CreatedDate >= @dateFrom) ORDER BY SIFHeaderKey ASC";
+            }
+            else if (dateFrom == null && dateTo != null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (AssignedTo = @user AND CreatedDate <= @dateTo) ORDER BY SIFHeaderKey ASC";
+            }
+            else if (dateFrom != null && dateTo != null)
+            {
+                query = "SELECT SIFHeaderKey, CustomerKey, BOMHeaderKey, InquiryNumber, Priority, Revision, " +
+                        "SalesPerson, CostModelLoc, Contact, BussinesClass, Product, DivLoc, Department, " +
+                        "Reason4Quote, Application, Specification, DrawingLevel, TaskDescription, PartPrint, " +
+                        "Sample, ToolingTarget, PrimaryCompetitors, SpecificResourceRequirements, Technical, " +
+                        "TopPartNumber, CustomerName, QuoteDue, SOP, SalesDBID, MarketSector, AssignedTo, CreatedDate, BOMProgress " +
+                        "FROM viewSIF_ReadAll WHERE (AssignedTo = @user AND CreatedDate >= @dateFrom AND CreatedDate <= @dateTo) ORDER BY SIFHeaderKey ASC";
+            }
+        }
+        
+        DataTable table = new DataTable();
+        SqlConnection sqlConnection = connectionManager.getConnection();
+        if (sqlConnection != null)
+        {
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+
+            if (user != "") sqlCommand.Parameters.AddWithValue("@user", user);
+            if (dateFrom != null) sqlCommand.Parameters.AddWithValue("@dateFrom", (DateTime)dateFrom);
+            if (dateTo != null) sqlCommand.Parameters.AddWithValue("@dateTo", (DateTime) dateTo);
+            
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
+            sqlDataAdapter.Fill(table);
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+                SIF sif = new SIF();
+                sif.Id = long.Parse(table.Rows[i][0].ToString());
+                sif.CustomerKey = long.Parse(table.Rows[i][1].ToString());
+
+                if (table.Rows[i][2].ToString() != "")
+                {
+                    sif.BomId = long.Parse(table.Rows[i][2].ToString());
+                }
+                else
+                {
+                    sif.BomId = -1;
+                }
+                sif.InquiryNumber = table.Rows[i][3].ToString();
+                sif.Priority = table.Rows[i][4].ToString();
+                sif.Revision = table.Rows[i][5].ToString();
+                sif.SalesPerson = table.Rows[i][6].ToString();
+                sif.CostModelLoc = table.Rows[i][7].ToString();
+                sif.Contact = table.Rows[i][8].ToString();
+                sif.BussinesClass = table.Rows[i][9].ToString();
+                sif.Product = table.Rows[i][10].ToString();
+                sif.DivLoc = table.Rows[i][11].ToString();
+                sif.Department = table.Rows[i][12].ToString();
+                sif.Reason4Quote = table.Rows[i][13].ToString();
+                sif.Application = table.Rows[i][14].ToString();
+                sif.Specification = table.Rows[i][15].ToString();
+                sif.DrawingLevel = table.Rows[i][16].ToString();
+                sif.TaskDescription = table.Rows[i][17].ToString();
+                sif.PartPrint = table.Rows[i][18].ToString();
+                sif.Sample = table.Rows[i][19].ToString();
+                sif.ToolingTarget = table.Rows[i][20].ToString();
+                sif.PrimaryCompetitors = table.Rows[i][21].ToString();
+                sif.SpecificResourceRequirements = table.Rows[i][22].ToString();
+                sif.Technical = table.Rows[i][23].ToString();
+                sif.TopPartNumber = table.Rows[i][24].ToString();
+                sif.CustomerName = table.Rows[i][25].ToString();
+                sif.QuoteDue = DateTime.Parse(table.Rows[i][26].ToString());
+                sif.Sop = DateTime.Parse(table.Rows[i][27].ToString());
+                sif.SalesDBID = long.Parse(table.Rows[i][28].ToString());
+                sif.MarketSectorID = long.Parse(table.Rows[i][29].ToString());
+                sif.AssignedTo = table.Rows[i][30].ToString();
+
+                if (table.Rows[i][31].ToString() != "")
+                    sif.CreatedDate = DateTime.Parse(table.Rows[i][31].ToString());
+                sif.BOMProgress = float.Parse(table.Rows[i][32].ToString());
+                recordset.Add(sif);
+            }
+        }
         return recordset;
     }
     public bool update(SIF entity)
@@ -447,7 +611,6 @@ public class sifCRUD : ICRUD<SIF>
         {
             DM.Load_SP_Parameters("@SIFHeaderKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -473,9 +636,7 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
-            DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
             DM.Load_SP_Parameters("@sys_active", true.ToString());
-
 
             result = DM.Execute_StoreProcedure("SIFHeader_EditSIF", true);
 
@@ -499,7 +660,6 @@ public class sifCRUD : ICRUD<SIF>
         {
             DM.Load_SP_Parameters("@SIFHeaderKey", entity.Id.ToString());
             DM.Load_SP_Parameters("@CustomerKey", entity.CustomerKey.ToString());
-            DM.Load_SP_Parameters("@BOMHeaderKey", entity.BomId.ToString());
             DM.Load_SP_Parameters("@InquiryNumber", entity.InquiryNumber);
             DM.Load_SP_Parameters("@Priority", entity.Priority);
             DM.Load_SP_Parameters("@Revision", entity.Revision);
@@ -525,10 +685,33 @@ public class sifCRUD : ICRUD<SIF>
             DM.Load_SP_Parameters("@Sop", entity.Sop.ToString("G"));
             DM.Load_SP_Parameters("@SalesDBID", entity.SalesDBID.ToString());
             DM.Load_SP_Parameters("@MarketSector", entity.MarketSectorID.ToString());
-            DM.Load_SP_Parameters("@AssignedTo", entity.AssignedTo);
             DM.Load_SP_Parameters("@sys_active", true.ToString());
 
             result = DM.Execute_StoreProcedure_Open_Conn("SIFHeader_EditSIF", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+
+        return result;
+    }
+    public bool take(long sifHeaderKey, string user)
+    {
+        ErrorOccur = false;
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@SIFHeaderKey", sifHeaderKey.ToString());
+            DM.Load_SP_Parameters("@AssignedTo", user);
+
+            result = DM.Execute_StoreProcedure("TakeSIF", true);
 
             ErrorOccur = DM.ErrorOccur;
             ErrorMessage = DM.Error_Mjs;

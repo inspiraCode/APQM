@@ -41,6 +41,9 @@ public class SIF
     private string assignedTo = "";
     private DateTime createdDate = new DateTime(1985, 2, 10);
     private string createdIn = "";
+    private float bOMProgress = 0;
+
+    
 
     public List<SIFDetail> SifDetail
     {
@@ -223,6 +226,11 @@ public class SIF
     {
         get { return createdIn; }
         set { createdIn = value; }
+    }
+    public float BOMProgress
+    {
+        get { return bOMProgress; }
+        set { bOMProgress = value; }
     }
     public override string ToString()
     {

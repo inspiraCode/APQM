@@ -52,6 +52,14 @@ public partial class WebService_BOM : System.Web.UI.Page
             case "downloadAttachment":
                 downloadAttachment(Request["Directory"], Request["FileName"], "BOMLineAttachments");
                 return;
+            case "deleteBOM":
+                deleteBOMbyID(long.Parse(Request["id"]));
+                return;
+            case "createBOM":
+                Response.Clear();
+                Response.Write(createBOM(long.Parse(Request["sif_id"])));
+                Response.End();
+                return;
         }
     }
     public bool getPostedAttachments()
@@ -246,5 +254,37 @@ public partial class WebService_BOM : System.Web.UI.Page
         Response.Clear();
         Response.Write(response);
         Response.End();
+    }
+    public void deleteBOMbyID(long id)
+    {
+        
+        string response = "{\"Result\":\"" + "OK" + "\"}";
+        if (!bom_CRUD.setActive(id, 0))
+        {
+            response = "ERROR:" + bom_CRUD.ErrorMessage;
+        }
+        Response.Clear();
+        Response.Write(response);
+        Response.End();
+    }
+
+    public String createBOM(long sif_id){
+        GatewayResponse response = new GatewayResponse();
+
+        BOM bom =new BOM();
+        bom.SifId = sif_id;
+        string idGenerated = bom_CRUD.createAndReturnIdGenerated(bom);
+        if (!bom_CRUD.ErrorOccur)
+        {
+            response.ErrorThrown = false;
+            response.ResponseDescription = "BOM created successfully.";
+            response.Result =idGenerated;
+        }
+        else
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = bom_CRUD.ErrorMessage;
+        }
+        return JsonConvert.SerializeObject(response);
     }
 }

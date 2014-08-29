@@ -358,7 +358,7 @@
     </div>
     <div id="divDialog_PartNumber" title="Part Number" style="display: none;">
         <div id="divPartNumberContent">
-            <table style="width: 300px;">
+            <table>
                 <tr>
                     <td>
                         Part Number
@@ -840,6 +840,7 @@
             for (var j = 0; j < BOM.BomDetail.length; j++) {
                 var current = BOM.BomDetail[j];
                 if (current.Status == null) current.Status = "";
+                if (current.User == '') current.User = 'Take';
                 strBOMDetailList += '<div class="group" bomLineIndex="' + j + '"><h3 bomDetailID="' + current.Id + '" class="' + current.internalAction.replace(' ', '') + '" style="height: 37px;"> ' +
 '    <div> <label class="LN" style="float: left; position: absolute;left: 5px;top: 16px;">' + (j + 1) + '</label>' +
 '    <input type="checkbox" internalAction="' + current.internalAction.replace(' ', '') + '"  style="float: left; position: absolute;left: 30px;top:14px;" clickeableInHeader="true" /> ' +
@@ -848,8 +849,7 @@
 '    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/edit-small.png" style="height:20px;top:14px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
 '    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/FilterIcon.png" style="height:20px;top:14px;float: left;position: absolute; left: 120px;" ' +
 '    onclick="openRFQSummary(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
-'    <label id="linkAssignedToLine" clickeableInHeader="true" ' +
-'    onclick="takeBOMLine();" style="float: left; position: absolute;left: 150px;top: 16px;">Take</label> ' +
+'<a href="#" clickeableInHeader="true" onclick="on_takeSIF_click(' + current.Id + ',afterTakeSIF);return false;" style="float: left; position: absolute;left: 150px;top: 16px;">' + current.User + '</a>' +
 '    <table cellspacing="0" align="left" style="top:-3px;" class="BOMLine"> ' +
 '    <tr style="height: 40px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
@@ -944,14 +944,14 @@
                                                 null,
                                                 { "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return formatDate(new Date(data));
+                                                        return formatDate(data);
                                                     }
                                                 },
                                                 null,
                                                 null,
                                                 { "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return formatDateTime(new Date(data));
+                                                        return formatDateTime(data);
                                                     }
                                                 },
                                                 null
@@ -1245,7 +1245,7 @@
                                                 {
                                                     "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return formatDate(new Date(data));
+                                                        return formatDate(data);
                                                     }
                                                 },
                                                 null,
@@ -1253,7 +1253,7 @@
                                                 {
                                                     "sType": "date",
                                                     "mRender": function (data, type, full) {
-                                                        return formatDateTime(new Date(data));
+                                                        return formatDateTime(data);
                                                     }
                                                 },
                                                 null

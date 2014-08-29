@@ -53,4 +53,8 @@ public partial class Menu : System.Web.UI.UserControl
         FormsAuthentication.SignOut();
         Response.Redirect("~/Default.aspx",false);
     }
+    protected void btnSIF_Click(object sender, EventArgs e)
+    {
+        Navigator.goToPage("~/SIF/SIF_Main.aspx", "SIF");
+    }
 }

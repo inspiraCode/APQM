@@ -806,9 +806,9 @@
             var value = RFQSummary[jQuery(this).attr("bindTo")];
             setValueForControl(this, jQuery(this), value);
         });
-        jQuery('#txtPPAPDate').val(formatDate(new Date(RFQSummary.PpapDate)));
-        jQuery('#txtInitialReleaseDate').val(formatDate((new Date(RFQSummary.InitialReleaseDate)));
-        jQuery('#txtPreBuildDate').val(formatDate(new Date(RFQSummary.PrebuildDate)));
+        jQuery('#txtPPAPDate').val(formatDate(RFQSummary.PpapDate));
+        jQuery('#txtInitialReleaseDate').val(formatDate(RFQSummary.InitialReleaseDate));
+        jQuery('#txtPreBuildDate').val(formatDate(RFQSummary.PrebuildDate));
     }
 
     function setValueForControl(ref, control, value) {

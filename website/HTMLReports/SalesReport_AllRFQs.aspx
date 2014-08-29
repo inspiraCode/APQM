@@ -158,16 +158,16 @@
                     Visible="false" SortExpression="SupplierPN">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CommCode" ItemStyle-HorizontalAlign="Center" HeaderText="Comm Code"
+                <%--<asp:BoundField DataField="CommCode" ItemStyle-HorizontalAlign="Center" HeaderText="Comm Code"
                     SortExpression="CommCode">
                     <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
+                </asp:BoundField>--%>
                 <asp:BoundField DataField="Material" HeaderText="Material / Assembly Description"
                     SortExpression="Material" />
-                <asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor Quote Est"
+                <%--<asp:BoundField DataField="VendorQuoteEst" ItemStyle-HorizontalAlign="Center" HeaderText="Vendor Quote Est"
                     SortExpression="VendorQuoteEst">
                     <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
+                </asp:BoundField>--%>
                 <asp:BoundField DataField="Qty" ItemStyle-HorizontalAlign="Right" HeaderText="Qty Required"
                     SortExpression="Qty">
                     <ItemStyle HorizontalAlign="Right" />
@@ -176,6 +176,7 @@
                     SortExpression="Um">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
+                <asp:BoundField DataField="ReasonNoQuote" HeaderText="Reason No Quote" SortExpression="ReasonNoQuote" />
                 <asp:BoundField DataField="EAU" ItemStyle-HorizontalAlign="Right" HeaderText="EAU"
                     SortExpression="EAU">
                     <ItemStyle HorizontalAlign="Right" />
@@ -189,10 +190,10 @@
                     SortExpression="SupplierName">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="CapComAssm" ItemStyle-HorizontalAlign="Center" HeaderText="Cap Com Assm"
+                <%--<asp:BoundField DataField="CapComAssm" ItemStyle-HorizontalAlign="Center" HeaderText="Cap Com Assm"
                     SortExpression="CapComAssm">
                     <ItemStyle HorizontalAlign="Center" />
-                </asp:BoundField>
+                </asp:BoundField>--%>
                 <asp:BoundField DataField="PurchasingComments" HeaderText="Purchasing Comments" SortExpression="PurchasingComments" />
                 <asp:BoundField DataField="PurchasingStatus" HeaderText="Purchasing Status" SortExpression="PurchasingStatus" />
                 <asp:BoundField DataField="ToolingDetail" HeaderText="Tooling / Equiptment Type"

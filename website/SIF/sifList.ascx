@@ -12,6 +12,15 @@
                 OnSelectedIndexChanged="cboFilterByUser_SelectedIndexChanged">
             </asp:DropDownList>
         </td>
+        <td>
+            Date From:
+        </td>
+        <td>
+
+        </td>
+        <td>
+        Date To:</td>
+        <td></td>
     </tr>
 </table>
 <br />
@@ -39,9 +48,6 @@
                         </th>
                         <th>
                             Sales Person
-                        </th>
-                        <th>
-                            Cost Model Location
                         </th>
                         <th>
                             Customer
@@ -80,9 +86,6 @@
                     <%# DataBinder.Eval(Container.DataItem, "SalesPerson")%>
                 </td>
                 <td style="text-align: center;">
-                    <%# DataBinder.Eval(Container.DataItem, "CostModelLoc")%>
-                </td>
-                <td style="text-align: center;">
                     <%# DataBinder.Eval(Container.DataItem, "CustomerName")%>
                 </td>
                 <td style="text-align: center;">
@@ -102,6 +105,7 @@
                         OnCommand="deleteByID" OnClientClick="return  confirm('Do you wish to delete this SIF?')"> Delete SIF </asp:LinkButton>
                 </td>
             </tr>
+            
         </ItemTemplate>
         <FooterTemplate>
             </tbody> </table>

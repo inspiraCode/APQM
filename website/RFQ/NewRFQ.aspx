@@ -47,10 +47,10 @@
                                             Vendor
                                         </td>
                                         <td>
-                                            <div id="divSuppliers" style="display: inline-block; width: 306px;">
+                                            <div id="divSuppliers" style="display: inline-block; width: 295px;">
                                             </div>
                                             <input type="button" id="btnNewSupplier" tabindex="2" value="New" onclick="on_newSupplier_click();return false;"
-                                                style="width: 50px; display: inline-block;" />
+                                                style="width: 55px; display: inline-block;" />
                                         </td>
                                     </tr>
                                 </table>
@@ -330,7 +330,7 @@
         }
 
         function populateSuppliers() {
-            var strSuppliers = '<select id="cboSuppliers" multiple tabindex="2" data-placeholder="Select Emails" style="width: 309px;">';
+            var strSuppliers = '<select id="cboSuppliers" multiple tabindex="2" data-placeholder="Select Emails" style="width: 295px;">';
             for (var i = 0; i < Suppliers.length; i++) {
                 var current = Suppliers[i];
                 strSuppliers += '<option value="' + current.Id + '">' + current.NameAndEmail + '</option>';

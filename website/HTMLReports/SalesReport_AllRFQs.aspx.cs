@@ -396,6 +396,15 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             get { return purchasingStatus; }
             set { purchasingStatus = value; }
         }
+
+        private string reasonNoQuote = "";
+
+        public string ReasonNoQuote
+        {
+            get { return reasonNoQuote; }
+            set { reasonNoQuote = value; }
+        }
+
     }
     private class SalesReportDetail_DAO
     {
@@ -413,10 +422,10 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                             "ProductionToolingLeadTime, BOMHeaderKey, LinePosition, [Status], " +
                             "RFQStatus, TotalACost, ProductionTooling, [User], BOMDetailKey, " +
                             "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status, " +
-                            "PrototypeTooling, CommentsToBuyer, Quote100ToPrint, ExceptionTo100ToPrint, PurchasingStatus " +
+                            "PrototypeTooling, CommentsToBuyer, Quote100ToPrint, ExceptionTo100ToPrint, PurchasingStatus, ReasonNoQuote " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
-                            " ORDER BY    LinePosition, BOMDetailKey, SupplierName";
+                            " ORDER BY    LinePosition,  [EAV_Status], SupplierName, BOMDetailKey";
 
             DataTable table = new DataTable();
             table = DM.Execute_Query(query);
@@ -463,7 +472,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                 salesReportDetailLocal.ExceptionsToDrawing = table.Rows[i][33].ToString();
                 try { salesReportDetailLocal.PurchasingStatus = table.Rows[i][34].ToString(); }
                 catch { }
-
+                salesReportDetailLocal.ReasonNoQuote = table.Rows[i][35].ToString();
                 recordset.Add(salesReportDetailLocal);
             }
 
@@ -479,7 +488,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                 GridViewRow row = gridView.Rows[rowIndex];
                 GridViewRow previousRow = gridView.Rows[rowIndex + 1];
 
-                for (int i = 0; i < 12; i++)
+                for (int i = 0; i < 13; i++)
                 {
                     if (row.Cells[i].Text == previousRow.Cells[i].Text)
                     {
