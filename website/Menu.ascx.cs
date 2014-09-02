@@ -33,18 +33,14 @@ public partial class Menu : System.Web.UI.UserControl
     public void disableButtons()
     {
         btnSIF.Enabled = false;
-        btnBOM.Enabled = false;
         btnRFQ.Enabled = false;
         btnSuppliers.Enabled = false;
-        btnRFQSummary.Enabled = false;
     }
     public void enableButtons()
     {
         btnSIF.Enabled = true;
-        btnBOM.Enabled = true;
         btnRFQ.Enabled = true;
         btnSuppliers.Enabled = true;
-        btnRFQSummary.Enabled = true;
     }
 
     protected void btnLogout_Click(object sender, EventArgs e)

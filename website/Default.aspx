@@ -4,7 +4,6 @@
 <%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <%@ Register Src="~/Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
 <%@ Register Src="~/Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc3" %>
-<%@ Register Src="~/BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="1">
         <asp:View ID="Login" runat="server">
@@ -73,20 +72,7 @@
     </asp:Panel>--%>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
-    <asp:MultiView ID="MultiViewMain" runat="server">
-        <asp:View ID="viewHome" runat="server">
-            <div class="Content">
-                HOME
-            </div>
-        </asp:View>
-        <asp:View ID="viewBOM" runat="server">
-            <div runat="server" id="divBOM" class="Content">
-                <span class="mainTitle">BOMs</span>
-                <br />
-                <uc8:bomList ID="uscBOMList" runat="server" />
-                <br />
-                <br />
-            </div>
-        </asp:View>
-    </asp:MultiView>
+    <div class="Content">
+        HOME
+    </div>
 </asp:Content>

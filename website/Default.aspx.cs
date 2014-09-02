@@ -19,11 +19,7 @@ public partial class _Default : System.Web.UI.Page
         {
             Left_Col.ActiveViewIndex = 1;
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
-            {
-                case "bom":
-                    MultiViewMain.SetActiveView(viewBOM);
-                    uscBOMList.setUserFilterWithCookie();
-                    break;                
+            {          
                 default:
                     break;
             }
@@ -36,7 +32,6 @@ public partial class _Default : System.Web.UI.Page
     private void goHome()
     {
         Left_Col.ActiveViewIndex = 1;
-        MultiViewMain.SetActiveView(viewHome);
     }
     private void disablePageForModalPopup()
     {

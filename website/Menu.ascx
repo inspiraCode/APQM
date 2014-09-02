@@ -35,12 +35,6 @@
                                 Text="SIF" Width="110px" onclick="btnSIF_Click" />
                         </td>
                     </tr>
-                    <tr style="display: none;">
-                        <td>
-                            <asp:Button ID="btnBOM" runat="server" OnClick="btnBOM_Click" Style="height: 26px;"
-                                Text="BOM" Width="110px" />
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             <asp:Button ID="btnRFQ" runat="server" OnClick="btnRFQ_Click" Style="height: 26px;"
@@ -51,12 +45,6 @@
                         <td>
                             <asp:Button ID="btnSuppliers" runat="server"  Style="height: 26px;" PostBackUrl="~/Supplier/Supplier_List.aspx"
                                 Text="Suppliers" Width="110px" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <asp:Button ID="btnRFQSummary" runat="server" OnClick="btnRFQSummary_Click" Style="height: 26px;"
-                                Text="RFQ Summary" Width="110px" />
                         </td>
                     </tr>
                 </table>
