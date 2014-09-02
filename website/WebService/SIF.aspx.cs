@@ -22,7 +22,7 @@ public partial class WebService_SIF : System.Web.UI.Page
         {
             case "readbyuser":
                 Response.Clear();
-                Response.Write(readRFQsByUser(Request["user"]));
+                Response.Write(readSIFsByUser(Request["user"]));
                 Response.End();
                 return;
             case "delete":
@@ -40,7 +40,7 @@ public partial class WebService_SIF : System.Web.UI.Page
                 return;
         }
     }
-    public string readRFQsByUser(string user)
+    public string readSIFsByUser(string user)
     {
         GatewayResponse response = new GatewayResponse();
 

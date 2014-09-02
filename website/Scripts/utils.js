@@ -17,7 +17,7 @@ function formatDateTime(theDate) {
 
 function getJSONDate(strDate) {
     if (jQuery.trim(strDate) == "") {
-        return (new Date(1985, 1, 10)).toJSON();
+        return (new Date(1985, 1, 10,0,0,0,0)).toJSON();
     } else {
         return (new Date(strDate)).toJSON();
     }

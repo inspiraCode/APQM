@@ -4,8 +4,6 @@
 <%@ Register Src="~/Supplier/supplierMaster.ascx" TagName="supplierMaster" TagPrefix="uc1" %>
 <%@ Register Src="~/Menu.ascx" TagName="Menu" TagPrefix="uc2" %>
 <%@ Register Src="~/Supplier/supplierList.ascx" TagName="supplierList" TagPrefix="uc3" %>
-<%@ Register Src="~/SIF/sifList.ascx" TagName="sifList" TagPrefix="uc4" %>
-<%@ Register Src="~/SIF/sifMaster.ascx" TagName="SifMaster" TagPrefix="uc5" %>
 <%@ Register Src="~/BOM/bomList.ascx" TagName="bomList" TagPrefix="uc8" %>
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="PlaceHolderLeft">
     <asp:MultiView ID="Left_Col" runat="server" ActiveViewIndex="1">
@@ -73,25 +71,6 @@
             </asp:MultiView>
         </asp:Panel>
     </asp:Panel>--%>
-    <asp:Panel ID="panelPopup" runat="server" Visible="false">
-        <asp:MultiView ID="multiViewPopup" runat="server" ActiveViewIndex="0">
-            <asp:View ID="viewPopupSIF" runat="server">
-                <uc5:SifMaster ID="uscSIFForm" runat="server"/>
-
-                <script type="text/javascript">
-                    jQuery(document).ready(function() {
-                        document.getElementById("<%= this.panelPopup.ClientID %>").setAttribute("title", "New SIF");
-                        jQuery("#<%= this.panelPopup.ClientID %>").dialog({ autoOpen: true,
-                            appendTo: jQuery('form:first'),
-                            width: 950, modal: false,
-                            dialogClass: "no-close", closeOnEscape: false
-                        });
-                    });
-                </script>
-
-            </asp:View>
-        </asp:MultiView>
-    </asp:Panel>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="PlaceHolderMain">
     <asp:MultiView ID="MultiViewMain" runat="server">
@@ -99,15 +78,6 @@
             <div class="Content">
                 HOME
             </div>
-        </asp:View>
-        <asp:View ID="viewSIF" runat="server">
-            <span class="mainTitle">SIFs</span>
-            <div runat="server" id="divSIF" class="Content">
-                <br />
-                <uc4:sifList ID="uscSIFList" runat="server" />
-            </div>
-            <br />
-            <br />
         </asp:View>
         <asp:View ID="viewBOM" runat="server">
             <div runat="server" id="divBOM" class="Content">

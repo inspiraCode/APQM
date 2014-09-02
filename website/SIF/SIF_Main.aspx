@@ -424,10 +424,17 @@
         var MarketSectors = [];
         var Customers = [];
         var SIFList = [];
+        var cookieSIFListDateFrom;
+        var cookieSIFListDateTo;
+        var cookieSIFListUser;
         jQuery(document).ready(function () {
             jQuery('#divImgEmail').css("top", (jQuery(window).height() / 2) - (jQuery('#divImgEmail').outerHeight() / 2));
             jQuery('#divImgEmail').css("left", (jQuery(window).width() / 2) - (jQuery('#divImgEmail').outerWidth() / 2));
             jQuery("#tabs").tabs();
+            cookieSIFListUser = jQuery.trim(jQuery.cookie('SIFListUser'));
+            if (cookieSIFListUser == "") cookieSIFListUser = "All";
+            cookieSIFListDateFrom = jQuery.trim(jQuery.cookie('SIFListDateFrom'));
+            cookieSIFListDateTo = jQuery.trim(jQuery.cookie('SIFListDateTo'));
             getResources();
         });
         function getResources() {
@@ -462,13 +469,16 @@
             if (readCounter == 3) {
                 readCounter = 0;
                 load();
-                jQuery("#divImgEmail").hide();
             }
         }
         function load() {
             populateUsers();
             populateMarketSectors();
             populateCustomers();
+            jQuery("#txtDateFilterFrom").val(cookieSIFListDateFrom);
+            jQuery("#txtDateFilterTo").val(cookieSIFListDateTo);
+            jQuery('#cboUsers').val(cookieSIFListUser).trigger("chosen:updated");
+            filterSIFList();
         }
         function populateMarketSectors() {
             var strMarketSectors = '<select id="cboMarketSectors" tabindex="5">';
@@ -530,7 +540,11 @@
             SIFList = [];
             jQuery("#divSIFList").css("visibility", "hidden");
             jQuery("#divImgEmail").show();
+            
             var strSelectedUser = jQuery("#cboUsers option:selected").val();
+
+            persistFilter();
+
             jQuery.getJSON('<%= ResolveUrl("~/WebService/SIF.aspx") %>?cmd=readbyuser&user=' + strSelectedUser +
                     '&dateFrom=' + getJSONDate(jQuery("#txtDateFilterFrom").val()) +
                     '&dateTo=' + getJSONDate(jQuery("#txtDateFilterTo").val()), function (response) {
@@ -538,9 +552,16 @@
                         refreshSIFList();
                         jQuery("#divImgEmail").hide();
                         jQuery("#divSIFList").css("visibility", "visible");
-                    });
+            });
         }
-
+        function persistFilter() {
+            jQuery.cookie('SIFListUser', jQuery("#cboUsers option:selected").val(), { expires: 365 });
+            jQuery.cookie('SIFListDateFrom', jQuery("#txtDateFilterFrom").val(), { expires: 365 });
+            jQuery.cookie('SIFListDateTo', jQuery("#txtDateFilterTo").val(), { expires: 365 });
+            cookieSIFListUser = jQuery("#cboUsers option:selected").val();
+            cookieSIFListDateFrom = jQuery("#txtDateFilterFrom").val();
+            cookieSIFListDateTo = jQuery("#txtDateFilterTo").val();
+        }
         function refreshSIFList() {
             var theTable = jQuery(".SIFList").dataTable();
             try {
@@ -687,39 +708,41 @@
             }
         }
         function on_takeSIF_click(iSIF_ID, onSuccess) {
-            var to = '<%= ResolveUrl("~/WebService/SIF.aspx") %>?cmd=takeSIF&sif_id=' + iSIF_ID;
+            if (confirm("Are you sure you want to take a SIF?")) {
+                var to = '<%= ResolveUrl("~/WebService/SIF.aspx") %>?cmd=takeSIF&sif_id=' + iSIF_ID;
 
-            jQuery("#divImgEmail").css("display", "block");
+                jQuery("#divImgEmail").css("display", "block");
 
-            jQuery.ajax({
-                type: "POST",
-                url: to,
-                data: {},
-                contentType: "application/json;charset=utf-8",
-                dataType: "html",
-                success: function (response) {
-                    response = JSON.parse(response);
-                    if (response.ErrorThrown === true) {
-                        alertify.alert(response.ResponseDescription);
-                    } else {
+                jQuery.ajax({
+                    type: "POST",
+                    url: to,
+                    data: {},
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        response = JSON.parse(response);
+                        if (response.ErrorThrown === true) {
+                            alertify.alert(response.ResponseDescription);
+                        } else {
+                            try {
+                                onSuccess(iSIF_ID, response);
+                            } catch (e) { }
+                            alertify.success(response.ResponseDescription);
+                        }
+                        jQuery("#divImgEmail").hide();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (console && console.log) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        }
                         try {
-                            onSuccess(iSIF_ID, response);
+                            onFail();
                         } catch (e) { }
-                        alertify.success(response.ResponseDescription);
                     }
-                    jQuery("#divImgEmail").hide();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (console && console.log) {
-                        console.log(jqXHR);
-                        console.log(textStatus);
-                        console.log(errorThrown);
-                    }
-                    try {
-                        onFail();
-                    } catch (e) { }
-                }
-            });
+                });
+            }
         }
         function on_createBOM_click(iSIF_ID, onSuccess) {
                 var to = '<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=createBOM&sif_id=' + iSIF_ID;

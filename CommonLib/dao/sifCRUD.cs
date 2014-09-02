@@ -445,7 +445,8 @@ public class sifCRUD : ICRUD<SIF>
         Object dateTo = null;
         try
         {
-            dateFrom = DateTime.Parse(dFrom);
+            dateFrom = DateTime.Parse(dFrom.Substring(0, 10));
+            
             DateTime theDate = (DateTime)dateFrom;
             if (theDate.Year == 1985 && theDate.Month == 2 && theDate.Day == 10)
             {
@@ -455,7 +456,7 @@ public class sifCRUD : ICRUD<SIF>
         catch { }
         try
         {
-            dateTo = DateTime.Parse(dTo);
+            dateTo = DateTime.Parse(dTo.Substring(0, 10));
             DateTime theDate = (DateTime)dateTo;
             if (theDate.Year == 1985 && theDate.Month == 2 && theDate.Day == 10)
             {

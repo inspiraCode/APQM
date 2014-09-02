@@ -20,21 +20,10 @@ public partial class _Default : System.Web.UI.Page
             Left_Col.ActiveViewIndex = 1;
             switch (((SessionObject)Session["SECTION"]).Content.ToString())
             {
-                case "sif":
-                    MultiViewMain.SetActiveView(viewSIF);
-                    break;
                 case "bom":
                     MultiViewMain.SetActiveView(viewBOM);
                     uscBOMList.setUserFilterWithCookie();
                     break;                
-                case "popupSIF":
-                    Session.Remove("sifObject");
-                    MultiViewMain.SetActiveView(viewSIF);
-                    multiViewPopup.SetActiveView(viewPopupSIF);
-                    openpopupContainer();
-                    uscSIFForm.load();
-                    break;
-               
                 default:
                     break;
             }
@@ -52,9 +41,5 @@ public partial class _Default : System.Web.UI.Page
     private void disablePageForModalPopup()
     {
         uscMenu.disableButtons();
-    }
-    private void openpopupContainer()
-    {
-        panelPopup.Visible = true;
     }
 }

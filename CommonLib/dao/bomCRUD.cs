@@ -1062,5 +1062,29 @@ public class bomDetailCRUD : ICRUD<BOMDetail>
         }
         return false;
     }
+    public bool take(long bomDetailKey, string user)
+    {
+        ErrorOccur = false;
+        bool result = false;
+        DM = connectionManager.getDataManager();
+        try
+        {
+            DM.Load_SP_Parameters("@BOMDetailKey", bomDetailKey.ToString());
+            DM.Load_SP_Parameters("@AssignedTo", user);
+
+            result = DM.Execute_StoreProcedure("TakeBOM", true);
+
+            ErrorOccur = DM.ErrorOccur;
+            ErrorMessage = DM.Error_Mjs;
+        }
+        catch (Exception e)
+        {
+            ErrorOccur = true;
+            ErrorMessage = e.Message;
+            return false;
+        }
+
+        return result;
+    }
     #endregion
 }

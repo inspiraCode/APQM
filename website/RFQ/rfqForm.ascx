@@ -201,7 +201,7 @@
             </tr>
             <tr align="left">
                 <td align="right" class="style78">
-                    Um</td>
+                    Unit of Measure</td>
                 <td id="step8" align="left" class="style77">
                     <label id="lblUOM" bindto="Um" class="ReadOnlyFields" style="text-align: center;
                         width: 170px; height: 20px; display: block;">
@@ -692,7 +692,7 @@
                     '        </tr>' +
                     '        <tr>' +
                     '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
-                    '                UOM&nbsp;&nbsp;' +
+                    '                Unit of Measure&nbsp;&nbsp;' +
                     '            </td>' +
                     '            <td align="left" class="style31" data-step="step38" style="padding-bottom: 5px;border-right: solid gray; border-bottom: solid gray;border-width: 1px;">' +
                     '                <label class="ReadOnlyFields" bindTo="Um" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;border:1px solid gray;">' +

@@ -668,12 +668,12 @@
 
         function loadSIFDetail() {
 
-            var strSIFDetail = '<table border="0" style="text-align: right; float: left;">' +
+            var strSIFDetail = '<table><tr><td><table border="0" style="text-align: right;">' +
                 '    <tr> ' +
                 '        <td> ' +
                 '            <table> ' +
                 '                <tr height="12px;"> ' +
-                '                    <td> ' +
+                '                    <td style="min-width:170px;width:170px;"> ' +
                 '                        <label id="lblProgramYear" >Program Year' +
                 '                        </label> ' +
                 '                    </td> ' +
@@ -687,7 +687,7 @@
                 '            </table> ' +
                 '        </td> ' +
                 '    </tr> ' +
-                '</table> ' +
+                '</table></td><td> ' +
                 '<table> ' +
                 '<tr> ';
             for (var i = 0; i < BOM.SifDetail.length; i++) {
@@ -709,7 +709,7 @@
                     '</table> ' +
                     '</td> ';
             }
-            strSIFDetail += '</tr></table>';
+            strSIFDetail += '</tr></table></td></tr></table>';
 
             jQuery("#divSIFDetail").html(strSIFDetail);
         }
@@ -717,7 +717,8 @@
         function on_openSIFDetail() {
             jQuery("#divDialog_SifDetail").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 520, modal: false, closeOnEscape: false
+                width:'auto',
+               modal: false, closeOnEscape: false
             });
         }
 
@@ -849,7 +850,7 @@
 '    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/edit-small.png" style="height:20px;top:14px;float:left;position:absolute;left: 90px;" onclick="updateBOMLineByID(' + current.Id + ',this);return false;" clickeableInHeader="true"/>' +
 '    <input type="image" internalAction="' + current.internalAction.replace(' ', '') + '" src="../pics/FilterIcon.png" style="height:20px;top:14px;float: left;position: absolute; left: 120px;" ' +
 '    onclick="openRFQSummary(' + current.Id + ',this);return false;" clickeableInHeader="true" /> ' +
-'<a href="#" clickeableInHeader="true" onclick="on_takeSIF_click(' + current.Id + ',afterTakeSIF);return false;" style="float: left; position: absolute;left: 150px;top: 16px;">' + current.User + '</a>' +
+'    <a href="#" clickeableInHeader="true" onclick="on_takeBOM_click(' + current.Id + ',afterTakeBOM);return false;" style="float: left; position: absolute;left: 150px;top: 16px;">' + current.User + '</a>' +
 '    <table cellspacing="0" align="left" style="top:-3px;" class="BOMLine"> ' +
 '    <tr style="height: 40px; white-space: nowrap;"> ' +
 '    <td align="center" class="tableCell" style="width: 70px; min-width: 70px; max-width: 70px;"> ' +
@@ -1047,7 +1048,53 @@
             hideLineButtonsForUnsavedLines();
 
         }
+        function on_takeBOM_click(iBOM_ID, onSuccess) {
+            if (confirm("Are you sure you want to take a BOM component?")) {
+                var to = '<%= ResolveUrl("~/WebService/BOM.aspx") %>?cmd=takeBOM&bomline_id=' + iBOM_ID;
 
+                jQuery("#divImgEmail").css("display", "block");
+
+                jQuery.ajax({
+                    type: "POST",
+                    url: to,
+                    data: {},
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "html",
+                    success: function (response) {
+                        response = JSON.parse(response);
+                        if (response.ErrorThrown === true) {
+                            alertify.alert(response.ResponseDescription);
+                        } else {
+                            try {
+                                onSuccess(iBOM_ID, response);
+                            } catch (e) { }
+                            alertify.success(response.ResponseDescription);
+                        }
+                        jQuery("#divImgEmail").hide();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (console && console.log) {
+                            console.log(jqXHR);
+                            console.log(textStatus);
+                            console.log(errorThrown);
+                        }
+                        try {
+                            onFail();
+                        } catch (e) { }
+                    }
+                });
+            }
+        }
+        function afterTakeBOM(iBOM_ID, response) {
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                var current = BOM.BomDetail[i];
+                if (current.Id == iBOM_ID) {
+                    current.User = response.Result;
+                    refreshDetail();
+                    return;
+                }
+            }
+        }
         function openRFQSummary(iBOMLineID) {
             window.open("../RFQ/Summary/RFQSummary_Main.aspx?bomline=" + iBOMLineID);
         }
@@ -1127,7 +1174,6 @@
             });
         }
         function refreshForm() {
-
             var scrollPosition = jQuery("body").scrollTop();
             resetForm();
             bindParentFields();
@@ -1136,7 +1182,6 @@
             makeProgresBar();
             setEventHanlderToCheckBoxes();
             jQuery("body").scrollTop(scrollPosition);
-
         }
 
         function refreshDetail() {

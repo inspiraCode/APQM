@@ -60,6 +60,11 @@ public partial class WebService_BOM : System.Web.UI.Page
                 Response.Write(createBOM(long.Parse(Request["sif_id"])));
                 Response.End();
                 return;
+            case "takeBOM":
+                Response.Clear();
+                Response.Write(takeBOM(long.Parse(Request["bomline_id"])));
+                Response.End();
+                return;
         }
     }
     public bool getPostedAttachments()
@@ -285,6 +290,25 @@ public partial class WebService_BOM : System.Web.UI.Page
             response.ErrorThrown = true;
             response.ResponseDescription = bom_CRUD.ErrorMessage;
         }
+        return JsonConvert.SerializeObject(response);
+    }
+    private string takeBOM(long bom_id)
+    {
+        GatewayResponse response = new GatewayResponse();
+
+        String authUser = HttpContext.Current.User.Identity.Name;
+
+
+        if (!bomDetail_CRUD.take(bom_id, authUser))
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR:" + bomDetail_CRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "BOM assigned to: " + authUser;
+        response.Result = authUser;
         return JsonConvert.SerializeObject(response);
     }
 }
