@@ -18,12 +18,13 @@
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
     <br />
+    <input type="button" id="btnNewSIF" value="New SIF" style="position: fixed;right: 10px;top: 174px;" />
     <div id="divMainContent" style="display: none;">
         <div id="divFilterByUser">
             <table cellspacing="0" align="left">
                 <tr>
                     <td align="right">
-                        Filter Created By:
+                        Assigned To:
                     </td>
                     <td>
                         <div id="divUsers">

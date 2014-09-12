@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 public class ConnectionManager
 {
     private static string user = "APQMAPP";
-    private static string server = "capsp";
+    private static string server = "rsserver";
     private static string pass = "capsonic";
     private static string database = "APQM_DB";
 

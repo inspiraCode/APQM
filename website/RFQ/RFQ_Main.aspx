@@ -36,7 +36,7 @@
                 <br />
                 <br />
                 <div id="divRFQList">
-                    <table class="display RFQList" style="display:none;font-size:10px;">
+                    <table class="display RFQList" style="display:none;width:1100px;min-width:1100px;max-width:1100px;font-size:10px;text-align: center;">
                         <thead>
                             <tr>
                                 <th>

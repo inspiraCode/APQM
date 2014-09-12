@@ -156,7 +156,7 @@ public class RfqCRUD : ICRUD<RFQ>
         string idGenerated = "";
 
         bomDetailCRUD bomDetail_CRUD = new bomDetailCRUD();
-        
+
         if (bomDetail != null)
         {
             bomDetail.Status = "In Progress";
@@ -166,6 +166,17 @@ public class RfqCRUD : ICRUD<RFQ>
                 ErrorMessage = bomDetail_CRUD.ErrorMessage;
                 return "";
             }
+        }
+        else
+        {
+            ErrorOccur = true;
+            ErrorMessage = "An error has occurried. BOM Component missing when attempting to create the RFQ.";
+            DM.RollBack();
+            if (DM.ErrorOccur)
+            {
+                ErrorMessage = "An error has occurried. BOM Component missing when attempting to create the RFQ." + " " + DM.Error_Mjs;
+            }
+            return "";
         }
 
         try
