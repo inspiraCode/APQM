@@ -3,8 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "website", ".", "{5DECEC94-DED4-4CA2-886D-BBDCA9973548}"
 	ProjectSection(WebsiteProperties) = preProject
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv3.5"
-		ProjectReferences = "{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}|BD_MNG.dll;{B9A5E946-CC4E-4CF2-A961-E2B5BF269C3A}|CommonLib.dll;"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{B9A5E946-CC4E-4CF2-A961-E2B5BF269C3A}|CommonLib.dll;{60A1CB55-FAF7-4672-B8FB-4FED0FB447DC}|BD_MNG.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/website"
 		Debug.AspNetCompiler.PhysicalPath = "..\website\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\website\"
