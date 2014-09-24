@@ -59,6 +59,10 @@ public partial class WebService_RFQ : System.Web.UI.Page
         }
     }
 
+    /// <summary>
+    /// Deletes the rfq by identifier.
+    /// </summary>
+    /// <param name="idRFQ">The identifier RFQ.</param>
     public void deleteRFQbyID(long idRFQ)
     {
         string response = "{\"Result\":\"" + "OK" + "\"}";

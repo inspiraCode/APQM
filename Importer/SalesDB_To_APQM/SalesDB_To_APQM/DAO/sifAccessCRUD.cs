@@ -42,7 +42,7 @@ public class sifAccessCRUD
     }
     public DataTable distinctSalesPerson()
     {
-        return new DataView(readAll()).ToTable(true, "Sales Person");        
+        return new DataView(readAll()).ToTable(true, "Sales Person");
     }
     public DataTable distinctStatus()
     {

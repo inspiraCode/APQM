@@ -1,1 +1,1 @@
-ILMerge.exe /out:SalesDB2APQM.exe SalesDB_To_APQM.exe BD_MNG.dll CommonLib.dll
+ILMerge /targetplatform:v4,"C:\Windows\Microsoft.NET\Framework\v4.0.30319" /out:SalesDB2APQM.exe SalesDB_To_APQM.exe BD_MNG.dll CommonLib.dll
