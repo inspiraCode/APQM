@@ -38,6 +38,11 @@ public partial class WebService_SIF : System.Web.UI.Page
                 Response.Write(takeSIF(long.Parse(Request["sif_id"])));
                 Response.End();
                 return;
+            case "create":
+                Response.Clear();
+                Response.Write(createSIF());
+                Response.End();
+                return;
         }
     }
     public string readSIFsByUser(string user)
@@ -135,6 +140,60 @@ public partial class WebService_SIF : System.Web.UI.Page
         response.ErrorThrown = false;
         response.ResponseDescription = "SIF updated successfully.";
         response.Result = getSIFbyID(sif.Id);
+        return JsonConvert.SerializeObject(response);
+    }
+    private string createSIF()
+    {
+        GatewayResponse response = new GatewayResponse();
+
+        String s = new StreamReader(Request.InputStream).ReadToEnd();
+        SIF sif = JsonConvert.DeserializeObject<SIF>(s);
+
+        String authUser = HttpContext.Current.User.Identity.Name;
+        sif.AssignedTo = authUser;
+
+        /*Begin Transaction*/
+        ConnectionManager CM = new ConnectionManager();
+        Data_Base_MNG.SQL DM = CM.getDataManager();
+
+        DM.Open_Connection("SIF Create");
+        
+        string idGenerated = sif_CRUD.createAndReturnIdGenerated(sif, ref DM);
+        if (sif_CRUD.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR:" + sif_CRUD.ErrorMessage;
+            return JsonConvert.SerializeObject(response);
+        }
+        else
+        {
+            sif.Id = long.Parse(idGenerated);
+            
+            foreach (SIFDetail sifVolume in sif.SifDetail)
+            {
+                sifVolume.SifHeaderKey = sif.Id;
+                if (!sifDetail_CRUD.create(sifVolume, ref DM))
+                {
+                    response.ErrorThrown = true;
+                    response.ResponseDescription = "ERROR:" + sifDetail_CRUD.ErrorMessage;
+                    return JsonConvert.SerializeObject(response);
+                }
+            }
+        }
+
+        DM.CommitTransaction();
+        DM.Close_Open_Connection();
+
+        if (DM.ErrorOccur)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "ERROR:" + DM.Error_Mjs;
+            return JsonConvert.SerializeObject(response);
+        }
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "SIF created successfully.";
+        response.Result = sif;
         return JsonConvert.SerializeObject(response);
     }
     private string takeSIF(long sif_id)

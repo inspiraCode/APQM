@@ -19,12 +19,6 @@
         <asp:Button ID="btnToSupplierForm" runat="server" OnClick="btnToSupplierForm_Click"
             Text="Back" Width="132px" TabIndex="1" />
         <div runat="server" id="divButtonsTopToHide" style="display: inline;">
-            <input id="btnSendFilesAndFinalize1" onclick="uploadFiles(event, 'finalize');" type="button"
-                style="width: 150px;" validationid="validatingRFQForm" value="Finalize and submit"
-                tabindex="1" />
-            <input id="btnSendFilesAndSave1" onclick="uploadFiles(event, 'update');" type="button"
-                validationid="validatingRFQForm" style="width: 150px;" value="Save & Continue Later"
-                tabindex="1" />
             <input type="button" id="btnInstructions" style="width: 132px;" value="Instructions"
                 onclick="beginTutorial();" tabindex="1" />
             <asp:Button ID="btnGoToThankyouPage" runat="server" Style="display: none;" Text="Button"

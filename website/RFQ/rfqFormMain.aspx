@@ -12,6 +12,8 @@
             style="width: 70px;" value="Save" tabindex="38" />
         <input type="button" id="btnCancel" value="Cancel" style="width:70px;" onclick="load();"
             tabindex="39" />
+
+            <input type="button" id="btnRFQPrint" value="Print" style="width:70px;" />
     </div>
     <br />
     <br />
@@ -26,8 +28,13 @@
             var params = urlParamsToObject();
             if (params.hasOwnProperty('rfq')) {
                 getRFQ(params.rfq);
+                jQuery("#btnRFQPrint").click(function () {
+                    window.open("RFQ_Report.htm?rfq=" + params.rfq);
+                });
             }
         }
+
+
         function onFinalizeSuccess() {
             alertify.success("Information saved successfully.");
         }

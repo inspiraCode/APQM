@@ -280,6 +280,7 @@
             <input type="button" value="SIF Volumes" onclick="on_openSIFDetail();" />
             <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" />
             <input type="button" id="btnReportAllRFQs" value="Report All RFQs" />
+            <input type="button" id="btnReportAllRFQsAndVolumes" value="Report All RFQs & EAU" />
             <input type="button" id="btnPrintBOM" value="BOM Print" />
         </div>
     </div>
@@ -601,6 +602,10 @@
 
             jQuery("#btnReportAllRFQs").click(function () {
                 window.open("../HTMLReports/SalesReport_AllRFQs.aspx?BOM=" + BOM.Id);
+            });
+
+            jQuery("#btnReportAllRFQsAndVolumes").click(function () {
+                window.open("../HTMLReports/SalesReport_AllRFQs_SIFEAU.aspx?BOM=" + BOM.Id);
             });
 
             jQuery("#btnReportSelectedRFQs").click(function () {

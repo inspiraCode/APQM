@@ -263,7 +263,7 @@
                 <tr>
                     <td align="center">
                         Capsonic Automotive &amp; Aerospace, Inc. 2012<br />
-                        LMD: 9/2/2014
+                        LMD: 11/17/2014
                     </td>
                 </tr>
             </table>
@@ -285,7 +285,7 @@
     jQuery(document).ready(function () {
         jQuery("#javascriptEnabled").css("visibility", "visible");
         makeDropDownsChosen();
-        jQuery('input[type=button]').button();
+        jQuery('input[type=button], input[type=submit]').button();
     });
 
     jQuery('[datepicker="true"]').datepicker({

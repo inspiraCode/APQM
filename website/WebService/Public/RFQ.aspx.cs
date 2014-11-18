@@ -26,7 +26,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
         {
             if (getPostedAttachmentsToVendor()) return;
         }
-        
+
 
         if (Request["cmd"] == null)
             return;
@@ -40,6 +40,11 @@ public partial class WebService_RFQ : System.Web.UI.Page
             case "read":
                 Response.Clear();
                 Response.Write(getRFQbyID(long.Parse(Request["id"])));
+                Response.End();
+                return;
+            case "get":
+                Response.Clear();
+                Response.Write(getRFQ());
                 Response.End();
                 return;
             case "update":
@@ -203,6 +208,46 @@ public partial class WebService_RFQ : System.Web.UI.Page
         return JsonConvert.SerializeObject(rfq);
     }
 
+
+    private string getRFQ()
+    {
+        GatewayResponse response = new GatewayResponse();
+        long id = -1;
+        try
+        {
+            id = long.Parse(Request["id"]);
+        }
+        catch (Exception ex)
+        {
+            response.ErrorThrown = true;
+            response.ResponseDescription = "Bad request.";
+            return JsonConvert.SerializeObject(response);
+        }
+
+        RFQ rfq = rfq_CRUD.readById(id);
+
+        rfq.User = user_CRUD.readById(rfq.CreatedBy);
+
+        rfq.RfqAcr = rfqACR_CRUD.readByParentID(rfq.Id);
+
+        rfq.RfqEAV = rfqEAV_CRUD.readByParentID(rfq.Id);
+
+        foreach (RFQEAV rfqEAV in rfq.RfqEAV)
+        {
+            List<RFQDetail> rfqDetail = rfqDetail_CRUD.readByParentID(rfqEAV.Id);
+            rfqEAV.RfqDetail = rfqDetail;
+        }
+
+        updateAttachmentsToBuyer(ref rfq);
+        updateAttachmentsToVendor(ref rfq);
+
+        response.ErrorThrown = false;
+        response.ResponseDescription = "OK";
+        response.Result = rfq;
+
+        return JsonConvert.SerializeObject(response);
+    }
+
     private void updateAttachmentsToVendor(ref RFQ rfq)
     {
         rfq.AttachmentsToVendor = null;
@@ -249,7 +294,7 @@ public partial class WebService_RFQ : System.Web.UI.Page
         Response.TransmitFile(filePath);
         Response.End();
     }
-    
+
     public void downloadAttachmentToBuyer(string strDirectory, string strFileName)
     {
         string baseAttachmentsPath = ConfigurationManager.AppSettings["RFQAttachmentsInbox"];

@@ -18,7 +18,7 @@
         <span style="display: inline; position: relative;">Please wait..</span>
     </div>
     <br />
-    <input type="button" id="btnNewSIF" value="New SIF" style="position: fixed;right: 10px;top: 174px;" />
+    <input type="button" id="btnNewSIF" value="New SIF" onclick="on_createSIF();return false;" style="position: fixed;right: 10px;top: 174px;" />
     <div id="divMainContent" style="display: none;">
         <div id="divFilterByUser">
             <table cellspacing="0" align="left">
@@ -862,6 +862,49 @@
         function on_closeSaveSIF() {
             jQuery("#diDialog_SIF").dialog("close");
         }
+        function on_createSIF() {
+            jQuery("#btnSaveSIF").prop("disabled", false);
+            jQuery("#btnCancelSaveSIF").prop("disabled", false);
+            jQuery("#divPleaseWait").hide();
+
+            jQuery('#txtApplication').val('');
+            jQuery('#txtBussinesClass').val('');
+            jQuery('#txtContact').val('');
+            jQuery('#txtCostModelLoc').val('');
+            jQuery('#cboCustomers').val(0).trigger("chosen:updated");
+            jQuery('#txtDepartment').val('');
+            jQuery('#txtDivLoc').val('');
+            jQuery('#txtDrawingLevel').val('');
+            jQuery('#txtInquiryNumber').val('');
+            jQuery('#cboMarketSectors').val(0).trigger("chosen:updated");
+            jQuery('#txtPartPrint').val('');
+            jQuery('#txtPrimaryCompetitors').val('');
+            jQuery('#txtPriority').val('');
+            jQuery('#txtProduct').val('');
+            jQuery('#txtQuoteDue').val('');
+            jQuery('#txtReasonForQuote').val('');
+            jQuery('#txtRevision').val('');
+            jQuery('#txtSalesPerson').val('');
+            jQuery('#txtSample').val('');
+            jQuery('#txtSOP').val('');
+            jQuery('#txtSpecificResourceRequirements').val('');
+            jQuery('#txtSpecification').val('');
+            jQuery('#txtTaskDescription').val('');
+            jQuery('#txtTechnical').val('');
+            jQuery('#txtToolingTarget').val('');
+
+            populateSIFVolumes([]);
+
+            jQuery("#btnSaveSIF").unbind("click").click(function () {
+                createSIF(afterCreateSIF);
+            });
+
+            jQuery("#diDialog_SIF").dialog({ autoOpen: true,
+                appendTo: jQuery('form:first'),
+                width: 990, height: 550, modal: true, closeOnEscape: false
+            });
+
+        }
         function on_openSIF(iSIF_ID) {
             jQuery("#btnSaveSIF").prop("disabled", false);
             jQuery("#btnCancelSaveSIF").prop("disabled", false);
@@ -986,6 +1029,33 @@
                 }
             }
         }
+        
+        function afterCreateSIF(response) {
+            var currentSIF = response.Result;
+            SIFList.push(currentSIF);
+            var currentDataTable = jQuery(".SIFList").dataTable();
+            var oCurrent = ['<input type="image" src="../pics/delete-icon.png" style="height:20px;" ' +
+                    '    onclick="deleteSIFByID(' + currentSIF.Id + ');return false;" />' +
+                    '<input type="image" src="../pics/edit-icon.png" style="height:20px;margin-left: 5px;" onclick="on_openSIF(' + currentSIF.Id + ');return false;" />',
+                                currentSIF.AssignedTo,
+                                currentSIF.InquiryNumber,
+                                currentSIF.Revision,
+                                currentSIF.Priority,
+                                currentSIF.SalesPerson,
+                                currentSIF.CustomerName,
+                                currentSIF.CreatedDate,
+                                currentSIF.SalesDBID,
+                                currentSIF.TopPartNumber,
+                                currentSIF.BOMProgress,
+                                currentSIF.BOMProgress,
+                                currentSIF.Id,
+                                currentSIF.BomId
+                                ];
+
+            currentDataTable.fnAddData(oCurrent);
+            jQuery("#diDialog_SIF").dialog("close");
+        }
+
         function afterSaveSIF(response) {
             //var sifUpdated = response.Result;
 
@@ -993,12 +1063,130 @@
                 if (SIFList[i].Id == response.Result.Id) {
                     SIFList[i] == response.Result;
                     jQuery("#diDialog_SIF").dialog("close");
-                    result;
+                    refreshSIFList();
+                    return;
                 }
             }
 
-            alertify.alert("SIF updated correctly, but there was an error on the page, try refrhesing the page.");
+            alertify.alert("SIF updated correctly, but there was an error on the page, try refreshing the page.");
 
+        }
+        function createSIF(onSuccess) {
+
+            jQuery("#btnSaveSIF").prop("disabled", true);
+            jQuery("#btnCancelSaveSIF").prop("disabled", true);
+
+            var sifToSave = {};
+
+            sifToSave.Application = jQuery('#txtApplication').val();
+            sifToSave.BussinesClass = jQuery('#txtBussinesClass').val();
+            sifToSave.Contact = jQuery('#txtContact').val();
+            sifToSave.CostModelLoc = jQuery('#txtCostModelLoc').val();
+            sifToSave.CustomerKey = jQuery('#cboCustomers').val();
+            sifToSave.Department = jQuery('#txtDepartment').val();
+            sifToSave.DivLoc = jQuery('#txtDivLoc').val();
+            sifToSave.DrawingLevel = jQuery('#txtDrawingLevel').val();
+            sifToSave.InquiryNumber = jQuery('#txtInquiryNumber').val();
+            sifToSave.MarketSectorID = jQuery('#cboMarketSectors').val();
+            sifToSave.PartPrint = jQuery('#txtPartPrint').val();
+            sifToSave.PrimaryCompetitors = jQuery('#txtPrimaryCompetitors').val();
+            sifToSave.Priority = jQuery('#txtPriority').val();
+            sifToSave.Product = jQuery('#txtProduct').val();
+            sifToSave.QuoteDue = getJSONDate(jQuery('#txtQuoteDue').val());
+            sifToSave.Reason4Quote = jQuery('#txtReasonForQuote').val();
+            sifToSave.Revision = jQuery('#txtRevision').val();
+            sifToSave.SalesPerson = jQuery('#txtSalesPerson').val();
+            sifToSave.Sample = jQuery('#txtSample').val();
+            sifToSave.Sop = getJSONDate(jQuery('#txtSOP').val());
+            sifToSave.SpecificResourceRequirements = jQuery('#txtSpecificResourceRequirements').val();
+            sifToSave.Specification = jQuery('#txtSpecification').val();
+            sifToSave.TaskDescription = jQuery('#txtTaskDescription').val();
+            sifToSave.Technical = jQuery('#txtTechnical').val();
+            sifToSave.ToolingTarget = jQuery('#txtToolingTarget').val();
+
+            theTable = jQuery("#divSIFDetail").handsontable("getInstance");
+            var theData = theTable.getData();
+            var sifVolumesToSave = [];
+
+
+            if (theData.length > 0) {
+                for (var j = 0; j < theData[0].length; j++) {
+                    var sifVolume = {
+                        ProgramYear: theData[0][j],
+                        ProjectedAnnualVolume: theData[1][j],
+                        PercentVolumePerAward: theData[2][j],
+                        ProjectedTargetPrice: theData[3][j],
+                        AnnualRevenue: theData[4][j]
+                    }
+                    sifVolumesToSave.push(sifVolume);
+                }
+            }
+
+            for (var i = sifVolumesToSave.length - 1; i >= 0; i--) {
+                var allNulls = true;
+                for (prop in sifVolumesToSave[i]) {
+                    if (sifVolumesToSave[i].hasOwnProperty(prop)) {
+                        if (jQuery.trim(sifVolumesToSave[i][prop]) != "") {
+                            allNulls = false;
+                            break;
+                        }
+                    }
+                }
+                if (allNulls) {
+                    sifVolumesToSave.splice(i, 1);
+                } else {
+                    for (prop in sifVolumesToSave[i]) {
+                        if (sifVolumesToSave[i].hasOwnProperty(prop)) {
+                            if (jQuery.trim(sifVolumesToSave[i][prop]) == "") {
+                                if (prop == "ProgramYear") {
+                                    sifVolumesToSave[i][prop] = '';
+                                } else {
+                                    sifVolumesToSave[i][prop] = 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            sifToSave.SifDetail = sifVolumesToSave;
+
+            var to = '<%= ResolveUrl("~/WebService/SIF.aspx") %>?cmd=create';
+
+            jQuery("#divImgEmail").css("display", "block");
+            jQuery.ajax({
+                type: "POST",
+                url: to,
+                data: JSON.stringify(sifToSave),
+                contentType: "application/json;charset=utf-8",
+                dataType: "html",
+                success: function (response) {
+                    response = jQuery.parseJSON(response);
+                    if (response.ErrorThrown === true) {
+                        try { onFail(); } catch (e) { }
+                        alertify.alert(response.ResponseDescription);
+                    } else {
+                        try { onSuccess(response); } catch (e) { }
+                        alertify.success(response.ResponseDescription);
+                    }
+                    jQuery("#btnSaveSIF").prop("disabled", false);
+                    jQuery("#btnCancelSaveSIF").prop("disabled", false);
+                    jQuery("#divImgEmail").hide();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (console && console.log) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                    try {
+                        onFail();
+                    } catch (e) { }
+                    jQuery("#btnSaveSIF").prop("disabled", false);
+                    jQuery("#btnCancelSaveSIF").prop("disabled", false);
+                    jQuery("#divImgEmail").hide();
+                }
+            });
         }
 
         function saveSIF(sifToSave, onSuccess) {
@@ -1041,7 +1229,6 @@
             theTable = jQuery("#divSIFDetail").handsontable("getInstance");
             var theData = theTable.getData();
             var sifVolumesToSave = [];
-
 
             if (theData.length > 0) {
                 for (var j = 0; j < theData[0].length; j++) {
