@@ -1,4 +1,5 @@
 ﻿<!doctype html>
+<html>
 <head>
     <meta charset="utf-8">
     <title>RFQ Report</title>
@@ -513,7 +514,7 @@
         * @name iqsApp.controller:RfqCtrl
         * @description # RfqCtrl Controller of the iqsApp
         */
-        angular.module('rfqPrintApp').controller('RfqCtrl', ['$scope', '$routeParams', 'rfqService', function ($scope, $routeParams, rfqService) {
+        angular.module('rfqPrintApp').controller('RfqCtrl', ['$scope', '$timeout', 'rfqService', function ($scope, $timeout, rfqService) {
             $scope.RFQ = null;
             var params = urlParamsToObject();
             if (params.hasOwnProperty('rfq')) {
@@ -564,6 +565,10 @@
 
             function applyRemoteData(theRFQ) {
                 $scope.RFQ = theRFQ;
+                $timeout(function () {
+                    window.document.close();
+                    window.print();
+                }, 300);
             }
 
             function loadRemoteData(ID_RFQ) {
@@ -595,7 +600,7 @@
         * @name iqsApp.rfqService
         * @description # rfqService Service in the iqsApp.
         */
-        angular.module('rfqPrintApp').service('rfqService', function rfqService($http, $q, $routeParams) {
+        angular.module('rfqPrintApp').service('rfqService', function rfqService($http, $q) {
 
             var arrAllRecords = [];
 
@@ -699,4 +704,4 @@
 
     </script>
 </body>
-</html> 
+</html>

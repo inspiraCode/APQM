@@ -682,20 +682,11 @@
                     '            </td>' +
                     '        </tr>' +
                     '        <tr>' +
-                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray 1px;">' +
+                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
                     '                Total Piece Cost&nbsp;&nbsp;' +
                     '            </td>' +
-                    '            <td align="left" class="style31" data-step="step37" style="padding-bottom: 5px;border-right: solid gray 1px;">' +
-                    '                <label idTotalPieceCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;">' +
-                    '                    0</label>' +
-                    '            </td>' +
-                    '        </tr>' +
-                    '        <tr>' +
-                    '            <td align="right" class="style75" style="padding-bottom: 5px;border-left: solid gray; border-bottom: solid gray;border-width: 1px;">' +
-                    '                Unit of Measure&nbsp;&nbsp;' +
-                    '            </td>' +
-                    '            <td align="left" class="style31" data-step="step38" style="padding-bottom: 5px;border-right: solid gray; border-bottom: solid gray;border-width: 1px;">' +
-                    '                <label class="ReadOnlyFields" bindTo="Um" style="text-align: right; width: 140px; height: 20px;display: block;padding-right: 3px;border:1px solid gray;">' +
+                    '            <td align="left" class="style31" data-step="step37" style="padding-bottom: 5px;border-right: solid gray;border-bottom: solid gray;border-width: 1px;">' +
+                    '                <label idTotalPieceCost="' + objEAU.Id + '" class="calculatedField" style="text-align: right;width: 140px;height: 20px;display: block;padding-right: 3px;"' +
                     '                    0</label>' +
                     '            </td>' +
                     '        </tr>' +
@@ -1174,6 +1165,7 @@
         if (RFQ.NoQuote == false) {
             if (strSaveMode == "finalize") {
                 for (var i = 0; i < RFQ.RfqEAV.length; i++) {
+                //validating that every RFQDetail must have at least one item
                     var currentEAV = RFQ.RfqEAV[i];
                     if (currentEAV.RfqDetail.length == 0) {
                         jQuery('#scrim').show();
@@ -1186,6 +1178,21 @@
                             scrollTop: fieldNeedsCorrection.offset().top - 300
                         }, 100);
                         return;
+                    }
+                    //validating that for RFQDetail with just one item, its UM must be the same than the required by the buyer
+                    if (currentEAV.RfqDetail.length == 1) {
+                        if (jQuery.trim(currentEAV.RfqDetail[0].Um).toLowerCase() != jQuery.trim(RFQ.Um).toLowerCase()) {
+                            jQuery('#scrim').show();
+                            var targetMessage = jQuery('#messageDisplayer').text('Unit of Measure must match with the required: "' + RFQ.Um + '"').show();
+                            var fieldNeedsCorrection = jQuery("[rfqeau_id=" + currentEAV.Id + "]");
+                            var pos = fieldNeedsCorrection.offset();
+                            targetMessage.css('left', (pos.left - 9) + 'px');
+                            targetMessage.css('top', (pos.top + fieldNeedsCorrection.outerHeight() + 2) + 'px');
+                            jQuery('html, body').animate({
+                                scrollTop: fieldNeedsCorrection.offset().top - 300
+                            }, 100);
+                            return;
+                        }
                     }
                 }
             }
