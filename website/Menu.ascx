@@ -31,8 +31,8 @@
                 <table style="width: 120px">
                     <tr>
                         <td>
-                            <asp:Button ID="btnSIF" runat="server" Style="height: 26px;" 
-                                Text="SIF" Width="110px" onclick="btnSIF_Click" />
+                            <asp:Button ID="btnSIF" runat="server" Style="height: 26px;" Text="SIF" Width="110px"
+                                OnClick="btnSIF_Click" />
                         </td>
                     </tr>
                     <tr>
@@ -43,7 +43,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <asp:Button ID="btnSuppliers" runat="server"  Style="height: 26px;" PostBackUrl="~/Supplier/Supplier_List.aspx"
+                            <asp:Button ID="btnSuppliers" runat="server" Style="height: 26px;" PostBackUrl="~/Supplier/Supplier_List.aspx"
                                 Text="Suppliers" Width="110px" />
                         </td>
                     </tr>
@@ -52,3 +52,7 @@
         </td>
     </tr>
 </table>
+<br />
+<div style="text-align:center;width:100%;">
+<a href="APQMUsersManual.pdf" target="_blank" >APQM User&#39;s Manual</a>
+</div>
