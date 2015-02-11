@@ -9,11 +9,11 @@
     {
         padding-right: 5px;
         font-weight: bold;
-        width: 66px;
+        width: 80px;
         font-size:11px;
     }
 </style>
-<table align="left" cellspacing="0" style="width: 477px;font-size: 11px;background-color: #e3e3e3;border: solid #424242 2px;">
+<table align="left" cellspacing="0" style="width: 500px;font-size: 11px;background-color: #e3e3e3;border: solid #424242 2px;">
     <tr>
         <td class="colorColumn Imported" align="right">
             &nbsp;</td>
@@ -64,6 +64,14 @@
         <td align="left">
             This Part Number is not going to be requested for quote.
         </td>
+    </tr>
+    <tr>
+        <td class="colorColumn BoughtPart" align="right">
+            &nbsp;</td>
+        <td class="firstColumn" align="right">
+            Bought Part</td>
+        <td align="left">
+            Take current info from component, not from RFQs.</td>
     </tr>
     <tr>
         <td class="colorColumn Processed" align="right">

@@ -54,6 +54,10 @@
         {
             background: #F0E68C;
         }
+        .BoughtPart
+        {
+        	background: #F0E68C;
+        }
         .Processed
         {
             background: #F0E68C;
@@ -105,7 +109,7 @@
     <div style="position: absolute; top: 32px; left: 135px; font-size: 30px;">
         <label id="lblInquiryNumber" bindto="InquiryNumber">
         </label>
-        <label id="lblRevision" bindto="Revision">
+        <label id="lblRevision" style="text-transform:uppercase;" bindto="Revision">
         </label>
     </div>
     <div align="left">
@@ -272,11 +276,12 @@
             <input type="button" value="Unselect All" onclick="on_unselect_all_lines();" />
             <input type="button" id="btnNoQuote" onclick="on_noQuote_click();" value="No Quote" />
             <input type="button" id="btnQuote" onclick="on_Quote_click();" value="Quote" />
+            <input type="button" id="btnBoughtPart" onclick="on_BoughtPart_click();" value="Bought Part" />
         </div>
         <div id="divButtonsRightSide" style="float: right; margin-right: 10px;">
             <input type="button" id="btnEdifBOM" onclick="on_btnEditBOM_click();" value="Edit BOM" />
             <input type="button" id="btnSaveBOM" onclick="on_save_bom();" value="Save" />
-            <input type="button" id="btnCancel" value="Refresh" onclick="location.reload(true);return false;" />
+            <%--<input type="button" id="btnCancel" value="Refresh" onclick="location.reload(true);return false;" />--%>
             <input type="button" value="SIF Volumes" onclick="on_openSIFDetail();" />
             <input type="button" id="btnReportSelectedRFQs" value="Report Selected RFQs" />
             <input type="button" id="btnReportAllRFQs" value="Report All RFQs" />
@@ -1623,7 +1628,7 @@
             var countProcessed = 0;
             for (var i = 0; i < BOM.BomDetail.length; i++) {
                 var currentLine = BOM.BomDetail[i];
-                if (currentLine.Status == "Processed" || currentLine.Status == "No Quote") {
+                if (currentLine.Status == "Processed" || currentLine.Status == "No Quote" || currentLine.Status == "Bought Part") {
                     countProcessed++;
                 }
             }
@@ -1945,6 +1950,23 @@
                 if (someOneEdited) refreshDetail();
             } else {
                 alertify.log("You have not selected any item to Quote.");
+            }
+        }
+
+        function on_BoughtPart_click() {
+            if (jQuery("h3 input:checkbox:checked").length > 0) {
+                var someOneEdited = false;
+                for (var i = 0; i < BOM.BomDetail.length; i++) {
+                    var current = BOM.BomDetail[i];
+                    if (current.selected) {
+                        current.internalAction = "For Edit";
+                        current.Status = "Bought Part";
+                        someOneEdited = true;
+                    }
+                }
+                if (someOneEdited) refreshDetail();
+            } else {
+                alertify.log("You have not selected any item.");
             }
         }
 

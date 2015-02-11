@@ -23,51 +23,6 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
         }
         SqlDataSourceForm.DataBind();
 
-        //Calculating TotalCostMaterial and TotalCostReduction:
-
-        float totalCostMaterial = 0;
-        float totalCostReduction = 0;
-
-        RfqSummaryCRUD rfqSummaryCRUD = new RfqSummaryCRUD();
-        RfqCRUD rfqCRUD = new RfqCRUD();
-
-        RfqDetailCRUD rfqDetailCRUD = new RfqDetailCRUD();
-
-        bomDetailCRUD bomDetailCRUD = new bomDetailCRUD();
-
-
-        List<BOMDetail> bomDetailList = bomDetailCRUD.readByParentID(long.Parse(lblBOMHeader.Text));
-        foreach (BOMDetail bomDetail in bomDetailList)
-        {
-            List<RFQSummary> rfqSummaryList = rfqSummaryCRUD.readByBOMDetailID(bomDetail.Id);
-            foreach (RFQSummary rfqSummary in rfqSummaryList)
-            {
-                if (rfqSummary.Eav_status == "SELECTED" || rfqSummary.Eav_status == "AWARDED")
-                {
-                    totalCostMaterial += rfqSummary.TotalACost;
-
-                    RfqAcrCRUD rfqAcrCRUD = new RfqAcrCRUD();
-                    List<RFQACR> rfqACRList = rfqAcrCRUD.readByParentID(rfqSummary.RfqHeaderKey);
-                    RFQACR rfqACR_with_Highest_Cost_Saving = null;
-                    foreach (RFQACR rfqACR in rfqACRList)
-                    {
-                        if (rfqACR_with_Highest_Cost_Saving == null || rfqACR.Porcentage > rfqACR_with_Highest_Cost_Saving.Porcentage)
-                            rfqACR_with_Highest_Cost_Saving = rfqACR;
-
-                    }
-                    if (rfqACR_with_Highest_Cost_Saving != null)
-                        totalCostReduction += rfqSummary.TotalACost * rfqACR_with_Highest_Cost_Saving.Porcentage / 100;
-                    else
-                    {
-                        //totalCostReduction += rfqSummary.TotalACost; We dont sum any value if there was no Annual Cost Reduction.
-                    }
-                }
-            }
-        }
-        ((Label)FormView1.FindControl("lblTotalMaterialCost")).Text = String.Format("{0:C}", totalCostMaterial);
-        ((Label)FormView1.FindControl("lblTotalCostReduction")).Text = String.Format("{0:C}", totalCostReduction);
-        ((Label)FormView1.FindControl("lblTotalMaterialCostWithReduction")).Text = String.Format("{0:C}", totalCostMaterial - totalCostReduction);
-
         SalesReportDetail_DAO salesReportDetailDAO = new SalesReportDetail_DAO();
         List<SalesReportDetail> salesReportDetailAllList = salesReportDetailDAO.readAllByBomHeaderKey(long.Parse(lblBOMHeader.Text));
 
@@ -84,7 +39,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                     if (srd.RFQStatus == "NO QUOTE")
                     {
                         srd.Eau_status = "NO QUOTE";
-                        srd.TotalACost = null;
+                        srd.TotalACost = 0;
                         srd.ProductionTooling = null;
                         srd.ToolingDetail = null;
                         srd.ProductionToolingLeadTime = null;
@@ -92,8 +47,24 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                         srd.LeadTimeFirstProductionOrder = null;
                         srd.LeadTimePPAPFAIR = null;
                         srd.LeadTimeNormalProductionOrders = null;
+                        srd.EauCalendarYears = null;
+                        srd.SupplierName = "";
                     }
-                    else if(srd.RFQStatus == "") {
+                    else if (srd.RFQStatus == "BOUGHT PART")
+                    {
+                        srd.Eau_status = "BOUGHT PART";
+                        srd.ProductionTooling = null;
+                        srd.ToolingDetail = null;
+                        srd.ProductionToolingLeadTime = null;
+
+                        srd.LeadTimeFirstProductionOrder = null;
+                        srd.LeadTimePPAPFAIR = null;
+                        srd.LeadTimeNormalProductionOrders = null;
+                        srd.EauCalendarYears = null;
+                        srd.SupplierName = "";
+                    }
+                    else if (srd.RFQStatus == "")
+                    {
                         srd.RFQStatus = "PROCESSED";
                         srd.Eau_status = "PROCESSED";
                     }
@@ -114,6 +85,43 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
 
         gridSalesReport.DataSource = salesReportDetailList;
         gridSalesReport.DataBind();
+
+
+        //Calculating TotalCostMaterial and TotalCostReduction:
+
+        float totalCostMaterial = 0;
+        float totalCostReduction = 0;
+
+        foreach (SalesReportDetail srd in salesReportDetailAllList)
+        {
+            if (srd.Eau_status == "SELECTED" || srd.Eau_status == "AWARDED" || srd.Status == "Bought Part")
+            {
+
+                totalCostMaterial += srd.TotalACost;
+
+                if (srd.Eau_status == "SELECTED" || srd.Eau_status == "AWARDED")
+                {
+                    RfqAcrCRUD rfqAcrCRUD = new RfqAcrCRUD();
+                    List<RFQACR> rfqACRList = rfqAcrCRUD.readByParentID(srd.RfqHeaderKey);
+                    RFQACR rfqACR_with_Highest_Cost_Saving = null;
+                    foreach (RFQACR rfqACR in rfqACRList)
+                    {
+                        if (rfqACR_with_Highest_Cost_Saving == null || rfqACR.Porcentage > rfqACR_with_Highest_Cost_Saving.Porcentage)
+                            rfqACR_with_Highest_Cost_Saving = rfqACR;
+
+                    }
+                    if (rfqACR_with_Highest_Cost_Saving != null)
+                        totalCostReduction += srd.TotalACost * rfqACR_with_Highest_Cost_Saving.Porcentage / 100;
+                    else
+                    {
+                        //totalCostReduction += rfqSummary.TotalACost; We dont sum any value if there was no Annual Cost Reduction.
+                    }
+                }
+            }
+        }
+        ((Label)FormView1.FindControl("lblTotalMaterialCost")).Text = String.Format("{0:C}", totalCostMaterial);
+        ((Label)FormView1.FindControl("lblTotalCostReduction")).Text = String.Format("{0:C}", totalCostReduction);
+        ((Label)FormView1.FindControl("lblTotalMaterialCostWithReduction")).Text = String.Format("{0:C}", totalCostMaterial - totalCostReduction);
 
     }
     protected void btnExportToExcel_Click(object sender, EventArgs e)
@@ -292,9 +300,9 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             get { return rFQStatus; }
             set { rFQStatus = value; }
         }
-        private string totalACost = "";
+        private float totalACost = 0;
 
-        public string TotalACost
+        public float TotalACost
         {
             get { return totalACost; }
             set { totalACost = value; }
@@ -405,6 +413,14 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
             set { reasonNoQuote = value; }
         }
 
+        private long rfqHeaderKey = -1;
+
+        public long RfqHeaderKey
+        {
+            get { return rfqHeaderKey; }
+            set { rfqHeaderKey = value; }
+        }
+
     }
     private class SalesReportDetail_DAO
     {
@@ -422,7 +438,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                             "ProductionToolingLeadTime, BOMHeaderKey, LinePosition, [Status], " +
                             "RFQStatus, TotalACost, ProductionTooling, [User], BOMDetailKey, " +
                             "LeadTimeFirstProductionOrder, LeadTimePPAP_FAIR, LeadTimeNormalProductionOrders, EAUCalendarYears, Um, EAV_Status, " +
-                            "PrototypeTooling, CommentsToBuyer, Quote100ToPrint, ExceptionTo100ToPrint, PurchasingStatus, ReasonNoQuote " +
+                            "PrototypeTooling, CommentsToBuyer, Quote100ToPrint, ExceptionTo100ToPrint, PurchasingStatus, ReasonNoQuote, rfqHeaderKey " +
                             "FROM        viewSalesReportDetail " +
                             "WHERE       [BOMHeaderKey] = " + id +
                             " ORDER BY    LinePosition,  [EAV_Status], SupplierName, BOMDetailKey";
@@ -454,7 +470,7 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                 salesReportDetailLocal.LinePosition = table.Rows[i][17].ToString();
                 salesReportDetailLocal.Status = table.Rows[i][18].ToString();
                 salesReportDetailLocal.RFQStatus = table.Rows[i][19].ToString();
-                salesReportDetailLocal.TotalACost = table.Rows[i][20].ToString();
+                salesReportDetailLocal.TotalACost = float.Parse(table.Rows[i][20].ToString());
                 salesReportDetailLocal.ProductionTooling = table.Rows[i][21].ToString();
                 salesReportDetailLocal.User = table.Rows[i][22].ToString();
                 salesReportDetailLocal.BOMDetailKey = long.Parse(table.Rows[i][23].ToString());
@@ -473,6 +489,8 @@ public partial class HTMLReports_SalesReport_AllRFQs : System.Web.UI.Page
                 try { salesReportDetailLocal.PurchasingStatus = table.Rows[i][34].ToString(); }
                 catch { }
                 salesReportDetailLocal.ReasonNoQuote = table.Rows[i][35].ToString();
+                try { salesReportDetailLocal.RfqHeaderKey = long.Parse(table.Rows[i][36].ToString()); }
+                catch { }
                 recordset.Add(salesReportDetailLocal);
             }
 

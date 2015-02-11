@@ -54,5 +54,5 @@
 </table>
 <br />
 <div style="text-align:center;width:100%;">
-<a href="APQMUsersManual.pdf" target="_blank" >APQM User&#39;s Manual</a>
+<a href="<%= ResolveUrl("~/APQMUsersManual.pdf") %>" target="_blank" >APQM User&#39;s Manual</a>
 </div>
