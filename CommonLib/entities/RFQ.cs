@@ -750,6 +750,7 @@ public class RFQSummary
     private long rfqHeaderKey = -1;
     private float prototypeTooling;
     private string um = "";
+    private string drawingLevel = "";
 
     public float PrototypeTooling
     {
@@ -949,6 +950,12 @@ public class RFQSummary
         get { return um; }
         set { um = value; }
     }
+    public string DrawingLevel
+    {
+        get { return drawingLevel; }
+        set { drawingLevel = value; }
+    }
+
 }
 
 public class RFQAttachments

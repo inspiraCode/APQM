@@ -73,7 +73,7 @@
                 <table cellspacing="1" class="style1">
                     <tr>
                         <td align="right" class="style5">
-                            InquiryNumber:
+                            Inquiry Number:
                         </td>
                         <td class="style4" style="background-color: #E0E0E0; width: 300px;">
                             <asp:Label ID="InquiryNumberLabel" inquiryNumber runat="server" Text='<%# Bind("InquiryNumber") %>' />
@@ -147,7 +147,8 @@
                     PPAP Date:
                 </td>
                 <td>
-                    <input type="text" id="txtPPAPDate" validate="dateOrEmpty" validationid="rfqSummary" datepicker="true" />
+                    <input type="text" id="txtPPAPDate" validate="dateOrEmpty" validationid="rfqSummary"
+                        datepicker="true" />
                 </td>
                 <td style="width: 100px;">
                 </td>
@@ -494,13 +495,13 @@
             }
 
             for (var strEAU in result) {
-                if(result.hasOwnProperty(strEAU)){
+                if (result.hasOwnProperty(strEAU)) {
                     result[strEAU] = removeDuplicates(result[strEAU].split(",")).join(",");
                 }
-            } 
+            }
             return result;
         }
-        function removeDuplicates(arr){
+        function removeDuplicates(arr) {
             var uniqueElements = [];
             $.each(arr, function (i, el) {
                 if ($.inArray(jQuery.trim(el), uniqueElements) === -1) uniqueElements.push(jQuery.trim(el));
@@ -530,6 +531,16 @@
         '                <td>' +
         '                    <table>' +
         '                        <tr style="height:16px;">' +
+        '                        </tr>' +
+        '                        <tr style="height:16px;">' +
+        '                            <td>' +
+        '                                <label>RFQ Number</ label>' +
+        '                            </td>' +
+        '                        </tr>' +
+        '                        <tr style="height:16px;">' +
+        '                            <td>' +
+        '                                <label>Drawing Rev.</ label>' +
+        '                            </td>' +
         '                        </tr>' +
         '                        <tr style="height:16px;">' +
         '                            <td>' +
@@ -654,6 +665,16 @@
         '                <tr style="height:16px;">' +
         '                    <td align="center">' +
         '                        <label id="lblSelected">' + jQuery.trim(current.Eav_status) + '</ label>' +
+        '                    </td>' +
+        '                </tr>' +
+        '                <tr style="height:16px;">' +
+        '                    <td align="center">' +
+        '                        <label>' + jQuery.trim(current.RfqNumber) + '</ label>' +
+        '                    </td>' +
+        '                </tr>' +
+        '                <tr style="height:16px;">' +
+        '                    <td align="center">' +
+        '                        <label>' + jQuery.trim(current.DrawingLevel) + '</ label>' +
         '                    </td>' +
         '                </tr>' +
         '                <tr style="height:16px;">' +
@@ -861,7 +882,7 @@
                 var value = RFQSummary[jQuery(this).attr("bindTo")];
                 setValueForControl(this, jQuery(this), value);
             });
-            
+
             jQuery('#txtPPAPDate').val(formatDate(RFQSummary.PpapDate));
             jQuery('#txtInitialReleaseDate').val(formatDate(RFQSummary.InitialReleaseDate));
             jQuery('#txtPreBuildDate').val(formatDate(RFQSummary.PrebuildDate));
@@ -890,7 +911,7 @@
             RFQSummary.PpapDate = getJSONDate(jQuery('#txtPPAPDate').val());
             RFQSummary.InitialReleaseDate = getJSONDate(jQuery('#txtInitialReleaseDate').val());
             RFQSummary.PrebuildDate = getJSONDate(jQuery('#txtPreBuildDate').val());
-            
+
 
             //        if (jQuery("#optQuote").is(':checked')) {
             //            RFQ.NoQuote = false;
