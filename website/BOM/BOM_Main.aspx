@@ -56,7 +56,7 @@
         }
         .BoughtPart
         {
-        	background: #F0E68C;
+            background: #F0E68C;
         }
         .Processed
         {
@@ -109,7 +109,7 @@
     <div style="position: absolute; top: 32px; left: 135px; font-size: 30px;">
         <label id="lblInquiryNumber" bindto="InquiryNumber">
         </label>
-        <label id="lblRevision" style="text-transform:uppercase;" bindto="Revision">
+        <label id="lblRevision" style="text-transform: uppercase;" bindto="Revision">
         </label>
     </div>
     <div align="left">
@@ -197,7 +197,8 @@
                 <th class="camposSinBordes" style="width: 75px; min-width: 75px; max-width: 75px;">
                     Status
                 </th>
-                <th class="camposSinBordes" style="width: 72px; min-width: 72px; max-width: 72px;display: none;">
+                <th class="camposSinBordes" style="width: 72px; min-width: 72px; max-width: 72px;
+                    display: none;">
                     Sales LN
                 </th>
                 <th class="camposSinBordes itemFields" style="width: 132px; min-width: 132px; max-width: 132px;">
@@ -428,8 +429,7 @@
                                     <b>Part Number</b>
                                 </td>
                                 <td align="left">
-                                    <div id="divPartNumberPopup">
-                                    </div>
+                                    <input type="text" id="txtPartNumberPopup" />
                                 </td>
                             </tr>
                             <tr>
@@ -618,8 +618,14 @@
             });
 
             jQuery("#btnNewRFQ").click(function () {
+
                 if (jQuery("h3 input:checkbox:checked").length > 0) {
-                    popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
+                    var sError = preValidateComponentsToRFQ();
+                    if (sError == '') {
+                        popupRFQScreen = window.open("../RFQ/NewRFQ.aspx");
+                    } else {
+                        alertify.alert(sError);
+                    }
                 } else {
                     alertify.log("You have not selected any component to quote.");
                 }
@@ -630,6 +636,21 @@
             });
 
         });
+
+        function preValidateComponentsToRFQ() {
+            var sError = '';
+            for (var i = 0; i < BOM.BomDetail.length; i++) {
+                var theComponent = BOM.BomDetail[i];
+                if (theComponent.selected) {
+                    if (jQuery.trim(theComponent.Um) == '') {
+                        sError = 'Component ' + (theComponent.Sequence + 1) + ', has invalid UOM';
+                        return sError;
+                    }
+                }
+            }
+            return sError;
+        }
+
         function setEventHanlderToCheckBoxes() {
             jQuery("#accordionBOM [type=checkbox]").click(function () {
                 BOM.BomDetail[jQuery(this).parents("[bomlineindex]").attr("bomlineindex")].selected = this.checked;
@@ -727,8 +748,8 @@
         function on_openSIFDetail() {
             jQuery("#divDialog_SifDetail").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width:'auto',
-               modal: false, closeOnEscape: false
+                width: 'auto',
+                modal: false, closeOnEscape: false
             });
         }
 
@@ -1419,7 +1440,7 @@
         }
         function updateBOMLineByID(iBOMLineID, src) {
             try {
-                populatePartNumberPopup();
+                //populatePartNumberPopup();
                 populateUMPopup();
 
                 var index = jQuery(src).parents("[bomLineIndex]").attr("bomLineIndex");
@@ -1430,7 +1451,8 @@
                     jQuery("#lblAssignedToPopup").text(oBOMLineToUpdate.User);
                     jQuery("#lblStatusPopup").text(oBOMLineToUpdate.Status);
                     jQuery("#lblSalesLNPopup").text(oBOMLineToUpdate.LinePosition);
-                    selectizePartNumberCreateEdit.setValue(oBOMLineToUpdate.ItemMasterkey);
+                    //selectizePartNumberCreateEdit.setValue(oBOMLineToUpdate.ItemMasterkey);
+                    jQuery("#txtPartNumberPopup").val(oBOMLineToUpdate.PartNumber);
                     jQuery("#txtCapsonicPNPopup").val(oBOMLineToUpdate.CapsonicPN);
                     jQuery("#txtManufacturePNPopup").val(oBOMLineToUpdate.ManufacturePN);
                     jQuery("#txtSupplierPNPopup").val(oBOMLineToUpdate.SupplierPN);
@@ -1551,13 +1573,14 @@
         }
         function saveOrCreateBOMLine(oBOMLineToSave) {
             oBOMLineToSave.internalAction = "For Edit";
-            var oPartNumber = getItemByID(selectizePartNumberCreateEdit.getValue());
-            if (oPartNumber != null) {
-                oBOMLineToSave.PartNumber = oPartNumber.PartNumber;
-            }
-            else {
-                oBOMLineToSave.PartNumber = selectizePartNumberCreateEdit.getValue();
-            }
+//            var oPartNumber = getItemByID(selectizePartNumberCreateEdit.getValue());
+//            if (oPartNumber != null) {
+//                oBOMLineToSave.PartNumber = oPartNumber.PartNumber;
+//            }
+//            else {
+//                oBOMLineToSave.PartNumber = selectizePartNumberCreateEdit.getValue();
+//            }
+            oBOMLineToSave.PartNumber = jQuery("#txtPartNumberPopup").val();
             oBOMLineToSave.CapsonicPN = jQuery("#txtCapsonicPNPopup").val();
             oBOMLineToSave.ManufacturePN = jQuery("#txtManufacturePNPopup").val();
             oBOMLineToSave.SupplierPN = jQuery("#txtSupplierPNPopup").val();
@@ -1661,7 +1684,7 @@
         function on_btnEditBOM_click() {
             jQuery("#divDialog_EditBOM").dialog({ autoOpen: true,
                 appendTo: jQuery('form:first'),
-                width: 1020, height: 550, modal: false,
+                width: 770, height: 550, modal: false,
                 resizable: false,
                 closeOnEscape: false,
                 close: function (event, ui) {
@@ -1712,52 +1735,91 @@
             jQuery("#divEditBOM").handsontable({
                 data: bomContent,
                 //width: 1850,
-                width: 1000,
+                width: 760,
                 height: 450,
-                colWidths: [70, 70, 60, 130, 90, 90, 90, 90, 70, 200, 50, 80, 100, 80, 70, 150, 70, 90, 70, 110],
+                colWidths: [
+                //70,
+                //70,
+                //60,
+                    130,
+                //90,
+                //90,
+                //90,
+                //90,
+                //70,
+                    200,
+                    50,
+                    80,
+                //100,
+                    80,
+                //70,
+                    150,
+                //70,
+                //90,
+                //70,
+                //110
+                    ],
                 minRows: 20,
                 minSpareRows: 1,
                 fixedColumnsLeft: 4,
                 rowHeaders: true,
                 manualColumnResize: true,
-                colHeaders: ['Assigned To', 'Status', 'Sales LN', 'Part Number',
-                            'Capsonic PN', 'Customer PN', 'Manufacture PN', 'Supplier PN', 'Comm Code',
-                            'Material', 'UOM', 'Cost', 'Vendor Quote Est', 'Qty', 'Cap Com Assm', 'Purchasing Comments',
-                             'Sales Status', 'Sales Comments', 'Directed Buy', 'Purchasing Status'],
+                colHeaders: [
+                    //'Assigned To',
+                    //'Status',
+                    //'Sales LN',
+                    'Part Number',
+                    //'Capsonic PN', 
+                    //'Customer PN',
+                    //'Manufacture PN', 
+                    //'Supplier PN', 
+                    //'Comm Code',
+                    'Material', 
+                    'UOM',
+                    'Cost',
+                    //'Vendor Quote Est', 
+                    'Qty',
+                    //'Cap Com Assm', 
+                    'Purchasing Comments',
+                    //'Sales Status',
+                    //'Sales Comments', 
+                    //'Directed Buy', 
+                    //'Purchasing Status'
+                    ],
                 columns: [
 
+//                            {
+//                                data: "User",
+//                                readOnly: true
+//                            },
+//                            {
+//                                data: "Status",
+//                                readOnly: true
+//                            },
+//                            {
+//                                data: "LinePosition",
+//                                readOnly: true
+//                            },
                             {
-                                data: "User",
-                                readOnly: true
+                            data: "PartNumber", //PartNumberCell
+                                //readOnly: true,
+                               // renderer: "html"
                             },
-                            {
-                                data: "Status",
-                                readOnly: true
-                            },
-                            {
-                                data: "LinePosition",
-                                readOnly: true
-                            },
-                            {
-                                data: "PartNumberCell",
-                                readOnly: true,
-                                renderer: "html"
-                            },
-                            {
-                                data: "CapsonicPN"
-                            },
-                            {
-                                data: "CustomerPN"
-                            },
-                            {
-                                data: "ManufacturePN"
-                            },
-                            {
-                                data: "SupplierPN"
-                            },
-                            {
-                                data: "CommCode"
-                            },
+//                            {
+//                                data: "CapsonicPN"
+//                            },
+//                            {
+//                                data: "CustomerPN"
+//                            },
+//                            {
+//                                data: "ManufacturePN"
+//                            },
+//                            {
+//                                data: "SupplierPN"
+//                            },
+//                            {
+//                                data: "CommCode"
+//                            },
                             {
                                 data: "Material"
                             },
@@ -1773,38 +1835,39 @@
                                 format: '0,0.0000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
-                            {
-                                data: "VendorQuoteEst"
-                            },
+//                            {
+//                                data: "VendorQuoteEst"
+//                            },
                             {
                                 data: "Qty",
                                 type: "numeric",
                                 format: '0,0.0000',
                                 language: 'en' //this is the default locale, set up for USD
                             },
-                            {
-                                data: "CapComAssm"
-                            },
+//                            {
+//                                data: "CapComAssm"
+//                            },
                             {
                                 data: "PurchasingComments"
                             },
-                            {
-                                data: "SalesStatus",
-                                readOnly: true
-                            },
-                            { data: "SalesComments",
-                                readOnly: true
-                            },
-                            {
-                                data: "DirectedBuy",
-                                type: "checkbox"
-                            },
-                            {
-                                data: "PurchasingStatus",
-                                type: "autocomplete",
-                                source: ["Quote", "Estimate", "Pass Thru", "Manufacture", "Firm Requirement"],
-                                strict: false
-                            }],
+//                            {
+//                                data: "SalesStatus",
+//                                readOnly: true
+//                            },
+//                            { data: "SalesComments",
+//                                readOnly: true
+//                            },
+//                            {
+//                                data: "DirectedBuy",
+//                                type: "checkbox"
+//                            },
+//                            {
+//                                data: "PurchasingStatus",
+//                                type: "autocomplete",
+//                                source: ["Quote", "Estimate", "Pass Thru", "Manufacture", "Firm Requirement"],
+//                                strict: false
+                            //                            }
+],
                 afterChange: function (changes, source) {
                     //Calculating formulas:
                     //if (source != "loadData") {
